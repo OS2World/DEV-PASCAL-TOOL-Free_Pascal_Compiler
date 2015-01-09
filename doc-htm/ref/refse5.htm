@@ -1,0 +1,125 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.5 Numbers</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse6.htm" >next</a>] [<a 
+href="refse4.htm" >prev</a>] [<a 
+href="refse4.htm#tailrefse4.htm" >prev-tail</a>] [<a 
+href="#tailrefse5.htm">tail</a>] [<a 
+href="refch1.htm#refse5.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.5</span> <a 
+href="ref.htm#QQ2-17-16" name="x17-160001.5">Numbers</a></h3>
+<!--l. 359--><p class="noindent">Numbers are by default denoted in decimal notation. Real (or decimal) numbers are written using
+engineering or scientific notation (e.g. <span 
+class="cmtt-10">0.314E1</span>).
+<!--l. 363--><p class="noindent">For integer type constants, Free Pascal supports 4 formats:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x17-16002x1"></a>Normal, decimal format (base 10). This is the standard format.
+     </li>
+     <li class="enumerate"><a 
+  name="x17-16004x2"></a>Hexadecimal format (base 16), in the same way as Turbo Pascal does. To specify
+     a  constant  value  in  hexadecimal  format,  prepend  it  with  a  dollar  sign  (<span 
+class="cmtt-10">$</span>).  Thus,
+     the hexadecimal <span 
+class="cmtt-10">$FF </span>equals 255 decimal. Note that case is insignificant when using
+     hexadecimal constants.
+     </li>
+     <li class="enumerate"><a 
+  name="x17-16006x3"></a>As of version 1.0.7, Octal format (base 8) is also supported. To specify a constant in
+     octal format, prepend it with a ampersand (&amp;). For instance 15 is specified in octal
+     notation as <span 
+class="cmtt-10">&amp;17</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x17-16008x4"></a>Binary notation (base 2). A binary number can be specified by preceding it with a
+     percent sign (<span 
+class="cmtt-10">%</span>). Thus, <span 
+class="cmtt-10">255 </span>can be specified in binary notation as <span 
+class="cmtt-10">%11111111</span>.</li></ol>
+<!--l. 377--><p class="noindent">The following diagrams show the syntax for numbers.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Numbers</span>
+     <BR/>
+     <img 
+src="ref9x.png" alt="-- hex digit sequence -|hex digit---------------------------------------
+                  -----------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref10x.png" alt="-- octal digit sequence-|-octal digit------------------------------------
+                    ----------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref11x.png" alt="-- bin digit sequence-- 1-------------------------------------------
+                  |- 0--||
+                  -------|
+     " ><BR/>
+     <BR/>
+                                                                            
+
+                                                                            
+     <img 
+src="ref12x.png" alt="-- digit sequence--digit---------------------------------------------
+               -------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref13x.png" alt="--             ------           --------------------------------
+   unsigned integer  -  -digit sequence  --|
+                 -$% -hebxin didgigitit seseqquuenecnece-|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref14x.png" alt="--sign-|+ --------------------------------------------------------
+      -- --
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref15x.png" alt="-- unsigned real-digit sequence-|-----------------|------------------
+                           -.- digit sequence -- -scale factor-
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref16x.png" alt="-- scale factor --E -----------digit sequence---------------------------
+             -e -| -sign -|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref17x.png" alt="--              -|--          -----------------------------------
+   unsigned number  |-unusnigsingeneddinretaegler-|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref18x.png" alt="-- signed number--|------unsigned number-----------------------------
+                -sign--
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 384--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> It is to note that all decimal constants which do no fit within the -2147483648..2147483647 range,
+are silently and automatically parsed as real-type constants.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse6.htm" >next</a>] [<a 
+href="refse4.htm" >prev</a>] [<a 
+href="refse4.htm#tailrefse4.htm" >prev-tail</a>] [<a 
+href="refse5.htm" >front</a>] [<a 
+href="refch1.htm#refse5.htm" >up</a>] </p></div><a 
+  name="tailrefse5.htm"></a>  
+</body></html> 

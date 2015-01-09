@@ -1,0 +1,336 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>G Compiler defines during compilation</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap8.htm" >next</a>] [<a 
+href="progap6.htm" >prev</a>] [<a 
+href="progap6.htm#tailprogap6.htm" >prev-tail</a>] [<a 
+href="#tailprogap7.htm">tail</a>] [<a 
+href="prog.htm#progap7.htm" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">Appendix&nbsp;G</span><br><a 
+href="prog.htm#QQ2-266-295" name="x266-267000G">Compiler defines during compilation</a></h2>
+<!--l. 6707--><p class="noindent">This appendix describes the possible defines when compiling programs using Free Pascal. A brief
+explanation of the define, and when it is used is also given.
+                                                                            
+
+                                                                            
+<a 
+  name="x266-2670011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;G.1: </td><td  
+class="content">Possible defines when compiling using FPC</td></tr></table></div><!--tex4ht:label?: x266-2670011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-27-" ><colgroup id="TBL-27-1g"><col 
+id="TBL-27-1"><col 
+id="TBL-27-2"></colgroup><tr  
+valign="baseline" id="TBL-27-1-"><td  align="left" nowrap="nowrap" id="TBL-27-1-1"  
+class="td11"> Define                       </td><td  align="left" nowrap="nowrap" id="TBL-27-1-2"  
+class="td11"> description                                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-27-2-"><td  align="left" nowrap="nowrap" id="TBL-27-2-1"  
+class="td11"> FPC_LINK_DYNAMIC</td><td  align="left" nowrap="nowrap" id="TBL-27-2-2"  
+class="td11"> Defined when the output will be linked dynamically.                          </td>
+</tr><tr  
+valign="baseline" id="TBL-27-3-"><td  align="left" nowrap="nowrap" id="TBL-27-3-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-3-2"  
+class="td11"> This is defined when using the -XD compiler switch.                          </td>
+</tr><tr  
+valign="baseline" id="TBL-27-4-"><td  align="left" nowrap="nowrap" id="TBL-27-4-1"  
+class="td11"> FPC_LINK_STATIC    </td><td  align="left" nowrap="nowrap" id="TBL-27-4-2"  
+class="td11"> Defined when the output will be linked statically.                              </td>
+</tr><tr  
+valign="baseline" id="TBL-27-5-"><td  align="left" nowrap="nowrap" id="TBL-27-5-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-5-2"  
+class="td11"> This is the default mode.                                                              </td>
+</tr><tr  
+valign="baseline" id="TBL-27-6-"><td  align="left" nowrap="nowrap" id="TBL-27-6-1"  
+class="td11"> FPC_LINK_SMART    </td><td  align="left" nowrap="nowrap" id="TBL-27-6-2"  
+class="td11"> Defined when the output will be smartlinked.                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-27-7-"><td  align="left" nowrap="nowrap" id="TBL-27-7-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-7-2"  
+class="td11"> This is defined when using the -XX compiler switch.                          </td>
+</tr><tr  
+valign="baseline" id="TBL-27-8-"><td  align="left" nowrap="nowrap" id="TBL-27-8-1"  
+class="td11"> FPC_PROFILE          </td><td  align="left" nowrap="nowrap" id="TBL-27-8-2"  
+class="td11"> Defined when profiling code is added to program.                              </td>
+</tr><tr  
+valign="baseline" id="TBL-27-9-"><td  align="left" nowrap="nowrap" id="TBL-27-9-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-9-2"  
+class="td11"> This is defined when using the -pg compiler switch.                            </td>
+</tr><tr  
+valign="baseline" id="TBL-27-10-"><td  align="left" nowrap="nowrap" id="TBL-27-10-1"  
+class="td11"> FPK                        </td><td  align="left" nowrap="nowrap" id="TBL-27-10-2"  
+class="td11"> Always defined for Free Pascal.                                                      </td>
+</tr><tr  
+valign="baseline" id="TBL-27-11-"><td  align="left" nowrap="nowrap" id="TBL-27-11-1"  
+class="td11"> FPC                         </td><td  align="left" nowrap="nowrap" id="TBL-27-11-2"  
+class="td11"> Always defined for Free Pascal.                                                      </td>
+</tr><tr  
+valign="baseline" id="TBL-27-12-"><td  align="left" nowrap="nowrap" id="TBL-27-12-1"  
+class="td11"> VER1                       </td><td  align="left" nowrap="nowrap" id="TBL-27-12-2"  
+class="td11"> Always defined for Free Pascal version 1.x.x.                                     </td>
+</tr><tr  
+valign="baseline" id="TBL-27-13-"><td  align="left" nowrap="nowrap" id="TBL-27-13-1"  
+class="td11"> VER1_0                    </td><td  align="left" nowrap="nowrap" id="TBL-27-13-2"  
+class="td11"> Always defined for Free Pascal version 1.0.x.                                     </td>
+</tr><tr  
+valign="baseline" id="TBL-27-14-"><td  align="left" nowrap="nowrap" id="TBL-27-14-1"  
+class="td11"> ENDIAN_LITTLE      </td><td  align="left" nowrap="nowrap" id="TBL-27-14-2"  
+class="td11"> Defined when the Free Pascal target is a little-endian processor            </td>
+</tr><tr  
+valign="baseline" id="TBL-27-15-"><td  align="left" nowrap="nowrap" id="TBL-27-15-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-15-2"  
+class="td11"> (80x86, Alpha, ARM).                                                                  </td>
+</tr><tr  
+valign="baseline" id="TBL-27-16-"><td  align="left" nowrap="nowrap" id="TBL-27-16-1"  
+class="td11"> ENDIAN_BIG            </td><td  align="left" nowrap="nowrap" id="TBL-27-16-2"  
+class="td11"> Defined when the Free Pascal target is a big-endian processor              </td>
+</tr><tr  
+valign="baseline" id="TBL-27-17-"><td  align="left" nowrap="nowrap" id="TBL-27-17-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-17-2"  
+class="td11"> (680x0, PowerPC, SPARC, MIPS).                                                 </td>
+</tr><tr  
+valign="baseline" id="TBL-27-18-"><td  align="left" nowrap="nowrap" id="TBL-27-18-1"  
+class="td11"> FPC_DELPHI            </td><td  align="left" nowrap="nowrap" id="TBL-27-18-2"  
+class="td11"> Free Pascal is in Delphi mode, either using compiler switch -Sd or         </td>
+</tr><tr  
+valign="baseline" id="TBL-27-19-"><td  align="left" nowrap="nowrap" id="TBL-27-19-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-19-2"  
+class="td11"> using the <span 
+class="cmtt-10">$MODE DELPHI </span>directive.                                                  </td>
+</tr><tr  
+valign="baseline" id="TBL-27-20-"><td  align="left" nowrap="nowrap" id="TBL-27-20-1"  
+class="td11"> FPC_OBJFPC           </td><td  align="left" nowrap="nowrap" id="TBL-27-20-2"  
+class="td11"> Free Pascal is in Delphi mode, either using compiler switch -S2 or         </td>
+</tr><tr  
+valign="baseline" id="TBL-27-21-"><td  align="left" nowrap="nowrap" id="TBL-27-21-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-21-2"  
+class="td11"> using the <span 
+class="cmtt-10">$MODE OBJFPC </span>directive.                                                  </td>
+</tr><tr  
+valign="baseline" id="TBL-27-22-"><td  align="left" nowrap="nowrap" id="TBL-27-22-1"  
+class="td11"> FPC_TP                   </td><td  align="left" nowrap="nowrap" id="TBL-27-22-2"  
+class="td11"> Free Pascal is in Turbo Pascal mode, either using compiler switch -So or</td>
+</tr><tr  
+valign="baseline" id="TBL-27-23-"><td  align="left" nowrap="nowrap" id="TBL-27-23-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-23-2"  
+class="td11"> using the <span 
+class="cmtt-10">$MODE TP </span>directive.                                                         </td>
+</tr><tr  
+valign="baseline" id="TBL-27-24-"><td  align="left" nowrap="nowrap" id="TBL-27-24-1"  
+class="td11"> FPC_GPC                 </td><td  align="left" nowrap="nowrap" id="TBL-27-24-2"  
+class="td11"> Free Pascal is in GNU Pascal mode, either using compiler switch -Sp or </td>
+</tr><tr  
+valign="baseline" id="TBL-27-25-"><td  align="left" nowrap="nowrap" id="TBL-27-25-1"  
+class="td11">                                </td><td  align="left" nowrap="nowrap" id="TBL-27-25-2"  
+class="td11"> using the <span 
+class="cmtt-10">$MODE GPC </span>directive.                                                       </td>
+</tr><tr  
+valign="baseline" id="TBL-27-26-"><td  align="left" nowrap="nowrap" id="TBL-27-26-1"  
+class="td11">                                </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<span 
+class="cmbx-10">Remark:</span> The <span 
+class="cmtt-10">ENDIAN</span>_<span 
+class="cmtt-10">LITTLE </span>and <span 
+class="cmtt-10">ENDIAN</span>_<span 
+class="cmtt-10">BIG </span>defines were added starting from Free Pascal version
+1.0.5.
+                                                                            
+
+                                                                            
+<a 
+  name="x266-2670022"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+ <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;G.2: </td><td  
+class="content">Possible CPU defines when compiling using FPC</td></tr></table></div><!--tex4ht:label?: x266-2670022-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-28-" ><colgroup id="TBL-28-1g"><col 
+id="TBL-28-1"><col 
+id="TBL-28-2"></colgroup><tr  
+valign="baseline" id="TBL-28-1-"><td  align="left" nowrap="nowrap" id="TBL-28-1-1"  
+class="td11"> Define              </td><td  align="left" nowrap="nowrap" id="TBL-28-1-2"  
+class="td11"> When defined?                                                   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-28-2-"><td  align="left" nowrap="nowrap" id="TBL-28-2-1"  
+class="td11"> CPU86             </td><td  align="left" nowrap="nowrap" id="TBL-28-2-2"  
+class="td11"> Free Pascal target is an Intel 80x86 or compatible.     </td>
+</tr><tr  
+valign="baseline" id="TBL-28-3-"><td  align="left" nowrap="nowrap" id="TBL-28-3-1"  
+class="td11"> CPU87             </td><td  align="left" nowrap="nowrap" id="TBL-28-3-2"  
+class="td11"> Free Pascal target is an Intel 80x86 or compatible.     </td>
+</tr><tr  
+valign="baseline" id="TBL-28-4-"><td  align="left" nowrap="nowrap" id="TBL-28-4-1"  
+class="td11"> CPUI386          </td><td  align="left" nowrap="nowrap" id="TBL-28-4-2"  
+class="td11"> Free Pascal target is an Intel 80386 or later.             </td>
+</tr><tr  
+valign="baseline" id="TBL-28-5-"><td  align="left" nowrap="nowrap" id="TBL-28-5-1"  
+class="td11"> CPU68k           </td><td  align="left" nowrap="nowrap" id="TBL-28-5-2"  
+class="td11"> Free Pascal target is a Motorola 680x0 or compatible.</td>
+</tr><tr  
+valign="baseline" id="TBL-28-6-"><td  align="left" nowrap="nowrap" id="TBL-28-6-1"  
+class="td11"> CPUM68020      </td><td  align="left" nowrap="nowrap" id="TBL-28-6-2"  
+class="td11"> Free Pascal target is a Motorola 68020 or later.         </td>
+</tr><tr  
+valign="baseline" id="TBL-28-7-"><td  align="left" nowrap="nowrap" id="TBL-28-7-1"  
+class="td11"> CPU68             </td><td  align="left" nowrap="nowrap" id="TBL-28-7-2"  
+class="td11"> Free Pascal target is a Motorola 680x0 or compatible.</td>
+</tr><tr  
+valign="baseline" id="TBL-28-8-"><td  align="left" nowrap="nowrap" id="TBL-28-8-1"  
+class="td11"> CPUSPARC      </td><td  align="left" nowrap="nowrap" id="TBL-28-8-2"  
+class="td11"> Free Pascal target is a SPARC v7 or compatible.       </td>
+</tr><tr  
+valign="baseline" id="TBL-28-9-"><td  align="left" nowrap="nowrap" id="TBL-28-9-1"  
+class="td11"> CPUALPHA     </td><td  align="left" nowrap="nowrap" id="TBL-28-9-2"  
+class="td11"> Free Pascal target is an Alpha AXP or compatible.    </td>
+</tr><tr  
+valign="baseline" id="TBL-28-10-"><td  align="left" nowrap="nowrap" id="TBL-28-10-1"  
+class="td11"> CPUPOWERPC</td><td  align="left" nowrap="nowrap" id="TBL-28-10-2"  
+class="td11"> Free Pascal target is a 32-bit PowerPC or compatible.</td>
+</tr><tr  
+valign="baseline" id="TBL-28-11-"><td  align="left" nowrap="nowrap" id="TBL-28-11-1"  
+class="td11">                       </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<a 
+  name="x266-2670033"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+ <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;G.3: </td><td  
+class="content">Possible defines when compiling using target OS</td></tr></table></div><!--tex4ht:label?: x266-2670033-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-29-" ><colgroup id="TBL-29-1g"><col 
+id="TBL-29-1"><col 
+id="TBL-29-2"></colgroup><tr  
+valign="baseline" id="TBL-29-1-"><td  align="left" nowrap="nowrap" id="TBL-29-1-1"  
+class="td11"> Target operating system</td><td  align="left" nowrap="nowrap" id="TBL-29-1-2"  
+class="td11"> Defines                         </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-29-2-"><td  align="left" nowrap="nowrap" id="TBL-29-2-1"  
+class="td11"> linux                         </td><td  align="left" nowrap="nowrap" id="TBL-29-2-2"  
+class="td11"> LINUX, UNIX               </td>
+</tr><tr  
+valign="baseline" id="TBL-29-3-"><td  align="left" nowrap="nowrap" id="TBL-29-3-1"  
+class="td11"> freebsd                       </td><td  align="left" nowrap="nowrap" id="TBL-29-3-2"  
+class="td11"> FREEBSD, BSD, UNIX   </td>
+</tr><tr  
+valign="baseline" id="TBL-29-4-"><td  align="left" nowrap="nowrap" id="TBL-29-4-1"  
+class="td11"> netbsd                       </td><td  align="left" nowrap="nowrap" id="TBL-29-4-2"  
+class="td11"> NETBSD, BSD, UNIX     </td>
+</tr><tr  
+valign="baseline" id="TBL-29-5-"><td  align="left" nowrap="nowrap" id="TBL-29-5-1"  
+class="td11"> sunos                         </td><td  align="left" nowrap="nowrap" id="TBL-29-5-2"  
+class="td11"> SUNOS, SOLARIS, UNIX</td>
+</tr><tr  
+valign="baseline" id="TBL-29-6-"><td  align="left" nowrap="nowrap" id="TBL-29-6-1"  
+class="td11"> go32v2                       </td><td  align="left" nowrap="nowrap" id="TBL-29-6-2"  
+class="td11"> GO32V2, DPMI             </td>
+</tr><tr  
+valign="baseline" id="TBL-29-7-"><td  align="left" nowrap="nowrap" id="TBL-29-7-1"  
+class="td11"> os2                            </td><td  align="left" nowrap="nowrap" id="TBL-29-7-2"  
+class="td11"> OS2                             </td>
+</tr><tr  
+valign="baseline" id="TBL-29-8-"><td  align="left" nowrap="nowrap" id="TBL-29-8-1"  
+class="td11"> Windows 32-bit           </td><td  align="left" nowrap="nowrap" id="TBL-29-8-2"  
+class="td11"> WIN32                         </td>
+</tr><tr  
+valign="baseline" id="TBL-29-9-"><td  align="left" nowrap="nowrap" id="TBL-29-9-1"  
+class="td11"> Classic Amiga             </td><td  align="left" nowrap="nowrap" id="TBL-29-9-2"  
+class="td11"> AMIGA                        </td>
+</tr><tr  
+valign="baseline" id="TBL-29-10-"><td  align="left" nowrap="nowrap" id="TBL-29-10-1"  
+class="td11"> Atari TOS                  </td><td  align="left" nowrap="nowrap" id="TBL-29-10-2"  
+class="td11"> ATARI                         </td>
+</tr><tr  
+valign="baseline" id="TBL-29-11-"><td  align="left" nowrap="nowrap" id="TBL-29-11-1"  
+class="td11"> Classic Macintosh        </td><td  align="left" nowrap="nowrap" id="TBL-29-11-2"  
+class="td11"> MAC                            </td>
+</tr><tr  
+valign="baseline" id="TBL-29-12-"><td  align="left" nowrap="nowrap" id="TBL-29-12-1"  
+class="td11"> PalmOS                     </td><td  align="left" nowrap="nowrap" id="TBL-29-12-2"  
+class="td11"> PALMOS                      </td>
+</tr><tr  
+valign="baseline" id="TBL-29-13-"><td  align="left" nowrap="nowrap" id="TBL-29-13-1"  
+class="td11"> BeOS                         </td><td  align="left" nowrap="nowrap" id="TBL-29-13-2"  
+class="td11"> BEOS, UNIX                 </td>
+</tr><tr  
+valign="baseline" id="TBL-29-14-"><td  align="left" nowrap="nowrap" id="TBL-29-14-1"  
+class="td11"> QNX RTP                  </td><td  align="left" nowrap="nowrap" id="TBL-29-14-2"  
+class="td11"> QNX, UNIX                  </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<span 
+class="cmbx-10">Remark:</span> The <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>define was added starting from Free Pascal version 1.0.5. The BSD operating systems no
+longer define LINUX starting with version 1.0.7.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap8.htm" >next</a>] [<a 
+href="progap6.htm" >prev</a>] [<a 
+href="progap6.htm#tailprogap6.htm" >prev-tail</a>] [<a 
+href="progap7.htm" >front</a>] [<a 
+href="prog.htm#progap7.htm" >up</a>] </p></div><a 
+  name="tailprogap7.htm"></a>  
+</body></html> 

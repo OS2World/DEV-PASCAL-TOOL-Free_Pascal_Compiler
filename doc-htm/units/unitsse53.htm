@@ -1,0 +1,714 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.7 TDosStream</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse54.htm" >next</a>] [<a 
+href="unitsse52.htm" >prev</a>] [<a 
+href="unitsse52.htm#tailunitsse52.htm" >prev-tail</a>] [<a 
+href="#tailunitsse53.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse53.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.7</span> <a 
+href="units.htm#QQ2-75-657" name="x75-65100017.7">TDosStream</a></h3>
+<!--l. 808--><p class="noindent"><span 
+class="cmtt-10">TDosStream </span>is a stream that stores it&#8217;s contents in a file. it overrides a couple of methods of
+<span 
+class="cmtt-10">TSteam </span>for this.
+<!--l. 811--><p class="noindent">In addition to the fields inherited from <span 
+class="cmtt-10">TStream </span>(see section <a 
+href="unitsse52.htm#x74-63200017.6">17.6<!--tex4ht:ref: se:TStream--></a>, page <a 
+href="unitsse52.htm#x74-63200017.6">565<!--tex4ht:ref: se:TStream--></a>), there are some extra
+fields, that describe the file. (mainly the name and the OS file handle)
+<!--l. 815--><p class="noindent">No buffering in memory is done when using <span 
+class="cmtt-10">TDosStream</span>. All data are written directly to the file.
+For a stream that buffers in memory, see section <a 
+href="unitsse54.htm#x76-66000017.8">17.8<!--tex4ht:ref: se:TBufStream--></a>, page <a 
+href="unitsse54.htm#x76-66000017.8">582<!--tex4ht:ref: se:TBufStream--></a>.
+<!--l. 819--><p class="noindent">Here is the full declaration of the <span 
+class="cmtt-10">TDosStream </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TDosStream&nbsp;=&nbsp;OBJECT&nbsp;(TStream)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle:&nbsp;THandle;&nbsp;{&nbsp;DOS&nbsp;file&nbsp;handle&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FName&nbsp;:&nbsp;AsciiZ;&nbsp;&nbsp;{&nbsp;AsciiZ&nbsp;filename&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONSTRUCTOR&nbsp;Init&nbsp;(FileName:&nbsp;FNameStr;&nbsp;Mode:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESTRUCTOR&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Close;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Truncate;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Seek&nbsp;(Pos:&nbsp;LongInt);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Open&nbsp;(OpenMode:&nbsp;Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Read&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Write&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PDosStream&nbsp;=&nbsp;^TDosStream;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-658" name="x75-65200017.7">TDosStream.Init</a></h4><a 
+  name="dx75-652001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor Init (FileName: FNameStr; Mode: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>instantiates an instance of <span 
+class="cmtt-10">TDosStream</span>. The name of the file that contains (or will contain)
+the data of the stream is given in <span 
+class="cmtt-10">FileName</span>. The <span 
+class="cmtt-10">Mode </span>parameter determines whether a new file
+should be created and what access rights you have on the file. It can be one of the following
+constants:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">stCreate</span></dt><dd 
+class="description">Creates a new file.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpenRead</span></dt><dd 
+class="description">Read access only.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpenWrite</span></dt><dd 
+class="description">Write access only.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpen</span></dt><dd 
+class="description">Read and write access.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">stInitError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>is set to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>error code.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Done </span>(<a 
+href="#x75-65300017.7">577<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 859--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="#x75-65500017.7">578<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-659" name="x75-65300017.7">TDosStream.Done</a></h4><a 
+  name="dx75-653001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TDosStream.Done; Virtual;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done </span>closes the file if it was open and cleans up the instance of <span 
+class="cmtt-10">TDosStream</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x75-65200017.7">577<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Close </span>(<a 
+href="#x75-65400017.7">578<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 874--><p class="noindent">for an example, see e.g. <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="#x75-65500017.7">578<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-660" name="x75-65400017.7">TDosStream.Close</a></h4><a 
+  name="dx75-654001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pocedure TDosStream.Close; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Close </span>closes the file if it was open, and sets <span 
+class="cmtt-10">Handle </span>to -1. Contrary to <span 
+class="cmss-10">Done </span>(<a 
+href="#x75-65300017.7">577<!--tex4ht:ref: se:TBufStream--></a>) it does
+not clean up the instance of <span 
+class="cmtt-10">TDosStream</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Close </span>(<a 
+href="unitsse52.htm#x74-63900017.6">570<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x75-65200017.7">577<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x75-65300017.7">577<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 890--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Open </span>(<a 
+href="#x75-65700017.7">580<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-661" name="x75-65500017.7">TDosStream.Truncate</a></h4><a 
+  name="dx75-655001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TDosStream.Truncate; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the status of the stream is <span 
+class="cmtt-10">stOK</span>, then <span 
+class="cmtt-10">Truncate </span>tries to truncate the stream size to the
+current file position.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, the stream&#8217;s status is set to <span 
+class="cmtt-10">stError </span>and <span 
+class="cmtt-10">ErrorInfo </span>is set to the OS
+error code.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Truncate </span>(<a 
+href="unitsse52.htm#x74-64200017.6">571<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSize </span>(<a 
+href="unitsse52.htm#x74-63600017.6">568<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 905--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 905--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.Truncate</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PDosStream;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Only</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">Truncate</span>&nbsp;<span 
+class="cmtt-10">implemented.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PDosStream,Init('test.dat',stcreate));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">calls</span>&nbsp;<span 
+class="cmtt-10">flush</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Open</span>&nbsp;<span 
+class="cmtt-10">(stOpen);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Truncate;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Truncated</span>&nbsp;<span 
+class="cmtt-10">stream.</span>&nbsp;<span 
+class="cmtt-10">Size</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-662" name="x75-65600017.7">TDosStream.Seek</a></h4><a 
+  name="dx75-656001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TDosStream.Seek (Pos: LongInt); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOK</span>, then <span 
+class="cmtt-10">Seek </span>sets the file position to <span 
+class="cmtt-10">Pos</span>. <span 
+class="cmtt-10">Pos </span>is a zero-based
+offset, counted from the beginning of the file.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case an error occurs, the stream&#8217;s status is set to <span 
+class="cmtt-10">stSeekError</span>, and the OS error code is
+stored in <span 
+class="cmtt-10">ErrorInfo</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Seek </span>(<a 
+href="unitsse52.htm#x74-64600017.6">572<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetPos </span>(<a 
+href="unitsse52.htm#x74-63500017.6">568<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 922--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex17.pp</span><HR/><div class="listinginput">
+<!--l. 922--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex17;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.Seek</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Marker</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PDosStream;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PDosStream,Init('test.dat',stcreate));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Marker:=S^.GetPos;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Set</span>&nbsp;<span 
+class="cmtt-10">marker</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',Marker);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">other</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">String';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Open</span>&nbsp;<span 
+class="cmtt-10">(stOpenRead);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Seeking</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">marker');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(Marker);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-663" name="x75-65700017.7">TDosStream.Open</a></h4><a 
+  name="dx75-657001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TDosStream.Open (OpenMode: Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOK</span>, and the stream is closed then <span 
+class="cmtt-10">Open </span>re-opens the file stream
+with mode <span 
+class="cmtt-10">OpenMode</span>. This call can be used after a <span 
+class="cmss-10">Close </span>(<a 
+href="#x75-65400017.7">578<!--tex4ht:ref: se:TBufStream--></a>) call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs when re-opening the file, then <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">stOpenError</span>, and the OS
+error code is stored in <span 
+class="cmtt-10">ErrorInfo</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Open </span>(<a 
+href="unitsse52.htm#x74-63800017.6">570<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Close </span>(<a 
+href="#x75-65400017.7">578<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 939--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 939--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex14;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.Close</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PDosStream;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Only</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">implemented.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PDosStream,Init('test.dat',stcreate));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Closed</span>&nbsp;<span 
+class="cmtt-10">stream.</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Open</span>&nbsp;<span 
+class="cmtt-10">(stOpenRead);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-664" name="x75-65800017.7">TDosStream.Read</a></h4><a 
+  name="dx75-658001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TDosStream.Read (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the Stream is open and the stream status is <span 
+class="cmtt-10">stOK </span>then <span 
+class="cmtt-10">Read </span>will read <span 
+class="cmtt-10">Count </span>bytes from
+the stream and place them in <span 
+class="cmtt-10">Buf</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of an error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">StReadError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>gets the OS specific error,
+or 0 when an attempt was made to read beyond the end of the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Write </span>(<a 
+href="#x75-65900017.7">581<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 957--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-75-665" name="x75-65900017.7">TDosStream.Write</a></h4><a 
+  name="dx75-659001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TDosStream.Write (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the Stream is open and the stream status is <span 
+class="cmtt-10">stOK </span>then <span 
+class="cmtt-10">Write </span>will write <span 
+class="cmtt-10">Count </span>bytes from
+<span 
+class="cmtt-10">Buf </span>and place them in the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of an error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">StWriteError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>gets the OS specific
+error.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Read </span>(<a 
+href="#x75-65800017.7">581<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 973--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse54.htm" >next</a>] [<a 
+href="unitsse52.htm" >prev</a>] [<a 
+href="unitsse52.htm#tailunitsse52.htm" >prev-tail</a>] [<a 
+href="unitsse53.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse53.htm" >up</a>] </p></div><a 
+  name="tailunitsse53.htm"></a>   
+</body></html> 

@@ -1,0 +1,144 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>15.1 Constants, Types and Variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse43.htm" >next</a>] [<a 
+href="#tailunitsse42.htm">tail</a>] [<a 
+href="unitsch15.htm#unitsse42.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">15.1</span> <a 
+href="units.htm#QQ2-62-573" name="x62-56700015.1">Constants, Types and Variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-62-574" name="x62-56800015.1">Constants</a></h4> The following constants can be used when mouse drivers need to report errors:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;{&nbsp;We&nbsp;have&nbsp;an&nbsp;errorcode&nbsp;base&nbsp;of&nbsp;1030&nbsp;}
+&nbsp;&nbsp;&nbsp;errMouseBase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1030;
+&nbsp;&nbsp;&nbsp;errMouseInitError&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;errMouseBase&nbsp;+&nbsp;0;
+&nbsp;&nbsp;&nbsp;errMouseNotImplemented&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;errMouseBase&nbsp;+&nbsp;1;
+</pre>
+</td></tr></table>The following constants describe which action a mouse event describes
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;MouseActionDown&nbsp;=&nbsp;$0001;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;down&nbsp;event&nbsp;}
+&nbsp;&nbsp;&nbsp;MouseActionUp&nbsp;&nbsp;&nbsp;=&nbsp;$0002;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;up&nbsp;event&nbsp;}
+&nbsp;&nbsp;&nbsp;MouseActionMove&nbsp;=&nbsp;$0004;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;move&nbsp;event&nbsp;}
+</pre>
+</td></tr></table>The following constants describe the used buttons in a mouse event:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;MouseLeftButton&nbsp;&nbsp;&nbsp;=&nbsp;$01;&nbsp;&nbsp;{&nbsp;Left&nbsp;mouse&nbsp;button&nbsp;}
+&nbsp;&nbsp;&nbsp;MouseRightButton&nbsp;&nbsp;=&nbsp;$02;&nbsp;&nbsp;{&nbsp;Right&nbsp;mouse&nbsp;button&nbsp;}
+&nbsp;&nbsp;&nbsp;MouseMiddleButton&nbsp;=&nbsp;$04;&nbsp;&nbsp;{&nbsp;Middle&nbsp;mouse&nbsp;button&nbsp;}
+</pre>
+</td></tr></table>The mouse unit has a mechanism to buffer mouse events. The following constant defines the size of
+the event buffer:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;MouseEventBufSize&nbsp;=&nbsp;16;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-62-575" name="x62-56900015.1">Types</a></h4> The <span 
+class="cmtt-10">TMouseEvent </span>is the central type of the mouse unit, it is used to describe the mouse
+events:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PMouseEvent=^TMouseEvent;
+&nbsp;TMouseEvent=packed&nbsp;record&nbsp;{&nbsp;8&nbsp;bytes&nbsp;}
+&nbsp;&nbsp;&nbsp;buttons&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;Action&nbsp;&nbsp;:&nbsp;word;
+&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">Buttons </span>field describes which buttons were down when the event occurred. The <span 
+class="cmtt-10">x,y </span>fields
+describe where the event occurred on the screen. The <span 
+class="cmtt-10">Action </span>describes what action was going on
+when the event occurred. The <span 
+class="cmtt-10">Buttons </span>and <span 
+class="cmtt-10">Action </span>field can be examined using the above
+constants.
+<!--l. 82--><p class="noindent">The following record is used to implement a mouse driver in the <span 
+class="cmss-10">SetMouseDriver </span>(<a 
+href="unitsse43.htm#x63-58300015.2">510<!--tex4ht:ref: tab:speckeys--></a>)
+function:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TMouseDriver&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;UseDefaultQueue&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;InitDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;DoneDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;DetectMouse&nbsp;:&nbsp;Function&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;ShowMouse&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;HideMouse&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;GetMouseX&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;GetMouseY&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;GetMouseButtons&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;SetMouseXY&nbsp;:&nbsp;procedure&nbsp;(x,y:word);
+&nbsp;&nbsp;&nbsp;GetMouseEvent&nbsp;:&nbsp;procedure&nbsp;(var&nbsp;MouseEvent:TMouseEvent);
+&nbsp;&nbsp;&nbsp;PollMouseEvent&nbsp;:&nbsp;function&nbsp;(var&nbsp;MouseEvent:&nbsp;TMouseEvent):boolean;
+&nbsp;&nbsp;&nbsp;PutMouseEvent&nbsp;:&nbsp;procedure&nbsp;(Const&nbsp;MouseEvent:TMouseEvent);
+&nbsp;end;
+</pre>
+</td></tr></table>Its fields will be explained in the section on writing a custom driver.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-62-576" name="x62-57000015.1">Variables</a></h4> The following variables are used to keep the current position and state of the
+mouse.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;MouseIntFlag&nbsp;:&nbsp;Byte;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;in&nbsp;int&nbsp;flag&nbsp;}
+&nbsp;MouseButtons&nbsp;:&nbsp;Byte;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;button&nbsp;state&nbsp;}
+&nbsp;MouseWhereX,
+&nbsp;MouseWhereY&nbsp;&nbsp;:&nbsp;Word;&nbsp;&nbsp;{&nbsp;Mouse&nbsp;position&nbsp;}
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse43.htm" >next</a>] [<a 
+href="unitsse42.htm" >front</a>] [<a 
+href="unitsch15.htm#unitsse42.htm" >up</a>] </p></div><a 
+  name="tailunitsse42.htm"></a>   
+</body></html> 

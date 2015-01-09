@@ -1,0 +1,6 @@
+[package]
+name=rtl
+version=1.0.8
+[require]
+nortl=y
+packages_os2_i386=

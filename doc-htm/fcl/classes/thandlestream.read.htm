@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>THandleStream.Read</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>THandleStream.Read</h1>
+<p>Overrides standard read method.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/thandlestream.htm">THandleStream</a><span class="sym">.</span>Read<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">var </span>Buffer<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Count<span class="sym">: </span>LongInt</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">):</span>LongInt<span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Read</var> implements the abstract <a href="../classes/tstream.read.htm">Read</a>  method of <var>TStream</var>. It uses the <a href="../classes/thandlestream.handle.htm">Handle</a> property to read the <var>Count</var> bytes into <var>Buffer</var></p>
+<p>If no error occurs while reading, the number of bytes actually read will be returned. </p>
+<h2>Errors</h2>
+<p>If the operating system reports an error while reading from the handle, -1 is returned. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstream.read.htm">TStream.Read</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Reads data from the stream to a buffer and returns the number of bytes read.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/thandlestream.write.htm">THandleStream.Write</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Overrides standard write method.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/thandlestream.handle.htm">THandleStream.Handle</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">The OS handle of the stream.</p></td>
+</tr>
+</table>
+</body>
+</html>

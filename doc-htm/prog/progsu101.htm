@@ -1,0 +1,103 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 string types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu102.htm" >next</a>] [<a 
+href="progsu100.htm" >prev</a>] [<a 
+href="progsu100.htm#tailprogsu100.htm" >prev-tail</a>] [<a 
+href="#tailprogsu101.htm">tail</a>] [<a 
+href="progse29.htm#progsu101.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-148-163" name="x148-1510008.2">string types</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="progse29.htm#QQ2-148-164" name="x148-1520008.2">ansistring types</a></h5>
+<!--l. 3575--><p class="noindent">The ansistring is a dynamically allocated string which has no length limitation. When the string is
+no longer being referenced (its reference count reaches zero), its memory is automatically
+freed.
+<!--l. 3580--><p class="noindent">If the ansistring is a constant, then its reference count will be equal to -1, indicating that
+it should never be freed. The structure in memory for an ansistring is shown in table
+(<a 
+href="#x148-1520013">8.3<!--tex4ht:ref: tab:ansistrings--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x148-1520013"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.3: </td><td  
+class="content">AnsiString memory structure (32-bit model)</td></tr></table></div><!--tex4ht:label?: x148-1520013-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-12-" ><colgroup id="TBL-12-1g"><col 
+id="TBL-12-1"><col 
+id="TBL-12-2"></colgroup><tr  
+valign="baseline" id="TBL-12-1-"><td  align="right" nowrap="nowrap" id="TBL-12-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-12-1-2"  
+class="td11"> Contains                                       </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-12-2-"><td  align="right" nowrap="nowrap" id="TBL-12-2-1"  
+class="td11">     -12</td><td  align="left" nowrap="nowrap" id="TBL-12-2-2"  
+class="td11"> Longint with maximum string size.    </td>
+</tr><tr  
+valign="baseline" id="TBL-12-3-"><td  align="right" nowrap="nowrap" id="TBL-12-3-1"  
+class="td11">      -8</td><td  align="left" nowrap="nowrap" id="TBL-12-3-2"  
+class="td11"> Longint with actual string size.         </td>
+</tr><tr  
+valign="baseline" id="TBL-12-4-"><td  align="right" nowrap="nowrap" id="TBL-12-4-1"  
+class="td11">      -4</td><td  align="left" nowrap="nowrap" id="TBL-12-4-2"  
+class="td11"> Longint with reference count.            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-5-"><td  align="right" nowrap="nowrap" id="TBL-12-5-1"  
+class="td11">       0</td><td  align="left" nowrap="nowrap" id="TBL-12-5-2"  
+class="td11"> Actual array of <span 
+class="cmtt-10">char</span>, null-terminated.</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-12-6-"><td  align="right" nowrap="nowrap" id="TBL-12-6-1"  
+class="td11">         </td>
+</tr><!--rl--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<h5 class="subsubsectionHead"><a 
+href="progse29.htm#QQ2-148-166" name="x148-1530008.2">shortstring types</a></h5>
+<!--l. 3596--><p class="noindent">A shortstring occupies as many bytes as its maximum length plus one. The first byte contains the
+current dynamic length of the string. The following bytes contain the actual characters (of type
+<span 
+class="cmtt-10">char</span>) of the string. The maximum size of a short string is the length byte followed by 255
+characters.
+<h5 class="subsubsectionHead"><a 
+href="progse29.htm#QQ2-148-167" name="x148-1540008.2">widestring types</a></h5>
+<!--l. 3604--><p class="noindent">The widestring (composed of unicode characters) is not supported in Free Pascal v1.0.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu102.htm" >next</a>] [<a 
+href="progsu100.htm" >prev</a>] [<a 
+href="progsu100.htm#tailprogsu100.htm" >prev-tail</a>] [<a 
+href="progsu101.htm" >front</a>] [<a 
+href="progse29.htm#progsu101.htm" >up</a>] </p></div><a 
+  name="tailprogsu101.htm"></a>   
+</body></html> 

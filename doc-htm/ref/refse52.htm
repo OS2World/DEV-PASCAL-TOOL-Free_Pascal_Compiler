@@ -1,0 +1,107 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.3 Blocks</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse53.htm" >next</a>] [<a 
+href="refse51.htm" >prev</a>] [<a 
+href="refse51.htm#tailrefse51.htm" >prev-tail</a>] [<a 
+href="#tailrefse52.htm">tail</a>] [<a 
+href="refch10.htm#refse52.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.3</span> <a 
+href="ref.htm#QQ2-122-143" name="x122-12800010.3">Blocks</a></h3>
+<!--l. 4155--><p class="noindent">Units and programs are made of blocks. A block is made of declarations of labels, constants,
+types variables and functions or procedures. Blocks can be nested in certain ways, i.e., a
+procedure or function declaration can have blocks in themselves. A block looks like the
+following:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Blocks</span>
+     <BR/>
+     <img 
+src="ref138x.png" alt="-- block- declaration part-statement part-------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref139x.png" alt="-- declaration part--------------------------------------------------
+                | |-----label declaration part------||
+                | |----constant declaration part-----||
+                | |--resourcestring declaration part--||
+                | |-----type declaration part------||
+                | |----variable declaration part-----||
+                ---procedure/function declaration part-|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref140x.png" alt="-- label declaration part-label|label---;------------------------------
+                          ---,---
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref141x.png" alt="-- constant declaration part-const-----constant declaration---------------
+                              |-typed constant declaration-| |
+                              --------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref142x.png" alt="--resourcestring declaration part-resourcestring---string constant declaration---
+                                        ----------------------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref143x.png" alt="--                -     ---            --------------------------
+   type declaration part type   -type-declaration-|
+     " ><BR/>
+                                                                            
+
+                                                                            
+     <BR/>
+     <img 
+src="ref144x.png" alt="-- variable declaration part-var--variable declaration---------------------
+                           -----------------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref145x.png" alt="--                           -----                ---------------
+   procedure/function declaration part |--procedure declaration--| |
+                               |-cofunnsctrtiuocnto dre dcelacralatrioatnion-| |
+                               |--destructor declaration-| |
+                               |--------------------| |
+                               -----------------------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref146x.png" alt="-- statement part-compound statement---------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4161--><p class="noindent">Labels that can be used to identify statements in a block are declared in the label declaration part
+of that block. Each label can only identify one statement. Constants that are to be used only in
+one block should be declared in that block&#8217;s constant declaration part. Variables that are
+to be used only in one block should be declared in that block&#8217;s constant declaration
+part. Types that are to be used only in one block should be declared in that block&#8217;s
+constant declaration part. Lastly, functions and procedures that will be used in that
+block can be declared in the procedure/function declaration part. After the different
+declaration parts comes the statement part. This contains any actions that the block should
+execute. All identifiers declared before the statement part can be used in that statement
+part.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse53.htm" >next</a>] [<a 
+href="refse51.htm" >prev</a>] [<a 
+href="refse51.htm#tailrefse51.htm" >prev-tail</a>] [<a 
+href="refse52.htm" >front</a>] [<a 
+href="refch10.htm#refse52.htm" >up</a>] </p></div><a 
+  name="tailrefse52.htm"></a>  
+</body></html> 

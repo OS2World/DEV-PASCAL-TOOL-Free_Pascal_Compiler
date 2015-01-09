@@ -1,0 +1,127 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.4 Arithmetic operators</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse49.htm" >next</a>] [<a 
+href="refse47.htm" >prev</a>] [<a 
+href="refse47.htm#tailrefse47.htm" >prev-tail</a>] [<a 
+href="#tailrefse48.htm">tail</a>] [<a 
+href="refch9.htm#refse48.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.4</span> <a 
+href="ref.htm#QQ2-117-138" name="x117-1230009.4">Arithmetic operators</a></h3>
+<!--l. 3914--><p class="noindent">Arithmetic operators define the action of a binary operator. Possible operations are:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">multiplication</span> </dt><dd 
+class="description">to multiply two types, the <span 
+class="cmtt-10">* </span>multiplication operator must be overloaded.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">division</span> </dt><dd 
+class="description">to divide two types, the <span 
+class="cmtt-10">/ </span>division operator must be overloaded.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">addition</span> </dt><dd 
+class="description">to add two types, the <span 
+class="cmtt-10">+ </span>addition operator must be overloaded.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">substraction</span> </dt><dd 
+class="description">to substract two types, the <span 
+class="cmtt-10">- </span>substraction operator must be overloaded.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">exponentiation</span> </dt><dd 
+class="description">to  exponentiate  two  types,  the  <span 
+class="cmtt-10">**  </span>exponentiation  operator  must  be
+     overloaded.</dd></dl>
+<!--l. 3929--><p class="noindent">The definition of an arithmetic operator takes two parameters. The first parameter must be of the
+type that occurs at the left of the operator, the second parameter must be of the type that is at the
+right of the arithmetic operator. The result type must match the type that results after the
+arithmetic operation.
+<!--l. 3935--><p class="noindent">To compile an expression as
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;R&nbsp;:&nbsp;real;
+&nbsp;&nbsp;&nbsp;C,Z&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;C:=R*Z;
+&nbsp;end;
+</pre>
+</td></tr></table>one needs a definition of the multiplication operator as:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Operator&nbsp;*&nbsp;(r&nbsp;:&nbsp;real;&nbsp;z1&nbsp;:&nbsp;complex)&nbsp;z&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;z.re&nbsp;:=&nbsp;z1.re&nbsp;*&nbsp;r;
+&nbsp;&nbsp;&nbsp;z.im&nbsp;:=&nbsp;z1.im&nbsp;*&nbsp;r;
+&nbsp;end;
+</pre>
+</td></tr></table>As can be seen, the first operator is a real, and the second is a complex. The result type is
+complex.
+<!--l. 3957--><p class="noindent">Multiplication and addition of reals and complexes are commutative operations. The compiler,
+however, has no notion of this fact so even if a multiplication between a real and a complex is
+defined, the compiler will not use that definition when it encounters a complex and a real (in that
+order). It is necessary to define both operations.
+<!--l. 3963--><p class="noindent">So, given the above definition of the multiplication, the compiler will not accept the following
+statement:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;R&nbsp;:&nbsp;real;
+&nbsp;&nbsp;&nbsp;C,Z&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;C:=Z*R;
+&nbsp;end;
+</pre>
+</td></tr></table>since the types of <span 
+class="cmtt-10">Z </span>and <span 
+class="cmtt-10">R </span>don&#8217;t match the types in the operator definition.
+<!--l. 3977--><p class="noindent">The reason for this behaviour is that it is possible that a multiplication is not always commutative.
+e.g. the multiplication of a <span 
+class="cmtt-10">(n,m) </span>with a <span 
+class="cmtt-10">(m,n) </span>matrix will result in a <span 
+class="cmtt-10">(n,n) </span>matrix, while the
+mutiplication of a <span 
+class="cmtt-10">(m,n) </span>with a <span 
+class="cmtt-10">(n,m) </span>matrix is a <span 
+class="cmtt-10">(m,m) </span>matrix, which needn&#8217;t be the same in all
+cases.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse49.htm" >next</a>] [<a 
+href="refse47.htm" >prev</a>] [<a 
+href="refse47.htm#tailrefse47.htm" >prev-tail</a>] [<a 
+href="refse48.htm" >front</a>] [<a 
+href="refch9.htm#refse48.htm" >up</a>] </p></div><a 
+  name="tailrefse48.htm"></a>  
+</body></html> 

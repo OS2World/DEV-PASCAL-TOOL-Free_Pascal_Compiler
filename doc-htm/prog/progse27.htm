@@ -1,0 +1,69 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.3 Using smart linking</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse26.htm" >prev</a>] [<a 
+href="progse26.htm#tailprogse26.htm" >prev-tail</a>] [<a 
+href="#tailprogse27.htm">tail</a>] [<a 
+href="progch7.htm#progse27.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.3</span> <a 
+href="prog.htm#QQ2-137-144" name="x137-1360007.3">Using smart linking</a></h3>
+<!--l. 3311--><p class="noindent">You can compile your units using smart linking. When you use smartlinking, the compiler creates a
+series of code blocks that are as small as possible, i.e. a code block will contain only the code for
+one procedure or function.
+<!--l. 3315--><p class="noindent">When you compile a program that uses a smart-linked unit, the compiler will only link in the code
+that you actually need, and will leave out all other code. This will result in a smaller binary, which
+is loaded in memory faster, thus speeding up execution.
+<!--l. 3320--><p class="noindent">To enable smartlinking, one can give the smartlink option on the command line: <span 
+class="cmtt-10">-Cx</span>, or one can
+put the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$SMARTLINK ON</span><span 
+class="cmsy-10">} </span>directive in the unit file:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Unit&nbsp;Testunit
+&nbsp;
+&nbsp;{SMARTLINK&nbsp;ON}
+&nbsp;Interface
+&nbsp;...
+</pre>
+</td></tr></table>Smartlinking will slow down the compilation process, especially for large units.
+<!--l. 3333--><p class="noindent">When a unit <span 
+class="cmss-10">foo.pp </span>is smartlinked, the name of the codefile is changed to <span 
+class="cmss-10">libfoo.a</span>.
+<!--l. 3336--><p class="noindent">Technically speaking, the compiler makes small assembler files for each procedure and function in
+the unit, as well as for all global defined variables (whether they&#8217;re in the interface section or not).
+It then assembles all these small files, and uses <span 
+class="cmss-10">ar </span>to collect the resulting object files in one
+archive.
+<!--l. 3342--><p class="noindent">Smartlinking and the creation of shared (or dynamic) libraries are mutually exclusive, that is, if
+you turn on smartlinking, then the creation of shared libraries is turned of. The creation of
+static libraries is still possible. The reason for this is that it has little sense in making a
+smartlinked dynamical library. The whole shared library is loaded into memory anyway by the
+dynamic linker (or the operating system), so there would be no gain in size by making it
+smartlinked.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse26.htm" >prev</a>] [<a 
+href="progse26.htm#tailprogse26.htm" >prev-tail</a>] [<a 
+href="progse27.htm" >front</a>] [<a 
+href="progch7.htm#progse27.htm" >up</a>] </p></div><a 
+  name="tailprogse27.htm"></a>  
+</body></html> 

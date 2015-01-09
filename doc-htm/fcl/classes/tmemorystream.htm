@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TMemoryStream</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TMemoryStream</h1>
+<p>[<a href="../classes/tmemorystream-1.htm" onClick="window.open('../classes/tmemorystream-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/tmemorystream-2.htm" onClick="window.open('../classes/tmemorystream-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tmemorystream-3.htm" onClick="window.open('../classes/tmemorystream-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/tmemorystream-4.htm" onClick="window.open('../classes/tmemorystream-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tmemorystream-5.htm" onClick="window.open('../classes/tmemorystream-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/tmemorystream-6.htm" onClick="window.open('../classes/tmemorystream-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Standard implementation of a stream that stores its data in memory</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> TMemoryStream <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span><a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a><span class="sym">)</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">protected</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tmemorystream.realloc.htm">Realloc</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the new capacity for the memory stream</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tmemorystream.capacity.htm">Capacity</a><span class="sym">: </span>LongInt<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Current capacity of the stream.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">public</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">destructor </span><a href="../classes/tmemorystream.destroy.htm">Destroy</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Frees any allocated memory and destroys the memory stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tmemorystream.clear.htm">Clear</a><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Zeroes the position, capacity and size of the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tmemorystream.loadfromstream.htm">LoadFromStream</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Loads the contents of a stream into memory.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tmemorystream.loadfromfile.htm">LoadFromFile</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Loads the contents of a file into memory.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tmemorystream.setsize.htm">SetSize</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the size for the memory stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tmemorystream.write.htm">Write</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes data to the stream's memory.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tmemorystream.htm">TMemoryStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Standard implementation of a stream that stores its data in memory</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract stream that stores its data in memory.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tstream.htm">TStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>TMemoryStream</var> is a <a href="../classes/tstream.htm">TStream</a> descendent that stores it's data in memory. It descends directly from <a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a> and implements the necessary to allocate and de-allocate memory diretly from the heap. It implements the <a href="../classes/tmemorystream.write.htm">Write</a> method which is missing in <var>TCustomMemoryStream</var>. </p>
+<p><var>TMemoryStream</var> also introduces methods to load the contents of another stream or a file into the memory stream. </p>
+<p>It is not necessary to do any memory management manually, as the stream  will allocate or de-allocate memory as needed. When the stream is freed, all allocated memory will be freed as well. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract stream that stores its data in memory.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.htm">TStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+</table>
+</body>
+</html>

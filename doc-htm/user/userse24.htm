@@ -1,0 +1,428 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.5 Editing text</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse25.htm" >next</a>] [<a 
+href="userse23.htm" >prev</a>] [<a 
+href="userse23.htm#tailuserse23.htm" >prev-tail</a>] [<a 
+href="#tailuserse24.htm">tail</a>] [<a 
+href="userch6.htm#userse24.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.5</span> <a 
+href="user.htm#QQ2-34-90" name="x34-850006.5">Editing text</a></h3>
+<!--l. 740--><p class="noindent">In this section, the basics of editing (source) text are explained. The IDE works like many
+other text editors in this respect, so mainly the distinguishing points of the IDE will be
+explained.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-91" name="x34-860006.5">Insert modes</a></h4> Standard, the IDE is in insert mode. This means that any text that is typed will be
+inserted before text that is present after the cursor.
+<!--l. 748--><p class="noindent">In overwrite mode, any text that is typed will replace existing text.
+<!--l. 750--><p class="noindent">When in insert mode, the cursor is a flat blinking line. If the IDE is in overwrite, the cursor is a
+cube with the height of one line. Switching between insert mode or overwrite mode happens with
+the <span 
+class="cmcsc-10">I<small 
+class="small-caps">N</small><small 
+class="small-caps">S</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small><small 
+class="small-caps">T</small> </span>key or with the <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-V </span>key.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-92" name="x34-870006.5">Blocks</a></h4> The IDE handles selected text just as the Turbo Pascal IDE handles it. This is slightly
+different from the way e.g. Windows applications handle selected text.
+<!--l. 763--><p class="noindent">Text can be selected in 3 ways:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x34-87002x1"></a>Using the mouse, dragging the mouse over existing text selects it.
+     </li>
+     <li class="enumerate"><a 
+  name="x34-87004x2"></a>Using the keyboard, press <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K B </span>to mark the beginning of the selected text, and
+     <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K K </span>to mark the end of the selected text.
+     </li>
+     <li class="enumerate"><a 
+  name="x34-87006x3"></a>Using the keyboard, hold the <span 
+class="cmcsc-10">S<small 
+class="small-caps">H</small><small 
+class="small-caps">I</small><small 
+class="small-caps">F</small><small 
+class="small-caps">T</small> </span>key depressed while navigating with the cursor
+     keys.</li></ol>
+<!--l. 773--><p class="noindent">There are also some special select commands:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x34-87008x1"></a>The current line can be selected using <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K L</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x34-87010x2"></a>The current word can be selected using <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K T</span>.</li></ol>
+<!--l. 779--><p class="noindent">In the Free Pascal IDE, selected text is persistent. After selecting a range of text, the cursor can be
+moved, and the selection will not be destroyed; hence the term &#8217;block&#8217; is more appropriate for the
+selection, and will be used henceforth...
+<!--l. 784--><p class="noindent">Several commands can be executed on a block:
+     <ul class="itemize1">
+     <li class="itemize">Move the block to the cursor location (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K V</span>).
+     </li>
+     <li class="itemize">Copy the block to the cursor location (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K C</span>).
+                                                                            
+
+                                                                            
+     </li>
+     <li class="itemize">Delete the block (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K Y</span>).
+     </li>
+     <li class="itemize">Write the block to a file (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K W</span>).
+     </li>
+     <li class="itemize">Read the contents of a file into a block (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K R</span>). If there is already a block,
+     this block is not replaced by this command. The file is inserted at the current cursor
+     position, and then the inserted text is selected.
+     </li>
+     <li class="itemize">Indent a block (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K I</span>).
+     </li>
+     <li class="itemize">Undent a block (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K U</span>).
+     </li>
+     <li class="itemize">Print the block contents (<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K P</span>).</li></ul>
+<!--l. 798--><p class="noindent">When searching and replacing, the search can be restricted to the block contents.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-93" name="x34-880006.5">Setting bookmarks</a></h4> The IDE provides a feature which allows to set a bookmark at the current
+cursor position. Later, the cursor can be returned to this position by pressing a keyboard
+shortcut.
+<!--l. 810--><p class="noindent">Up to 9 bookmarks per source file can be set up, they are set by <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-K ¡N<small 
+class="small-caps">U</small><small 
+class="small-caps">M</small><small 
+class="small-caps">B</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small>¿ </span>(where
+number is the number of the mark). To go to a previously set bookmark, press <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-Q</span>
+<span 
+class="cmcsc-10">¡N<small 
+class="small-caps">U</small><small 
+class="small-caps">M</small><small 
+class="small-caps">B</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small>¿</span>.
+<!--l. 814--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Currently, the bookmarks are not stored if the IDE is left. This may change in future
+implementations of the IDE.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-94" name="x34-890006.5">Jumping to a source line</a></h4> It is possible to go directly to a specific source line. To do this, open the
+<span 
+class="cmti-10">goto line </span>dialog via the <span 
+class="cmbx-10">&#8221;Search--Goto line&#8221; </span>menu.
+<!--l. 826--><p class="noindent">In the dialog that appears, the line-number the IDE should jump to can be entered. The goto line
+dialog is shown in figure (<a 
+href="#x34-890014">6.4<!--tex4ht:ref: fig:gotoline--></a>).
+<!--l. 829--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x34-890014"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.4: </td><td  
+class="content">The goto line dialog.</td></tr></table></div><!--tex4ht:label?: x34-890014-->
+<!--l. 829--><p class="noindent"><img 
+src="user5x.png" alt="PIC" class="graphics" width="400.34999pt" height="104.16829pt" ><!--tex4ht:graphics  
+name="user5x.png" src="pics/ide/gotoline.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-96" name="x34-900006.5">Syntax highlighting</a></h4> The IDE is capable of syntax highlighting, i.e. the color of certain Pascal
+elements can be set. As text is entered in an editor window, the IDE will try to recognise the
+elements, and set the color of the text accordingly.
+<!--l. 842--><p class="noindent">The syntax highlighting can be customized in the colors preferences dialog, using the menu option
+<span 
+class="cmbx-10">&#8221;Options--Environment--Colors&#8221;</span>. In the colors dialog, the group &#8221;Syntax&#8221; must be
+selected. The item list will then display the various syntactical elements that can be
+colored:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Whitespace</span> </dt><dd 
+class="description">The  empty  text  between  words.  Remark  that  for  whitespace,  only  the
+     background color will be used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Comments</span> </dt><dd 
+class="description">All styles of comments in Free Pascal.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Reserved words</span> </dt><dd 
+class="description">All reserved words of Free Pascal. (see also <a 
+href="file:../ref/ref.htm" >Reference guide</a>).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Strings</span> </dt><dd 
+class="description">Constant string expressions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Numbers</span> </dt><dd 
+class="description">Numbers in decimal notation.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hex numbers</span> </dt><dd 
+class="description">Numbers in hexadecimal notation.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Assembler</span> </dt><dd 
+class="description">Any assembler blocks.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Symbols</span> </dt><dd 
+class="description">Recognised symbols (variables, types)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Directives</span> </dt><dd 
+class="description">Compiler directives.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Tabs</span> </dt><dd 
+class="description">Tab characters in the source can be given a different color than other whitespace.</dd></dl>
+<!--l. 860--><p class="noindent">The editor uses some default settings, but experimentation is the best way to find a fitting color
+scheme. A good color scheme helps detecting errors in sources, since errors will result in wrong
+syntax highlighting.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-97" name="x34-910006.5">Code Completion</a></h4> Code completion means the editor will try to guess the text as it is being typed.
+It does this by checking what text is typed, and as soon as the typed text can be used
+to identify a keyword in a list of keywords, the keyword will be presented in a small
+colored box under the typed text. Pressing the <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>key will complete the word in the
+text.
+<!--l. 873--><p class="noindent">There is no code completion yet for filling in function arguments, choosing object methods as in
+e.g. Delphi.
+                                                                            
+
+                                                                            
+<!--l. 876--><p class="noindent">Code completion can be customized in the Code completion dialog, reachable through the menu
+option <span 
+class="cmbx-10">&#8221;Options--Preferences--Codecompletion&#8221;</span>. The list of keywords that can
+be completed can be maintained here. The code completion dialog is shown in figure
+(<a 
+href="#x34-910015">6.5<!--tex4ht:ref: fig:codecomp--></a>).
+<!--l. 881--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x34-910015"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.5: </td><td  
+class="content">The code completion dialog.</td></tr></table></div><!--tex4ht:label?: x34-910015-->
+<!--l. 881--><p class="noindent"><img 
+src="user6x.png" alt="PIC" class="graphics" width="400.34999pt" height="207.84682pt" ><!--tex4ht:graphics  
+name="user6x.png" src="pics/ide/codecomp.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 883--><p class="noindent">The dialog shows the currently defined keywords that will be completed in alphabetical order. The
+following buttons are available:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Ok</span> </dt><dd 
+class="description">Saves all changes and closes the dialog.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Edit</span> </dt><dd 
+class="description">Pops up a dialog that allows to edit the currently highlighted keyword.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">New</span> </dt><dd 
+class="description">Pops up a dialog that allows to enter a new keyword which will be added to the list.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Delete</span> </dt><dd 
+class="description">Deletes the currently highlighted keyword from the list
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Cancel</span> </dt><dd 
+class="description">Discards all changes and closes the dialog.</dd></dl>
+<!--l. 895--><p class="noindent">All keywords are saved and are available the next time the IDE is started. Duplicate names are
+not allowed. If an attempt is made to add a duplicate name to the list, an error will
+follow.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-34-99" name="x34-920006.5">Code Templates</a></h4> Code templates are a way to insert large pieces of code at once. Each code
+templates is identified by a unique name. This name can be used to insert the associated piece of
+code in the text.
+<!--l. 905--><p class="noindent">For example, the name <span 
+class="cmtt-10">ifthen </span>could be associated to the following piece of code:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;|&nbsp;Then
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;end
+</pre>
+</td></tr></table>A code template can be inserted by typing its name, and pressing <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-J </span>when the cursor is
+positioned right after the template name.
+<!--l. 915--><p class="noindent">If there is no template name before the cursor, a dialog will pop up to allow selection of a
+template.
+<!--l. 918--><p class="noindent">If a vertical bar (--) is present in the code template, the cursor is positioned on it, and the vertical
+bar is deleted. In the above example, the cursor would be positioned between the <span 
+class="cmtt-10">if </span>and <span 
+class="cmtt-10">then</span>,
+ready to type an expression.
+<!--l. 922--><p class="noindent">Code templates can be added and edited in the code templates dialog, reachable via the menu
+option <span 
+class="cmbx-10">&#8221;Options--Preferences--Codetemplates&#8221;</span>. The code templates dialog is shown in
+figure (<a 
+href="#x34-920016">6.6<!--tex4ht:ref: fig:codetemp--></a>).
+<!--l. 926--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x34-920016"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.6: </td><td  
+class="content">The code templates dialog.</td></tr></table></div><!--tex4ht:label?: x34-920016-->
+<!--l. 926--><p class="noindent"><img 
+src="user7x.png" alt="PIC" class="graphics" width="400.34999pt" height="259.96939pt" ><!--tex4ht:graphics  
+name="user7x.png" src="pics/ide/codetemp.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 928--><p class="noindent">The top listbox in the code templates dialog shows the names of all known templates. The bottom
+half of the dialog shows the text associated with the currently highlighted code template. The
+following buttons are available:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Ok</span> </dt><dd 
+class="description">Saves all changes and closes the dialog.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Edit</span> </dt><dd 
+class="description">Pops up a dialog that allows to edit the currently highlighted code template. Both the
+     name and text can be edited.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">New</span> </dt><dd 
+class="description">Pops up a dialog that allows to enter a new code template which will be added to the
+     list. A name must be entered for the new template.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Delete</span> </dt><dd 
+class="description">Deletes the currently highlighted code template from the list
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Cancel</span> </dt><dd 
+class="description">Discards all changes and closes the dialog.</dd></dl>
+<!--l. 942--><p class="noindent">All templates are saved and are available the next time the IDE is started.
+<!--l. 943--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Duplicates are not allowed. If an attempt is made to add a duplicate name to the list, an error will
+occur.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse25.htm" >next</a>] [<a 
+href="userse23.htm" >prev</a>] [<a 
+href="userse23.htm#tailuserse23.htm" >prev-tail</a>] [<a 
+href="userse24.htm" >front</a>] [<a 
+href="userch6.htm#userse24.htm" >up</a>] </p></div><a 
+  name="tailuserse24.htm"></a>   
+</body></html> 

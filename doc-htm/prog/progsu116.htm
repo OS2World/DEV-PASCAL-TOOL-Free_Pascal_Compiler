@@ -1,0 +1,59 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.1.0 Constant folding</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu117.htm" >next</a>] [<a 
+href="#tailprogsu116.htm">tail</a>] [<a 
+href="progse38.htm#progsu116.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-177-200" name="x177-18000010.1">Constant folding</a></h4>
+<!--l. 4511--><p class="noindent">In Free Pascal, if the operand(s) of an operator are constants, they will be evaluated at compile
+time.
+<!--l. 4514--><p class="noindent">Example
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;x:=1+2+3+6+5;
+</pre>
+</td></tr></table>will generate the same code as
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;x:=17;
+</pre>
+</td></tr></table>
+<!--l. 4524--><p class="noindent">Furthermore, if an array index is a constant, the offset will be evaluated at compile time. This
+means that accessing MyData[5] is as efficient as accessing a normal variable.
+<!--l. 4528--><p class="noindent">Finally, calling <span 
+class="cmtt-10">Chr</span>, <span 
+class="cmtt-10">Hi</span>, <span 
+class="cmtt-10">Lo</span>, <span 
+class="cmtt-10">Ord</span>, <span 
+class="cmtt-10">Pred</span>, or <span 
+class="cmtt-10">Succ </span>functions with constant parameters generates no
+run-time library calls, instead, the values are evaluated at compile time.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu117.htm" >next</a>] [<a 
+href="progsu116.htm" >front</a>] [<a 
+href="progse38.htm#progsu116.htm" >up</a>] </p></div><a 
+  name="tailprogsu116.htm"></a>  
+</body></html> 

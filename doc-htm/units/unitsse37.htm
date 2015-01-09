@@ -1,0 +1,65 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.1 Constants and types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse38.htm" >next</a>] [<a 
+href="#tailunitsse37.htm">tail</a>] [<a 
+href="unitsch13.htm#unitsse37.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">13.1</span> <a 
+href="units.htm#QQ2-55-507" name="x55-50100013.1">Constants and types</a></h3>
+<!--l. 47--><p class="noindent">The following types are defined in the <span 
+class="cmss-10">math </span>unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;Float&nbsp;=&nbsp;Extended;
+&nbsp;&nbsp;&nbsp;PFloat&nbsp;=&nbsp;^FLoat
+</pre>
+</td></tr></table>All calculations are done with the Float type. This allows to recompile the unit with a different
+float type to obtain a desired precision. The pointer type is used in functions that accept an array
+of values of arbitrary length.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;TPaymentTime&nbsp;=&nbsp;(PTEndOfPeriod,PTStartOfPeriod);
+</pre>
+</td></tr></table><span 
+class="cmtt-10">TPaymentTime </span>is used in the financial calculations.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;EInvalidArgument&nbsp;=&nbsp;Class(EMathError);
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">EInvalidArgument </span>exception is used to report invalid arguments.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse38.htm" >next</a>] [<a 
+href="unitsse37.htm" >front</a>] [<a 
+href="unitsch13.htm#unitsse37.htm" >up</a>] </p></div><a 
+  name="tailunitsse37.htm"></a>  
+</body></html> 

@@ -1,0 +1,112 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>16 The MsMouse unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch17.htm" >next</a>] [<a 
+href="unitsch15.htm" >prev</a>] [<a 
+href="unitsch15.htm#tailunitsch15.htm" >prev-tail</a>] [<a 
+href="#tailunitsch16.htm">tail</a>] [<a 
+href="units.htm#unitsch16.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;16</span><br><a 
+href="units.htm#QQ2-65-593" name="x65-58700016">The MsMouse unit</a></h2>
+<!--l. 29--><p class="noindent">The msmouse unit provides basic mouse handling under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>(Go32v1 and Go32v2) Some general
+remarks about the msmouse unit:
+     <ul class="itemize1">
+     <li class="itemize">For maximum portability, it is advisable to use the <span 
+class="cmss-10">mouse </span>unit; that unit is portable
+     across platforms, and offers a similar interface. Under no circumstances should the two
+     units be used together.
+     </li>
+     <li class="itemize">The mouse driver does not know when the text screen scrolls. This results in unerased
+     mouse cursors on the screen when the screen scrolls while the mouse cursor is visible.
+     The solution is to hide the mouse cursor (using HideMouse) when you write something
+     to the screen and to show it again afterwards (using ShowMouse).
+     </li>
+     <li class="itemize">All Functions/Procedures that return and/or accept coordinates of the mouse cursor,
+     always do so in pixels and zero based (so the upper left corner of the screen is (0,0)).
+     To get the (column, row) in standard text mode, divide both x and y by 8 (and add 1
+     if you want to have it 1 based).
+     </li>
+     <li class="itemize">The real resolution of graphic modes and the one the mouse driver uses can differ. For
+     example, mode 13h (320*200 pixels) is handled by the mouse driver as 640*200, so you
+     will have to multiply the X coordinates you give to the driver and divide the ones you
+     get from it by 2 in that mode.
+     </li>
+     <li class="itemize">By default the msmouse unit is compiled with the conditional define MouseCheck. This
+     causes every procedure/function of the unit to check the MouseFound variable prior to
+     doing anything. Of course this is not necessary, so if you are sure you are not calling
+     any mouse unit procedures when no mouse is found, you can recompile the mouse unit
+     without this conditional define.
+     </li>
+     <li class="itemize">You will notice that several procedures/functions have longint sized parameters while
+     only  the  lower  16  bits  are  used.  This  is  because  FPC  is  a  32  bit  compiler  and
+     consequently 32 bit parameters result in faster code.</li></ul>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">16.1 <a 
+href="unitsse45.htm#x66-58800016.1" name="QQ2-66-594">Constants, types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">16.2 <a 
+href="unitsse46.htm#x67-58900016.2" name="QQ2-67-595">Functions and procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59000016.2" name="QQ2-67-596">GetLastButtonPress</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59100016.2" name="QQ2-67-597">GetLastButtonRelease</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59200016.2" name="QQ2-67-598">GetMouseState</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59300016.2" name="QQ2-67-599">HideMouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59400016.2" name="QQ2-67-600">InitMouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59500016.2" name="QQ2-67-601">LPressed</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59600016.2" name="QQ2-67-602">MPressed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59700016.2" name="QQ2-67-603">RPressed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59800016.2" name="QQ2-67-604">SetMouseAscii</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-59900016.2" name="QQ2-67-605">SetMouseHideWindow</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60000016.2" name="QQ2-67-606">SetMousePos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60100016.2" name="QQ2-67-607">SetMouseShape</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60200016.2" name="QQ2-67-608">SetMouseSpeed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60300016.2" name="QQ2-67-609">SetMouseWindow</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60400016.2" name="QQ2-67-610">SetMouseXRange</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60500016.2" name="QQ2-67-611">SetMouseYRange</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse46.htm#x67-60600016.2" name="QQ2-67-612">ShowMouse</a></span>
+</div>
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch17.htm" >next</a>] [<a 
+href="unitsch15.htm" >prev</a>] [<a 
+href="unitsch15.htm#tailunitsch15.htm" >prev-tail</a>] [<a 
+href="unitsch16.htm" >front</a>] [<a 
+href="units.htm#unitsch16.htm" >up</a>] </p></div><a 
+  name="tailunitsch16.htm"></a>  
+</body></html> 

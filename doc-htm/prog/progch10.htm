@@ -1,0 +1,78 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10 Optimizations</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch11.htm" >next</a>] [<a 
+href="progch9.htm" >prev</a>] [<a 
+href="progch9.htm#tailprogch9.htm" >prev-tail</a>] [<a 
+href="#tailprogch10.htm">tail</a>] [<a 
+href="prog.htm#progch10.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;10</span><br><a 
+href="prog.htm#QQ2-175-198" name="x175-17800010">Optimizations</a></h2>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">10.1 <a 
+href="progse38.htm#x176-17900010.1" name="QQ2-176-199">Non processor specific</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu116.htm#x177-18000010.1" name="QQ2-177-200">Constant folding</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu117.htm#x178-18100010.1" name="QQ2-178-201">Constant merging</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu118.htm#x179-18200010.1" name="QQ2-179-202">Short cut evaluation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu119.htm#x180-18300010.1" name="QQ2-180-203">Constant set inlining</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu120.htm#x181-18400010.1" name="QQ2-181-204">Small sets</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu121.htm#x182-18500010.1" name="QQ2-182-205">Range checking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu122.htm#x183-18600010.1" name="QQ2-183-206">And instead of modulo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu123.htm#x184-18700010.1" name="QQ2-184-207">Shifts instead of multiply or divide</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu124.htm#x185-18800010.1" name="QQ2-185-208">Automatic alignment</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu125.htm#x186-18900010.1" name="QQ2-186-209">Smart linking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu126.htm#x187-19000010.1" name="QQ2-187-210">Inline routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu127.htm#x188-19100010.1" name="QQ2-188-211">Stack frame omission</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu128.htm#x189-19200010.1" name="QQ2-189-212">Register variables</a></span>
+<br>&nbsp;<span class="sectionToc">10.2 <a 
+href="progse39.htm#x190-19300010.2" name="QQ2-190-213">Processor specific</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu129.htm#x191-19400010.2" name="QQ2-191-214">Intel 80x86 specific</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu130.htm#x193-19500010.2" name="QQ2-193-215">Motorola 680x0 specific</a></span>
+<br>&nbsp;<span class="sectionToc">10.3 <a 
+href="progse40.htm#x194-19600010.3" name="QQ2-194-216">Optimization switches</a></span>
+<br>&nbsp;<span class="sectionToc">10.4 <a 
+href="progse41.htm#x195-19700010.4" name="QQ2-195-217">Tips to get faster code</a></span>
+<br>&nbsp;<span class="sectionToc">10.5 <a 
+href="progse42.htm#x196-19800010.5" name="QQ2-196-218">Tips to get smaller code</a></span>
+</div>
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch11.htm" >next</a>] [<a 
+href="progch9.htm" >prev</a>] [<a 
+href="progch9.htm#tailprogch9.htm" >prev-tail</a>] [<a 
+href="progch10.htm" >front</a>] [<a 
+href="prog.htm#progch10.htm" >up</a>] </p></div><a 
+  name="tailprogch10.htm"></a>  
+</body></html> 

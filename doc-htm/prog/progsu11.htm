@@ -1,0 +1,70 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $GOTO : Support Goto and Label</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu12.htm" >next</a>] [<a 
+href="progsu10.htm" >prev</a>] [<a 
+href="progsu10.htm#tailprogsu10.htm" >prev-tail</a>] [<a 
+href="#tailprogsu11.htm">tail</a>] [<a 
+href="progse2.htm#progsu11.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-18-16" name="x18-160001.1"><span 
+class="cmtt-10">$GOTO </span>: Support <span 
+class="cmtt-10">Goto </span>and <span 
+class="cmtt-10">Label</span></a></h4>
+<!--l. 295--><p class="noindent">If <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$GOTO ON</span><span 
+class="cmsy-10">} </span>is specified, the compiler will support <span 
+class="cmtt-10">Goto </span>statements and <span 
+class="cmtt-10">Label </span>declarations. By
+default, <span 
+class="cmtt-10">$GOTO OFF </span>is assumed. This directive corresponds to the <span 
+class="cmtt-10">-Sg </span>command-line
+option.
+<!--l. 299--><p class="noindent">As an example, the following code can be compiled:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$GOTO&nbsp;ON}
+&nbsp;
+&nbsp;label&nbsp;Theend;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;If&nbsp;ParamCount=0&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GoTo&nbsp;TheEnd;
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('You&nbsp;specified&nbsp;command-line&nbsp;options');
+&nbsp;TheEnd:
+&nbsp;end.
+</pre>
+</td></tr></table>
+<!--l. 313--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>When compiling assembler code using the inline assembler readers, any labels used in the assembler
+code must be declared, and the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$GOTO ON</span><span 
+class="cmsy-10">} </span>directive should be used.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu12.htm" >next</a>] [<a 
+href="progsu10.htm" >prev</a>] [<a 
+href="progsu10.htm#tailprogsu10.htm" >prev-tail</a>] [<a 
+href="progsu11.htm" >front</a>] [<a 
+href="progse2.htm#progsu11.htm" >up</a>] </p></div><a 
+  name="tailprogsu11.htm"></a>  
+</body></html> 

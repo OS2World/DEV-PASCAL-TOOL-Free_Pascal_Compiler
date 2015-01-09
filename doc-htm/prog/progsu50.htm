@@ -1,0 +1,67 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $X or $EXTENDEDSYNTAX : Extended syntax</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu49.htm" >prev</a>] [<a 
+href="progsu49.htm#tailprogsu49.htm" >prev-tail</a>] [<a 
+href="#tailprogsu50.htm">tail</a>] [<a 
+href="progse2.htm#progsu50.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-57-56" name="x57-550001.1"><span 
+class="cmtt-10">$X </span>or <span 
+class="cmtt-10">$EXTENDEDSYNTAX </span>: Extended syntax</a></h4>
+<!--l. 995--><p class="noindent">Extended syntax allows you to drop the result of a function. This means that you can use a
+function call as if it were a procedure. Standard this feature is on. You can switch it off using the
+<span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$X-</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$EXTENDEDSYNTAX OFF</span><span 
+class="cmsy-10">}</span>directive.
+<!--l. 1000--><p class="noindent">The following, for instance, will not compile:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;function&nbsp;Func&nbsp;(var&nbsp;Arg&nbsp;:&nbsp;sometype)&nbsp;:&nbsp;longint;
+&nbsp;begin
+&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;declaration&nbsp;of&nbsp;Func&nbsp;}
+&nbsp;end;
+&nbsp;
+&nbsp;...
+&nbsp;
+&nbsp;{$X-}
+&nbsp;Func&nbsp;(A);
+</pre>
+</td></tr></table>The reason this construct is supported is that you may wish to call a function for certain
+side-effects it has, but you don&#8217;t need the function result. In this case you don&#8217;t need to assign the
+function result, saving you an extra variable.
+<!--l. 1017--><p class="noindent">The command-line compiler switch <span 
+class="cmtt-10">-Sa1 </span>has the same effect as the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$X+</span><span 
+class="cmsy-10">} </span>directive.
+<!--l. 1020--><p class="noindent">By default, extended syntax is assumed.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu49.htm" >prev</a>] [<a 
+href="progsu49.htm#tailprogsu49.htm" >prev-tail</a>] [<a 
+href="progsu50.htm" >front</a>] [<a 
+href="progse2.htm#progsu50.htm" >up</a>] </p></div><a 
+  name="tailprogsu50.htm"></a>  
+</body></html> 

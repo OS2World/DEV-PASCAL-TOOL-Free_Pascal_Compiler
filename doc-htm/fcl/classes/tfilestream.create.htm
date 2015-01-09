@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TFileStream.Create</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TFileStream.Create</h1>
+<p>Creates a file stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">constructor</span> <a href="../classes/tfilestream.htm">TFileStream</a><span class="sym">.</span>Create<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">const </span>AFileName<span class="sym">: </span>String<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Mode<span class="sym">: </span>Word</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><br><br><span class="kw">constructor</span> <a href="../classes/tfilestream.htm">TFileStream</a><span class="sym">.</span>Create<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">const </span>AFileName<span class="sym">: </span>String<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Mode<span class="sym">: </span>Word<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Rights<span class="sym">: </span>Cardinal</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Create</var> creates a new instance of a <var>TFileStream</var> class. It opens the file <var>AFileName</var> with mode <var>Mode</var>, which can have one of the following values: </p>
+<table border="0">
+<tr>
+<td>fmCreate</td>
+<td><a href="../classes/tfilestream.create.htm">TFileStream.Create</a> creates a new file if needed. </td>
+</tr>
+<tr>
+<td>fmOpenRead</td>
+<td><a href="../classes/tfilestream.create.htm">TFileStream.Create</a> opens a file with read-only access. </td>
+</tr>
+<tr>
+<td>fmOpenWrite</td>
+<td><a href="../classes/tfilestream.create.htm">TFileStream.Create</a> opens a file with write-only access. </td>
+</tr>
+<tr>
+<td>fmOpenReadWrite</td>
+<td><a href="../classes/tfilestream.create.htm">TFileStream.Create</a> opens a file with read-write access. </td>
+</tr>
+</table>
+<p>After the file has been opened in the requested mode and a handle has been obtained from the operating system, the inherited constructor is called. </p>
+<h2>Errors</h2>
+<p>If the file could not be opened in the requested mode, an <a href="../classes/efopenerror.htm">EFOpenError</a> exception is raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstream.htm">TStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tfilestream.filename.htm">TFileStream.FileName</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">The filename of the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/thandlestream.create.htm">THandleStream.Create</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Create a handlestream from an OS Handle.</p></td>
+</tr>
+</table>
+</body>
+</html>

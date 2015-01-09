@@ -1,0 +1,54 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.7 Combining heaptrc and lineinfo</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse51.htm" >prev</a>] [<a 
+href="userse51.htm#tailuserse51.htm" >prev-tail</a>] [<a 
+href="#tailuserse52.htm">tail</a>] [<a 
+href="userch10.htm#userse52.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.7</span> <a 
+href="user.htm#QQ2-72-210" name="x72-15900010.7">Combining <span 
+class="cmss-10">heaptrc </span>and <span 
+class="cmss-10">lineinfo</span></a></h3>
+<!--l. 2537--><p class="noindent">If you combine the lineinfo and the heaptrc information, then the output of the <span 
+class="cmss-10">heaptrc </span>unit will
+contain the names of the files and line numbers of the procedures that occur in the stack
+backtrace.
+<!--l. 2541--><p class="noindent">In such a case, the output will look something like this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Marked&nbsp;memory&nbsp;at&nbsp;00410DA0&nbsp;invalid
+&nbsp;Wrong&nbsp;size&nbsp;:&nbsp;128&nbsp;allocated&nbsp;64&nbsp;freed
+&nbsp;&nbsp;&nbsp;0x004094B8
+&nbsp;&nbsp;&nbsp;0x0040D8F9&nbsp;&nbsp;main,&nbsp;&nbsp;line&nbsp;25&nbsp;of&nbsp;heapex.pp
+&nbsp;&nbsp;&nbsp;0x0040D231
+&nbsp;Call&nbsp;trace&nbsp;for&nbsp;block&nbsp;0x00410DA0&nbsp;size&nbsp;128
+&nbsp;&nbsp;&nbsp;0x0040D8ED&nbsp;&nbsp;main,&nbsp;&nbsp;line&nbsp;23&nbsp;of&nbsp;heapex.pp
+&nbsp;&nbsp;&nbsp;0x0040D231
+</pre>
+</td></tr></table>If lines without filename/line-number occur, this means there is a unit which has no debug info
+included. (in the above case, the getmem call itself)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse51.htm" >prev</a>] [<a 
+href="userse51.htm#tailuserse51.htm" >prev-tail</a>] [<a 
+href="userse52.htm" >front</a>] [<a 
+href="userch10.htm#userse52.htm" >up</a>] </p></div><a 
+  name="tailuserse52.htm"></a>  
+</body></html> 

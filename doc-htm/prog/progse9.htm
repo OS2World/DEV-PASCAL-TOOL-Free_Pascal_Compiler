@@ -1,0 +1,65 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.3 Signaling changed registers</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse8.htm" >prev</a>] [<a 
+href="progse8.htm#tailprogse8.htm" >prev-tail</a>] [<a 
+href="#tailprogse9.htm">tail</a>] [<a 
+href="progch3.htm#progse9.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.3</span> <a 
+href="prog.htm#QQ2-88-88" name="x88-860003.3">Signaling changed registers</a></h3>
+<!--l. 1956--><p class="noindent">When the compiler uses variables, it sometimes stores them, or the result of some calculations, in
+the processor registers. If you insert assembler code in your program that modifies the processor
+registers, then this may interfere with the compiler&#8217;s idea about the registers. To avoid
+this problem, Free Pascal allows you to tell the compiler which registers have changed.
+The compiler will then avoid using these registers. Telling the compiler which registers
+have changed is done by specifying a set of register names behind an assembly block, as
+follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;asm
+&nbsp;&nbsp;&nbsp;...
+&nbsp;end&nbsp;['R1',&nbsp;...&nbsp;,'Rn'];
+</pre>
+</td></tr></table>Here <span 
+class="cmtt-10">R1 </span>to <span 
+class="cmtt-10">Rn </span>are the names of the registers you modify in your assembly code.
+<!--l. 1972--><p class="noindent">As an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;asm
+&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;BP,%eax
+&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;4(%eax),%eax
+&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%eax,__RESULT
+&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;['EAX'];
+</pre>
+</td></tr></table>This example tells the compiler that the <span 
+class="cmtt-10">EAX </span>register was modified.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse8.htm" >prev</a>] [<a 
+href="progse8.htm#tailprogse8.htm" >prev-tail</a>] [<a 
+href="progse9.htm" >front</a>] [<a 
+href="progch3.htm#progse9.htm" >up</a>] </p></div><a 
+  name="tailprogse9.htm"></a>  
+</body></html> 

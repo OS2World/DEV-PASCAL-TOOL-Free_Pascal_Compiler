@@ -1,0 +1,819 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>15.2 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse44.htm" >next</a>] [<a 
+href="unitsse42.htm" >prev</a>] [<a 
+href="unitsse42.htm#tailunitsse42.htm" >prev-tail</a>] [<a 
+href="#tailunitsse43.htm">tail</a>] [<a 
+href="unitsch15.htm#unitsse43.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">15.2</span> <a 
+href="units.htm#QQ2-63-577" name="x63-57100015.2">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-578" name="x63-57200015.2">DetectMouse</a></h4><a 
+  name="dx63-572001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DetectMouse:byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DetectMouse </span>detects whether a mouse is attached to the system or not. If there is no mouse,
+then zero is returned. If a mouse is attached, then the number of mouse buttons is returned.
+<!--l. 123--><p class="noindent">This function should be called after the mouse driver was initialized.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitMouse </span>(<a 
+href="unitsse46.htm#x67-59400016.2">523<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">DoneMouse </span>(<a 
+href="#x63-57300015.2">505<!--tex4ht:ref: tab:speckeys--></a>),</dd></dl>
+<!--l. 130--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 130--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DetectMouse</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buttons</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buttons:=DetectMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Buttons=0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('No</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">present.')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Found</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">',Buttons,'</span>&nbsp;<span 
+class="cmtt-10">buttons.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneMouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-579" name="x63-57300015.2">DoneMouse</a></h4><a 
+  name="dx63-573001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DoneMouse;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DoneMouse </span>De-initializes the mouse driver. It cleans up any memory allocated when the
+mouse was initialized, or removes possible mouse hooks from memory. The mouse functions
+will not work after <span 
+class="cmtt-10">DoneMouse </span>was called. If <span 
+class="cmtt-10">DoneMouse </span>is called a second time, it will exit
+at once. <span 
+class="cmtt-10">InitMouse </span>should be called before <span 
+class="cmtt-10">DoneMouse </span>can be called again.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DetectMouse </span>(<a 
+href="#x63-57200015.2">505<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">InitMouse </span>(<a 
+href="unitsse46.htm#x67-59400016.2">523<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 147--><p class="noindent">For an example, see most other mouse functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-580" name="x63-57400015.2">GetMouseButtons</a></h4><a 
+  name="dx63-574001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMouseButtons:word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMouseButtons </span>returns the current button state of the mouse, i.e. it returns a or-ed
+combination of the following constants:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">MouseLeftButton</span></dt><dd 
+class="description">When the left mouse button is held down.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">MouseRightButton</span></dt><dd 
+class="description">When the right mouse button is held down.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">MouseMiddleButton</span></dt><dd 
+class="description">When the middle mouse button is held down.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">GetMouseX </span>(<a 
+href="#x63-57700015.2">507<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">GetMouseY </span>(<a 
+href="#x63-57800015.2">508<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 166--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 166--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetMouseButtons</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit</span>&nbsp;<span 
+class="cmtt-10">program');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">(GetMouseButtons&lt;&gt;MouseRightButton)</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneMouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-581" name="x63-57500015.2">GetMouseDriver</a></h4><a 
+  name="dx63-575001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetMouseDriver(Var Driver : TMouseDriver);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMouseDriver </span>returns the currently set mouse driver. It can be used to retrieve the
+current mouse driver, and override certain callbacks.
+<!--l. 175--><p class="noindent">A more detailed explanation about getting and setting mouse drivers can be found in section
+<a 
+href="unitsse44.htm#x64-58600015.3">15.3<!--tex4ht:ref: se:mousedrv--></a>, page <a 
+href="unitsse44.htm#x64-58600015.3">513<!--tex4ht:ref: se:mousedrv--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseDriver </span>(<a 
+href="#x63-58300015.2">510<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 184--><p class="noindent">For an example, see the section on writing a custom mouse driver, section <a 
+href="unitsse44.htm#x64-58600015.3">15.3<!--tex4ht:ref: se:mousedrv--></a>, page
+<a 
+href="unitsse44.htm#x64-58600015.3">513<!--tex4ht:ref: se:mousedrv--></a>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-582" name="x63-57600015.2">GetMouseEvent</a></h4><a 
+  name="dx63-576001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetMouseEvent(var MouseEvent:TMouseEvent);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMouseEvent </span>returns the next mouse event (a movement, button press or button release),
+and waits for one if none is available in the queue.
+<!--l. 194--><p class="noindent">Some mouse drivers can implement a mouse event queue which can hold multiple events till
+they are fetched.; Others don&#8217;t, and in that case, a one-event queue is implemented for use
+with <span 
+class="cmss-10">PollMouseEvent </span>(<a 
+href="#x63-58100015.2">510<!--tex4ht:ref: se:mousedrv--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseButtons </span>(<a 
+href="#x63-57400015.2">506<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseX </span>(<a 
+href="#x63-57700015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseY </span>(<a 
+href="#x63-57800015.2">508<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-583" name="x63-57700015.2">GetMouseX</a></h4><a 
+  name="dx63-577001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMouseX:word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMouseX </span>returns the current <span 
+class="cmtt-10">X </span>position of the mouse. <span 
+class="cmtt-10">X </span>is measured in characters, starting
+at 0 for the left side of the screen.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseButtons </span>(<a 
+href="#x63-57400015.2">506<!--tex4ht:ref: se:mousedrv--></a>),<span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseY </span>(<a 
+href="#x63-57800015.2">508<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 215--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/ex4.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 215--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetMouseX,GetMouseY</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">X,Y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Move</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">cursor</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">square</span>&nbsp;<span 
+class="cmtt-10">10,10</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=GetMouseX;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=GetMouseY;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('X,Y=</span>&nbsp;<span 
+class="cmtt-10">(',X,',',Y,')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(X=9)</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">(Y=9);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneMouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-584" name="x63-57800015.2">GetMouseY</a></h4><a 
+  name="dx63-578001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMouseY:word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMouseY </span>returns the current <span 
+class="cmtt-10">Y </span>position of the mouse. <span 
+class="cmtt-10">Y </span>is measured in characters, starting
+at 0 for the top of the screen.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseButtons </span>(<a 
+href="#x63-57400015.2">506<!--tex4ht:ref: se:mousedrv--></a>),<span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseX </span>(<a 
+href="#x63-57700015.2">507<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 229--><p class="noindent">For an example, see <span 
+class="cmss-10">GetMouseX </span>(<a 
+href="#x63-57700015.2">507<!--tex4ht:ref: se:mousedrv--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-585" name="x63-57900015.2">HideMouse</a></h4><a 
+  name="dx63-579001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure HideMouse;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">HideMouse </span>hides the mouse cursor. This may or may not be implemented on all systems,
+and depends on the driver.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ShowMouse </span>(<a 
+href="unitsse46.htm#x67-60600016.2">532<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 243--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/ex5.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 243--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">HideMouse</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMouseEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Visible:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Visible:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">left</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">hide/show,</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">quits');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMouseEvent(Event);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Buttons=MouseLeftbutton)</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(Action=MouseActionDown)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Visible</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Visible:=Not</span>&nbsp;<span 
+class="cmtt-10">Visible;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(Event.Buttons=MouseRightButton)</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(Event.Action=MouseActionDown);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneMouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-586" name="x63-58000015.2">InitMouse</a></h4><a 
+  name="dx63-580001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure InitMouse;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">InitMouse </span>Initializes the mouse driver. This will allocate any data structures needed for
+the mouse to function. All mouse functions can be used after a call to <span 
+class="cmtt-10">InitMouse</span>.
+<!--l. 253--><p class="noindent">A call to <span 
+class="cmtt-10">InitMouse </span>must always be followed by a call to <span 
+class="cmss-10">DoneMouse </span>(<a 
+href="#x63-57300015.2">505<!--tex4ht:ref: se:mousedrv--></a>) at program exit.
+Failing to do so may leave the mouse in an unusable state, or may result in memory leaks.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DoneMouse </span>(<a 
+href="#x63-57300015.2">505<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">DetectMouse </span>(<a 
+href="#x63-57200015.2">505<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 262--><p class="noindent">For an example, see most other functions.
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-587" name="x63-58100015.2">PollMouseEvent</a></h4><a 
+  name="dx63-581001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function PollMouseEvent(var MouseEvent: TMouseEvent):boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PollMouseEvent </span>checks whether a mouse event is available, and returns it in <span 
+class="cmtt-10">MouseEvent</span>
+if one is found. The function result is <span 
+class="cmtt-10">True </span>in that case. If no mouse event is pending, the
+function result is <span 
+class="cmtt-10">False</span>, and the contents of <span 
+class="cmtt-10">MouseEvent </span>is undefined.
+<!--l. 273--><p class="noindent">Note that after a call to <span 
+class="cmtt-10">PollMouseEvent</span>, the event should still be removed from the mouse
+event queue with a call to <span 
+class="cmtt-10">GetMouseEvent</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">PutMouseEvent </span>(<a 
+href="#x63-58200015.2">510<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-588" name="x63-58200015.2">PutMouseEvent</a></h4><a 
+  name="dx63-582001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure PutMouseEvent(const MouseEvent: TMouseEvent);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutMouseEvent </span>adds <span 
+class="cmtt-10">MouseEvent </span>to the input queue. The next call to <span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: se:mousedrv--></a>)
+or <span 
+class="cmtt-10">PollMouseEvent </span>will then return <span 
+class="cmtt-10">MouseEvent</span>.
+<!--l. 289--><p class="noindent">Please note that depending on the implementation the mouse event queue can hold only one
+value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseEvent </span>(<a 
+href="#x63-57600015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">PollMouseEvent </span>(<a 
+href="#x63-58100015.2">510<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-589" name="x63-58300015.2">SetMouseDriver</a></h4><a 
+  name="dx63-583001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseDriver(Const Driver : TMouseDriver);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetMouseDriver </span>sets the mouse driver to <span 
+class="cmtt-10">Driver</span>. This function should be called before
+<span 
+class="cmss-10">InitMouse </span>(<a 
+href="unitsse46.htm#x67-59400016.2">523<!--tex4ht:ref: se:mousedrv--></a>) is called, or after <span 
+class="cmtt-10">DoneMouse </span>is called. If it is called after the mouse has been
+initialized, it does nothing.
+<!--l. 306--><p class="noindent">For more information on setting the mouse driver, section <a 
+href="unitsse44.htm#x64-58600015.3">15.3<!--tex4ht:ref: se:mousedrv--></a>, page <a 
+href="unitsse44.htm#x64-58600015.3">513<!--tex4ht:ref: se:mousedrv--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitMouse </span>(<a 
+href="unitsse46.htm#x67-59400016.2">523<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">DoneMouse </span>(<a 
+href="#x63-57300015.2">505<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseDriver </span>(<a 
+href="#x63-57500015.2">506<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 313--><p class="noindent">For an example, see section <a 
+href="unitsse44.htm#x64-58600015.3">15.3<!--tex4ht:ref: se:mousedrv--></a>, page <a 
+href="unitsse44.htm#x64-58600015.3">513<!--tex4ht:ref: se:mousedrv--></a>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-590" name="x63-58400015.2">SetMouseXY</a></h4><a 
+  name="dx63-584001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseXY(x,y:word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetMouseXY </span>places the mouse cursor on <span 
+class="cmtt-10">X,Y</span>. X and Y are zero based character coordinates:
+<span 
+class="cmtt-10">0,0 </span>is the top-left corner of the screen, and the position is in character cells (i.e. not in
+pixels).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseX </span>(<a 
+href="#x63-57700015.2">507<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">GetMouseY </span>(<a 
+href="#x63-57800015.2">508<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 328--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 328--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SetMouseXY</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMouseEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Click</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseXY(40,12);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(GetMouseX&gt;70)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseXY(10,GetMouseY);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(GetMouseY&gt;20)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseXY(GetMouseX,5);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMouseEvent(Event);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(Event.Buttons=MouseRightButton)</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(Event.Action=MouseActionDown);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneMouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-63-591" name="x63-58500015.2">ShowMouse</a></h4><a 
+  name="dx63-585001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ShowMouse;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ShowMouse </span>shows the mouse cursor if it was previously hidden. The capability to hide or
+show the mouse cursor depends on the driver.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">HideMouse </span>(<a 
+href="unitsse46.htm#x67-59300016.2">522<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 342--><p class="noindent">For an example, see <span 
+class="cmss-10">HideMouse </span>(<a 
+href="unitsse46.htm#x67-59300016.2">522<!--tex4ht:ref: se:mousedrv--></a>)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse44.htm" >next</a>] [<a 
+href="unitsse42.htm" >prev</a>] [<a 
+href="unitsse42.htm#tailunitsse42.htm" >prev-tail</a>] [<a 
+href="unitsse43.htm" >front</a>] [<a 
+href="unitsch15.htm#unitsse43.htm" >up</a>] </p></div><a 
+  name="tailunitsse43.htm"></a>   
+</body></html> 

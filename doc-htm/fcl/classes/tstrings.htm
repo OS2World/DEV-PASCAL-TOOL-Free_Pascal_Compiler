@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings</h1>
+<p>[<a href="../classes/tstrings-1.htm" onClick="window.open('../classes/tstrings-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/tstrings-2.htm" onClick="window.open('../classes/tstrings-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tstrings-3.htm" onClick="window.open('../classes/tstrings-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/tstrings-4.htm" onClick="window.open('../classes/tstrings-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tstrings-5.htm" onClick="window.open('../classes/tstrings-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/tstrings-6.htm" onClick="window.open('../classes/tstrings-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Class to manage arrays or collections of strings</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> TStrings <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span><a href="../classes/tpersistent.htm">TPersistent</a><span class="sym">)</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">protected</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.defineproperties.htm">DefineProperties</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Method to stream the contents of the string collection</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.error.htm">Error</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Raises an <a href="../classes/estringlisterror.htm">EStringListError</a> exception.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.get.htm">Get</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract read handler for the <a href="../classes/tstrings.strings.htm">TStrings.Strings</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.getcapacity.htm">GetCapacity</a><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract Read handler for the <a href="../classes/tstrings.capacity.htm">TStrings.Capacity</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.getcount.htm">GetCount</a><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract read handler for the <a href="../classes/tstrings.count.htm">TStrings.Count</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.getobject.htm">GetObject</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract read handler for the <a href="../classes/tstrings.objects.htm">TStrings.Objects</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.gettextstr.htm">GetTextStr</a><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read handler for the <a href="../classes/tstrings.text.htm">TStrings.Text</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.put.htm">Put</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write handler for the <a href="../classes/tstrings.strings.htm">TStrings.Strings</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.putobject.htm">PutObject</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write handler for the <a href="../classes/tstrings.objects.htm">TStrings.Objects</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.setcapacity.htm">SetCapacity</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write handler for the <a href="../classes/tstrings.capacity.htm">TStrings.Capacity</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.settextstr.htm">SetTextStr</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write handler for the <a href="../classes/tstrings.text.htm">TStrings.Text</a> property.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.setupdatestate.htm">SetUpdateState</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the update state. </p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">public</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">destructor </span><a href="../classes/tstrings.destroy.htm">Destroy</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Frees all strings and objects, and removes the list from memory.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.add.htm">Add</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Add a string to the list</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.addobject.htm">AddObject</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Add a string and associated object to the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.append.htm">Append</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Add a string to the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.addstrings.htm">AddStrings</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Add contents of another stringlist to this list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.assign.htm">Assign</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Assign the contents of another stringlist to this one.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.beginupdate.htm">BeginUpdate</a><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Mark the beginning of an update batch.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.clear.htm">Clear</a><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Removes all strings and associated objects from the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.delete.htm">Delete</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Delete a string from the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.endupdate.htm">EndUpdate</a><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Mark the end of an update batch.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.equals.htm">Equals</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Compares the contents of two stringlists.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.exchange.htm">Exchange</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Exchanges two strings in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.gettext.htm">GetText</a><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Returns the contents as a PChar</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.indexof.htm">IndexOf</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Find a string in the list and return its position.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.indexofname.htm">IndexOfName</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Finds the index of a name in the name-value pairs.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tstrings.indexofobject.htm">IndexOfObject</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Finds an object in the list and returns its index.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.insert.htm">Insert</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Insert a string in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.insertobject.htm">InsertObject</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Insert a string and associated object in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.loadfromfile.htm">LoadFromFile</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Load the contents of a file as a series of strings.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.loadfromstream.htm">LoadFromStream</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Load the contents of a stream as a series of strings.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.move.htm">Move</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Move a string from one place in the list to another.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.savetofile.htm">SaveToFile</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Save the contents of the list to a file.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.savetostream.htm">SaveToStream</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Save the contents of the string to a stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tstrings.settext.htm">SetText</a><span class="sym">();</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Set the contents of the list from a PChar.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.capacity.htm">Capacity</a><span class="sym">: </span>Integer<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Capacity of the list, i.e. number of strings that the list can currently hold before it tries to expand.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.commatext.htm">CommaText</a><span class="sym">: </span>String<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Contents of the list as a comma-separated string.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.count.htm">Count</a><span class="sym">: </span>Integer<span class="sym">;</span>  [r]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Number of strings in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.names.htm">Names</a><span class="sym">: </span>String<span class="sym">;</span>  [r]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Name parts of the name-value pairs in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.objects.htm">Objects</a><span class="sym">: </span>TObject<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Indexed access to the objects associated with the strings in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.values.htm">Values</a><span class="sym">: </span>String<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Value parts of the name-value pairs in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.strings.htm">Strings</a><span class="sym">: </span>String<span class="sym">;</span><span class="kw"> default</span><span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Indexed access to teh strings in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.text.htm">Text</a><span class="sym">: </span>String<span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Contents of the list as one big string.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tstrings.stringsadapter.htm">StringsAdapter</a><span class="sym">: </span><a href="../classes/istringsadapter.htm">IStringsAdapter</a><span class="sym">;</span>  [rw]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Not implemented in Free Pascal.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tstrings.htm">TStrings</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Class to manage arrays or collections of strings</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tpersistent.htm">TPersistent</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streaming system and persistent properties.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>TStrings</var> implements an abstract class to manage an array of strings. It introduces methods to set and retrieve strings in the array, searching for a particular string, concatenating the strings and so on. It also allows an arbitrary object to be associated with each string. </p>
+<p>It also introduces methods to manage a series of <var>name=value</var>  settings, as found in many configuration files. </p>
+<p>An instance of <var>TStrings</var> is never created directly, instead a descendent class such as <a href="../classes/tstringlist.htm">TStringList</a> should be created. This is because <var>TStrings</var> is an abstract class which does not implement all methods; <var>TStrings</var> also doesn't store any strings, this is the functionality introduced in descendents such as <a href="../classes/tstringlist.htm">TStringList</a>. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstringlist.htm">TStringList</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Standard implementation of the <a href="../classes/tstrings.htm">TStrings</a> class.</p></td>
+</tr>
+</table>
+</body>
+</html>

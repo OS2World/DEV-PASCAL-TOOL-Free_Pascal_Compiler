@@ -1,0 +1,58 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 set types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu103.htm" >next</a>] [<a 
+href="progsu101.htm" >prev</a>] [<a 
+href="progsu101.htm#tailprogsu101.htm" >prev-tail</a>] [<a 
+href="#tailprogsu102.htm">tail</a>] [<a 
+href="progse29.htm#progsu102.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-149-168" name="x149-1550008.2">set types</a></h4>
+<!--l. 3609--><p class="noindent">A set is stored as an array of bits, where each bit indicates if the element is in the set or excluded
+from the set. The maximum number of elements in a set is 256.
+<!--l. 3613--><p class="noindent">If a set has less than 32 elements, it is coded as an unsigned 32-bit value. Otherwise it is
+coded as a 8 element array of 32-bit unsigned values (longword) (hence a size of 256
+bytes).
+<!--l. 3617--><p class="noindent">The longword number of a specific element <span 
+class="cmtt-10">E </span>is given by :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;LongwordNumber&nbsp;=&nbsp;(E&nbsp;div&nbsp;32);
+</pre>
+</td></tr></table>
+<!--l. 3623--><p class="noindent">and the bit number within that 32-bit value is given by:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;BitNumber&nbsp;=&nbsp;(E&nbsp;mod&nbsp;32);
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu103.htm" >next</a>] [<a 
+href="progsu101.htm" >prev</a>] [<a 
+href="progsu101.htm#tailprogsu101.htm" >prev-tail</a>] [<a 
+href="progsu102.htm" >front</a>] [<a 
+href="progse29.htm#progsu102.htm" >up</a>] </p></div><a 
+  name="tailprogsu102.htm"></a>  
+</body></html> 

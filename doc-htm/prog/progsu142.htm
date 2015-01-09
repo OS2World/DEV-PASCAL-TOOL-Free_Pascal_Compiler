@@ -1,0 +1,87 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.6.0 Compiler command-line variables </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu141.htm" >prev</a>] [<a 
+href="progsu141.htm#tailprogsu141.htm" >prev-tail</a>] [<a 
+href="#tailprogsu142.htm">tail</a>] [<a 
+href="progse70.htm#progsu142.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-244-272" name="x244-245000E.6">Compiler command-line variables </a></h4> The following variable can be set on the <span 
+class="cmss-10">make </span>command-line,
+they will be recognised and integrated in the compiler command-line options.:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">CREATESMART</span> </dt><dd 
+class="description">If this variable is defined, it tells the compiler to create smartlinked
+     units. Adds <span 
+class="cmtt-10">-CX </span>to the command-line options.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">DEBUG</span> </dt><dd 
+class="description">If  defined,  this  will  cause  the  compiler  to  include  debug  information  in  the
+     generated units and programs. It adds <span 
+class="cmtt-10">-gl </span>to the compiler command-line, and will
+     define the <span 
+class="cmtt-10">DEBUG </span>define.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">LINKSMART</span> </dt><dd 
+class="description">Defining this variable tells the compiler to use smartlinking. It adds <span 
+class="cmtt-10">-XX </span>to
+     the compiler command-line options.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">OPT</span> </dt><dd 
+class="description">Any options that you want to pass to the compiler. The contents of <span 
+class="cmtt-10">OPT </span>is simply
+     added to the compiler command-line.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">OPTDEF</span> </dt><dd 
+class="description">Are optional defines, added to the command-line of the compiler. They get <span 
+class="cmtt-10">-d</span>
+     prepended to them.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">OPTIMIZE</span> </dt><dd 
+class="description">if this variable is defined, this will add <span 
+class="cmtt-10">-OG2p3 </span>to the command-line options.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">RELEASE</span> </dt><dd 
+class="description">if  this  variable  is  defined,  this  will  add  the  <span 
+class="cmtt-10">-Xs -OG2p3 -n </span>options to the
+     command-line options, and will define the <span 
+class="cmtt-10">RELEASE </span>define.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">STRIP</span> </dt><dd 
+class="description">if this variable is defined, this will add the <span 
+class="cmtt-10">-Xs </span>option to the command-line options.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">VERBOSE</span> </dt><dd 
+class="description">if  this  variable  is  defined,  then  <span 
+class="cmtt-10">-vnwi  </span>will  be  added  to  the  command-line
+     options.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu141.htm" >prev</a>] [<a 
+href="progsu141.htm#tailprogsu141.htm" >prev-tail</a>] [<a 
+href="progsu142.htm" >front</a>] [<a 
+href="progse70.htm#progsu142.htm" >up</a>] </p></div><a 
+  name="tailprogsu142.htm"></a>  
+</body></html> 

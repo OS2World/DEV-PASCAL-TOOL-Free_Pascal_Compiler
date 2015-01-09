@@ -1,0 +1,174 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Random</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu151.htm" >next</a>] [<a 
+href="refsu149.htm" >prev</a>] [<a 
+href="refsu149.htm#tailrefsu149.htm" >prev-tail</a>] [<a 
+href="#tailrefsu150.htm">tail</a>] [<a 
+href="refse64.htm#refsu150.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-235-256" name="x235-24100013.3">Random</a></h4><a 
+  name="dx235-241001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Random [(L : Longint)] : Longint or Real;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Random </span>returns a random number larger or equal to <span 
+class="cmtt-10">0 </span>and strictly less than <span 
+class="cmtt-10">L</span>. If the
+argument <span 
+class="cmtt-10">L </span>is omitted, a Real number between 0 and 1 is returned. (0 included, 1 excluded)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Randomize </span>(<a 
+href="refsu151.htm#x236-24200013.3">551<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6644--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex49.pp</span><HR/><div class="listinginput">
+<!--l. 6644--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example49;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Random</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Randomize</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I,Count,guess</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">R</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Real;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">way</span>&nbsp;<span 
+class="cmtt-10">we</span>&nbsp;<span 
+class="cmtt-10">generate</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">sequence</span>&nbsp;<span 
+class="cmtt-10">every</span>&nbsp;<span 
+class="cmtt-10">time</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">run}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Count:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Random&gt;0.5</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">inc(Count);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Generated</span>&nbsp;<span 
+class="cmtt-10">',Count,'</span>&nbsp;<span 
+class="cmtt-10">numbers</span>&nbsp;<span 
+class="cmtt-10">&gt;</span>&nbsp;<span 
+class="cmtt-10">0.5');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('out</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">generated</span>&nbsp;<span 
+class="cmtt-10">numbers.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">count:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">5</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('Guess</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">between</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">5</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">readln(Guess);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Guess=Random(5)+1</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">inc(count);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('You</span>&nbsp;<span 
+class="cmtt-10">guessed</span>&nbsp;<span 
+class="cmtt-10">',Count,'</span>&nbsp;<span 
+class="cmtt-10">out</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">5</span>&nbsp;<span 
+class="cmtt-10">correct.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu151.htm" >next</a>] [<a 
+href="refsu149.htm" >prev</a>] [<a 
+href="refsu149.htm#tailrefsu149.htm" >prev-tail</a>] [<a 
+href="refsu150.htm" >front</a>] [<a 
+href="refse64.htm#refsu150.htm" >up</a>] </p></div><a 
+  name="tailrefsu150.htm"></a>  
+</body></html> 

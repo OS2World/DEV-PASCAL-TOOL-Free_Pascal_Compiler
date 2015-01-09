@@ -1,0 +1,208 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Flush</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu107.htm" >next</a>] [<a 
+href="refsu105.htm" >prev</a>] [<a 
+href="refsu105.htm#tailrefsu105.htm" >prev-tail</a>] [<a 
+href="#tailrefsu106.htm">tail</a>] [<a 
+href="refse64.htm#refsu106.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-191-212" name="x191-19700013.3">Flush</a></h4><a 
+  name="dx191-197001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Flush (Var F : Text);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Flush </span>empties the internal buffer of an opened file <span 
+class="cmtt-10">F </span>and writes the contents to disk. The
+file is <span 
+class="cmti-10">not </span>closed as a result of this call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Depending on the state of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I</span><span 
+class="cmsy-10">} </span>switch, a runtime error can be generated if there is an
+error. In the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I-</span><span 
+class="cmsy-10">} </span>state, use <span 
+class="cmtt-10">IOResult </span>to check for errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Close </span>(<a 
+href="refsu80.htm#x165-17100013.3">465<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5858--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex26.pp</span><HR/><div class="listinginput">
+<!--l. 5858--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example26;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Flush</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">standard</span>&nbsp;<span 
+class="cmtt-10">output</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(F,'');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(F,'This</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">first,</span>&nbsp;<span 
+class="cmtt-10">but</span>&nbsp;<span 
+class="cmtt-10">appears</span>&nbsp;<span 
+class="cmtt-10">later</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">At</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">point</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">internal</span>&nbsp;<span 
+class="cmtt-10">pascal</span>&nbsp;<span 
+class="cmtt-10">buffer,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">yet</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">standard</span>&nbsp;<span 
+class="cmtt-10">output</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('This</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">appears</span>&nbsp;<span 
+class="cmtt-10">first,</span>&nbsp;<span 
+class="cmtt-10">but</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">later</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">A</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">'output'</span>&nbsp;<span 
+class="cmtt-10">always</span>&nbsp;<span 
+class="cmtt-10">causes</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">flush</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">so</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">is</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Flush</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">At</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">point,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">screen.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">(F,'Finishing</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Closing</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">file</span>&nbsp;<span 
+class="cmtt-10">always</span>&nbsp;<span 
+class="cmtt-10">causes</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">flush</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('off.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu107.htm" >next</a>] [<a 
+href="refsu105.htm" >prev</a>] [<a 
+href="refsu105.htm#tailrefsu105.htm" >prev-tail</a>] [<a 
+href="refsu106.htm" >front</a>] [<a 
+href="refse64.htm#refsu106.htm" >up</a>] </p></div><a 
+  name="tailrefsu106.htm"></a>  
+</body></html> 

@@ -1,0 +1,113 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Length</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu127.htm" >next</a>] [<a 
+href="refsu125.htm" >prev</a>] [<a 
+href="refsu125.htm#tailrefsu125.htm" >prev-tail</a>] [<a 
+href="#tailrefsu126.htm">tail</a>] [<a 
+href="refse64.htm#refsu126.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-211-232" name="x211-21700013.3">Length</a></h4><a 
+  name="dx211-217001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Length (S : String) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Length </span>returns the length of the string <span 
+class="cmtt-10">S</span>, which is limited to 255 for shortstrings. If the
+strings <span 
+class="cmtt-10">S </span>is empty, 0 is returned.
+<!--l. 6230--><p class="noindent"><span 
+class="cmti-10">Note: </span>The length of the string <span 
+class="cmtt-10">S </span>is stored in <span 
+class="cmtt-10">S[0] </span>for shortstrings only. The <span 
+class="cmtt-10">Length </span>fuction
+should always be used on ansistrings and widestrings.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Pos </span>(<a 
+href="refsu146.htm#x231-23700013.3">546<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6240--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex36.pp</span><HR/><div class="listinginput">
+<!--l. 6240--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example36;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Length</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S:=S+'*';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(Length(S):2,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',s);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu127.htm" >next</a>] [<a 
+href="refsu125.htm" >prev</a>] [<a 
+href="refsu125.htm#tailrefsu125.htm" >prev-tail</a>] [<a 
+href="refsu126.htm" >front</a>] [<a 
+href="refse64.htm#refsu126.htm" >up</a>] </p></div><a 
+  name="tailrefsu126.htm"></a>  
+</body></html> 

@@ -1,0 +1,301 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>24.1 Constants, Type and variables </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse84.htm" >next</a>] [<a 
+href="#tailunitsse83.htm">tail</a>] [<a 
+href="unitsch24.htm#unitsse83.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">24.1</span> <a 
+href="units.htm#QQ2-112-992" name="x112-98600024.1">Constants, Type and variables </a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-112-993" name="x112-98700024.1">Constants</a></h4> The following constants describe colors that can be used as foreground and background
+colors.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Black&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;Blue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;Green&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+&nbsp;Cyan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3;
+&nbsp;Red&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;
+&nbsp;Magenta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;5;
+&nbsp;Brown&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;6;
+&nbsp;LightGray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;7;
+</pre>
+</td></tr></table>The following color constants can be used as foreground colors only:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;DarkGray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;
+&nbsp;LightBlue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;9;
+&nbsp;LightGreen&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;10;
+&nbsp;LightCyan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;11;
+&nbsp;LightRed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;12;
+&nbsp;LightMagenta&nbsp;&nbsp;=&nbsp;13;
+&nbsp;Yellow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;14;
+&nbsp;White&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;15;
+</pre>
+</td></tr></table>The foreground and background color can be combined to a color attribute with the following
+code:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Attr:=ForeGroundColor&nbsp;+&nbsp;(BackGroundColor&nbsp;shl&nbsp;4);
+</pre>
+</td></tr></table>The color attribute can be logically or-ed with the blink attribute to produce a blinking
+character:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Blink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;128;
+</pre>
+</td></tr></table>But not all drivers may support this.
+<!--l. 121--><p class="noindent">The following constants describe the capabilities of a certain video mode:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;cpUnderLine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0001;
+&nbsp;cpBlink&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0002;
+&nbsp;cpColor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0004;
+&nbsp;cpChangeFont&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0008;
+&nbsp;cpChangeMode&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0010;
+&nbsp;cpChangeCursor&nbsp;&nbsp;=&nbsp;$0020;
+</pre>
+</td></tr></table>The following constants describe the various supported cursor modes:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;crHidden&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;crUnderLine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;crBlock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+&nbsp;crHalfBlock&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3;
+</pre>
+</td></tr></table>When a video function needs to report an error condition, the following constants are
+used:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;vioOK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;errVioBase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1000;
+&nbsp;errVioInit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;errVioBase&nbsp;+&nbsp;1;&nbsp;{&nbsp;Initialization&nbsp;error}
+&nbsp;errVioNotSupported&nbsp;=&nbsp;errVioBase&nbsp;+&nbsp;2;&nbsp;{&nbsp;Unsupported&nbsp;function&nbsp;}
+&nbsp;errVioNoSuchMode&nbsp;&nbsp;&nbsp;=&nbsp;errVioBase&nbsp;+&nbsp;3;&nbsp;{&nbsp;No&nbsp;such&nbsp;video&nbsp;mode&nbsp;}
+</pre>
+</td></tr></table>The following constants can be read to get some information about the current screen:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ScreenWidth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Word&nbsp;=&nbsp;0;&nbsp;&nbsp;{&nbsp;Width&nbsp;of&nbsp;the&nbsp;screen,&nbsp;in&nbsp;characters&nbsp;&nbsp;}
+&nbsp;ScreenHeight&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Word&nbsp;=&nbsp;0;&nbsp;&nbsp;{&nbsp;Height&nbsp;of&nbsp;the&nbsp;screen,&nbsp;in&nbsp;characters&nbsp;}
+&nbsp;LowAscii&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Boolean&nbsp;=&nbsp;true;
+&nbsp;NoExtendedFrame&nbsp;:&nbsp;Boolean&nbsp;=&nbsp;false;
+&nbsp;FVMaxWidth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;132;
+</pre>
+</td></tr></table>The error-handling code uses the following constants:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;errOk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;ErrorCode:&nbsp;Longint&nbsp;=&nbsp;ErrOK;
+&nbsp;ErrorInfo:&nbsp;Pointer&nbsp;=&nbsp;nil;
+&nbsp;ErrorHandler:&nbsp;TErrorHandler&nbsp;=&nbsp;DefaultErrorHandler;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">ErrorHandler </span>variable can be set to a custom-error handling function. It is set by default to
+the <span 
+class="cmss-10">DefaultErrorHandler </span>(<a 
+href="unitsse84.htm#x113-99200024.2">884<!--tex4ht:ref: se:TBufStream--></a>) function.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-112-994" name="x112-98800024.1">Types</a></h4> The <span 
+class="cmtt-10">TVideoMode </span>record describes a videomode. Its fields are self-explaining: <span 
+class="cmtt-10">Col,Row</span>
+describe the number of columns and rows on the screen for this mode. <span 
+class="cmtt-10">Color </span>is <span 
+class="cmtt-10">True </span>if this mode
+supports colors, or <span 
+class="cmtt-10">False </span>if not.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;PVideoMode&nbsp;=&nbsp;^TVideoMode;
+&nbsp;&nbsp;&nbsp;TVideoMode&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Col,Row&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Color&nbsp;&nbsp;&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">TVideoCell </span>describes one character on the screen. One of the bytes contains the color attribute
+with which the character is drawn on the screen, and the other byte contains the ASCII code of
+the character to be drawn. The exact position of the different bytes in the record is
+operating system specific. On most little-endian systems, the high byte represents the
+color attribute, while the low-byte represents the ASCII code of the character to be
+drawn.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TVideoCell&nbsp;=&nbsp;Word;
+&nbsp;PVideoCell&nbsp;=&nbsp;^TVideoCell;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TVideoBuf </span>and <span 
+class="cmtt-10">PVideoBuf </span>are two types used to represent the screen.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TVideoBuf&nbsp;=&nbsp;array[0..32759]&nbsp;of&nbsp;TVideoCell;
+&nbsp;PVideoBuf&nbsp;=&nbsp;^TVideoBuf;
+</pre>
+</td></tr></table>The following type is used when reporting error conditions:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TErrorHandlerReturnValue&nbsp;=&nbsp;(errRetry,&nbsp;errAbort,&nbsp;errContinue);
+</pre>
+</td></tr></table>Here, <span 
+class="cmtt-10">errRetry </span>means retry the operation, <span 
+class="cmtt-10">errAbort </span>abort and return error code and
+<span 
+class="cmtt-10">errContinue </span>means abort without returning an errorcode.
+<!--l. 201--><p class="noindent">The <span 
+class="cmtt-10">TErrorHandler </span>function is used to register an own error handling function. It should be used
+when installing a custom error handling function, and must return one of the above
+values.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TErrorHandler&nbsp;=
+&nbsp;&nbsp;&nbsp;function&nbsp;(Code:&nbsp;Longint;&nbsp;Info:&nbsp;Pointer):&nbsp;TErrorHandlerReturnValue;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Code </span>should contain the error code for the error condition, and the <span 
+class="cmtt-10">Info </span>parameter may contain
+any data type specific to the error code passed to the function.
+<!--l. 212--><p class="noindent">The <span 
+class="cmtt-10">TVideoDriver </span>record can be used to install a custom video driver, with the <span 
+class="cmss-10">SetVideoDriver</span>
+(<a 
+href="unitsse84.htm#x113-100500024.2">894<!--tex4ht:ref: se:TBufStream--></a>) call:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TVideoDriver&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;InitDriver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;DoneDriver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;UpdateScreen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure(Force&nbsp;:&nbsp;Boolean);
+&nbsp;&nbsp;&nbsp;ClearScreen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;SetVideoMode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function&nbsp;(Const&nbsp;Mode&nbsp;:&nbsp;TVideoMode)&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;GetVideoModeCount&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;GetVideoModeData&nbsp;&nbsp;:&nbsp;Function(Index&nbsp;:&nbsp;Word;&nbsp;Var&nbsp;Data&nbsp;:&nbsp;TVideoMode)&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;SetCursorPos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;procedure&nbsp;(NewCursorX,&nbsp;NewCursorY:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;GetCursorType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;SetCursorType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;procedure&nbsp;(NewType:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;GetCapabilities&nbsp;&nbsp;&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;end;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-112-995" name="x112-98900024.1">Variables</a></h4> The following variables contain information about the current screen status:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ScreenColor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Boolean;
+&nbsp;CursorX,&nbsp;CursorY&nbsp;:&nbsp;Word;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">ScreenColor </span>indicates whether the current screen supports colors. <span 
+class="cmtt-10">CursorX,CursorY </span>contain the
+current cursor position.
+<!--l. 240--><p class="noindent">The following variable forms the heart of the <span 
+class="cmss-10">Video </span>unit: The <span 
+class="cmtt-10">VideoBuf </span>array represents the
+physical screen. Writing to this array and calling <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="unitsse84.htm#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will write the actual
+characters to the screen.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;VideoBuf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PVideoBuf;
+&nbsp;OldVideoBuf&nbsp;&nbsp;:&nbsp;PVideoBuf;
+&nbsp;VideoBufSize&nbsp;:&nbsp;Longint;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">OldVideoBuf </span>contains the state of the video screen after the last screen update. The
+<span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="unitsse84.htm#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) function uses this array to decide which characters on screen should be
+updated, and which not.
+<!--l. 253--><p class="noindent">Note that the <span 
+class="cmtt-10">OldVideoBuf </span>array may be ignored by some drivers, so it should not be used. The
+Array is in the interface section of the video unit mainly so drivers that need it can make use of
+it.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse84.htm" >next</a>] [<a 
+href="unitsse83.htm" >front</a>] [<a 
+href="unitsch24.htm#unitsse83.htm" >up</a>] </p></div><a 
+  name="tailunitsse83.htm"></a>   
+</body></html> 

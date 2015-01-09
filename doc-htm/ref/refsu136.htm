@@ -1,0 +1,107 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Move</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu137.htm" >next</a>] [<a 
+href="refsu135.htm" >prev</a>] [<a 
+href="refsu135.htm#tailrefsu135.htm" >prev-tail</a>] [<a 
+href="#tailrefsu136.htm">tail</a>] [<a 
+href="refse64.htm#refsu136.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-221-242" name="x221-22700013.3">Move</a></h4><a 
+  name="dx221-227001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Move (var Source,Dest;Count : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Move </span>moves <span 
+class="cmtt-10">Count </span>bytes from <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If either <span 
+class="cmtt-10">Dest </span>or <span 
+class="cmtt-10">Source </span>is outside the accessible memory for the process, then a run-time
+error will be generated.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Fillword </span>(<a 
+href="refsu105.htm#x190-19600013.3">501<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Fillchar </span>(<a 
+href="refsu103.htm#x188-19400013.3">499<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6410--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex42.pp</span><HR/><div class="listinginput">
+<!--l. 6410--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example42;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Move</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S1,S2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String</span>&nbsp;<span 
+class="cmtt-10">[30];</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S1:='Hello</span>&nbsp;<span 
+class="cmtt-10">World</span>&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S2:='Bye,</span>&nbsp;<span 
+class="cmtt-10">bye</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Move</span>&nbsp;<span 
+class="cmtt-10">(S1,S2,Sizeof(S1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S2);</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu137.htm" >next</a>] [<a 
+href="refsu135.htm" >prev</a>] [<a 
+href="refsu135.htm#tailrefsu135.htm" >prev-tail</a>] [<a 
+href="refsu136.htm" >front</a>] [<a 
+href="refse64.htm#refsu136.htm" >up</a>] </p></div><a 
+  name="tailrefsu136.htm"></a>  
+</body></html> 

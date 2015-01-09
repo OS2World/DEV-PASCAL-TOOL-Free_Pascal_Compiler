@@ -1,0 +1,127 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Fillchar</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu104.htm" >next</a>] [<a 
+href="refsu102.htm" >prev</a>] [<a 
+href="refsu102.htm#tailrefsu102.htm" >prev-tail</a>] [<a 
+href="#tailrefsu103.htm">tail</a>] [<a 
+href="refse64.htm#refsu103.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-188-209" name="x188-19400013.3">Fillchar</a></h4><a 
+  name="dx188-194001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Fillchar (Var X;Count : Longint;Value : char or byte);;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Fillchar </span>fills the memory starting at <span 
+class="cmtt-10">X </span>with <span 
+class="cmtt-10">Count </span>bytes or characters with value equal to
+<span 
+class="cmtt-10">Value</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking on the size of <span 
+class="cmtt-10">X </span>is done.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Fillword </span>(<a 
+href="refsu105.htm#x190-19600013.3">501<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Move </span>(<a 
+href="refsu136.htm#x221-22700013.3">536<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">FillByte </span>(<a 
+href="refsu102.htm#x187-19300013.3">497<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">FillDWord </span>(<a 
+href="refsu104.htm#x189-19500013.3">500<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5812--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex25.pp</span><HR/><div class="listinginput">
+<!--l. 5812--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example25;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FillChar</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String[10];</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">i:=10</span>&nbsp;<span 
+class="cmtt-10">downto</span>&nbsp;<span 
+class="cmtt-10">0</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Fill</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">spaces</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">FillChar</span>&nbsp;<span 
+class="cmtt-10">(S,SizeOf(S),'</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Set</span>&nbsp;<span 
+class="cmtt-10">Length</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetLength(S,I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(s,'*');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu104.htm" >next</a>] [<a 
+href="refsu102.htm" >prev</a>] [<a 
+href="refsu102.htm#tailrefsu102.htm" >prev-tail</a>] [<a 
+href="refsu103.htm" >front</a>] [<a 
+href="refse64.htm#refsu103.htm" >up</a>] </p></div><a 
+  name="tailrefsu103.htm"></a>  
+</body></html> 

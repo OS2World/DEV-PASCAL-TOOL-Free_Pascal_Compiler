@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TBinaryObjectReader</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TBinaryObjectReader</h1>
+<p>[<a href="../classes/tbinaryobjectreader-1.htm" onClick="window.open('../classes/tbinaryobjectreader-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/tbinaryobjectreader-2.htm" onClick="window.open('../classes/tbinaryobjectreader-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tbinaryobjectreader-3.htm" onClick="window.open('../classes/tbinaryobjectreader-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/tbinaryobjectreader-4.htm" onClick="window.open('../classes/tbinaryobjectreader-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tbinaryobjectreader-5.htm" onClick="window.open('../classes/tbinaryobjectreader-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/tbinaryobjectreader-6.htm" onClick="window.open('../classes/tbinaryobjectreader-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Driver class descendent which reads component data stored in binary format.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> TBinaryObjectReader <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span><a href="../classes/tabstractobjectreader.htm">TAbstractObjectReader</a><span class="sym">)</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">public</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">constructor </span><a href="../classes/tbinaryobjectreader.create.htm">Create</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Creates a new binary data reader instance.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">destructor </span><a href="../classes/tbinaryobjectreader.destroy.htm">Destroy</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Destroys the binary data reader.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.nextvalue.htm">NextValue</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readvalue.htm">ReadValue</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tabstractobjectreader.beginrootcomponent.htm">BeginRootComponent</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tabstractobjectreader.begincomponent.htm">BeginComponent</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.beginproperty.htm">BeginProperty</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tabstractobjectreader.readbinary.htm">ReadBinary</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readfloat.htm">ReadFloat</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readsingle.htm">ReadSingle</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readdate.htm">ReadDate</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readident.htm">ReadIdent</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readint8.htm">ReadInt8</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readint16.htm">ReadInt16</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readint32.htm">ReadInt32</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readint64.htm">ReadInt64</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readset.htm">ReadSet</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readstr.htm">ReadStr</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tabstractobjectreader.readstring.htm">ReadString</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tabstractobjectreader.skipcomponent.htm">SkipComponent</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tabstractobjectreader.skipvalue.htm">SkipValue</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tbinaryobjectreader.htm">TBinaryObjectReader</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Driver class descendent which reads component data stored in binary format.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tabstractobjectreader.htm">TAbstractObjectReader</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract driver class to read stored component data.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p>The <var>TBinaryObjectReader</var> class reads component data stored in  binary form in a file. For this, it overrides or implements all abstract methods from <a href="../classes/tabstractobjectreader.htm">TAbstractObjectReader</a>. No new functionality is  added by this class, it is a driver class for the streaming system. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.htm">TAbstractObjectReader</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract driver class to read stored component data.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tbinaryobjectwriter.htm">TBinaryObjectWriter</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Driver class which stores component data in binary form.</p></td>
+</tr>
+</table>
+</body>
+</html>

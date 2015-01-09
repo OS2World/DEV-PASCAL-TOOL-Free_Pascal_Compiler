@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCollection.Assign</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCollection.Assign</h1>
+<p>Assigns one collection to another.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tcollection.htm">TCollection</a><span class="sym">.</span>Assign<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Source<span class="sym">: </span><a href="../classes/tpersistent.htm">TPersistent</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Assign</var> assigns the contents of one collection to another. It does this by clearing the items list, and adding as much elements as there are in the <var>Source</var> collection; it assigns to each created element the contents of it's counterpart in the <var>Source</var> element. </p>
+<p>Two collections cannot be assigned to each other if instances of the <var>ItemClass</var> classes cannot be assigned to each other.  </p>
+<h2>Errors</h2>
+<p>If the objects in the collections cannot be assigned to one another, then an <var>EConvertError</var> is raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tpersistent.assign.htm">TPersistent.Assign</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Assign the contents of one class to another.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollectionitem.htm">TCollectionItem</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Basic object that is managed by a <a href="../classes/tcollection.htm">TCollection</a> class.</p></td>
+</tr>
+</table>
+</body>
+</html>

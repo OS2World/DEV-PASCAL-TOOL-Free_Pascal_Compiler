@@ -1,0 +1,134 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.6 Procedural types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse15.htm" >prev</a>] [<a 
+href="refse15.htm#tailrefse15.htm" >prev-tail</a>] [<a 
+href="#tailrefse16.htm">tail</a>] [<a 
+href="refch3.htm#refse16.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.6</span> <a 
+href="ref.htm#QQ2-42-51" name="x42-450003.6">Procedural types</a></h3>
+<!--l. 1456--><p class="noindent">Free Pascal has support for procedural types, although it differs a little from the Turbo Pascal
+implementation of them. The type declaration remains the same, as can be seen in the following
+syntax diagram:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Procedural types</span>
+     <BR/>
+     <img 
+src="ref46x.png" alt="--procedural type-|-function header---|-------------|-----------------
+                -procedure header-- -of -object -- -;- call modifiers-
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref47x.png" alt="-- function header-function- formal parameter list-: result type-----------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref48x.png" alt="-- procedure header-procedure-formal parameter list--------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref49x.png" alt="--           -----      -----------------------------------------
+   call modifiers ---register----|
+               ---pcadsecclal----|
+               ---stdcall----|
+               ---safecall----|
+               |saveregisters--|
+               --popstack ---
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1460--><p class="noindent">For a description of formal parameter lists, see chapter <a 
+href="refch8.htm#x86-920008">8<!--tex4ht:ref: ch:Procedures--></a>, page <a 
+href="refch8.htm#x86-920008">288<!--tex4ht:ref: ch:Procedures--></a>. The two following examples are
+valid type declarations:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;TOneArg&nbsp;=&nbsp;Procedure&nbsp;(Var&nbsp;X&nbsp;:&nbsp;integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TNoArg&nbsp;=&nbsp;Function&nbsp;:&nbsp;Real;
+&nbsp;var&nbsp;proc&nbsp;:&nbsp;TOneArg;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func&nbsp;:&nbsp;TNoArg;
+</pre>
+</td></tr></table>One can assign the following values to a procedural type variable:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x42-45002x1"></a><span 
+class="cmtt-10">Nil</span>, for both normal procedure pointers and method pointers.
+     </li>
+     <li class="enumerate"><a 
+  name="x42-45004x2"></a>A variable reference of a procedural type, i.e. another variable of the same type.
+     </li>
+     <li class="enumerate"><a 
+  name="x42-45006x3"></a>A global procedure or function address, with matching function or procedure header
+     and calling convention.
+     </li>
+     <li class="enumerate"><a 
+  name="x42-45008x4"></a>A method address.</li></ol>
+<!--l. 1477--><p class="noindent">Given these declarations, the following assignments are valid:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;printit&nbsp;(Var&nbsp;X&nbsp;:&nbsp;Integer);
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;(x);
+&nbsp;end;
+&nbsp;...
+&nbsp;Proc&nbsp;:=&nbsp;@printit;
+&nbsp;Func&nbsp;:=&nbsp;@Pi;
+</pre>
+</td></tr></table>From this example, the difference with Turbo Pascal is clear: In Turbo Pascal it isn&#8217;t necessary to
+use the address operator (<span 
+class="cmtt-10">@</span>) when assigning a procedural type variable, whereas in Free Pascal it
+is required (unless the <span 
+class="cmtt-10">-So </span>switch is used, in which case the address operator can be
+dropped.)
+<!--l. 1492--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The modifiers concerning the calling conventions must be the same as the declaration; i.e. the
+following code would give an error:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;TOneArgCcall&nbsp;=&nbsp;Procedure&nbsp;(Var&nbsp;X&nbsp;:&nbsp;integer);cdecl;
+&nbsp;var&nbsp;proc&nbsp;:&nbsp;TOneArgCcall;
+&nbsp;Procedure&nbsp;printit&nbsp;(Var&nbsp;X&nbsp;:&nbsp;Integer);
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;(x);
+&nbsp;end;
+&nbsp;begin
+&nbsp;Proc&nbsp;:=&nbsp;@printit;
+&nbsp;end.
+</pre>
+</td></tr></table>Because the <span 
+class="cmtt-10">TOneArgCcall </span>type is a procedure that uses the cdecl calling convention.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse15.htm" >prev</a>] [<a 
+href="refse15.htm#tailrefse15.htm" >prev-tail</a>] [<a 
+href="refse16.htm" >front</a>] [<a 
+href="refch3.htm#refse16.htm" >up</a>] </p></div><a 
+  name="tailrefse16.htm"></a>  
+</body></html> 

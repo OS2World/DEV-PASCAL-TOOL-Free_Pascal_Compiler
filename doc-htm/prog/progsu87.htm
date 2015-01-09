@@ -1,0 +1,168 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1.0 Declaring external functions or procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu88.htm" >next</a>] [<a 
+href="#tailprogsu87.htm">tail</a>] [<a 
+href="progse25.htm#progsu87.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-128-133" name="x128-1250007.1">Declaring external functions or procedures</a></h4>
+<!--l. 2862--><p class="noindent">The first step in using external code blocks is declaring the function you want to use. Free Pascal
+supports Delphi syntax, i.e. you must use the <span 
+class="cmtt-10">external </span>directive. The <span 
+class="cmtt-10">external </span>directive replaces,
+in effect, the code block of the function.
+<!--l. 2867--><p class="noindent">The external directive doesn&#8217;t specify a calling convention; it just tells the compiler that the
+code for a procedure or function resides in an external code block. A calling convention
+modifier should be declared if the external code blocks does not have the same calling
+conventions as Free Pascal. For more information on the calling conventions section <a 
+href="progse19.htm#x115-1120006.3">6.3<!--tex4ht:ref: se:CallingConventions--></a>, page
+<a 
+href="progse19.htm#x115-1120006.3">240<!--tex4ht:ref: se:CallingConventions--></a>.
+<!--l. 2874--><p class="noindent">There exist four variants of the external directive:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x128-125002x1"></a>A simple external declaration:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external;
+</pre>
+     </td></tr></table>The <span 
+class="cmtt-10">external </span>directive tells the compiler that the function resides in an external block of
+     code. You can use this together with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$L</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$LinkLib</span><span 
+class="cmsy-10">} </span>directives to link to a function
+     or procedure in a library or external object file. Object files are looked for in the object
+     search path (set by <span 
+class="cmtt-10">-Fo</span>) and libraries are searched for in the linker path (set by
+     <span 
+class="cmtt-10">-Fl</span>).
+     </li>
+     <li class="enumerate"><a 
+  name="x128-125004x2"></a>You can give the <span 
+class="cmtt-10">external </span>directive a library name as an argument:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external&nbsp;'Name';
+</pre>
+     </td></tr></table>This tells the compiler that the procedure resides in a library with name <span 
+class="cmtt-10">'Name'</span>. This
+     method is equivalent to the following:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);external;
+     &nbsp;{$LinkLib&nbsp;'Name'}
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="enumerate"><a 
+  name="x128-125006x3"></a>The <span 
+class="cmtt-10">external </span>can also be used with two arguments:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external&nbsp;'Name'
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;'OtherProcName';
+</pre>
+     </td></tr></table>This has the same meaning as the previous declaration, only the compiler will use the name
+     <span 
+class="cmtt-10">'OtherProcName' </span>when linking to the library. This can be used to give different names
+     to procedures and functions in an external library. The name of the routine is
+     case-sensitive and should match exactly the name of the routine in the object
+     file.
+     <!--l. 2909--><p class="noindent">This method is equivalent to the following code:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;OtherProcName&nbsp;(Args&nbsp;:&nbsp;TProcArgs);&nbsp;external;
+     &nbsp;{$LinkLib&nbsp;'Name'}
+     &nbsp;
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;OtherProcName&nbsp;(Args);
+     &nbsp;end;
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="enumerate"><a 
+  name="x128-125008x4"></a>Lastly, onder <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>, there is a fourth possibility to specify an external
+     function: In <span 
+class="cmss-10">.DLL </span>files, functions also have a unique number (their index). It is possible to
+     refer to these fuctions using their index:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external&nbsp;'Name'&nbsp;Index&nbsp;SomeIndex;
+</pre>
+     </td></tr></table>This tells the compiler that the procedure <span 
+class="cmtt-10">ProcName </span>resides in a dynamic link library, with
+     index SomeIndex.
+     <!--l. 2930--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>Note that this is ONLY available under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>.
+     </li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu88.htm" >next</a>] [<a 
+href="progsu87.htm" >front</a>] [<a 
+href="progse25.htm#progsu87.htm" >up</a>] </p></div><a 
+  name="tailprogsu87.htm"></a>  
+</body></html> 

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TFileStream</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TFileStream</h1>
+<p>[<a href="../classes/tfilestream-1.htm" onClick="window.open('../classes/tfilestream-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/tfilestream-2.htm" onClick="window.open('../classes/tfilestream-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tfilestream-3.htm" onClick="window.open('../classes/tfilestream-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/tfilestream-4.htm" onClick="window.open('../classes/tfilestream-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tfilestream-5.htm" onClick="window.open('../classes/tfilestream-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/tfilestream-6.htm" onClick="window.open('../classes/tfilestream-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Stream that stores its data in a named file on disk.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> TFileStream <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span><a href="../classes/thandlestream.htm">THandleStream</a><span class="sym">)</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">public</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tfilestream.create.htm">Create</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Creates a file stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">destructor </span><a href="../classes/tfilestream.destroy.htm">Destroy</a><span class="sym">;</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Destroys the file stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tfilestream.filename.htm">FileName</a><span class="sym">: </span>String<span class="sym">;</span>  [r]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">The filename of the stream.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tfilestream.htm">TFileStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Stream that stores its data in a named file on disk.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/thandlestream.htm">THandleStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base clas for streams that are identified by an OS handle.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tstream.htm">TStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>TFileStream</var> is a <a href="../classes/tstream.htm">TStream</a> descdendent that stores or reads it's data from a named file in the filesystem of  the operating system. </p>
+<p>To this end, it overrides some of the abstract methods in <var>TStream</var> and implements them for the case of files on disk, and it adds the <a href="../classes/tfilestream.filename.htm">FileName</a> property to the list of public properties. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tfilestream.create.htm">TFileStream.Create</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Creates a file stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.htm">TStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[package]
+name=hwvideo
+version=1.0.8
+[require]
+packages=rtl 
+packages_os2_i386=

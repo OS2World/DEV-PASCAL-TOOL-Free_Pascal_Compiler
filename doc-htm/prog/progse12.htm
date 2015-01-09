@@ -1,0 +1,70 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.1 What is it about?</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse13.htm" >next</a>] [<a 
+href="#tailprogse12.htm">tail</a>] [<a 
+href="progch5.htm#progse12.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.1</span> <a 
+href="prog.htm#QQ2-93-93" name="x93-910005.1">What is it about?</a></h3>
+<!--l. 2073--><p class="noindent">Free Pascal supports the new MMX (Multi-Media extensions) instructions of Intel processors. The
+idea of MMX is to process multiple data with one instruction, for example the processor can add
+simultaneously 4 words. To implement this efficiently, the Pascal language needs to be extended. So
+Free Pascal allows to add for example two <span 
+class="cmtt-10">array[0..3] of word</span>, if MMX support is switched on.
+The operation is done by the <span 
+class="cmtt-10">MMX </span>unit and allows people without assembler knowledge to take
+advantage of the MMX extensions.
+<!--l. 2083--><p class="noindent">Here is an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;uses
+&nbsp;&nbsp;&nbsp;&nbsp;MMX;&nbsp;&nbsp;&nbsp;{&nbsp;include&nbsp;some&nbsp;predefined&nbsp;data&nbsp;types&nbsp;}
+&nbsp;
+&nbsp;const
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;tmmxword&nbsp;=&nbsp;array[0..3]&nbsp;of&nbsp;word;,&nbsp;declared&nbsp;by&nbsp;unit&nbsp;MMX&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;w1&nbsp;:&nbsp;tmmxword&nbsp;=&nbsp;(111,123,432,4356);
+&nbsp;&nbsp;&nbsp;&nbsp;w2&nbsp;:&nbsp;tmmxword&nbsp;=&nbsp;(4213,63456,756,4);
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;w3&nbsp;:&nbsp;tmmxword;
+&nbsp;&nbsp;&nbsp;&nbsp;l&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;is_mmx_cpu&nbsp;then&nbsp;&nbsp;{&nbsp;is_mmx_cpu&nbsp;is&nbsp;exported&nbsp;from&nbsp;unit&nbsp;mmx&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;{$mmx+}&nbsp;&nbsp;&nbsp;{&nbsp;turn&nbsp;mmx&nbsp;on&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w3:=w1+w2;
+&nbsp;{$mmx-}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end
+&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i:=0&nbsp;to&nbsp;3&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w3[i]:=w1[i]+w2[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;end.
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse13.htm" >next</a>] [<a 
+href="progse12.htm" >front</a>] [<a 
+href="progch5.htm#progse12.htm" >up</a>] </p></div><a 
+  name="tailprogse12.htm"></a>  
+</body></html> 

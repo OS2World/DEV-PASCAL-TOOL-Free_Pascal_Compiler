@@ -1,0 +1,152 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2.0 Ansistrings</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu11.htm" >next</a>] [<a 
+href="refsu9.htm" >prev</a>] [<a 
+href="refsu9.htm#tailrefsu9.htm" >prev-tail</a>] [<a 
+href="#tailrefsu10.htm">tail</a>] [<a 
+href="refse12.htm#refsu10.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-32-39" name="x32-350003.2">Ansistrings</a></h4> Ansistrings are strings that have no length limit. They are reference counted and null
+terminated. Internally, an ansistring is treated as a pointer. This is all handled transparantly, i.e.
+they can be manipulated as a normal short string. Ansistrings can be defined using the predefined
+<span 
+class="cmtt-10">AnsiString </span>type.
+<!--l. 857--><p class="noindent">If the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$H</span><span 
+class="cmsy-10">} </span>switch is on, then a string definition using the regular <span 
+class="cmtt-10">String </span>keyword and that doesn&#8217;t
+contain a length specifier, will be regarded as an ansistring as well. If a length specifier is present, a
+short string will be used, regardless of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$H</span><span 
+class="cmsy-10">} </span>setting.
+<!--l. 862--><p class="noindent">If the string is empty (<span 
+class="cmtt-10">''</span>), then the internal pointer representation of the string pointer is <span 
+class="cmtt-10">Nil</span>. If
+the string is not empty, then the pointer points to a structure in heap memory.
+<!--l. 866--><p class="noindent">The internal representation as a pointer, and the automatic null-termination make it possible to
+typecast an ansistring to a pchar. If the string is empty (so the pointer is nil) then the compiler
+makes sure that the typecasted pchar will point to a null byte.
+<!--l. 871--><p class="noindent">Assigning one ansistring to another doesn&#8217;t involve moving the actual string. A statement
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;S2:=S1;
+</pre>
+</td></tr></table>results in the reference count of <span 
+class="cmtt-10">S2 </span>being decreased by one, The referece count of <span 
+class="cmtt-10">S1 </span>is increased by
+one, and finally <span 
+class="cmtt-10">S1 </span>(as a pointer) is copied to <span 
+class="cmtt-10">S2</span>. This is a significant speed-up in the
+code.
+<!--l. 881--><p class="noindent">If the reference count reaches zero, then the memory occupied by the string is deallocated
+automatically, so no memory leaks arise.
+<!--l. 884--><p class="noindent">When an ansistring is declared, the Free Pascal compiler initially allocates just memory for a
+pointer, not more. This pointer is guaranteed to be nil, meaning that the string is initially empty.
+This is true for local and global ansistrings or anstrings that are part of a structure (arrays, records
+or objects).
+<!--l. 890--><p class="noindent">This does introduce an overhead. For instance, declaring
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Array[1..100000]&nbsp;of&nbsp;string;
+</pre>
+</td></tr></table>Will copy 100,000 times <span 
+class="cmtt-10">nil </span>into <span 
+class="cmtt-10">A</span>. When <span 
+class="cmtt-10">A </span>goes out of scope, then the reference count of the
+100,000 strings will be decreased by 1 for each of these strings. All this happens invisibly for the
+programmer, but when considering performance issues, this is important.
+<!--l. 901--><p class="noindent">Memory will be allocated only when the string is assigned a value. If the string goes out of scope,
+then its reference count is automatically decreased by 1. If the reference count reaches zero, the
+memory reserved for the string is released.
+<!--l. 906--><p class="noindent">If a value is assigned to a character of a string that has a reference count greater than 1, such as in
+the following statements:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;S:=T;&nbsp;&nbsp;{&nbsp;reference&nbsp;count&nbsp;for&nbsp;S&nbsp;and&nbsp;T&nbsp;is&nbsp;now&nbsp;2&nbsp;}
+&nbsp;&nbsp;&nbsp;S[I]:='@';
+</pre>
+</td></tr></table>then a copy of the string is created before the assignment. This is known as <span 
+class="cmti-10">copy-on-write</span>
+semantics.
+<!--l. 916--><p class="noindent">The <span 
+class="cmss-10">Length </span>(<a 
+href="refsu126.htm#x211-21700013.3">527<!--tex4ht:ref: tab:Reals--></a>) function must be used to get the length of an ansistring.
+<!--l. 919--><p class="noindent">To set the length of an ansistring, the <span 
+class="cmss-10">SetLength </span>(<a 
+href="refsu168.htm#x253-25900013.3">570<!--tex4ht:ref: tab:Reals--></a>) function must be used. Constant ansistrings
+have a reference count of -1 and are treated specially.
+<!--l. 922--><p class="noindent">Ansistrings are converted to short strings by the compiler if needed, this means that the use of
+ansistrings and short strings can be mixed without problems.
+<!--l. 926--><p class="noindent">Ansistrings can be typecasted to <span 
+class="cmtt-10">PChar </span>or <span 
+class="cmtt-10">Pointer </span>types:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var&nbsp;P&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC&nbsp;:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;:&nbsp;AnsiString;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;S&nbsp;:='This&nbsp;is&nbsp;an&nbsp;ansistring';
+&nbsp;&nbsp;&nbsp;PC:=Pchar(S);
+&nbsp;&nbsp;&nbsp;P&nbsp;:=Pointer(S);
+</pre>
+</td></tr></table>There is a difference between the two typecasts. When an empty ansistring is typecasted to a
+pointer, the pointer wil be <span 
+class="cmtt-10">Nil</span>. If an empty ansistring is typecasted to a <span 
+class="cmtt-10">PChar</span>, then the result will
+be a pointer to a zero byte (an empty string).
+<!--l. 942--><p class="noindent">The result of such a typecast must be used with care. In general, it is best to consider the result of
+such a typecast as read-only, i.e. suitable for passing to a procedure that needs a constant pchar
+argument.
+<!--l. 946--><p class="noindent">It is therefore NOT advisable to typecast one of the following:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x32-35002x1"></a>expressions.
+     </li>
+     <li class="enumerate"><a 
+  name="x32-35004x2"></a>strings that have reference count larger than 0. (call uniquestring to ensure a string
+     has reference count 1)</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu11.htm" >next</a>] [<a 
+href="refsu9.htm" >prev</a>] [<a 
+href="refsu9.htm#tailrefsu9.htm" >prev-tail</a>] [<a 
+href="refsu10.htm" >front</a>] [<a 
+href="refse12.htm#refsu10.htm" >up</a>] </p></div><a 
+  name="tailrefsu10.htm"></a>  
+</body></html> 

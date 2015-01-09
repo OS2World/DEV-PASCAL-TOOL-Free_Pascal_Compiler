@@ -1,0 +1,139 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.2 Functionality</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse67.htm" >next</a>] [<a 
+href="progse65.htm" >prev</a>] [<a 
+href="progse65.htm#tailprogse65.htm" >prev-tail</a>] [<a 
+href="#tailprogse66.htm">tail</a>] [<a 
+href="progap5.htm#progse66.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">E.2</span> <a 
+href="prog.htm#QQ2-228-256" name="x228-229000E.2">Functionality</a></h3>
+<!--l. 5719--><p class="noindent"><span 
+class="cmss-10">fpcmake </span>generates a makefile, suitable for GNU <span 
+class="cmss-10">make</span>, which can be used to
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x228-229002x1"></a>Compile units and programs, fit for testing or for final distribution.
+     </li>
+     <li class="enumerate"><a 
+  name="x228-229004x2"></a>Compile example units and programs separately.
+     </li>
+     <li class="enumerate"><a 
+  name="x228-229006x3"></a>Install compiled units and programs in standard locations.
+     </li>
+     <li class="enumerate"><a 
+  name="x228-229008x4"></a>Make archives for distribution of the generated programs and units.
+     </li>
+     <li class="enumerate"><a 
+  name="x228-229010x5"></a>Clean up after compilation and tests.</li></ol>
+<!--l. 5728--><p class="noindent"><span 
+class="cmss-10">fpcmake </span>knows how the Free Pascal compiler operates, which command line options it
+uses, how it searches for files and so on; It uses this knowledge to construct sensible
+command-lines.
+<!--l. 5732--><p class="noindent">Specifically, it constructs the following targets in the final makefile:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">all</span> </dt><dd 
+class="description">Makes all units and programs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">debug</span> </dt><dd 
+class="description">Makes all units and programs with debug info included.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">smart</span> </dt><dd 
+class="description">Makes all units and programs in smartlinked version.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">examples</span> </dt><dd 
+class="description">Makes all example units and programs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">shared</span> </dt><dd 
+class="description">Makes all units and programs in shared library version (currently disabled)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">install</span> </dt><dd 
+class="description">Installs all units and programs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">sourceinstall</span> </dt><dd 
+class="description">Installs the sources to the Free Pascal source tree.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">exampleinstall</span> </dt><dd 
+class="description">Installs any example programs and units.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">distinstall</span> </dt><dd 
+class="description">Installs all units and programs, as well as example units and programs.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">zipinstall</span> </dt><dd 
+class="description">Makes an archive of the programs and units which can be used to install them
+     on another location, i.e. it makes an archive that can be used to distribute the units
+     and programs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">zipsourceinstall</span> </dt><dd 
+class="description">Makes an archive of the program and unit sources which can be used to
+     distribute the sources.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">zipexampleinstall</span> </dt><dd 
+class="description">Makes an archive of the example programs and units which can be
+     used to install them on another location, i.e. it makes an archive that can be used to
+     distribute the example units and programs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">zipdistinstall</span> </dt><dd 
+class="description">Makes an archive of both the normal as well as the example programs and
+     units. This archive can be used to install them on another location, i.e. it makes an
+     archive that can be used to distribute.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">clean</span> </dt><dd 
+class="description">Cleans all files that are produced by a compilation.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">distclean</span> </dt><dd 
+class="description">Cleans  all  files  that  are  produced  by  a  compilation,  as  well  as  any  archives,
+     examples or files left by examples.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">cleanall</span> </dt><dd 
+class="description">Same as clean.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">info</span> </dt><dd 
+class="description">Produces  some  information  on  the  screen  about  used  programs,  file  and  directory
+     locations, where things will go when installing and so on.</dd></dl>
+<!--l. 5765--><p class="noindent">Each of these targets can be highly configured, or even totally overridden by the configuration file
+<span 
+class="cmss-10">Makefile.fpc</span>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse67.htm" >next</a>] [<a 
+href="progse65.htm" >prev</a>] [<a 
+href="progse65.htm#tailprogse65.htm" >prev-tail</a>] [<a 
+href="progse66.htm" >front</a>] [<a 
+href="progap5.htm#progse66.htm" >up</a>] </p></div><a 
+  name="tailprogse66.htm"></a>  
+</body></html> 

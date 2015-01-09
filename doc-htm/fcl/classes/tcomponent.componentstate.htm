@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TComponent.ComponentState</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TComponent.ComponentState</h1>
+<p>Current component's state.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">property </span><a href="../classes/tcomponent.htm">TComponent</a><span class="sym">.</span>ComponentState<span class="sym">: </span><a href="../classes/tcomponentstate.htm">TComponentState</a><br>&nbsp;&nbsp;<span class="kw">read </span>FComponentState<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>ComponentState</var> indicates the current state of the component. It is a set of flags which indicate the various stages in the lifetime of a component. The following values can occur in this set: </p>
+<table border="0">
+<caption>Component states</caption>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td>csLoading</td>
+<td>The component is being loaded from stream</td>
+</tr>
+<tr>
+<td>csReading</td>
+<td>Component properties are being read from stream.</td>
+</tr>
+<tr>
+<td>csWriting</td>
+<td>Component properties are weing written to stream.</td>
+</tr>
+<tr>
+<td>csDestroying</td>
+<td>The component or one of it's owners is being destoyed.</td>
+</tr>
+<tr>
+<td>csAncestor</td>
+<td>The component is being streamed as part of a frame </td>
+</tr>
+<tr>
+<td>csUpdating</td>
+<td>The component is being updated</td>
+</tr>
+<tr>
+<td>csFixups</td>
+<td>References to other components are being resolved</td>
+</tr>
+<tr>
+<td>csFreeNotification</td>
+<td>The component has freenotifications.</td>
+</tr>
+<tr>
+<td>csInline</td>
+<td>The component is being loaded as part of a frame</td>
+</tr>
+<tr>
+<td>csDesignInstance</td>
+<td>? not used.</td>
+</tr>
+</table>
+<p>The component state is set by various actions such as reading it from stream, destroying it etc. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.setancestor.htm">TComponent.SetAncestor</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the <var>csAncestor</var> state of the component.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.setdesigning.htm">TComponent.SetDesigning</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the <var>csDesigning</var> state of the component.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../../classes/tcomponent.htm">TComponent.SetInline</a></p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../../classes/tcomponent.htm">TComponent.SetDesignInstance</a></p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.updating.htm">TComponent.Updating</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the state to <var>csUpdating</var></p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.updated.htm">TComponent.Updated</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Ends the <var>csUpdating</var> state.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.loaded.htm">TComponent.Loaded</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Called when the component has finished loading.</p></td>
+</tr>
+</table>
+</body>
+</html>

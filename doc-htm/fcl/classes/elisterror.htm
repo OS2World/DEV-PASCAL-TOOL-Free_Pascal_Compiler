@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>EListError</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>EListError</h1>
+<p>[<a href="../classes/elisterror-1.htm" onClick="window.open('../classes/elisterror-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/elisterror-2.htm" onClick="window.open('../classes/elisterror-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/elisterror-3.htm" onClick="window.open('../classes/elisterror-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/elisterror-4.htm" onClick="window.open('../classes/elisterror-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/elisterror-5.htm" onClick="window.open('../classes/elisterror-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/elisterror-6.htm" onClick="window.open('../classes/elisterror-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Exception raised when an error occurs in lists handling. </p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> EListError <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span>Exception<span class="sym">)</span> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/elisterror.htm">EListError</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Exception raised when an error occurs in lists handling. </p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>Exception</nobr></tt></p></td>
+</tr>
+<tr>
+<td align="center">?</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p>If an error occurs in one of the <a href="../classes/tlist.htm">TList</a> or <a href="../classes/tstrings.htm">TStrings</a>  methods, then a <var>EListError</var> exception is raised. This can occur in one of the following cases: </p>
+<ol>
+<li>There is not enough memory to expand the list.</li>
+<li>The list tried to grow beyond its maximal capacity.</li>
+<li>An attempt was made to reduce the capacity of the list below the current element count.</li>
+<li>An attempt was made to set the list count to a negative value.</li>
+<li>A non-existent element of the list was referenced. (i.e. the list index was out of bounds)</li>
+<li>An attempt was made to move an item to a position outside the list's bounds.</li>
+</ol>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tlist.htm">TList</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Class to manage collections of pointers.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.htm">TStrings</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Class to manage arrays or collections of strings</p></td>
+</tr>
+</table>
+</body>
+</html>

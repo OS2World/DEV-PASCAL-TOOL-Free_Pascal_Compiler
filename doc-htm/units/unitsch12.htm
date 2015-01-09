@@ -1,0 +1,350 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12 The LINUX unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch13.htm" >next</a>] [<a 
+href="unitsch11.htm" >prev</a>] [<a 
+href="unitsch11.htm#tailunitsch11.htm" >prev-tail</a>] [<a 
+href="#tailunitsch12.htm">tail</a>] [<a 
+href="units.htm#unitsch12.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;12</span><br><a 
+href="units.htm#QQ2-50-359" name="x50-35300012">The LINUX unit.</a></h2>
+<!--l. 25--><p class="noindent">This chapter describes the LINUX unit for Free Pascal. The unit was written by Micha&euml;l van
+Canneyt. It works only on the Linux operating system. This chapter is divided in 3
+sections:
+     <ul class="itemize1">
+     <li class="itemize">The first section lists all constants, types and variables, as listed in the interface section
+     of the LINUX unit.
+     </li>
+     <li class="itemize">The second section gives and overview of all available functions, grouped by category.
+     </li>
+     <li class="itemize">The third section describes all procedures and functions in the LINUX unit.</li></ul>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">12.1 <a 
+href="unitsse34.htm#x51-35400012.1" name="QQ2-51-360">Type, Variable and Constant declarations</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse34.htm#x51-35500012.1" name="QQ2-51-361">Types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse34.htm#x51-35600012.1" name="QQ2-51-362">Variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse34.htm#x51-35700012.1" name="QQ2-51-363">Constants</a></span>
+<br>&nbsp;<span class="sectionToc">12.2 <a 
+href="unitsse35.htm#x52-35800012.2" name="QQ2-52-364">Function list by category</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-35900012.2" name="QQ2-52-365">File Input/Output routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36000012.2" name="QQ2-52-366">General File handling routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36100012.2" name="QQ2-52-367">Pipes, FIFOs and streams </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36200012.2" name="QQ2-52-368">Directory handling routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36300012.2" name="QQ2-52-369">Process handling</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36400012.2" name="QQ2-52-370">Signals</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36500012.2" name="QQ2-52-371">System information</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36600012.2" name="QQ2-52-372">Terminal functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36700012.2" name="QQ2-52-373">Port input/output</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse35.htm#x52-36800012.2" name="QQ2-52-374">Utility routines</a></span>
+<br>&nbsp;<span class="sectionToc">12.3 <a 
+href="unitsse36.htm#x53-36900012.3" name="QQ2-53-375">Functions and procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37000012.3" name="QQ2-53-376">Access</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37100012.3" name="QQ2-53-377">Alarm</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37200012.3" name="QQ2-53-378">AssignPipe</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37300012.3" name="QQ2-53-379">AssignStream</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37400012.3" name="QQ2-53-380">BaseName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37500012.3" name="QQ2-53-381">CFMakeRaw</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37600012.3" name="QQ2-53-382">CFSetISpeed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37700012.3" name="QQ2-53-383">CFSetOSpeed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37800012.3" name="QQ2-53-384">Chown</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-37900012.3" name="QQ2-53-385">Chmod</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38000012.3" name="QQ2-53-386">Clone</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38100012.3" name="QQ2-53-387">CloseDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38200012.3" name="QQ2-53-388">CreateShellArgV</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38300012.3" name="QQ2-53-389">DirName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38400012.3" name="QQ2-53-390">Dup</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38500012.3" name="QQ2-53-391">Dup2</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38600012.3" name="QQ2-53-392">EpochToLocal</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38700012.3" name="QQ2-53-393">Execl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38800012.3" name="QQ2-53-394">Execle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-38900012.3" name="QQ2-53-395">Execlp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39000012.3" name="QQ2-53-396">Execv</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39100012.3" name="QQ2-53-397">Execve</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39200012.3" name="QQ2-53-398">Execvp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39300012.3" name="QQ2-53-399">FD____ZERO</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39400012.3" name="QQ2-53-400">FD____Clr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39500012.3" name="QQ2-53-401">FD____IsSet</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39600012.3" name="QQ2-53-402">FD____Set</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39700012.3" name="QQ2-53-403">fdClose</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39800012.3" name="QQ2-53-404">fdFlush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-39900012.3" name="QQ2-53-405">fdOpen</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40000012.3" name="QQ2-53-406">fdRead</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40100012.3" name="QQ2-53-407">fdSeek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40200012.3" name="QQ2-53-408">fdTruncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40300012.3" name="QQ2-53-409">fdWrite</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40400012.3" name="QQ2-53-410">FExpand</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40500012.3" name="QQ2-53-411">FLock</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40600012.3" name="QQ2-53-412">FNMatch</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40700012.3" name="QQ2-53-413">FSearch</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40800012.3" name="QQ2-53-414">FSplit</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-40900012.3" name="QQ2-53-415">FSStat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41000012.3" name="QQ2-53-416">FStat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41100012.3" name="QQ2-53-417">Fcntl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41200012.3" name="QQ2-53-418">Fcntl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41300012.3" name="QQ2-53-419">Fork</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41400012.3" name="QQ2-53-420">FRename</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41500012.3" name="QQ2-53-421">GetDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41600012.3" name="QQ2-53-422">GetDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41700012.3" name="QQ2-53-423">GetDomainName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41800012.3" name="QQ2-53-424">GetEGid</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-41900012.3" name="QQ2-53-425">GetEUid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42000012.3" name="QQ2-53-426">GetEnv</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42100012.3" name="QQ2-53-427">GetEpochTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42200012.3" name="QQ2-53-428">GetFS</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42300012.3" name="QQ2-53-429">GetGid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42400012.3" name="QQ2-53-430">GetHostName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42500012.3" name="QQ2-53-431">GetLocalTimezone</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42600012.3" name="QQ2-53-432">GetPid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42700012.3" name="QQ2-53-433">GetPPid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42800012.3" name="QQ2-53-434">GetPriority</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-42900012.3" name="QQ2-53-435">GetTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43000012.3" name="QQ2-53-436">GetTimeOfDay</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43100012.3" name="QQ2-53-437">GetTimeOfDay</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43200012.3" name="QQ2-53-438">GetTimezoneFile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43300012.3" name="QQ2-53-439">GetUid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43400012.3" name="QQ2-53-440">Glob</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43500012.3" name="QQ2-53-441">GlobFree</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43600012.3" name="QQ2-53-442">IOCtl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43700012.3" name="QQ2-53-443">IOperm</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43800012.3" name="QQ2-53-444">IsATTY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-43900012.3" name="QQ2-53-445">S____ISBLK</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44000012.3" name="QQ2-53-446">S____ISCHR</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44100012.3" name="QQ2-53-447">S____ISDIR</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44200012.3" name="QQ2-53-448">S____ISFIFO</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44300012.3" name="QQ2-53-449">S____ISLNK</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44400012.3" name="QQ2-53-450">S____ISREG</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44500012.3" name="QQ2-53-451">S____ISSOCK</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44600012.3" name="QQ2-53-452">Kill</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44700012.3" name="QQ2-53-453">LStat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44800012.3" name="QQ2-53-454">Link</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-44900012.3" name="QQ2-53-455">LocalToEpoch</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45000012.3" name="QQ2-53-456">MkFifo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45100012.3" name="QQ2-53-457">MMap</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45200012.3" name="QQ2-53-458">MUnMap</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45300012.3" name="QQ2-53-459">NanoSleep</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45400012.3" name="QQ2-53-460">Nice</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45500012.3" name="QQ2-53-461">Octal</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45600012.3" name="QQ2-53-462">OpenDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45700012.3" name="QQ2-53-463">pause</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45800012.3" name="QQ2-53-464">PClose</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-45900012.3" name="QQ2-53-465">POpen</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46000012.3" name="QQ2-53-466">ReadDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46100012.3" name="QQ2-53-467">ReadLink</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46200012.3" name="QQ2-53-468">ReadPort</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46300012.3" name="QQ2-53-469">ReadPortB</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46400012.3" name="QQ2-53-470">ReadPortL</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46500012.3" name="QQ2-53-471">ReadPortW</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46600012.3" name="QQ2-53-472">ReadTimezoneFile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46700012.3" name="QQ2-53-473">SeekDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46800012.3" name="QQ2-53-474">Select</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-46900012.3" name="QQ2-53-475">SelectText</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47000012.3" name="QQ2-53-476">SetPriority</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47100012.3" name="QQ2-53-477">Shell</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47200012.3" name="QQ2-53-478">SigAction</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47300012.3" name="QQ2-53-479">SigPending</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47400012.3" name="QQ2-53-480">SigProcMask</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47500012.3" name="QQ2-53-481">SigRaise</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47600012.3" name="QQ2-53-482">SigSuspend</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47700012.3" name="QQ2-53-483">Signal</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47800012.3" name="QQ2-53-484">StringToPPchar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-47900012.3" name="QQ2-53-485">SymLink</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48000012.3" name="QQ2-53-486">SysInfo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48100012.3" name="QQ2-53-487">TCDrain</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48200012.3" name="QQ2-53-488">TCFlow</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48300012.3" name="QQ2-53-489">TCFlush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48400012.3" name="QQ2-53-490">TCGetAttr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48500012.3" name="QQ2-53-491">TCGetPGrp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48600012.3" name="QQ2-53-492">TCSendBreak</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48700012.3" name="QQ2-53-493">TCSetAttr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48800012.3" name="QQ2-53-494">TCSetPGrp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-48900012.3" name="QQ2-53-495">TTYName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49000012.3" name="QQ2-53-496">TellDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49100012.3" name="QQ2-53-497">Umask</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49200012.3" name="QQ2-53-498">Uname</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49300012.3" name="QQ2-53-499">UnLink</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49400012.3" name="QQ2-53-500">Utime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49500012.3" name="QQ2-53-501">WaitPid</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49600012.3" name="QQ2-53-502">WritePort</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49700012.3" name="QQ2-53-503">WritePortB</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49800012.3" name="QQ2-53-504">WritePortL</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse36.htm#x53-49900012.3" name="QQ2-53-505">WritePortW</a></span>
+</div>
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch13.htm" >next</a>] [<a 
+href="unitsch11.htm" >prev</a>] [<a 
+href="unitsch11.htm#tailunitsch11.htm" >prev-tail</a>] [<a 
+href="unitsch12.htm" >front</a>] [<a 
+href="units.htm#unitsch12.htm" >up</a>] </p></div><a 
+  name="tailunitsch12.htm"></a>  
+</body></html> 

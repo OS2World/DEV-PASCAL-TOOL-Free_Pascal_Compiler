@@ -1,0 +1,299 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.3.0 Record types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu15.htm" >next</a>] [<a 
+href="refsu13.htm" >prev</a>] [<a 
+href="refsu13.htm#tailrefsu13.htm" >prev-tail</a>] [<a 
+href="#tailrefsu14.htm">tail</a>] [<a 
+href="refse13.htm#refsu14.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-37-45" name="x37-400003.3">Record types</a></h4> Free Pascal supports fixed records and records with variant parts. The syntax
+diagram for a record type is
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Record types</span>
+     <BR/>
+     <img 
+src="ref38x.png" alt="-- record type------------record ------------end---------------------
+             -packed--|       -field list|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref39x.png" alt="--       -----------        -------------------------------------
+   field list ---------fixed-fields        -| - --|
+            -fixed fields ;-| variant part    ;
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref40x.png" alt="-- fixed fields--|identifier list :- type----------------------------------
+             ---------;-----------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref41x.png" alt="--variant part case --|------------ordinal type identifier-of--|variant----
+                   -identifier-: -                       ---; ----
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref42x.png" alt="-- variant---constant-, --: -( ------------)------------------------
+          ------------|      -field list|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1075--><p class="noindent">So the following are valid record types declarations:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;Point&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X,Y,Z&nbsp;:&nbsp;Real;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;RPoint&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;Boolean&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False&nbsp;:&nbsp;(X,Y,Z&nbsp;:&nbsp;Real);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;:&nbsp;(R,theta,phi&nbsp;:&nbsp;Real);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;BetterRPoint&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;UsePolar&nbsp;:&nbsp;Boolean&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;False&nbsp;:&nbsp;(X,Y,Z&nbsp;:&nbsp;Real);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;:&nbsp;(R,theta,phi&nbsp;:&nbsp;Real);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The variant part must be last in the record. The optional identifier in the case statement serves to
+access the tag field value, which otherwise would be invisible to the programmer. It can be used to
+see which variant is active at a certain time. In effect, it introduces a new field in the
+record.
+<!--l. 1097--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> It is possible to nest variant parts, as in:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;MyRec&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Case&nbsp;byte&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;:&nbsp;(Y&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;byte&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;:&nbsp;(Z&nbsp;:&nbsp;Longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>
+The size of a record is the sum of the sizes of its fields, each size of a field is rounded up to a power
+of two. If the record contains a variant part, the size of the variant part is the size of the biggest
+variant, plus the size of the tag field type <span 
+class="cmti-10">if an identifier was declared for it</span>. Here also, the size
+of each part is first rounded up to two. So in the above example, <span 
+class="cmss-10">SizeOf </span>(<a 
+href="refsu172.htm#x257-26300013.3">575<!--tex4ht:ref: tab:PCharMath--></a>) would
+return 24 for <span 
+class="cmtt-10">Point</span>, 24 for <span 
+class="cmtt-10">RPoint </span>and 26 for <span 
+class="cmtt-10">BetterRPoint</span>. For <span 
+class="cmtt-10">MyRec</span>, the value
+would be 12. If a typed file with records, produced by a Turbo Pascal program, must be
+read, then chances are that attempting to read that file correctly will fail. The reason
+for this is that by default, elements of a record are aligned at 2-byte boundaries, for
+performance reasons. This default behaviour can be changed with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$PackRecords n</span><span 
+class="cmsy-10">}</span>
+switch. Possible values for <span 
+class="cmtt-10">n </span>are 1, 2, 4, 16 or <span 
+class="cmtt-10">Default</span>. This switch tells the compiler
+to align elements of a record or object or class that have size larger than <span 
+class="cmtt-10">n </span>on <span 
+class="cmtt-10">n </span>byte
+boundaries. Elements that have size smaller or equal than <span 
+class="cmtt-10">n </span>are aligned on natural
+boundaries, i.e. to the first power of two that is larger than or equal to the size of the
+record element. The keyword <span 
+class="cmtt-10">Default </span>selects the default value for the platform that the
+code is compiled for (currently, this is 2 on all platforms) Take a look at the following
+program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;PackRecordsDemo;
+&nbsp;type
+&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;2}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec1&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;1}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec2&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;2}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec3&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A,B&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;1}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec4&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A,B&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;4}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec5&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Array[1..3]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;8}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec6&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Array[1..3]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;4}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec7&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Array[1..7]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;8}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec8&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Array[1..7]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Var&nbsp;rec1&nbsp;:&nbsp;Trec1;
+                                                                            
+
+                                                                            
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec2&nbsp;:&nbsp;Trec2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec3&nbsp;:&nbsp;TRec3;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec4&nbsp;:&nbsp;TRec4;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec5&nbsp;:&nbsp;Trec5;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec6&nbsp;:&nbsp;TRec6;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec7&nbsp;:&nbsp;TRec7;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rec8&nbsp;:&nbsp;TRec8;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec1&nbsp;:&nbsp;',SizeOf(Trec1));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec1.B)-Longint(@rec1));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec2&nbsp;:&nbsp;',SizeOf(Trec2));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec2.B)-Longint(@rec2));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec3&nbsp;:&nbsp;',SizeOf(Trec3));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec3.B)-Longint(@rec3));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec4&nbsp;:&nbsp;',SizeOf(Trec4));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec4.B)-Longint(@rec4));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec5&nbsp;:&nbsp;',SizeOf(Trec5));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec5.B)-Longint(@rec5),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;Offset&nbsp;C&nbsp;:&nbsp;',Longint(@rec5.C)-Longint(@rec5));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec6&nbsp;:&nbsp;',SizeOf(Trec6));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec6.B)-Longint(@rec6),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;Offset&nbsp;C&nbsp;:&nbsp;',Longint(@rec6.C)-Longint(@rec6));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec7&nbsp;:&nbsp;',SizeOf(Trec7));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec7.B)-Longint(@rec7),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;Offset&nbsp;C&nbsp;:&nbsp;',Longint(@rec7.C)-Longint(@rec7));
+&nbsp;&nbsp;&nbsp;Write&nbsp;('Size&nbsp;Trec8&nbsp;:&nbsp;',SizeOf(Trec8));
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;Offset&nbsp;B&nbsp;:&nbsp;',Longint(@rec8.B)-Longint(@rec8),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;Offset&nbsp;C&nbsp;:&nbsp;',Longint(@rec8.C)-Longint(@rec8));
+&nbsp;end.
+</pre>
+</td></tr></table>The output of this program will be :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Size&nbsp;Trec1&nbsp;:&nbsp;4&nbsp;Offset&nbsp;B&nbsp;:&nbsp;2
+&nbsp;Size&nbsp;Trec2&nbsp;:&nbsp;3&nbsp;Offset&nbsp;B&nbsp;:&nbsp;1
+&nbsp;Size&nbsp;Trec3&nbsp;:&nbsp;2&nbsp;Offset&nbsp;B&nbsp;:&nbsp;1
+&nbsp;Size&nbsp;Trec4&nbsp;:&nbsp;2&nbsp;Offset&nbsp;B&nbsp;:&nbsp;1
+&nbsp;Size&nbsp;Trec5&nbsp;:&nbsp;8&nbsp;Offset&nbsp;B&nbsp;:&nbsp;4&nbsp;Offset&nbsp;C&nbsp;:&nbsp;7
+&nbsp;Size&nbsp;Trec6&nbsp;:&nbsp;8&nbsp;Offset&nbsp;B&nbsp;:&nbsp;4&nbsp;Offset&nbsp;C&nbsp;:&nbsp;7
+&nbsp;Size&nbsp;Trec7&nbsp;:&nbsp;12&nbsp;Offset&nbsp;B&nbsp;:&nbsp;4&nbsp;Offset&nbsp;C&nbsp;:&nbsp;11
+&nbsp;Size&nbsp;Trec8&nbsp;:&nbsp;16&nbsp;Offset&nbsp;B&nbsp;:&nbsp;8&nbsp;Offset&nbsp;C&nbsp;:&nbsp;15
+</pre>
+</td></tr></table>And this is as expected. In <span 
+class="cmtt-10">Trec1</span>, since <span 
+class="cmtt-10">B </span>has size 2, it is aligned on a 2 byte boundary, thus
+leaving an empty byte between <span 
+class="cmtt-10">A </span>and <span 
+class="cmtt-10">B</span>, and making the total size 4. In <span 
+class="cmtt-10">Trec2</span>, <span 
+class="cmtt-10">B </span>is aligned on a
+1-byte boundary, right after <span 
+class="cmtt-10">A</span>, hence, the total size of the record is 3. For <span 
+class="cmtt-10">Trec3</span>, the sizes of <span 
+class="cmtt-10">A,B</span>
+are 1, and hence they are aligned on 1 byte boundaries. The same is true for <span 
+class="cmtt-10">Trec4</span>. For <span 
+class="cmtt-10">Trec5</span>,
+since the size of B - 3 - is smaller than 4, <span 
+class="cmtt-10">B </span>will be on a 4-byte boundary, as this is the first power
+of two that is larger than it&#8217;s size. The same holds for <span 
+class="cmtt-10">Trec6</span>. For <span 
+class="cmtt-10">Trec7</span>, <span 
+class="cmtt-10">B </span>is aligned on a 4 byte
+boundary, since it&#8217;s size - 7 - is larger than 4. However, in <span 
+class="cmtt-10">Trec8</span>, it is aligned on a
+8-byte boundary, since 8 is the first power of two that is greater than 7, thus making
+the total size of the record 16. Free Pascal supports also the &#8217;packed record&#8217;, this is a
+record where all the elements are byte-aligned. Thus the two following declarations are
+equivalent:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;1}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec2&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$PackRecords&nbsp;2}
+</pre>
+</td></tr></table>and
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trec2&nbsp;=&nbsp;Packed&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>Note the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$PackRecords 2</span><span 
+class="cmsy-10">} </span>after the first declaration ! <div class="crosslinks"><p class="noindent">[<a 
+href="refsu15.htm" >next</a>] [<a 
+href="refsu13.htm" >prev</a>] [<a 
+href="refsu13.htm#tailrefsu13.htm" >prev-tail</a>] [<a 
+href="refsu14.htm" >front</a>] [<a 
+href="refse13.htm#refsu14.htm" >up</a>] </p></div><a 
+  name="tailrefsu14.htm"></a>
+ 
+</body></html> 

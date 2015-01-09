@@ -1,0 +1,64 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12.1 The resource directive $R</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse48.htm" >next</a>] [<a 
+href="#tailprogse47.htm">tail</a>] [<a 
+href="progch12.htm#progse47.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">12.1</span> <a 
+href="prog.htm#QQ2-204-226" name="x204-20500012.1">The resource directive <span 
+class="cmtt-10">$R</span></a></h3>
+<!--l. 5025--><p class="noindent">Under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, you can include resources in your executable or library using the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$R filename</span><span 
+class="cmsy-10">}</span>
+directive. These resources can then be accessed through the standard <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>API
+calls.
+<!--l. 5029--><p class="noindent">When the compiler encounters a resource directive, it just creates an entry in the unit <span 
+class="cmss-10">.ppu</span>
+file; it doesn&#8217;t link the resource. Only when it creates a library or executable, it looks
+for all the resource files for which it encountered a directive, and tries to link them
+in.
+<!--l. 5034--><p class="noindent">The default extension for resource files is <span 
+class="cmss-10">.res</span>. When the filename has as the first character an
+asterix (<span 
+class="cmtt-10">*</span>), the compiler will replace the asterix with the name of the current unit, library or
+program.
+<!--l. 5039--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>This means that the asterix may only be used after a <span 
+class="cmtt-10">unit</span>, <span 
+class="cmtt-10">library </span>or <span 
+class="cmtt-10">program </span>clause.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse48.htm" >next</a>] [<a 
+href="progse47.htm" >front</a>] [<a 
+href="progch12.htm#progse47.htm" >up</a>] </p></div><a 
+  name="tailprogse47.htm"></a>  
+</body></html> 

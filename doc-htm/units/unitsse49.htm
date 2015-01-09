@@ -1,0 +1,534 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.3 Procedures and Functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse50.htm" >next</a>] [<a 
+href="unitsse48.htm" >prev</a>] [<a 
+href="unitsse48.htm#tailunitsse48.htm" >prev-tail</a>] [<a 
+href="#tailunitsse49.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse49.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.3</span> <a 
+href="units.htm#QQ2-71-616" name="x71-61000017.3">Procedures and Functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-617" name="x71-61100017.3">NewStr</a></h4><a 
+  name="dx71-611001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function NewStr (Const S: String): PString;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">NewStr </span>makes a copy of the string <span 
+class="cmtt-10">S </span>on the heap, and returns a pointer to this copy.
+<!--l. 156--><p class="noindent">The allocated memory is not based on the declared size of the string passed to <span 
+class="cmtt-10">NewStr</span>, but
+is baed on the actual length of the string.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If not enough memory is available, an &#8217;out of memory&#8217; error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DisposeStr </span>(<a 
+href="#x71-61200017.3">548<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 164--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex40.pp</span><HR/><div class="listinginput">
+<!--l. 164--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex40;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">NewStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='Some</span>&nbsp;<span 
+class="cmtt-10">really</span>&nbsp;<span 
+class="cmtt-10">cute</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=NewStr(S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P^&lt;&gt;S</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Oh-oh...</span>&nbsp;<span 
+class="cmtt-10">Something</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">wrong</span>&nbsp;<span 
+class="cmtt-10">!!');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Allocated</span>&nbsp;<span 
+class="cmtt-10">string.</span>&nbsp;<span 
+class="cmtt-10">Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Deallocated</span>&nbsp;<span 
+class="cmtt-10">string.</span>&nbsp;<span 
+class="cmtt-10">Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-618" name="x71-61200017.3">DisposeStr</a></h4><a 
+  name="dx71-612001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DisposeStr (P: PString);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DisposeStr </span>removes a dynamically allocated string from the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">NewStr </span>(<a 
+href="#x71-61100017.3">548<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 177--><p class="noindent">For an example, see <span 
+class="cmss-10">NewStr </span>(<a 
+href="#x71-61100017.3">548<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-619" name="x71-61300017.3">Abstract</a></h4><a 
+  name="dx71-613001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Abstract;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">When implementing abstract methods, do not declare them as <span 
+class="cmtt-10">abstract</span>. Instead, define
+them simply as <span 
+class="cmtt-10">virtual</span>. In the implementation of such abstract methods, call the <span 
+class="cmtt-10">Abstract</span>
+procedure. This allows explicit control of what happens when an abstract method is called.
+<!--l. 188--><p class="noindent">The current implementation of <span 
+class="cmtt-10">Abstract </span>terminates the program with a run-time error 211.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">Most abstract types.</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-620" name="x71-61400017.3">RegisterObjects</a></h4><a 
+  name="dx71-614001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure RegisterObjects;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">RegisterObjects </span>registers the following objects for streaming:
+    <ol type="1" class="enumerate1" 
+>
+    <li class="enumerate"><a 
+  name="x71-614003x1"></a><span 
+class="cmtt-10">TCollection</span>, see section <a 
+href="unitsse56.htm#x78-67600017.10">17.10<!--tex4ht:ref: se:TCollection--></a>, page <a 
+href="unitsse56.htm#x78-67600017.10">592<!--tex4ht:ref: se:TCollection--></a>.
+    </li>
+    <li class="enumerate"><a 
+  name="x71-614005x2"></a><span 
+class="cmtt-10">TStringCollection</span>, see section <a 
+href="unitsse58.htm#x80-71000017.12">17.12<!--tex4ht:ref: se:TStringCollection--></a>, page <a 
+href="unitsse58.htm#x80-71000017.12">619<!--tex4ht:ref: se:TStringCollection--></a>.
+    </li>
+    <li class="enumerate"><a 
+  name="x71-614007x3"></a><span 
+class="cmtt-10">TStrCollection</span>, see section <a 
+href="unitsse59.htm#x81-71500017.13">17.13<!--tex4ht:ref: se:TStrCollection--></a>, page <a 
+href="unitsse59.htm#x81-71500017.13">623<!--tex4ht:ref: se:TStrCollection--></a>.</li></ol>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">RegisterType </span>(<a 
+href="#x71-61500017.3">549<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-621" name="x71-61500017.3">RegisterType</a></h4><a 
+  name="dx71-615001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure RegisterType (Var S: TStreamRec);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">RegisterType </span>registers a new type for streaming. An object cannot be streamed unless it
+has been registered first. The stream record <span 
+class="cmtt-10">S </span>needs to have the following fields set:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">ObjType: Sw</span>__<span 
+class="cmbx-10">Word</span></dt><dd 
+class="description">This should be a unique identifier. Each possible type should have
+    it&#8217;s own identifier.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">VmtLink: pointer</span></dt><dd 
+class="description">This should contain a pointer to the VMT (Virtual Method Table) of the
+    object you try to register. You can get it with the following expression:
+                                                                            
+
+                                                                            
+    <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VmtLink:&nbsp;Ofs(TypeOf(MyType)^);
+</pre>
+    </td></tr></table>
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Load : Pointer</span></dt><dd 
+class="description">is a pointer to a method that initializes an instance of that object, and reads the
+    initial values from a stream. This method should accept as it&#8217;s sole argument a <span 
+class="cmtt-10">PStream </span>type
+    variable.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Store: Pointer</span></dt><dd 
+class="description">is a pointer to a method that stores an instance of the object to a stream. This
+    method should accept as it&#8217;s sole argument a <span 
+class="cmtt-10">PStream </span>type variable.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error (if a object with the same <span 
+class="cmtt-10">ObjType</span>) is already registered), run-time error 212
+occurs.</dd></dl>
+<!--l. 240--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/myobject.pp</span><HR/><div class="listinginput">
+<!--l. 240--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Unit</span>&nbsp;<span 
+class="cmtt-10">MyObject;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PMyObject</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">^TMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Object(TObject)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">Init;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">Load</span>&nbsp;<span 
+class="cmtt-10">(Var</span>&nbsp;<span 
+class="cmtt-10">Stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TStream);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Destructor</span>&nbsp;<span 
+class="cmtt-10">Done;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Store</span>&nbsp;<span 
+class="cmtt-10">(Var</span>&nbsp;<span 
+class="cmtt-10">Stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TStream);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Function</span>&nbsp;&nbsp;<span 
+class="cmtt-10">GetField</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetField</span>&nbsp;<span 
+class="cmtt-10">(Value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">TMyobject.Init;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inherited</span>&nbsp;<span 
+class="cmtt-10">Init;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Field:=-1;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">TMyobject.Load</span>&nbsp;<span 
+class="cmtt-10">(Var</span>&nbsp;<span 
+class="cmtt-10">Stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TStream);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Stream.Read(Field,Sizeof(Field));</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Destructor</span>&nbsp;<span 
+class="cmtt-10">TMyObject.Done;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TMyObject.GetField</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetField:=Field;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TMyObject.SetField</span>&nbsp;<span 
+class="cmtt-10">(Value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Field:=Value;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TMyObject.Store</span>&nbsp;<span 
+class="cmtt-10">(Var</span>&nbsp;<span 
+class="cmtt-10">Stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TStream);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Stream.Write(Field,SizeOf(Field));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">MyObjectRec</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TStreamRec</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">(</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Objtype</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">666;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">vmtlink</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Ofs(TypeOf(TMyObject)^);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Load</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">@TMyObject.Load;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Store</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">@TMyObject.Store;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">RegisterObjects;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">RegisterType</span>&nbsp;<span 
+class="cmtt-10">(MyObjectRec);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-622" name="x71-61600017.3">LongMul</a></h4><a 
+  name="dx71-616001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function LongMul (X, Y: Integer): LongInt;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">LongMul </span>multiplies <span 
+class="cmtt-10">X </span>with <span 
+class="cmtt-10">Y</span>. The result is of type <span 
+class="cmtt-10">Longint</span>. This avoids possible overflow
+errors you would normally get when multiplying <span 
+class="cmtt-10">X </span>and <span 
+class="cmtt-10">Y </span>that are too big.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LongDiv </span>(<a 
+href="#x71-61700017.3">553<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-71-623" name="x71-61700017.3">LongDiv</a></h4><a 
+  name="dx71-617001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function LongDiv (X: Longint; Y: Integer): Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">LongDiv </span>divides <span 
+class="cmtt-10">X </span>by <span 
+class="cmtt-10">Y</span>. The result is of type <span 
+class="cmtt-10">Integer </span>instead of type <span 
+class="cmtt-10">Longint</span>, as you
+would get normally.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If Y is zero, a run-time error will be generated.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LongMul </span>(<a 
+href="#x71-61600017.3">552<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse50.htm" >next</a>] [<a 
+href="unitsse48.htm" >prev</a>] [<a 
+href="unitsse48.htm#tailunitsse48.htm" >prev-tail</a>] [<a 
+href="unitsse49.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse49.htm" >up</a>] </p></div><a 
+  name="tailunitsse49.htm"></a>   
+</body></html> 

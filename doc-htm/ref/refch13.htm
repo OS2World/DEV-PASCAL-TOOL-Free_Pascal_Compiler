@@ -1,0 +1,312 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13 The system unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch14.htm" >next</a>] [<a 
+href="#tailrefch13.htm">tail</a>] [<a 
+href="refpa2.htm#refch13.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;13</span><br><a 
+href="ref.htm#QQ2-139-160" name="x139-14500013">The system unit</a></h2>  The system unit contains the standard supported functions of Free
+Pascal. It is the same for all platforms. Basically it is the same as the system unit provided with
+Borland or Turbo Pascal.
+<!--l. 4555--><p class="noindent">Functions are listed in alphabetical order. Arguments of functions or procedures that are optional
+are put between square brackets.
+<!--l. 4558--><p class="noindent">The pre-defined constants and variables are listed in the first section. The second section contains
+an overview of all functions, grouped by functionality, and the last section contains the supported
+functions and procedures.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">13.1 <a 
+href="refse62.htm#x140-14600013.1" name="QQ2-140-161">Types, Constants and Variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu58.htm#x141-14700013.1" name="QQ2-141-162">Types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu59.htm#x142-14800013.1" name="QQ2-142-163">Constants</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu60.htm#x143-14900013.1" name="QQ2-143-164">Variables</a></span>
+<br>&nbsp;<span class="sectionToc">13.2 <a 
+href="refse63.htm#x144-15000013.2" name="QQ2-144-165">Function list by category</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu61.htm#x145-15100013.2" name="QQ2-145-166">File handling</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu62.htm#x146-15200013.2" name="QQ2-146-167">Memory management</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu63.htm#x147-15300013.2" name="QQ2-147-168">Mathematical routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu64.htm#x148-15400013.2" name="QQ2-148-169">String handling</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu65.htm#x149-15500013.2" name="QQ2-149-170">Operating System functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu66.htm#x150-15600013.2" name="QQ2-150-171">Miscellaneous functions</a></span>
+<br>&nbsp;<span class="sectionToc">13.3 <a 
+href="refse64.htm#x151-15700013.3" name="QQ2-151-172">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu67.htm#x152-15800013.3" name="QQ2-152-173">Abs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu68.htm#x153-15900013.3" name="QQ2-153-174">Addr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu69.htm#x154-16000013.3" name="QQ2-154-175">Append</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu70.htm#x155-16100013.3" name="QQ2-155-176">Arctan</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu71.htm#x156-16200013.3" name="QQ2-156-177">Assert</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu72.htm#x157-16300013.3" name="QQ2-157-178">Assign</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu73.htm#x158-16400013.3" name="QQ2-158-179">Assigned</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu74.htm#x159-16500013.3" name="QQ2-159-180">BinStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu75.htm#x160-16600013.3" name="QQ2-160-181">Blockread</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu76.htm#x161-16700013.3" name="QQ2-161-182">Blockwrite</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu77.htm#x162-16800013.3" name="QQ2-162-183">Break</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu78.htm#x163-16900013.3" name="QQ2-163-184">Chdir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu79.htm#x164-17000013.3" name="QQ2-164-185">Chr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu80.htm#x165-17100013.3" name="QQ2-165-186">Close</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu81.htm#x166-17200013.3" name="QQ2-166-187">CompareByte</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu82.htm#x167-17300013.3" name="QQ2-167-188">CompareChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu83.htm#x168-17400013.3" name="QQ2-168-189">CompareDWord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu84.htm#x169-17500013.3" name="QQ2-169-190">CompareWord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu85.htm#x170-17600013.3" name="QQ2-170-191">Concat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu86.htm#x171-17700013.3" name="QQ2-171-192">Continue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu87.htm#x172-17800013.3" name="QQ2-172-193">Copy</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu88.htm#x173-17900013.3" name="QQ2-173-194">Cos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu89.htm#x174-18000013.3" name="QQ2-174-195">CSeg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu90.htm#x175-18100013.3" name="QQ2-175-196">Dec</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu91.htm#x176-18200013.3" name="QQ2-176-197">Delete</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu92.htm#x177-18300013.3" name="QQ2-177-198">Dispose</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu93.htm#x178-18400013.3" name="QQ2-178-199">DSeg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu94.htm#x179-18500013.3" name="QQ2-179-200">Eof</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu95.htm#x180-18600013.3" name="QQ2-180-201">Eoln</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu96.htm#x181-18700013.3" name="QQ2-181-202">Erase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu97.htm#x182-18800013.3" name="QQ2-182-203">Exclude</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu98.htm#x183-18900013.3" name="QQ2-183-204">Exit</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu99.htm#x184-19000013.3" name="QQ2-184-205">Exp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu100.htm#x185-19100013.3" name="QQ2-185-206">Filepos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu101.htm#x186-19200013.3" name="QQ2-186-207">Filesize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu102.htm#x187-19300013.3" name="QQ2-187-208">FillByte</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu103.htm#x188-19400013.3" name="QQ2-188-209">Fillchar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu104.htm#x189-19500013.3" name="QQ2-189-210">FillDWord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu105.htm#x190-19600013.3" name="QQ2-190-211">Fillword</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu106.htm#x191-19700013.3" name="QQ2-191-212">Flush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu107.htm#x192-19800013.3" name="QQ2-192-213">Frac</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu108.htm#x193-19900013.3" name="QQ2-193-214">Freemem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu109.htm#x194-20000013.3" name="QQ2-194-215">Getdir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu110.htm#x195-20100013.3" name="QQ2-195-216">Getmem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu111.htm#x196-20200013.3" name="QQ2-196-217">GetMemoryManager</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu112.htm#x197-20300013.3" name="QQ2-197-218">Halt</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu113.htm#x198-20400013.3" name="QQ2-198-219">HexStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu114.htm#x199-20500013.3" name="QQ2-199-220">Hi</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu115.htm#x200-20600013.3" name="QQ2-200-221">High</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu116.htm#x201-20700013.3" name="QQ2-201-222">Inc</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu117.htm#x202-20800013.3" name="QQ2-202-223">Include</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu118.htm#x203-20900013.3" name="QQ2-203-224">IndexByte</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu119.htm#x204-21000013.3" name="QQ2-204-225">IndexChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu120.htm#x205-21100013.3" name="QQ2-205-226">IndexDWord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu121.htm#x206-21200013.3" name="QQ2-206-227">IndexWord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu122.htm#x207-21300013.3" name="QQ2-207-228">Insert</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu123.htm#x208-21400013.3" name="QQ2-208-229">IsMemoryManagerSet</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu124.htm#x209-21500013.3" name="QQ2-209-230">Int</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu125.htm#x210-21600013.3" name="QQ2-210-231">IOresult</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu126.htm#x211-21700013.3" name="QQ2-211-232">Length</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu127.htm#x212-21800013.3" name="QQ2-212-233">Ln</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu128.htm#x213-21900013.3" name="QQ2-213-234">Lo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu129.htm#x214-22000013.3" name="QQ2-214-235">LongJmp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu130.htm#x215-22100013.3" name="QQ2-215-236">Low</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu131.htm#x216-22200013.3" name="QQ2-216-237">Lowercase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu132.htm#x217-22300013.3" name="QQ2-217-238">Mark</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu133.htm#x218-22400013.3" name="QQ2-218-239">Maxavail</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu134.htm#x219-22500013.3" name="QQ2-219-240">Memavail</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu135.htm#x220-22600013.3" name="QQ2-220-241">Mkdir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu136.htm#x221-22700013.3" name="QQ2-221-242">Move</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu137.htm#x222-22800013.3" name="QQ2-222-243">MoveChar0</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu138.htm#x223-22900013.3" name="QQ2-223-244">New</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu139.htm#x224-23000013.3" name="QQ2-224-245">Odd</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu140.htm#x225-23100013.3" name="QQ2-225-246">OctStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu141.htm#x226-23200013.3" name="QQ2-226-247">Ofs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu142.htm#x227-23300013.3" name="QQ2-227-248">Ord</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu143.htm#x228-23400013.3" name="QQ2-228-249">Paramcount</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu144.htm#x229-23500013.3" name="QQ2-229-250">Paramstr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu145.htm#x230-23600013.3" name="QQ2-230-251">Pi</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu146.htm#x231-23700013.3" name="QQ2-231-252">Pos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu147.htm#x232-23800013.3" name="QQ2-232-253">Power</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu148.htm#x233-23900013.3" name="QQ2-233-254">Pred</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu149.htm#x234-24000013.3" name="QQ2-234-255">Ptr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu150.htm#x235-24100013.3" name="QQ2-235-256">Random</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu151.htm#x236-24200013.3" name="QQ2-236-257">Randomize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu152.htm#x237-24300013.3" name="QQ2-237-258">Read</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu153.htm#x238-24400013.3" name="QQ2-238-259">Readln</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu154.htm#x239-24500013.3" name="QQ2-239-260">Real2Double</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu155.htm#x240-24600013.3" name="QQ2-240-261">Release</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu156.htm#x241-24700013.3" name="QQ2-241-262">Rename</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu157.htm#x242-24800013.3" name="QQ2-242-263">Reset</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu158.htm#x243-24900013.3" name="QQ2-243-264">Rewrite</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu159.htm#x244-25000013.3" name="QQ2-244-265">Rmdir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu160.htm#x245-25100013.3" name="QQ2-245-266">Round</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu161.htm#x246-25200013.3" name="QQ2-246-267">Runerror</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu162.htm#x247-25300013.3" name="QQ2-247-268">Seek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu163.htm#x248-25400013.3" name="QQ2-248-269">SeekEof</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu164.htm#x249-25500013.3" name="QQ2-249-270">SeekEoln</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu165.htm#x250-25600013.3" name="QQ2-250-271">Seg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu166.htm#x251-25700013.3" name="QQ2-251-272">SetMemoryManager</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu167.htm#x252-25800013.3" name="QQ2-252-273">SetJmp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu168.htm#x253-25900013.3" name="QQ2-253-274">SetLength</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu169.htm#x254-26000013.3" name="QQ2-254-275">SetString</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu170.htm#x255-26100013.3" name="QQ2-255-276">SetTextBuf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu171.htm#x256-26200013.3" name="QQ2-256-277">Sin</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu172.htm#x257-26300013.3" name="QQ2-257-278">SizeOf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu173.htm#x258-26400013.3" name="QQ2-258-279">Sptr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu174.htm#x259-26500013.3" name="QQ2-259-280">Sqr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu175.htm#x260-26600013.3" name="QQ2-260-281">Sqrt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu176.htm#x261-26700013.3" name="QQ2-261-282">SSeg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu177.htm#x262-26800013.3" name="QQ2-262-283">Str</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu178.htm#x263-26900013.3" name="QQ2-263-284">StringOfChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu179.htm#x264-27000013.3" name="QQ2-264-285">Succ</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu180.htm#x265-27100013.3" name="QQ2-265-286">Swap</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu181.htm#x266-27200013.3" name="QQ2-266-287">Trunc</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu182.htm#x267-27300013.3" name="QQ2-267-288">Truncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu183.htm#x268-27400013.3" name="QQ2-268-289">Upcase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu184.htm#x269-27500013.3" name="QQ2-269-290">Val</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu185.htm#x270-27600013.3" name="QQ2-270-291">Write</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu186.htm#x271-27700013.3" name="QQ2-271-292">WriteLn</a></span>
+</div>
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch14.htm" >next</a>] [<a 
+href="refch13.htm" >front</a>] [<a 
+href="refpa2.htm#refch13.htm" >up</a>] </p></div><a 
+  name="tailrefch13.htm"></a>  
+</body></html> 

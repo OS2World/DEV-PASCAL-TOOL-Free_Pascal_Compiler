@@ -1,0 +1,1557 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>24.2 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse85.htm" >next</a>] [<a 
+href="unitsse83.htm" >prev</a>] [<a 
+href="unitsse83.htm#tailunitsse83.htm" >prev-tail</a>] [<a 
+href="#tailunitsse84.htm">tail</a>] [<a 
+href="unitsch24.htm#unitsse84.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">24.2</span> <a 
+href="units.htm#QQ2-113-996" name="x113-99000024.2">Functions and Procedures</a></h3>
+<!--l. 259--><p class="noindent">The examples in this section make use of the unit <span 
+class="cmss-10">vidutil</span>, which contains the <span 
+class="cmtt-10">TextOut </span>function.
+This function writes a text to the screen at a given location. It looks as follows:
+<!--l. 263--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/vidutil.pp</span><HR/><div class="listinginput">
+<!--l. 263--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">video;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$ifndef</span>&nbsp;<span 
+class="cmtt-10">cpu86}</span>
+<br>   <span 
+class="cmtt-10">{$error</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">example</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">works</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">intel</span>&nbsp;<span 
+class="cmtt-10">80x86</span>&nbsp;<span 
+class="cmtt-10">machines}</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TextOut(X,Y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;Const</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TextOut(X,Y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;Const</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">W,P,I,M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=((X-1)+(Y-1)*ScreenWidth);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=Length(S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P+M&gt;ScreenWidth*ScreenHeight</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=ScreenWidth*ScreenHeight-P;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VideoBuf^[P+I-1]:=Ord(S[i])+($07</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-997" name="x113-99100024.2">ClearScreen</a></h4><a 
+  name="dx113-991001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure ClearScreen;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ClearScreen </span>clears the entire screen, and calls <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) after that. This is done
+by writing spaces to all character cells of the video buffer in the default color (lightgray on
+black, color attribute $07).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitVideo </span>(<a 
+href="#x113-100100024.2">891<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 278--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 278--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">testvideo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard,vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$ifndef</span>&nbsp;<span 
+class="cmtt-10">cpu86}</span>
+<br>   <span 
+class="cmtt-10">{$error</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">example</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">works</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">intel</span>&nbsp;<span 
+class="cmtt-10">80x86</span>&nbsp;<span 
+class="cmtt-10">machines}</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">k</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TkeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(i,i,</span>&nbsp;<span 
+class="cmtt-10">'Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">clear</span>&nbsp;<span 
+class="cmtt-10">screen');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(false);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClearScreen;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'Cleared</span>&nbsp;<span 
+class="cmtt-10">screen.</span>&nbsp;<span 
+class="cmtt-10">Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(true);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-998" name="x113-99200024.2">DefaultErrorHandler</a></h4><a 
+  name="dx113-992001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function DefaultErrorHandler(AErrorCode: Longint; AErrorInfo: Pointer):</span>
+<span 
+class="cmtt-10">TErrorHandlerReturnValue;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DefaultErrorHandler </span>is the default error handler used by the video driver. It simply sets
+the error code <span 
+class="cmtt-10">AErrorCode </span>and <span 
+class="cmtt-10">AErrorInfo </span>in the global variables <span 
+class="cmtt-10">ErrorCode </span>and <span 
+class="cmtt-10">ErrorInfo</span>
+and returns <span 
+class="cmtt-10">errContinue</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-999" name="x113-99300024.2">DoneVideo</a></h4><a 
+  name="dx113-993001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure DoneVideo;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DoneVideo </span>disables the Video driver if the video driver is active. If the videodriver was
+already disabled or not yet initialized, it does nothing. Disabling the driver means it will clean
+up any allocated resources, possibly restore the screen in the state it was before <span 
+class="cmtt-10">InitVideo</span>
+was called. Particularly, the <span 
+class="cmtt-10">VideoBuf </span>and <span 
+class="cmtt-10">OldVideoBuf </span>arrays are no longer valid after a
+call to <span 
+class="cmtt-10">DoneVideo</span>.
+<!--l. 305--><p class="noindent">The <span 
+class="cmtt-10">DoneVideo </span>should always be called if <span 
+class="cmtt-10">InitVideo </span>was called. Failing to do so may leave
+the screen in an unusable state after the program exits.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Normally none. If the driver reports an error, this is done through the <span 
+class="cmtt-10">ErrorCode </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitVideo </span>(<a 
+href="#x113-100100024.2">891<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 315--><p class="noindent">For an example, see most other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1000" name="x113-99400024.2">GetCapabilities</a></h4><a 
+  name="dx113-994001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetCapabilities: Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetCapabilities </span>returns the capabilities of the current driver. It is an or-ed combination of the
+following constants:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">cpUnderLine</span></dt><dd 
+class="description">The driver supports underlined characters.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">cpBlink</span></dt><dd 
+class="description">The driver supports blinking characters.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">cpColor</span></dt><dd 
+class="description">The driver supports colors.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">cpChangeFont</span></dt><dd 
+class="description">The driver supports the setting of a screen font. Note, however, that a font
+    setting API is not supported by the video unit.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">cpChangeMode</span></dt><dd 
+class="description">The driver supports the setting of screen modes.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">cpChangeCursor</span></dt><dd 
+class="description">The driver supports changing the cursor shape.</dd></dl>
+<!--l. 332--><p class="noindent">Note that the video driver should not yet be initialized to use this function. It is a property of the
+driver.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetCursorType </span>(<a 
+href="#x113-99500024.2">886<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetVideoDriver </span>(<a 
+href="#x113-99700024.2">888<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 340--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 340--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetCapabilities</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">video;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">W:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TestCap(Cap:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>&nbsp;<span 
+class="cmtt-10">Msg</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(Msg,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(W</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Cap=Cap)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Yes')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('No');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">W:=GetCapabilities;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Video</span>&nbsp;<span 
+class="cmtt-10">driver</span>&nbsp;<span 
+class="cmtt-10">supports</span>&nbsp;<span 
+class="cmtt-10">following</span>&nbsp;<span 
+class="cmtt-10">functionality');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpUnderLine,'Underlined</span>&nbsp;<span 
+class="cmtt-10">characters');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpBlink,'Blinking</span>&nbsp;<span 
+class="cmtt-10">characters');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpColor,'Color</span>&nbsp;<span 
+class="cmtt-10">characters');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpChangeFont,'Changing</span>&nbsp;<span 
+class="cmtt-10">font');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpChangeMode,'Changing</span>&nbsp;<span 
+class="cmtt-10">video</span>&nbsp;<span 
+class="cmtt-10">mode');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestCap(cpChangeCursor,'Changing</span>&nbsp;<span 
+class="cmtt-10">cursor</span>&nbsp;<span 
+class="cmtt-10">shape');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1001" name="x113-99500024.2">GetCursorType</a></h4><a 
+  name="dx113-995001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetCursorType: Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetCursorType </span>returns the current cursor type. It is one of the following values:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">crHidden</span></dt><dd 
+class="description">The cursor is currently hidden.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crUnderLine</span></dt><dd 
+class="description">The cursor is currently the underline character.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crBlock</span></dt><dd 
+class="description">The cursor is currently the block character.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crHalfBlock</span></dt><dd 
+class="description">The cursur is currently a block with height of half the character cell height.</dd></dl>
+<!--l. 355--><p class="noindent">Note that not all drivers support all types of cursors.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetCursorType </span>(<a 
+href="#x113-100400024.2">893<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetCapabilities </span>(<a 
+href="#x113-99400024.2">885<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 362--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 362--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetCursorType</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard,vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Cursortypes</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[crHidden..crHalfBlock]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">=</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('Hidden','UnderLine','Block','HalfBlock');</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'Cursor</span>&nbsp;<span 
+class="cmtt-10">type:</span>&nbsp;<span 
+class="cmtt-10">'+CursorTypes[GetCursorType]);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,2,'Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1002" name="x113-99600024.2">GetLockScreenCount</a></h4><a 
+  name="dx113-996001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetLockScreenCount : integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetLockScreenCount </span>returns the current lock level. When the lock level is zero, a call to
+<span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will actually update the screen.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LockScreenUpdate </span>(<a 
+href="#x113-100200024.2">891<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">UnlockScreenUpdate </span>(<a 
+href="#x113-100700024.2">895<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 377--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex6.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 377--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetLockScreenCount</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard,vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'Press</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">till</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">appears.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">Random(10)+1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">LockScreenUpdate;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">GetLockScreenCount&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Str(I,S);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">UnlockScreenUpdate;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'UnLockScreenUpdate</span>&nbsp;<span 
+class="cmtt-10">had</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">called</span>&nbsp;<span 
+class="cmtt-10">'+S+'</span>&nbsp;<span 
+class="cmtt-10">times');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,2,'Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1003" name="x113-99700024.2">GetVideoDriver</a></h4><a 
+  name="dx113-997001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetVideoDriver (Var Driver : TVideoDriver);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetVideoDriver  retrieves  the  current  videodriver  and  returns  it  in  Driver.</span>
+<span 
+class="cmtt-10">This can be used to chain video drivers.</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetVideoDriver </span>(<a 
+href="#x113-100500024.2">894<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 391--><p class="noindent">For an example, see the section on writing a custom video driver.
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1004" name="x113-99800024.2">GetVideoMode</a></h4><a 
+  name="dx113-998001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure GetVideoMode(var Mode: TVideoMode);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetVideoMode </span>returns the settings of the currently active video mode. The <span 
+class="cmtt-10">row,col </span>fields
+indicate the dimensions of the current video mode, and <span 
+class="cmtt-10">Color </span>is true if the current video
+supports colors.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetVideoMode </span>(<a 
+href="#x113-100600024.2">894<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetVideoModeData </span>(<a 
+href="#x113-100000024.2">891<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 406--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 406--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetVideoMode</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard,vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TVideoMode;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetVideoMode(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">M.Color</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'Current</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">color')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,1,'Current</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">have</span>&nbsp;<span 
+class="cmtt-10">color');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(M.Row,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,2,'Number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">rows</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">'+S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(M.Col,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,3,'Number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">columns</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">'+S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Textout(1,4,'Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1005" name="x113-99900024.2">GetVideoModeCount</a></h4><a 
+  name="dx113-999001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetVideoModeCount : Word;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetVideoModeCount </span>returns the number of video modes that the current driver supports.
+If the driver does not support switching of modes, then 1 is returned.
+<!--l. 416--><p class="noindent">This function can be used in conjunction with the <span 
+class="cmss-10">GetVideoModeData </span>(<a 
+href="#x113-100000024.2">891<!--tex4ht:ref: se:TBufStream--></a>) function to
+retrieve data for the supported video modes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetVideoModeData </span>(<a 
+href="#x113-100000024.2">891<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetVideoMode </span>(<a 
+href="#x113-99800024.2">889<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 424--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 424--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetVideoModeCount</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard,vidutil;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DumpMode</span>&nbsp;<span 
+class="cmtt-10">(M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TVideoMode;</span>&nbsp;<span 
+class="cmtt-10">Index</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(Index:2,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">inc(Index);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,Index,'Data</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">'+S+':</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">M.Color</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(19,Index,'</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">color,')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(19,Index,'No</span>&nbsp;<span 
+class="cmtt-10">color,');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(M.Row:3,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(28,Index,S+'</span>&nbsp;<span 
+class="cmtt-10">rows');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(M.Col:3,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(36,index,S+'</span>&nbsp;<span 
+class="cmtt-10">columns');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i,Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">m</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TVideoMode;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Count:=GetVideoModeCount;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">Count</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetVideoModeData(I-1,M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DumpMode(M,I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextOut(1,Count+1,'Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1006" name="x113-100000024.2">GetVideoModeData</a></h4><a 
+  name="dx113-1000001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetVideoModeData(Index : Word; Var Data: TVideoMode) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetVideoModeData </span>returns the characteristics of the <span 
+class="cmtt-10">Index</span>-th video mode in <span 
+class="cmtt-10">Data</span>. <span 
+class="cmtt-10">Index</span>
+is zero based, and has a maximum value of <span 
+class="cmtt-10">GetVideoModeCount-1</span>. If the current driver does
+not support setting of modes (<span 
+class="cmtt-10">GetVideoModeCount=1</span>) and <span 
+class="cmtt-10">Index </span>is zero, the current mode
+is returned.
+<!--l. 436--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the mode data was retrieved succesfully, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case <span 
+class="cmtt-10">Index </span>has a wrong value, <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetVideoModeCount </span>(<a 
+href="#x113-99900024.2">889<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetVideoMode </span>(<a 
+href="#x113-100600024.2">894<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetVideoMode </span>(<a 
+href="#x113-99800024.2">889<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 444--><p class="noindent">For an example, see <span 
+class="cmss-10">GetVideoModeCount </span>(<a 
+href="#x113-99900024.2">889<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1007" name="x113-100100024.2">InitVideo</a></h4><a 
+  name="dx113-1001001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure InitVideo;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">InitVideo </span>Initializes the video subsystem. If the video system was already initialized, it
+does nothing. After the driver has been initialized, the <span 
+class="cmtt-10">VideoBuf </span>and <span 
+class="cmtt-10">OldVideoBuf </span>pointers
+are initialized, based on the <span 
+class="cmtt-10">ScreenWidth </span>and <span 
+class="cmtt-10">ScreenHeight </span>variables. When this is done,
+the screen is cleared.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">if the driver fails to initialize, the <span 
+class="cmtt-10">ErrorCode </span>variable is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DoneVideo </span>(<a 
+href="#x113-99300024.2">885<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 461--><p class="noindent">For an example, see most other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1008" name="x113-100200024.2">LockScreenUpdate</a></h4><a 
+  name="dx113-1002001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure LockScreenUpdate;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">LockScreenUpdate </span>increments the screen update lock count with one. As long as the screen
+update lock count is not zero, <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will not actually update the screen.
+                                                                            
+
+                                                                            
+<!--l. 471--><p class="noindent">This function can be used to optimize screen updating: If a lot of writing on the screen needs
+to be done (by possibly unknown functions), calling <span 
+class="cmtt-10">LockScreenUpdate </span>before the drawing,
+and <span 
+class="cmss-10">UnlockScreenUpdate </span>(<a 
+href="#x113-100700024.2">895<!--tex4ht:ref: se:TBufStream--></a>) after the drawing, followed by a <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) call, all
+writing will be shown on screen at once.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">UnlockScreenUpdate </span>(<a 
+href="#x113-100700024.2">895<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetLockScreenCount </span>(<a 
+href="#x113-99600024.2">887<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 482--><p class="noindent">For an example, see <span 
+class="cmss-10">GetLockScreenCount </span>(<a 
+href="#x113-99600024.2">887<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1009" name="x113-100300024.2">SetCursorPos</a></h4><a 
+  name="dx113-1003001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure SetCursorPos(NewCursorX, NewCursorY: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetCursorPos </span>positions the cursor on the given position: Column <span 
+class="cmtt-10">NewCursorX </span>and row
+<span 
+class="cmtt-10">NewCursorY</span>. The origin of the screen is the upper left corner, and has coordinates <span 
+class="cmtt-10">(0,0)</span>.
+<!--l. 492--><p class="noindent">The current position is stored in the <span 
+class="cmtt-10">CursorX </span>and <span 
+class="cmtt-10">CursorY </span>variables.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetCursorType </span>(<a 
+href="#x113-100400024.2">893<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 500--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 500--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">video,keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$ifndef</span>&nbsp;<span 
+class="cmtt-10">cpu86}</span>
+<br>   <span 
+class="cmtt-10">{$error</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">example</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">works</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">intel</span>&nbsp;<span 
+class="cmtt-10">80x86</span>&nbsp;<span 
+class="cmtt-10">machines}</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P,PP,D</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PutSquare</span>&nbsp;<span 
+class="cmtt-10">(P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">INteger;</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VideoBuf^[P]:=Ord(C)+($07</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VideoBuf^[P+ScreenWidth]:=Ord(c)+($07</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VideoBuf^[P+1]:=Ord(c)+($07</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VideoBuf^[P+ScreenWidth+1]:=Ord(c)+($07</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP:=-1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">PP&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PutSquare(PP,'</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PutSquare(P,'#');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetCursorPos(P</span>&nbsp;<span 
+class="cmtt-10">Mod</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth,P</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">UpdateScreen(False);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PP:=P;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">D:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(GetKeyEvent);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventCode(K)</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbdLeft</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(P</span>&nbsp;<span 
+class="cmtt-10">Mod</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">D:=-1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbdUp</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P&gt;=ScreenWidth</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">D:=-ScreenWidth;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbdRight</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">((P+2)</span>&nbsp;<span 
+class="cmtt-10">Mod</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">D:=1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbdDown</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(P&lt;(VideoBufSize</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2)-(ScreenWidth*2))</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">D:=ScreenWidth;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(D&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P:=P+D;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventChar(K)='q';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneVideo;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1010" name="x113-100400024.2">SetCursorType</a></h4><a 
+  name="dx113-1004001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure SetCursorType(NewType: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetCursorType </span>sets the cursor to the type specified in <span 
+class="cmtt-10">NewType</span>.
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">crHidden</span></dt><dd 
+class="description">the cursor is not visible.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crUnderLine</span></dt><dd 
+class="description">the cursor is a small underline character (usually denoting insert mode).
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crBlock</span></dt><dd 
+class="description">the cursor is a block the size of a screen cell (usually denoting overwrite mode).
+    </dd><dt class="description">
+<span 
+class="cmbx-10">crHalfBlock</span></dt><dd 
+class="description">the cursor is a block half the size of a screen cell.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetCursorPos </span>(<a 
+href="#x113-100300024.2">892<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1011" name="x113-100500024.2">SetVideoDriver</a></h4><a 
+  name="dx113-1005001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SetVideoDriver (Const Driver : TVideoDriver) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetVideoDriver </span>sets the videodriver to be used to <span 
+class="cmtt-10">Driver</span>. If the current videodriver is
+initialized (after a call to <span 
+class="cmtt-10">InitVideo</span>) then it does nothing and returns <span 
+class="cmtt-10">False</span>.
+<!--l. 529--><p class="noindent">A new driver can only be installed if the previous driver was not yet activated (i.e. before a
+call to <span 
+class="cmss-10">InitVideo </span>(<a 
+href="#x113-100100024.2">891<!--tex4ht:ref: se:TBufStream--></a>)) or after it was deactivated (i.e after a call to <span 
+class="cmtt-10">DoneVideo</span>).
+<!--l. 533--><p class="noindent">For more information about installing a videodriver, see section <a 
+href="unitsse85.htm#x114-100900024.3">24.3<!--tex4ht:ref: se:viddriver--></a>, page <a 
+href="unitsse85.htm#x114-100900024.3">897<!--tex4ht:ref: se:viddriver--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the current driver is initialized, then <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">The example video driver in section <a 
+href="unitsse85.htm#x114-100900024.3">24.3<!--tex4ht:ref: se:viddriver--></a>, page <a 
+href="unitsse85.htm#x114-100900024.3">897<!--tex4ht:ref: se:viddriver--></a></dd></dl>
+<!--l. 540--><p class="noindent">For an example, see the section on writing a custom video driver.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1012" name="x113-100600024.2">SetVideoMode</a></h4><a 
+  name="dx113-1006001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SetVideoMode(Mode: TVideoMode) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetVideoMode </span>sets the video mode to the mode specified in <span 
+class="cmtt-10">Mode</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TVideoMode&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Col,Row&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Color&nbsp;&nbsp;&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>If the call was succesful, then the screen will have <span 
+class="cmtt-10">Col </span>columns and <span 
+class="cmtt-10">Row </span>rows, and will be
+displaying in color if <span 
+class="cmtt-10">Color </span>is <span 
+class="cmtt-10">True</span>.
+<!--l. 557--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the mode was set succesfully, <span 
+class="cmtt-10">False </span>otherwise.
+<!--l. 560--><p class="noindent">Note that the video mode may not always be set. E.g. a console on Linux or a telnet session cannot
+always set the mode. It is important to check the error value returned by this function if it was not
+succesful.
+<!--l. 564--><p class="noindent">The mode can be set when the video driver has not yet been initialized (i.e. before <span 
+class="cmss-10">InitVideo </span>(<a 
+href="#x113-100100024.2">891<!--tex4ht:ref: se:TBufStream--></a>)
+was called) In that case, the video mode will be stored, and after the driver was initialized, an
+attempt will be made to set the requested mode. Changing the video driver before the call to
+<span 
+class="cmtt-10">InitVideo </span>will clear the stored video mode.
+<!--l. 570--><p class="noindent">To know which modes are valid, use the <span 
+class="cmss-10">GetVideoModeCount </span>(<a 
+href="#x113-99900024.2">889<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">GetVideoModeData </span>(<a 
+href="#x113-100000024.2">891<!--tex4ht:ref: se:TBufStream--></a>)
+functions. To retrieve the current video mode, use the <span 
+class="cmss-10">GetVideoMode </span>(<a 
+href="#x113-99800024.2">889<!--tex4ht:ref: se:TBufStream--></a>) procedure.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the specified mode cannot be set, then <span 
+class="cmtt-10">errVioNoSuchMode </span>may be set in <span 
+class="cmtt-10">ErrorCode</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetVideoModeCount </span>(<a 
+href="#x113-99900024.2">889<!--tex4ht:ref: se:TBufStream--></a>) <span 
+class="cmss-10">GetVideoModeData </span>(<a 
+href="#x113-100000024.2">891<!--tex4ht:ref: se:TBufStream--></a>) <span 
+class="cmss-10">GetVideoMode </span>(<a 
+href="#x113-99800024.2">889<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1013" name="x113-100700024.2">UnlockScreenUpdate</a></h4><a 
+  name="dx113-1007001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure UnlockScreenUpdate;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">UnlockScreenUpdate </span>decrements the screen update lock count with one if it is larger than
+zero. When the lock count reaches zero, the <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will actually update the
+screen. No screen update will be performed as long as the screen update lock count is nonzero.
+This mechanism can be used to increase screen performance in case a lot of writing is done.
+<!--l. 593--><p class="noindent">It is important to make sure that each call to <span 
+class="cmss-10">LockScreenUpdate </span>(<a 
+href="#x113-100200024.2">891<!--tex4ht:ref: se:TBufStream--></a>) is matched by exactly
+one call to <span 
+class="cmtt-10">UnlockScreenUpdate</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LockScreenUpdate </span>(<a 
+href="#x113-100200024.2">891<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetLockScreenCount </span>(<a 
+href="#x113-99600024.2">887<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 601--><p class="noindent">For an example, see <span 
+class="cmss-10">GetLockScreenCount </span>(<a 
+href="#x113-99600024.2">887<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-113-1014" name="x113-100800024.2">UpdateScreen</a></h4><a 
+  name="dx113-1008001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure UpdateScreen(Force: Boolean);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">UpdateScreen </span>synchronizes the actual screen with the contents of the <span 
+class="cmtt-10">VideoBuf </span>internal
+buffer.  The  parameter  <span 
+class="cmtt-10">Force  </span>specifies  whether  the  whole  screen  has  to  be  redrawn
+(<span 
+class="cmtt-10">Force=True</span>) or only parts that have changed since the last update of the screen.
+<!--l. 612--><p class="noindent">The <span 
+class="cmtt-10">Video </span>unit keeps an internal copy of the screen as it last wrote it to the screen (in the
+<span 
+class="cmtt-10">OldVideoBuf </span>array). The current contents of <span 
+class="cmtt-10">VideoBuf </span>are examined to see what locations
+on the screen need to be updated. On slow terminals (e.g. a <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>telnet session) this
+mechanism can speed up the screen redraw considerably.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ClearScreen </span>(<a 
+href="#x113-99100024.2">883<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 623--><p class="noindent">For an example, see most other functions.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse85.htm" >next</a>] [<a 
+href="unitsse83.htm" >prev</a>] [<a 
+href="unitsse83.htm#tailunitsse83.htm" >prev-tail</a>] [<a 
+href="unitsse84.htm" >front</a>] [<a 
+href="unitsch24.htm#unitsse84.htm" >up</a>] </p></div><a 
+  name="tailunitsse84.htm"></a>   
+</body></html> 

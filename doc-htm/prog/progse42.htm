@@ -1,0 +1,58 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.5 Tips to get smaller code</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse41.htm" >prev</a>] [<a 
+href="progse41.htm#tailprogse41.htm" >prev-tail</a>] [<a 
+href="#tailprogse42.htm">tail</a>] [<a 
+href="progch10.htm#progse42.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.5</span> <a 
+href="prog.htm#QQ2-196-218" name="x196-19800010.5">Tips to get smaller code</a></h3>
+<!--l. 4836--><p class="noindent">Here are some tips given to get the smallest code possible.
+     <ul class="itemize1">
+     <li class="itemize">Find a better algorithm.
+     </li>
+     <li class="itemize">Use the <span 
+class="cmtt-10">-Og </span>compiler switch.
+     </li>
+     <li class="itemize">Regroup global static variables in the same module which have the same size together
+     to minimize the number of alignment directives (which increases the <span 
+class="cmtt-10">.bss </span>and <span 
+class="cmtt-10">.data</span>
+     sections unecessarily). Internally this is due to the fact that all static data is written
+     to in the assembler file, in the order they are declared in the pascal source code.
+     </li>
+     <li class="itemize">Do not use the <span 
+class="cmtt-10">cdecl </span>modifier, as this generates about 1 additional instruction after
+     each subroutine call.
+     </li>
+     <li class="itemize">Use the smartlinking options for all your units (including the <span 
+class="cmtt-10">system </span>unit).
+     </li>
+     <li class="itemize">Do not use ansistrings, widestrings and exception support, as these require a lot of
+     code overhead.
+     </li>
+     <li class="itemize">Turn off range checking and stack-checking.
+     </li>
+     <li class="itemize">Turn off runtime type information generation
+     </li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse41.htm" >prev</a>] [<a 
+href="progse41.htm#tailprogse41.htm" >prev-tail</a>] [<a 
+href="progse42.htm" >front</a>] [<a 
+href="progch10.htm#progse42.htm" >up</a>] </p></div><a 
+  name="tailprogse42.htm"></a>  
+</body></html> 

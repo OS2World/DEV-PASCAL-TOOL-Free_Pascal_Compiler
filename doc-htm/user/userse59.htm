@@ -1,0 +1,317 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.4 Type checking errors</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse60.htm" >next</a>] [<a 
+href="userse58.htm" >prev</a>] [<a 
+href="userse58.htm#tailuserse58.htm" >prev-tail</a>] [<a 
+href="#tailuserse59.htm">tail</a>] [<a 
+href="userap3.htm#userse59.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.4</span> <a 
+href="user.htm#QQ2-85-223" name="x85-172000C.4">Type checking errors</a></h3>
+<!--l. 846--><p class="noindent">This section lists all errors that can occur when type checking is performed.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Error: Type mismatch</span> </dt><dd 
+class="description">This can happen in many cases:
+         <ul class="itemize1">
+         <li class="itemize">The variable you&#8217;re assigning to is of a different type than the expression in the
+         assignment.
+         </li>
+         <li class="itemize">You are calling a function or procedure with parameters that are incompatible
+         with the parameters in the function or procedure definition.</li></ul>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Incompatible types: got &#8221;arg1&#8221; expected &#8221;arg2&#8221;</span> </dt><dd 
+class="description">There is no conversion possible
+     between the two types Another possiblity is that they are declared in different
+     declarations:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;Var
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A1&nbsp;:&nbsp;Array[1..10]&nbsp;Of&nbsp;Integer;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2&nbsp;:&nbsp;Array[1..10]&nbsp;Of&nbsp;Integer;
+     &nbsp;
+     &nbsp;&nbsp;Begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A1:=A2;&nbsp;{&nbsp;This&nbsp;statement&nbsp;gives&nbsp;also&nbsp;this&nbsp;error,&nbsp;it
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;due&nbsp;the&nbsp;strict&nbsp;type&nbsp;checking&nbsp;of&nbsp;pascal&nbsp;}
+     &nbsp;&nbsp;End.
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Type mismatch between arg1 and arg2</span> </dt><dd 
+class="description">The types are not equal
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Type identifier expected</span> </dt><dd 
+class="description">The identifier is not a type, or you forgot to supply a type
+     identifier.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Variable identifier expected</span> </dt><dd 
+class="description">This happens when you pass a constant to
+     a <span 
+class="cmtt-10">Inc </span>var or <span 
+class="cmtt-10">Dec </span>procedure. You can only pass variables as arguments to these
+     functions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Integer expression expected, but got &#8221;arg1&#8221;</span> </dt><dd 
+class="description">The compiler expects an expression of
+     type integer, but gets a different type.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Boolean expression expected, but got &#8221;arg1&#8221;</span> </dt><dd 
+class="description">The expression must be a boolean
+     type, it should be return true or false.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Ordinal expression expected</span> </dt><dd 
+class="description">The expression must be of ordinal type, i.e., maximum a
+     <span 
+class="cmtt-10">Longint</span>. This happens, for instance, when you specify a second argument to <span 
+class="cmtt-10">Inc </span>or <span 
+class="cmtt-10">Dec </span>that
+     doesn&#8217;t evaluate to an ordinal value.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: pointer type expected, but got &#8221;arg1&#8221;</span> </dt><dd 
+class="description">The variable or expression isn&#8217;t of the type
+     <span 
+class="cmtt-10">pointer</span>. This happens when you pass a variable that isn&#8217;t a pointer to <span 
+class="cmtt-10">New </span>or
+     <span 
+class="cmtt-10">Dispose</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: class type expected, but got &#8221;arg1&#8221;</span> </dt><dd 
+class="description">The variable of expression isn&#8217;t of the type
+     <span 
+class="cmtt-10">class</span>. This happens typically when
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x85-172002x1"></a>The parent class in a class declaration isn&#8217;t a class.
+         </li>
+         <li class="enumerate"><a 
+  name="x85-172004x2"></a>An exception handler (<span 
+class="cmtt-10">On</span>) contains a type identifier that isn&#8217;t a class.</li></ol>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Variable or type indentifier expected</span> </dt><dd 
+class="description">The argument to the <span 
+class="cmtt-10">High </span>or <span 
+class="cmtt-10">Low </span>function is
+     not a variable nor a type identifier.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t evaluate constant expression</span> </dt><dd 
+class="description">No longer in use.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Set elements are not compatible</span> </dt><dd 
+class="description">You are trying to make an operation on two sets,
+     when the set element types are not the same. The base type of a set must be the same when
+     taking the union
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Operation not implemented for sets</span> </dt><dd 
+class="description">several binary operations are not defined for sets
+     like div mod ** (also ¿= ¡= for now)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Automatic type conversion from floating type to COMP which is an integer type</span> </dt><dd 
+class="description">
+     An implicit type conversion from a real type to a <span 
+class="cmtt-10">comp </span>is encountered. Since <span 
+class="cmtt-10">Comp </span>is a 64 bit
+     integer type, this may indicate an error.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: use DIV instead to get an integer result</span> </dt><dd 
+class="description">When hints are on, then an integer division
+     with the &#8217;/&#8217; operator will procuce this message, because the result will then be of type
+     real
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: string types doesn&#8217;t match, because of $V+ mode</span> </dt><dd 
+class="description">When compiling in <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$V+</span><span 
+class="cmsy-10">} </span>mode,
+     the string you pass as a parameter should be of the exact same type as the declared
+     parameter of the procedure.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: succ or pred on enums with assignments not possible</span> </dt><dd 
+class="description">When you declared an
+     enumeration type which has assignments in it, as in C, like in the following:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;&nbsp;Tenum&nbsp;=&nbsp;(a,b,e:=5);
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>you cannot use the <span 
+class="cmtt-10">Succ </span>or <span 
+class="cmtt-10">Pred </span>functions on them.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t read or write variables of this type</span> </dt><dd 
+class="description">You are trying to <span 
+class="cmtt-10">read </span>or <span 
+class="cmtt-10">write </span>a variable
+     from or to a file of type text, which doesn&#8217;t support that. Only integer types, booleans, reals,
+     pchars and strings can be read from/written to a text file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t use readln or writeln on typed file</span> </dt><dd 
+class="description"><span 
+class="cmtt-10">readln </span>and <span 
+class="cmtt-10">writeln </span>are only allowed for
+     text files.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t use read or write on untyped file.</span> </dt><dd 
+class="description"><span 
+class="cmtt-10">read </span>and <span 
+class="cmtt-10">write </span>are only allowed for text or
+     typed files.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Type conflict between set elements</span> </dt><dd 
+class="description">There is at least one set element which is of the
+     wrong type, i.e. not of the set type.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: lo/hi(dword/qword) returns the upper/lower word/dword</span> </dt><dd 
+class="description">Free Pascal
+     supports an overloaded version of <span 
+class="cmtt-10">lo/hi </span>for <span 
+class="cmtt-10">longint/dword/int64/qword </span>which returns the
+     lower/upper word/dword of the argument. TP always uses a 16 bit <span 
+class="cmtt-10">lo/hi </span>which returns
+     always bits 0..7 for <span 
+class="cmtt-10">lo </span>and the bits 8..15 for <span 
+class="cmtt-10">hi</span>. If you want the TP behavior you have to
+     type cast the argument to <span 
+class="cmtt-10">word/integer</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Integer or real expression expected</span> </dt><dd 
+class="description">The first argument to <span 
+class="cmtt-10">str </span>must a real or integer
+     type.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Wrong type arg1 in array constructor</span> </dt><dd 
+class="description">You are trying to use a type in an array
+     constructor which is not allowed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Incompatible type for arg no. arg1: Got arg2, expected arg3</span> </dt><dd 
+class="description">You are trying to
+     pass an invalid type for the specified parameter.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Method (variable) and Procedure (variable) are not compatible</span> </dt><dd 
+class="description">You can&#8217;t assign
+     a method to a procedure variable or a procedure to a method pointer.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal constant passed to internal math function</span> </dt><dd 
+class="description">The constant argument passed to
+     a ln or sqrt function is out of the definition range of these functions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t get the address of constants</span> </dt><dd 
+class="description">It&#8217;s not possible to get the address of a
+     constant, because they aren&#8217;t stored in memory, you can try making it a typed
+     constant.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Argument can&#8217;t be assigned to</span> </dt><dd 
+class="description">Only expressions which can be on the left side of an
+     assignment can be passed as call by reference argument Remark: Properties can be only used
+     on the left side of an assignment, but they can&#8217;t be used as arguments
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t assign local procedure/function to procedure variable</span> </dt><dd 
+class="description">It&#8217;s not allowed to
+     assign a local procedure/function to a procedure variable, because the calling of local
+     procedure/function is different. You can only assign local procedure/function to a void
+     pointer.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t assign values to an address</span> </dt><dd 
+class="description">It&#8217;s not allowed to assign a value to an address of a
+     variable, constant, procedure or function. You can try compiling with -So if the identifier is a
+     procedure variable.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t assign values to const variable</span> </dt><dd 
+class="description">It&#8217;s not allowed to assign a value to a variable
+     which is declared as a const. This is normally a parameter declared as const, to allow
+     changing make the parameter value or var.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Array type required</span> </dt><dd 
+class="description">If you are accessing a variable using an index &#8217;[¡x¿]&#8217; then the type
+     must be an array. In FPC mode also a pointer is allowed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Mixing signed expressions and cardinals gives a 64bit result</span> </dt><dd 
+class="description">If you divide (or
+     calculate the modulus of) a signed expression by a cardinal (or vice versa), or if you have
+     overflow and/or range checking turned on and use an arithmetical expression (+, -, *, div,
+     mod) in which both signed numbers and cardinals appear, then everything has to
+     be evaluated in 64bit which is slower than normal 32bit arithmetics. You can
+     avoid this by typecasting one operand so it matches the resulttype of the other
+     one.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Mixing signed expressions and cardinals here may cause a range check error</span> </dt><dd 
+class="description">If
+     you use a binary operator (and, or, xor) and one of the operands is a cardinal while the other
+     one is a signed expression, then, if range checking is turned on, you may get a range check
+     error because in such a case both operands are converted to cardinal before the operation is
+     carried out. You can avoid this by typecasting one operand so it matches the resulttype of
+     the other one.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Typecast has different size (arg1 -¿ arg2) in assignment</span> </dt><dd 
+class="description">Type casting to a type
+     with a different size is not allowed when the variable is used for assigning.</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse60.htm" >next</a>] [<a 
+href="userse58.htm" >prev</a>] [<a 
+href="userse58.htm#tailuserse58.htm" >prev-tail</a>] [<a 
+href="userse59.htm" >front</a>] [<a 
+href="userap3.htm#userse59.htm" >up</a>] </p></div><a 
+  name="tailuserse59.htm"></a>  
+</body></html> 

@@ -1,0 +1,129 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.7 Parameter passing</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse24.htm" >next</a>] [<a 
+href="progse22.htm" >prev</a>] [<a 
+href="progse22.htm#tailprogse22.htm" >prev-tail</a>] [<a 
+href="#tailprogse23.htm">tail</a>] [<a 
+href="progch6.htm#progse23.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.7</span> <a 
+href="prog.htm#QQ2-123-126" name="x123-1200006.7">Parameter passing</a></h3>
+<!--l. 2749--><p class="noindent">When a function or procedure is called, then the following is done by the compiler:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x123-120002x1"></a>If there are any parameters to be passed to the procedure, they are pushed from right
+     to left on the stack.
+     </li>
+     <li class="enumerate"><a 
+  name="x123-120004x2"></a>If a function is called that returns a variable of type <span 
+class="cmtt-10">String</span>, <span 
+class="cmtt-10">Set</span>, <span 
+class="cmtt-10">Record</span>, <span 
+class="cmtt-10">Object </span>or
+     <span 
+class="cmtt-10">Array</span>, then an address to store the function result in, is pushed on the stack.
+     </li>
+     <li class="enumerate"><a 
+  name="x123-120006x3"></a>If the called procedure or function is an object method, then the pointer to <span 
+class="cmtt-10">self </span>is
+     pushed on the stack.
+     </li>
+     <li class="enumerate"><a 
+  name="x123-120008x4"></a>If the procedure or function is nested in another function or procedure, then the frame
+     pointer of the parent procedure is pushed on the stack.
+     </li>
+     <li class="enumerate"><a 
+  name="x123-120010x5"></a>The return address is pushed on the stack (This is done automatically by the instruction
+     which calls the subroutine).</li></ol>
+<!--l. 2766--><p class="noindent">The resulting stack frame upon entering looks as in table (<a 
+href="#x123-1200115">6.5<!--tex4ht:ref: tab:StackFrame--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x123-1200115"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.5: </td><td  
+class="content">Stack frame when calling a procedure (32-bit model)</td></tr></table></div><!--tex4ht:label?: x123-1200115-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-8-" ><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"><col 
+id="TBL-8-2"><col 
+id="TBL-8-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-8-1-"><td  align="left" nowrap="nowrap" id="TBL-8-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-8-1-2"  
+class="td11"> What is stored                          </td><td  align="center" nowrap="nowrap" id="TBL-8-1-3"  
+class="td11"> Optional?</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-8-2-"><td  align="left" nowrap="nowrap" id="TBL-8-2-1"  
+class="td11"> +x    </td><td  align="left" nowrap="nowrap" id="TBL-8-2-2"  
+class="td11"> parameters                               </td><td  align="center" nowrap="nowrap" id="TBL-8-2-3"  
+class="td11">     Yes    </td>
+</tr><tr  
+valign="baseline" id="TBL-8-3-"><td  align="left" nowrap="nowrap" id="TBL-8-3-1"  
+class="td11"> +12  </td><td  align="left" nowrap="nowrap" id="TBL-8-3-2"  
+class="td11"> function result                          </td><td  align="center" nowrap="nowrap" id="TBL-8-3-3"  
+class="td11">     Yes    </td>
+</tr><tr  
+valign="baseline" id="TBL-8-4-"><td  align="left" nowrap="nowrap" id="TBL-8-4-1"  
+class="td11"> +8    </td><td  align="left" nowrap="nowrap" id="TBL-8-4-2"  
+class="td11"> self                                         </td><td  align="center" nowrap="nowrap" id="TBL-8-4-3"  
+class="td11">     Yes    </td>
+</tr><tr  
+valign="baseline" id="TBL-8-5-"><td  align="left" nowrap="nowrap" id="TBL-8-5-1"  
+class="td11"> +4    </td><td  align="left" nowrap="nowrap" id="TBL-8-5-2"  
+class="td11"> Return address                         </td><td  align="center" nowrap="nowrap" id="TBL-8-5-3"  
+class="td11">      No     </td>
+</tr><tr  
+valign="baseline" id="TBL-8-6-"><td  align="left" nowrap="nowrap" id="TBL-8-6-1"  
+class="td11"> +0    </td><td  align="left" nowrap="nowrap" id="TBL-8-6-2"  
+class="td11"> Frame pointer of parent procedure</td><td  align="center" nowrap="nowrap" id="TBL-8-6-3"  
+class="td11">     Yes    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-8-7-"><td  align="left" nowrap="nowrap" id="TBL-8-7-1"  
+class="td11">         </td>
+</tr><!--llc--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<div class="subsectionTOCS">
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu86.htm#x124-1210006.7" name="QQ2-124-128">Parameter alignment</a></span>
+</div>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse24.htm" >next</a>] [<a 
+href="progse22.htm" >prev</a>] [<a 
+href="progse22.htm#tailprogse22.htm" >prev-tail</a>] [<a 
+href="progse23.htm" >front</a>] [<a 
+href="progch6.htm#progse23.htm" >up</a>] </p></div><a 
+  name="tailprogse23.htm"></a>  
+</body></html> 

@@ -1,0 +1,286 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 High</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu116.htm" >next</a>] [<a 
+href="refsu114.htm" >prev</a>] [<a 
+href="refsu114.htm#tailrefsu114.htm" >prev-tail</a>] [<a 
+href="#tailrefsu115.htm">tail</a>] [<a 
+href="refse64.htm#refsu115.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-200-221" name="x200-20600013.3">High</a></h4><a 
+  name="dx200-206001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function High (Type identifier or variable reference) : Ordinal;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The return value of <span 
+class="cmtt-10">High </span>depends on it&#8217;s argument:
+    <ol type="1" class="enumerate1" 
+>
+    <li class="enumerate"><a 
+  name="x200-206003x1"></a>If the argument is an ordinal type, <span 
+class="cmtt-10">High </span>returns the highest value in the range of the
+    given ordinal type.
+    </li>
+    <li class="enumerate"><a 
+  name="x200-206005x2"></a>If the argument is an array type or an array type variable then <span 
+class="cmtt-10">High </span>returns the highest
+    possible value of it&#8217;s index.
+    </li>
+    <li class="enumerate"><a 
+  name="x200-206007x3"></a>If the argument is an open array identifier in a function or procedure, then <span 
+class="cmtt-10">High </span>returns
+    the highest index of the array, as if the array has a zero-based index.</li></ol>
+<!--l. 6003--><p class="noindent">The return type is always the same type as the type of the argument (This can lead to some nasty
+surprises !).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Low </span>(<a 
+href="refsu130.htm#x215-22100013.3">531<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Ord </span>(<a 
+href="refsu142.htm#x227-23300013.3">542<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Pred </span>(<a 
+href="refsu148.htm#x233-23900013.3">548<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Succ </span>(<a 
+href="refsu179.htm#x264-27000013.3">583<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6011--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex80.pp</span><HR/><div class="listinginput">
+<!--l. 6011--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example80;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Example</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">High</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Low</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>&nbsp;<span 
+class="cmtt-10">TEnum</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">(</span>&nbsp;<span 
+class="cmtt-10">North,</span>&nbsp;<span 
+class="cmtt-10">East,</span>&nbsp;<span 
+class="cmtt-10">South,</span>&nbsp;<span 
+class="cmtt-10">West</span>&nbsp;<span 
+class="cmtt-10">);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TRange</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">14..55;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array</span>&nbsp;<span 
+class="cmtt-10">[2..10]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">Average</span>&nbsp;<span 
+class="cmtt-10">(Row</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Longint)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Real;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Temp</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Real;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Temp</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">Row[0];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">High(Row)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Temp</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">Temp</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">Row[i];</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Average</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">Temp</span>&nbsp;<span 
+class="cmtt-10">/</span>&nbsp;<span 
+class="cmtt-10">(High(Row)+1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">A</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TEnum;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRange;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TArray;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('TEnum</span>&nbsp;&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(Low(TEnum)),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Ord(high(TEnum)),'.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(Low(A)),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Ord(high(A)),'.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('TRange</span>&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(Low(TRange)),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Ord(high(TRange)),'.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('B</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(Low(B)),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Ord(high(B)),'.');</span>
+<br>
+&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('TArray</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(Low(TArray)),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Ord(high(TArray)),'.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('C</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">goes</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Low(C),'</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">high(C),'.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=Low(C)</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">High(C)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C[i]:=I;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Average</span>&nbsp;<span 
+class="cmtt-10">:',Average(c));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Type</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">return</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">always</span>&nbsp;<span 
+class="cmtt-10">same</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">type</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">argument:');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(high(high(word)));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu116.htm" >next</a>] [<a 
+href="refsu114.htm" >prev</a>] [<a 
+href="refsu114.htm#tailrefsu114.htm" >prev-tail</a>] [<a 
+href="refsu115.htm" >front</a>] [<a 
+href="refse64.htm#refsu115.htm" >up</a>] </p></div><a 
+  name="tailrefsu115.htm"></a>  
+</body></html> 

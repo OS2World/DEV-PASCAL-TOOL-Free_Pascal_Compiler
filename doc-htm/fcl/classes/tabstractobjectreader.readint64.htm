@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TAbstractObjectReader.ReadInt64</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TAbstractObjectReader.ReadInt64</h1>
+<p>Read a 64-bit integer from the stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/tabstractobjectreader.htm">TAbstractObjectReader</a><span class="sym">.</span>ReadInt64<span class="sym">: </span>Int64<span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>ReadInt64</var> is called by the streaming process if it expects to  read an int64 value with a size of 64 bits (8 bytes) from the stream (i.e. after <a href="../classes/tabstractobjectreader.readvalue.htm">ReadValue</a>  returned a valuetype of <var>vaInt64</var>).  The return value is the value if the integer. Note that the size of the  value in the stream does not actually have to be 8 bytes. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readfloat.htm">TAbstractObjectReader.ReadFloat</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a float value from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readdate.htm">TAbstractObjectReader.ReadDate</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a date value from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readsingle.htm">TAbstractObjectReader.ReadSingle</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a single (real-type) value from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readident.htm">TAbstractObjectReader.ReadIdent</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read an identifier from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readint8.htm">TAbstractObjectReader.ReadInt8</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read an 8-bit integer from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readint16.htm">TAbstractObjectReader.ReadInt16</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a 16-bit integer from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readint32.htm">TAbstractObjectReader.ReadInt32</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a 32-bit integer from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readset.htm">TabstractObjectReader.ReadSet</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Reads a set from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readstr.htm">TabstractObjectReader.ReadStr</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a shortstring from the stream</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tabstractobjectreader.readstring.htm">TabstractObjectReader.ReadString</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read a string of type <var>StringType</var> from the stream.</p></td>
+</tr>
+</table>
+</body>
+</html>

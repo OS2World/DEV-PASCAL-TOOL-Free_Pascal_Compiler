@@ -1,0 +1,175 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>F.4.0 Compiling the RTL</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu156.htm" >next</a>] [<a 
+href="#tailprogsu155.htm">tail</a>] [<a 
+href="progse76.htm#progsu155.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-264-292" name="x264-265000F.4">Compiling the RTL</a></h4> To recompile the RTL, so a new compiler can be built, at least the following
+units must be built, in the order specified:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x264-265001xF.4"></a>the program stubs, that are the startup code for each pascal program. These files have
+     the <span 
+class="cmss-10">.as </span>extension, because they are written in assembler. They must be assembled with
+     the <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small> </span><span 
+class="cmss-10">as </span>assembler. These stubs are in the OS-dependent directory, except for <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>,
+     where they are in a processor dependent subdirectory of the <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>directory (<span 
+class="cmss-10">i386 </span>or
+     <span 
+class="cmss-10">m68k</span>).
+     </li>
+     <li class="enumerate"><a 
+  name="x264-265002xF.4"></a>the <span 
+class="cmss-10">system </span>unit. This unit is named differently on different systems:
+         <ul class="itemize1">
+         <li class="itemize">Only on GO32v2, it&#8217;s called <span 
+class="cmss-10">system</span>.
+         </li>
+         <li class="itemize">For <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>it&#8217;s called <span 
+class="cmss-10">syslinux</span>.
+         </li>
+         <li class="itemize">For <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT </span>it&#8217;s called <span 
+class="cmss-10">syswin32</span>.
+         </li>
+         <li class="itemize">For <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>it&#8217;s called <span 
+class="cmss-10">sysos2</span></li></ul>
+     <!--l. 6601--><p class="noindent">This unit resides in the OS-dependent subdirectories of the RTL.
+     </li>
+     <li class="enumerate"><a 
+  name="x264-265003xF.4"></a>The strings unit. This unit resides in the <span 
+class="cmss-10">inc </span>subdirectory of the RTL.
+     </li>
+     <li class="enumerate"><a 
+  name="x264-265004xF.4"></a>The <span 
+class="cmss-10">dos </span>unit. It resides in the OS-dependent subdirectory of the RTL. Possibly other units
+     will be compiled as a consequence of trying to compile this unit (e.g. on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, the <span 
+class="cmss-10">linux </span>unit
+     will be compiled, on go32, the <span 
+class="cmss-10">go32 </span>unit will be compiled).
+     </li>
+     <li class="enumerate"><a 
+  name="x264-265005xF.4"></a>the objects unit. It resides in the <span 
+class="cmss-10">inc </span>subdirectory of the RTL.</li></ol>
+                                                                            
+
+                                                                            
+<!--l. 6611--><p class="noindent">To compile these units on a i386, the following statements will do:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;-Tlinux&nbsp;-b-&nbsp;-Fi../inc&nbsp;-Fi../i386&nbsp;-FE.&nbsp;-di386&nbsp;-Us&nbsp;-Sg&nbsp;syslinux.pp
+&nbsp;ppc386&nbsp;-Tlinux&nbsp;-b-&nbsp;-Fi../inc&nbsp;-Fi../i386&nbsp;-FE.&nbsp;-di386&nbsp;../inc/strings.pp
+&nbsp;ppc386&nbsp;-Tlinux&nbsp;-b-&nbsp;-Fi../inc&nbsp;-Fi../i386&nbsp;-FE.&nbsp;-di386&nbsp;dos.pp
+&nbsp;ppc386&nbsp;-Tlinux&nbsp;-b-&nbsp;-Fi../inc&nbsp;-Fi../i386&nbsp;-FE.&nbsp;-di386&nbsp;../inc/objects.pp
+</pre>
+</td></tr></table>These are the minimum command-line options, needed to compile the RTL.
+<!--l. 6620--><p class="noindent">For another processor, the <span 
+class="cmtt-10">i386 </span>should be changed into the appropriate processor. For another
+operating system (target) the <span 
+class="cmss-10">syslinux </span>should be changed in the appropriate system unit file, and
+the target OS setting (<span 
+class="cmtt-10">-T</span>) must be set accordingly.
+<!--l. 6625--><p class="noindent">Depending on the target OS there are other units that can be compiled, but which are
+not strictly needed to recompile the compiler. The following units are available for all
+plaforms:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">objpas</span> </dt><dd 
+class="description">Needed for Delphi mode. Needs <span 
+class="cmtt-10">-S2 </span>as an option. Resides in the <span 
+class="cmss-10">objpas </span>subdirectory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">sysutils</span> </dt><dd 
+class="description">many utility functions, like in Delphi. Resides in the <span 
+class="cmss-10">objpas </span>directory, and needs
+     <span 
+class="cmtt-10">-S2 </span>to compile.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">typinfo</span> </dt><dd 
+class="description">functions to access RTTI information, like Delphi. Resides in the <span 
+class="cmss-10">objpas </span>directory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">math</span> </dt><dd 
+class="description">math functions like in Delphi. Resides in the <span 
+class="cmss-10">objpas </span>directory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">mmx</span> </dt><dd 
+class="description">extensions for MMX class Intel processors. Resides in in the <span 
+class="cmss-10">i386 </span>directory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">getopts</span> </dt><dd 
+class="description">a GNU compatible getopts unit. resides in the <span 
+class="cmss-10">inc </span>directory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">heaptrc</span> </dt><dd 
+class="description">to debug the heap. resides in the <span 
+class="cmss-10">inc </span>directory.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu156.htm" >next</a>] [<a 
+href="progsu155.htm" >front</a>] [<a 
+href="progse76.htm#progsu155.htm" >up</a>] </p></div><a 
+  name="tailprogsu155.htm"></a>  
+</body></html> 

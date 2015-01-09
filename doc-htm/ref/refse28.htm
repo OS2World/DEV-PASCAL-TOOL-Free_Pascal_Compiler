@@ -1,0 +1,136 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.2 Function calls</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse29.htm" >next</a>] [<a 
+href="refse27.htm" >prev</a>] [<a 
+href="refse27.htm#tailrefse27.htm" >prev-tail</a>] [<a 
+href="#tailrefse28.htm">tail</a>] [<a 
+href="refch6.htm#refse28.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.2</span> <a 
+href="ref.htm#QQ2-60-73" name="x60-660006.2">Function calls</a></h3>
+<!--l. 2361--><p class="noindent">Function calls are part of expressions (although, using extended syntax, they can be statements
+too). They are constructed as follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Function calls</span>
+     <BR/>
+     <img 
+src="ref80x.png" alt="-- function call-|----function identifier------|------------------------
+              |---method designator ----| -actual parameter list
+              |qualified method designator-|
+              -----variable reference-----
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref81x.png" alt="-- actual parameter list (---------------- )--------------------------
+                       -|expression---|
+                        -----,-----
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2364--><p class="noindent">The &nbsp;variable reference&nbsp;  must be a procedural type variable reference. A method designator can
+only be used inside the method of an object. A qualified method designator can be used outside
+object methods too. The function that will get called is the function with a declared parameter list
+that matches the actual parameter list. This means that
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x60-66002x1"></a>The number of actual parameters must equal the number of declared parameters.
+     </li>
+     <li class="enumerate"><a 
+  name="x60-66004x2"></a>The types of the parameters must be compatible. For variable reference parameters,
+     the parameter types must be exactly the same.</li></ol>
+<!--l. 2375--><p class="noindent">If no matching function is found, then the compiler will generate an error. Depending on the fact of
+the function is overloaded (i.e. multiple functions with the same name, but different parameter
+lists) the error will be different. There are cases when the compiler will not execute the function
+call in an expression. This is the case when assigning a value to a procedural type variable, as in
+the following example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;FuncType&nbsp;=&nbsp;Function:&nbsp;Integer;
+&nbsp;Var&nbsp;A&nbsp;:&nbsp;Integer;
+&nbsp;Function&nbsp;AddOne&nbsp;:&nbsp;Integer;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;A&nbsp;:=&nbsp;A+1;
+&nbsp;&nbsp;&nbsp;AddOne&nbsp;:=&nbsp;A;
+&nbsp;end;
+&nbsp;Var&nbsp;F&nbsp;:&nbsp;FuncType;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N&nbsp;:&nbsp;Integer;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;A&nbsp;:=&nbsp;0;
+&nbsp;&nbsp;&nbsp;F&nbsp;:=&nbsp;AddOne;&nbsp;{&nbsp;Assign&nbsp;AddOne&nbsp;to&nbsp;F,&nbsp;Don't&nbsp;call&nbsp;AddOne}
+&nbsp;&nbsp;&nbsp;N&nbsp;:=&nbsp;AddOne;&nbsp;{&nbsp;N&nbsp;:=&nbsp;1&nbsp;!!}
+&nbsp;end.
+</pre>
+</td></tr></table>In the above listing, the assigment to F will not cause the function AddOne to be called. The
+assignment to N, however, will call AddOne. A problem with this syntax is the following
+construction:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;F&nbsp;=&nbsp;AddOne&nbsp;Then
+&nbsp;&nbsp;&nbsp;DoSomethingHorrible;
+</pre>
+</td></tr></table>Should the compiler compare the addresses of <span 
+class="cmtt-10">F </span>and <span 
+class="cmtt-10">AddOne</span>, or should it call both functions, and
+compare the result ? Free Pascal solves this by deciding that a procedural variable is equivalent to
+a pointer. Thus the compiler will give a type mismatch error, since AddOne is considered a call to
+a function with integer result, and F is a pointer, Hence a type mismatch occurs. How then, should
+one compare whether <span 
+class="cmtt-10">F </span>points to the function <span 
+class="cmtt-10">AddOne </span>? To do this, one should use the address
+operator <span 
+class="cmtt-10">@</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;F&nbsp;=&nbsp;@AddOne&nbsp;Then
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Functions&nbsp;are&nbsp;equal');
+</pre>
+</td></tr></table>The left hand side of the boolean expression is an address. The right hand side also, and so the
+compiler compares 2 addresses. How to compare the values that both functions return ? By adding
+an empty parameter list:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;If&nbsp;F()=Addone&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Functions&nbsp;return&nbsp;same&nbsp;values&nbsp;');
+</pre>
+</td></tr></table>Remark that this behaviour is not compatible with Delphi syntax.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse29.htm" >next</a>] [<a 
+href="refse27.htm" >prev</a>] [<a 
+href="refse27.htm#tailrefse27.htm" >prev-tail</a>] [<a 
+href="refse28.htm" >front</a>] [<a 
+href="refch6.htm#refse28.htm" >up</a>] </p></div><a 
+  name="tailrefse28.htm"></a>  
+</body></html> 

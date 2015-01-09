@@ -1,0 +1,108 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.3 Constants, Types and variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse27.htm" >next</a>] [<a 
+href="unitsse25.htm" >prev</a>] [<a 
+href="unitsse25.htm#tailunitsse25.htm" >prev-tail</a>] [<a 
+href="#tailunitsse26.htm">tail</a>] [<a 
+href="unitsch9.htm#unitsse26.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.3</span> <a 
+href="units.htm#QQ2-40-306" name="x40-3030009.3">Constants, Types and variables</a></h3>
+<!--l. 91--><p class="noindent">The <span 
+class="cmtt-10">FillExtraInfoType </span>is a procedural type used in the <span 
+class="cmss-10">SetExtraInfo </span>(<a 
+href="unitsse27.htm#x41-3070009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>) call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FillExtraInfoType&nbsp;=&nbsp;procedure(p&nbsp;:&nbsp;pointer);
+</pre>
+</td></tr></table>The following typed constants allow to fine-tune the standard dump of the memory usage by
+<span 
+class="cmss-10">DumpHeap </span>(<a 
+href="unitsse27.htm#x41-3050009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;tracesize&nbsp;=&nbsp;8;
+&nbsp;&nbsp;&nbsp;quicktrace&nbsp;:&nbsp;boolean&nbsp;=&nbsp;true;
+&nbsp;&nbsp;&nbsp;HaltOnError&nbsp;:&nbsp;boolean&nbsp;=&nbsp;true;
+&nbsp;&nbsp;&nbsp;keepreleased&nbsp;:&nbsp;boolean&nbsp;=&nbsp;false;
+&nbsp;&nbsp;&nbsp;add_tail&nbsp;:&nbsp;boolean&nbsp;=&nbsp;true;
+&nbsp;&nbsp;&nbsp;usecrc&nbsp;:&nbsp;boolean&nbsp;=&nbsp;true
+</pre>
+</td></tr></table>
+<!--l. 111--><p class="noindent"><span 
+class="cmtt-10">Tracesize </span>specifies how many levels of calls are displayed of the call stack during the memory
+dump. If you specify <span 
+class="cmtt-10">keepreleased:=True </span>then half the <span 
+class="cmtt-10">TraceSize </span>is reserved for the <span 
+class="cmtt-10">GetMem </span>call
+stack, and the other half is reserved for the <span 
+class="cmtt-10">FreeMem </span>call stack. For example, the default value of 8
+will cause eight levels of call frames to be dumped for the getmem call if <span 
+class="cmtt-10">keepreleased </span>is <span 
+class="cmtt-10">False</span>. If
+<span 
+class="cmtt-10">KeepReleased </span>is true, then 4 levels of call frames will be dumped for the <span 
+class="cmtt-10">GetMem </span>call and 4 frames
+wil be dumped for the <span 
+class="cmtt-10">FreeMem </span>call. If you want to change this value, you must recode the <span 
+class="cmss-10">heaptrc</span>
+unit.
+<!--l. 121--><p class="noindent"><span 
+class="cmtt-10">Quicktrace </span>determines whether the memory manager checks whether a block that is about to be
+released is allocated correctly. This is a rather time consuming search, and slows program execution
+significantly, so by default it is set to <span 
+class="cmtt-10">False</span>.
+<!--l. 126--><p class="noindent">If <span 
+class="cmtt-10">HaltOnError </span>is set to <span 
+class="cmtt-10">True </span>then an illegal call to <span 
+class="cmtt-10">FreeMem </span>will cause the memory
+manager to execute a <span 
+class="cmtt-10">halt(1) </span>instruction, causing a memory dump. By Default it is set to
+<span 
+class="cmtt-10">True</span>.
+<!--l. 130--><p class="noindent">If <span 
+class="cmtt-10">keepreleased </span>is set to true, then a list of freed memory blocks is kept. This is useful if you
+suspect that the same memory block is released twice. However, this option is very memory
+intensive, so use it sparingly, and only when it&#8217;s really necessary.
+<!--l. 135--><p class="noindent">If <span 
+class="cmtt-10">add</span>_<span 
+class="cmtt-10">tail </span>is <span 
+class="cmtt-10">True </span>(the default) then a check is also performed on the memory location just
+behind the allocated memory.
+<!--l. 138--><p class="noindent">If <span 
+class="cmtt-10">usecrc </span>is <span 
+class="cmtt-10">True </span>(the default) then a crc check is performed on locations before and after the
+allocated memory. This is useful to detect memory overwrites.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse27.htm" >next</a>] [<a 
+href="unitsse25.htm" >prev</a>] [<a 
+href="unitsse25.htm#tailunitsse25.htm" >prev-tail</a>] [<a 
+href="unitsse26.htm" >front</a>] [<a 
+href="unitsch9.htm#unitsse26.htm" >up</a>] </p></div><a 
+  name="tailunitsse26.htm"></a>  
+</body></html> 

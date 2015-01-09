@@ -1,0 +1,175 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 WriteLn</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu185.htm" >prev</a>] [<a 
+href="refsu185.htm#tailrefsu185.htm" >prev-tail</a>] [<a 
+href="#tailrefsu186.htm">tail</a>] [<a 
+href="refse64.htm#refsu186.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-271-292" name="x271-27700013.3">WriteLn</a></h4><a 
+  name="dx271-277001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure WriteLn [([Var F : Text;] [V1 [; V2; ... , Vn)]];</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">WriteLn </span>does the same as <span 
+class="cmss-10">Write </span>(<a 
+href="refsu185.htm#x270-27600013.3">589<!--tex4ht:ref: se:exceptclasses--></a>) for text files, and emits a Carriage Return - LineFeed
+character pair after that. If the parameter <span 
+class="cmtt-10">F </span>is omitted, standard output is assumed. If no variables
+are specified, a Carriage Return - LineFeed character pair is emitted, resulting in a new line in the
+file <span 
+class="cmtt-10">F</span>.
+<!--l. 7318--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>, the Carriage Return character is omitted, as customary in Unix
+environments.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, a run-time error is generated. This behavior can be controlled with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$i</span><span 
+class="cmsy-10">}</span>
+                                                                            
+
+                                                                            
+switch.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Write </span>(<a 
+href="refsu185.htm#x270-27600013.3">589<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Read </span>(<a 
+href="refsu152.htm#x237-24300013.3">551<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Readln </span>(<a 
+href="refsu153.htm#x238-24400013.3">553<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Blockwrite </span>(<a 
+href="refsu76.htm#x161-16700013.3">460<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7329--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex75.pp</span><HR/><div class="listinginput">
+<!--l. 7329--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example75;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Write(ln)</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">!</span>&nbsp;<span 
+class="cmtt-10">');</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">No</span>&nbsp;<span 
+class="cmtt-10">CR/LF</span>&nbsp;<span 
+class="cmtt-10">pair!</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('And</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">too...');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('But</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">already</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">second</span>&nbsp;<span 
+class="cmtt-10">line...');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(f,'test.tmp');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">L:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">(F,L);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">No</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">allowed</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">!</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu185.htm" >prev</a>] [<a 
+href="refsu185.htm#tailrefsu185.htm" >prev-tail</a>] [<a 
+href="refsu186.htm" >front</a>] [<a 
+href="refse64.htm#refsu186.htm" >up</a>] </p></div><a 
+  name="tailrefsu186.htm"></a>  
+</body></html> 

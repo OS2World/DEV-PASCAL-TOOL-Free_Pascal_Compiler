@@ -1,0 +1,129 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 SeekEoln</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu165.htm" >next</a>] [<a 
+href="refsu163.htm" >prev</a>] [<a 
+href="refsu163.htm#tailrefsu163.htm" >prev-tail</a>] [<a 
+href="#tailrefsu164.htm">tail</a>] [<a 
+href="refse64.htm#refsu164.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-249-270" name="x249-25500013.3">SeekEoln</a></h4><a 
+  name="dx249-255001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SeekEoln [(Var F : text)] : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SeekEoln </span>returns <span 
+class="cmtt-10">True </span>is the file-pointer is at the end of the current line. It ignores all
+whitespace. Calling this function has the effect that the file-position is advanced until the
+first non-whitespace character or the end-of-line marker is reached. If the end-of-line marker
+is reached, <span 
+class="cmtt-10">True </span>is returned. Otherwise, False is returned. The end-of-line marker is defined
+as <span 
+class="cmtt-10">#10</span>, the LineFeed character. If the parameter <span 
+class="cmtt-10">F </span>is omitted, standard <span 
+class="cmtt-10">Input </span>is assumed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">A run-time error is generated if the file <span 
+class="cmtt-10">F </span>isn&#8217;t opened.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Eof </span>(<a 
+href="refsu94.htm#x179-18500013.3">485<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">SeekEof </span>(<a 
+href="refsu163.htm#x248-25400013.3">565<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Seek </span>(<a 
+href="refsu162.htm#x247-25300013.3">563<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6909--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex58.pp</span><HR/><div class="listinginput">
+<!--l. 6909--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example58;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SeekEoln</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">read</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">standard</span>&nbsp;<span 
+class="cmtt-10">output</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">print</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">characters</span>&nbsp;<span 
+class="cmtt-10">except</span>&nbsp;<span 
+class="cmtt-10">whitespace.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">SeekEoln</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Read</span>&nbsp;<span 
+class="cmtt-10">(c);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">(c);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu165.htm" >next</a>] [<a 
+href="refsu163.htm" >prev</a>] [<a 
+href="refsu163.htm#tailrefsu163.htm" >prev-tail</a>] [<a 
+href="refsu164.htm" >front</a>] [<a 
+href="refse64.htm#refsu164.htm" >up</a>] </p></div><a 
+  name="tailrefsu164.htm"></a>  
+</body></html> 

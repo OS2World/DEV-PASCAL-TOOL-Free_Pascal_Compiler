@@ -1,0 +1,594 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12.1 Type, Variable and Constant declarations</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse35.htm" >next</a>] [<a 
+href="#tailunitsse34.htm">tail</a>] [<a 
+href="unitsch12.htm#unitsse34.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">12.1</span> <a 
+href="units.htm#QQ2-51-360" name="x51-35400012.1">Type, Variable and Constant declarations</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-51-361" name="x51-35500012.1">Types</a></h4> PGlob and TGlob are 2 types used in the <span 
+class="cmss-10">Glob </span>(<a 
+href="unitsse36.htm#x53-43400012.3">401<!--tex4ht:ref: tab:speckeys--></a>) function:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PGlob&nbsp;=&nbsp;^TGlob;
+&nbsp;TGlob&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;Name&nbsp;:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;Next&nbsp;:&nbsp;PGlob;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The following types are used in the signal-processing procedures.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tfpreg&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;significand:&nbsp;array[0..3]&nbsp;of&nbsp;word;
+&nbsp;&nbsp;&nbsp;exponent:&nbsp;word;
+&nbsp;end;
+&nbsp;
+&nbsp;pfpstate&nbsp;=&nbsp;^tfpstate;
+&nbsp;tfpstate&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;cw,&nbsp;sw,&nbsp;tag,&nbsp;ipoff,&nbsp;cssel,&nbsp;dataoff,&nbsp;datasel:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;st:&nbsp;array[0..7]&nbsp;of&nbsp;tfpreg;
+&nbsp;&nbsp;&nbsp;status:&nbsp;cardinal;
+&nbsp;end;
+&nbsp;
+&nbsp;PSigContextRec&nbsp;=&nbsp;^SigContextRec;
+&nbsp;SigContextRec&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;gs,&nbsp;__gsh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;fs,&nbsp;__fsh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;es,&nbsp;__esh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;ds,&nbsp;__dsh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;edi:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;esi:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;ebp:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;esp:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;ebx:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;edx:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;ecx:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;eax:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;trapno:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;err:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;eip:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;cs,&nbsp;__csh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;eflags:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;esp_at_signal:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;ss,&nbsp;__ssh:&nbsp;word;
+&nbsp;&nbsp;&nbsp;fpstate:&nbsp;pfpstate;
+&nbsp;&nbsp;&nbsp;oldmask:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;cr2:&nbsp;cardinal;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The above records contain information about the processor state and process state at the moment
+a signal is sent to your program.
+<!--l. 95--><p class="noindent">The records below are used in catching signals.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TSigAction&nbsp;=&nbsp;procedure(Sig:&nbsp;Longint;&nbsp;SigContext:&nbsp;SigContextRec);cdecl;
+&nbsp;SignalHandler&nbsp;&nbsp;&nbsp;=&nbsp;Procedure&nbsp;(&nbsp;Sig&nbsp;:&nbsp;Integer);cdecl;
+&nbsp;
+&nbsp;PSignalHandler&nbsp;&nbsp;=&nbsp;SignalHandler;
+&nbsp;SignalRestorer&nbsp;&nbsp;=&nbsp;Procedure;cdecl;
+&nbsp;PSignalrestorer&nbsp;=&nbsp;SignalRestorer;
+&nbsp;SigActionRec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;Handler&nbsp;&nbsp;:&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;byte&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:&nbsp;(Sh:&nbsp;SignalHandler);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:&nbsp;(Sa:&nbsp;TSigAction);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;Sa_Mask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;SigSet;
+&nbsp;&nbsp;&nbsp;Sa_Flags&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;Sa_restorer&nbsp;:&nbsp;SignalRestorer;&nbsp;{&nbsp;Obsolete&nbsp;-&nbsp;Don't&nbsp;use&nbsp;}
+&nbsp;end;
+&nbsp;&nbsp;&nbsp;PSigActionRec&nbsp;=&nbsp;^SigActionRec;
+</pre>
+</td></tr></table>Stat is used to store information about a file. It is defined in the syscalls unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;stat&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dev&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pad1&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ino&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nlink&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uid&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gid&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rdev&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pad2&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blksze&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blocks&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atime&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unused1&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtime&nbsp;&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unused2&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctime&nbsp;&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unused3&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unused4&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unused5&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;
+</pre>
+</td></tr></table>Statfs is used to store information about a filesystem. It is defined in the syscalls unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;statfs&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fstype&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bsize&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blocks&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bfree&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bavail&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ffree&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fsid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;namelen&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spare&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;array&nbsp;[0..6]&nbsp;of&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Dir and PDir </span>are used in the <span 
+class="cmss-10">OpenDir </span>(<a 
+href="unitsse36.htm#x53-45600012.3">416<!--tex4ht:ref: tab:speckeys--></a>) and <span 
+class="cmss-10">ReadDir </span>(<a 
+href="unitsse36.htm#x53-46000012.3">419<!--tex4ht:ref: tab:speckeys--></a>) functions.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TDir&nbsp;=record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loc&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size&nbsp;&nbsp;&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buf&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pdirent;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nextoff:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dd_max&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;PDir&nbsp;=^TDir;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Dirent, PDirent </span>are used in the <span 
+class="cmss-10">ReadDir </span>(<a 
+href="unitsse36.htm#x53-46000012.3">419<!--tex4ht:ref: tab:speckeys--></a>) function to return files in a directory.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;PDirent&nbsp;=&nbsp;^Dirent;
+&nbsp;&nbsp;Dirent&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;ino,
+&nbsp;&nbsp;&nbsp;&nbsp;off&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;reclen&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;:&nbsp;string[255]
+&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>Termio and Termios are used with iotcl() calls for terminal handling.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const&nbsp;&nbsp;NCCS&nbsp;=&nbsp;19;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NCC&nbsp;=&nbsp;8;
+&nbsp;
+&nbsp;Type&nbsp;termio&nbsp;=&nbsp;record
+&nbsp;c_iflag,{&nbsp;input&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;c_oflag,{&nbsp;output&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;c_cflag,{&nbsp;control&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;c_lflag&nbsp;:&nbsp;Word; {&nbsp;local&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;c_line&nbsp;:&nbsp;Word; {&nbsp;line&nbsp;discipline&nbsp;-&nbsp;careful,&nbsp;only&nbsp;High&nbsp;byte&nbsp;in&nbsp;use}
+&nbsp;c_cc&nbsp;:&nbsp;array&nbsp;[0..NCC-1]&nbsp;of&nbsp;char; {&nbsp;control&nbsp;characters&nbsp;}
+&nbsp;end;
+&nbsp;termios&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;c_iflag,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;input&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;&nbsp;&nbsp;c_oflag,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;output&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;&nbsp;&nbsp;c_cflag,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;control&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;&nbsp;&nbsp;c_lflag&nbsp;:&nbsp;Cardinal; {&nbsp;local&nbsp;mode&nbsp;flags&nbsp;}
+&nbsp;&nbsp;&nbsp;c_line&nbsp;:&nbsp;char;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;line&nbsp;discipline&nbsp;}
+&nbsp;&nbsp;&nbsp;c_cc&nbsp;:&nbsp;array&nbsp;[0..NCCS-1]&nbsp;of&nbsp;char;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;control&nbsp;characters&nbsp;}
+&nbsp;end;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Utimbuf </span>is used in the <span 
+class="cmss-10">Utime </span>(<a 
+href="unitsse36.htm#x53-49400012.3">440<!--tex4ht:ref: tab:speckeys--></a>) call to set access and modificaton time of a file.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;utimbuf&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;actime,modtime&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>For the <span 
+class="cmss-10">Select </span>(<a 
+href="unitsse36.htm#x53-46800012.3">423<!--tex4ht:ref: tab:speckeys--></a>) call, the following 4 types are needed:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;FDSet&nbsp;=&nbsp;Array&nbsp;[0..31]&nbsp;of&nbsp;longint;
+&nbsp;PFDSet&nbsp;=&nbsp;^FDSet;
+&nbsp;TimeVal&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;sec,usec&nbsp;:&nbsp;Longint;
+&nbsp;end;
+&nbsp;PTimeVal&nbsp;=&nbsp;^TimeVal;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">timespec </span>record is needed in the <span 
+class="cmss-10">NanoSleep </span>(<a 
+href="unitsse36.htm#x53-45300012.3">413<!--tex4ht:ref: tab:speckeys--></a>) function:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;timespec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;tv_sec,tv_nsec:longint;
+&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 226--><p class="noindent">The <span 
+class="cmss-10">Uname </span>(<a 
+href="unitsse36.htm#x53-49200012.3">439<!--tex4ht:ref: tab:speckeys--></a>) function uses the <span 
+class="cmtt-10">utsname </span>to return information about the current kernel
+:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;utsname&nbsp;=record
+&nbsp;&nbsp;&nbsp;sysname,nodename,release,
+&nbsp;&nbsp;&nbsp;version,machine,domainname&nbsp;:&nbsp;Array[0..64]&nbsp;of&nbsp;char;
+&nbsp;end;
+</pre>
+</td></tr></table>Its elements are null-terminated C style strings, you cannot access them directly !
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-51-362" name="x51-35600012.1">Variables</a></h4> <span 
+class="cmtt-10">Linuxerror </span>is the variable in which the procedures in the linux unit report
+errors.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;LinuxError&nbsp;:&nbsp;Longint;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">StdErr </span>Is a <span 
+class="cmtt-10">Text </span>variable, corresponding to Standard Error or diagnostic output. It is connected to
+file descriptor 2. It can be freely used, and will be closed on exit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;StdErr&nbsp;:&nbsp;Text;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-51-363" name="x51-35700012.1">Constants</a></h4> Constants for setting/getting process priorities :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prio_Process&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prio_PGrp&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prio_User&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+</pre>
+</td></tr></table>For testing access rights:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R_OK&nbsp;=&nbsp;4;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W_OK&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X_OK&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_OK&nbsp;=&nbsp;0;
+</pre>
+</td></tr></table>For signal handling functions :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_NOCLDSTOP&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_SHIRQ &nbsp;&nbsp;&nbsp;=&nbsp;$04000000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_STACK &nbsp;&nbsp;&nbsp;=&nbsp;$08000000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_RESTART&nbsp;&nbsp;&nbsp;=&nbsp;$10000000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_INTERRUPT&nbsp;=&nbsp;$20000000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_NOMASK &nbsp;&nbsp;&nbsp;=&nbsp;$40000000;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SA_ONESHOT&nbsp;&nbsp;&nbsp;=&nbsp;$80000000;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_BLOCK &nbsp;&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_UNBLOCK&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_SETMASK&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_DFL&nbsp;=&nbsp;0&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_IGN&nbsp;=&nbsp;1&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIG_ERR&nbsp;=&nbsp;-1;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGHUP =&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGINT =&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGQUIT =&nbsp;3;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGILL =&nbsp;4;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGTRAP =&nbsp;5;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGABRT =&nbsp;6;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGIOT =&nbsp;6;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGBUS =&nbsp;7;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGFPE =&nbsp;8;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGKILL =&nbsp;9;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGUSR1 =&nbsp;10;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGSEGV =&nbsp;11;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGUSR2 =&nbsp;12;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGPIPE =&nbsp;13;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGALRM =&nbsp;14;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGTERM =&nbsp;15;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGSTKFLT =&nbsp;16;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGCHLD =&nbsp;17;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGCONT =&nbsp;18;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGSTOP =&nbsp;19;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGTSTP =&nbsp;20;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGTTIN =&nbsp;21;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGTTOU =&nbsp;22;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGURG =&nbsp;23;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGXCPU =&nbsp;24;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGXFSZ =&nbsp;25;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGVTALRM =&nbsp;26;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGPROF =&nbsp;27;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGWINCH =&nbsp;28;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGIO =&nbsp;29;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGPOLL =&nbsp;SIGIO;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGPWR =&nbsp;30;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGUNUSED =&nbsp;31;
+</pre>
+</td></tr></table>For file control mechanism :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_GetFd&nbsp;&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_SetFd&nbsp;&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_GetFl&nbsp;&nbsp;=&nbsp;3;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_SetFl&nbsp;&nbsp;=&nbsp;4;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_GetLk&nbsp;&nbsp;=&nbsp;5;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_SetLk&nbsp;&nbsp;=&nbsp;6;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_SetLkW&nbsp;=&nbsp;7;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_GetOwn&nbsp;=&nbsp;8;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F_SetOwn&nbsp;=&nbsp;9;
+</pre>
+</td></tr></table>For Terminal handling :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;TCGETS =&nbsp;$5401&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETS =&nbsp;$5402&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETSW =&nbsp;$5403&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETSF =&nbsp;$5404&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCGETA =&nbsp;$5405&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETA =&nbsp;$5406&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETAW =&nbsp;$5407&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSETAF =&nbsp;$5408&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSBRK =&nbsp;$5409&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCXONC =&nbsp;$540A&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCFLSH =&nbsp;$540B&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCEXCL =&nbsp;$540C&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCNXCL =&nbsp;$540D&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSCTTY =&nbsp;$540E&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGPGRP =&nbsp;$540F&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSPGRP =&nbsp;$5410&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCOUTQ =&nbsp;$5411&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSTI =&nbsp;$5412&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGWINSZ =&nbsp;$5413&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSWINSZ =&nbsp;$5414&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCMGET =&nbsp;$5415&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCMBIS =&nbsp;$5416&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCMBIC =&nbsp;$5417&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCMSET =&nbsp;$5418&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGSOFTCAR =&nbsp;$5419&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSSOFTCAR =&nbsp;$541A&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;FIONREAD =&nbsp;$541B&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCINQ =&nbsp;FIONREAD;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCLINUX =&nbsp;$541C&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCCONS =&nbsp;$541D&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGSERIAL =&nbsp;$541E&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSSERIAL =&nbsp;$541F&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT =&nbsp;$5420&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;FIONBIO =&nbsp;$5421&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCNOTTY =&nbsp;$5422&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSETD =&nbsp;$5423&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGETD =&nbsp;$5424&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TCSBRKP =&nbsp;$5425 &nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCTTYGSTRUCT =&nbsp;$5426&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;FIONCLEX =&nbsp;$5450&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;FIOCLEX =&nbsp;$5451&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;FIOASYNC =&nbsp;$5452&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERCONFIG =&nbsp;$5453&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERGWILD =&nbsp;$5454&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERSWILD =&nbsp;$5455&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGLCKTRMIOS =&nbsp;$5456&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSLCKTRMIOS =&nbsp;$5457&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERGSTRUCT =&nbsp;$5458&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERGETLSR&nbsp;&nbsp;&nbsp;=&nbsp;$5459&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERGETMULTI&nbsp;=&nbsp;$545A&nbsp;&nbsp;;
+                                                                            
+
+                                                                            
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCSERSETMULTI&nbsp;=&nbsp;$545B&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCMIWAIT =&nbsp;$545C ;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCGICOUNT =&nbsp;$545D ;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_DATA =&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_FLUSHREAD =&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_FLUSHWRITE =&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_STOP =&nbsp;4;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_START =&nbsp;8;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_NOSTOP =&nbsp;16;
+&nbsp;&nbsp;&nbsp;&nbsp;TIOCPKT_DOSTOP =&nbsp;32;
+</pre>
+</td></tr></table>Other than that, all constants for setting the speed and control flags of a terminal line, as
+described in the <span 
+class="cmtt-10">termios </span>(2)  man page, are defined in the linux unit. It would take too much place
+to list them here. To check the <span 
+class="cmtt-10">mode </span>field of a <span 
+class="cmtt-10">stat </span>record, you ca use the following constants
+:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;{&nbsp;Constants&nbsp;to&nbsp;check&nbsp;stat.mode&nbsp;}
+&nbsp;&nbsp;&nbsp;STAT_IFMT&nbsp;&nbsp;&nbsp;=&nbsp;$f000;&nbsp;{00170000}
+&nbsp;&nbsp;&nbsp;STAT_IFSOCK&nbsp;=&nbsp;$c000;&nbsp;{0140000}
+&nbsp;&nbsp;&nbsp;STAT_IFLNK&nbsp;&nbsp;=&nbsp;$a000;&nbsp;{0120000}
+&nbsp;&nbsp;&nbsp;STAT_IFREG&nbsp;&nbsp;=&nbsp;$8000;&nbsp;{0100000}
+&nbsp;&nbsp;&nbsp;STAT_IFBLK&nbsp;&nbsp;=&nbsp;$6000;&nbsp;{0060000}
+&nbsp;&nbsp;&nbsp;STAT_IFDIR&nbsp;&nbsp;=&nbsp;$4000;&nbsp;{0040000}
+&nbsp;&nbsp;&nbsp;STAT_IFCHR&nbsp;&nbsp;=&nbsp;$2000;&nbsp;{0020000}
+&nbsp;&nbsp;&nbsp;STAT_IFIFO&nbsp;&nbsp;=&nbsp;$1000;&nbsp;{0010000}
+&nbsp;&nbsp;&nbsp;STAT_ISUID&nbsp;&nbsp;=&nbsp;$0800;&nbsp;{0004000}
+&nbsp;&nbsp;&nbsp;STAT_ISGID&nbsp;&nbsp;=&nbsp;$0400;&nbsp;{0002000}
+&nbsp;&nbsp;&nbsp;STAT_ISVTX&nbsp;&nbsp;=&nbsp;$0200;&nbsp;{0001000}
+&nbsp;&nbsp;&nbsp;{&nbsp;Constants&nbsp;to&nbsp;check&nbsp;permissions&nbsp;}
+&nbsp;&nbsp;&nbsp;STAT_IRWXO&nbsp;=&nbsp;$7;
+&nbsp;&nbsp;&nbsp;STAT_IROTH&nbsp;=&nbsp;$4;
+&nbsp;&nbsp;&nbsp;STAT_IWOTH&nbsp;=&nbsp;$2;
+&nbsp;&nbsp;&nbsp;STAT_IXOTH&nbsp;=&nbsp;$1;
+&nbsp;&nbsp;&nbsp;STAT_IRWXG&nbsp;=&nbsp;STAT_IRWXO&nbsp;shl&nbsp;3;
+&nbsp;&nbsp;&nbsp;STAT_IRGRP&nbsp;=&nbsp;STAT_IROTH&nbsp;shl&nbsp;3;
+&nbsp;&nbsp;&nbsp;STAT_IWGRP&nbsp;=&nbsp;STAT_IWOTH&nbsp;shl&nbsp;3;
+&nbsp;&nbsp;&nbsp;STAT_IXGRP&nbsp;=&nbsp;STAT_IXOTH&nbsp;shl&nbsp;3;
+&nbsp;&nbsp;&nbsp;STAT_IRWXU&nbsp;=&nbsp;STAT_IRWXO&nbsp;shl&nbsp;6;
+&nbsp;&nbsp;&nbsp;STAT_IRUSR&nbsp;=&nbsp;STAT_IROTH&nbsp;shl&nbsp;6;
+&nbsp;&nbsp;&nbsp;STAT_IWUSR&nbsp;=&nbsp;STAT_IWOTH&nbsp;shl&nbsp;6;
+&nbsp;&nbsp;&nbsp;STAT_IXUSR&nbsp;=&nbsp;STAT_IXOTH&nbsp;shl&nbsp;6;
+</pre>
+</td></tr></table>You can test the type of a filesystem returned by a <span 
+class="cmss-10">FSStat </span>(<a 
+href="unitsse36.htm#x53-40900012.3">386<!--tex4ht:ref: tab:speckeys--></a>) call with the following
+constants:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;fs_old_ext2&nbsp;=&nbsp;$ef51;
+&nbsp;&nbsp;&nbsp;fs_ext2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$ef53;
+&nbsp;&nbsp;&nbsp;fs_ext&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$137d;
+&nbsp;&nbsp;&nbsp;fs_iso&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$9660;
+&nbsp;&nbsp;&nbsp;fs_minix&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$137f;
+&nbsp;&nbsp;&nbsp;fs_minix_30&nbsp;=&nbsp;$138f;
+&nbsp;&nbsp;&nbsp;fs_minux_V2&nbsp;=&nbsp;$2468;
+&nbsp;&nbsp;&nbsp;fs_msdos&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$4d44;
+&nbsp;&nbsp;&nbsp;fs_nfs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$6969;
+&nbsp;&nbsp;&nbsp;fs_proc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$9fa0;
+&nbsp;&nbsp;&nbsp;fs_xia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$012FD16D;
+</pre>
+</td></tr></table>the <span 
+class="cmss-10">FLock </span>(<a 
+href="unitsse36.htm#x53-40500012.3">383<!--tex4ht:ref: tab:speckeys--></a>) call uses the following mode constants :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;LOCK_SH&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;LOCK_EX&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;LOCK_UN&nbsp;=&nbsp;8;
+&nbsp;&nbsp;&nbsp;LOCK_NB&nbsp;=&nbsp;4;
+</pre>
+</td></tr></table>The <span 
+class="cmss-10">MMap </span>(<a 
+href="unitsse36.htm#x53-45100012.3">411<!--tex4ht:ref: tab:speckeys--></a>) function uses the following constants to specify access to mapped
+memory:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;PROT_READ&nbsp;&nbsp;=&nbsp;$1;&nbsp;&nbsp;&nbsp;{&nbsp;page&nbsp;can&nbsp;be&nbsp;read&nbsp;}
+&nbsp;&nbsp;&nbsp;PROT_WRITE&nbsp;=&nbsp;$2;&nbsp;&nbsp;&nbsp;{&nbsp;page&nbsp;can&nbsp;be&nbsp;written&nbsp;}
+&nbsp;&nbsp;&nbsp;PROT_EXEC&nbsp;&nbsp;=&nbsp;$4;&nbsp;&nbsp;&nbsp;{&nbsp;page&nbsp;can&nbsp;be&nbsp;executed&nbsp;}
+&nbsp;&nbsp;&nbsp;PROT_NONE&nbsp;&nbsp;=&nbsp;$0;&nbsp;&nbsp;&nbsp;{&nbsp;page&nbsp;can&nbsp;not&nbsp;be&nbsp;accessed&nbsp;}
+</pre>
+</td></tr></table>and the following constants to specify the type of mapping.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;MAP_SHARED&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$1;&nbsp;&nbsp;{&nbsp;Share&nbsp;changes&nbsp;}
+&nbsp;&nbsp;&nbsp;MAP_PRIVATE&nbsp;&nbsp;&nbsp;=&nbsp;$2;&nbsp;&nbsp;{&nbsp;Changes&nbsp;are&nbsp;private&nbsp;}
+&nbsp;&nbsp;&nbsp;MAP_TYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$f;&nbsp;&nbsp;{&nbsp;Mask&nbsp;for&nbsp;type&nbsp;of&nbsp;mapping&nbsp;}
+&nbsp;&nbsp;&nbsp;MAP_FIXED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$10;&nbsp;{&nbsp;Interpret&nbsp;addr&nbsp;exactly&nbsp;}
+&nbsp;&nbsp;&nbsp;MAP_ANONYMOUS&nbsp;=&nbsp;$20;&nbsp;{&nbsp;don't&nbsp;use&nbsp;a&nbsp;file&nbsp;}
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse35.htm" >next</a>] [<a 
+href="unitsse34.htm" >front</a>] [<a 
+href="unitsch12.htm#unitsse34.htm" >up</a>] </p></div><a 
+  name="tailunitsse34.htm"></a>   
+</body></html> 

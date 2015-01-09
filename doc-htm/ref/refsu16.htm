@@ -1,0 +1,71 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.3.0 File types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu15.htm" >prev</a>] [<a 
+href="refsu15.htm#tailrefsu15.htm" >prev-tail</a>] [<a 
+href="#tailrefsu16.htm">tail</a>] [<a 
+href="refse13.htm#refsu16.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-39-48" name="x39-420003.3">File types</a></h4> File types are types that store a sequence of some base type, which can be any type
+except another file type. It can contain (in principle) an infinite number of elements. File types are
+used commonly to store data on disk. Nothing prevents the programmer, however, from
+writing a file driver that stores it&#8217;s data in memory. Here is the type declaration for a file
+type:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">File types</span>
+     <BR/>
+     <img 
+src="ref44x.png" alt="-- file type file ---------------------------------------------------
+               -of -type-|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1299--><p class="noindent">If no type identifier is given, then the file is an untyped file; it can be considered as equivalent to a
+file of bytes. Untyped files require special commands to act on them (see <span 
+class="cmss-10">Blockread </span>(<a 
+href="refsu75.htm#x160-16600013.3">458<!--tex4ht:ref: tab:SetOps--></a>),
+<span 
+class="cmss-10">Blockwrite </span>(<a 
+href="refsu76.htm#x161-16700013.3">460<!--tex4ht:ref: tab:SetOps--></a>)). The following declaration declares a file of records:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;Point&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X,Y,Z&nbsp;:&nbsp;real;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;PointFile&nbsp;=&nbsp;File&nbsp;of&nbsp;Point;
+</pre>
+</td></tr></table>Internally, files are represented by the <span 
+class="cmtt-10">FileRec </span>record, which is declared in the DOS
+unit.
+<!--l. 1313--><p class="noindent">A special file type is the <span 
+class="cmtt-10">Text </span>file type, represented by the <span 
+class="cmtt-10">TextRec </span>record. A file of type <span 
+class="cmtt-10">Text </span>uses
+special input-output routines.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu15.htm" >prev</a>] [<a 
+href="refsu15.htm#tailrefsu15.htm" >prev-tail</a>] [<a 
+href="refsu16.htm" >front</a>] [<a 
+href="refse13.htm#refsu16.htm" >up</a>] </p></div><a 
+  name="tailrefsu16.htm"></a>  
+</body></html> 

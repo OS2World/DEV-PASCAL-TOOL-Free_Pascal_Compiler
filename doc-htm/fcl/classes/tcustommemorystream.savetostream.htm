@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCustomMemoryStream.SaveToStream</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCustomMemoryStream.SaveToStream</h1>
+<p>Writes the contents of the memory stream to another stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a><span class="sym">.</span>SaveToStream<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Stream<span class="sym">: </span><a href="../classes/tstream.htm">TStream</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>SaveToStream</var> writes the contents of the memory stream to   <var>Stream</var>. The content of <var>Stream</var> is not cleared first. The current position of the memory stream is not changed by this action. </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td><p>This method will work much faster than the use of the  <a href="../classes/tstream.copyfrom.htm">TStream.CopyFrom</a> method: </p><pre>Seek<span class="sym">(</span><span class="num">0</span><span class="sym">,</span>soFromBeginning<span class="sym">)</span><span class="sym">;</span>
+  Stream<span class="sym">.</span>CopyFrom<span class="sym">(</span>Self<span class="sym">,</span>Size<span class="sym">)</span><span class="sym">;</span>
+</pre><p>because the <var>CopyFrom</var> method copies the contents in blocks, while <var>SaveToStream</var> writes the contents of the memory as one big block. </p></td>
+</tr>
+</table>
+<h2>Errors</h2>
+<p>If an error occurs when writing to <var>Stream</var> an <a href="../classes/estreamerror.htm">EStreamError</a> exception will be raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcustommemorystream.savetofile.htm">TCustomMemoryStream.SaveToFile</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes the contents of the stream to a file.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.copyfrom.htm">TStream.CopyFrom</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Copy data from one stream to another</p></td>
+</tr>
+</table>
+</body>
+</html>

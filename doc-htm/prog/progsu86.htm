@@ -1,0 +1,40 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.7.0 Parameter alignment</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="#tailprogsu86.htm">tail</a>] [<a 
+href="progse23.htm#progsu86.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-124-128" name="x124-1210006.7">Parameter alignment</a></h4>
+<!--l. 2779--><p class="noindent">Each parameter passed to a routine is guaranteed to decrement the stack pointer by a
+certain minimum amount. This behavior varies from one operating system to another. For
+example, passing a byte as a value parameter to a routine could either decrement the
+stack pointer by 1, 2, 4 or even 8 bytes depending on the target operating system and
+processor. The minimal default stack pointer decrement value is given in Appendix
+<a 
+href="progap8.htm#x267-268000H">H<!--tex4ht:ref: ch:AppH--></a>.
+<!--l. 2787--><p class="noindent">For example, on <span 
+class="cmcsc-10">F<small 
+class="small-caps">R</small><small 
+class="small-caps">E</small><small 
+class="small-caps">E</small>BSD</span>, all parameters passed to a routine guarantee a minimal stack decrease
+of four bytes per parameter, even if the parameter actually takes less then 4 bytes to store on the
+stack (such as passing a byte value parameter to the stack).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu86.htm" >front</a>] [<a 
+href="progse23.htm#progsu86.htm" >up</a>] </p></div><a 
+  name="tailprogsu86.htm"></a>  
+</body></html> 

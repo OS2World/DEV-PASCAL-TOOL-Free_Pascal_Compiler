@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCustomMemoryStream</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCustomMemoryStream</h1>
+<p>[<a href="../classes/tcustommemorystream-1.htm" onClick="window.open('../classes/tcustommemorystream-1.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Properties</a> (<a href="../classes/tcustommemorystream-2.htm" onClick="window.open('../classes/tcustommemorystream-2.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tcustommemorystream-3.htm" onClick="window.open('../classes/tcustommemorystream-3.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Methods</a> (<a href="../classes/tcustommemorystream-4.htm" onClick="window.open('../classes/tcustommemorystream-4.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] [<a href="../classes/tcustommemorystream-5.htm" onClick="window.open('../classes/tcustommemorystream-5.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">Events</a> (<a href="../classes/tcustommemorystream-6.htm" onClick="window.open('../classes/tcustommemorystream-6.htm', 'list', 'dependent=yes,resizable=yes,scrollbars=yes,height=400,width=300'); return false;">by Name</a>)] </p>
+<p>Abstract stream that stores its data in memory.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr><span class="kw">type</span> TCustomMemoryStream <span class="sym">=</span> <span class="kw">class</span><span class="sym">(</span><a href="../classes/tstream.htm">TStream</a><span class="sym">)</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">protected</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tcustommemorystream.setpointer.htm">SetPointer</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the internal memory pointer and size of the memory block.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="kw">public</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tcustommemorystream.read.htm">Read</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Reads <var>Count</var> bytes from the stream into <var>buffer</var>.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">function </span><a href="../classes/tcustommemorystream.seek.htm">Seek</a><span class="sym">();</span><span class="kw"> override</span><span class="sym">;</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets a new position in the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tcustommemorystream.savetostream.htm">SaveToStream</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes the contents of the memory stream to another stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">procedure </span><a href="../classes/tcustommemorystream.savetofile.htm">SaveToFile</a><span class="sym">();</span></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes the contents of the stream to a file.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><tt><nobr>&nbsp;&nbsp;<span class="kw">property </span><a href="../classes/tcustommemorystream.memory.htm">Memory</a><span class="sym">: </span>Pointer<span class="sym">;</span>  [r]</nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Pointer to the data kept in the memory stream.</p></td>
+</tr>
+<tr>
+<td><p><tt><nobr> <span class="kw">end</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Inheritance</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Abstract stream that stores its data in memory.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td valign="top" align="center"><p><tt><nobr><a href="../classes/tstream.htm">TStream</a></nobr></tt></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+<tr>
+<td align="center">|</td>
+</tr>
+<tr>
+<td align="center"><p><tt><nobr>TObject</nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>TCustomMemoryStream</var> is the parent class for streams that stored their data in memory. It introduces all needed functions to handle reading from and navigating through the memory, and introduces a  <a href="../classes/tcustommemorystream.memory.htm">Memory</a> property which points to the memory area where the stream data is kept.  </p>
+<p>The only thing which <var>TCustomMemoryStream</var> does not do is obtain  memory to store data when writing data  or the writing of data. This functionality is implemented in descendent streams such as <a href="../classes/tmemorystream.htm">TMemoryStream</a>. The reason for this approach is that this way it is possible to create e.g. read-only descendents of <var>TCustomMemoryStream</var> that point to a fixed part in memory which can be read from, but not written to.  </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td>Since <var>TCustomMemoryStream</var> is an abstract class, do not create  instances of <var>TMemoryStream</var> directly. Instead, create instances of descendents such as <a href="../classes/tmemorystream.htm">TMemoryStream</a>.  </td>
+</tr>
+</table>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tmemorystream.htm">TMemoryStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Standard implementation of a stream that stores its data in memory</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.htm">TStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Base class for streams.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $Q $OVERFLOWCHECKS: Overflow checking</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu39.htm" >next</a>] [<a 
+href="progsu37.htm" >prev</a>] [<a 
+href="progsu37.htm#tailprogsu37.htm" >prev-tail</a>] [<a 
+href="#tailprogsu38.htm">tail</a>] [<a 
+href="progse2.htm#progsu38.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-45-44" name="x45-430001.1"><span 
+class="cmtt-10">$Q $OVERFLOWCHECKS</span>: Overflow checking</a></h4> The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$Q+</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$OVERFLOWCHECKS ON</span><span 
+class="cmsy-10">} </span>directive turns
+on integer overflow checking. This means that the compiler inserts code to check for
+overflow when doing computations with integers. When an overflow occurs, the run-time
+library will print a message <span 
+class="cmtt-10">Overflow at xxx</span>, and exit the program with exit code
+215.
+<!--l. 844--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>Overflow checking behaviour is not the same as in Turbo Pascal since all arithmetic
+operations are done via 32-bit or 64-bit values. Furthermore, the <span 
+class="cmtt-10">Inc() </span>and <span 
+class="cmtt-10">Dec </span>standard
+system procedures <span 
+class="cmti-10">are </span>checked for overflow in Free Pascal, while in Turbo Pascal they are
+not.
+Using the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$Q-</span><span 
+class="cmsy-10">} </span>switch switches off the overflow checking code generation.
+<!--l. 853--><p class="noindent">The generation of overflow checking code can also be controlled using the <span 
+class="cmtt-10">-Co </span>command line
+compiler option (see <a 
+href="file:../user/user.htm" >Users guide</a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu39.htm" >next</a>] [<a 
+href="progsu37.htm" >prev</a>] [<a 
+href="progsu37.htm#tailprogsu37.htm" >prev-tail</a>] [<a 
+href="progsu38.htm" >front</a>] [<a 
+href="progse2.htm#progsu38.htm" >up</a>] </p></div><a 
+  name="tailprogsu38.htm"></a>  
+</body></html> 

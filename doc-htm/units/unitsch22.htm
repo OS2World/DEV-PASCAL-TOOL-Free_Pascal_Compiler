@@ -1,0 +1,330 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>22 The SYSUTILS unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch23.htm" >next</a>] [<a 
+href="unitsch21.htm" >prev</a>] [<a 
+href="unitsch21.htm#tailunitsch21.htm" >prev-tail</a>] [<a 
+href="#tailunitsch22.htm">tail</a>] [<a 
+href="units.htm#unitsch22.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;22</span><br><a 
+href="units.htm#QQ2-98-812" name="x98-80600022">The SYSUTILS unit.</a></h2>
+<!--l. 24--><p class="noindent">This chapter describes the <span 
+class="cmss-10">sysutils </span>unit. The <span 
+class="cmss-10">sysutils </span>unit was largely written by Gertjan Schouten,
+and completed by Micha&euml;l Van Canneyt. It aims to be compatible to the Delphi <span 
+class="cmss-10">sysutils </span>unit, but
+in contrast with the latter, it is designed to work on multiple platforms. It is implemented on all
+supported platforms.
+<!--l. 30--><p class="noindent">This chapter starts out with a definition of all types and constants that are defined, followed by an
+overview of functions grouped by functionality, and lastly the complete explanation of each
+function.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">22.1 <a 
+href="unitsse72.htm#x99-80700022.1" name="QQ2-99-813">Constants and types</a></span>
+<br>&nbsp;<span class="sectionToc">22.2 <a 
+href="unitsse73.htm#x100-80800022.2" name="QQ2-100-814">Function list by category</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse73.htm#x100-80900022.2" name="QQ2-100-815">String functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse73.htm#x100-81000022.2" name="QQ2-100-816">Formatting strings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse73.htm#x100-81100022.2" name="QQ2-100-817">File input/output routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse73.htm#x100-81200022.2" name="QQ2-100-818">File handling routines</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse73.htm#x100-81300022.2" name="QQ2-100-819">Date/time routines</a></span>
+<br>&nbsp;<span class="sectionToc">22.3 <a 
+href="unitsse74.htm#x101-81400022.3" name="QQ2-101-820">Miscellaneous conversion routines</a></span>
+<br>&nbsp;<span class="sectionToc">22.4 <a 
+href="unitsse75.htm#x102-81500022.4" name="QQ2-102-821">Date and time functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-81600022.4" name="QQ2-102-822">Date and time formatting characters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-81700022.4" name="QQ2-102-823">TDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-81800022.4" name="QQ2-102-824">Date</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-81900022.4" name="QQ2-102-825">DateTimeToFileDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82000022.4" name="QQ2-102-826">DateTimeToStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82100022.4" name="QQ2-102-827">DateTimeToString</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82200022.4" name="QQ2-102-828">DateTimeToSystemTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82300022.4" name="QQ2-102-829">DateTimeToTimeStamp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82400022.4" name="QQ2-102-830">DateToStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82500022.4" name="QQ2-102-831">DayOfWeek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82600022.4" name="QQ2-102-832">DecodeDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82700022.4" name="QQ2-102-833">DecodeTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82800022.4" name="QQ2-102-834">EncodeDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-82900022.4" name="QQ2-102-835">EncodeTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83000022.4" name="QQ2-102-836">FileDateToDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83100022.4" name="QQ2-102-837">FormatDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83200022.4" name="QQ2-102-838">IncMonth</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83300022.4" name="QQ2-102-839">IsLeapYear</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83400022.4" name="QQ2-102-840">MSecsToTimeStamp</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83500022.4" name="QQ2-102-841">Now</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83600022.4" name="QQ2-102-842">StrToDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83700022.4" name="QQ2-102-843">StrToDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83800022.4" name="QQ2-102-844">StrToTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-83900022.4" name="QQ2-102-845">SystemTimeToDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-84000022.4" name="QQ2-102-846">Time</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-84100022.4" name="QQ2-102-847">TimeStampToDateTime</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-84200022.4" name="QQ2-102-848">TimeStampToMSecs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse75.htm#x102-84300022.4" name="QQ2-102-849">TimeToStr</a></span>
+<br>&nbsp;<span class="sectionToc">22.5 <a 
+href="unitsse76.htm#x103-84400022.5" name="QQ2-103-850">Disk functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-84500022.5" name="QQ2-103-851">AddDisk (Linux only)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-84600022.5" name="QQ2-103-852">CreateDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-84700022.5" name="QQ2-103-853">DiskFree</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-84800022.5" name="QQ2-103-854">DiskSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-84900022.5" name="QQ2-103-855">GetCurrentDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-85000022.5" name="QQ2-103-856">RemoveDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse76.htm#x103-85100022.5" name="QQ2-103-857">SetCurrentDir</a></span>
+<br>&nbsp;<span class="sectionToc">22.6 <a 
+href="unitsse77.htm#x104-85200022.6" name="QQ2-104-858">File handling functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85300022.6" name="QQ2-104-859">ChangeFileExt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85400022.6" name="QQ2-104-860">DeleteFile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85500022.6" name="QQ2-104-861">DoDirSeparators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85600022.6" name="QQ2-104-862">ExpandFileName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85700022.6" name="QQ2-104-863">ExpandUNCFileName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85800022.6" name="QQ2-104-864">ExtractFileDir</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-85900022.6" name="QQ2-104-865">ExtractFileDrive</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86000022.6" name="QQ2-104-866">ExtractFileExt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86100022.6" name="QQ2-104-867">ExtractFileName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86200022.6" name="QQ2-104-868">ExtractFilePath</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86300022.6" name="QQ2-104-869">ExtractRelativePath</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86400022.6" name="QQ2-104-870">FileAge</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86500022.6" name="QQ2-104-871">FileClose</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86600022.6" name="QQ2-104-872">FileCreate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86700022.6" name="QQ2-104-873">FileExists</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86800022.6" name="QQ2-104-874">FileGetAttr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-86900022.6" name="QQ2-104-875">FileGetDate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87000022.6" name="QQ2-104-876">FileOpen</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87100022.6" name="QQ2-104-877">FileRead</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87200022.6" name="QQ2-104-878">FileSearch</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87300022.6" name="QQ2-104-879">FileSeek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87400022.6" name="QQ2-104-880">FileSetAttr (Not on Linux)</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87500022.6" name="QQ2-104-881">FileSetDate (Not on Linux)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87600022.6" name="QQ2-104-882">FileTruncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87700022.6" name="QQ2-104-883">FileWrite</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87800022.6" name="QQ2-104-884">FindClose</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-87900022.6" name="QQ2-104-885">FindFirst</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-88000022.6" name="QQ2-104-886">FindNext</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-88100022.6" name="QQ2-104-887">GetDirs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-88200022.6" name="QQ2-104-888">RenameFile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse77.htm#x104-88300022.6" name="QQ2-104-889">SetDirSeparators</a></span>
+<br>&nbsp;<span class="sectionToc">22.7 <a 
+href="unitsse78.htm#x105-88400022.7" name="QQ2-105-890">PChar functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-88500022.7" name="QQ2-105-891">Introduction</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-88600022.7" name="QQ2-105-892">StrAlloc</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-88700022.7" name="QQ2-105-893">StrBufSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-88800022.7" name="QQ2-105-894">StrDispose</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-88900022.7" name="QQ2-105-895">StrPCopy</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-89000022.7" name="QQ2-105-896">StrPLCopy</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse78.htm#x105-89100022.7" name="QQ2-105-897">StrPas</a></span>
+<br>&nbsp;<span class="sectionToc">22.8 <a 
+href="unitsse79.htm#x106-89200022.8" name="QQ2-106-898">String handling functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89300022.8" name="QQ2-106-899">AdjustLineBreaks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89400022.8" name="QQ2-106-900">AnsiCompareStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89500022.8" name="QQ2-106-901">AnsiCompareText</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89600022.8" name="QQ2-106-902">AnsiExtractQuotedStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89700022.8" name="QQ2-106-903">AnsiLastChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89800022.8" name="QQ2-106-904">AnsiLowerCase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-89900022.8" name="QQ2-106-905">AnsiQuotedStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90000022.8" name="QQ2-106-906">AnsiStrComp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90100022.8" name="QQ2-106-907">AnsiStrIComp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90200022.8" name="QQ2-106-908">AnsiStrLastChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90300022.8" name="QQ2-106-909">AnsiStrLComp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90400022.8" name="QQ2-106-910">AnsiStrLIComp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90500022.8" name="QQ2-106-911">AnsiStrLower</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90600022.8" name="QQ2-106-912">AnsiStrUpper</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90700022.8" name="QQ2-106-913">AnsiUpperCase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90800022.8" name="QQ2-106-914">AppendStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-90900022.8" name="QQ2-106-915">AssignStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91000022.8" name="QQ2-106-916">BCDToInt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91100022.8" name="QQ2-106-917">CompareMem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91200022.8" name="QQ2-106-918">CompareStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91300022.8" name="QQ2-106-919">CompareText</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91400022.8" name="QQ2-106-920">DisposeStr</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91500022.8" name="QQ2-106-921">FloatToStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91600022.8" name="QQ2-106-922">FloatToStrF</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91700022.8" name="QQ2-106-923">FloatToText</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91800022.8" name="QQ2-106-924">FmtStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-91900022.8" name="QQ2-106-925">Format</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92000022.8" name="QQ2-106-926">FormatBuf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92100022.8" name="QQ2-106-927">FormatFloat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92200022.8" name="QQ2-106-928">IntToHex</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92300022.8" name="QQ2-106-929">IntToStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92400022.8" name="QQ2-106-930">IsValidIdent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92500022.8" name="QQ2-106-931">LastDelimiter</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92600022.8" name="QQ2-106-932">LeftStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92700022.8" name="QQ2-106-933">LoadStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92800022.8" name="QQ2-106-934">LowerCase</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-92900022.8" name="QQ2-106-935">NewStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93000022.8" name="QQ2-106-936">QuotedStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93100022.8" name="QQ2-106-937">RightStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93200022.8" name="QQ2-106-938">StrFmt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93300022.8" name="QQ2-106-939">StrLFmt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93400022.8" name="QQ2-106-940">StrToFloat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93500022.8" name="QQ2-106-941">StrToInt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93600022.8" name="QQ2-106-942">StrToIntDef</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93700022.8" name="QQ2-106-943">TextToFloat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93800022.8" name="QQ2-106-944">Trim</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-93900022.8" name="QQ2-106-945">TrimLeft</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-94000022.8" name="QQ2-106-946">TrimRight</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse79.htm#x106-94100022.8" name="QQ2-106-947">UpperCase</a></span>
+</div>
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch23.htm" >next</a>] [<a 
+href="unitsch21.htm" >prev</a>] [<a 
+href="unitsch21.htm#tailunitsch21.htm" >prev-tail</a>] [<a 
+href="unitsch22.htm" >front</a>] [<a 
+href="units.htm#unitsch22.htm" >up</a>] </p></div><a 
+  name="tailunitsch22.htm"></a>  
+</body></html> 

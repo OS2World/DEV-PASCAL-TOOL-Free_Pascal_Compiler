@@ -1,0 +1,345 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17 The Objects unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch18.htm" >next</a>] [<a 
+href="unitsch16.htm" >prev</a>] [<a 
+href="unitsch16.htm#tailunitsch16.htm" >prev-tail</a>] [<a 
+href="#tailunitsch17.htm">tail</a>] [<a 
+href="units.htm#unitsch17.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;17</span><br><a 
+href="units.htm#QQ2-68-613" name="x68-60700017">The Objects unit.</a></h2>
+<!--l. 25--><p class="noindent">This chapter documents the <span 
+class="cmss-10">objects </span>unit. The unit was implemented by many people,
+and was mainly taken from the FreeVision sources. It has been ported to all supported
+platforms.
+<!--l. 29--><p class="noindent">The methods and fields that are in a <span 
+class="cmtt-10">Private </span>part of an object declaration have been left out of
+this documentation.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">17.1 <a 
+href="unitsse47.htm#x69-60800017.1" name="QQ2-69-614">Constants</a></span>
+<br>&nbsp;<span class="sectionToc">17.2 <a 
+href="unitsse48.htm#x70-60900017.2" name="QQ2-70-615">Types</a></span>
+<br>&nbsp;<span class="sectionToc">17.3 <a 
+href="unitsse49.htm#x71-61000017.3" name="QQ2-71-616">Procedures and Functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61100017.3" name="QQ2-71-617">NewStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61200017.3" name="QQ2-71-618">DisposeStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61300017.3" name="QQ2-71-619">Abstract</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61400017.3" name="QQ2-71-620">RegisterObjects</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61500017.3" name="QQ2-71-621">RegisterType</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61600017.3" name="QQ2-71-622">LongMul</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse49.htm#x71-61700017.3" name="QQ2-71-623">LongDiv</a></span>
+<br>&nbsp;<span class="sectionToc">17.4 <a 
+href="unitsse50.htm#x72-61800017.4" name="QQ2-72-624">TRect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-61900017.4" name="QQ2-72-625">TRect.Empty</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62000017.4" name="QQ2-72-626">TRect.Equals</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62100017.4" name="QQ2-72-627">TRect.Contains</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62200017.4" name="QQ2-72-628">TRect.Copy</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62300017.4" name="QQ2-72-629">TRect.Union</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62400017.4" name="QQ2-72-630">TRect.Intersect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62500017.4" name="QQ2-72-631">TRect.Move</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62600017.4" name="QQ2-72-632">TRect.Grow</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse50.htm#x72-62700017.4" name="QQ2-72-633">TRect.Assign</a></span>
+<br>&nbsp;<span class="sectionToc">17.5 <a 
+href="unitsse51.htm#x73-62800017.5" name="QQ2-73-634">TObject</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse51.htm#x73-62900017.5" name="QQ2-73-635">TObject.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse51.htm#x73-63000017.5" name="QQ2-73-636">TObject.Free</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse51.htm#x73-63100017.5" name="QQ2-73-637">TObject.Done</a></span>
+<br>&nbsp;<span class="sectionToc">17.6 <a 
+href="unitsse52.htm#x74-63200017.6" name="QQ2-74-638">TStream</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63300017.6" name="QQ2-74-639">TStream.Get</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63400017.6" name="QQ2-74-640">TStream.StrRead</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63500017.6" name="QQ2-74-641">TStream.GetPos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63600017.6" name="QQ2-74-642">TStream.GetSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63700017.6" name="QQ2-74-643">TStream.ReadStr</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63800017.6" name="QQ2-74-644">TStream.Open</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-63900017.6" name="QQ2-74-645">TStream.Close</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64000017.6" name="QQ2-74-646">TStream.Reset</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64100017.6" name="QQ2-74-647">TStream.Flush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64200017.6" name="QQ2-74-648">TStream.Truncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64300017.6" name="QQ2-74-649">TStream.Put</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64400017.6" name="QQ2-74-650">TStream.StrWrite</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64500017.6" name="QQ2-74-651">TStream.WriteStr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64600017.6" name="QQ2-74-652">TStream.Seek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64700017.6" name="QQ2-74-653">TStream.Error</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64800017.6" name="QQ2-74-654">TStream.Read</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-64900017.6" name="QQ2-74-655">TStream.Write</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse52.htm#x74-65000017.6" name="QQ2-74-656">TStream.CopyFrom</a></span>
+<br>&nbsp;<span class="sectionToc">17.7 <a 
+href="unitsse53.htm#x75-65100017.7" name="QQ2-75-657">TDosStream</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65200017.7" name="QQ2-75-658">TDosStream.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65300017.7" name="QQ2-75-659">TDosStream.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65400017.7" name="QQ2-75-660">TDosStream.Close</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65500017.7" name="QQ2-75-661">TDosStream.Truncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65600017.7" name="QQ2-75-662">TDosStream.Seek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65700017.7" name="QQ2-75-663">TDosStream.Open</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65800017.7" name="QQ2-75-664">TDosStream.Read</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse53.htm#x75-65900017.7" name="QQ2-75-665">TDosStream.Write</a></span>
+<br>&nbsp;<span class="sectionToc">17.8 <a 
+href="unitsse54.htm#x76-66000017.8" name="QQ2-76-666">TBufStream</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66100017.8" name="QQ2-76-667">TBufStream.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66200017.8" name="QQ2-76-668">TBufStream.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66300017.8" name="QQ2-76-669">TBufStream.Close</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66400017.8" name="QQ2-76-670">TBufStream.Flush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66500017.8" name="QQ2-76-671">TBufStream.Truncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66600017.8" name="QQ2-76-672">TBufStream.Seek</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66700017.8" name="QQ2-76-673">TBufStream.Open</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66800017.8" name="QQ2-76-674">TBufStream.Read</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse54.htm#x76-66900017.8" name="QQ2-76-675">TBufStream.Write</a></span>
+<br>&nbsp;<span class="sectionToc">17.9 <a 
+href="unitsse55.htm#x77-67000017.9" name="QQ2-77-676">TMemoryStream</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse55.htm#x77-67100017.9" name="QQ2-77-677">TMemoryStream.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse55.htm#x77-67200017.9" name="QQ2-77-678">TMemoryStream.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse55.htm#x77-67300017.9" name="QQ2-77-679">TMemoryStream.Truncate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse55.htm#x77-67400017.9" name="QQ2-77-680">TMemoryStream.Read</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse55.htm#x77-67500017.9" name="QQ2-77-681">TMemoryStream.Write</a></span>
+<br>&nbsp;<span class="sectionToc">17.10 <a 
+href="unitsse56.htm#x78-67600017.10" name="QQ2-78-682">TCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-67700017.10" name="QQ2-78-683">TCollection.Init</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-67800017.10" name="QQ2-78-684">TCollection.Load</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-67900017.10" name="QQ2-78-685">TCollection.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68000017.10" name="QQ2-78-686">TCollection.At</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68100017.10" name="QQ2-78-687">TCollection.IndexOf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68200017.10" name="QQ2-78-688">TCollection.GetItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68300017.10" name="QQ2-78-689">TCollection.LastThat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68400017.10" name="QQ2-78-690">TCollection.FirstThat</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68500017.10" name="QQ2-78-691">TCollection.Pack</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68600017.10" name="QQ2-78-692">TCollection.FreeAll</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68700017.10" name="QQ2-78-693">TCollection.DeleteAll</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68800017.10" name="QQ2-78-694">TCollection.Free</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-68900017.10" name="QQ2-78-695">TCollection.Insert</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69000017.10" name="QQ2-78-696">TCollection.Delete</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69100017.10" name="QQ2-78-697">TCollection.AtFree</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69200017.10" name="QQ2-78-698">TCollection.FreeItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69300017.10" name="QQ2-78-699">TCollection.AtDelete</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69400017.10" name="QQ2-78-700">TCollection.ForEach</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69500017.10" name="QQ2-78-701">TCollection.SetLimit</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69600017.10" name="QQ2-78-702">TCollection.Error</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69700017.10" name="QQ2-78-703">TCollection.AtPut</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69800017.10" name="QQ2-78-704">TCollection.AtInsert</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-69900017.10" name="QQ2-78-705">TCollection.Store</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse56.htm#x78-70000017.10" name="QQ2-78-706">TCollection.PutItem</a></span>
+<br>&nbsp;<span class="sectionToc">17.11 <a 
+href="unitsse57.htm#x79-70100017.11" name="QQ2-79-707">TSortedCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70200017.11" name="QQ2-79-708">TSortedCollection.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70300017.11" name="QQ2-79-709">TSortedCollection.Load</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70400017.11" name="QQ2-79-710">TSortedCollection.KeyOf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70500017.11" name="QQ2-79-711">TSortedCollection.IndexOf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70600017.11" name="QQ2-79-712">TSortedCollection.Compare</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70700017.11" name="QQ2-79-713">TSortedCollection.Search</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70800017.11" name="QQ2-79-714">TSortedCollection.Insert</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse57.htm#x79-70900017.11" name="QQ2-79-715">TSortedCollection.Store</a></span>
+<br>&nbsp;<span class="sectionToc">17.12 <a 
+href="unitsse58.htm#x80-71000017.12" name="QQ2-80-716">TStringCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse58.htm#x80-71100017.12" name="QQ2-80-717">TStringCollection.GetItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse58.htm#x80-71200017.12" name="QQ2-80-718">TStringCollection.Compare</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse58.htm#x80-71300017.12" name="QQ2-80-719">TStringCollection.FreeItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse58.htm#x80-71400017.12" name="QQ2-80-720">TStringCollection.PutItem</a></span>
+<br>&nbsp;<span class="sectionToc">17.13 <a 
+href="unitsse59.htm#x81-71500017.13" name="QQ2-81-721">TStrCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse59.htm#x81-71600017.13" name="QQ2-81-722">TStrCollection.GetItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse59.htm#x81-71700017.13" name="QQ2-81-723">TStrCollection.Compare</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse59.htm#x81-71800017.13" name="QQ2-81-724">TStrCollection.FreeItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse59.htm#x81-71900017.13" name="QQ2-81-725">TStrCollection.PutItem</a></span>
+<br>&nbsp;<span class="sectionToc">17.14 <a 
+href="unitsse60.htm#x82-72000017.14" name="QQ2-82-726">TUnSortedStrCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse60.htm#x82-72100017.14" name="QQ2-82-727">TUnSortedStrCollection.Insert</a></span>
+<br>&nbsp;<span class="sectionToc">17.15 <a 
+href="unitsse61.htm#x83-72200017.15" name="QQ2-83-728">TResourceCollection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse61.htm#x83-72300017.15" name="QQ2-83-729">TResourceCollection.KeyOf</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse61.htm#x83-72400017.15" name="QQ2-83-730">TResourceCollection.GetItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse61.htm#x83-72500017.15" name="QQ2-83-731">TResourceCollection.FreeItem</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse61.htm#x83-72600017.15" name="QQ2-83-732">TResourceCollection.PutItem</a></span>
+<br>&nbsp;<span class="sectionToc">17.16 <a 
+href="unitsse62.htm#x84-72700017.16" name="QQ2-84-733">TResourceFile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-72800017.16" name="QQ2-84-734">TResourceFile Fields</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-72900017.16" name="QQ2-84-735">TResourceFile.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73000017.16" name="QQ2-84-736">TResourceFile.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73100017.16" name="QQ2-84-737">TResourceFile.Count</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73200017.16" name="QQ2-84-738">TResourceFile.KeyAt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73300017.16" name="QQ2-84-739">TResourceFile.Get</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73400017.16" name="QQ2-84-740">TResourceFile.SwitchTo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73500017.16" name="QQ2-84-741">TResourceFile.Flush</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73600017.16" name="QQ2-84-742">TResourceFile.Delete</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse62.htm#x84-73700017.16" name="QQ2-84-743">TResourceFile.Put</a></span>
+<br>&nbsp;<span class="sectionToc">17.17 <a 
+href="unitsse63.htm#x85-73800017.17" name="QQ2-85-744">TStringList</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse63.htm#x85-73900017.17" name="QQ2-85-745">TStringList.Load</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse63.htm#x85-74000017.17" name="QQ2-85-746">TStringList.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse63.htm#x85-74100017.17" name="QQ2-85-747">TStringList.Get</a></span>
+<br>&nbsp;<span class="sectionToc">17.18 <a 
+href="unitsse64.htm#x86-74200017.18" name="QQ2-86-748">TStrListMaker</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse64.htm#x86-74300017.18" name="QQ2-86-749">TStrListMaker.Init</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse64.htm#x86-74400017.18" name="QQ2-86-750">TStrListMaker.Done</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse64.htm#x86-74500017.18" name="QQ2-86-751">TStrListMaker.Put</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse64.htm#x86-74600017.18" name="QQ2-86-752">TStrListMaker.Store</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch18.htm" >next</a>] [<a 
+href="unitsch16.htm" >prev</a>] [<a 
+href="unitsch16.htm#tailunitsch16.htm" >prev-tail</a>] [<a 
+href="unitsch17.htm" >front</a>] [<a 
+href="units.htm#unitsch17.htm" >up</a>] </p></div><a 
+  name="tailunitsch17.htm"></a>  
+</body></html> 

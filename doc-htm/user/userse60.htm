@@ -1,0 +1,271 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.5 Symbol handling</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse61.htm" >next</a>] [<a 
+href="userse59.htm" >prev</a>] [<a 
+href="userse59.htm#tailuserse59.htm" >prev-tail</a>] [<a 
+href="#tailuserse60.htm">tail</a>] [<a 
+href="userap3.htm#userse60.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.5</span> <a 
+href="user.htm#QQ2-86-224" name="x86-173000C.5">Symbol handling</a></h3>
+<!--l. 1001--><p class="noindent">This section lists all the messages that concern the handling of symbols. This means all things that
+have to do with procedure and variable names.
+                                                                            
+
+                                                                            
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Error: Identifier not found arg1</span> </dt><dd 
+class="description">The  compiler  doesn&#8217;t  know  this  symbol.  Usually
+     happens when you misspel the name of a variable or procedure, or when you forgot to
+     declare a variable.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Internal Error in SymTableStack()</span> </dt><dd 
+class="description">An internal error occurred in the compiler;
+     If you encounter such an error, please contact the developers and try to provide an
+     exact description of the circumstances in which the error occurs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Duplicate identifier arg1</span> </dt><dd 
+class="description">The identifier was already declared in the current scope.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Identifier already defined in arg1 at line arg2</span> </dt><dd 
+class="description">The   identifier   was   already
+     declared in a previous scope.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Unknown identifier arg1</span> </dt><dd 
+class="description">The identifier encountered hasn&#8217;t been declared, or is
+     used outside the scope where it&#8217;s defined.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Forward declaration not solved arg1</span> </dt><dd 
+class="description">This can happen in two cases:
+         <ul class="itemize1">
+         <li class="itemize">This happens when you declare a function (in the <span 
+class="cmtt-10">interface </span>part, or with a
+         <span 
+class="cmtt-10">forward </span>directive, but do not implement it.
+         </li>
+         <li class="itemize">You reference a type which isn&#8217;t declared in the current <span 
+class="cmtt-10">type </span>block.</li></ul>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Identifier type already defined as type</span> </dt><dd 
+class="description">You are trying to redefine a type.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Error in type definition</span> </dt><dd 
+class="description">There is an error in your definition of a new array
+     type:
+     </dd><dt class="description">
+ </dt><dd 
+class="description">One of the range delimiters in an array declaration is erroneous. For example, <span 
+class="cmtt-10">Array [1..1.25]</span>
+     will trigger this error.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Type identifier not defined</span> </dt><dd 
+class="description">The type identifier has not been defined yet.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Forward type not resolved arg1</span> </dt><dd 
+class="description">A symbol was forward defined, but no declaration was
+     encountered.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Only static variables can be used in static methods or outside methods</span> </dt><dd 
+class="description">A static
+     method of an object can only access static variables.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Invalid call to tvarsym.mangledname()</span> </dt><dd 
+class="description">An internal error occurred in the compiler; If
+     you encounter such an error, please contact the developers and try to provide an exact
+     description of the circumstances in which the error occurs.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: record or class type expected</span> </dt><dd 
+class="description">The variable or expression isn&#8217;t of the type <span 
+class="cmtt-10">record </span>or
+     <span 
+class="cmtt-10">class</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Instances of classes or objects with an abstract method are not allowed</span> </dt><dd 
+class="description">You are
+     trying to generate an instance of a class which has an abstract method that wasn&#8217;t
+     overridden.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Label not defined arg1</span> </dt><dd 
+class="description">A label was declared, but not defined.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Label used but not defined arg1</span> </dt><dd 
+class="description">A label was declared and used, but not
+     defined.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal label declaration</span> </dt><dd 
+class="description">This error should never happen; it occurs if a label is defined
+     outside a procedure or function.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: GOTO and LABEL are not supported (use switch -Sg)</span> </dt><dd 
+class="description">You must compile a
+     program which has <span 
+class="cmtt-10">label</span>s and <span 
+class="cmtt-10">goto </span>statements with the <span 
+class="cmtt-10">-Sg </span>switch. By default, <span 
+class="cmtt-10">label </span>and
+     <span 
+class="cmtt-10">goto </span>aren&#8217;t supported.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Label not found</span> </dt><dd 
+class="description">A <span 
+class="cmtt-10">goto label </span>was encountered, but the label isn&#8217;t declared.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: identifier isn&#8217;t a label</span> </dt><dd 
+class="description">The identifier specified after the <span 
+class="cmtt-10">goto </span>isn&#8217;t of type
+     label.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: label already defined</span> </dt><dd 
+class="description">You are defining a label twice. You can define a label only
+     once.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: illegal type declaration of set elements</span> </dt><dd 
+class="description">The declaration of a set contains an invalid
+     type definition.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Forward class definition not resolved arg1</span> </dt><dd 
+class="description">You declared a class, but you didn&#8217;t
+     implement it.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Unit arg1 not used in arg2</span> </dt><dd 
+class="description">The unit referenced in the <span 
+class="cmtt-10">uses </span>clause is not
+     used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Parameter arg1 not used</span> </dt><dd 
+class="description">This is a warning. The identifier was declared (locally or
+     globally) but wasn&#8217;t used (locally or globally).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Local variable arg1 not used</span> </dt><dd 
+class="description">You have declared, but not used a variable in a procedure
+     or function implementation.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Value parameter arg1 is assigned but never used</span> </dt><dd 
+class="description">This is a warning. The identifier
+     was declared (locally or globally) set but not used (locally or globally).
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Local variable arg1 is assigned but never used</span> </dt><dd 
+class="description">The variable in a procedure or
+     function implementation is declared, set but never used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Local arg1 arg2 is not used</span> </dt><dd 
+class="description">A local symbol is never used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Private field arg1.arg2 is never used</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Private field arg1.arg2 is assigned but never used</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Private method arg1.arg2 never used</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Set type expected</span> </dt><dd 
+class="description">The variable or expression isn&#8217;t of type <span 
+class="cmtt-10">set</span>. This happens in an <span 
+class="cmtt-10">in</span>
+     statement.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Function result does not seem to be set</span> </dt><dd 
+class="description">You can get this warning if the compiler
+     thinks that a function return value is not set. This will not be displayed for assembler
+     procedures, or procedures that contain assembler blocks.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Type arg1 is not aligned correctly in current record for C</span> </dt><dd 
+class="description">Arrays with sizes
+     not multiples of 4 will be wrongly aligned for C structures.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Unknown record field identifier arg1</span> </dt><dd 
+class="description">The field doesn&#8217;t exist in the record
+     definition.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Local variable arg1 does not seem to be initialized</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Variable arg1 does not seem to be initialized</span> </dt><dd 
+class="description">These messages are displayed if the
+     compiler thinks that a variable will be used (i.e. appears in the right-hand-side of an
+     expression) when it wasn&#8217;t initialized first (i.e. appeared in the left-hand side of an
+     assigment)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: identifier idents no member arg1</span> </dt><dd 
+class="description">When using the extended syntax of <span 
+class="cmtt-10">new</span>, you must
+     specify the constructor method of the class you are trying to create. The procedure you
+     specified does not exist.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Found declaration: arg1</span> </dt><dd 
+class="description">You get this when you use the <span 
+class="cmtt-10">-vb </span>switch. In case an overloaded
+     procedure is not found, then all candidate overloaded procedures are listed, with their
+     parameter lists.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Data segment too large (max. 2GB)</span> </dt><dd 
+class="description">You get this when you declare an array whose
+     size exceeds the 2GB limit.</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse61.htm" >next</a>] [<a 
+href="userse59.htm" >prev</a>] [<a 
+href="userse59.htm#tailuserse59.htm" >prev-tail</a>] [<a 
+href="userse60.htm" >front</a>] [<a 
+href="userap3.htm#userse60.htm" >up</a>] </p></div><a 
+  name="tailuserse60.htm"></a>  
+</body></html> 

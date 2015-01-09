@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCollection.Items</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCollection.Items</h1>
+<p>Indexed array of items in the collection.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">property </span><a href="../classes/tcollection.htm">TCollection</a><span class="sym">.</span>Items<span class="sym">: </span><a href="../classes/tcollectionitem.htm">TCollectionItem</a><br>&nbsp;&nbsp;<span class="kw">read </span>GetItem<br>&nbsp;&nbsp;<span class="kw">write </span>SetItem<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Items</var> provides indexed access to the items in the collection. Since the array is zero-based, <var>Index</var> should be an integer  between <var>0</var> and <var>Count-1</var>. </p>
+<p>It is possible to set or retrieve an element in the array. When setting an element of the array, the object that is assigned should be compatible with the class of the objects in the collection, as given by the  <a href="../classes/tcollection.itemclass.htm">TCollection.ItemClass</a> property. </p>
+<p>Adding an element to the array can be done with the <a href="../classes/tcollection.add.htm">TCollection.Add</a> method. The array can be cleared with the <a href="../classes/tcollection.clear.htm">TCollection.Clear</a> method. Removing an element of the array should be done by freeing that element. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.count.htm">TCollection.Count</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Number of items in the collection.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.itemclass.htm">TCollection.ItemClass</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Class pointer for each item in the collection.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.clear.htm">TCollection.Clear</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Removes all items from the collection.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.add.htm">TCollection.Add</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Creates and adds a new item to the collection.</p></td>
+</tr>
+</table>
+</body>
+</html>

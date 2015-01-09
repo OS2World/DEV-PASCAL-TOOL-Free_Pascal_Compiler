@@ -1,0 +1,111 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 The For..to/downto..do statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu33.htm" >next</a>] [<a 
+href="refsu31.htm" >prev</a>] [<a 
+href="refsu31.htm#tailrefsu31.htm" >prev-tail</a>] [<a 
+href="#tailrefsu32.htm">tail</a>] [<a 
+href="refse34.htm#refsu32.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-80-100" name="x80-860007.2">The <span 
+class="cmtt-10">For..to/downto..do </span>statement</a></h4> Free Pascal supports the <span 
+class="cmtt-10">For </span>loop construction. A for loop is
+used in case one wants to calculated something a fixed number of times. The prototype syntax is as
+follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">For statement</span>
+     <BR/>
+     <img 
+src="ref99x.png" alt="-- for statement for- control variable-:= -initial value----to ----
+                                               -downto -|
+---final value do- statement ----------------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref100x.png" alt="-- control variable variable identifier-----------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref101x.png" alt="-- initial value-expression--------------------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref102x.png" alt="-- final value-expression---------------------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2895--><p class="noindent"><span 
+class="cmtt-10">Statement </span>can be a compound statement. When this statement is encountered, the control
+variable is initialized with the initial value, and is compared with the final value. What happens
+next depends on whether <span 
+class="cmtt-10">to </span>or <span 
+class="cmtt-10">downto </span>is used:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x80-86002x1"></a>In the case <span 
+class="cmtt-10">To </span>is used, if the initial value larger than the final value then <span 
+class="cmtt-10">Statement</span>
+     will never be executed.
+     </li>
+     <li class="enumerate"><a 
+  name="x80-86004x2"></a>In the case <span 
+class="cmtt-10">DownTo </span>is used, if the initial value larger than the final value then <span 
+class="cmtt-10">Statement</span>
+     will never be executed.</li></ol>
+                                                                            
+
+                                                                            
+<!--l. 2905--><p class="noindent">After this check, the statement after <span 
+class="cmtt-10">Do </span>is executed. After the execution of the statement, the
+control variable is increased or decreased with 1, depending on whether <span 
+class="cmtt-10">To </span>or <span 
+class="cmtt-10">Downto </span>is used. The
+control variable must be an ordinal type, no other types can be used as counters in a
+loop.
+<!--l. 2911--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Contrary to ANSI pascal specifications, Free Pascal first initializes the counter variable, and only
+then calculates the upper bound.
+The following are valid loops:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;For&nbsp;Day&nbsp;:=&nbsp;Monday&nbsp;to&nbsp;Friday&nbsp;do&nbsp;Work;
+&nbsp;For&nbsp;I&nbsp;:=&nbsp;100&nbsp;downto&nbsp;1&nbsp;do
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Counting&nbsp;down&nbsp;:&nbsp;',i);
+&nbsp;For&nbsp;I&nbsp;:=&nbsp;1&nbsp;to&nbsp;7*dwarfs&nbsp;do&nbsp;KissDwarf(i);
+</pre>
+</td></tr></table>
+<!--l. 2924--><p class="noindent">If the statement is a compound statement, then the <span 
+class="cmss-10">Break </span>(<a 
+href="refsu77.htm#x162-16800013.3">461<!--tex4ht:ref: tab:assignments--></a>) and <span 
+class="cmss-10">Continue </span>(<a 
+href="refsu86.htm#x171-17700013.3">475<!--tex4ht:ref: tab:assignments--></a>) reserved words
+can be used to jump to the end or just after the end of the <span 
+class="cmtt-10">For </span>statement.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu33.htm" >next</a>] [<a 
+href="refsu31.htm" >prev</a>] [<a 
+href="refsu31.htm#tailrefsu31.htm" >prev-tail</a>] [<a 
+href="refsu32.htm" >front</a>] [<a 
+href="refse34.htm#refsu32.htm" >up</a>] </p></div><a 
+  name="tailrefsu32.htm"></a>  
+</body></html> 

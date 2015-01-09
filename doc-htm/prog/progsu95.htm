@@ -1,0 +1,51 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 integer types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu96.htm" >next</a>] [<a 
+href="#tailprogsu95.htm">tail</a>] [<a 
+href="progse29.htm#progsu95.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-141-148" name="x141-1400008.2">integer types</a></h4>
+<!--l. 3418--><p class="noindent">The storage size of the default integer types are given in <a 
+href="file:../ref/ref.htm" >Reference guide</a>. In the case of user
+defined-types, the storage space occupied depends on the bounds of the type:
+                                                                            
+
+                                                                            
+     <ul class="itemize1">
+     <li class="itemize">If both bounds are within range -128..127, the variable is stored as a shortint (signed
+     8-bit quantity).
+     </li>
+     <li class="itemize">If both bounds are within the range 0..255, the variable is stored as a byte (unsigned
+     8-bit quantity).
+     </li>
+     <li class="itemize">If both bounds are within the range -32768..32767, the variable is stored as a smallint
+     (signed 16-bit quantity).
+     </li>
+     <li class="itemize">If both bounds are within the range 0..65535, the variable is stored as a word (unsigned
+     16-bit quantity)
+     </li>
+     <li class="itemize">If both bounds are within the range 0..4294967295, the variable is stored as a longword
+     (unsigned 32-bit quantity).
+     </li>
+     <li class="itemize">Otherwise the variable is stored as a longint (signed 32-bit quantity).</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu96.htm" >next</a>] [<a 
+href="progsu95.htm" >front</a>] [<a 
+href="progse29.htm#progsu95.htm" >up</a>] </p></div><a 
+  name="tailprogsu95.htm"></a>  
+</body></html> 

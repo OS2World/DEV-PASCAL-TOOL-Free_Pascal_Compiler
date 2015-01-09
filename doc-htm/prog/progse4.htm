@@ -1,0 +1,300 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.1 Conditionals</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse5.htm" >next</a>] [<a 
+href="#tailprogse4.htm">tail</a>] [<a 
+href="progch2.htm#progse4.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.1</span> <a 
+href="prog.htm#QQ2-77-78" name="x77-770002.1">Conditionals</a></h3>
+<!--l. 1320--><p class="noindent">The rules for using conditional symbols are the same as under Turbo Pascal. Defining a symbol
+goes as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$define&nbsp;Symbol}
+</pre>
+</td></tr></table>From this point on in your code, the compiler knows the symbol <span 
+class="cmtt-10">Symbol</span>. Symbols are, like the
+Pascal language, case insensitive.
+<!--l. 1328--><p class="noindent">You can also define a symbol on the command line. the <span 
+class="cmtt-10">-dSymbol </span>option defines the symbol
+<span 
+class="cmtt-10">Symbol</span>. You can specify as many symbols on the command line as you want.
+<!--l. 1332--><p class="noindent">Undefining an existing symbol is done in a similar way:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$undef&nbsp;Symbol}
+</pre>
+</td></tr></table>If the symbol didn&#8217;t exist yet, this doesn&#8217;t do anything. If the symbol existed previously, the
+symbol will be erased, and will not be recognized any more in the code following the
+<span class="obeylines-h"><span 
+class="cmtt-10">{$undef</span>&nbsp;<span 
+class="cmtt-10">\dots}</span></span> statement.
+<!--l. 1340--><p class="noindent">You can also undefine symbols from the command line with the <span 
+class="cmtt-10">-u </span>command-line switch.
+<!--l. 1343--><p class="noindent">To compile code conditionally, depending on whether a symbol is defined or not, you can enclose
+the code in a <span class="obeylines-h"><span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">Symbol}</span></span> . . . <span class="obeylines-h"><span 
+class="cmtt-10">{$endif}</span></span> pair. For instance the following code will never be
+compiled:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$undef&nbsp;MySymbol}
+&nbsp;{$ifdef&nbsp;Mysymbol}
+&nbsp;&nbsp;&nbsp;DoSomething;
+&nbsp;&nbsp;&nbsp;...
+&nbsp;{$endif}
+</pre>
+</td></tr></table>
+<!--l. 1354--><p class="noindent">Similarly, you can enclose your code in a <span class="obeylines-h"><span 
+class="cmtt-10">{$ifndef</span>&nbsp;<span 
+class="cmtt-10">Symbol}</span></span> . . . <span class="obeylines-h"><span 
+class="cmtt-10">{$endif}</span></span> pair. Then the code
+between the pair will only be compiled when the used symbol doesn&#8217;t exist. For example, in the
+following example, the call to the <span 
+class="cmtt-10">DoSomething </span>will always be compiled:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$undef&nbsp;MySymbol}
+&nbsp;{$ifndef&nbsp;Mysymbol}
+&nbsp;&nbsp;&nbsp;DoSomething;
+&nbsp;&nbsp;&nbsp;...
+&nbsp;{$endif}
+</pre>
+</td></tr></table>
+<!--l. 1366--><p class="noindent">You can combine the two alternatives in one structure, namely as follows
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$ifdef&nbsp;Mysymbol}
+&nbsp;&nbsp;&nbsp;DoSomething;
+&nbsp;{$else}
+&nbsp;&nbsp;&nbsp;DoSomethingElse
+&nbsp;{$endif}
+</pre>
+</td></tr></table>In this example, if <span 
+class="cmtt-10">MySymbol </span>exists, then the call to <span 
+class="cmtt-10">DoSomething </span>will be compiled. If it doesn&#8217;t
+exist, the call to <span 
+class="cmtt-10">DoSomethingElse </span>is compiled.
+<!--l. 1378--><p class="noindent">Except for the Turbo Pascal constructs the Free Pascal compiler also supports a stronger
+conditional compile mechanism: The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$if</span><span 
+class="cmsy-10">} </span>construct.
+<!--l. 1382--><p class="noindent">The prototype of this construct is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$if&nbsp;expr}
+&nbsp;&nbsp;&nbsp;CompileTheseLines;
+&nbsp;{$else}
+&nbsp;&nbsp;&nbsp;BetterCompileTheseLines;
+&nbsp;{$endif}
+</pre>
+</td></tr></table>In this directive <span 
+class="cmtt-10">expr </span>is a Pascal expression which is evaluated using strings, unless both parts of
+a comparision can be evaluated as numbers, in which case they are evaluated using
+numbers<a 
+href="prog78.htm" name="prog78.htm" ><sup>1</sup></a>.
+If the complete expression evaluates to <span 
+class="cmtt-10">'0'</span>, then it is considered false and rejected. Otherwise it is
+considered true and accepted. This may have unexpected consequences:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$if&nbsp;0}
+</pre>
+</td></tr></table>will evaluate to <span 
+class="cmtt-10">False </span>and be rejected, while
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$if&nbsp;00}
+</pre>
+</td></tr></table>will evaluate to <span 
+class="cmtt-10">True</span>.
+<!--l. 1406--><p class="noindent">You can use any Pascal operator to construct your expression: <span 
+class="cmtt-10">=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=, AND, NOT,</span>
+<span 
+class="cmtt-10">OR </span>and you can use round brackets to change the precedence of the operators.
+<!--l. 1410--><p class="noindent">The following example shows you many of the possibilities:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$ifdef&nbsp;fpc}
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;:&nbsp;longint;
+&nbsp;{$else&nbsp;fpc}
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;:&nbsp;longint;
+&nbsp;{$endif&nbsp;fpc}
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;
+&nbsp;{$if&nbsp;(fpc_version=0)&nbsp;and&nbsp;(fpc_release&gt;6)&nbsp;and&nbsp;(fpc_patch&gt;4)}
+&nbsp;{$info&nbsp;At&nbsp;least&nbsp;this&nbsp;is&nbsp;version&nbsp;0.9.5}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;Problem&nbsp;with&nbsp;version&nbsp;check}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$define&nbsp;x:=1234}
+&nbsp;{$if&nbsp;x=1234}
+&nbsp;{$info&nbsp;x=1234}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;x&nbsp;should&nbsp;be&nbsp;1234}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;12asdf&nbsp;and&nbsp;12asdf}
+&nbsp;{$info&nbsp;$if&nbsp;12asdf&nbsp;and&nbsp;12asdf&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;12asdf&nbsp;and&nbsp;12asdf&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;0&nbsp;or&nbsp;1}
+&nbsp;{$info&nbsp;$if&nbsp;0&nbsp;or&nbsp;1&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;0&nbsp;or&nbsp;1&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;0}
+&nbsp;{$fatal&nbsp;$if&nbsp;0&nbsp;accepted}
+&nbsp;{$else}
+&nbsp;{$info&nbsp;$if&nbsp;0&nbsp;is&nbsp;ok}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;12=12}
+&nbsp;{$info&nbsp;$if&nbsp;12=12&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+                                                                            
+
+                                                                            
+&nbsp;{$fatal&nbsp;$if&nbsp;12=12&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;12&lt;&gt;312}
+&nbsp;{$info&nbsp;$if&nbsp;12&lt;&gt;312&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;12&lt;&gt;312&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;
+&nbsp;{$if&nbsp;12&lt;=312}
+&nbsp;{$info&nbsp;$if&nbsp;12&lt;=312&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;12&lt;=312&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;12&lt;312}
+&nbsp;{$info&nbsp;$if&nbsp;12&lt;312&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;12&lt;312&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;a12=a12}
+&nbsp;{$info&nbsp;$if&nbsp;a12=a12&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;a12=a12&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;a12&lt;=z312}
+&nbsp;{$info&nbsp;$if&nbsp;a12&lt;=z312&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;a12&lt;=z312&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;
+&nbsp;{$if&nbsp;a12&lt;z312}
+&nbsp;{$info&nbsp;$if&nbsp;a12&lt;z312&nbsp;is&nbsp;ok}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;a12&lt;z312&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$if&nbsp;not(0)}
+&nbsp;{$info&nbsp;$if&nbsp;not(0)&nbsp;is&nbsp;OK}
+&nbsp;{$else}
+&nbsp;{$fatal&nbsp;$if&nbsp;not(0)&nbsp;rejected}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;{$info&nbsp;*************************************************}
+&nbsp;{$info&nbsp;*&nbsp;Now&nbsp;have&nbsp;to&nbsp;follow&nbsp;at&nbsp;least&nbsp;2&nbsp;error&nbsp;messages:&nbsp;*}
+&nbsp;{$info&nbsp;*************************************************}
+&nbsp;
+&nbsp;{$if&nbsp;not(0}
+&nbsp;{$endif}
+&nbsp;
+                                                                            
+
+                                                                            
+&nbsp;{$if&nbsp;not(&lt;}
+&nbsp;{$endif}
+&nbsp;
+&nbsp;end.
+</pre>
+</td></tr></table>As you can see from the example, this construct isn&#8217;t useful when used with normal symbols, only
+if you use macros, which are explained in section <a 
+href="progse6.htm#x81-800002.3">2.3<!--tex4ht:ref: se:Macros--></a>, page <a 
+href="progse6.htm#x81-800002.3">166<!--tex4ht:ref: se:Macros--></a>. They can be very useful. When
+trying this example, you must switch on macro support, with the <span 
+class="cmtt-10">-Sm </span>command-line
+switch.
+<div class="subsectionTOCS">
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu68.htm#x79-780002.1" name="QQ2-79-79">Predefined symbols</a></span>
+</div>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse5.htm" >next</a>] [<a 
+href="progse4.htm" >front</a>] [<a 
+href="progch2.htm#progse4.htm" >up</a>] </p></div><a 
+  name="tailprogse4.htm"></a>  
+</body></html> 

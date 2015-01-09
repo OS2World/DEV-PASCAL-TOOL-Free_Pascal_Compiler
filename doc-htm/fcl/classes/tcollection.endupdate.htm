@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCollection.EndUpdate</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCollection.EndUpdate</h1>
+<p>Ends an update batch.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tcollection.htm">TCollection</a><span class="sym">.</span>EndUpdate<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>EndUpdate</var> signals the end of a series of operations that change the state of the collection, possibly triggering an update event.  It does this by decreasing the update count with 1 and calling <a href="../classes/tcollection.changed.htm">TCollection.Changed</a> it should always be used in conjunction with <a href="../classes/tcollection.beginupdate.htm">TCollection.BeginUpdate</a>, preferably in the <var>Finally</var> section of a <var>Try ... Finally</var> block. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.beginupdate.htm">TCollection.BeginUpdate</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Start an update batch.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.changed.htm">TCollection.Changed</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Procedure called if an item is added to or removed from the collection.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tcollection.update.htm">TCollection.Update</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Hander called when an item in the collection has changed.</p></td>
+</tr>
+</table>
+</body>
+</html>

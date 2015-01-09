@@ -1,0 +1,1195 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.6 TStream</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse53.htm" >next</a>] [<a 
+href="unitsse51.htm" >prev</a>] [<a 
+href="unitsse51.htm#tailunitsse51.htm" >prev-tail</a>] [<a 
+href="#tailunitsse52.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse52.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.6</span> <a 
+href="units.htm#QQ2-74-638" name="x74-63200017.6">TStream</a></h3>
+<!--l. 482--><p class="noindent">The <span 
+class="cmtt-10">TStream </span>object is the ancestor for all streaming objects, i.e. objects that have the capability to
+store and retrieve data.
+<!--l. 485--><p class="noindent">It defines a number of methods that are common to all objects that implement streaming, many of
+them are virtual, and are only implemented in the descendrnt types.
+<!--l. 489--><p class="noindent">Programs should not instantiate objects of type TStream directly, but instead instantiate a
+descendant type, such as <span 
+class="cmtt-10">TDosStream</span>, <span 
+class="cmtt-10">TMemoryStream</span>.
+<!--l. 493--><p class="noindent">This is the full declaration of the <span 
+class="cmtt-10">TStream </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TStream&nbsp;=&nbsp;OBJECT&nbsp;(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Integer;&nbsp;{&nbsp;Stream&nbsp;status&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ErrorInfo&nbsp;:&nbsp;Integer;&nbsp;{&nbsp;Stream&nbsp;error&nbsp;info&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StreamSize:&nbsp;LongInt;&nbsp;{&nbsp;Stream&nbsp;current&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position&nbsp;&nbsp;:&nbsp;LongInt;&nbsp;{&nbsp;Current&nbsp;position&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;Get:&nbsp;PObject;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;StrRead:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;GetPos:&nbsp;Longint;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;GetSize:&nbsp;Longint;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;ReadStr:&nbsp;PString;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Open&nbsp;(OpenMode:&nbsp;Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Close;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Reset;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Flush;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Truncate;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Put&nbsp;(P:&nbsp;PObject);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;StrWrite&nbsp;(P:&nbsp;PChar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;WriteStr&nbsp;(P:&nbsp;PString);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Seek&nbsp;(Pos:&nbsp;LongInt);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Error&nbsp;(Code,&nbsp;Info:&nbsp;Integer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Read&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Write&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;CopyFrom&nbsp;(Var&nbsp;S:&nbsp;TStream;&nbsp;Count:&nbsp;Longint);
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PStream&nbsp;=&nbsp;^TStream;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-639" name="x74-63300017.6">TStream.Get</a></h4><a 
+  name="dx74-633001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStream.Get : PObject;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Get </span>reads an object definition from a stream, and returns a pointer to an instance of this
+object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">TStream.Status </span>is set, and NIL is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Put </span>(<a 
+href="#x74-64300017.6">571<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 535--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 535--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TStream.Get</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">TStream.Put</span>&nbsp;<span 
+class="cmtt-10">}</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">TMyObject}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Obj</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Obj:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Obj^.SetField($1111)</span>&nbsp;<span 
+class="cmtt-10">;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Obj^.GetField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Since</span>&nbsp;<span 
+class="cmtt-10">Stream</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">abstract</span>&nbsp;<span 
+class="cmtt-10">type,</span>&nbsp;<span 
+class="cmtt-10">we</span>&nbsp;<span 
+class="cmtt-10">instantiate</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">TMemoryStream</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Put(Obj);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Disposing</span>&nbsp;<span 
+class="cmtt-10">object');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(Obj,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Reading</span>&nbsp;<span 
+class="cmtt-10">object');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Obj:=PMyObject(S^.Get);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">Value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Obj^.GetField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(Obj,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-640" name="x74-63400017.6">TStream.StrRead</a></h4><a 
+  name="dx74-634001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStream.StrRead: PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrRead </span>reads a string from the stream, allocates memory for it, and returns a pointer to
+a null-terminated copy of the string on the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">Nil </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrWrite </span>(<a 
+href="#x74-64400017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">ReadStr </span>(<a 
+href="#x74-63700017.6">569<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 550--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 550--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex10;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.StrRead</span>&nbsp;<span 
+class="cmtt-10">TStream.StrWrite</span>&nbsp;<span 
+class="cmtt-10">functions</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:='Constant</span>&nbsp;<span 
+class="cmtt-10">Pchar</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',P,'&#34;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.StrWrite(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=Nil;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.StrRead;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisPose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',P,'&#34;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Freemem(P,Strlen(P)+1);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-641" name="x74-63500017.6">TStream.GetPos</a></h4><a 
+  name="dx74-635001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TSTream.GetPos : Longint; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOk</span>, <span 
+class="cmtt-10">GetPos </span>returns the current position in the stream. Otherwise
+it returns <span 
+class="cmtt-10">-1</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">-1 </span>is returned if the status is an error condition.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Seek </span>(<a 
+href="#x74-64600017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">GetSize </span>(<a 
+href="#x74-63600017.6">568<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 565--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex11.pp</span><HR/><div class="listinginput">
+<!--l. 565--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex11;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.GetPos</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">kind</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Stream</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">write:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetPos);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Stream</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetPos);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-642" name="x74-63600017.6">TStream.GetSize</a></h4><a 
+  name="dx74-636001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStream.GetSize: Longint; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOk </span>then <span 
+class="cmtt-10">GetSize </span>returns the size of the stream, otherwise it
+returns <span 
+class="cmtt-10">-1</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">-1 </span>is returned if the status is an error condition.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Seek </span>(<a 
+href="#x74-64600017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">GetPos </span>(<a 
+href="#x74-63500017.6">568<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 580--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 580--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex12;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.GetSize</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">kind</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Stream</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">write:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Stream</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-643" name="x74-63700017.6">TStream.ReadStr</a></h4><a 
+  name="dx74-637001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStream.ReadStr: PString;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ReadStr </span>reads a string from the stream, copies it to the heap and returns a pointer to this
+copy. The string is saved as a pascal string, and hence is NOT null terminated.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error (e.g. not enough memory), <span 
+class="cmtt-10">Nil </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrRead </span>(<a 
+href="#x74-63400017.6">567<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 596--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex13.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 596--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.ReadStr</span>&nbsp;<span 
+class="cmtt-10">TStream.WriteStr</span>&nbsp;<span 
+class="cmtt-10">functions</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Constant</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">line';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisPose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-644" name="x74-63800017.6">TStream.Open</a></h4><a 
+  name="dx74-638001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Open (OpenMode: Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Open </span>is an abstract method, that should be overridden by descendent objects. Since opening
+a stream depends on the stream&#8217;s type this is not surprising.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Close </span>(<a 
+href="#x74-63900017.6">570<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Reset </span>(<a 
+href="#x74-64000017.6">571<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 612--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Open </span>(<a 
+href="unitsse53.htm#x75-65700017.7">580<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-645" name="x74-63900017.6">TStream.Close</a></h4><a 
+  name="dx74-639001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Close; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Close </span>is an abstract method, that should be overridden by descendent objects. Since Closing
+a stream depends on the stream&#8217;s type this is not surprising.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Open </span>(<a 
+href="#x74-63800017.6">570<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Reset </span>(<a 
+href="#x74-64000017.6">571<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 627--><p class="noindent">for an example, see <span 
+class="cmss-10">TDosStream.Open </span>(<a 
+href="unitsse53.htm#x75-65700017.7">580<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-646" name="x74-64000017.6">TStream.Reset</a></h4><a 
+  name="dx74-640001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PROCEDURE TStream.Reset;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Reset </span>sets the stream&#8217;s status to <span 
+class="cmtt-10">0</span>, as well as the ErrorInfo
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Open </span>(<a 
+href="#x74-63800017.6">570<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Close </span>(<a 
+href="#x74-63900017.6">570<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-647" name="x74-64100017.6">TStream.Flush</a></h4><a 
+  name="dx74-641001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Flush; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Flush </span>is an abstract method that should be overridden by descendent objects. It serves to
+enable the programmer to tell streams that implement a buffer to clear the buffer.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Truncate </span>(<a 
+href="#x74-64200017.6">571<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 653--><p class="noindent">for an example, see <span 
+class="cmss-10">TBufStream.Flush </span>(<a 
+href="unitsse54.htm#x76-66400017.8">584<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-648" name="x74-64200017.6">TStream.Truncate</a></h4><a 
+  name="dx74-642001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Truncate; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Truncate </span>is an abstract procedure that should be overridden by descendent objects. It
+serves to enable the programmer to truncate the size of the stream to the current file position.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Seek </span>(<a 
+href="#x74-64600017.6">572<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 668--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="unitsse53.htm#x75-65500017.7">578<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-649" name="x74-64300017.6">TStream.Put</a></h4><a 
+  name="dx74-643001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Put (P: PObject);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Put </span>writes the object pointed to by <span 
+class="cmtt-10">P</span>. <span 
+class="cmtt-10">P </span>should be non-nil. The object type must have been
+registered with <span 
+class="cmss-10">RegisterType </span>(<a 
+href="unitsse49.htm#x71-61500017.3">549<!--tex4ht:ref: se:TRect--></a>).
+<!--l. 677--><p class="noindent">After the object has been written, it can be read again with <span 
+class="cmss-10">Get </span>(<a 
+href="#x74-63300017.6">566<!--tex4ht:ref: se:TRect--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No check is done whether P is <span 
+class="cmtt-10">Nil </span>or not. Passing <span 
+class="cmtt-10">Nil </span>will cause a run-time error 216 to
+be generated. If the object has not been registered, the status of the stream will be set to
+<span 
+class="cmtt-10">stPutError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Get </span>(<a 
+href="#x74-63300017.6">566<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 686--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Get </span>(<a 
+href="#x74-63300017.6">566<!--tex4ht:ref: se:TRect--></a>);
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-650" name="x74-64400017.6">TStream.StrWrite</a></h4><a 
+  name="dx74-644001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.StrWrite (P: PChar);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrWrite </span>writes the null-terminated string <span 
+class="cmtt-10">P </span>to the stream. <span 
+class="cmtt-10">P </span>can only be 65355 bytes long.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">WriteStr </span>(<a 
+href="#x74-64500017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">StrRead </span>(<a 
+href="#x74-63400017.6">567<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">ReadStr </span>(<a 
+href="#x74-63700017.6">569<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 701--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.StrRead </span>(<a 
+href="#x74-63400017.6">567<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-651" name="x74-64500017.6">TStream.WriteStr</a></h4><a 
+  name="dx74-645001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.WriteStr (P: PString);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrWrite </span>writes the pascal string pointed to by <span 
+class="cmtt-10">P </span>to the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrWrite </span>(<a 
+href="#x74-64400017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">StrRead </span>(<a 
+href="#x74-63400017.6">567<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">ReadStr </span>(<a 
+href="#x74-63700017.6">569<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 715--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.ReadStr </span>(<a 
+href="#x74-63700017.6">569<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-652" name="x74-64600017.6">TStream.Seek</a></h4><a 
+  name="dx74-646001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PROCEDURE TStream.Seek (Pos: LongInt); Virtual;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Seek sets the position to <span 
+class="cmtt-10">Pos</span>. This position is counted from the beginning, and is zero
+based. (i.e. seeek(0) sets the position pointer on the first byte of the stream)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Pos </span>is larger than the stream size, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">StSeekError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPos </span>(<a 
+href="#x74-63500017.6">568<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">GetSize </span>(<a 
+href="#x74-63600017.6">568<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 732--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Seek </span>(<a 
+href="unitsse53.htm#x75-65600017.7">579<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-653" name="x74-64700017.6">TStream.Error</a></h4><a 
+  name="dx74-647001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Error (Code, Info: Integer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Error </span>sets the stream&#8217;s status to <span 
+class="cmtt-10">Code </span>and <span 
+class="cmtt-10">ErrorInfo </span>to <span 
+class="cmtt-10">Info</span>. If the <span 
+class="cmtt-10">StreamError</span>
+procedural variable is set, <span 
+class="cmtt-10">Error </span>executes it, passing <span 
+class="cmtt-10">Self </span>as an argument.
+<!--l. 742--><p class="noindent">This method should not be called directly from a program. It is intended to be used in
+descendent objects.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-654" name="x74-64800017.6">TStream.Read</a></h4><a 
+  name="dx74-648001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Read (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Read </span>is an abstract method that should be overridden by descendent objects.
+<!--l. 756--><p class="noindent"><span 
+class="cmtt-10">Read </span>reads <span 
+class="cmtt-10">Count </span>bytes from the stream into <span 
+class="cmtt-10">Buf</span>. It updates the position pointer, increasing
+it&#8217;s value with <span 
+class="cmtt-10">Count</span>. <span 
+class="cmtt-10">Buf </span>must be large enough to contain <span 
+class="cmtt-10">Count </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done to see if <span 
+class="cmtt-10">Buf </span>is large enough to contain <span 
+class="cmtt-10">Count </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Write </span>(<a 
+href="#x74-64900017.6">574<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">ReadStr </span>(<a 
+href="#x74-63700017.6">569<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">StrRead </span>(<a 
+href="#x74-63400017.6">567<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 767--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex18.pp</span><HR/><div class="listinginput">
+<!--l. 767--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">ex18;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.Read</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Buf1,Buf2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..1000]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMemorySTream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[I]:=Random(1000);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf2:=Buf1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Write(Buf1,SizeOf(Buf1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[I]:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Read(Buf1,SizeOf(Buf1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Buf1[I]&lt;&gt;buf2[i]</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Buffer</span>&nbsp;<span 
+class="cmtt-10">differs</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">',I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-655" name="x74-64900017.6">TStream.Write</a></h4><a 
+  name="dx74-649001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.Write (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Write </span>is an abstract method that should be overridden by descendent objects.
+<!--l. 777--><p class="noindent"><span 
+class="cmtt-10">Write </span>writes <span 
+class="cmtt-10">Count </span>bytes to the stream from <span 
+class="cmtt-10">Buf</span>. It updates the position pointer, increasing
+it&#8217;s value with <span 
+class="cmtt-10">Count</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done to see if <span 
+class="cmtt-10">Buf </span>actually contains <span 
+class="cmtt-10">Count </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Read </span>(<a 
+href="#x74-64800017.6">573<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">WriteStr </span>(<a 
+href="#x74-64500017.6">572<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">StrWrite </span>(<a 
+href="#x74-64400017.6">572<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 786--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="#x74-64800017.6">573<!--tex4ht:ref: se:TRect--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-74-656" name="x74-65000017.6">TStream.CopyFrom</a></h4><a 
+  name="dx74-650001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStream.CopyFrom (Var S: TStream; Count: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">CopyFrom </span>reads Count bytes from stream <span 
+class="cmtt-10">S </span>and stores them in the current stream. It uses
+the <span 
+class="cmss-10">Read </span>(<a 
+href="#x74-64800017.6">573<!--tex4ht:ref: se:TRect--></a>) method to read the data, and the <span 
+class="cmss-10">Write </span>(<a 
+href="#x74-64900017.6">574<!--tex4ht:ref: se:TRect--></a>) method to write in the current
+stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Read </span>(<a 
+href="#x74-64800017.6">573<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Write </span>(<a 
+href="#x74-64900017.6">574<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 802--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex19.pp</span><HR/><div class="listinginput">
+<!--l. 802--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex19;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.CopyFrom</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S1,S2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Constant</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">line';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S1:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S2:=New(PMemoryStream,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S1^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S1^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Copying</span>&nbsp;<span 
+class="cmtt-10">contents</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">2');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S2^.Copyfrom(S1^,S1^.GetSize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S2^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S2^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S1,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S2,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse53.htm" >next</a>] [<a 
+href="unitsse51.htm" >prev</a>] [<a 
+href="unitsse51.htm#tailunitsse51.htm" >prev-tail</a>] [<a 
+href="unitsse52.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse52.htm" >up</a>] </p></div><a 
+  name="tailunitsse52.htm"></a>   
+</body></html> 

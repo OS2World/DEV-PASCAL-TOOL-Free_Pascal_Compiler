@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.6 Line numbers in run-time error backtraces</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse52.htm" >next</a>] [<a 
+href="userse50.htm" >prev</a>] [<a 
+href="userse50.htm#tailuserse50.htm" >prev-tail</a>] [<a 
+href="#tailuserse51.htm">tail</a>] [<a 
+href="userch10.htm#userse51.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.6</span> <a 
+href="user.htm#QQ2-71-209" name="x71-15800010.6">Line numbers in run-time error backtraces</a></h3>
+<!--l. 2488--><p class="noindent">Normally, when a run-time error occurs, you are presented with a list of addresses that represent
+the call stack backtrace, i.e. the addresses of all procedures that were invoked when the run-time
+error occurred.
+<!--l. 2492--><p class="noindent">This list is not very informative, so there exists a unit that generates the file names and line
+numbers of the called procedures using the addresses of the stack backtrace. This unit is called
+lineinfo.
+<!--l. 2496--><p class="noindent">You can use this unit by giving the <span 
+class="cmtt-10">-gl </span>option to the compiler. The unit will be automatically
+included. It is also possible to use the unit explicitly in your <span 
+class="cmtt-10">uses </span>clause, but you must make sure
+that you compile your program with debug info.
+<!--l. 2501--><p class="noindent">Here is an example program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;testline;
+&nbsp;
+&nbsp;procedure&nbsp;generateerror255;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;runerror(255);
+&nbsp;end;
+&nbsp;
+&nbsp;procedure&nbsp;generateanerror;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;generateerror255;
+&nbsp;end;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;generateanerror;
+&nbsp;end.
+</pre>
+</td></tr></table>When compiled with <span 
+class="cmtt-10">-gl</span>, the following output is generated:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Runtime&nbsp;error&nbsp;255&nbsp;at&nbsp;0x0040BDE5
+&nbsp;&nbsp;&nbsp;0x0040BDE5&nbsp;&nbsp;GENERATEERROR255,&nbsp;&nbsp;line&nbsp;6&nbsp;of&nbsp;testline.pp
+&nbsp;&nbsp;&nbsp;0x0040BDF0&nbsp;&nbsp;GENERATEANERROR,&nbsp;&nbsp;line&nbsp;13&nbsp;of&nbsp;testline.pp
+&nbsp;&nbsp;&nbsp;0x0040BE0C&nbsp;&nbsp;main,&nbsp;&nbsp;line&nbsp;17&nbsp;of&nbsp;testline.pp
+&nbsp;&nbsp;&nbsp;0x0040B7B1
+</pre>
+</td></tr></table>Which is more understandable than the normal message. Make sure that all units you use are
+compiled with debug info, because if they are not, no line number and filename can be
+found.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse52.htm" >next</a>] [<a 
+href="userse50.htm" >prev</a>] [<a 
+href="userse50.htm#tailuserse50.htm" >prev-tail</a>] [<a 
+href="userse51.htm" >front</a>] [<a 
+href="userch10.htm#userse51.htm" >up</a>] </p></div><a 
+  name="tailuserse51.htm"></a>  
+</body></html> 

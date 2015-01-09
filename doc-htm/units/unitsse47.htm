@@ -1,0 +1,86 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.1 Constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse48.htm" >next</a>] [<a 
+href="#tailunitsse47.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse47.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.1</span> <a 
+href="units.htm#QQ2-69-614" name="x69-60800017.1">Constants</a></h3>
+<!--l. 33--><p class="noindent">The following constants are error codes, returned by the various stream objects.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;CONST
+&nbsp;&nbsp;&nbsp;&nbsp;stOk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;0;&nbsp;{&nbsp;No&nbsp;stream&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stError&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;-1;&nbsp;{&nbsp;Access&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stInitError&nbsp;&nbsp;=&nbsp;-2;&nbsp;{&nbsp;Initialize&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stReadError&nbsp;&nbsp;=&nbsp;-3;&nbsp;{&nbsp;Stream&nbsp;read&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stWriteError&nbsp;=&nbsp;-4;&nbsp;{&nbsp;Stream&nbsp;write&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stGetError&nbsp;&nbsp;&nbsp;=&nbsp;-5;&nbsp;{&nbsp;Get&nbsp;object&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stPutError&nbsp;&nbsp;&nbsp;=&nbsp;-6;&nbsp;{&nbsp;Put&nbsp;object&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stSeekError&nbsp;&nbsp;=&nbsp;-7;&nbsp;{&nbsp;Seek&nbsp;error&nbsp;in&nbsp;stream&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stOpenError&nbsp;&nbsp;=&nbsp;-8;&nbsp;{&nbsp;Error&nbsp;opening&nbsp;stream&nbsp;}
+</pre>
+</td></tr></table>These constants can be passed to constructors of file streams:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;CONST
+&nbsp;&nbsp;&nbsp;&nbsp;stCreate&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$3C00;&nbsp;{&nbsp;Create&nbsp;new&nbsp;file&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stOpenRead&nbsp;&nbsp;=&nbsp;$3D00;&nbsp;{&nbsp;Read&nbsp;access&nbsp;only&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stOpenWrite&nbsp;=&nbsp;$3D01;&nbsp;{&nbsp;Write&nbsp;access&nbsp;only&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;stOpen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$3D02;&nbsp;{&nbsp;Read/write&nbsp;access&nbsp;}
+</pre>
+</td></tr></table>
+<!--l. 57--><p class="noindent">The following constants are error codes, returned by the collection list objects:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;CONST
+&nbsp;&nbsp;&nbsp;&nbsp;coIndexError&nbsp;=&nbsp;-1;&nbsp;{&nbsp;Index&nbsp;out&nbsp;of&nbsp;range&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;coOverflow&nbsp;&nbsp;&nbsp;=&nbsp;-2;&nbsp;{&nbsp;Overflow&nbsp;}
+</pre>
+</td></tr></table>
+<!--l. 65--><p class="noindent">Maximum data sizes (used in determining how many data can be used.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;CONST
+&nbsp;&nbsp;&nbsp;&nbsp;MaxBytes&nbsp;=&nbsp;128*1024*1024;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Maximum&nbsp;data&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;MaxWords&nbsp;=&nbsp;MaxBytes&nbsp;DIV&nbsp;SizeOf(Word);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Max&nbsp;word&nbsp;data&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;MaxPtrs&nbsp;=&nbsp;MaxBytes&nbsp;DIV&nbsp;SizeOf(Pointer);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Max&nbsp;ptr&nbsp;data&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;MaxCollectionSize&nbsp;=&nbsp;MaxBytes&nbsp;DIV&nbsp;SizeOf(Pointer);&nbsp;&nbsp;{&nbsp;Max&nbsp;collection&nbsp;size&nbsp;}
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse48.htm" >next</a>] [<a 
+href="unitsse47.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse47.htm" >up</a>] </p></div><a 
+  name="tailunitsse47.htm"></a>  
+</body></html> 

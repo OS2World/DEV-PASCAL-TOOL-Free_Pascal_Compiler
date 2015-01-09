@@ -1,0 +1,351 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.16 TResourceFile</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse63.htm" >next</a>] [<a 
+href="unitsse61.htm" >prev</a>] [<a 
+href="unitsse61.htm#tailunitsse61.htm" >prev-tail</a>] [<a 
+href="#tailunitsse62.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse62.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.16</span> <a 
+href="units.htm#QQ2-84-733" name="x84-72700017.16">TResourceFile</a></h3>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TResourceFile&nbsp;=&nbsp;OBJECT&nbsp;(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stream&nbsp;&nbsp;:&nbsp;PStream;&nbsp;{&nbsp;File&nbsp;as&nbsp;a&nbsp;stream&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modified:&nbsp;Boolean;&nbsp;{&nbsp;Modified&nbsp;flag&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Init&nbsp;(AStream:&nbsp;PStream);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destructor&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Count:&nbsp;Sw_Integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;KeyAt&nbsp;(I:&nbsp;Sw_Integer):&nbsp;String;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Get&nbsp;(Key:&nbsp;String):&nbsp;PObject;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;SwitchTo&nbsp;(AStream:&nbsp;PStream;&nbsp;Pack:&nbsp;Boolean):&nbsp;PStream;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Flush;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Delete&nbsp;(Key:&nbsp;String);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Put&nbsp;(Item:&nbsp;PObject;&nbsp;Key:&nbsp;String);
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PResourceFile&nbsp;=&nbsp;^TResourceFile;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-734" name="x84-72800017.16">TResourceFile Fields</a></h4>
+<!--l. 2254--><p class="noindent"><span 
+class="cmtt-10">TResourceFile </span>has the following fields:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Stream</span> </dt><dd 
+class="description">contains the (file) stream that has the executable image and the resources. It can
+     be initialized by the <span 
+class="cmss-10">Init </span>(<a 
+href="#x84-72900017.16">635<!--tex4ht:ref: se:TBufStream--></a>) constructor call.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Modified</span> </dt><dd 
+class="description">is set to <span 
+class="cmtt-10">True </span>if one of the resources has been changed. It is set by the <span 
+class="cmss-10">SwitchTo</span>
+     (<a 
+href="#x84-72900017.16">635<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Delete </span>(<a 
+href="#x84-73600017.16">637<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">Put </span>(<a 
+href="#x84-73700017.16">637<!--tex4ht:ref: se:TBufStream--></a>) methods. Calling <span 
+class="cmss-10">Flush </span>(<a 
+href="#x84-73500017.16">637<!--tex4ht:ref: se:TBufStream--></a>) will clear the <span 
+class="cmtt-10">Modified</span>
+     flag.</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-735" name="x84-72900017.16">TResourceFile.Init</a></h4><a 
+  name="dx84-729001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TResourceFile.Init (AStream: PStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>instantiates a new instance of a <span 
+class="cmtt-10">TResourceFile </span>object. If <span 
+class="cmtt-10">AStream </span>is not nil then it
+is considered as a stream describing an executable image on disk.
+<!--l. 2274--><p class="noindent"><span 
+class="cmtt-10">Init </span>will try to position the stream on the start of the resources section, and read all resources
+from the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Done </span>(<a 
+href="#x84-73000017.16">635<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-736" name="x84-73000017.16">TResourceFile.Done</a></h4><a 
+  name="dx84-730001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TResourceFile.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done </span>cleans up the instance of the <span 
+class="cmtt-10">TResourceFile </span>Object. If  <span 
+class="cmtt-10">Stream </span>was specified at
+initialization, then <span 
+class="cmtt-10">Stream </span>is disposed of too.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x84-72900017.16">635<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-737" name="x84-73100017.16">TResourceFile.Count</a></h4><a 
+  name="dx84-731001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceFile.Count: Sw</span>_<span 
+class="cmtt-10">Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Count </span>returns the number of resources. If no resources were read, zero is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x84-72900017.16">635<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-738" name="x84-73200017.16">TResourceFile.KeyAt</a></h4><a 
+  name="dx84-732001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceFile.KeyAt (I: Sw</span>_<span 
+class="cmtt-10">Integer): String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">KeyAt </span>returns the key (the name) of the <span 
+class="cmtt-10">I</span>-th resource.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case <span 
+class="cmtt-10">I </span>is invalid, <span 
+class="cmtt-10">TCollection.Error </span>will be executed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Get </span>(<a 
+href="#x84-73300017.16">636<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-739" name="x84-73300017.16">TResourceFile.Get</a></h4><a 
+  name="dx84-733001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceFile.Get (Key: String): PObject;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Get </span>returns a pointer to a instance of a resource identified by <span 
+class="cmtt-10">Key</span>. If <span 
+class="cmtt-10">Key </span>cannot be found
+in the list of resources, then <span 
+class="cmtt-10">Nil </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned may be those by <span 
+class="cmtt-10">TStream.Get</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-740" name="x84-73400017.16">TResourceFile.SwitchTo</a></h4><a 
+  name="dx84-734001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceFile.SwitchTo (AStream: PStream; Pack: Boolean): PStream;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SwitchTo </span>switches to a new stream to hold the resources in. <span 
+class="cmtt-10">AStream </span>will be the new stream
+after the call to <span 
+class="cmtt-10">SwitchTo</span>.
+<!--l. 2337--><p class="noindent">If <span 
+class="cmtt-10">Pack </span>is true, then all the known resources will be copied from the current stream to the
+new stream (<span 
+class="cmtt-10">AStream</span>). If <span 
+class="cmtt-10">Pack </span>is <span 
+class="cmtt-10">False</span>, then only the current resource is copied.
+<!--l. 2341--><p class="noindent">The return value is the value of the original stream: <span 
+class="cmtt-10">Stream</span>.
+<!--l. 2343--><p class="noindent">The <span 
+class="cmtt-10">Modified </span>flag is set as a consequence of this call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned can be those of <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Flush </span>(<a 
+href="#x84-73500017.16">637<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-741" name="x84-73500017.16">TResourceFile.Flush</a></h4><a 
+  name="dx84-735001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TResourceFile.Flush;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the <span 
+class="cmtt-10">Modified </span>flag is set to <span 
+class="cmtt-10">True</span>, then <span 
+class="cmtt-10">Flush </span>writes the resources to the stream <span 
+class="cmtt-10">Stream</span>.
+It sets the <span 
+class="cmtt-10">Modified </span>flag to true after that.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors can be those by <span 
+class="cmss-10">TStream.Seek </span>(<a 
+href="unitsse52.htm#x74-64600017.6">572<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SwitchTo </span>(<a 
+href="#x84-73400017.16">637<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-742" name="x84-73600017.16">TResourceFile.Delete</a></h4><a 
+  name="dx84-736001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TResourceFile.Delete (Key: String);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Delete </span>deletes the resource identified by <span 
+class="cmtt-10">Key </span>from the collection. It sets the <span 
+class="cmtt-10">Modified </span>flag
+to true.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Flush </span>(<a 
+href="#x84-73500017.16">637<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-84-743" name="x84-73700017.16">TResourceFile.Put</a></h4><a 
+  name="dx84-737001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TResourceFile.Put (Item: PObject; Key: String);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Put </span>sets the resource identified by <span 
+class="cmtt-10">Key </span>to <span 
+class="cmtt-10">Item</span>. If no such resource exists, a new one is
+created. The item is written to the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned may be those by <span 
+class="cmss-10">TStream.Put </span>(<a 
+href="unitsse52.htm#x74-64300017.6">571<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmtt-10">TStream.Seek</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Get </span>(<a 
+href="#x84-73300017.16">636<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse63.htm" >next</a>] [<a 
+href="unitsse61.htm" >prev</a>] [<a 
+href="unitsse61.htm#tailunitsse61.htm" >prev-tail</a>] [<a 
+href="unitsse62.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse62.htm" >up</a>] </p></div><a 
+  name="tailunitsse62.htm"></a>   
+</body></html> 

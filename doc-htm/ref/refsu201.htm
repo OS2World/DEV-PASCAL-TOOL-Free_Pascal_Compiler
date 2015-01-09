@@ -1,0 +1,193 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.2.0 SetResourceStrings</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu202.htm" >next</a>] [<a 
+href="refsu200.htm" >prev</a>] [<a 
+href="refsu200.htm#tailrefsu200.htm" >prev-tail</a>] [<a 
+href="#tailrefsu201.htm">tail</a>] [<a 
+href="refse66.htm#refsu201.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-289-310" name="x289-29500014.2">SetResourceStrings</a></h4><a 
+  name="dx289-295001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TResourceIterator = Function (Name,Value : AnsiString;Hash :</span>
+<span 
+class="cmtt-10">Longint):AnsiString;</span>
+<!--l. 7675--><p class="noindent"><span 
+class="cmtt-10">Procedure SetResourceStrings (SetFunction : TResourceIterator);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetResourceStrings </span>calls <span 
+class="cmtt-10">SetFunction </span>for all resourcestrings in the resourcestring tables
+and sets the resourcestring&#8217;s current value to the value returned by <span 
+class="cmtt-10">SetFunction</span>.
+<!--l. 7681--><p class="noindent">The <span 
+class="cmtt-10">Name</span>,<span 
+class="cmtt-10">Value </span>and <span 
+class="cmtt-10">Hash </span>parameters passed to the iterator function are the values stored
+in the tables.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetResourceStringCurrentValue        </span>(<a 
+href="refsu191.htm#x279-28500014.2">602<!--tex4ht:ref: se:exceptclasses--></a>),        <span 
+class="cmss-10">GetResourceStringDefaultValue        </span>(<a 
+href="refsu192.htm#x280-28600014.2">603<!--tex4ht:ref: se:exceptclasses--></a>),
+<span 
+class="cmss-10">GetResourceStringHash </span>(<a 
+href="refsu193.htm#x281-28700014.2">604<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">GetResourceStringName </span>(<a 
+href="refsu194.htm#x282-28800014.2">605<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">ResourceStringTableCount </span>(<a 
+href="refsu200.htm#x288-29400014.2">611<!--tex4ht:ref: se:exceptclasses--></a>),
+<span 
+class="cmss-10">ResourceStringCount </span>(<a 
+href="refsu199.htm#x287-29300014.2">610<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7694--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex95.pp</span><HR/><div class="listinginput">
+<!--l. 7694--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example95;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SetResourceStrings</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">{$Mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">ResourceString</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">First</span>&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'First</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Second</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'Second</span>&nbsp;<span 
+class="cmtt-10">String';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">AnsiString;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">Translate</span>&nbsp;<span 
+class="cmtt-10">(Name,Value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">AnsiString;</span>&nbsp;<span 
+class="cmtt-10">Hash</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint):</span>&nbsp;<span 
+class="cmtt-10">AnsiString;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Translate</span>&nbsp;<span 
+class="cmtt-10">(',Name,')</span>&nbsp;<span 
+class="cmtt-10">=&gt;</span>&nbsp;<span 
+class="cmtt-10">',Value);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('-&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Readln</span>&nbsp;&nbsp;<span 
+class="cmtt-10">(Result);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetResourceStrings(@Translate);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Translated</span>&nbsp;<span 
+class="cmtt-10">strings</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ResourceStringTableCount-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">J:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ResourceStringCount(i)-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(GetResourceStringDefaultValue(I,J));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Translates</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(GetResourceStringCurrentValue(I,J));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu202.htm" >next</a>] [<a 
+href="refsu200.htm" >prev</a>] [<a 
+href="refsu200.htm#tailrefsu200.htm" >prev-tail</a>] [<a 
+href="refsu201.htm" >front</a>] [<a 
+href="refse66.htm#refsu201.htm" >up</a>] </p></div><a 
+  name="tailrefsu201.htm"></a>  
+</body></html> 

@@ -1,0 +1,137 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Eoln</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu96.htm" >next</a>] [<a 
+href="refsu94.htm" >prev</a>] [<a 
+href="refsu94.htm#tailrefsu94.htm" >prev-tail</a>] [<a 
+href="#tailrefsu95.htm">tail</a>] [<a 
+href="refse64.htm#refsu95.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-180-201" name="x180-18600013.3">Eoln</a></h4><a 
+  name="dx180-186001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Eoln [(F : Text)] : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Eof </span>returns <span 
+class="cmtt-10">True </span>if the file pointer has reached the end of a line, which is demarcated by
+a line-feed character (ASCII value 10), or if the end of the file is reached. In all other cases
+<span 
+class="cmtt-10">Eof </span>returns <span 
+class="cmtt-10">False</span>. If no file <span 
+class="cmtt-10">F </span>is specified, standard input is assumed. It can only be used
+on files of type <span 
+class="cmtt-10">Text</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Eof </span>(<a 
+href="refsu94.htm#x179-18500013.3">485<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Assign </span>(<a 
+href="refsu72.htm#x157-16300013.3">455<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Reset </span>(<a 
+href="refsu157.htm#x242-24800013.3">558<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Rewrite </span>(<a 
+href="refsu158.htm#x243-24900013.3">559<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5668--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex19.pp</span><HR/><div class="listinginput">
+<!--l. 5668--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example19;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Eoln</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">waits</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">keyboard</span>&nbsp;<span 
+class="cmtt-10">input.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">It</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">print</span>&nbsp;<span 
+class="cmtt-10">True</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">empty</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">put</span>&nbsp;<span 
+class="cmtt-10">in,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">false</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">type</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">non-empty</span>&nbsp;<span 
+class="cmtt-10">line.</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">It</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">stop</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">enter.}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Eoln</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(eoln);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu96.htm" >next</a>] [<a 
+href="refsu94.htm" >prev</a>] [<a 
+href="refsu94.htm#tailrefsu94.htm" >prev-tail</a>] [<a 
+href="refsu95.htm" >front</a>] [<a 
+href="refse64.htm#refsu95.htm" >up</a>] </p></div><a 
+  name="tailrefsu95.htm"></a>  
+</body></html> 

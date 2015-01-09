@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $MMX : Intel MMX support (Intel 80x86 only)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu32.htm" >next</a>] [<a 
+href="progsu30.htm" >prev</a>] [<a 
+href="progsu30.htm#tailprogsu30.htm" >prev-tail</a>] [<a 
+href="#tailprogsu31.htm">tail</a>] [<a 
+href="progse2.htm#progsu31.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-38-36" name="x38-360001.1"><span 
+class="cmtt-10">$MMX </span>: Intel MMX support (Intel 80x86 only)</a></h4>
+<!--l. 677--><p class="noindent">Free Pascal supports optimization for the <span 
+class="cmbx-10">MMX </span>Intel processor (see also chapter <a 
+href="progch5.htm#x92-900005">5<!--tex4ht:ref: ch:MMXSupport--></a>).
+<!--l. 680--><p class="noindent">This optimizes certain code parts for the <span 
+class="cmbx-10">MMX </span>Intel processor, thus greatly improving speed.
+The speed is noticed mostly when moving large amounts of data. Things that change
+are
+     <ul class="itemize1">
+     <li class="itemize">Data with a size that is a multiple of 8 bytes is moved using the <span 
+class="cmtt-10">movq </span>assembler
+     instruction, which moves 8 bytes at a time</li></ul>
+<!--l. 687--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>MMX support is NOT emulated on non-MMX systems, i.e. if the processor doesn&#8217;t have the MMX
+extensions, the MMX optimizations cannot be used.
+When <span 
+class="cmbx-10">MMX </span>support is on, it is not allowed to do floating point arithmetic. It is allowed to move
+floating point data, but no arithmetic can be done. If floating point math must be done anyway,
+first <span 
+class="cmbx-10">MMX </span>support must be switched off and the FPU must be cleared using the <span 
+class="cmtt-10">emms </span>function of
+the <span 
+class="cmss-10">cpu </span>unit.
+<!--l. 697--><p class="noindent">The following example will make this more clear:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;MMXDemo;
+&nbsp;
+&nbsp;uses&nbsp;mmx;
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;d1&nbsp;:&nbsp;double;
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;:&nbsp;array[0..10000]&nbsp;of&nbsp;double;
+&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;d1:=1.0;
+&nbsp;{$mmx+}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;floating&nbsp;point&nbsp;data&nbsp;is&nbsp;used,&nbsp;but&nbsp;we&nbsp;do&nbsp;_no_&nbsp;arithmetic&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i:=0&nbsp;to&nbsp;10000&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i]:=d2;&nbsp;&nbsp;{&nbsp;this&nbsp;is&nbsp;done&nbsp;with&nbsp;64&nbsp;bit&nbsp;moves&nbsp;}
+&nbsp;{$mmx-}
+&nbsp;&nbsp;&nbsp;&nbsp;emms;&nbsp;&nbsp;&nbsp;{&nbsp;clear&nbsp;fpu&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;now&nbsp;we&nbsp;can&nbsp;do&nbsp;floating&nbsp;point&nbsp;arithmetic&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;end.
+</pre>
+</td></tr></table>See, however, the chapter on MMX (<a 
+href="progch5.htm#x92-900005">5<!--tex4ht:ref: ch:MMXSupport--></a>) for more information on this topic.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu32.htm" >next</a>] [<a 
+href="progsu30.htm" >prev</a>] [<a 
+href="progsu30.htm#tailprogsu30.htm" >prev-tail</a>] [<a 
+href="progsu31.htm" >front</a>] [<a 
+href="progse2.htm#progsu31.htm" >up</a>] </p></div><a 
+  name="tailprogsu31.htm"></a>  
+</body></html> 

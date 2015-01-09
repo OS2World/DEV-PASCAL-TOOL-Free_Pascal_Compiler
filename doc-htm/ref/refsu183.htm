@@ -1,0 +1,112 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Upcase</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu184.htm" >next</a>] [<a 
+href="refsu182.htm" >prev</a>] [<a 
+href="refsu182.htm#tailrefsu182.htm" >prev-tail</a>] [<a 
+href="#tailrefsu183.htm">tail</a>] [<a 
+href="refse64.htm#refsu183.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-268-289" name="x268-27400013.3">Upcase</a></h4><a 
+  name="dx268-274001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Upcase (C : Char or string) : Char or String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Upcase </span>returns the uppercase version of its argument <span 
+class="cmtt-10">C</span>. If its argument is a string, then
+the complete string is converted to uppercase. The type of the returned value is the same as
+the type of the argument.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Lowercase </span>(<a 
+href="refsu131.htm#x216-22200013.3">531<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7246--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex72.pp</span><HR/><div class="listinginput">
+<!--l. 7246--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example72;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Upcase</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">i:=ord('a')</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ord('z')</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">(upcase(chr(i)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">doesn't</span>&nbsp;<span 
+class="cmtt-10">work</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">TP,</span>&nbsp;<span 
+class="cmtt-10">but</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">Free</span>&nbsp;<span 
+class="cmtt-10">Pascal</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(Upcase('abcdefghijklmnopqrstuvwxyz'));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu184.htm" >next</a>] [<a 
+href="refsu182.htm" >prev</a>] [<a 
+href="refsu182.htm#tailrefsu182.htm" >prev-tail</a>] [<a 
+href="refsu183.htm" >front</a>] [<a 
+href="refse64.htm#refsu183.htm" >up</a>] </p></div><a 
+  name="tailrefsu183.htm"></a>  
+</body></html> 

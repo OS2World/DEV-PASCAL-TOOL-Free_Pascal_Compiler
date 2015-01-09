@@ -1,0 +1,56 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $R or $RANGECHECKS : Range checking</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu40.htm" >next</a>] [<a 
+href="progsu38.htm" >prev</a>] [<a 
+href="progsu38.htm#tailprogsu38.htm" >prev-tail</a>] [<a 
+href="#tailprogsu39.htm">tail</a>] [<a 
+href="progse2.htm#progsu39.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-46-45" name="x46-440001.1"><span 
+class="cmtt-10">$R </span>or <span 
+class="cmtt-10">$RANGECHECKS </span>: Range checking</a></h4>
+<!--l. 858--><p class="noindent">By default, the compiler doesn&#8217;t generate code to check the ranges of array indices, enumeration
+types, subrange types, etc. Specifying the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$R+</span><span 
+class="cmsy-10">} </span>switch tells the computer to generate code to
+check these indices. If, at run-time, an index or enumeration type is specified that is out of the
+declared range of the compiler, then a run-time error is generated, and the program exits with exit
+code 201. This can happen when doing a typecast (implicit or explicit) on an enumeration type or
+subrange type.
+<!--l. 867--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$RANGECHECKS OFF</span><span 
+class="cmsy-10">} </span>switch tells the compiler not to generate range checking code. This may
+result in faulty program behaviour, but no run-time errors will be generated.
+<!--l. 871--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>The standard functions <span 
+class="cmtt-10">val </span>and <span 
+class="cmtt-10">Read </span>will also check ranges when the call is compiled in <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$R+</span><span 
+class="cmsy-10">}</span>
+mode.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu40.htm" >next</a>] [<a 
+href="progsu38.htm" >prev</a>] [<a 
+href="progsu38.htm#tailprogsu38.htm" >prev-tail</a>] [<a 
+href="progsu39.htm" >front</a>] [<a 
+href="progse2.htm#progsu39.htm" >up</a>] </p></div><a 
+  name="tailprogsu39.htm"></a>  
+</body></html> 

@@ -1,0 +1,77 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 Unit searching strategy</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu93.htm" >prev</a>] [<a 
+href="progsu93.htm#tailprogsu93.htm" >prev-tail</a>] [<a 
+href="#tailprogsu94.htm">tail</a>] [<a 
+href="progse26.htm#progsu94.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-136-143" name="x136-1350007.2">Unit searching strategy</a></h4>
+<!--l. 3280--><p class="noindent">When you compile a unit, the compiler will by default always look for unit files.
+<!--l. 3283--><p class="noindent">To be able to differentiate between units that have been compiled as static or dynamic libraries,
+there are 2 switches:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-XD:</span>&nbsp; </dt><dd 
+class="description">This will define the symbol <span 
+class="cmtt-10">FPC</span>_<span 
+class="cmtt-10">LINK</span>_<span 
+class="cmtt-10">DYNAMIC</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-XS:</span>&nbsp; </dt><dd 
+class="description">This will define the symbol <span 
+class="cmtt-10">FPC</span>_<span 
+class="cmtt-10">LINK</span>_<span 
+class="cmtt-10">STATIC</span></dd></dl>
+<!--l. 3290--><p class="noindent">Definition of one symbol will automatically undefine the other.
+<!--l. 3292--><p class="noindent">These two switches can be used in conjunction with the configuration file <span 
+class="cmss-10">fpc.cfg</span>. The existence of
+one of these symbols can be used to decide which unit search path to set. For example, on
+<span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#&nbsp;Set&nbsp;unit&nbsp;paths
+&nbsp;
+&nbsp;#IFDEF&nbsp;FPC_LINK_STATIC
+&nbsp;-Up/usr/lib/fpc/linuxunits/staticunits
+&nbsp;#ENDIF
+&nbsp;#IFDEF&nbsp;FPC_LINK_DYNAMIC
+&nbsp;-Up/usr/lib/fpc/linuxunits/sharedunits
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>With such a configuration file, the compiler will look for it&#8217;s units in different directories,
+depending on whether <span 
+class="cmtt-10">-XD </span>or <span 
+class="cmtt-10">-XS </span>is used.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu93.htm" >prev</a>] [<a 
+href="progsu93.htm#tailprogsu93.htm" >prev-tail</a>] [<a 
+href="progsu94.htm" >front</a>] [<a 
+href="progse26.htm#progsu94.htm" >up</a>] </p></div><a 
+  name="tailprogsu94.htm"></a>  
+</body></html> 

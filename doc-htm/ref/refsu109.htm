@@ -1,0 +1,112 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Getdir</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu110.htm" >next</a>] [<a 
+href="refsu108.htm" >prev</a>] [<a 
+href="refsu108.htm#tailrefsu108.htm" >prev-tail</a>] [<a 
+href="#tailrefsu109.htm">tail</a>] [<a 
+href="refse64.htm#refsu109.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-194-215" name="x194-20000013.3">Getdir</a></h4><a 
+  name="dx194-200001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Getdir (drivenr : byte;var dir : string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Getdir </span>returns in <span 
+class="cmtt-10">dir </span>the current directory on the drive <span 
+class="cmtt-10">drivenr</span>, where drivenr is 1 for
+the first floppy drive, 3 for the first hard disk etc. A value of 0 returns the directory on the
+current disk. On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems, <span 
+class="cmtt-10">drivenr </span>is ignored, as there is only one directory
+tree.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">An error is returned under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, if the drive requested isn&#8217;t ready.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Chdir </span>(<a 
+href="refsu78.htm#x163-16900013.3">463<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5906--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex29.pp</span><HR/><div class="listinginput">
+<!--l. 5906--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example29;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetDir</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetDir</span>&nbsp;<span 
+class="cmtt-10">(0,S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Current</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu110.htm" >next</a>] [<a 
+href="refsu108.htm" >prev</a>] [<a 
+href="refsu108.htm#tailrefsu108.htm" >prev-tail</a>] [<a 
+href="refsu109.htm" >front</a>] [<a 
+href="refse64.htm#refsu109.htm" >up</a>] </p></div><a 
+  name="tailrefsu109.htm"></a>  
+</body></html> 

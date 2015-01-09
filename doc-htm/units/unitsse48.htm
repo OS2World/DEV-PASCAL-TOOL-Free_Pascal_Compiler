@@ -1,0 +1,125 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.2 Types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse49.htm" >next</a>] [<a 
+href="unitsse47.htm" >prev</a>] [<a 
+href="unitsse47.htm#tailunitsse47.htm" >prev-tail</a>] [<a 
+href="#tailunitsse48.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse48.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.2</span> <a 
+href="units.htm#QQ2-70-615" name="x70-60900017.2">Types</a></h3>
+<!--l. 76--><p class="noindent">The follwing auxiliary types are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Character&nbsp;set&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;TCharSet&nbsp;=&nbsp;SET&nbsp;Of&nbsp;Char;
+&nbsp;&nbsp;&nbsp;&nbsp;PCharSet&nbsp;=&nbsp;^TCharSet;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Byte&nbsp;array&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;TByteArray&nbsp;=&nbsp;ARRAY&nbsp;[0..MaxBytes-1]&nbsp;Of&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;PByteArray&nbsp;=&nbsp;^TByteArray;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Word&nbsp;array&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;TWordArray&nbsp;=&nbsp;ARRAY&nbsp;[0..MaxWords-1]&nbsp;Of&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;PWordArray&nbsp;=&nbsp;^TWordArray;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Pointer&nbsp;array&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;TPointerArray&nbsp;=&nbsp;Array&nbsp;[0..MaxPtrs-1]&nbsp;Of&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;PPointerArray&nbsp;=&nbsp;^TPointerArray;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;String&nbsp;pointer&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;PString&nbsp;=&nbsp;^String;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Filename&nbsp;array&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;AsciiZ&nbsp;=&nbsp;Array&nbsp;[0..255]&nbsp;Of&nbsp;Char;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Sw_Word&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;Cardinal;
+&nbsp;&nbsp;&nbsp;&nbsp;Sw_Integer&nbsp;=&nbsp;LongInt;
+</pre>
+</td></tr></table>The following records are used internaly for easy type conversion:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Word&nbsp;to&nbsp;bytes}
+&nbsp;&nbsp;&nbsp;&nbsp;WordRec&nbsp;=&nbsp;packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lo,&nbsp;Hi:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;LongInt&nbsp;to&nbsp;words&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;LongRec&nbsp;=&nbsp;packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lo,&nbsp;Hi:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;
+&nbsp;&nbsp;&nbsp;{&nbsp;Pointer&nbsp;to&nbsp;words&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;PtrRec&nbsp;=&nbsp;packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ofs,&nbsp;Seg:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+</pre>
+</td></tr></table>
+<!--l. 123--><p class="noindent">The following record is used when streaming objects:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;PStreamRec&nbsp;=&nbsp;^TStreamRec;
+&nbsp;&nbsp;&nbsp;&nbsp;TStreamRec&nbsp;=&nbsp;Packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ObjType:&nbsp;Sw_Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VmtLink:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Load&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Store:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;:&nbsp;PStreamRec;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+</pre>
+</td></tr></table>
+<!--l. 137--><p class="noindent">The <span 
+class="cmtt-10">TPoint </span>basic object is used in the <span 
+class="cmtt-10">TRect </span>object (see section <a 
+href="unitsse50.htm#x72-61800017.4">17.4<!--tex4ht:ref: se:TRect--></a>, page <a 
+href="unitsse50.htm#x72-61800017.4">554<!--tex4ht:ref: se:TRect--></a>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;PPoint&nbsp;=&nbsp;^TPoint;
+&nbsp;&nbsp;&nbsp;&nbsp;TPoint&nbsp;=&nbsp;OBJECT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X,&nbsp;Y:&nbsp;Sw_Integer;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse49.htm" >next</a>] [<a 
+href="unitsse47.htm" >prev</a>] [<a 
+href="unitsse47.htm#tailunitsse47.htm" >prev-tail</a>] [<a 
+href="unitsse48.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse48.htm" >up</a>] </p></div><a 
+  name="tailunitsse48.htm"></a>  
+</body></html> 

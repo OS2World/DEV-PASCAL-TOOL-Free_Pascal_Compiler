@@ -1,0 +1,420 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.4 Writing a keyboard driver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse32.htm" >prev</a>] [<a 
+href="unitsse32.htm#tailunitsse32.htm" >prev-tail</a>] [<a 
+href="#tailunitsse33.htm">tail</a>] [<a 
+href="unitsch11.htm#unitsse33.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.4</span> <a 
+href="units.htm#QQ2-49-358" name="x49-35200011.4">Writing a keyboard driver</a></h3>
+<!--l. 578--><p class="noindent">Writing a keyboard driver means that hooks must be created for most of the keyboard
+unit functions. The <span 
+class="cmtt-10">TKeyBoardDriver </span>record contains a field for each of the possible
+hooks:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TKeyboardDriver&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;InitDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;DoneDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;GetKeyEvent&nbsp;:&nbsp;Function&nbsp;:&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;PollKeyEvent&nbsp;:&nbsp;Function&nbsp;:&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;GetShiftState&nbsp;:&nbsp;Function&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;TranslateKeyEvent&nbsp;:&nbsp;Function&nbsp;(KeyEvent:&nbsp;TKeyEvent):&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;TranslateKeyEventUniCode:&nbsp;Function&nbsp;(KeyEvent:&nbsp;TKeyEvent):&nbsp;TKeyEvent;
+&nbsp;end;
+</pre>
+</td></tr></table>The meaning of these hooks is explained below:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">InitDriver</span> </dt><dd 
+class="description">Called to initialize and enable the driver. Guaranteed to be called only once.
+     This should initialize all needed things for the driver.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">DoneDriver</span> </dt><dd 
+class="description">Called to disable and clean up the driver. Guaranteed to be called after a call
+     to <span 
+class="cmtt-10">initDriver</span>. This should clean up all things initialized by <span 
+class="cmtt-10">InitDriver</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetKeyEvent</span> </dt><dd 
+class="description">Called by <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="unitsse31.htm#x47-33500011.2">295<!--tex4ht:ref: tab:speckeys--></a>). Must wait for and return the next key event.
+     It should NOT store keys.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PollKeyEvent</span> </dt><dd 
+class="description">Called by <span 
+class="cmss-10">PollKeyEvent </span>(<a 
+href="unitsse31.htm#x47-34400011.2">301<!--tex4ht:ref: tab:speckeys--></a>). It must return the next key event if there is
+     one. Should not store keys.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetShiftState</span> </dt><dd 
+class="description">Called by <span 
+class="cmss-10">PollShiftStateEvent </span>(<a 
+href="unitsse31.htm#x47-34500011.2">301<!--tex4ht:ref: tab:speckeys--></a>). Must return the current shift state.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TranslateKeyEvent</span> </dt><dd 
+class="description">Should translate a raw key event to a cOrrect key event, i.e. should
+     fill in the shiftstate and convert function key scancodes to function key keycodes. If
+     the <span 
+class="cmtt-10">TranslateKeyEvent </span>is not filled in, a default translation function will be called
+     which converts the known scancodes from the tables in the previous section to a correct
+     keyevent.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TranslateKeyEventUniCode</span> </dt><dd 
+class="description">Should   translate   a   key   event   to   a   unicode   key
+     representation.</dd></dl>
+<!--l. 615--><p class="noindent">Strictly speaking, only the <span 
+class="cmtt-10">GetKeyEvent </span>and <span 
+class="cmtt-10">PollKeyEvent </span>hooks must be implemented for the
+driver to function correctly.
+<!--l. 618--><p class="noindent">The following unit demonstrates how a keyboard driver can be installed. It takes the installed
+driver, and hooks into the <span 
+class="cmtt-10">GetKeyEvent </span>function to register and log the key events in a file. This
+driver can work on top of any other driver, as long as it is inserted in the <span 
+class="cmtt-10">uses </span>clause <span 
+class="cmti-10">after </span>the real
+driver unit, and the real driver unit should set the driver record in its initialization
+section.
+<!--l. 624--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/logkeys.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 624--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">logkeys;</span>
+<br>
+<br>   <span 
+class="cmtt-10">interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartKeyLogging;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopKeyLogging;</span>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;&nbsp;<span 
+class="cmtt-10">IsKeyLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;&nbsp;<span 
+class="cmtt-10">SetKeyLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">sysutils,keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewKeyBoardDriver,</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldKeyBoardDriver</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyboardDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active,Logging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">KeyLog</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TimeStamp</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TimeStamp:=FormatDateTime('hh:nn:ss',Time());</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartKeyLogging;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(KeyLog,'Start</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">keystrokes</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopKeyLogging;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(KeyLog,'Stop</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">keystrokes</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">IsKeyLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">IsKeyLogging:=Logging;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">LogGetKeyEvent</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K:=OldkeyboardDriver.GetKeyEvent();</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Logging</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(KeyLog,TimeStamp,':</span>&nbsp;<span 
+class="cmtt-10">Key</span>&nbsp;<span 
+class="cmtt-10">event:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(KeyLog,KeyEventToString(TranslateKeyEvent(K)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogGetKeyEvent:=K;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogInitKeyBoard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldKeyBoardDriver.InitDriver();</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign(KeyLog,logFileName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite(KeyLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StartKeyLogging;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogDoneKeyBoard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StopKeyLogging;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(KeyLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldKeyBoardDriver.DoneDriver();</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetKeyLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">Active</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:=FileName;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Initialization</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetKeyBoardDriver(OldKeyBoardDriver);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewKeyBoardDriver:=OldKeyBoardDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewKeyBoardDriver.GetKeyEvent:=@LogGetKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewKeyBoardDriver.InitDriver:=@LogInitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewKeyBoardDriver.DoneDriver:=@LogDoneKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:='keyboard.log';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetKeyboardDriver(NewKeyBoardDriver);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> The following program demonstrates the use of the unit:
+<!--l. 626--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 626--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">logkeys</span>&nbsp;<span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard,logkeys;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end,</span>&nbsp;<span 
+class="cmtt-10">&#34;s&#34;</span>&nbsp;<span 
+class="cmtt-10">toggles</span>&nbsp;<span 
+class="cmtt-10">logging.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventChar(K)='s'</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">IsKeyLogging</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">StopKeyLogging</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">StartKeyLogging;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> Note that with a simple extension of this unit could be used to make a driver that is capable of
+recording and storing a set of keyboard strokes, and replaying them at a later time, so a &#8217;keyboard
+macro&#8217; capable driver. This driver could sit on top of any other driver.  <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse32.htm" >prev</a>] [<a 
+href="unitsse32.htm#tailunitsse32.htm" >prev-tail</a>] [<a 
+href="unitsse33.htm" >front</a>] [<a 
+href="unitsch11.htm#unitsse33.htm" >up</a>]
+</p></div><a 
+  name="tailunitsse33.htm"></a>  
+</body></html> 

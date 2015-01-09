@@ -1,0 +1,53 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.8.0 inline</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu46.htm" >next</a>] [<a 
+href="refsu44.htm" >prev</a>] [<a 
+href="refsu44.htm#tailrefsu44.htm" >prev-tail</a>] [<a 
+href="#tailrefsu45.htm">tail</a>] [<a 
+href="refse43.htm#refsu45.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-103-123" name="x103-1090008.8">inline</a></h4> Procedures that are declared inline are copied to the places where they are called. This has
+the effect that there is no actual procedure call, the code of the procedure is just copied to where
+the procedure is needed, this results in faster execution speed if the function or procedure is used a
+lot.
+<!--l. 3625--><p class="noindent">By default, <span 
+class="cmtt-10">inline </span>procedures are not allowed. Inline code must be enabled using the
+command-line switch <span 
+class="cmtt-10">-Si </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$inline on</span><span 
+class="cmsy-10">} </span>directive.
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x103-109002x1"></a>Inline code is NOT exported from a unit. This means that when calling an inline
+     procedure from another unit, a normal procedure call will be performed. Only inside
+     units, <span 
+class="cmtt-10">Inline </span>procedures are really inlined.
+     </li>
+     <li class="enumerate"><a 
+  name="x103-109004x2"></a>Recursive inline functions are not allowed. i.e. an inline function that calls itself is not
+     allowed.</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu46.htm" >next</a>] [<a 
+href="refsu44.htm" >prev</a>] [<a 
+href="refsu44.htm#tailrefsu44.htm" >prev-tail</a>] [<a 
+href="refsu45.htm" >front</a>] [<a 
+href="refse43.htm#refsu45.htm" >up</a>] </p></div><a 
+  name="tailrefsu45.htm"></a>  
+</body></html> 

@@ -1,0 +1,273 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.4.0 Writing your own memory manager</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu114.htm" >prev</a>] [<a 
+href="progsu114.htm#tailprogsu114.htm" >prev-tail</a>] [<a 
+href="#tailprogsu115.htm">tail</a>] [<a 
+href="progse31.htm#progsu115.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-165-190" name="x165-1700008.4">Writing your own memory manager</a></h4>
+<!--l. 3996--><p class="noindent">Free Pascal allows you to write and use your own memory manager. The standard functions
+<span 
+class="cmtt-10">GetMem</span>, <span 
+class="cmtt-10">FreeMem</span>, <span 
+class="cmtt-10">ReallocMem </span>and <span 
+class="cmtt-10">Maxavail </span>use a special record in the <span 
+class="cmss-10">system </span>unit to do the
+actual memory management. The <span 
+class="cmss-10">system </span>unit initializes this record with the <span 
+class="cmss-10">system </span>unit&#8217;s own
+memory manager, but you can read and set this record using the <span 
+class="cmtt-10">GetMemoryManager </span>and
+<span 
+class="cmtt-10">SetMemoryManager </span>calls:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;procedure&nbsp;GetMemoryManager(var&nbsp;MemMgr:&nbsp;TMemoryManager);
+&nbsp;procedure&nbsp;SetMemoryManager(const&nbsp;MemMgr:&nbsp;TMemoryManager);
+</pre>
+</td></tr></table>
+<!--l. 4007--><p class="noindent">the <span 
+class="cmtt-10">TMemoryManager </span>record is defined as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TMemoryManager&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Getmem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(Size:Longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freemem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(var&nbsp;p:pointer):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FreememSize&nbsp;:&nbsp;Function(var&nbsp;p:pointer;Size:Longint):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AllocMem&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(Size:longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReAllocMem&nbsp;&nbsp;:&nbsp;Function(var&nbsp;p:pointer;Size:longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;function(p:pointer):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemAvail&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MaxAvail&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HeapSize&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 4022--><p class="noindent">As you can see, the elements of this record are procedural variables. The <span 
+class="cmss-10">system </span>unit does nothing
+but call these various variables when you allocate or deallocate memory.
+<!--l. 4026--><p class="noindent">Each of these functions corresponds to the corresponding call in the <span 
+class="cmss-10">system </span>unit. We&#8217;ll describe
+each one of them:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Getmem</span> </dt><dd 
+class="description">This function allocates a new block on the heap. The block should be <span 
+class="cmtt-10">Size </span>bytes
+     long. The return value is a pointer to the newly allocated block.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Freemem</span> </dt><dd 
+class="description">should release a previously allocated block. The pointer <span 
+class="cmtt-10">P </span>points to a previously
+     allocated block. The Memory manager should implement a mechanism to determine
+     what the size of the memory block is <a 
+href="prog166.htm" name="prog166.htm" ><sup>3</sup></a>
+     The return value is optional, and can be used to return the size of the freed memory.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FreememSize</span> </dt><dd 
+class="description">This function should release the memory pointed to by <span 
+class="cmtt-10">P</span>. The argument <span 
+class="cmtt-10">Size</span>
+     is the expected size of the memory block pointed to by P. This should be disregarded,
+     but can be used to check the behaviour of the program.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">AllocMem</span> </dt><dd 
+class="description">Is the same as getmem, only the allocated memory should be filled with zeroes
+     before the call returns.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ReAllocMem</span> </dt><dd 
+class="description">Should allocate a memory block <span 
+class="cmtt-10">Size </span>bytes large, and should fill it with
+     the contents of the memory block pointed to by <span 
+class="cmtt-10">P</span>, truncating this to the new size of
+     needed. After that, the memory pointed to by P may be deallocated. The return value
+     is a pointer to the new memory block. Note that <span 
+class="cmtt-10">P </span>may be <span 
+class="cmtt-10">Nil</span>, in which case the
+     behaviour is equivalent to <span 
+class="cmtt-10">GetMem</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MemSize</span> </dt><dd 
+class="description">should return the total amount of memory available for allocation. This function
+     may return zero if the memory manager does not allow to determine this information.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">MaxAvail</span> </dt><dd 
+class="description">should return the size of the largest block of memory that is still available for
+     allocation. This function may return zero if the memory manager does not allow to
+                                                                            
+
+                                                                            
+     determine this information.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">HeapSize</span> </dt><dd 
+class="description">should return the total size of the heap. This may be zero is the memory manager
+     does not allow to determine this information.</dd></dl>
+<!--l. 4059--><p class="noindent">To implement your own memory manager, it is sufficient to construct such a record and to issue a
+call to <span 
+class="cmtt-10">SetMemoryManager</span>.
+<!--l. 4062--><p class="noindent">To avoid conflicts with the system memory manager, setting the memory manager should happen
+as soon as possible in the initialization of your program, i.e. before any call to <span 
+class="cmtt-10">getmem </span>is
+processed.
+<!--l. 4066--><p class="noindent">This means in practice that the unit implementing the memory manager should be the first in the
+<span 
+class="cmtt-10">uses </span>clause of your program or library, since it will then be initialized before all other units (except
+of the <span 
+class="cmss-10">system </span>unit)
+<!--l. 4070--><p class="noindent">This also means that it is not possible to use the <span 
+class="cmss-10">heaptrc </span>unit in combination with a custom
+memory manager, since the <span 
+class="cmss-10">heaptrc </span>unit uses the system memory manager to do all it&#8217;s
+allocation. Putting the <span 
+class="cmss-10">heaptrc </span>unit after the unit implementing the memory manager would
+overwrite the memory manager record installed by the custom memory manager, and vice
+versa.
+<!--l. 4077--><p class="noindent">The following unit shows a straightforward implementation of a custom memory manager
+using the memory manager of the <span 
+class="cmtt-10">C </span>library. It is distributed as a package with Free
+Pascal.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;unit&nbsp;cmem;
+&nbsp;
+&nbsp;{$mode&nbsp;objfpc}
+&nbsp;
+&nbsp;interface
+&nbsp;
+&nbsp;Function&nbsp;Malloc&nbsp;(Size&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Pointer;cdecl;
+&nbsp;&nbsp;&nbsp;external&nbsp;'c'&nbsp;name&nbsp;'malloc';
+&nbsp;Procedure&nbsp;Free&nbsp;(P&nbsp;:&nbsp;pointer);&nbsp;cdecl;&nbsp;external&nbsp;'c'&nbsp;name&nbsp;'free';
+&nbsp;Procedure&nbsp;FreeMem&nbsp;(P&nbsp;:&nbsp;Pointer);&nbsp;cdecl;&nbsp;external&nbsp;'c'&nbsp;name&nbsp;'free';
+&nbsp;function&nbsp;ReAlloc&nbsp;(P&nbsp;:&nbsp;Pointer;&nbsp;Size&nbsp;:&nbsp;longint)&nbsp;:&nbsp;pointer;&nbsp;cdecl;
+&nbsp;&nbsp;&nbsp;external&nbsp;'c'&nbsp;name&nbsp;'realloc';
+&nbsp;Function&nbsp;CAlloc&nbsp;(unitSize,UnitCount&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;pointer;cdecl;
+&nbsp;&nbsp;&nbsp;external&nbsp;'c'&nbsp;name&nbsp;'calloc';
+&nbsp;
+&nbsp;implementation
+&nbsp;
+&nbsp;Function&nbsp;CGetMem&nbsp;&nbsp;(Size&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Pointer;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;result:=Malloc(Size);
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CFreeMem&nbsp;(Var&nbsp;P&nbsp;:&nbsp;pointer)&nbsp;:&nbsp;Longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Free(P);
+&nbsp;&nbsp;&nbsp;Result:=0;
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CFreeMemSize(var&nbsp;p:pointer;Size:Longint):Longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=CFreeMem(P);
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CAllocMem(Size&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Pointer;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=calloc(Size,1);
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CReAllocMem&nbsp;(var&nbsp;p:pointer;Size:longint):Pointer;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=realloc(p,size);
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CMemSize&nbsp;(p:pointer):&nbsp;Longint;
+&nbsp;
+                                                                            
+
+                                                                            
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=0;
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CMemAvail&nbsp;:&nbsp;Longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=0;
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CMaxAvail:&nbsp;Longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=0;
+&nbsp;end;
+&nbsp;
+&nbsp;Function&nbsp;CHeapSize&nbsp;:&nbsp;Longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result:=0;
+&nbsp;end;
+&nbsp;
+&nbsp;
+&nbsp;Const
+&nbsp;&nbsp;CMemoryManager&nbsp;:&nbsp;TMemoryManager&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetMem&nbsp;:&nbsp;CGetmem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FreeMem&nbsp;:&nbsp;CFreeMem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FreememSize&nbsp;:&nbsp;CFreememSize;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AllocMem&nbsp;:&nbsp;CAllocMem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReallocMem&nbsp;:&nbsp;CReAllocMem;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemSize&nbsp;:&nbsp;CMemSize;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemAvail&nbsp;:&nbsp;CMemAvail;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MaxAvail&nbsp;:&nbsp;MaxAvail;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HeapSize&nbsp;:&nbsp;CHeapSize;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;OldMemoryManager&nbsp;:&nbsp;TMemoryManager;
+&nbsp;
+&nbsp;Initialization
+&nbsp;&nbsp;&nbsp;GetMemoryManager&nbsp;(OldMemoryManager);
+&nbsp;&nbsp;&nbsp;SetMemoryManager&nbsp;(CmemoryManager);
+&nbsp;
+&nbsp;Finalization
+&nbsp;&nbsp;&nbsp;SetMemoryManager&nbsp;(OldMemoryManager);
+&nbsp;end.
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu114.htm" >prev</a>] [<a 
+href="progsu114.htm#tailprogsu114.htm" >prev-tail</a>] [<a 
+href="progsu115.htm" >front</a>] [<a 
+href="progse31.htm#progsu115.htm" >up</a>] </p></div><a 
+  name="tailprogsu115.htm"></a>  
+</body></html> 

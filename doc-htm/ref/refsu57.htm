@@ -1,0 +1,62 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.4.0 Unit scope</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu56.htm" >prev</a>] [<a 
+href="refsu56.htm#tailrefsu56.htm" >prev-tail</a>] [<a 
+href="#tailrefsu57.htm">tail</a>] [<a 
+href="refse53.htm#refsu57.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-127-148" name="x127-13300010.4">Unit scope</a></h4> All identifiers in the interface part of a unit are valid from the point of declaration,
+until the end of the unit. Furthermore, the identifiers are known in programs or units that have the
+unit in their uses clause. Identifiers from indirectly dependent units are <span 
+class="cmti-10">not </span>available. Identifiers
+declared in the implementation part of a unit are valid from the point of declaration to the end of
+the unit. The system unit is automatically used in all units and programs. It&#8217;s identifiers are
+therefore always known, in each pascal program, library or unit. The rules of unit scope imply that
+an identifier of a unit can be redefined. To have access to an identifier of another unit that was
+redeclared in the current unit, precede it with that other units name, as in the following
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;unit&nbsp;unitA;
+&nbsp;interface
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;MyType&nbsp;=&nbsp;Real;
+&nbsp;implementation
+&nbsp;end.
+&nbsp;Program&nbsp;prog;
+&nbsp;Uses&nbsp;UnitA;
+&nbsp;
+&nbsp;{&nbsp;Redeclaration&nbsp;of&nbsp;MyType}
+&nbsp;Type&nbsp;MyType&nbsp;=&nbsp;Integer;
+&nbsp;Var&nbsp;A&nbsp;:&nbsp;Mytype;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Will&nbsp;be&nbsp;Integer&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;:&nbsp;UnitA.MyType&nbsp;{&nbsp;Will&nbsp;be&nbsp;real&nbsp;}
+&nbsp;begin
+&nbsp;end.
+</pre>
+</td></tr></table>This is especially useful when redeclaring the system unit&#8217;s identifiers.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu56.htm" >prev</a>] [<a 
+href="refsu56.htm#tailrefsu56.htm" >prev-tail</a>] [<a 
+href="refsu57.htm" >front</a>] [<a 
+href="refse53.htm#refsu57.htm" >up</a>] </p></div><a 
+  name="tailrefsu57.htm"></a>  
+</body></html> 

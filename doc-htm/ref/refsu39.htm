@@ -1,0 +1,60 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.3.0 Constant parameters</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu40.htm" >next</a>] [<a 
+href="refsu38.htm" >prev</a>] [<a 
+href="refsu38.htm#tailrefsu38.htm" >prev-tail</a>] [<a 
+href="#tailrefsu39.htm">tail</a>] [<a 
+href="refse38.htm#refsu39.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-92-112" name="x92-980008.3">Constant parameters</a></h4> In addition to variable parameters and value parameters Free
+Pascal also supports Constant parameters. A constant parameter as can be specified as
+follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Constant parameters</span>
+     <BR/>
+     <img 
+src="ref118x.png" alt="-constant parameter-const identifier list-|------------------------------
+                                   -:--|----------- parameter type-
+----------------------------------------array--of-----------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 3214--><p class="noindent">A constant argument is passed by reference if it&#8217;s size is larger than a pointer. It is passed by value
+if the size is equal or is less then the size of a native pointer. This means that the function or
+procedure receives a pointer to the passed argument, but it cannot be assigned to, this
+will result in a compiler error. Furthermore a const parameter cannot be passed on to
+another function that requires a variable parameter. The main use for this is reducing the
+stack size, hence improving performance, and still retaining the semantics of passing by
+value...
+<!--l. 3224--><p class="noindent">Constant parameters can also be untyped. See section <a 
+href="refsu38.htm#x91-970008.3">8.3<!--tex4ht:ref: se:varparams--></a>, page <a 
+href="refsu38.htm#x91-970008.3">294<!--tex4ht:ref: se:varparams--></a> for more information about
+untyped parameters.
+<!--l. 3227--><p class="noindent">Open arrays can be passed as constant parameters. See section <a 
+href="refsu40.htm#x93-990008.3">8.3<!--tex4ht:ref: se:openarray--></a>, page <a 
+href="refsu40.htm#x93-990008.3">296<!--tex4ht:ref: se:openarray--></a> for more information
+on using open arrays.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu40.htm" >next</a>] [<a 
+href="refsu38.htm" >prev</a>] [<a 
+href="refsu38.htm#tailrefsu38.htm" >prev-tail</a>] [<a 
+href="refsu39.htm" >front</a>] [<a 
+href="refse38.htm#refsu39.htm" >up</a>] </p></div><a 
+  name="tailrefsu39.htm"></a>  
+</body></html> 

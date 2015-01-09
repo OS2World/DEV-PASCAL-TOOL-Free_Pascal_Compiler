@@ -1,0 +1,156 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.3.0 Array of const</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu40.htm" >prev</a>] [<a 
+href="refsu40.htm#tailrefsu40.htm" >prev-tail</a>] [<a 
+href="#tailrefsu41.htm">tail</a>] [<a 
+href="refse38.htm#refsu41.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-94-114" name="x94-1000008.3">Array of const</a></h4> In Object Pascal or Delphi mode, Free Pascal supports the <span 
+class="cmtt-10">Array of Const</span>
+construction to pass parameters to a subroutine.
+<!--l. 3270--><p class="noindent">This is a special case of the <span 
+class="cmtt-10">Open array </span>construction, where it is allowed to pass any expression in
+an array to a function or procedure.
+<!--l. 3273--><p class="noindent">In the procedure, passed the arguments can be examined using a special record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;PVarRec&nbsp;=&nbsp;^TVarRec;
+&nbsp;&nbsp;&nbsp;&nbsp;TVarRec&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;VType&nbsp;:&nbsp;Longint&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtInteger&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VInteger:&nbsp;Longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtBoolean&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VBoolean:&nbsp;Boolean);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VChar:&nbsp;Char);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtExtended&nbsp;&nbsp;&nbsp;:&nbsp;(VExtended:&nbsp;PExtended);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VString:&nbsp;PShortString);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPointer&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VPointer:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VPChar:&nbsp;PChar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtObject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VObject:&nbsp;TObject);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VClass:&nbsp;TClass);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtAnsiString&nbsp;:&nbsp;(VAnsiString:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtWideString&nbsp;:&nbsp;(VWideString:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtInt64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VInt64:&nbsp;PInt64);
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>Inside the procedure body, the array of const is equivalent to an open array of TVarRec:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;Testit&nbsp;(Args:&nbsp;Array&nbsp;of&nbsp;const);
+&nbsp;
+&nbsp;Var&nbsp;I&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;If&nbsp;High(Args)&lt;0&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('No&nbsp;aguments');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Got&nbsp;',High(Args)+1,'&nbsp;arguments&nbsp;:');
+&nbsp;&nbsp;&nbsp;For&nbsp;i:=0&nbsp;to&nbsp;High(Args)&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;('Argument&nbsp;',i,'&nbsp;has&nbsp;type&nbsp;');
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;Args[i].vtype&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtinteger&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Integer,&nbsp;Value&nbsp;:',args[i].vinteger);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtboolean&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Boolean,&nbsp;Value&nbsp;:',args[i].vboolean);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Char,&nbsp;value&nbsp;:&nbsp;',args[i].vchar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtextended&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Extended,&nbsp;value&nbsp;:&nbsp;',args[i].VExtended^);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('ShortString,&nbsp;value&nbsp;:',args[i].VString^);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPointer&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Pointer,&nbsp;value&nbsp;:&nbsp;',Longint(Args[i].VPointer));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('PCHar,&nbsp;value&nbsp;:&nbsp;',Args[i].VPChar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtObject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Object,&nbsp;name&nbsp;:&nbsp;',Args[i].VObject.Classname);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Class&nbsp;reference,&nbsp;name&nbsp;:',Args[i].VClass.Classname);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtAnsiString&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('AnsiString,&nbsp;value&nbsp;:',AnsiString(Args[I].VAnsiStr
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('(Unknown)&nbsp;:&nbsp;',args[i].vtype);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;end;
+</pre>
+</td></tr></table>In code, it is possible to pass an arbitrary array of elements to this procedure:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;S:='Ansistring&nbsp;1';
+&nbsp;&nbsp;&nbsp;T:='AnsiString&nbsp;2';
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([1,2]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;(['A','B']);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([TRUE,FALSE,TRUE]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;(['String','Another&nbsp;string']);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([S,T])&nbsp;&nbsp;;
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([P1,P2]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([@testit,Nil]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([ObjA,ObjB]);
+&nbsp;&nbsp;&nbsp;Testit&nbsp;([1.234,1.234]);
+&nbsp;&nbsp;&nbsp;TestIt&nbsp;([AClass]);
+</pre>
+</td></tr></table>
+<!--l. 3356--><p class="noindent">If the procedure is declared with the <span 
+class="cmtt-10">cdecl </span>modifier, then the compiler will pass the array as a C
+compiler would pass it. This, in effect, emulates the C construct of a variable number of arguments,
+as the following example will show:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;testaocc;
+&nbsp;{$mode&nbsp;objfpc}
+&nbsp;
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;P&nbsp;:&nbsp;Pchar&nbsp;=&nbsp;'example';
+&nbsp;&nbsp;&nbsp;Fmt&nbsp;:&nbsp;PChar&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'This&nbsp;%s&nbsp;uses&nbsp;printf&nbsp;to&nbsp;print&nbsp;numbers&nbsp;(%d)&nbsp;and&nbsp;strings.'#10;
+&nbsp;
+&nbsp;//&nbsp;Declaration&nbsp;of&nbsp;standard&nbsp;C&nbsp;function&nbsp;printf:
+&nbsp;procedure&nbsp;printf&nbsp;(fm&nbsp;:&nbsp;pchar;&nbsp;args&nbsp;:&nbsp;array&nbsp;of&nbsp;const);cdecl;&nbsp;external&nbsp;'c';
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;printf(Fmt,[P,123]);
+&nbsp;end.
+</pre>
+</td></tr></table>Remark that this is not true for Delphi, so code relying on this feature will not be portable.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu40.htm" >prev</a>] [<a 
+href="refsu40.htm#tailrefsu40.htm" >prev-tail</a>] [<a 
+href="refsu41.htm" >front</a>] [<a 
+href="refse38.htm#refsu41.htm" >up</a>] </p></div><a 
+  name="tailrefsu41.htm"></a>  
+</body></html> 

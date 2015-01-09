@@ -1,0 +1,120 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1.0 Assignments</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu27.htm" >next</a>] [<a 
+href="#tailrefsu26.htm">tail</a>] [<a 
+href="refse33.htm#refsu26.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-73-92" name="x73-790007.1">Assignments</a></h4> Assignments give a value to a variable, replacing any previous value the variable
+might have had:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Assignments</span>
+     <BR/>
+     <img 
+src="ref88x.png" alt="-- assignment statement--variable reference----:= ---expression-----------
+                     -function identifier -| -+= --|
+                                       |-= --|
+                                       |*= --|
+                                       -/= --
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2675--><p class="noindent">In addition to the standard Pascal assignment operator (  <span 
+class="cmtt-10">:=  </span>), which simply replaces the value of
+the varable with the value resulting from the expression on the right of the  :=  operator, Free
+Pascal supports some c-style constructions. All available constructs are listed in table (<a 
+href="#x73-790011">7.1<!--tex4ht:ref: tab:assignments--></a>).
+<a 
+  name="x73-790011"></a><hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;7.1: </td><td  
+class="content">Allowed C constructs in Free Pascal</td></tr></table></div><!--tex4ht:label?: x73-790011-->
+<div class="center" 
+>
+                                                                            
+
+                                                                            
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-15-" ><colgroup id="TBL-15-1g"><col 
+id="TBL-15-1"><col 
+id="TBL-15-2"></colgroup><tr  
+valign="baseline" id="TBL-15-1-"><td  align="left" nowrap="nowrap" id="TBL-15-1-1"  
+class="td11"> Assignment</td><td  align="right" nowrap="nowrap" id="TBL-15-1-2"  
+class="td11">                                                      Result</td>
+</tr><tr  
+valign="baseline" id="TBL-15-2-"><td  align="left" nowrap="nowrap" id="TBL-15-2-1"  
+class="td11">  a += b    </td><td  align="right" nowrap="nowrap" id="TBL-15-2-2"  
+class="td11">            Adds <span 
+class="cmtt-10">b </span>to <span 
+class="cmtt-10">a</span>, and stores the result in <span 
+class="cmtt-10">a</span>.</td>
+</tr><tr  
+valign="baseline" id="TBL-15-3-"><td  align="left" nowrap="nowrap" id="TBL-15-3-1"  
+class="td11"> a -= b       </td><td  align="right" nowrap="nowrap" id="TBL-15-3-2"  
+class="td11"> Substracts <span 
+class="cmtt-10">b </span>from <span 
+class="cmtt-10">a</span>, and stores the result in <span 
+class="cmtt-10">a</span>.</td>
+</tr><tr  
+valign="baseline" id="TBL-15-4-"><td  align="left" nowrap="nowrap" id="TBL-15-4-1"  
+class="td11"> a *= b      </td><td  align="right" nowrap="nowrap" id="TBL-15-4-2"  
+class="td11">  Multiplies <span 
+class="cmtt-10">a </span>with <span 
+class="cmtt-10">b</span>, and stores the result in <span 
+class="cmtt-10">a</span>.</td>
+</tr><tr  
+valign="baseline" id="TBL-15-5-"><td  align="left" nowrap="nowrap" id="TBL-15-5-1"  
+class="td11"> a /= b      </td><td  align="right" nowrap="nowrap" id="TBL-15-5-2"  
+class="td11"> Divides <span 
+class="cmtt-10">a </span>through <span 
+class="cmtt-10">b</span>, and stores the result in <span 
+class="cmtt-10">a</span>.</td>
+</tr><tr  
+valign="baseline" id="TBL-15-6-"><td  align="left" nowrap="nowrap" id="TBL-15-6-1"  
+class="td11">                </td>
+</tr><!--lr--></table>
+</div></div>
+</td></tr></table></div><hr class="endfloat">
+For these constructs to work, the <span 
+class="cmtt-10">-Sc </span>command-line switch must be specified.
+<span 
+class="cmbx-10">Remark:</span> These constructions are just for typing convenience, they don&#8217;t generate different code. Here are
+some examples of valid assignment statements:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;X&nbsp;:=&nbsp;X+Y;
+&nbsp;X+=Y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Same&nbsp;as&nbsp;X&nbsp;:=&nbsp;X+Y,&nbsp;needs&nbsp;-Sc&nbsp;command&nbsp;line&nbsp;switch}
+&nbsp;X/=2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Same&nbsp;as&nbsp;X&nbsp;:=&nbsp;X/2,&nbsp;needs&nbsp;-Sc&nbsp;command&nbsp;line&nbsp;switch}
+&nbsp;Done&nbsp;:=&nbsp;False;
+&nbsp;Weather&nbsp;:=&nbsp;Good;
+&nbsp;MyPi&nbsp;:=&nbsp;4*&nbsp;Tan(1);
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu27.htm" >next</a>] [<a 
+href="refsu26.htm" >front</a>] [<a 
+href="refse33.htm#refsu26.htm" >up</a>] </p></div><a 
+  name="tailrefsu26.htm"></a>  
+</body></html> 

@@ -1,0 +1,936 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.3 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse13.htm" >prev</a>] [<a 
+href="unitsse13.htm#tailunitsse13.htm" >prev-tail</a>] [<a 
+href="#tailunitsse14.htm">tail</a>] [<a 
+href="unitsch6.htm#unitsse14.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.3</span> <a 
+href="units.htm#QQ2-25-106" name="x25-1040006.3">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-107" name="x25-1050006.3">Gpm__AnyDouble</a></h4><a 
+  name="dx25-105001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">AnyDouble(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">AnyDouble </span>returns <span 
+class="cmtt-10">True </span>if <span 
+class="cmtt-10">EventType </span>contains the <span 
+class="cmtt-10">GPM</span>_<span 
+class="cmtt-10">DOUBLE </span>flag, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictSingle </span>(<a 
+href="#x25-1220006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnySingle </span>(<a 
+href="#x25-1060006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictDouble </span>(<a 
+href="#x25-1210006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictTriple</span>
+(<a 
+href="#x25-1230006.3">133<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyTriple </span>(<a 
+href="#x25-1070006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-108" name="x25-1060006.3">Gpm__AnySingle</a></h4><a 
+  name="dx25-106001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">AnySingle(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">AnySingle </span>returns <span 
+class="cmtt-10">True </span>if <span 
+class="cmtt-10">EventType </span>contains the <span 
+class="cmtt-10">GPM</span>_<span 
+class="cmtt-10">SINGLE </span>flag, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictSingle     </span>(<a 
+href="#x25-1220006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>),     <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyDoubmle     </span>(<a 
+href="#x25-1050006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>),     <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictDouble     </span>(<a 
+href="#x25-1210006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictTriple </span>(<a 
+href="#x25-1230006.3">133<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyTriple </span>(<a 
+href="#x25-1070006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-109" name="x25-1070006.3">Gpm__AnyTriple</a></h4><a 
+  name="dx25-107001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">AnyTriple(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictSingle                                                                                         </span>(<a 
+href="#x25-1220006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyDoubmle </span>(<a 
+href="#x25-1050006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictDouble </span>(<a 
+href="#x25-1210006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictTriple </span>(<a 
+href="#x25-1230006.3">133<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnySingle</span>
+(<a 
+href="#x25-1060006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-110" name="x25-1080006.3">Gpm__Close</a></h4><a 
+  name="dx25-108001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">Close:longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">Close </span>closes the current connection, and pops the connection stack; this means that
+the previous connection becomes active again.
+<!--l. 211--><p class="noindent">The function returns -1 if the current connection is not the last one, and it returns 0 if the
+current connection is the last one.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">Open </span>(<a 
+href="#x25-1160006.3">130<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 219--><p class="noindent">for an example, see <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetEvent </span>(<a 
+href="#x25-1110006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-111" name="x25-1090006.3">Gpm__FitValues</a></h4><a 
+  name="dx25-109001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">FitValues(var x,y:longint):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">fitValues </span>changes <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>so they fit in the visible screen. The actual mouse pointer
+is not affected by this function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">FitValuesM </span>(<a 
+href="#x25-1100006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>),</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-112" name="x25-1100006.3">Gpm__FitValuesM</a></h4><a 
+  name="dx25-110001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">FitValuesM(var x,y:longint;</span>
+<span 
+class="cmtt-10">margin:longint):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">FitValuesM </span>chnages <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>so they fit in the margin indicated by <span 
+class="cmtt-10">margin</span>. If <span 
+class="cmtt-10">margin</span>
+is -1, then the values are fitted to the screen. The actual mouse pointer is not affected by
+this function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">FitValues </span>(<a 
+href="#x25-1090006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>),</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-113" name="x25-1110006.3">Gpm__GetEvent</a></h4><a 
+  name="dx25-111001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">GetEvent(var Event:TGpmEvent):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">GetEvent </span>Reads an event from the file descriptor <span 
+class="cmtt-10">gpm</span>_<span 
+class="cmtt-10">fd</span>. This file is only for internal
+use and should never be called by a client application.
+<!--l. 254--><p class="noindent">It returns 1 on succes, and -1 on failue.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, -1 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">seeflGpm__GetSnapshotGpmGetSnapshot</dd></dl>
+<!--l. 261--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">gpmex/gpmex.pp</span><HR/><div class="listinginput">
+<!--l. 261--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">gpmex;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Example</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">use</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">gpm</span>&nbsp;<span 
+class="cmtt-10">unit.</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">gpm;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">connect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TGPMConnect;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">event</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tgpmevent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">connect.EventMask:=GPM_MOVE</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">GPM_DRAG</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">GPM_DOWN</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">GPM_UP;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">connect.DefaultMask:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">connect.MinMod:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">connect.MaxMod:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">Gpm_Open(connect,0)=-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('No</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">handler</span>&nbsp;<span 
+class="cmtt-10">present.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Click</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gpm_getevent(Event);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Pos</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">(',X,',',Y,')</span>&nbsp;<span 
+class="cmtt-10">Buttons</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">(');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Gpm_b_left)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('left</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Gpm_b_right)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('right</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Gpm_b_middle)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('middle</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(')</span>&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">EventType</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">$F</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GPM_MOVE:</span>&nbsp;<span 
+class="cmtt-10">write('Move');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GPM_DRAG:</span>&nbsp;<span 
+class="cmtt-10">write('Drag');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GPM_DOWN:</span>&nbsp;<span 
+class="cmtt-10">write('Down');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GPM_UP:</span>&nbsp;<span 
+class="cmtt-10">write('Up');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(Event.Buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">gpm_b_right)&lt;&gt;0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gpm_close;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-114" name="x25-1120006.3">Gpm__GetLibVersion</a></h4><a 
+  name="dx25-112001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">GetLibVersion(var where:longint):pchar;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">GetLibVersion </span>returns a pointer to a version string, and returns in <span 
+class="cmtt-10">where </span>an integer
+representing the version. The version string represents the version of the gpm library.
+<!--l. 271--><p class="noindent">The return value is a pchar, which should not be dealloacted, i.e. it is not on the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetServerVersion </span>(<a 
+href="#x25-1130006.3">129<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-115" name="x25-1130006.3">Gpm__GetServerVersion</a></h4><a 
+  name="dx25-113001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">GetServerVersion(var where:longint):pchar;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">GetServerVersion </span>returns a pointer to a version string, and returns in <span 
+class="cmtt-10">where </span>an
+integer representing the version. The version string represents the version of the gpm server
+program.
+<!--l. 287--><p class="noindent">The return value is a pchar, which should not be dealloacted, i.e. it is not on the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the gpm program is not present, then the function returns <span 
+class="cmtt-10">Nil</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetLibVersion </span>(<a 
+href="#x25-1120006.3">129<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-116" name="x25-1140006.3">Gpm__GetSnapshot</a></h4><a 
+  name="dx25-114001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">GetSnapshot(var Event:TGpmEvent):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">GetSnapshot </span>returns the picture that the server has of the current situation in <span 
+class="cmtt-10">Event</span>. This
+call will not read the current situation from the mouse file descriptor, but returns a buffered
+version. The meaning of the fields is as follows:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">x,y</span></dt><dd 
+class="description">current position of the cursor.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">dx,dy</span></dt><dd 
+class="description">size of the window.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">vc</span></dt><dd 
+class="description">number of te virtual console.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">modifiers</span></dt><dd 
+class="description">keyboard shift state.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">buttons</span></dt><dd 
+class="description">buttons which are currently pressed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">clicks</span></dt><dd 
+class="description">number of clicks (0,1 or 2).</dd></dl>
+<!--l. 312--><p class="noindent">The function returns the number of mouse buttons, or -1 if this information is not available.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetEvent </span>(<a 
+href="#x25-1110006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-117" name="x25-1150006.3">Gpm__LowerRoi</a></h4><a 
+  name="dx25-115001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">LowerRoi(which:PGpmRoi; after:PGpmRoi):PGpmRoi;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">LowerRoi </span>lowers the region of interest <span 
+class="cmtt-10">which </span>after <span 
+class="cmtt-10">after</span>. If <span 
+class="cmtt-10">after </span>is <span 
+class="cmtt-10">Nil</span>, the region
+of interest is moved to the bottom of the stack.
+<!--l. 328--><p class="noindent">The return value is the new top of the region-of-interest stack.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">RaiseRoi </span>(<a 
+href="#x25-1190006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PopRoi </span>(<a 
+href="#x25-1170006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PushRoi </span>(<a 
+href="#x25-1170006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-118" name="x25-1160006.3">Gpm__Open</a></h4><a 
+  name="dx25-116001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">Open(var Conn:TGpmConnect;</span>
+<span 
+class="cmtt-10">Flag:longint):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">Open </span>opens a new connection to the mouse server. The connection is described by the fields
+of the <span 
+class="cmtt-10">conn </span>record:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">EventMask</span></dt><dd 
+class="description">A bitmask of the events the program wants to receive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">DefaultMask</span></dt><dd 
+class="description">A bitmask to tell the library which events get their default treatment (text
+    selection).
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">minMod</span></dt><dd 
+class="description">the minimum amount of modifiers needed by the program.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">maxMod</span></dt><dd 
+class="description">the maximum amount of modifiers needed by the program.</dd></dl>
+<!--l. 350--><p class="noindent">if <span 
+class="cmtt-10">Flag </span>is 0, then the application only receives events that come from its own terminal device. If it
+is negative it will receive all events. If the value is positive then it is considered a console number to
+which to connect.
+<!--l. 355--><p class="noindent">The return value is -1 on error, or the file descriptor used to communicate with the client. Under
+an X-Term the return value is -2.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On Error, the return value is -1.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">Open </span>(<a 
+href="#x25-1160006.3">130<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 363--><p class="noindent">for an example, see <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetEvent </span>(<a 
+href="#x25-1110006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-119" name="x25-1170006.3">Gpm__PopRoi</a></h4><a 
+  name="dx25-117001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">PopRoi(which:PGpmRoi):PGpmRoi;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">PopRoi </span>pops the topmost region of interest from the stack. It returns the next element
+on the stack, or <span 
+class="cmtt-10">Nil </span>if the current element was the last one.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">RaiseRoi </span>(<a 
+href="#x25-1190006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">LowerRoi </span>(<a 
+href="#x25-1150006.3">130<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PushRoi </span>(<a 
+href="#x25-1170006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-120" name="x25-1180006.3">Gpm__PushRoi</a></h4><a 
+  name="dx25-118001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">PushRoi(x1:longint; y1:longint; X2:longint; Y2:longint;</span>
+<span 
+class="cmtt-10">mask:longint; fun:TGpmHandler; xtradata:pointer):PGpmRoi;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">PushRoi </span>puts a new <span 
+class="cmti-10">region of interest </span>on the stack. The region of interest is defined
+by a rectangle described by the corners <span 
+class="cmtt-10">(X1,Y1) </span>and <span 
+class="cmtt-10">(X2,Y2)</span>.
+<!--l. 388--><p class="noindent">The <span 
+class="cmtt-10">mask </span>describes which events the handler fun will handle; <span 
+class="cmtt-10">ExtraData </span>will be put in the
+<span 
+class="cmtt-10">xtradata </span>field of the TGPM__Roi record passed to the <span 
+class="cmtt-10">fun </span>handler.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">RaiseRoi </span>(<a 
+href="#x25-1190006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PopRoi </span>(<a 
+href="#x25-1170006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">LowerRoi </span>(<a 
+href="#x25-1150006.3">130<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-121" name="x25-1190006.3">Gpm__RaiseRoi</a></h4><a 
+  name="dx25-119001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">RaiseRoi(which:PGpmRoi;</span>
+<span 
+class="cmtt-10">before:PGpmRoi):PGpmRoi;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">RaiseRoi </span>raises the <span 
+class="cmti-10">region of interest </span><span 
+class="cmtt-10">which </span>till it is on top of region <span 
+class="cmtt-10">before</span>. If <span 
+class="cmtt-10">before</span>
+is nil then the region is put on top of the stack. The returned value is the top of the stack.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PushRoi </span>(<a 
+href="#x25-1180006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">PopRoi </span>(<a 
+href="#x25-1170006.3">131<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">LowerRoi </span>(<a 
+href="#x25-1150006.3">130<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-122" name="x25-1200006.3">Gpm__Repeat</a></h4><a 
+  name="dx25-120001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">Repeat(millisec:longint):longint;cdecl;external;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">Repeat </span>returns 1 of no mouse event arrives in the next <span 
+class="cmtt-10">millisec </span>miiliseconds, it
+returns 0 otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">GetEvent </span>(<a 
+href="#x25-1110006.3">127<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-123" name="x25-1210006.3">Gpm__StrictDouble</a></h4><a 
+  name="dx25-121001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">StrictDouble(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">StrictDouble </span>returns true if  <span 
+class="cmtt-10">EventType </span>contains only a doubleclick event, <span 
+class="cmtt-10">False</span>
+otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictSingle  </span>(<a 
+href="#x25-1220006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>),  <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyTriple  </span>(<a 
+href="#x25-1070006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>),  <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyDouble  </span>(<a 
+href="#x25-1050006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>),  <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictTriple</span>
+(<a 
+href="#x25-1230006.3">133<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnySingle </span>(<a 
+href="#x25-1060006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-124" name="x25-1220006.3">Gpm__StrictSingle</a></h4><a 
+  name="dx25-122001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">StrictSingle(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">StrictDouble </span>returns <span 
+class="cmtt-10">True </span>if  <span 
+class="cmtt-10">EventType </span>contains only a singleclick event, <span 
+class="cmtt-10">False</span>
+otherwise.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyTriple </span>(<a 
+href="#x25-1070006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictDouble </span>(<a 
+href="#x25-1210006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyDouble </span>(<a 
+href="#x25-1050006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictTriple</span>
+(<a 
+href="#x25-1230006.3">133<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnySingle </span>(<a 
+href="#x25-1060006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-25-125" name="x25-1230006.3">Gpm__StrictTriple</a></h4><a 
+  name="dx25-123001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function Gpm</span>_<span 
+class="cmtt-10">StrictTriple(EventType : longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gpm</span>_<span 
+class="cmtt-10">StrictTriple </span>returns true if  <span 
+class="cmtt-10">EventType </span>contains only a triple click event, <span 
+class="cmtt-10">False</span>
+otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyTriple </span>(<a 
+href="#x25-1070006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictDouble </span>(<a 
+href="#x25-1210006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnyDouble </span>(<a 
+href="#x25-1050006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">StrictSingle</span>
+(<a 
+href="#x25-1220006.3">132<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Gpm</span>__<span 
+class="cmss-10">AnySingle </span>(<a 
+href="#x25-1060006.3">126<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse13.htm" >prev</a>] [<a 
+href="unitsse13.htm#tailunitsse13.htm" >prev-tail</a>] [<a 
+href="unitsse14.htm" >front</a>] [<a 
+href="unitsch6.htm#unitsse14.htm" >up</a>] </p></div><a 
+  name="tailunitsse14.htm"></a>   
+</body></html> 

@@ -1,0 +1,80 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1.0 Goto statements</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu27.htm" >prev</a>] [<a 
+href="refsu27.htm#tailrefsu27.htm" >prev-tail</a>] [<a 
+href="#tailrefsu28.htm">tail</a>] [<a 
+href="refse33.htm#refsu28.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-75-95" name="x75-810007.1">Goto statements</a></h4> Free Pascal supports the <span 
+class="cmtt-10">goto </span>jump statement. Its prototype syntax
+is
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Goto statement</span>
+     <BR/>
+     <img 
+src="ref90x.png" alt="-- goto statement goto - label---------------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2725--><p class="noindent">When using <span 
+class="cmtt-10">goto </span>statements, the following must be kept in mind:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x75-81002x1"></a>The jump label must be defined in the same block as the <span 
+class="cmtt-10">Goto </span>statement.
+     </li>
+     <li class="enumerate"><a 
+  name="x75-81004x2"></a>Jumping from outside a loop to the inside of a loop or vice versa can have strange
+     effects.
+     </li>
+     <li class="enumerate"><a 
+  name="x75-81006x3"></a>To be able to use the <span 
+class="cmtt-10">Goto </span>statement, the <span 
+class="cmtt-10">-Sg </span>compiler switch must be used.</li></ol>
+<!--l. 2734--><p class="noindent"><span 
+class="cmtt-10">Goto </span>statements are considered bad practice and should be avoided as much as possible. It is
+always possible to replace a <span 
+class="cmtt-10">goto </span>statement by a construction that doesn&#8217;t need a <span 
+class="cmtt-10">goto</span>, although
+this construction may not be as clear as a goto statement. For instance, the following is an allowed
+goto statement:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;label
+&nbsp;&nbsp;&nbsp;jumpto;
+&nbsp;...
+&nbsp;Jumpto&nbsp;:
+&nbsp;&nbsp;&nbsp;Statement;
+&nbsp;...
+&nbsp;Goto&nbsp;jumpto;
+&nbsp;...
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu27.htm" >prev</a>] [<a 
+href="refsu27.htm#tailrefsu27.htm" >prev-tail</a>] [<a 
+href="refsu28.htm" >front</a>] [<a 
+href="refse33.htm#refsu28.htm" >up</a>] </p></div><a 
+  name="tailrefsu28.htm"></a>  
+</body></html> 

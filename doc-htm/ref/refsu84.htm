@@ -1,0 +1,203 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 CompareWord</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu85.htm" >next</a>] [<a 
+href="refsu83.htm" >prev</a>] [<a 
+href="refsu83.htm#tailrefsu83.htm" >prev-tail</a>] [<a 
+href="#tailrefsu84.htm">tail</a>] [<a 
+href="refse64.htm#refsu84.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-169-190" name="x169-17500013.3">CompareWord</a></h4><a 
+  name="dx169-175001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function CompareWord(var buf1,buf2;len:longint):longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">CompareWord </span>compares two memory regions <span 
+class="cmtt-10">buf1</span>,<span 
+class="cmtt-10">buf2 </span>on a Word-per-Word basis for a
+total of <span 
+class="cmtt-10">len </span>Words. (A Word is 2 bytes).
+<!--l. 5455--><p class="noindent">The function returns one of the following values:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-1</span></dt><dd 
+class="description">if <span 
+class="cmtt-10">buf1 </span>and <span 
+class="cmtt-10">buf2 </span>contain different Words in the first <span 
+class="cmtt-10">len </span>Words, and the first such Word
+    is smaller in <span 
+class="cmtt-10">buf1 </span>than the Word at the same position in <span 
+class="cmtt-10">buf2</span>.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">if the first <span 
+class="cmtt-10">len </span>Words in <span 
+class="cmtt-10">buf1 </span>and <span 
+class="cmtt-10">buf2 </span>are equal.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">if <span 
+class="cmtt-10">buf1 </span>and <span 
+class="cmtt-10">buf2 </span>contain different Words in the first <span 
+class="cmtt-10">len </span>Words, and the first such Word
+    is larger in <span 
+class="cmtt-10">buf1 </span>than the Word at the same position in <span 
+class="cmtt-10">buf2</span>.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">CompareChar </span>(<a 
+href="refsu82.htm#x167-17300013.3">468<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">CompareByte </span>(<a 
+href="refsu81.htm#x166-17200013.3">466<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">CompareWord </span>(<a 
+href="#x169-17500013.3">472<!--tex4ht:ref: se:exceptclasses--></a>),</dd></dl>
+<!--l. 5472--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex102.pp</span><HR/><div class="listinginput">
+<!--l. 5472--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example102;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">CompareWord</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;<span 
+class="cmtt-10">Div</span>&nbsp;<span 
+class="cmtt-10">2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf1,Buf2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..ArraySize]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">CheckPos(Len</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('First</span>&nbsp;<span 
+class="cmtt-10">',Len,'</span>&nbsp;<span 
+class="cmtt-10">words</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">CompareWord(Buf1,Buf2,Len)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('NOT</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('equal');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[i]:=I;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">I&lt;=HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf2[I]:=I</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf2[i]:=HalfArraySize-I;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">Div</span>&nbsp;<span 
+class="cmtt-10">2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu85.htm" >next</a>] [<a 
+href="refsu83.htm" >prev</a>] [<a 
+href="refsu83.htm#tailrefsu83.htm" >prev-tail</a>] [<a 
+href="refsu84.htm" >front</a>] [<a 
+href="refse64.htm#refsu84.htm" >up</a>] </p></div><a 
+  name="tailrefsu84.htm"></a>  
+</body></html> 

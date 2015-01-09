@@ -1,0 +1,4453 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse38.htm" >prev</a>] [<a 
+href="unitsse38.htm#tailunitsse38.htm" >prev-tail</a>] [<a 
+href="#tailunitsse39.htm">tail</a>] [<a 
+href="unitsch13.htm#unitsse39.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">13.3</span> <a 
+href="units.htm#QQ2-57-517" name="x57-51100013.3">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-518" name="x57-51200013.3">arccos</a></h4><a 
+  name="dx57-512001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function arccos(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Arccos </span>returns the inverse cosine of its argument <span 
+class="cmtt-10">x</span>. The argument <span 
+class="cmtt-10">x </span>should lie between -1
+and 1 (borders included).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the argument <span 
+class="cmtt-10">x </span>is not in the allowed range, an <span 
+class="cmtt-10">EInvalidArgument </span>exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 163--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 163--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">arccos</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">WriteRadDeg(X</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(X:8:5,'</span>&nbsp;<span 
+class="cmtt-10">rad</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',radtodeg(x):8:5,'</span>&nbsp;<span 
+class="cmtt-10">degrees.')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(sqrt(3)/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(sqrt(2)/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(1/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arccos(-1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-519" name="x57-51300013.3">arcosh</a></h4><a 
+  name="dx57-513001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function arcosh(x : float) : float; Function arccosh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Arcosh </span>returns the inverse hyperbolic cosine of its argument <span 
+class="cmtt-10">x</span>. The argument <span 
+class="cmtt-10">x </span>should be
+larger than 1.
+<!--l. 173--><p class="noindent">The <span 
+class="cmtt-10">arccosh </span>variant of this function is supplied for Delphicompatibility.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the argument <span 
+class="cmtt-10">x </span>is not in the allowed range, an <span 
+class="cmtt-10">EInvalidArgument </span>exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cosh </span>(<a 
+href="#x57-51900013.3">460<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sinh </span>(<a 
+href="#x57-55300013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">tanh </span>(<a 
+href="#x57-55900013.3">489<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 183--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 183--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">arcosh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(arcosh(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(arcosh(2));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-520" name="x57-51400013.3">arcsin</a></h4><a 
+  name="dx57-514001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function arcsin(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Arcsin </span>returns the inverse sine of its argument <span 
+class="cmtt-10">x</span>. The argument <span 
+class="cmtt-10">x </span>should lie between -1
+and 1.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the argument <span 
+class="cmtt-10">x </span>is not in the allowed range, an <span 
+class="cmtt-10">EInvalidArgument </span>exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 198--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 198--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">arcsin</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">WriteRadDeg(X</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(X:8:5,'</span>&nbsp;<span 
+class="cmtt-10">rad</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',radtodeg(x):8:5,'</span>&nbsp;<span 
+class="cmtt-10">degrees.')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(sqrt(3)/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(sqrt(2)/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(1/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arcsin(-1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-521" name="x57-51500013.3">arctan2</a></h4><a 
+  name="dx57-515001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function arctan2(x,y : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">arctan2 </span>calculates <span 
+class="cmtt-10">arctan(y/x)</span>, and returns an angle in the correct quadrant. The
+returned angle will be in the range <span 
+class="cmsy-10">-</span><span 
+class="cmmi-10"><img 
+src="cmmi10-19.gif" alt="p" class="10--19"> </span>to <span 
+class="cmmi-10"><img 
+src="cmmi10-19.gif" alt="p" class="10--19"> </span>radians. The values of <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>must be between
+-2^64 and 2^64, moreover <span 
+class="cmtt-10">x </span>should be different from zero.
+<!--l. 211--><p class="noindent">On Intel systems this function is implemented with the native intel <span 
+class="cmtt-10">fpatan </span>instruction.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is zero, an overflow error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 219--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 219--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">arctan2</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">WriteRadDeg(X</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(X:8:5,'</span>&nbsp;<span 
+class="cmtt-10">rad</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',radtodeg(x):8:5,'</span>&nbsp;<span 
+class="cmtt-10">degrees.')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteRadDeg</span>&nbsp;<span 
+class="cmtt-10">(arctan2(1,1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-522" name="x57-51600013.3">arsinh</a></h4><a 
+  name="dx57-516001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function arsinh(x : float) : float; Function arcsinh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">arsinh </span>returns the inverse hyperbolic sine of its argument <span 
+class="cmtt-10">x</span>.
+<!--l. 228--><p class="noindent">The <span 
+class="cmtt-10">arscsinh </span>variant of this function is supplied for Delphicompatibility.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 236--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 236--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">arsinh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(arsinh(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(arsinh(1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-523" name="x57-51700013.3">artanh</a></h4><a 
+  name="dx57-517001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function artanh(x : float) : float; Function arctanh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">artanh </span>returns the inverse hyperbolic tangent of its argument <span 
+class="cmtt-10">x</span>, where <span 
+class="cmtt-10">x </span>should lie in the
+interval [-1,1], borders included.
+<!--l. 247--><p class="noindent">The <span 
+class="cmtt-10">arctanh </span>variant of this function is supplied for Delphicompatibility.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case <span 
+class="cmtt-10">x </span>is not in the interval [-1,1], an <span 
+class="cmtt-10">EInvalidArgument </span>exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 257--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex5.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 257--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">artanh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(artanh(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(artanh(0.5));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-524" name="x57-51800013.3">ceil</a></h4><a 
+  name="dx57-518001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ceil(x : float) : longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Ceil </span>returns the lowest integer number greater than or equal to <span 
+class="cmtt-10">x</span>. The absolute value of <span 
+class="cmtt-10">x</span>
+should be less than <span 
+class="cmtt-10">maxint</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the asolute value of <span 
+class="cmtt-10">x </span>is larger than maxint, an overflow error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">floor </span>(<a 
+href="#x57-52400013.3">463<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 273--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 273--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Ceil</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(-3.7));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">-3</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(3.7));</span>&nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">4</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(-4.0));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">-4</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-525" name="x57-51900013.3">cosh</a></h4><a 
+  name="dx57-519001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function cosh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Cosh </span>returns the hyperbolic cosine of it&#8217;s argument x.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcosh </span>(<a 
+href="#x57-51300013.3">456<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sinh </span>(<a 
+href="#x57-55300013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 286--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 286--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cosh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Cosh(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Cosh(1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-526" name="x57-52000013.3">cotan</a></h4><a 
+  name="dx57-520001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function cotan(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Cotan </span>returns the cotangent of it&#8217;s argument <span 
+class="cmtt-10">x</span>. <span 
+class="cmtt-10">x </span>should be different from zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is zero then a overflow error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">tanh </span>(<a 
+href="#x57-55900013.3">489<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 301--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 301--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cotan</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(cotan(pi/2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(cotan(pi/3));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(cotan(pi/4));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-527" name="x57-52100013.3">cycletorad</a></h4><a 
+  name="dx57-521001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function cycletorad(cycle : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Cycletorad </span>transforms it&#8217;s argument <span 
+class="cmtt-10">cycle </span>(an angle expressed in cycles) to radians. (1
+cycle is 2<span 
+class="cmmi-10"><img 
+src="cmmi10-19.gif" alt="p" class="10--19"> </span>radians).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtorad </span>(<a 
+href="#x57-52300013.3">463<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 318--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 318--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cycletorad</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(cos(cycletorad(1/6)));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Should</span>&nbsp;<span 
+class="cmtt-10">print</span>&nbsp;<span 
+class="cmtt-10">1/2</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(cos(cycletorad(1/8)));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">sqrt(2)/2</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-528" name="x57-52200013.3">degtograd</a></h4><a 
+  name="dx57-522001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function degtograd(deg : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Degtograd </span>transforms it&#8217;s argument <span 
+class="cmtt-10">deg </span>(an angle in degrees) to grads.
+<!--l. 328--><p class="noindent">(90 degrees is 100 grad.)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtorad </span>(<a 
+href="#x57-52300013.3">463<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 336--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex11.pp</span><HR/><div class="listinginput">
+<!--l. 336--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example11;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">degtograd</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtograd(90));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtograd(180));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtograd(270))</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-529" name="x57-52300013.3">degtorad</a></h4><a 
+  name="dx57-523001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function degtorad(deg : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Degtorad </span>converts it&#8217;s argument <span 
+class="cmtt-10">deg </span>(an angle in degrees) to radians.
+<!--l. 346--><p class="noindent">(pi radians is 180 degrees)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 354--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 354--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example12;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">degtorad</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtorad(45));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtorad(90));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtorad(180));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtorad(270));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(degtorad(360));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-530" name="x57-52400013.3">floor</a></h4><a 
+  name="dx57-524001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function floor(x : float) : longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Floor </span>returns the largest integer smaller than or equal to <span 
+class="cmtt-10">x</span>. The absolute value of <span 
+class="cmtt-10">x </span>should
+be less than <span 
+class="cmtt-10">maxint</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is larger than <span 
+class="cmtt-10">maxint</span>, an overflow will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ceil </span>(<a 
+href="#x57-51800013.3">460<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 369--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex13.pp</span><HR/><div class="listinginput">
+<!--l. 369--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">floor</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(-3.7));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">-4</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(3.7));</span>&nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">3</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Ceil(-4.0));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">-4</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-531" name="x57-52500013.3">frexp</a></h4><a 
+  name="dx57-525001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure frexp(x : float;var mantissa : float; var exponent : integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Frexp </span>returns the mantissa and exponent of it&#8217;s argument <span 
+class="cmtt-10">x </span>in <span 
+class="cmtt-10">mantissa </span>and <span 
+class="cmtt-10">exponent</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 383--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 383--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">frexp</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">dofrexp(Const</span>&nbsp;<span 
+class="cmtt-10">X</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">extended);</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">man</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">extended;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">exp:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">man:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">exp:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">frexp(x,man,exp);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">write(x,'</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('mantissa</span>&nbsp;<span 
+class="cmtt-10">',man,'</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">exponent</span>&nbsp;<span 
+class="cmtt-10">',exp);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   <span 
+class="cmtt-10">//</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dofrexp(1.00);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dofrexp(1.02e-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dofrexp(1.03e-2);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dofrexp(1.02e1);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dofrexp(1.03e2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-532" name="x57-52600013.3">gradtodeg</a></h4><a 
+  name="dx57-526001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function gradtodeg(grad : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gradtodeg </span>converts its argument <span 
+class="cmtt-10">grad </span>(an angle in grads) to degrees.
+<!--l. 393--><p class="noindent">(100 grad is 90 degrees)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">gradtorad</span>
+(<a 
+href="#x57-52700013.3">465<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 401--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 401--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">gradtodeg</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtodeg(100));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtodeg(200));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtodeg(300));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-533" name="x57-52700013.3">gradtorad</a></h4><a 
+  name="dx57-527001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function gradtorad(grad : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Gradtorad </span>converts its argument <span 
+class="cmtt-10">grad </span>(an angle in grads) to radians.
+<!--l. 411--><p class="noindent">(200 grad is pi degrees).
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">gradtodeg</span>
+(<a 
+href="#x57-52600013.3">465<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 419--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 419--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">gradtorad</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtorad(100));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtorad(200));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(gradtorad(300));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-534" name="x57-52800013.3">hypot</a></h4><a 
+  name="dx57-528001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function hypot(x,y : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Hypot </span>returns the hypotenuse of the triangle where the sides adjacent to the square angle
+have lengths <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y</span>.
+<!--l. 429--><p class="noindent">The function uses Pythagoras&#8217; rule for this.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 435--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex17.pp</span><HR/><div class="listinginput">
+<!--l. 435--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example17;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">hypot</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(hypot(3,4));</span>&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">5</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-535" name="x57-52900013.3">intpower</a></h4><a 
+  name="dx57-529001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function intpower(base : float;exponent : longint) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Intpower </span>returns <span 
+class="cmtt-10">base </span>to the power <span 
+class="cmtt-10">exponent</span>, where exponent is an integer value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">base </span>is zero and the exponent is negative, then an overflow error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">power </span>(<a 
+href="#x57-54700013.3">480<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 451--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex18.pp</span><HR/><div class="listinginput">
+<!--l. 451--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example18;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">intpower</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DoIntpower</span>&nbsp;<span 
+class="cmtt-10">(X</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">extended;</span>&nbsp;<span 
+class="cmtt-10">Pow</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(X:8:4,'^',Pow:2,'</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',intpower(X,pow):8:4);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(0.0,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(1.0,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(2.0,5);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(4.0,3);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(2.0,-1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(2.0,-2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(-2.0,4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dointpower(-4.0,3);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-536" name="x57-53000013.3">ldexp</a></h4><a 
+  name="dx57-530001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ldexp(x : float;p : longint) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Ldexp </span>returns 2<sup ><span 
+class="cmmi-7">p</span></sup><span 
+class="cmmi-10">x</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">lnxp1 </span>(<a 
+href="#x57-53100013.3">468<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">log10 </span>(<a 
+href="#x57-53200013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log2 </span>(<a 
+href="#x57-53300013.3">469<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">logn </span>(<a 
+href="#x57-53400013.3">470<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 465--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex19.pp</span><HR/><div class="listinginput">
+<!--l. 465--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example19;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">ldexp</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(ldexp(2,4):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(ldexp(0.5,3):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-537" name="x57-53100013.3">lnxp1</a></h4><a 
+  name="dx57-531001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function lnxp1(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Lnxp1 </span>returns the natural logarithm of <span 
+class="cmtt-10">1+X</span>. The result is more precise for small values of
+<span 
+class="cmtt-10">x</span>. <span 
+class="cmtt-10">x </span>should be larger than -1.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmmi-10">x </span><span 
+class="cmsy-10"><u 
+class="underline">&lt;</u> -</span>1 then an <span 
+class="cmtt-10">EInvalidArgument </span>exception will be raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ldexp </span>(<a 
+href="#x57-53000013.3">467<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">log10 </span>(<a 
+href="#x57-53200013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log2 </span>(<a 
+href="#x57-53300013.3">469<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">logn </span>(<a 
+href="#x57-53400013.3">470<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 481--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex20.pp</span><HR/><div class="listinginput">
+<!--l. 481--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example20;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">lnxp1</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(lnxp1(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(lnxp1(0.5));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(lnxp1(1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-538" name="x57-53200013.3">log10</a></h4><a 
+  name="dx57-532001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function log10(x : float) : float;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Log10 </span>returns the 10-base logarithm of <span 
+class="cmtt-10">X</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is less than or equal to 0 an &#8217;invalid fpu operation&#8217; error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ldexp </span>(<a 
+href="#x57-53000013.3">467<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">lnxp1 </span>(<a 
+href="#x57-53100013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log2 </span>(<a 
+href="#x57-53300013.3">469<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">logn </span>(<a 
+href="#x57-53400013.3">470<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 495--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex21.pp</span><HR/><div class="listinginput">
+<!--l. 495--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">log10</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(10):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(100):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(1000):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(1):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(0.1):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(0.01):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log10(0.001):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-539" name="x57-53300013.3">log2</a></h4><a 
+  name="dx57-533001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function log2(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Log2 </span>returns the 2-base logarithm of <span 
+class="cmtt-10">X</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is less than or equal to 0 an &#8217;invalid fpu operation&#8217; error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ldexp </span>(<a 
+href="#x57-53000013.3">467<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">lnxp1 </span>(<a 
+href="#x57-53100013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log10 </span>(<a 
+href="#x57-53200013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">logn </span>(<a 
+href="#x57-53400013.3">470<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 510--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex22.pp</span><HR/><div class="listinginput">
+<!--l. 510--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example22;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">log2</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(2):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(4):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(8):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(1):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(0.5):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(0.25):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Log2(0.125):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-540" name="x57-53400013.3">logn</a></h4><a 
+  name="dx57-534001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function logn(n,x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Logn </span>returns the n-base logarithm of <span 
+class="cmtt-10">X</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>is less than or equal to 0 an &#8217;invalid fpu operation&#8217; error will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ldexp </span>(<a 
+href="#x57-53000013.3">467<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">lnxp1 </span>(<a 
+href="#x57-53100013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log10 </span>(<a 
+href="#x57-53200013.3">468<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">log2 </span>(<a 
+href="#x57-53300013.3">469<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 525--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex23.pp</span><HR/><div class="listinginput">
+<!--l. 525--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example23;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">logn</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(3,4):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(2,4):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(6,9):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(exp(1),exp(1)):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(0.5,1):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(0.25,3):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Logn(0.125,5):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-541" name="x57-53500013.3">max</a></h4><a 
+  name="dx57-535001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function max(Int1,Int2:Cardinal):Cardinal; Function</span>
+<span 
+class="cmtt-10">max(Int1,Int2:Integer):Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Max </span>returns the maximum of <span 
+class="cmtt-10">Int1 </span>and <span 
+class="cmtt-10">Int2</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">min </span>(<a 
+href="#x57-54000013.3">475<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">maxIntValue </span>(<a 
+href="#x57-53600013.3">471<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">maxvalue </span>(<a 
+href="#x57-53700013.3">472<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 539--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex24.pp</span><HR/><div class="listinginput">
+<!--l. 539--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example24;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">max</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">A,B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Cardinal;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">A:=1;b:=2;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(max(a,b));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-542" name="x57-53600013.3">maxIntValue</a></h4><a 
+  name="dx57-536001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function MaxIntValue(const Data: array of Integer): Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MaxIntValue </span>returns the largest integer out of the <span 
+class="cmtt-10">Data </span>array.
+<!--l. 548--><p class="noindent">This function is provided for Delphicompatibility, use the <span 
+class="cmss-10">maxvalue </span>(<a 
+href="#x57-53700013.3">472<!--tex4ht:ref: tab:speckeys--></a>) function instead.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">maxvalue </span>(<a 
+href="#x57-53700013.3">472<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">minvalue </span>(<a 
+href="#x57-54200013.3">476<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">minIntValue </span>(<a 
+href="#x57-54100013.3">475<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 556--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex25.pp</span><HR/><div class="listinginput">
+<!--l. 556--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example25;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MaxIntValue</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sore</span>&nbsp;<span 
+class="cmtt-10">integer</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">32</span>&nbsp;<span 
+class="cmtt-10">bit}</span>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=Random(I)-Random(100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(MaxIntValue(ExArray));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-543" name="x57-53700013.3">maxvalue</a></h4><a 
+  name="dx57-537001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function maxvalue(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">maxvalue(const data : array of Integer) : Integer; Function maxvalue(const</span>
+<span 
+class="cmtt-10">data : PFloat; Const N : Integer) : float; Function maxvalue(const data :</span>
+<span 
+class="cmtt-10">PInteger; Const N : Integer) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Maxvalue </span>returns the largest value in the <span 
+class="cmtt-10">data </span>array with integer or float values. The return
+value has the same type as the elements of the array.
+<!--l. 570--><p class="noindent">The third and fourth forms accept a pointer to an array of <span 
+class="cmtt-10">N </span>integer or float values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">maxIntValue </span>(<a 
+href="#x57-53600013.3">471<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">minvalue </span>(<a 
+href="#x57-54200013.3">476<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">minIntValue </span>(<a 
+href="#x57-54100013.3">475<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 578--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex26.pp</span><HR/><div class="listinginput">
+<!--l. 578--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example26;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MaxValue</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sore</span>&nbsp;<span 
+class="cmtt-10">integer</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">32</span>&nbsp;<span 
+class="cmtt-10">bit}</span>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExFloatArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExIntArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExFloatArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExFloatArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExIntArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExIntArray;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AFLoatArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PFLoat;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AIntArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PInteger;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AFloatArray:=@ExFloatArray[1];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AIntArray:=@ExIntArray[1];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExFloatArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExIntArray[i]:=Random(I)-Random(100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;<span 
+class="cmtt-10">Float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExFloatArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;<span 
+class="cmtt-10">Float</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(AFloatArray,100):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;<span 
+class="cmtt-10">Integer</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExIntArray):8);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;<span 
+class="cmtt-10">Integer</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(AIntArray,100):8);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-544" name="x57-53800013.3">mean</a></h4><a 
+  name="dx57-538001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function mean(const data : array of float) : float; Function mean(const</span>
+<span 
+class="cmtt-10">data : PFloat; Const N : longint) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Mean </span>returns the average value of <span 
+class="cmtt-10">data</span>.
+<!--l. 587--><p class="noindent">The second form accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">meanandstddev </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">momentskewkurtosis </span>(<a 
+href="#x57-54300013.3">477<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sum </span>(<a 
+href="#x57-55500013.3">486<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 594--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex27.pp</span><HR/><div class="listinginput">
+<!--l. 594--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example27;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Mean</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mean</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Mean(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mean</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Mean(@ExArray[1],100):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-545" name="x57-53900013.3">meanandstddev</a></h4><a 
+  name="dx57-539001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure meanandstddev(const data : array of float; var mean,stddev :</span>
+<span 
+class="cmtt-10">float); procedure meanandstddev(const data : PFloat; Const N : Longint;var</span>
+<span 
+class="cmtt-10">mean,stddev : float);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">meanandstddev </span>calculates the mean and standard deviation of <span 
+class="cmtt-10">data </span>and returns the result
+in <span 
+class="cmtt-10">mean </span>and <span 
+class="cmtt-10">stddev</span>, respectively. Stddev is zero if there is only one value.
+<!--l. 607--><p class="noindent">The second form accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>),<span 
+class="cmss-10">sum </span>(<a 
+href="#x57-55500013.3">486<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sumofsquares </span>(<a 
+href="#x57-55600013.3">487<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">momentskewkurtosis </span>(<a 
+href="#x57-54300013.3">477<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 614--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex28.pp</span><HR/><div class="listinginput">
+<!--l. 614--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example28;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Meanandstddev</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Extended;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Mean,stddev</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Extended;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MeanAndStdDev(ExArray,Mean,StdDev);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mean</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Mean:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('StdDev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StdDev:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MeanAndStdDev(@ExArray[1],100,Mean,StdDev);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mean</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Mean:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('StdDev</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StdDev:8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-546" name="x57-54000013.3">min</a></h4><a 
+  name="dx57-540001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function min(Int1,Int2:Cardinal):Cardinal; Function</span>
+<span 
+class="cmtt-10">min(Int1,Int2:Integer):Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">min </span>returns the smallest value of <span 
+class="cmtt-10">Int1 </span>and <span 
+class="cmtt-10">Int2</span>;
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">max </span>(<a 
+href="#x57-53500013.3">470<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 629--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex29.pp</span><HR/><div class="listinginput">
+<!--l. 629--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example29;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">min</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">A,B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Cardinal;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">A:=1;b:=2;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(min(a,b));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-547" name="x57-54100013.3">minIntValue</a></h4><a 
+  name="dx57-541001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function minIntValue(const Data: array of Integer): Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MinIntvalue </span>returns the smallest value in the <span 
+class="cmtt-10">Data </span>array.
+<!--l. 637--><p class="noindent">This function is provided for Delphicompatibility, use <span 
+class="cmtt-10">minvalue </span>instead.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">minvalue </span>(<a 
+href="#x57-54200013.3">476<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">maxIntValue </span>(<a 
+href="#x57-53600013.3">471<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">maxvalue </span>(<a 
+href="#x57-53700013.3">472<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 645--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex30.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 645--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example30;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MinIntValue</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sore</span>&nbsp;<span 
+class="cmtt-10">integer</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">32</span>&nbsp;<span 
+class="cmtt-10">bit}</span>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=Random(I)-Random(100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(MinIntValue(ExArray));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-548" name="x57-54200013.3">minvalue</a></h4><a 
+  name="dx57-542001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function minvalue(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">minvalue(const data : array of Integer) : Integer; Function minvalue(const</span>
+<span 
+class="cmtt-10">data : PFloat; Const N : Integer) : float; Function minvalue(const data :</span>
+<span 
+class="cmtt-10">PInteger; Const N : Integer) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Minvalue </span>returns the smallest value in the <span 
+class="cmtt-10">data </span>array with integer or float values. The
+return value has the same type as the elements of the array.
+<!--l. 659--><p class="noindent">The third and fourth forms accept a pointer to an array of <span 
+class="cmtt-10">N </span>integer or float values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">maxIntValue </span>(<a 
+href="#x57-53600013.3">471<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">maxvalue </span>(<a 
+href="#x57-53700013.3">472<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">minIntValue </span>(<a 
+href="#x57-54100013.3">475<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 667--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex31.pp</span><HR/><div class="listinginput">
+<!--l. 667--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example26;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MinValue</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sore</span>&nbsp;<span 
+class="cmtt-10">integer</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">32</span>&nbsp;<span 
+class="cmtt-10">bit}</span>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExFloatArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExIntArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExFloatArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExFloatArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AFloatArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PFloat;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExIntArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExIntArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AintArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PInteger;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AFloatArray:=@ExFloatArray[0];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AIntArray:=@ExIntArray[0];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExFloatArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExIntArray[i]:=Random(I)-Random(100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;<span 
+class="cmtt-10">Float</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExFloatArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;<span 
+class="cmtt-10">Float</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(AFloatArray,100):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;<span 
+class="cmtt-10">Integer</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExIntArray):8);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;<span 
+class="cmtt-10">Integer</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(AintArray,100):8);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-549" name="x57-54300013.3">momentskewkurtosis</a></h4><a 
+  name="dx57-543001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure momentskewkurtosis(const data : array of float; var</span>
+<span 
+class="cmtt-10">m1,m2,m3,m4,skew,kurtosis : float); procedure momentskewkurtosis(const data</span>
+<span 
+class="cmtt-10">: PFloat; Const N : Integer; var m1,m2,m3,m4,skew,kurtosis : float);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">momentskewkurtosis </span>calculates the 4 first moments of the distribution of valuesin <span 
+class="cmtt-10">data</span>
+and returns them in <span 
+class="cmtt-10">m1</span>,<span 
+class="cmtt-10">m2</span>,<span 
+class="cmtt-10">m3 </span>and <span 
+class="cmtt-10">m4</span>, as well as the <span 
+class="cmtt-10">skew </span>and <span 
+class="cmtt-10">kurtosis</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">meanandstddev </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 686--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex32.pp</span><HR/><div class="listinginput">
+<!--l. 686--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">momentskewkurtosis</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DistArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..1000]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">float;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">m1,m2,m3,m4,skew,kurtosis</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">distarray[i]:=random;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">momentskewkurtosis(DistArray,m1,m2,m3,m4,skew,kurtosis);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('1st</span>&nbsp;<span 
+class="cmtt-10">moment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',m1:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('2nd</span>&nbsp;<span 
+class="cmtt-10">moment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',m2:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('3rd</span>&nbsp;<span 
+class="cmtt-10">moment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',m3:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('4th</span>&nbsp;<span 
+class="cmtt-10">moment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',m4:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Skew</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',skew:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('kurtosis</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',kurtosis:8:6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-550" name="x57-54400013.3">norm</a></h4><a 
+  name="dx57-544001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function norm(const data : array of float) : float; Function norm(const</span>
+<span 
+class="cmtt-10">data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Norm  </span>calculates  the  Euclidian  norm  of  the  array  of  data.  This  equals
+<span 
+class="cmtt-10">sqrt(sumofsquares(data))</span>.
+<!--l. 696--><p class="noindent">The second form accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">sumofsquares </span>(<a 
+href="#x57-55600013.3">487<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 703--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex33.pp</span><HR/><div class="listinginput">
+<!--l. 703--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example33;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">norm</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TVector</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..10]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AVector</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Tvector;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Avector[i]:=Random;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln(Norm(AVector));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-551" name="x57-54500013.3">popnstddev</a></h4><a 
+  name="dx57-545001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function popnstddev(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">popnstddev(const data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Popnstddev </span>returns the square root of the population variance of the values in the <span 
+class="cmtt-10">Data</span>
+array. It returns zero if there is only one value.
+<!--l. 714--><p class="noindent">The second form of this function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">popnvariance  </span>(<a 
+href="#x57-54600013.3">480<!--tex4ht:ref: tab:speckeys--></a>),  <span 
+class="cmss-10">mean  </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>),  <span 
+class="cmss-10">meanandstddev  </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>),  <span 
+class="cmss-10">stddev  </span>(<a 
+href="#x57-55400013.3">485<!--tex4ht:ref: tab:speckeys--></a>),  <span 
+class="cmss-10">momentskewkurtosis</span>
+(<a 
+href="#x57-54300013.3">477<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 723--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex35.pp</span><HR/><div class="listinginput">
+<!--l. 723--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example35;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PopnStdDev</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Pop.</span>&nbsp;<span 
+class="cmtt-10">stddev.</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PopnStdDev(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Pop.</span>&nbsp;<span 
+class="cmtt-10">stddev.</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PopnStdDev(@ExArray[1],100):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-552" name="x57-54600013.3">popnvariance</a></h4><a 
+  name="dx57-546001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function popnvariance(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">popnvariance(const data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Popnvariance </span>returns the square root of the population variance of the values in the <span 
+class="cmtt-10">Data</span>
+array. It returns zero if there is only one value.
+<!--l. 734--><p class="noindent">The second form of this function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">popnstddev </span>(<a 
+href="#x57-54500013.3">479<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">meanandstddev </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">stddev </span>(<a 
+href="#x57-55400013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">momentskewkurtosis </span>(<a 
+href="#x57-54300013.3">477<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 743--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex36.pp</span><HR/><div class="listinginput">
+<!--l. 743--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example36;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PopnVariance</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Pop.</span>&nbsp;<span 
+class="cmtt-10">var.</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PopnVariance(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Pop.</span>&nbsp;<span 
+class="cmtt-10">var.</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PopnVariance(@ExArray[1],100):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-553" name="x57-54700013.3">power</a></h4><a 
+  name="dx57-547001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function power(base,exponent : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">power </span>raises <span 
+class="cmtt-10">base </span>to the power  <span 
+class="cmtt-10">power</span>.  This  is  equivalent  to  <span 
+class="cmtt-10">exp(power*ln(base))</span>.
+Therefore <span 
+class="cmtt-10">base </span>should be non-negative.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">intpower </span>(<a 
+href="#x57-52900013.3">467<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 758--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex34.pp</span><HR/><div class="listinginput">
+<!--l. 758--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example34;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">power</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">dopower(x,y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(x:8:6,'^',y:8:6,'</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',power(x,y):8:6)</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dopower(2,2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dopower(2,-2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dopower(2,0.0);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-554" name="x57-54800013.3">radtocycle</a></h4><a 
+  name="dx57-548001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function radtocycle(rad : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Radtocycle </span>converts its argument <span 
+class="cmtt-10">rad </span>(an angle expressed in radians) to an angle in cycles.
+<!--l. 768--><p class="noindent">(1 cycle equals 2 pi radians)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtorad </span>(<a 
+href="#x57-52300013.3">463<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 776--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex37.pp</span><HR/><div class="listinginput">
+<!--l. 776--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example37;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">radtocycle</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtocycle(2*pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtocycle(pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtocycle(pi/2):8:6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-555" name="x57-54900013.3">radtodeg</a></h4><a 
+  name="dx57-549001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function radtodeg(rad : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Radtodeg </span>converts its argument <span 
+class="cmtt-10">rad </span>(an angle expressed in radians) to an angle in degrees.
+<!--l. 786--><p class="noindent">(180 degrees equals pi radians)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtorad </span>(<a 
+href="#x57-52300013.3">463<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtograd </span>(<a 
+href="#x57-55000013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 794--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex38.pp</span><HR/><div class="listinginput">
+<!--l. 794--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example38;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">radtodeg</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtodeg(2*pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtodeg(pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtodeg(pi/2):8:6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-556" name="x57-55000013.3">radtograd</a></h4><a 
+  name="dx57-550001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function radtograd(rad : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Radtodeg </span>converts its argument <span 
+class="cmtt-10">rad </span>(an angle expressed in radians) to an angle in grads.
+<!--l. 804--><p class="noindent">(200 grads equals pi radians)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">degtograd </span>(<a 
+href="#x57-52200013.3">462<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">degtorad </span>(<a 
+href="#x57-52300013.3">463<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtocycle </span>(<a 
+href="#x57-54800013.3">481<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">radtodeg </span>(<a 
+href="#x57-54900013.3">482<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">cycletorad </span>(<a 
+href="#x57-52100013.3">461<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 812--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex39.pp</span><HR/><div class="listinginput">
+<!--l. 812--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example39;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">radtograd</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtograd(2*pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtograd(pi):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(radtograd(pi/2):8:6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-557" name="x57-55100013.3">randg</a></h4><a 
+  name="dx57-551001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function randg(mean,stddev : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">randg </span>returns a random number which - when produced in large quantities - has a Gaussian
+distribution with mean <span 
+class="cmtt-10">mean </span>and standarddeviation <span 
+class="cmtt-10">stddev</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">stddev </span>(<a 
+href="#x57-55400013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">meanandstddev </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 828--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex40.pp</span><HR/><div class="listinginput">
+<!--l. 828--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example40;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">randg</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..10000]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Mean,stddev</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=Randg(1,0.2);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MeanAndStdDev(ExArray,Mean,StdDev);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mean</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Mean:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('StdDev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StdDev:8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-558" name="x57-55200013.3">sincos</a></h4><a 
+  name="dx57-552001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure sincos(theta : float;var sinus,cosinus : float);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sincos </span>calculates the sine and cosine of the angle <span 
+class="cmtt-10">theta</span>, and returns the result in <span 
+class="cmtt-10">sinus</span>
+and <span 
+class="cmtt-10">cosinus</span>.
+<!--l. 838--><p class="noindent">On Intel hardware, This calculation will be faster than making 2 calls to clculatet he sine
+and cosine separately.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>).</dd></dl>
+<!--l. 846--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex41.pp</span><HR/><div class="listinginput">
+<!--l. 846--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example41;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">sincos</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">dosincos(Angle</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Float);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Sine,Cosine</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">sincos(angle,sine,cosine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Angle</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Angle:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('</span>&nbsp;<span 
+class="cmtt-10">Sine</span>&nbsp;<span 
+class="cmtt-10">:',sine:8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('</span>&nbsp;<span 
+class="cmtt-10">Cosine</span>&nbsp;<span 
+class="cmtt-10">:',cosine:8:6);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dosincos(pi);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dosincos(pi/2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dosincos(pi/3);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dosincos(pi/4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dosincos(pi/6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-559" name="x57-55300013.3">sinh</a></h4><a 
+  name="dx57-553001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function sinh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sinh </span>returns the hyperbolic sine of its argument <span 
+class="cmtt-10">x</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">cosh </span>(<a 
+href="#x57-51900013.3">460<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arsinh </span>(<a 
+href="#x57-51600013.3">459<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">tanh </span>(<a 
+href="#x57-55900013.3">489<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">artanh </span>(<a 
+href="#x57-51700013.3">459<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 859--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex42.pp</span><HR/><div class="listinginput">
+<!--l. 859--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example42;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">sinh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(sinh(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(sinh(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(sinh(-1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-560" name="x57-55400013.3">stddev</a></h4><a 
+  name="dx57-554001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function stddev(const data : array of float) : float; Function stddev(const</span>
+<span 
+class="cmtt-10">data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Stddev </span>returns the standard deviation of the values in <span 
+class="cmtt-10">Data</span>. It returns zero if there is only
+one value.
+<!--l. 870--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">meanandstddev </span>(<a 
+href="#x57-53900013.3">474<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">variance </span>(<a 
+href="#x57-56100013.3">491<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">totalvariance </span>(<a 
+href="#x57-56000013.3">490<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 878--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex43.pp</span><HR/><div class="listinginput">
+<!--l. 878--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example40;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">stddev</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..10000]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=Randg(1,0.2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('StdDev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StdDev(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('StdDev</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StdDev(@ExArray[0],10000):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-561" name="x57-55500013.3">sum</a></h4><a 
+  name="dx57-555001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function sum(const data : array of float) : float; Function sum(const data</span>
+<span 
+class="cmtt-10">: PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sum </span>returns the sum of the values in the <span 
+class="cmtt-10">data </span>array.
+<!--l. 888--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">sumofsquares </span>(<a 
+href="#x57-55600013.3">487<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sumsandsquares </span>(<a 
+href="#x57-55700013.3">488<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">totalvariance </span>(<a 
+href="#x57-56000013.3">490<!--tex4ht:ref: tab:speckeys--></a>) , <span 
+class="cmss-10">variance </span>(<a 
+href="#x57-56100013.3">491<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 897--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex44.pp</span><HR/><div class="listinginput">
+<!--l. 897--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example44;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Sum</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Sum(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Sum(@ExArray[1],100):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-562" name="x57-55600013.3">sumofsquares</a></h4><a 
+  name="dx57-556001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function sumofsquares(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">sumofsquares(const data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sumofsquares </span>returns the sum of the squares of the values in the <span 
+class="cmtt-10">data </span>array.
+<!--l. 908--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">sum </span>(<a 
+href="#x57-55500013.3">486<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sumsandsquares </span>(<a 
+href="#x57-55700013.3">488<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">totalvariance </span>(<a 
+href="#x57-56000013.3">490<!--tex4ht:ref: tab:speckeys--></a>) , <span 
+class="cmss-10">variance </span>(<a 
+href="#x57-56100013.3">491<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 917--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex45.pp</span><HR/><div class="listinginput">
+<!--l. 917--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example45;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SumOfSquares</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">squares</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SumOfSquares(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">squares</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SumOfSquares(@ExArray[1],100):8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-563" name="x57-55700013.3">sumsandsquares</a></h4><a 
+  name="dx57-557001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure sumsandsquares(const data : array of float; var sum,sumofsquares</span>
+<span 
+class="cmtt-10">: float); Procedure sumsandsquares(const data : PFloat; Const N : Integer;</span>
+<span 
+class="cmtt-10">var sum,sumofsquares : float);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">sumsandsquares </span>calculates the sum of the values and the sum of the squares of the values
+in the <span 
+class="cmtt-10">data </span>array and returns the results in <span 
+class="cmtt-10">sum </span>and <span 
+class="cmtt-10">sumofsquares</span>.
+<!--l. 931--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">sum </span>(<a 
+href="#x57-55500013.3">486<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sumofsquares </span>(<a 
+href="#x57-55600013.3">487<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">totalvariance </span>(<a 
+href="#x57-56000013.3">490<!--tex4ht:ref: tab:speckeys--></a>) , <span 
+class="cmss-10">variance </span>(<a 
+href="#x57-56100013.3">491<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 940--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex46.pp</span><HR/><div class="listinginput">
+<!--l. 940--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example45;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SumOfSquares</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s,ss</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Max</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MaxValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Min</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MinValue(ExArray):8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SumsAndSquares(ExArray,S,SS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">squares</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SS:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SumsAndSquares(@ExArray[1],100,S,SS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Sum</span>&nbsp;<span 
+class="cmtt-10">squares</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SS:8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-564" name="x57-55800013.3">tan</a></h4><a 
+  name="dx57-558001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function tan(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Tan </span>returns the tangent of <span 
+class="cmtt-10">x</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">x </span>(normalized) is pi/2 or 3pi/2 then an overflow will occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">tanh </span>(<a 
+href="#x57-55900013.3">489<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sincos </span>(<a 
+href="#x57-55200013.3">484<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 954--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex47.pp</span><HR/><div class="listinginput">
+<!--l. 954--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example47;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Tan</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DoTan(Angle</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Float);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Angle</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',RadToDeg(Angle):8:6);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('</span>&nbsp;<span 
+class="cmtt-10">Tangent</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Tan(Angle):8:6);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoTan(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoTan(Pi);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoTan(Pi/3);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoTAn(Pi/4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoTan(Pi/6);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-565" name="x57-55900013.3">tanh</a></h4><a 
+  name="dx57-559001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function tanh(x : float) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Tanh </span>returns the hyperbolic tangent of <span 
+class="cmtt-10">x</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">arcsin </span>(<a 
+href="#x57-51400013.3">457<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">sincos </span>(<a 
+href="#x57-55200013.3">484<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">arccos </span>(<a 
+href="#x57-51200013.3">456<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 968--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex48.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 968--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example48;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Tanh</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(tanh(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(tanh(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(tanh(-1));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-566" name="x57-56000013.3">totalvariance</a></h4><a 
+  name="dx57-560001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function totalvariance(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">totalvariance(const data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TotalVariance </span>returns the total variance of the values in the <span 
+class="cmtt-10">data </span>array. It returns zero if
+there is only one value.
+<!--l. 979--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">variance </span>(<a 
+href="#x57-56100013.3">491<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">stddev </span>(<a 
+href="#x57-55400013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 987--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex49.pp</span><HR/><div class="listinginput">
+<!--l. 987--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example49;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TotalVariance</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TV</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TV:=TotalVariance(ExArray);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">variance</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TV:8:4);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TV:=TotalVariance(@ExArray[1],100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">Variance</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TV:8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-57-567" name="x57-56100013.3">variance</a></h4><a 
+  name="dx57-561001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function variance(const data : array of float) : float; Function</span>
+<span 
+class="cmtt-10">variance(const data : PFloat; Const N : Integer) : float;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Variance </span>returns the variance of the values in the <span 
+class="cmtt-10">data </span>array. It returns zero if there is
+only one value.
+<!--l. 998--><p class="noindent">The second form of the function accepts a pointer to an array of <span 
+class="cmtt-10">N </span>values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">totalvariance </span>(<a 
+href="#x57-56000013.3">490<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">stddev </span>(<a 
+href="#x57-55400013.3">485<!--tex4ht:ref: tab:speckeys--></a>), <span 
+class="cmss-10">mean </span>(<a 
+href="#x57-53800013.3">473<!--tex4ht:ref: tab:speckeys--></a>)</dd></dl>
+<!--l. 1006--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mathex/ex50.pp</span><HR/><div class="listinginput">
+<!--l. 1006--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example50;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Variance</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">math;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TExArray</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Array[1..100]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExArray</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TExArray;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">V</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">float;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ExArray[i]:=(Random-Random)*100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">V:=Variance(ExArray);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Variance</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',V:8:4);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">V:=Variance(@ExArray[1],100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Variance</span>&nbsp;<span 
+class="cmtt-10">(b)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',V:8:4);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse38.htm" >prev</a>] [<a 
+href="unitsse38.htm#tailunitsse38.htm" >prev-tail</a>] [<a 
+href="unitsse39.htm" >front</a>] [<a 
+href="unitsch13.htm#unitsse39.htm" >up</a>] </p></div><a 
+  name="tailunitsse39.htm"></a>  
+</body></html> 

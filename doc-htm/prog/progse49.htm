@@ -1,0 +1,90 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12.3 Using string tables.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse50.htm" >next</a>] [<a 
+href="progse48.htm" >prev</a>] [<a 
+href="progse48.htm#tailprogse48.htm" >prev-tail</a>] [<a 
+href="#tailprogse49.htm">tail</a>] [<a 
+href="progch12.htm#progse49.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">12.3</span> <a 
+href="prog.htm#QQ2-206-228" name="x206-20700012.3">Using string tables.</a></h3>
+<!--l. 5078--><p class="noindent">String tables can be used to store and retrieve large collections of strings in your application.
+<!--l. 5081--><p class="noindent">A string table looks as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;STRINGTABLE&nbsp;{&nbsp;1,&nbsp;&#34;hello&nbsp;World&nbsp;!&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,&nbsp;&#34;hello&nbsp;world&nbsp;again&nbsp;!&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3,&nbsp;&#34;last&nbsp;hello&nbsp;world&nbsp;!&#34;&nbsp;}
+</pre>
+</td></tr></table>You can compile this (we assume the file is called <span 
+class="cmss-10">tests.rc</span>) as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;windres&nbsp;-i&nbsp;tests.rc&nbsp;-o&nbsp;tests.res
+</pre>
+</td></tr></table>And this is the way to retrieve the strings from your program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;tests;
+&nbsp;
+&nbsp;{$mode&nbsp;objfpc}
+&nbsp;
+&nbsp;Uses&nbsp;Windows;
+&nbsp;
+&nbsp;{$R&nbsp;*.res}
+&nbsp;
+&nbsp;&nbsp;&nbsp;Function&nbsp;LoadResourceString&nbsp;(Index&nbsp;:&nbsp;longint):&nbsp;Shortstring;
+&nbsp;
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetLength(Result,LoadString(FindResource(0,Nil,RT_STRING),Index,@Result[1],SizeOf(Result)))
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;For&nbsp;i:=1&nbsp;to&nbsp;3&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;(Loadresourcestring(I));
+&nbsp;end.
+</pre>
+</td></tr></table>The call to <span 
+class="cmtt-10">FindResource </span>searches for the stringtable in the compiled-in resources. The
+<span 
+class="cmtt-10">LoadString </span>function then reads the string with index <span 
+class="cmtt-10">i </span>out of the table, and puts it in a buffer,
+which can then be used. Both calls are in the <span 
+class="cmss-10">windows </span>unit.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse50.htm" >next</a>] [<a 
+href="progse48.htm" >prev</a>] [<a 
+href="progse48.htm#tailprogse48.htm" >prev-tail</a>] [<a 
+href="progse49.htm" >front</a>] [<a 
+href="progch12.htm#progse49.htm" >up</a>] </p></div><a 
+  name="tailprogse49.htm"></a>  
+</body></html> 

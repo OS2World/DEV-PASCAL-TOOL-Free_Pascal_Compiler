@@ -1,0 +1,77 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.4 GNU gettext</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse37.htm" >next</a>] [<a 
+href="progse35.htm" >prev</a>] [<a 
+href="progse35.htm#tailprogse35.htm" >prev-tail</a>] [<a 
+href="#tailprogse36.htm">tail</a>] [<a 
+href="progch9.htm#progse36.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.4</span> <a 
+href="prog.htm#QQ2-173-196" name="x173-1760009.4">GNU gettext</a></h3>
+<!--l. 4440--><p class="noindent">The unit <span 
+class="cmss-10">gettext </span>provides a way to internationalize an application with the GNU <span 
+class="cmss-10">gettext</span>
+utilities. This unit is supplied with the Free Component Library (FCL). it can be used as
+follows:
+<!--l. 4444--><p class="noindent">for a given application, the following steps must be followed:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x173-176002x1"></a>Collect all resource string files and concatenate them together.
+     </li>
+     <li class="enumerate"><a 
+  name="x173-176004x2"></a>Invoke the <span 
+class="cmss-10">rstconv </span>program with the file resulting out of step 1, resulting in a single
+     <span 
+class="cmss-10">.po </span>file containing all resource strings of the program.
+     </li>
+     <li class="enumerate"><a 
+  name="x173-176006x3"></a>Translate the <span 
+class="cmss-10">.po </span>file of step 2 in all required languages.
+     </li>
+     <li class="enumerate"><a 
+  name="x173-176008x4"></a>Run the <span 
+class="cmss-10">msgfmt </span>formatting program on all the <span 
+class="cmss-10">.po </span>files, resulting in a set of <span 
+class="cmss-10">.mo </span>files,
+     which can be distributed with your application.
+     </li>
+     <li class="enumerate"><a 
+  name="x173-176010x5"></a>Call the <span 
+class="cmss-10">gettext </span>unit&#8217;s <span 
+class="cmtt-10">TranslateReosurceStrings </span>method, giving it a template for the
+     location of the <span 
+class="cmss-10">.mo </span>files, e.g. as in
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;TranslateResourcestrings('intl/restest.%s.mo');
+</pre>
+     </td></tr></table>the <span 
+class="cmtt-10">%s </span>specifier will be replaced by the contents of the <span 
+class="cmtt-10">LANG </span>environment variable. This call
+     should happen at program startup.</li></ol>
+<!--l. 4462--><p class="noindent">An example program exists in the FCL sources, in the <span 
+class="cmss-10">fcl/tests </span>directory. <div class="crosslinks"><p class="noindent">[<a 
+href="progse37.htm" >next</a>] [<a 
+href="progse35.htm" >prev</a>] [<a 
+href="progse35.htm#tailprogse35.htm" >prev-tail</a>]
+[<a 
+href="progse36.htm" >front</a>] [<a 
+href="progch9.htm#progse36.htm" >up</a>] </p></div><a 
+  name="tailprogse36.htm"></a>  
+</body></html> 

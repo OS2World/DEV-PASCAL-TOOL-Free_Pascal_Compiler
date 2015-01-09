@@ -1,0 +1,69 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.2 Problems you may encounter under DOS</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse15.htm" >prev</a>] [<a 
+href="userse15.htm#tailuserse15.htm" >prev-tail</a>] [<a 
+href="#tailuserse16.htm">tail</a>] [<a 
+href="userch4.htm#userse16.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.2</span> <a 
+href="user.htm#QQ2-22-42" name="x22-400004.2">Problems you may encounter under DOS</a></h3>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmbx-10">No space in environment</span>.
+     <br class="newline">An error message like this can occur, if you call <span class="obeylines-h"><span 
+class="cmtt-10">SET_PP.BAT</span></span> in the <span 
+class="cmss-10">AUTOEXEC.BAT</span>.
+     <br class="newline">To solve this problem, you must extend your environment memory. To do this, search a line
+     in the <span 
+class="cmss-10">CONFIG.SYS </span>like
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;SHELL=C:\DOS\COMMAND.COM
+</pre>
+     </td></tr></table>and change it to the following:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;SHELL=C:\DOS\COMMAND.COM&nbsp;/E:1024
+</pre>
+     </td></tr></table>You may just need to specify a higher value, if this parameter is already set.
+     </li>
+     <li class="itemize"> <span 
+class="cmbx-10">Coprocessor missing</span>
+     <br class="newline">If the compiler writes a message that there is no coprocessor, install the coprocessor
+     emulation.
+     </li>
+     <li class="itemize"><span 
+class="cmbx-10">Not enough DPMI memory</span>
+     <br class="newline">If you want to use the compiler with <span 
+class="cmtt-10">DPMI </span>you must have at least 7-8 MB free <span 
+class="cmtt-10">DPMI </span>memory,
+     but 16 Mb is a more realistic amount.</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse15.htm" >prev</a>] [<a 
+href="userse15.htm#tailuserse15.htm" >prev-tail</a>] [<a 
+href="userse16.htm" >front</a>] [<a 
+href="userch4.htm#userse16.htm" >up</a>] </p></div><a 
+  name="tailuserse16.htm"></a>  
+</body></html> 

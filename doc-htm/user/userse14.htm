@@ -1,0 +1,61 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.6 Reducing the size of your program</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse13.htm" >prev</a>] [<a 
+href="userse13.htm#tailuserse13.htm" >prev-tail</a>] [<a 
+href="#tailuserse14.htm">tail</a>] [<a 
+href="userch3.htm#userse14.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.6</span> <a 
+href="user.htm#QQ2-19-39" name="x19-370003.6">Reducing the size of your program</a></h3>
+<!--l. 818--><p class="noindent">When you created your program, it is possible to reduce its size. This is possible, because the
+compiler leaves a lot of information in the program which, strictly speaking, isn&#8217;t required for the
+execution of it. The surplus of information can be removed with a small program called <span 
+class="cmss-10">strip</span>.The
+usage is simple. Just type
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;strip&nbsp;prog
+</pre>
+</td></tr></table>On the command line, and the <span 
+class="cmss-10">strip </span>program will remove all unnecessary information from your
+program. This can lead to size reductions of up to 30 %.
+<!--l. 830--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> In the <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small>32 </span>version, <span 
+class="cmss-10">strip </span>is called <span 
+class="cmss-10">stripw</span>.
+You can use the <span 
+class="cmtt-10">-Xs </span>switch to let the compiler do this stripping automatically at program compile
+time (the switch has no effect when compiling units).
+<!--l. 837--><p class="noindent">Another technique to reduce the size of a program is to use smartlinking. Normally, units
+(including the system unit) are linked in as a whole. It is however possible to compile units such
+that the can be smartlinked. This means that only the functions and procedures are linked in your
+program, leaving out any unnecessary code. This technique is described in full in the programmers
+guide.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse13.htm" >prev</a>] [<a 
+href="userse13.htm#tailuserse13.htm" >prev-tail</a>] [<a 
+href="userse14.htm" >front</a>] [<a 
+href="userch3.htm#userse14.htm" >up</a>] </p></div><a 
+  name="tailuserse14.htm"></a>  
+</body></html> 

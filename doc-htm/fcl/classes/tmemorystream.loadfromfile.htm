@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TMemoryStream.LoadFromFile</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TMemoryStream.LoadFromFile</h1>
+<p>Loads the contents of a file into memory.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tmemorystream.htm">TMemoryStream</a><span class="sym">.</span>LoadFromFile<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">const </span>FileName<span class="sym">: </span>String</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>LoadFromFile</var> loads the contents of the file with name <var>FileName</var> into the memory stream. The current contents of the memory stream is replaced by the contents of the file. Memory is allocated as needed. </p>
+<p>The <var>LoadFromFile</var> method simply creates a filestream and then calls the <a href="../classes/tmemorystream.loadfromstream.htm">TMemoryStream.LoadFromStream</a> method. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tmemorystream.loadfromstream.htm">TMemoryStream.LoadFromStream</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Loads the contents of a stream into memory.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,162 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.7 The symbol browser</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse27.htm" >next</a>] [<a 
+href="userse25.htm" >prev</a>] [<a 
+href="userse25.htm#tailuserse25.htm" >prev-tail</a>] [<a 
+href="#tailuserse26.htm">tail</a>] [<a 
+href="userch6.htm#userse26.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.7</span> <a 
+href="user.htm#QQ2-36-104" name="x36-940006.7">The symbol browser</a></h3>
+<!--l. 1010--><p class="noindent">The symbol browser allows to find all occurrences of a symbol. A symbol can be a variable, type,
+procedure or constant that occurs in the program or unit sources.
+<!--l. 1014--><p class="noindent">To enable the symbol browser, the program or unit must be compiled with browser information.
+This can be done by setting the browser information options in the compiler options
+dialog.
+<!--l. 1018--><p class="noindent">The IDE allows to browse several types of symbols:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">procedures</span> </dt><dd 
+class="description">Allows to quickly jump to a procedure definition or implementation.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Objects</span> </dt><dd 
+class="description">Allows to quickly browse an object.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Modules</span> </dt><dd 
+class="description">Allows to browse a module.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Globals</span> </dt><dd 
+class="description">Allows to browse any global symbol.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Arbitrary symbol</span> </dt><dd 
+class="description">Allows to browse an arbitrary symbol.</dd></dl>
+<!--l. 1027--><p class="noindent">In all cases, first a symbol to be browsed must be selected. After that, a browse window appears. In
+the browse window, all locations where the symbol was encountered are shown. Selecting a location
+and pressing the space bar will cause the editor to jump to that location; the line containing the
+symbol will be highlighted.
+<!--l. 1033--><p class="noindent">If the location is in a source file that is not yet displayed, a new window will be opened with the
+source file loaded.
+<!--l. 1036--><p class="noindent">After the desired location was reached, the browser window can be closed with the usual
+commands.
+<!--l. 1039--><p class="noindent">The behaviour of the browser can be customized with the browser options dialog, using the
+<span 
+class="cmbx-10">&#8221;Options--Browser&#8221; </span>menu. The browser options dialog looks like figure (<a 
+href="#x36-940019">6.9<!--tex4ht:ref: fig:obrowser--></a>).
+<!--l. 1043--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x36-940019"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.9: </td><td  
+class="content">The browser options dialog.</td></tr></table></div><!--tex4ht:label?: x36-940019-->
+<!--l. 1043--><p class="noindent"><img 
+src="user10x.png" alt="PIC" class="graphics" width="400.34999pt" height="192.56795pt" ><!--tex4ht:graphics  
+name="user10x.png" src="pics/ide/obrowser.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1045--><p class="noindent">The following options can be set in the browser options dialog:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Symbols</span> </dt><dd 
+class="description">Here the types of symbols displayed in the browser can be selected:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">Labels</span> </dt><dd 
+class="description">labels are shown.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Constants</span> </dt><dd 
+class="description">Constants are shown.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Types</span> </dt><dd 
+class="description">Types are shown.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Variables</span> </dt><dd 
+class="description">Variables are shown.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Procedures</span> </dt><dd 
+class="description">Procedures are shown.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Inherited</span> </dt><dd 
+class="description"></dd></dl>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Sub-browsing</span> </dt><dd 
+class="description">Specifies what the browser should do when displaying the members of a complex
+     symbol such as a record or class:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">New browser</span> </dt><dd 
+class="description">The members are shown in a new browser window.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Replace current</span> </dt><dd 
+class="description">The contents of the current window are replaced with the members
+         of the selected complex symbol.</dd></dl>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Preferred pane</span> </dt><dd 
+class="description">Specifies what pane is shown in the browser when it is initially opened:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">scope</span> </dt><dd 
+class="description">
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Reference</span> </dt><dd 
+class="description"></dd></dl>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Display</span> </dt><dd 
+class="description">Determines how the browser should display the symbols:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">Qualified symbols</span> </dt><dd 
+class="description">
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">Sort always</span> </dt><dd 
+class="description">sorts the symbols in the browser window.</dd></dl>
+     </dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse27.htm" >next</a>] [<a 
+href="userse25.htm" >prev</a>] [<a 
+href="userse25.htm#tailuserse25.htm" >prev-tail</a>] [<a 
+href="userse26.htm" >front</a>] [<a 
+href="userch6.htm#userse26.htm" >up</a>] </p></div><a 
+  name="tailuserse26.htm"></a>  
+</body></html> 

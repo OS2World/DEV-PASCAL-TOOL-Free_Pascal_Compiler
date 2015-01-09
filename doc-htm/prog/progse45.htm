@@ -1,0 +1,233 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.3 Using a library in a pascal program</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse46.htm" >next</a>] [<a 
+href="progse44.htm" >prev</a>] [<a 
+href="progse44.htm#tailprogse44.htm" >prev-tail</a>] [<a 
+href="#tailprogse45.htm">tail</a>] [<a 
+href="progch11.htm#progse45.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.3</span> <a 
+href="prog.htm#QQ2-200-223" name="x200-20200011.3">Using a library in a pascal program</a></h3>
+<!--l. 4941--><p class="noindent">In order to use a function that resides in a library, it is sufficient to declare the function as
+it exists in the library as an <span 
+class="cmtt-10">external </span>function, with correct arguments and return
+type. The calling convention used by the function should be declared correctly as well.
+The compiler will then link the library as specified in the <span 
+class="cmtt-10">external </span>statement to your
+program<a 
+href="prog201.htm" name="prog201.htm" ><sup>1</sup></a>.
+<!--l. 4950--><p class="noindent">For example, to use the library as defined above from a pascal program, you can use the following
+pascal program:
+<!--l. 4952--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">progex/psubs.pp</span><HR/><div class="listinginput">
+<!--l. 4952--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">testsubs;</span>
+<br>
+<br>   <span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">SubStr(const</span>&nbsp;<span 
+class="cmtt-10">CString:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>&nbsp;<span 
+class="cmtt-10">FromPos,</span>&nbsp;<span 
+class="cmtt-10">ToPos:</span>&nbsp;<span 
+class="cmtt-10">longint):</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">cdecl;</span>&nbsp;<span 
+class="cmtt-10">external</span>&nbsp;<span 
+class="cmtt-10">'subs';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FromPos,</span>&nbsp;<span 
+class="cmtt-10">ToPos:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">'Test';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FromPos</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">2;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ToPos</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">3;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(SubStr(s,</span>&nbsp;<span 
+class="cmtt-10">FromPos,</span>&nbsp;<span 
+class="cmtt-10">ToPos));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> As is shown in the example, you must declare the function as <span 
+class="cmtt-10">external</span>. Here also, it is necessary
+to specify the correct calling convention (it should always match the convention as used by the
+function in the library), and to use the correct casing for your declaration. Also notice, that
+the library importing did not specify the filename extension, nor was the <span 
+class="cmtt-10">lib </span>prefix
+added.
+<!--l. 4960--><p class="noindent">This program can be compiled without any additional command-switches, and should run just like
+that, provided the library is placed where the system can find it. For example, on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, this is
+<span 
+class="cmss-10">/usr/lib </span>or any directory listed in the <span 
+class="cmss-10">/etc/ld.so.conf </span>file. On <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, this can be the
+program directory, the <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>system directory, or any directoy mentioned in the
+<span 
+class="cmtt-10">PATH</span>.
+<!--l. 4967--><p class="noindent">Using the library in this way links the library to your program at compile time. This means
+that
+                                                                            
+
+                                                                            
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x200-202003x1"></a>The library must be present on the system where the program is compiled.
+     </li>
+     <li class="enumerate"><a 
+  name="x200-202005x2"></a>The library must be present on the system where the program is executed.
+     </li>
+     <li class="enumerate"><a 
+  name="x200-202007x3"></a>Both libraries must be exactly the same.</li></ol>
+<!--l. 4976--><p class="noindent">Or it may simply be that you don&#8217;t know the name of the function to be called, you just know the
+arguments it expects.
+<!--l. 4979--><p class="noindent">It is therefore also possible to load the library at run-time, store the function address in
+a procedural variable, and use this procedural variable to access the function in the
+library.
+<!--l. 4983--><p class="noindent">The following example demonstrates this technique:
+<!--l. 4984--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">progex/plsubs.pp</span><HR/><div class="listinginput">
+<!--l. 4984--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">testsubs;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TSubStrFunc</span>&nbsp;<span 
+class="cmtt-10">=</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">function(const</span>&nbsp;<span 
+class="cmtt-10">CString:PChar;FromPos,ToPos:</span>&nbsp;<span 
+class="cmtt-10">longint):PChar;cdecl;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">dlopen(name:</span>&nbsp;<span 
+class="cmtt-10">pchar;mode:</span>&nbsp;<span 
+class="cmtt-10">longint):pointer;cdecl;external</span>&nbsp;<span 
+class="cmtt-10">'dl';</span>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">dlsym(lib:</span>&nbsp;<span 
+class="cmtt-10">pointer;</span>&nbsp;<span 
+class="cmtt-10">name:</span>&nbsp;<span 
+class="cmtt-10">pchar):pointer;cdecl;external</span>&nbsp;<span 
+class="cmtt-10">'dl';</span>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">dlclose(lib:</span>&nbsp;<span 
+class="cmtt-10">pointer):longint;cdecl;external</span>&nbsp;<span 
+class="cmtt-10">'dl';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FromPos,</span>&nbsp;<span 
+class="cmtt-10">ToPos:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">lib</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pointer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SubStr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSubStrFunc;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">'Test';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FromPos</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">2;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ToPos</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">3;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">lib:=dlopen('libsubs.so',1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Pointer(Substr):=dlsym(lib,'SubStr');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(SubStr(s,</span>&nbsp;<span 
+class="cmtt-10">FromPos,</span>&nbsp;<span 
+class="cmtt-10">ToPos));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dlclose(lib);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> As in the case of compile-time linking, the crucial thing in this listing is the declaration of the
+<span 
+class="cmtt-10">TSubStrFunc </span>type. It should match the declaration of the function you&#8217;re trying to use. Failure to
+specify a correct definition will result in a faulty stack or, worse still, may cause your program to
+crash with an access violation.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse46.htm" >next</a>] [<a 
+href="progse44.htm" >prev</a>] [<a 
+href="progse44.htm#tailprogse44.htm" >prev-tail</a>] [<a 
+href="progse45.htm" >front</a>] [<a 
+href="progch11.htm#progse45.htm" >up</a>] </p></div><a 
+  name="tailprogse45.htm"></a>  
+</body></html> 

@@ -1,0 +1,61 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 Exporting functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu92.htm" >next</a>] [<a 
+href="#tailprogsu91.htm">tail</a>] [<a 
+href="progse26.htm#progsu91.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-133-140" name="x133-1320007.2">Exporting functions</a></h4>
+<!--l. 3192--><p class="noindent">When exporting functions from a library, there are 2 things you must take in account:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x133-132002x1"></a>Calling conventions.
+     </li>
+     <li class="enumerate"><a 
+  name="x133-132004x2"></a>Naming scheme.</li></ol>
+<!--l. 3199--><p class="noindent">The calling conventions are controlled by the modifiers <span 
+class="cmtt-10">cdecl</span>, <span 
+class="cmtt-10">popstack</span>, <span 
+class="cmtt-10">pascal</span>, <span 
+class="cmtt-10">safecall</span>,
+<span 
+class="cmtt-10">stdcall </span>and <span 
+class="cmtt-10">register</span>. See section <a 
+href="progse19.htm#x115-1120006.3">6.3<!--tex4ht:ref: se:CallingConventions--></a>, page <a 
+href="progse19.htm#x115-1120006.3">240<!--tex4ht:ref: se:CallingConventions--></a> for more information on the different kinds of
+calling scheme.
+<!--l. 3204--><p class="noindent">The naming conventions can be controlled by 2 modifiers in the case of static libraries:
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmtt-10">cdecl</span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">alias</span></li></ul>
+<!--l. 3211--><p class="noindent">For more information on how these different modifiers change the name mangling of the routine
+section <a 
+href="progse18.htm#x110-1080006.2">6.2<!--tex4ht:ref: se:NameMangling--></a>, page <a 
+href="progse18.htm#x110-1080006.2">231<!--tex4ht:ref: se:NameMangling--></a>.
+<!--l. 3215--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>If you use in your unit functions that are in other units, or system functions, then the C program
+will need to link in the object files from these units too.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu92.htm" >next</a>] [<a 
+href="progsu91.htm" >front</a>] [<a 
+href="progse26.htm#progsu91.htm" >up</a>] </p></div><a 
+  name="tailprogsu91.htm"></a>  
+</body></html> 

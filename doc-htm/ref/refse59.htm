@@ -1,0 +1,67 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.5 Exception classes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse58.htm" >prev</a>] [<a 
+href="refse58.htm#tailrefse58.htm" >prev-tail</a>] [<a 
+href="#tailrefse59.htm">tail</a>] [<a 
+href="refch11.htm#refse59.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.5</span> <a 
+href="ref.htm#QQ2-134-155" name="x134-14000011.5">Exception classes</a></h3>
+<!--l. 4466--><p class="noindent">The <span 
+class="cmss-10">sysutils </span>unit contains a great deal of exception handling. It defines the following exception
+types:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exception&nbsp;=&nbsp;class(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fmessage&nbsp;:&nbsp;string;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fhelpcontext&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;create(const&nbsp;msg&nbsp;:&nbsp;string);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;createres(indent&nbsp;:&nbsp;longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;helpcontext&nbsp;:&nbsp;longint&nbsp;read&nbsp;fhelpcontext&nbsp;write&nbsp;fhelpcontext;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;message&nbsp;:&nbsp;string&nbsp;read&nbsp;fmessage&nbsp;write&nbsp;fmessage;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExceptClass&nbsp;=&nbsp;Class&nbsp;of&nbsp;Exception;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;mathematical&nbsp;exceptions&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EIntError&nbsp;=&nbsp;class(Exception);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDivByZero&nbsp;=&nbsp;class(EIntError);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ERangeError&nbsp;=&nbsp;class(EIntError);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EIntOverflow&nbsp;=&nbsp;class(EIntError);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EMathError&nbsp;=&nbsp;class(Exception);
+</pre>
+</td></tr></table>The sysutils unit also installs an exception handler. If an exception is unhandled by any exception
+handling block, this handler is called by the Run-Time library. Basically, it prints the exception
+address, and it prints the message of the Exception object, and exits with a exit code of 217. If the
+exception object is not a descendent object of the <span 
+class="cmtt-10">Exception </span>object, then the class name is printed
+instead of the exception message.
+<!--l. 4494--><p class="noindent">It is recommended to use the <span 
+class="cmtt-10">Exception </span>object or a descendant class for all <span 
+class="cmtt-10">raise </span>statements,
+since then the message field of the exception object can be used.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse58.htm" >prev</a>] [<a 
+href="refse58.htm#tailrefse58.htm" >prev-tail</a>] [<a 
+href="refse59.htm" >front</a>] [<a 
+href="refch11.htm#refse59.htm" >up</a>] </p></div><a 
+  name="tailrefse59.htm"></a>  
+</body></html> 

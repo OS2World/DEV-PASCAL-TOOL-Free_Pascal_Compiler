@@ -1,0 +1,103 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8 Using functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch9.htm" >next</a>] [<a 
+href="refch7.htm" >prev</a>] [<a 
+href="refch7.htm#tailrefch7.htm" >prev-tail</a>] [<a 
+href="#tailrefch8.htm">tail</a>] [<a 
+href="refpa1.htm#refch8.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;8</span><br><a 
+href="ref.htm#QQ2-86-106" name="x86-920008">Using functions and procedures</a></h2> Free Pascal supports the use of functions and procedures,
+but with some extras: Function overloading is supported, as well as <span 
+class="cmtt-10">Const </span>parameters and open
+arrays.
+<!--l. 3120--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> In many of the subsequent paragraphs the words <span 
+class="cmtt-10">procedure </span>and <span 
+class="cmtt-10">function </span>will be
+used interchangeably. The statements made are valid for both, except when indicated
+otherwise.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="refse36.htm#x87-930008.1" name="QQ2-87-107">Procedure declaration</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="refse37.htm#x88-940008.2" name="QQ2-88-108">Function declaration</a></span>
+<br>&nbsp;<span class="sectionToc">8.3 <a 
+href="refse38.htm#x89-950008.3" name="QQ2-89-109">Parameter lists</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu37.htm#x90-960008.3" name="QQ2-90-110">Value parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu38.htm#x91-970008.3" name="QQ2-91-111">Variable parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu39.htm#x92-980008.3" name="QQ2-92-112">Constant parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu40.htm#x93-990008.3" name="QQ2-93-113">Open array parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu41.htm#x94-1000008.3" name="QQ2-94-114">Array of const</a></span>
+<br>&nbsp;<span class="sectionToc">8.4 <a 
+href="refse39.htm#x95-1010008.4" name="QQ2-95-115">Function overloading</a></span>
+<br>&nbsp;<span class="sectionToc">8.5 <a 
+href="refse40.htm#x96-1020008.5" name="QQ2-96-116">Forward defined functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.6 <a 
+href="refse41.htm#x97-1030008.6" name="QQ2-97-117">External functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.7 <a 
+href="refse42.htm#x98-1040008.7" name="QQ2-98-118">Assembler functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.8 <a 
+href="refse43.htm#x99-1050008.8" name="QQ2-99-119">Modifiers</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu42.htm#x100-1060008.8" name="QQ2-100-120">alias</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu43.htm#x101-1070008.8" name="QQ2-101-121">cdecl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu44.htm#x102-1080008.8" name="QQ2-102-122">export</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu45.htm#x103-1090008.8" name="QQ2-103-123">inline</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu46.htm#x104-1100008.8" name="QQ2-104-124">interrupt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu47.htm#x105-1110008.8" name="QQ2-105-125">pascal</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu48.htm#x106-1120008.8" name="QQ2-106-126">popstack</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu49.htm#x107-1130008.8" name="QQ2-107-127">public</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu50.htm#x108-1140008.8" name="QQ2-108-128">register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu51.htm#x109-1150008.8" name="QQ2-109-129">saveregisters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu52.htm#x110-1160008.8" name="QQ2-110-130">safecall</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu53.htm#x111-1170008.8" name="QQ2-111-131">stdcall</a></span>
+<br>&nbsp;<span class="sectionToc">8.9 <a 
+href="refse44.htm#x112-1180008.9" name="QQ2-112-132">Unsupported Turbo Pascal modifiers</a></span>
+</div>
+
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch9.htm" >next</a>] [<a 
+href="refch7.htm" >prev</a>] [<a 
+href="refch7.htm#tailrefch7.htm" >prev-tail</a>] [<a 
+href="refch8.htm" >front</a>] [<a 
+href="refpa1.htm#refch8.htm" >up</a>] </p></div><a 
+  name="tailrefch8.htm"></a>  
+</body></html> 

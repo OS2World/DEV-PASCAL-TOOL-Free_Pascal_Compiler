@@ -1,0 +1,259 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.5 TObject</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse52.htm" >next</a>] [<a 
+href="unitsse50.htm" >prev</a>] [<a 
+href="unitsse50.htm#tailunitsse50.htm" >prev-tail</a>] [<a 
+href="#tailunitsse51.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse51.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.5</span> <a 
+href="units.htm#QQ2-73-634" name="x73-62800017.5">TObject</a></h3>
+<!--l. 424--><p class="noindent">The full declaration of the <span 
+class="cmtt-10">TObject </span>type is:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TObject&nbsp;=&nbsp;OBJECT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONSTRUCTOR&nbsp;Init;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Free;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESTRUCTOR&nbsp;Done;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PObject&nbsp;=&nbsp;^TObject;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-73-635" name="x73-62900017.5">TObject.Init</a></h4><a 
+  name="dx73-629001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TObject.Init;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Instantiates a new object of type <span 
+class="cmtt-10">TObject</span>. It fills the instance up with Zero bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Free </span>(<a 
+href="#x73-63000017.5">563<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x73-63100017.5">564<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 446--><p class="noindent">For an example, see <span 
+class="cmss-10">Free </span>(<a 
+href="#x73-63000017.5">563<!--tex4ht:ref: se:TRect--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-73-636" name="x73-63000017.5">TObject.Free</a></h4><a 
+  name="dx73-630001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TObject.Free;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Free </span>calls the destructor of the object, and releases the memory occupied by the instance
+of the object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is performed to see whether <span 
+class="cmtt-10">self </span>is <span 
+class="cmtt-10">nil </span>and whether the object is indeed
+allocated on the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x73-62900017.5">563<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x73-63100017.5">564<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 461--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 461--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">ex7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TObject.Free</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Allocate</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">object.</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=New(PObject,Init);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Free</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">object.</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O^.free;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-73-637" name="x73-63100017.5">TObject.Done</a></h4><a 
+  name="dx73-631001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TObject.Done;Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done</span>, the destructor of  <span 
+class="cmtt-10">TObject </span>does nothing. It is mainly intended to be used in the
+<span 
+class="cmss-10">TObject.Free </span>(<a 
+href="#x73-63000017.5">563<!--tex4ht:ref: se:TRect--></a>) method.
+<!--l. 470--><p class="noindent">The destructore Done does not free the memory occupied by the object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Free </span>(<a 
+href="#x73-63000017.5">563<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x73-62900017.5">563<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 477--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 477--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">ex8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TObject.Done</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Allocate</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">object.</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=New(PObject,Init);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O^.Done;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memavail</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse52.htm" >next</a>] [<a 
+href="unitsse50.htm" >prev</a>] [<a 
+href="unitsse50.htm#tailunitsse50.htm" >prev-tail</a>] [<a 
+href="unitsse51.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse51.htm" >up</a>] </p></div><a 
+  name="tailunitsse51.htm"></a>   
+</body></html> 

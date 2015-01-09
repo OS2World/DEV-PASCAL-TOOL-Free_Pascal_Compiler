@@ -1,0 +1,87 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>18.2 Types,constants and variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse65.htm" >prev</a>] [<a 
+href="unitsse65.htm#tailunitsse65.htm" >prev-tail</a>] [<a 
+href="#tailunitsse66.htm">tail</a>] [<a 
+href="unitsch18.htm#unitsse66.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">18.2</span> <a 
+href="units.htm#QQ2-89-755" name="x89-74900018.2">Types,constants and variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-89-756" name="x89-75000018.2">Types</a></h4> The following types are defined to implement the port access.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tport&nbsp;=&nbsp;class
+&nbsp;&nbsp;&nbsp;protected
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;writeport(p&nbsp;:&nbsp;longint;data&nbsp;:&nbsp;byte);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;&nbsp;readport(p&nbsp;:&nbsp;longint)&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;pp[w&nbsp;:&nbsp;longint]&nbsp;:&nbsp;byte&nbsp;read&nbsp;readport&nbsp;write&nbsp;writeport;default;
+&nbsp;end;
+&nbsp;
+&nbsp;tportw&nbsp;=&nbsp;class
+&nbsp;&nbsp;&nbsp;protected
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;writeport(p&nbsp;:&nbsp;longint;data&nbsp;:&nbsp;word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;&nbsp;readport(p&nbsp;:&nbsp;longint)&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;pp[w&nbsp;:&nbsp;longint]&nbsp;:&nbsp;word&nbsp;read&nbsp;readport&nbsp;write&nbsp;writeport;default;
+&nbsp;end;
+&nbsp;
+&nbsp;tportl&nbsp;=&nbsp;class
+&nbsp;&nbsp;&nbsp;Protected
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;writeport(p&nbsp;:&nbsp;longint;data&nbsp;:&nbsp;longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;&nbsp;readport(p&nbsp;:&nbsp;longint)&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;pp[w&nbsp;:&nbsp;Longint]&nbsp;:&nbsp;longint&nbsp;read&nbsp;readport&nbsp;write&nbsp;writeport;default;
+&nbsp;end;
+</pre>
+</td></tr></table>Each of these types allows access to the ports using respectively, a byte, a word or a longint sized
+argument.
+<!--l. 67--><p class="noindent">Since there is a default property for each of this types, a sentence as
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;port[221]:=12;
+</pre>
+</td></tr></table>Will result in the byte 12 being written to port 221, if port is defined as a variable of type
+<span 
+class="cmtt-10">tport</span>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-89-757" name="x89-75100018.2">variables</a></h4> The following variables are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;port,
+&nbsp;portb&nbsp;:&nbsp;tport;
+&nbsp;portw&nbsp;:&nbsp;tportw;
+&nbsp;portl&nbsp;:&nbsp;tportl;
+</pre>
+</td></tr></table>They allow access to the ports in a Turbo Pascal compatible way.  <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse65.htm" >prev</a>] [<a 
+href="unitsse65.htm#tailunitsse65.htm" >prev-tail</a>] [<a 
+href="unitsse66.htm" >front</a>] [<a 
+href="unitsch18.htm#unitsse66.htm" >up</a>] </p></div><a 
+  name="tailunitsse66.htm"></a>
+ 
+</body></html> 

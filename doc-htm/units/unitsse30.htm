@@ -1,0 +1,252 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.1 Constants, Type and variables </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse31.htm" >next</a>] [<a 
+href="#tailunitsse30.htm">tail</a>] [<a 
+href="unitsch11.htm#unitsse30.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.1</span> <a 
+href="units.htm#QQ2-46-331" name="x46-32800011.1">Constants, Type and variables </a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-46-332" name="x46-32900011.1">Constants</a></h4>
+<!--l. 46--><p class="noindent">The following constants define some error constants, which may be returned by the keyboard
+functions.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;errKbdBase&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1010;
+&nbsp;errKbdInitError&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;errKbdBase&nbsp;+&nbsp;0;
+&nbsp;errKbdNotImplemented&nbsp;=&nbsp;errKbdBase&nbsp;+&nbsp;1;
+</pre>
+</td></tr></table>The following constants denote special keyboard keys. The first constants denote the function
+keys:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;kbdF1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF01;
+&nbsp;&nbsp;&nbsp;kbdF2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF02;
+&nbsp;&nbsp;&nbsp;kbdF3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF03;
+&nbsp;&nbsp;&nbsp;kbdF4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF04;
+&nbsp;&nbsp;&nbsp;kbdF5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF05;
+&nbsp;&nbsp;&nbsp;kbdF6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF06;
+&nbsp;&nbsp;&nbsp;kbdF7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF07;
+&nbsp;&nbsp;&nbsp;kbdF8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF08;
+&nbsp;&nbsp;&nbsp;kbdF9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF09;
+&nbsp;&nbsp;&nbsp;kbdF10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0A;
+&nbsp;&nbsp;&nbsp;kbdF11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0B;
+&nbsp;&nbsp;&nbsp;kbdF12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0C;
+&nbsp;&nbsp;&nbsp;kbdF13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0D;
+&nbsp;&nbsp;&nbsp;kbdF14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0E;
+&nbsp;&nbsp;&nbsp;kbdF15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF0F;
+&nbsp;&nbsp;&nbsp;kbdF16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF10;
+&nbsp;&nbsp;&nbsp;kbdF17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF11;
+&nbsp;&nbsp;&nbsp;kbdF18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF12;
+&nbsp;&nbsp;&nbsp;kbdF19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF13;
+&nbsp;&nbsp;&nbsp;kbdF20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF14;
+</pre>
+</td></tr></table>Constants $15 till $1F are reserved for future function keys. The following constants denote the
+cursor movement keys:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;kbdHome&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF20;
+&nbsp;&nbsp;&nbsp;kbdUp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF21;
+&nbsp;&nbsp;&nbsp;kbdPgUp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF22;
+&nbsp;&nbsp;&nbsp;kbdLeft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF23;
+&nbsp;&nbsp;&nbsp;kbdMiddle&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF24;
+&nbsp;&nbsp;&nbsp;kbdRight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF25;
+&nbsp;&nbsp;&nbsp;kbdEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF26;
+&nbsp;&nbsp;&nbsp;kbdDown&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF27;
+&nbsp;&nbsp;&nbsp;kbdPgDn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF28;
+&nbsp;
+&nbsp;&nbsp;&nbsp;kbdInsert&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF29;
+&nbsp;&nbsp;&nbsp;kbdDelete&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$FF2A;
+</pre>
+</td></tr></table>Constants $2B till $2F are reserved for future keypad keys. The following flags are also
+defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;kbASCII&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$00;
+&nbsp;&nbsp;&nbsp;kbUniCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$01;
+&nbsp;&nbsp;&nbsp;kbFnKey&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$02;
+&nbsp;&nbsp;&nbsp;kbPhys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$03;
+&nbsp;&nbsp;&nbsp;kbReleased&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$04;
+</pre>
+</td></tr></table>They can be used to check what kind of data a key event contains. The following shift-state flags
+can be used to determine the shift state of a key (i.e. which of the SHIFT, ALT and CTRL keys
+were pressed simultaneously with a key):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;kbLeftShift&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;kbRightShift&nbsp;&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;kbShift&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;kbLeftShift&nbsp;or&nbsp;kbRightShift;
+&nbsp;&nbsp;&nbsp;kbCtrl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;
+&nbsp;&nbsp;&nbsp;kbAlt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;
+</pre>
+</td></tr></table>The following constant strings are used in the key name functions <span 
+class="cmss-10">FunctionKeyName </span>(<a 
+href="unitsse31.htm#x47-33300011.2">294<!--tex4ht:ref: tab:fmxxxconstants--></a>) and
+<span 
+class="cmss-10">KeyEventToString </span>(<a 
+href="unitsse31.htm#x47-34300011.2">300<!--tex4ht:ref: tab:fmxxxconstants--></a>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;SShift&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Array&nbsp;[1..3]&nbsp;of&nbsp;string[5]&nbsp;=&nbsp;('SHIFT','CTRL','ALT');
+&nbsp;LeftRight&nbsp;&nbsp;&nbsp;:&nbsp;Array&nbsp;[1..2]&nbsp;of&nbsp;string[5]&nbsp;=&nbsp;('LEFT','RIGHT');
+&nbsp;UnicodeChar&nbsp;:&nbsp;String&nbsp;=&nbsp;'Unicode&nbsp;character&nbsp;';
+&nbsp;SScanCode&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;String&nbsp;=&nbsp;'Key&nbsp;with&nbsp;scancode&nbsp;';
+&nbsp;SUnknownFunctionKey&nbsp;:&nbsp;String&nbsp;=&nbsp;'Unknown&nbsp;function&nbsp;key&nbsp;:&nbsp;';
+&nbsp;SAnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;String&nbsp;=&nbsp;'AND';
+&nbsp;SKeyPad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Array&nbsp;[0..($FF2F-kbdHome)]&nbsp;of&nbsp;string[6]&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('Home','Up','PgUp','Left',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Middle','Right','End','Down',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'PgDn','Insert','Delete','',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'','','','');
+</pre>
+</td></tr></table>They can be changed to localize the key names when needed.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-46-333" name="x46-33000011.1">Types</a></h4> The <span 
+class="cmtt-10">TKeyEvent </span>type is the base type for all keyboard events:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TKeyEvent&nbsp;=&nbsp;Longint;
+</pre>
+</td></tr></table>The key stroke is encoded in the 4 bytes of the <span 
+class="cmtt-10">TKeyEvent </span>type. The various fields of the key
+stroke encoding can be obtained by typecasting the <span 
+class="cmtt-10">TKeyEvent </span>type to the <span 
+class="cmtt-10">TKeyRecord</span>
+type:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TKeyRecord&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeyCode&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShiftState,&nbsp;Flags&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The structure of a <span 
+class="cmtt-10">TKeyRecord </span>structure is explained in table (<a 
+href="#x46-3300011">11.1<!--tex4ht:ref: tab:keyevent--></a>). <a 
+  name="x46-3300011"></a><hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;11.1: </td><td  
+class="content">Structure of TKeyRecord</td></tr></table></div><!--tex4ht:label?: x46-3300011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-6-" ><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1"><col 
+id="TBL-6-2"></colgroup><tr  
+valign="baseline" id="TBL-6-1-"><td  align="left" nowrap="nowrap" id="TBL-6-1-1"  
+class="td11"> Field      </td><td  align="left" id="TBL-6-1-2"  
+class="td11"> Meaning                                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-6-2-"><td  align="left" nowrap="nowrap" id="TBL-6-2-1"  
+class="td11"> KeyCode </td><td  align="left" id="TBL-6-2-2"  
+class="td11"> Depending  on  <span 
+class="cmtt-10">flags  </span>either  the  physical  representation  of  a
+ key  (under  DOS  scancode,  ascii  code  pair),  or  the  translated
+ ASCII/unicode character.                                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-6-3-"><td  align="left" nowrap="nowrap" id="TBL-6-3-1"  
+class="td11"> ShiftState</td><td  align="left" id="TBL-6-3-2"  
+class="td11"> Shift-state when this key was pressed (or shortly after)             </td>
+</tr><tr  
+valign="baseline" id="TBL-6-4-"><td  align="left" nowrap="nowrap" id="TBL-6-4-1"  
+class="td11"> Flags      </td><td  align="left" id="TBL-6-4-2"  
+class="td11"> Determine how to interpret <span 
+class="cmtt-10">KeyCode</span>                        </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-6-5-"><td  align="left" nowrap="nowrap" id="TBL-6-5-1"  
+class="td11">              </td>
+</tr><!--lp{10cm}--></table>
+</div></div>
+</td></tr></table></div><hr class="endfloat">
+The shift-state can be checked using the various shift-state constants, and the flags in the last byte
+can be checked using one of the kbASCII, kbUniCode, kbFnKey, kbPhys, kbReleased
+constants.
+If there are two keys returning the same char-code, there&#8217;s no way to find out which one
+was pressed (Gray+ and Simple+). If it needs to be known which was pressed, the
+untranslated keycodes must be used, but these are system dependent. System dependent
+constants may be defined to cover those, with possibily having the same name (but different
+value).
+<!--l. 164--><p class="noindent">The <span 
+class="cmtt-10">TKeyboardDriver </span>record can be used to install a custom keyboard driver with the
+<span 
+class="cmss-10">SetKeyboardDriver </span>(<a 
+href="unitsse31.htm#x47-34700011.2">303<!--tex4ht:ref: tab:keyevent--></a>) function:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TKeyboardDriver&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InitDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DoneDriver&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetKeyEvent&nbsp;:&nbsp;Function&nbsp;:&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PollKeyEvent&nbsp;:&nbsp;Function&nbsp;:&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetShiftState&nbsp;:&nbsp;Function&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TranslateKeyEvent&nbsp;:&nbsp;Function&nbsp;(KeyEvent:&nbsp;TKeyEvent):&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TranslateKeyEventUniCode:&nbsp;Function&nbsp;(KeyEvent:&nbsp;TKeyEvent):&nbsp;TKeyEvent;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The various fields correspond to the different functions of the keyboard unit interface. For more
+information about this record see section <a 
+href="unitsse33.htm#x49-35200011.4">11.4<!--tex4ht:ref: se:kbddriver--></a>, page <a 
+href="unitsse33.htm#x49-35200011.4">313<!--tex4ht:ref: se:kbddriver--></a>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse31.htm" >next</a>] [<a 
+href="unitsse30.htm" >front</a>] [<a 
+href="unitsch11.htm#unitsse30.htm" >up</a>] </p></div><a 
+  name="tailunitsse30.htm"></a>   
+</body></html> 

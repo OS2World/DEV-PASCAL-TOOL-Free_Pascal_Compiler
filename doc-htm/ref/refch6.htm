@@ -1,0 +1,175 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6 Expressions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch7.htm" >next</a>] [<a 
+href="refch5.htm" >prev</a>] [<a 
+href="refch5.htm#tailrefch5.htm" >prev-tail</a>] [<a 
+href="#tailrefch6.htm">tail</a>] [<a 
+href="refpa1.htm#refch6.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;6</span><br><a 
+href="ref.htm#QQ2-58-70" name="x58-640006">Expressions</a></h2> Expressions occur in assignments or in tests. Expressions produce a
+value, of a certain type. Expressions are built with two components: Operators and their
+operands. Usually an operator is binary, i.e. it requires 2 operands. Binary operators
+occur always between the operands (as in <span 
+class="cmtt-10">X/Y</span>). Sometimes an operator is unary, i.e. it
+requires only one argument. A unary operator occurs always before the operand, as in
+<span 
+class="cmtt-10">-X</span>.
+<!--l. 2288--><p class="noindent">When using multiple operands in an expression, the precedence rules of table (<a 
+href="#x58-640011">6.1<!--tex4ht:ref: tab:OperatorPrecedence--></a>) are
+used.
+                                                                            
+
+                                                                            
+<a 
+  name="x58-640011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.1: </td><td  
+class="content">Precedence of operators</td></tr></table></div><!--tex4ht:label?: x58-640011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-8-" ><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"><col 
+id="TBL-8-2"><col 
+id="TBL-8-3"></colgroup><tr  
+valign="baseline" id="TBL-8-1-"><td  align="left" nowrap="nowrap" id="TBL-8-1-1"  
+class="td11"> Operator                             </td><td  align="left" nowrap="nowrap" id="TBL-8-1-2"  
+class="td11"> Precedence    </td><td  align="left" nowrap="nowrap" id="TBL-8-1-3"  
+class="td11"> Category                 </td>
+</tr><tr  
+valign="baseline" id="TBL-8-2-"><td  align="left" nowrap="nowrap" id="TBL-8-2-1"  
+class="td11">  <span 
+class="cmtt-10">Not, @                   </span></td><td  align="left" nowrap="nowrap" id="TBL-8-2-2"  
+class="td11"> Highest (first)</td><td  align="left" nowrap="nowrap" id="TBL-8-2-3"  
+class="td11"> Unary operators       </td>
+</tr><tr  
+valign="baseline" id="TBL-8-3-"><td  align="left" nowrap="nowrap" id="TBL-8-3-1"  
+class="td11"> <span 
+class="cmtt-10">* / div mod and shl shr as</span></td><td  align="left" nowrap="nowrap" id="TBL-8-3-2"  
+class="td11"> Second         </td><td  align="left" nowrap="nowrap" id="TBL-8-3-3"  
+class="td11"> Multiplying operators</td>
+</tr><tr  
+valign="baseline" id="TBL-8-4-"><td  align="left" nowrap="nowrap" id="TBL-8-4-1"  
+class="td11"> <span 
+class="cmtt-10">+ - or xor                </span></td><td  align="left" nowrap="nowrap" id="TBL-8-4-2"  
+class="td11"> Third           </td><td  align="left" nowrap="nowrap" id="TBL-8-4-3"  
+class="td11"> Adding operators      </td>
+</tr><tr  
+valign="baseline" id="TBL-8-5-"><td  align="left" nowrap="nowrap" id="TBL-8-5-1"  
+class="td11"> <span 
+class="cmtt-10">&lt; &lt;&gt; &lt; &gt; &lt;= &gt;= in is      </span></td><td  align="left" nowrap="nowrap" id="TBL-8-5-2"  
+class="td11"> Lowest (Last)</td><td  align="left" nowrap="nowrap" id="TBL-8-5-3"  
+class="td11"> relational operators   </td>
+</tr><tr  
+valign="baseline" id="TBL-8-6-"><td  align="left" nowrap="nowrap" id="TBL-8-6-1"  
+class="td11">                                          </td>
+</tr><!--lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+When determining the precedence, the compiler uses the following rules:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x58-64003x1"></a>In operations with unequal precedences the operands belong to the operater with the
+     highest precedence. For example, in <span 
+class="cmtt-10">5*3+7</span>, the multiplication is higher in precedence
+     than the addition, so it is executed first. The result would be 22.
+     </li>
+     <li class="enumerate"><a 
+  name="x58-64005x2"></a>If parentheses are used in an expression, their contents is evaluated first. Thus, <span 
+class="cmtt-10">5*(3+7)</span>
+     would result in 50.</li></ol>
+<!--l. 2308--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The order in which expressions of the same precedence are evaluated is not guaranteed to be
+left-to-right. In general, no assumptions on which expression is evaluated first should be made in
+such a case. The compiler will decide which expression to evaluate first based on optimization
+rules. Thus, in the following expression:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;a&nbsp;:=&nbsp;g(3)&nbsp;+&nbsp;f(2);
+</pre>
+</td></tr></table><span 
+class="cmtt-10">f(2) </span>may be executed before <span 
+class="cmtt-10">g(3)</span>. This behaviour is distinctly different from Delphior Turbo
+Pascal.
+<!--l. 2320--><p class="noindent">If one expression <span 
+class="cmti-10">must </span>be executed before the other, it is necessary to split up the statement using
+temporary results:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;e1&nbsp;:=&nbsp;g(3);
+&nbsp;&nbsp;&nbsp;a&nbsp;&nbsp;:=&nbsp;e1&nbsp;+&nbsp;f(2);
+</pre>
+</td></tr></table>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="refse27.htm#x59-650006.1" name="QQ2-59-72">Expression syntax</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="refse28.htm#x60-660006.2" name="QQ2-60-73">Function calls</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="refse29.htm#x61-670006.3" name="QQ2-61-74">Set constructors</a></span>
+<br>&nbsp;<span class="sectionToc">6.4 <a 
+href="refse30.htm#x62-680006.4" name="QQ2-62-75">Value typecasts</a></span>
+<br>&nbsp;<span class="sectionToc">6.5 <a 
+href="refse31.htm#x63-690006.5" name="QQ2-63-76">The @ operator</a></span>
+<br>&nbsp;<span class="sectionToc">6.6 <a 
+href="refse32.htm#x64-700006.6" name="QQ2-64-77">Operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu20.htm#x65-710006.6" name="QQ2-65-78">Arithmetic operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu21.htm#x66-720006.6" name="QQ2-66-81">Logical operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu22.htm#x67-730006.6" name="QQ2-67-83">Boolean operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu23.htm#x68-740006.6" name="QQ2-68-85">String operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu24.htm#x69-750006.6" name="QQ2-69-86">Set operators</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu25.htm#x70-760006.6" name="QQ2-70-88">Relational operators</a></span>
+</div>
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch7.htm" >next</a>] [<a 
+href="refch5.htm" >prev</a>] [<a 
+href="refch5.htm#tailrefch5.htm" >prev-tail</a>] [<a 
+href="refch6.htm" >front</a>] [<a 
+href="refpa1.htm#refch6.htm" >up</a>] </p></div><a 
+  name="tailrefch6.htm"></a>  
+</body></html> 

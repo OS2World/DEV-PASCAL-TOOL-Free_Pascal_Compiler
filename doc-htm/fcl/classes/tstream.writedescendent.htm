@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStream.WriteDescendent</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStream.WriteDescendent</h1>
+<p>Write component data to a stream, relative to an ancestor</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tstream.htm">TStream</a><span class="sym">.</span>WriteDescendent<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Instance<span class="sym">: </span><a href="../classes/tcomponent.htm">TComponent</a><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Ancestor<span class="sym">: </span><a href="../classes/tcomponent.htm">TComponent</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>WriteDescendent</var> writes the state of <var>Instance</var> to the stream where it differs from <var>Ancestor</var>, i.e. only the changed  properties are written to the stream. </p>
+<p><var>WriteDescendent</var> creates a <a href="../classes/twriter.htm">TWriter</a> object and calls  its <a href="../classes/twriter.writedescendent.htm">WriteDescendent</a> object. The writer is passed a <a href="../classes/tbinaryobjectwriter.htm">binary driver object</a> by default.  </p>
+</body>
+</html>

@@ -1,0 +1,290 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>22.1 Constants and types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse73.htm" >next</a>] [<a 
+href="#tailunitsse72.htm">tail</a>] [<a 
+href="unitsch22.htm#unitsse72.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">22.1</span> <a 
+href="units.htm#QQ2-99-813" name="x99-80700022.1">Constants and types</a></h3>
+<!--l. 35--><p class="noindent">The following general-purpose types are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tfilename&nbsp;=&nbsp;string;
+&nbsp;
+&nbsp;tsyscharset&nbsp;=&nbsp;set&nbsp;of&nbsp;char;
+&nbsp;tintegerset&nbsp;=&nbsp;set&nbsp;of&nbsp;0..sizeof(integer)*8-1;
+&nbsp;
+&nbsp;longrec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;lo,hi&nbsp;:&nbsp;word;
+&nbsp;end;
+&nbsp;
+&nbsp;wordrec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;lo,hi&nbsp;:&nbsp;byte;
+&nbsp;end;
+&nbsp;
+&nbsp;TMethod&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;Code,&nbsp;Data:&nbsp;Pointer;
+&nbsp;end;
+</pre>
+</td></tr></table>The use and meaning of these types should be clear, so no extra information will be provided
+here.
+<!--l. 57--><p class="noindent">The following general-purpose constants are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;&nbsp;SecsPerDay&nbsp;=&nbsp;24&nbsp;*&nbsp;60&nbsp;*&nbsp;60;&nbsp;//&nbsp;Seconds&nbsp;and&nbsp;milliseconds&nbsp;per&nbsp;day
+&nbsp;&nbsp;&nbsp;&nbsp;MSecsPerDay&nbsp;=&nbsp;SecsPerDay&nbsp;*&nbsp;1000;
+&nbsp;&nbsp;&nbsp;&nbsp;DateDelta&nbsp;=&nbsp;693594;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Days&nbsp;between&nbsp;1/1/0001&nbsp;and&nbsp;12/31/1899
+&nbsp;&nbsp;&nbsp;&nbsp;Eoln&nbsp;=&nbsp;#10;
+</pre>
+</td></tr></table>The following types are used frequently in date and time functions. They are the same on all
+platforms.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;&nbsp;TSystemTime&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year,&nbsp;Month,&nbsp;Day:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hour,&nbsp;Minute,&nbsp;Second,&nbsp;MilliSecond:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;TDateTime&nbsp;=&nbsp;double;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;TTimeStamp&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time:&nbsp;integer;&nbsp;&nbsp;&nbsp;{&nbsp;Number&nbsp;of&nbsp;milliseconds&nbsp;since&nbsp;midnight&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:&nbsp;integer;&nbsp;&nbsp;&nbsp;{&nbsp;One&nbsp;plus&nbsp;number&nbsp;of&nbsp;days&nbsp;since&nbsp;1/1/0001&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;end&nbsp;;
+</pre>
+</td></tr></table>The following type is used in the <span 
+class="cmss-10">FindFirst </span>(<a 
+href="unitsse77.htm#x104-87900022.6">753<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">FindNext </span>(<a 
+href="unitsse77.htm#x104-88000022.6">754<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">FindClose </span>(<a 
+href="unitsse77.htm#x104-87800022.6">753<!--tex4ht:ref: se:TBufStream--></a>) functions. The
+<span 
+class="cmtt-10">win32 </span>version differs from the other versions. If code is to be portable, that part shouldn&#8217;t be
+used.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;THandle&nbsp;=&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;TSearchRec&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time,Size,&nbsp;Attr&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;:&nbsp;TFileName;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExcludeAttr&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FindHandle&nbsp;:&nbsp;THandle;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$ifdef&nbsp;Win32}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FindData&nbsp;:&nbsp;TWin32FindData;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$endif}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The following constants are file-attributes that need to be matched in the findfirst call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;faReadOnly&nbsp;&nbsp;=&nbsp;$00000001;
+&nbsp;&nbsp;&nbsp;faHidden&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$00000002;
+&nbsp;&nbsp;&nbsp;faSysFile&nbsp;&nbsp;&nbsp;=&nbsp;$00000004;
+&nbsp;&nbsp;&nbsp;faVolumeId&nbsp;&nbsp;=&nbsp;$00000008;
+&nbsp;&nbsp;&nbsp;faDirectory&nbsp;=&nbsp;$00000010;
+&nbsp;&nbsp;&nbsp;faArchive&nbsp;&nbsp;&nbsp;=&nbsp;$00000020;
+&nbsp;&nbsp;&nbsp;faAnyFile&nbsp;&nbsp;&nbsp;=&nbsp;$0000003f;
+</pre>
+</td></tr></table>The following constants can be used in the <span 
+class="cmss-10">FileOpen </span>(<a 
+href="unitsse77.htm#x104-87000022.6">749<!--tex4ht:ref: se:TBufStream--></a>) call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;fmOpenRead&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0000;
+&nbsp;&nbsp;&nbsp;fmOpenWrite&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0001;
+&nbsp;&nbsp;&nbsp;fmOpenReadWrite&nbsp;&nbsp;=&nbsp;$0002;
+</pre>
+</td></tr></table>The following constants can be used in the <span 
+class="cmss-10">FileSeek </span>(<a 
+href="unitsse77.htm#x104-87300022.6">751<!--tex4ht:ref: se:TBufStream--></a>) call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;fsFromBeginning&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;fsFromCurrent&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;fsFromEnd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+&nbsp;
+</pre>
+</td></tr></table>The following variables are used in the case translation routines.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;&nbsp;TCaseTranslationTable&nbsp;=&nbsp;array[0..255]&nbsp;of&nbsp;char;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;UpperCaseTable:&nbsp;TCaseTranslationTable;
+&nbsp;&nbsp;&nbsp;&nbsp;LowerCaseTable:&nbsp;TCaseTranslationTable;
+</pre>
+</td></tr></table>The initialization code of the <span 
+class="cmss-10">sysutils </span>unit fills these tables with the appropriate values.
+For the win32 and go32v2 versions, this information is obtained from the operating
+system.
+<!--l. 137--><p class="noindent">The following constants control the formatting of dates. For the Win32 version of the <span 
+class="cmss-10">sysutils </span>unit,
+these constants are set according to the internationalization settings of Windows by the
+initialization code of the unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;&nbsp;DateSeparator:&nbsp;char&nbsp;=&nbsp;'-';
+&nbsp;&nbsp;&nbsp;&nbsp;ShortDateFormat:&nbsp;string&nbsp;=&nbsp;'d/m/y';
+&nbsp;&nbsp;&nbsp;&nbsp;LongDateFormat:&nbsp;string&nbsp;=&nbsp;'dd&#34;&nbsp;&#34;mmmm&#34;&nbsp;&#34;yyyy';
+&nbsp;&nbsp;&nbsp;&nbsp;ShortMonthNames:&nbsp;array[1..12]&nbsp;of&nbsp;string[128]&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('Jan','Feb','Mar','Apr','May','Jun',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Jul','Aug','Sep','Oct','Nov','Dec');
+&nbsp;&nbsp;&nbsp;&nbsp;LongMonthNames:&nbsp;array[1..12]&nbsp;of&nbsp;string[128]&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('January','February','March','April',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'May','June','July','August',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'September','October','November','December');
+&nbsp;&nbsp;&nbsp;&nbsp;ShortDayNames:&nbsp;array[1..7]&nbsp;of&nbsp;string[128]&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
+&nbsp;&nbsp;&nbsp;&nbsp;LongDayNames:&nbsp;array[1..7]&nbsp;of&nbsp;string[128]&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;('Sunday','Monday','Tuesday','Wednesday',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Thursday','Friday','Saturday');
+</pre>
+</td></tr></table>
+<!--l. 160--><p class="noindent">The following constants control the formatting of times. For the Win32 version of the <span 
+class="cmss-10">sysutils </span>unit,
+these constants are set according to the internationalization settings of Windows by the
+initialization code of the unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;&nbsp;ShortTimeFormat:&nbsp;string&nbsp;=&nbsp;'hh:nn';
+&nbsp;&nbsp;&nbsp;&nbsp;LongTimeFormat:&nbsp;string&nbsp;=&nbsp;'hh:nn:ss';
+&nbsp;&nbsp;&nbsp;&nbsp;TimeSeparator:&nbsp;char&nbsp;=&nbsp;':';
+&nbsp;&nbsp;&nbsp;&nbsp;TimeAMString:&nbsp;string[7]&nbsp;=&nbsp;'AM';
+&nbsp;&nbsp;&nbsp;&nbsp;TimePMString:&nbsp;string[7]&nbsp;=&nbsp;'PM';
+</pre>
+</td></tr></table>
+<!--l. 173--><p class="noindent">The following constants control the formatting of currencies and numbers. For the Win32 version
+of the <span 
+class="cmss-10">sysutils </span>unit, these constants are set according to the internationalization settings of
+Windows by the initialization code of the unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;DecimalSeparator&nbsp;:&nbsp;Char&nbsp;=&nbsp;'.';
+&nbsp;&nbsp;&nbsp;ThousandSeparator&nbsp;:&nbsp;Char&nbsp;=&nbsp;',';
+&nbsp;&nbsp;&nbsp;CurrencyDecimals&nbsp;:&nbsp;Byte&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;CurrencyString&nbsp;:&nbsp;String[7]&nbsp;=&nbsp;'$';
+&nbsp;&nbsp;&nbsp;{&nbsp;Format&nbsp;to&nbsp;use&nbsp;when&nbsp;formatting&nbsp;currency&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;=&nbsp;$1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;=&nbsp;1$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;=&nbsp;$&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;=&nbsp;1&nbsp;$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;=&nbsp;Currency&nbsp;string&nbsp;replaces&nbsp;decimal&nbsp;indicator.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.g.&nbsp;1$50
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;CurrencyFormat&nbsp;:&nbsp;Byte&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;{&nbsp;Same&nbsp;as&nbsp;above,&nbsp;only&nbsp;for&nbsp;negative&nbsp;currencies:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;=&nbsp;($1)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;=&nbsp;-$1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;=&nbsp;$-1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;=&nbsp;$1-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;=&nbsp;(1$)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;=&nbsp;-1$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;=&nbsp;1-$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;=&nbsp;1$-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;=&nbsp;-1&nbsp;$
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;=&nbsp;-$&nbsp;1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;=&nbsp;$&nbsp;1-
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;NegCurrFormat&nbsp;:&nbsp;Byte&nbsp;=&nbsp;5;
+</pre>
+</td></tr></table>The following types are used in various string functions.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;&nbsp;PString&nbsp;=&nbsp;^String;
+&nbsp;&nbsp;&nbsp;&nbsp;TFloatFormat&nbsp;=&nbsp;(ffGeneral,&nbsp;ffExponent,&nbsp;ffFixed,&nbsp;ffNumber,&nbsp;ffCurrency);
+</pre>
+</td></tr></table>The following constants are used in the file name handling routines. Do not use a slash
+of backslash character directly as a path separator; instead use the <span 
+class="cmtt-10">OsDirSeparator</span>
+character.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;DirSeparators&nbsp;:&nbsp;set&nbsp;of&nbsp;char&nbsp;=&nbsp;['/','\'];
+&nbsp;{$ifdef&nbsp;unix}
+&nbsp;&nbsp;&nbsp;OSDirSeparator&nbsp;=&nbsp;'/';
+&nbsp;{$else}
+&nbsp;&nbsp;&nbsp;OsDirSeparator&nbsp;=&nbsp;'\';
+&nbsp;{$endif}
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse73.htm" >next</a>] [<a 
+href="unitsse72.htm" >front</a>] [<a 
+href="unitsch22.htm#unitsse72.htm" >up</a>] </p></div><a 
+  name="tailunitsse72.htm"></a>  
+</body></html> 

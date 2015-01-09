@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.1 Variables, Types and constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse41.htm" >next</a>] [<a 
+href="#tailunitsse40.htm">tail</a>] [<a 
+href="unitsch14.htm#unitsse40.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">14.1</span> <a 
+href="units.htm#QQ2-59-569" name="x59-56300014.1">Variables, Types and constants</a></h3>
+<!--l. 27--><p class="noindent">The following types are defined in the <span 
+class="cmtt-10">MMX </span>unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tmmxshortint&nbsp;=&nbsp;array[0..7]&nbsp;of&nbsp;shortint;
+&nbsp;tmmxbyte&nbsp;=&nbsp;array[0..7]&nbsp;of&nbsp;byte;
+&nbsp;tmmxword&nbsp;=&nbsp;array[0..3]&nbsp;of&nbsp;word;
+&nbsp;tmmxinteger&nbsp;=&nbsp;array[0..3]&nbsp;of&nbsp;integer;
+&nbsp;tmmxfixed&nbsp;=&nbsp;array[0..3]&nbsp;of&nbsp;fixed16;
+&nbsp;tmmxlongint&nbsp;=&nbsp;array[0..1]&nbsp;of&nbsp;longint;
+&nbsp;tmmxcardinal&nbsp;=&nbsp;array[0..1]&nbsp;of&nbsp;cardinal;
+&nbsp;{&nbsp;for&nbsp;the&nbsp;AMD&nbsp;3D&nbsp;}
+&nbsp;tmmxsingle&nbsp;=&nbsp;array[0..1]&nbsp;of&nbsp;single;
+</pre>
+</td></tr></table>And the following pointers to the above types:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;pmmxshortint&nbsp;=&nbsp;^tmmxshortint;
+&nbsp;pmmxbyte&nbsp;=&nbsp;^tmmxbyte;
+&nbsp;pmmxword&nbsp;=&nbsp;^tmmxword;
+&nbsp;pmmxinteger&nbsp;=&nbsp;^tmmxinteger;
+&nbsp;pmmxfixed&nbsp;=&nbsp;^tmmxfixed;
+&nbsp;pmmxlongint&nbsp;=&nbsp;^tmmxlongint;
+&nbsp;pmmxcardinal&nbsp;=&nbsp;^tmmxcardinal;
+&nbsp;{&nbsp;for&nbsp;the&nbsp;AMD&nbsp;3D&nbsp;}
+&nbsp;pmmxsingle&nbsp;=&nbsp;^tmmxsingle;
+</pre>
+</td></tr></table>The following initialized constants allow you to determine if the computer has <span 
+class="cmtt-10">MMX </span>extensions.
+They are set correctly in the unit&#8217;s initialization code.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;is_mmx_cpu&nbsp;:&nbsp;boolean&nbsp;=&nbsp;false;
+&nbsp;is_amd_3d_cpu&nbsp;:&nbsp;boolean&nbsp;=&nbsp;false;
+</pre>
+</td></tr></table><div class="crosslinks"><p class="noindent">[<a 
+href="unitsse41.htm" >next</a>] [<a 
+href="unitsse40.htm" >front</a>] [<a 
+href="unitsch14.htm#unitsse40.htm" >up</a>] </p></div><a 
+  name="tailunitsse40.htm"></a>  
+</body></html> 

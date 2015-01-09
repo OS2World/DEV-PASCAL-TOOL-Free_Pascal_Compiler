@@ -1,0 +1,63 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.5.0 classes</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu82.htm" >prev</a>] [<a 
+href="progsu82.htm#tailprogsu82.htm" >prev-tail</a>] [<a 
+href="#tailprogsu83.htm">tail</a>] [<a 
+href="progse21.htm#progsu83.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-119-122" name="x119-1160006.5">classes</a></h4>
+<!--l. 2666--><p class="noindent">The actual invisible declaration of a class constructoir is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;constructor&nbsp;init(_vmt:&nbsp;pointer;&nbsp;flag&nbsp;:&nbsp;longint;&nbsp;..);
+</pre>
+</td></tr></table>
+<!--l. 2673--><p class="noindent">_<span 
+class="cmtt-10">vmt </span>is either nil if called from the instance or if calling an inherited constructor, otherwise it
+points to the address of the virtual method table.
+<!--l. 2677--><p class="noindent">Where <span 
+class="cmtt-10">flag </span>is zero if the constructor is called within the object instance or with an instance
+qualifier otherwise this flag is set to one.
+<!--l. 2681--><p class="noindent">The allocated instance (<span 
+class="cmtt-10">self</span>) is returned in the accumulator.
+<!--l. 2684--><p class="noindent">The declaration of a destructor is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;destructor&nbsp;done(_self&nbsp;:&nbsp;pointer;&nbsp;flag&nbsp;:&nbsp;longint&nbsp;...);
+</pre>
+</td></tr></table>
+<!--l. 2690--><p class="noindent">_<span 
+class="cmtt-10">self </span>is the address of the object instance.
+<!--l. 2692--><p class="noindent"><span 
+class="cmtt-10">flag </span>is zero if the destructor is called within the object instance or with an instance qualifier
+otherwise this flag is set to one.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu82.htm" >prev</a>] [<a 
+href="progsu82.htm#tailprogsu82.htm" >prev-tail</a>] [<a 
+href="progsu83.htm" >front</a>] [<a 
+href="progse21.htm#progsu83.htm" >up</a>] </p></div><a 
+  name="tailprogsu83.htm"></a>  
+</body></html> 

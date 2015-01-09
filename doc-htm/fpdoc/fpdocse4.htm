@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.1 Compiling</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocse5.htm" >next</a>] [<a 
+href="#tailfpdocse4.htm">tail</a>] [<a 
+href="fpdocch2.htm#fpdocse4.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.1</span> <a 
+href="fpdoc.htm#QQ2-8-7" name="x8-70002.1">Compiling</a></h3>
+<!--l. 135--><p class="noindent">In order to compile <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small></span>, the following things are needed:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x8-7002x1"></a>The fpdoc sources. These can be downloaded from the <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>website.
+     </li>
+     <li class="enumerate"><a 
+  name="x8-7004x2"></a>The  Free  Pascal  compiler  sources.  <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small>  </span>uses  the  scanner  from  the  Free  Pascal
+     comiler to scan the source file.
+     </li>
+     <li class="enumerate"><a 
+  name="x8-7006x3"></a>The FCL units (or their sources) should be installed.
+     </li>
+     <li class="enumerate"><a 
+  name="x8-7008x4"></a>fpcmake is needed to create the makefile for fpdoc. It comes with Free Pascal, so if
+     Free Pascal is installed, there should be no problem.
+     </li>
+     <li class="enumerate"><a 
+  name="x8-7010x5"></a>To make new internationalisation support files, <span 
+class="cmss-10">rstconv </span>must be installed, and the GNU
+     gettext package.</li></ol>
+<!--l. 146--><p class="noindent">Links to download all these programs can be found on the <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>website.
+<!--l. 148--><p class="noindent">When the fpdoc sources have been unzipped, the Makefile must be generated. Before generating
+the makefile, the location of the compiler source directory should be indicated. In the
+<span 
+class="cmss-10">Makefile.fpc </span>file, which has a windows ini file format, locate the <span 
+class="cmtt-10">fpcdir </span>entry in the <span 
+class="cmtt-10">defaults</span>
+section:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpcdir=../..
+</pre>
+</td></tr></table>and change it so it points to the top-level Free Pascal source directory.
+<!--l. 158--><p class="noindent">After that, running <span 
+class="cmss-10">fpcmake </span>will produce the <span 
+class="cmss-10">Makefile</span>, and running <span 
+class="cmss-10">make </span>should produce 2
+executables: <span 
+class="cmss-10">fpdoc </span>and <span 
+class="cmss-10">makeskel</span>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocse5.htm" >next</a>] [<a 
+href="fpdocse4.htm" >front</a>] [<a 
+href="fpdocch2.htm#fpdocse4.htm" >up</a>] </p></div><a 
+  name="tailfpdocse4.htm"></a>  
+</body></html> 

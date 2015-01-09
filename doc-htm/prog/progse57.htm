@@ -1,0 +1,116 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A.5 Creating ppufiles</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse56.htm" >prev</a>] [<a 
+href="progse56.htm#tailprogse56.htm" >prev-tail</a>] [<a 
+href="#tailprogse57.htm">tail</a>] [<a 
+href="progap1.htm#progse57.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">A.5</span> <a 
+href="prog.htm#QQ2-215-243" name="x215-216000A.5">Creating ppufiles</a></h3>
+<!--l. 5465--><p class="noindent">Creating a new ppufile works almost the same as reading one. First you need to init the object and
+call create:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;ppufile:=new(pppufile,init('output.ppu'));
+&nbsp;&nbsp;&nbsp;ppufile.createfile;
+</pre>
+</td></tr></table>
+<!--l. 5472--><p class="noindent">After that you can simply write all needed entries. You&#8217;ll have to take care that you write at least
+the basic entries for the sections:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;ibendinterface
+&nbsp;&nbsp;&nbsp;ibenddefs
+&nbsp;&nbsp;&nbsp;ibendsyms
+&nbsp;&nbsp;&nbsp;ibendbrowser&nbsp;(only&nbsp;when&nbsp;you've&nbsp;set&nbsp;uf_has_browser!)
+&nbsp;&nbsp;&nbsp;ibendimplementation
+&nbsp;&nbsp;&nbsp;ibend
+</pre>
+</td></tr></table>
+<!--l. 5483--><p class="noindent">Writing an entry is a little different than reading it. You need to first put everything in the entry
+with ppufile.putxxx:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;procedure&nbsp;putdata(var&nbsp;b;len:longint);
+&nbsp;procedure&nbsp;putbyte(b:byte);
+&nbsp;procedure&nbsp;putword(w:word);
+&nbsp;procedure&nbsp;putlongint(l:longint);
+&nbsp;procedure&nbsp;putreal(d:ppureal);
+&nbsp;procedure&nbsp;putstring(s:string);
+</pre>
+</td></tr></table>
+<!--l. 5494--><p class="noindent">After putting all the things in the entry you need to call <span 
+class="cmtt-10">ppufile.writeentry(ibnr:byte) </span>where
+<span 
+class="cmtt-10">ibnr </span>is the entry number you&#8217;re writing.
+<!--l. 5498--><p class="noindent">At the end of the file you need to call <span 
+class="cmtt-10">ppufile.writeheader </span>to write the new header to the file.
+This takes automatically care of the new size of the ppufile. When that is also done you can call
+<span 
+class="cmtt-10">ppufile.closefile </span>and dispose the object.
+<!--l. 5503--><p class="noindent">Extra functions/variables available for writing are:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppufile.NewHeader;
+&nbsp;ppufile.NewEntry;
+</pre>
+</td></tr></table>This will give you a clean header or entry. Normally this is called automatically in
+<span 
+class="cmtt-10">ppufile.writeentry</span>, so there should be no need to call these methods.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppufile.flush;
+</pre>
+</td></tr></table>
+<!--l. 5515--><p class="noindent">to flush the current buffers to the disk
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppufile.do_crc:boolean;
+</pre>
+</td></tr></table>set to false if you don&#8217;t want that the crc is updated, this is necessary if you write for example the
+browser data.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse56.htm" >prev</a>] [<a 
+href="progse56.htm#tailprogse56.htm" >prev-tail</a>] [<a 
+href="progse57.htm" >front</a>] [<a 
+href="progap1.htm#progse57.htm" >up</a>] </p></div><a 
+  name="tailprogse57.htm"></a>  
+</body></html> 

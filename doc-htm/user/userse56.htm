@@ -1,0 +1,149 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.1 General compiler messages</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse57.htm" >next</a>] [<a 
+href="#tailuserse56.htm">tail</a>] [<a 
+href="userap3.htm#userse56.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.1</span> <a 
+href="user.htm#QQ2-82-220" name="x82-169000C.1">General compiler messages</a></h3>
+<!--l. 2--><p class="noindent">This section gives the compiler messages which are not fatal, but which display useful information.
+The number of such messages can be controlled with the various verbosity level <span 
+class="cmtt-10">-v</span>
+switches.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Compiler: arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vt </span>switch is used, this line tells you what compiler is used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Compiler OS: arg1</span> </dt><dd 
+class="description">When  the  <span 
+class="cmtt-10">-vd  </span>switch  is  used,  this  line  tells  you  what  the  source
+     operating system is.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Target OS: arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vd </span>switch is used, this line tells you what the target
+     operating system is.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Using executable path: arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vt </span>switch is used, this line tells you where the
+     compiler looks for it&#8217;s binaries.
+     </dd><dt class="description">
+                                                                            
+
+                                                                            
+<span 
+class="cmbx-10">Using unit path: arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vt </span>switch is used, this line tells you where the compiler
+     looks for compiled units. You can set this path with the <span 
+class="cmtt-10">-Fu</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Using include path: arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vt </span>switch is used, this line tells you where the
+     compiler looks for it&#8217;s include files (files used in <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I xxx</span><span 
+class="cmsy-10">} </span>statements). You can set
+     this path with the <span 
+class="cmtt-10">-I </span>option.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Using library path: arg1</span> </dt><dd 
+class="description">When  the  <span 
+class="cmtt-10">-vt  </span>switch  is  used,  this  line  tells  you  where  the
+     compiler looks for the libraries. You can set this path with the <span 
+class="cmtt-10">-Fl </span>option.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Using object path: arg1</span> </dt><dd 
+class="description">When  the  <span 
+class="cmtt-10">-vt  </span>switch  is  used,  this  line  tells  you  where  the
+     compiler looks for object files you link in (files used in <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$L xxx</span><span 
+class="cmsy-10">} </span>statements). You can
+     set this path with the <span 
+class="cmtt-10">-Fo </span>option.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: arg1 Lines compiled, arg2 sec</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vi </span>switch is used, the compiler reports
+     the number of lines compiled, and the time it took to compile them (real time, not
+     program time).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: No memory left</span> </dt><dd 
+class="description">The compiler doesn&#8217;t have enough memory to compile your program.
+     There are several remedies for this:
+         <ul class="itemize1">
+         <li class="itemize">If you&#8217;re using the build option of the compiler, try compiling the different units
+         manually.
+         </li>
+         <li class="itemize">If  you&#8217;re  compiling  a  huge  program,  split  it  up  in  units,  and  compile  these
+         separately.
+         </li>
+         <li class="itemize">If the previous two don&#8217;t work, recompile the compiler with a bigger heap (you
+         can use the <span 
+class="cmtt-10">-Ch </span>option for this, <span 
+class="cmtt-10">-Ch</span>, (see page <a 
+href="userse17.htm#x24-460005.1">5.1<!--tex4ht:ref: option:Ch--></a>))</li></ul>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Writing Resource String Table file: arg1</span> </dt><dd 
+class="description">This message is shown when the
+     compiler writes the Resource String Table file containing all the resource strings for a
+     program.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Writing Resource String Table file: arg1</span> </dt><dd 
+class="description">This message is shown when the compiler
+     encountered an error when writing the Resource String Table file
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Fatal:</span> </dt><dd 
+class="description">Prefix for Fatal Errors
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Error:</span> </dt><dd 
+class="description">Prefix for Errors
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Warning:</span> </dt><dd 
+class="description">Prefix for Warnings
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Note:</span> </dt><dd 
+class="description">Prefix for Notes
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Info: Hint:</span> </dt><dd 
+class="description">Prefix for Hints</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse57.htm" >next</a>] [<a 
+href="userse56.htm" >front</a>] [<a 
+href="userap3.htm#userse56.htm" >up</a>] </p></div><a 
+  name="tailuserse56.htm"></a>  
+</body></html> 

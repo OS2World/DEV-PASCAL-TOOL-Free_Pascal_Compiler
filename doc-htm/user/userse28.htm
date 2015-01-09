@@ -1,0 +1,362 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.9 Debugging programs</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse29.htm" >next</a>] [<a 
+href="userse27.htm" >prev</a>] [<a 
+href="userse27.htm#tailuserse27.htm" >prev-tail</a>] [<a 
+href="#tailuserse28.htm">tail</a>] [<a 
+href="userch6.htm#userse28.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.9</span> <a 
+href="user.htm#QQ2-38-108" name="x38-960006.9">Debugging programs</a></h3>
+<!--l. 1138--><p class="noindent">To debug a program, it must be compiled with debug information. Compiling a program with
+debug information allows to:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x38-96002x1"></a>Execute the program line by line.
+     </li>
+     <li class="enumerate"><a 
+  name="x38-96004x2"></a>Run the program till a certain point (a breakpoint)
+     </li>
+     <li class="enumerate"><a 
+  name="x38-96006x3"></a>Inspect the contents of variables or memory locations while the program is running.</li></ol>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-38-109" name="x38-970006.9">Using breakpoints</a></h4> Breakpoints will cause a running program to stop when the execution reaches
+the line where the breakpoint was set. At that moment, control is returned to the IDE, and it is
+possible to continue execution.
+<!--l. 1154--><p class="noindent">To set a breakpoint on the current source line, use the <span 
+class="cmbx-10">&#8221;Debug--Breakpoint&#8221; </span>menu entry, or
+press <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-F8</span>.
+<!--l. 1157--><p class="noindent">A list of current breakpoints can be obtained through the <span 
+class="cmbx-10">&#8221;Debug--Breakpoint list&#8221; </span>menu.
+The breakpoint list window is shown in figure (<a 
+href="#x38-9700111">6.11<!--tex4ht:ref: fig:brklist--></a>).
+<!--l. 1161--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-9700111"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.11: </td><td  
+class="content">The breakpoint list window</td></tr></table></div><!--tex4ht:label?: x38-9700111-->
+<!--l. 1161--><p class="noindent"><img 
+src="user12x.png" alt="PIC" class="graphics" width="400.34999pt" height="133.24577pt" ><!--tex4ht:graphics  
+name="user12x.png" src="pics/ide/brklist.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1163--><p class="noindent">In the breakpoint list window, the following things can be done:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">New</span> </dt><dd 
+class="description">Shows the breakpoint property dialog where the properties for a new breakpoint can
+     be entered.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Edit</span> </dt><dd 
+class="description">Shows  the  breakpoint  property  dialog  where  the  properties  of  the  highlighted
+     breakpoint can be changed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Delete</span> </dt><dd 
+class="description">Deletes the highlighted breakpoint.</dd></dl>
+<!--l. 1171--><p class="noindent">The dialog can be closed with the &#8217;Close&#8217; button. The breakpoint properties dialog is shown in
+figure (<a 
+href="#x38-9700212">6.12<!--tex4ht:ref: fig:brkprop--></a>)
+<!--l. 1174--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-9700212"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.12: </td><td  
+class="content">The breakpoint properties dialog</td></tr></table></div><!--tex4ht:label?: x38-9700212-->
+<!--l. 1174--><p class="noindent"><img 
+src="user13x.png" alt="PIC" class="graphics" width="400.34999pt" height="209.79213pt" ><!--tex4ht:graphics  
+name="user13x.png" src="pics/ide/brkprop.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1176--><p class="noindent">The following properties can be set:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">type</span> </dt><dd 
+class="description">
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">function</span> </dt><dd 
+class="description">function breakpoint. The program will stop when the function with the given
+         name is reached.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">file-line</span> </dt><dd 
+class="description">Source line breakpoint. The program will stop when the source file with given
+         name and line is reached;
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">watch</span> </dt><dd 
+class="description">Expression breakpoint. An expression may be entered, and the program will
+         stop as soon as the expression changes.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">awatch</span> </dt><dd 
+class="description">(access watch) Expression breakpoint. An expression that references a memory
+         location  may  be  entered,  and  the  program  will  stop  as  soon  as  the  memory
+         indicated by the expression is accessed.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">rwatch</span> </dt><dd 
+class="description">(read watch) Expression breakpoint. An expression that references a memory
+         location  may  be  entered,  and  the  program  will  stop  as  soon  as  the  memory
+         indicated by the expression is read.</dd></dl>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">name</span> </dt><dd 
+class="description">Name of the function or file where to stop.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">line</span> </dt><dd 
+class="description">Line number in the file where to stop. Only for breakpoints of type file-line.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Conditions</span> </dt><dd 
+class="description">Here an expression can be entered which must evaluate <span 
+class="cmtt-10">True </span>for the program to
+     stop at the breakpoint. The expressions that can be entered must be valid GDB
+     expressions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Ignore count</span> </dt><dd 
+class="description">The number of times the breakpoint will be ignored before the program
+     stops;</dd></dl>
+<!--l. 1202--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x38-97004x1"></a>Because the IDE uses GDB to do its debugging, it is necessary to enter all expressions
+     in <span 
+class="cmti-10">uppercase </span>on <span 
+class="cmcsc-10">F<small 
+class="small-caps">R</small><small 
+class="small-caps">E</small><small 
+class="small-caps">E</small>BSD</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x38-97006x2"></a>Expressions that reference memory locations should be no longer than 16 bytes on
+     <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>or go32v2 on an Intel processor, since the Intel processor&#8217;s debug registers are
+     used to monitor these locations.
+     </li>
+     <li class="enumerate"><a 
+  name="x38-97008x3"></a>Memory location watches will not function on Win32 unless a special patch is applied.</li></ol>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-38-112" name="x38-980006.9">Using watches</a></h4> When debugging information is compiled in the program, watches can be used.
+Watches are expressions which can be evaluated by the IDE and shown in a separate window.
+When program execution stops (e.g. at a breakpoint) all watches will be evaluated and their
+current values will be shown.
+<!--l. 1223--><p class="noindent">Setting a new watch can be done with the <span 
+class="cmbx-10">&#8221;Debug--Add watch&#8221; </span>menu command or by pressing
+<span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-F7</span>. When this is done, the watch property dialog appears, and a new expression can be
+entered. The watch property dialog is shown in figure (<a 
+href="#x38-9800113">6.13<!--tex4ht:ref: fig:watch--></a>).
+<!--l. 1228--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-9800113"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.13: </td><td  
+class="content">The watch property dialog</td></tr></table></div><!--tex4ht:label?: x38-9800113-->
+<!--l. 1228--><p class="noindent"><img 
+src="user14x.png" alt="PIC" class="graphics" width="400.34999pt" height="154.53032pt" ><!--tex4ht:graphics  
+name="user14x.png" src="pics/ide/watch.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1230--><p class="noindent">In the dialog, the expression can be entered, any possible previous value and current value are
+shown.
+<!--l. 1232--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Because the IDE uses GDB to do it&#8217;s debugging, it is necessary to enter all expressions in
+<span 
+class="cmti-10">uppercase </span>in <span 
+class="cmcsc-10">F<small 
+class="small-caps">R</small><small 
+class="small-caps">E</small><small 
+class="small-caps">E</small>BSD</span>.
+A list of watches and their present value is available in the watches window, which can be
+opened with the <span 
+class="cmbx-10">&#8221;Debug--Watches&#8221; </span>menu. The watch list window is shown in figure
+(<a 
+href="#x38-9700111">6.11<!--tex4ht:ref: fig:brklist--></a>).
+<!--l. 1240--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-9800214"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.14: </td><td  
+class="content">The watch list window.</td></tr></table></div><!--tex4ht:label?: x38-9800214-->
+<!--l. 1240--><p class="noindent"><img 
+src="user15x.png" alt="PIC" class="graphics" width="400.34999pt" height="114.002pt" ><!--tex4ht:graphics  
+name="user15x.png" src="pics/ide/watchlst.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1242--><p class="noindent">Pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>or the space bar will show the watch property dialog for the currently highlighted
+watch in the watches window.
+<!--l. 1245--><p class="noindent">The list of watches is updated whenever the IDE resumes control when debugging a
+program.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-38-115" name="x38-990006.9">The call stack</a></h4> The call stack helps in showing the program flow. It shows the list of procedures
+that are being called at this moment, in reverse order. The call stack window can be shown using
+the <span 
+class="cmbx-10">&#8221;Debug--Call Stack&#8221; </span>It will show the address or procedure name of all currently active
+procedures with their filename and addresses. If parameters were passed they will be shown as well.
+The call stack is shown in figure (<a 
+href="#x38-9900115">6.15<!--tex4ht:ref: fig:callstck--></a>).
+<!--l. 1259--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-9900115"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.15: </td><td  
+class="content">The call stack window.</td></tr></table></div><!--tex4ht:label?: x38-9900115-->
+<!--l. 1259--><p class="noindent"><img 
+src="user16x.png" alt="PIC" class="graphics" width="400.34999pt" height="132.70569pt" ><!--tex4ht:graphics  
+name="user16x.png" src="pics/ide/callstck.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1261--><p class="noindent">By pressing the space bar in the call stack window, the line corresponding to the call will be
+highlighted in the edit window.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-38-117" name="x38-1000006.9">The GDB window</a></h4> The GDB window provides direct interaction with the GDB debugger. In it,
+GDB commands can be typed as they would be typed in GDB. The response of GDB will be
+shown in the window.
+<!--l. 1271--><p class="noindent">Some more information on using GDB can be found in section <a 
+href="userse47.htm#x67-15400010.2">10.2<!--tex4ht:ref: se:usinggdb--></a>,
+page <a 
+href="userse47.htm#x67-15400010.2">349<!--tex4ht:ref: se:usinggdb--></a>, but the final reference is of course the GDB manual itself
+<a 
+href="user39.htm" name="user39.htm" ><sup>3</sup></a>. The
+GDB window is shown in figure (<a 
+href="#x38-10000216">6.16<!--tex4ht:ref: fig:gdbwin--></a>).
+<!--l. 1276--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x38-10000216"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.16: </td><td  
+class="content">The GDB window</td></tr></table></div><!--tex4ht:label?: x38-10000216-->
+<!--l. 1276--><p class="noindent"><img 
+src="user17x.png" alt="PIC" class="graphics" width="400.34999pt" height="204.9767pt" ><!--tex4ht:graphics  
+name="user17x.png" src="pics/ide/gdbwin.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse29.htm" >next</a>] [<a 
+href="userse27.htm" >prev</a>] [<a 
+href="userse27.htm#tailuserse27.htm" >prev-tail</a>] [<a 
+href="userse28.htm" >front</a>] [<a 
+href="userch6.htm#userse28.htm" >up</a>] </p></div><a 
+  name="tailuserse28.htm"></a>   
+</body></html> 

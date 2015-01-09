@@ -1,0 +1,78 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.1 Ordinary constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse9.htm" >next</a>] [<a 
+href="#tailrefse8.htm">tail</a>] [<a 
+href="refch2.htm#refse8.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.1</span> <a 
+href="ref.htm#QQ2-21-20" name="x21-200002.1">Ordinary constants</a></h3>
+<!--l. 415--><p class="noindent">Ordinary constants declarations are not different from the Turbo Pascal or Delphi implementation.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Constant declaration</span>
+     <BR/>
+     <img 
+src="ref24x.png" alt="-- constant declaration--identifier-=---expression--;----------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 418--><p class="noindent">The compiler must be able to evaluate the expression in a constant declaration at compile time.
+This means that most of the functions in the Run-Time library cannot be used in a constant
+declaration. Operators such as <span 
+class="cmtt-10">+, -, *, /, not, and, or, div, mod, ord, chr, sizeof,</span>
+<span 
+class="cmtt-10">pi, int, trunc, round, frac, odd </span>can be used, however. For more information on
+expressions, see chapter <a 
+href="refch6.htm#x58-640006">6<!--tex4ht:ref: ch:Expressions--></a>, page <a 
+href="refch6.htm#x58-640006">197<!--tex4ht:ref: ch:Expressions--></a>. Only constants of the following types can be declared:
+<span 
+class="cmtt-10">Ordinal types</span>, <span 
+class="cmtt-10">Real types</span>, <span 
+class="cmtt-10">Char</span>, and <span 
+class="cmtt-10">String</span>. The following are all valid constant
+declarations:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;e&nbsp;=&nbsp;2.7182818;&nbsp;&nbsp;{&nbsp;Real&nbsp;type&nbsp;constant.&nbsp;}
+&nbsp;&nbsp;&nbsp;a&nbsp;=&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Ordinal&nbsp;(Integer)&nbsp;type&nbsp;constant.&nbsp;}
+&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;'4';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Character&nbsp;type&nbsp;constant.&nbsp;}
+&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;'This&nbsp;is&nbsp;a&nbsp;constant&nbsp;string';&nbsp;{String&nbsp;type&nbsp;constant.}
+&nbsp;&nbsp;&nbsp;s&nbsp;=&nbsp;chr(32)
+&nbsp;&nbsp;&nbsp;ls&nbsp;=&nbsp;SizeOf(Longint);
+</pre>
+</td></tr></table>Assigning a value to an ordinary constant is not permitted. Thus, given the previous declaration,
+the following will result in a compiler error:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;s&nbsp;:=&nbsp;'some&nbsp;other&nbsp;string';
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse9.htm" >next</a>] [<a 
+href="refse8.htm" >front</a>] [<a 
+href="refch2.htm#refse8.htm" >up</a>] </p></div><a 
+  name="tailrefse8.htm"></a>  
+</body></html> 

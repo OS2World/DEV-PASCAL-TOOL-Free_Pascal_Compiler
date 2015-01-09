@@ -1,0 +1,1344 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.2 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse32.htm" >next</a>] [<a 
+href="unitsse30.htm" >prev</a>] [<a 
+href="unitsse30.htm#tailunitsse30.htm" >prev-tail</a>] [<a 
+href="#tailunitsse31.htm">tail</a>] [<a 
+href="unitsch11.htm#unitsse31.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.2</span> <a 
+href="units.htm#QQ2-47-335" name="x47-33100011.2">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-336" name="x47-33200011.2">DoneKeyboard</a></h4><a 
+  name="dx47-332001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DoneKeyboard;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DoneKeyboard </span>de-initializes the keyboard interface if the keyboard driver is active. If the
+keyboard driver is not active, the function does nothing.
+<!--l. 191--><p class="noindent">This will cause the keyboard driver to clear up any allocated memory, or restores the console
+or terminal the program was running in to its initial state before the call to <span 
+class="cmss-10">InitKeyBoard</span>
+(<a 
+href="#x47-34100011.2">299<!--tex4ht:ref: se:kbddriver--></a>). This function should be called on program exit. Failing to do so may leave the terminal
+or console window in an unusable state. Its exact action depends on the platform on which
+the program is running.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitKeyBoard </span>(<a 
+href="#x47-34100011.2">299<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 203--><p class="noindent">For an example, see most other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-337" name="x47-33300011.2">FunctionKeyName</a></h4><a 
+  name="dx47-333001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FunctionKeyName (KeyCode : Word) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FunctionKeyName </span>returns a string representation of the function key with code <span 
+class="cmtt-10">KeyCode</span>.
+This can be an actual function key, or one of the cursor movement keys.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case <span 
+class="cmtt-10">KeyCode </span>does not contain a function code, the <span 
+class="cmtt-10">SUnknownFunctionKey </span>string is
+returned, appended with the <span 
+class="cmtt-10">KeyCode</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ShiftStateToString </span>(<a 
+href="#x47-34800011.2">304<!--tex4ht:ref: se:kbddriver--></a>) <span 
+class="cmss-10">KeyEventToString </span>(<a 
+href="#x47-34300011.2">300<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 221--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 221--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FunctionKeyName</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TkeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyboard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">IsFunctionKey(k)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Got</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(FunctionKeyName(TkeyRecord(K).KeyCode));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-338" name="x47-33400011.2">GetKeyboardDriver</a></h4><a 
+  name="dx47-334001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetKeyboardDriver (Var Driver : TKeyboardDriver);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyBoardDriver </span>returns in <span 
+class="cmtt-10">Driver </span>the currently active keyboard driver. This function
+can be used to enhance an existing keyboarddriver.
+<!--l. 231--><p class="noindent">For more information on getting and setting the keyboard driver section <a 
+href="unitsse33.htm#x49-35200011.4">11.4<!--tex4ht:ref: se:kbddriver--></a>, page <a 
+href="unitsse33.htm#x49-35200011.4">313<!--tex4ht:ref: se:kbddriver--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetKeyboardDriver </span>(<a 
+href="#x47-34700011.2">303<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-339" name="x47-33500011.2">GetKeyEvent</a></h4><a 
+  name="dx47-335001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEvent: TKeyEvent;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEvent </span>returns the last keyevent if one was stored in <span 
+class="cmtt-10">PendingKeyEvent</span>, or waits for
+one if none is available. A non-blocking version is available in <span 
+class="cmss-10">PollKeyEvent </span>(<a 
+href="#x47-34400011.2">301<!--tex4ht:ref: se:kbddriver--></a>).
+<!--l. 247--><p class="noindent">The returned key is encoded as a <span 
+class="cmtt-10">TKeyEvent </span>type variable, and is normally the physical
+key scan code, (the scan code is driver dependent) which can be translated with one of the
+translation functions <span 
+class="cmss-10">TranslateKeyEvent </span>(<a 
+href="#x47-34900011.2">304<!--tex4ht:ref: se:kbddriver--></a>) or <span 
+class="cmss-10">TranslateKeyEventUniCode </span>(<a 
+href="#x47-35000011.2">304<!--tex4ht:ref: se:kbddriver--></a>). See the
+types section for a description of how the key is described.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If no key became available, 0 is returned.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">PutKeyEvent </span>(<a 
+href="#x47-34600011.2">302<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">PollKeyEvent </span>(<a 
+href="#x47-34400011.2">301<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">TranslateKeyEvent </span>(<a 
+href="#x47-34900011.2">304<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">TranslateKeyEventUniCode</span>
+(<a 
+href="#x47-35000011.2">304<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 259--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 259--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetKeyEvent</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">event</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventFlags(K)</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbASCII</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Writeln('ASCII</span>&nbsp;<span 
+class="cmtt-10">key');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbUniCode</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Writeln('Unicode</span>&nbsp;<span 
+class="cmtt-10">key');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbFnKey</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Writeln('Function</span>&nbsp;<span 
+class="cmtt-10">key');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbPhys</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Writeln('Physical</span>&nbsp;<span 
+class="cmtt-10">key');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbReleased</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Writeln('Released</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">event');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-340" name="x47-33600011.2">GetKeyEventChar</a></h4><a 
+  name="dx47-336001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEventChar(KeyEvent: TKeyEvent): Char;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEventChar </span>returns the charcode part of the given <span 
+class="cmtt-10">KeyEvent</span>, if it contains a
+translated character key keycode. The charcode is simply the ascii code of the character key
+that was pressed.
+<!--l. 270--><p class="noindent">It returns the null character if the key was not a character key, but e.g. a function key.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEventUniCode                                                                                    </span>(<a 
+href="#x47-34000011.2">299<!--tex4ht:ref: se:kbddriver--></a>),
+<span 
+class="cmss-10">GetKeyEventShiftState </span>(<a 
+href="#x47-33900011.2">298<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEventFlags </span>(<a 
+href="#x47-33800011.2">297<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEventCode </span>(<a 
+href="#x47-33700011.2">297<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent</span>
+                                                                            
+
+                                                                            
+(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 282--><p class="noindent">For an example, see <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-341" name="x47-33700011.2">GetKeyEventCode</a></h4><a 
+  name="dx47-337001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEventCode(KeyEvent: TKeyEvent): Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEventCode </span>returns the translated function keycode part of the given KeyEvent, if it
+contains a translated function key.
+<!--l. 291--><p class="noindent">If the key pressed was not a function key, the null character is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEventUniCode   </span>(<a 
+href="#x47-34000011.2">299<!--tex4ht:ref: se:kbddriver--></a>),   <span 
+class="cmss-10">GetKeyEventShiftState   </span>(<a 
+href="#x47-33900011.2">298<!--tex4ht:ref: se:kbddriver--></a>),   <span 
+class="cmss-10">GetKeyEventFlags   </span>(<a 
+href="#x47-33800011.2">297<!--tex4ht:ref: se:kbddriver--></a>),
+<span 
+class="cmss-10">GetKeyEventChar </span>(<a 
+href="#x47-33600011.2">296<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 302--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 302--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventCode</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventFlags(K)&lt;&gt;KbfnKey)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Not</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">key')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">(',GetKeyEventCode(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(')</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-342" name="x47-33800011.2">GetKeyEventFlags</a></h4><a 
+  name="dx47-338001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEventFlags(KeyEvent: TKeyEvent): Byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEventFlags </span>returns the flags part of the given <span 
+class="cmtt-10">KeyEvent</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEventUniCode   </span>(<a 
+href="#x47-34000011.2">299<!--tex4ht:ref: se:kbddriver--></a>),   <span 
+class="cmss-10">GetKeyEventShiftState   </span>(<a 
+href="#x47-33900011.2">298<!--tex4ht:ref: se:kbddriver--></a>),   <span 
+class="cmss-10">GetKeyEventCode   </span>(<a 
+href="#x47-33700011.2">297<!--tex4ht:ref: se:kbddriver--></a>),
+<span 
+class="cmss-10">GetKeyEventChar </span>(<a 
+href="#x47-33600011.2">296<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 320--><p class="noindent">For an example, see <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-343" name="x47-33900011.2">GetKeyEventShiftState</a></h4><a 
+  name="dx47-339001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEventShiftState(KeyEvent: TKeyEvent): Byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEventShiftState </span>returns the shift-state values of the given <span 
+class="cmtt-10">KeyEvent</span>. This can be
+used to detect which of the modifier keys <span 
+class="cmtt-10">Shift</span>, <span 
+class="cmtt-10">Alt </span>or <span 
+class="cmtt-10">Ctrl </span>were pressed. If none were
+pressed, zero is returned.
+<!--l. 331--><p class="noindent">Note that this function does not always return expected results; In a unix X-Term, the
+modifier keys do not always work.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEventUniCode     </span>(<a 
+href="#x47-34000011.2">299<!--tex4ht:ref: se:kbddriver--></a>),     <span 
+class="cmss-10">GetKeyEventFlags     </span>(<a 
+href="#x47-33800011.2">297<!--tex4ht:ref: se:kbddriver--></a>),     <span 
+class="cmss-10">GetKeyEventCode     </span>(<a 
+href="#x47-33700011.2">297<!--tex4ht:ref: se:kbddriver--></a>),
+<span 
+class="cmss-10">GetKeyEventChar </span>(<a 
+href="#x47-33600011.2">296<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 343--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 343--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetKeyEventShiftState</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Press</span>&nbsp;<span 
+class="cmtt-10">keys</span>&nbsp;<span 
+class="cmtt-10">combined</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">CTRL/SHIFT/ALT');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(',</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S:=GetKeyEventShiftState(K);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(S=0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('No</span>&nbsp;<span 
+class="cmtt-10">special</span>&nbsp;<span 
+class="cmtt-10">keys</span>&nbsp;<span 
+class="cmtt-10">pressed')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Detected</span>&nbsp;<span 
+class="cmtt-10">special</span>&nbsp;<span 
+class="cmtt-10">keys</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ShiftStateToString(K,False));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyboard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-344" name="x47-34000011.2">GetKeyEventUniCode</a></h4><a 
+  name="dx47-340001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetKeyEventUniCode(KeyEvent: TKeyEvent): Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetKeyEventUniCode </span>returns the unicode part of the given <span 
+class="cmtt-10">KeyEvent </span>if it contains a
+translated unicode character.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEventShiftState    </span>(<a 
+href="#x47-33900011.2">298<!--tex4ht:ref: se:kbddriver--></a>),    <span 
+class="cmss-10">GetKeyEventFlags    </span>(<a 
+href="#x47-33800011.2">297<!--tex4ht:ref: se:kbddriver--></a>),    <span 
+class="cmss-10">GetKeyEventCode    </span>(<a 
+href="#x47-33700011.2">297<!--tex4ht:ref: se:kbddriver--></a>),
+<span 
+class="cmss-10">GetKeyEventChar </span>(<a 
+href="#x47-33600011.2">296<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 362--><p class="noindent">No example available yet.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-345" name="x47-34100011.2">InitKeyBoard</a></h4><a 
+  name="dx47-341001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure InitKeyboard;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">InitKeyboard </span>initializes the keyboard driver. If the driver is already active, it does nothing.
+When the driver is initialized, it will do everything necessary to ensure the functioning of
+the keyboard, including allocating memory, initializing the terminal etc.
+<!--l. 373--><p class="noindent">This function should be called once, before using any of the keyboard functions. When it is
+called, the <span 
+class="cmss-10">DoneKeyboard </span>(<a 
+href="#x47-33200011.2">294<!--tex4ht:ref: se:kbddriver--></a>) function should also be called before exiting the program or
+changing the keyboard driver with <span 
+class="cmss-10">SetKeyboardDriver </span>(<a 
+href="#x47-34700011.2">303<!--tex4ht:ref: se:kbddriver--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DoneKeyboard </span>(<a 
+href="#x47-33200011.2">294<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">SetKeyboardDriver </span>(<a 
+href="#x47-34700011.2">303<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 383--><p class="noindent">For an example, see most other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-346" name="x47-34200011.2">IsFunctionKey</a></h4><a 
+  name="dx47-342001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function IsFunctionKey(KeyEvent: TKeyEvent): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IsFunctionKey </span>returns <span 
+class="cmtt-10">True </span>if the given key event in <span 
+class="cmtt-10">KeyEvent </span>was a function key or not.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 397--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 397--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetKeyEvent</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">IsFunctionKey(K)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K))</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('not</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">key.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-347" name="x47-34300011.2">KeyEventToString</a></h4><a 
+  name="dx47-343001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function KeyEventToString(KeyEvent : TKeyEvent) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">KeyEventToString </span>translates the key event in <span 
+class="cmtt-10">KeyEvent </span>to a human-readable description
+of the pressed key. It will use the constants described in the constants section to do so.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an unknown key is passed, the scancode is returned, prefixed with the <span 
+class="cmtt-10">SScanCode </span>string.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FunctionKeyName </span>(<a 
+href="#x47-33300011.2">294<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">ShiftStateToString </span>(<a 
+href="#x47-34800011.2">304<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 413--><p class="noindent">For an example, see most other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-348" name="x47-34400011.2">PollKeyEvent</a></h4><a 
+  name="dx47-344001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function PollKeyEvent: TKeyEvent;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PollKeyEvent </span>checks whether a key event is available, and returns it if one is found. If no
+event is pending, it returns 0.
+<!--l. 423--><p class="noindent">Note that this does not remove the key from the pending keys. The key should still be
+retrieved from the pending key events list with the <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>) function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">PutKeyEvent </span>(<a 
+href="#x47-34600011.2">302<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 432--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 432--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PollKeyEvent</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=PollKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">k&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-349" name="x47-34500011.2">PollShiftStateEvent</a></h4><a 
+  name="dx47-345001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function PollShiftStateEvent: TKeyEvent;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PollShiftStateEvent </span>returns the current shiftstate in a keyevent. This will return 0 if
+there is no key event pending.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">PollKeyEvent </span>(<a 
+href="#x47-34400011.2">301<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 446--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 446--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PollShiftStateEvent</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=PollKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">k&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=PollShiftStateEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">shift</span>&nbsp;<span 
+class="cmtt-10">state</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ShiftStateToString(K,False));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Consume</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">key.</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('.')};</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-350" name="x47-34600011.2">PutKeyEvent</a></h4><a 
+  name="dx47-346001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure PutKeyEvent(KeyEvent: TKeyEvent);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutKeyEvent </span>adds the given <span 
+class="cmtt-10">KeyEvent </span>to the input queue. Please note that depending on
+the implementation this can hold only one value, i.e. when calling <span 
+class="cmtt-10">PutKeyEvent </span>multiple
+times, only the last pushed key will be remembered.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">PollKeyEvent </span>(<a 
+href="#x47-34400011.2">301<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 462--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">kbdex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 462--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PutKeyEvent</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K,k2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKeyEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitKeyBoard;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">keys,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">&#34;q&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">end.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">K2:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=GetKeyEvent;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">k&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(k2</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">2)=0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K2:=K+1</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K2:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K:=TranslateKeyEvent(K);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Got</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(K2&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PutKeyEvent(k2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">K2:=TranslateKeyEVent(K2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Put</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',KeyEventToString(K2))</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetKeyEventChar(K)='q');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DoneKeyBoard;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-351" name="x47-34700011.2">SetKeyboardDriver</a></h4><a 
+  name="dx47-347001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SetKeyboardDriver (Const Driver : TKeyboardDriver) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetKeyBoardDriver </span>sets the keyboard driver to <span 
+class="cmtt-10">Driver</span>, if the current keyboard driver is
+not yet initialized. If the current keyboard driver is initialized, then <span 
+class="cmtt-10">SetKeyboardDriver</span>
+does nothing. Before setting the driver, the currently active driver should be disabled with
+                                                                            
+
+                                                                            
+a call to <span 
+class="cmss-10">DoneKeyboard </span>(<a 
+href="#x47-33200011.2">294<!--tex4ht:ref: se:kbddriver--></a>).
+<!--l. 474--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the driver was set, <span 
+class="cmtt-10">False </span>if not.
+<!--l. 476--><p class="noindent">For more information on setting the keyboard driver, see section <a 
+href="unitsse33.htm#x49-35200011.4">11.4<!--tex4ht:ref: se:kbddriver--></a>, page <a 
+href="unitsse33.htm#x49-35200011.4">313<!--tex4ht:ref: se:kbddriver--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetKeyboardDriver </span>(<a 
+href="#x47-33400011.2">295<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">DoneKeyboard </span>(<a 
+href="#x47-33200011.2">294<!--tex4ht:ref: se:kbddriver--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-352" name="x47-34800011.2">ShiftStateToString</a></h4><a 
+  name="dx47-348001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ShiftStateToString(KeyEvent : TKeyEvent; UseLeftRight : Boolean) :</span>
+<span 
+class="cmtt-10">String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ShiftStateToString </span>returns a string description of the shift state of the key event
+<span 
+class="cmtt-10">KeyEvent</span>. This can be an empty string.
+<!--l. 490--><p class="noindent">The shift state is described using the strings in the <span 
+class="cmtt-10">SShift </span>constant.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FunctionKeyName </span>(<a 
+href="#x47-33300011.2">294<!--tex4ht:ref: se:kbddriver--></a>), <span 
+class="cmss-10">KeyEventToString </span>(<a 
+href="#x47-34300011.2">300<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 497--><p class="noindent">For an example, see <span 
+class="cmss-10">PollShiftStateEvent </span>(<a 
+href="#x47-34500011.2">301<!--tex4ht:ref: se:kbddriver--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-353" name="x47-34900011.2">TranslateKeyEvent</a></h4><a 
+  name="dx47-349001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function TranslateKeyEvent(KeyEvent: TKeyEvent): TKeyEvent;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TranslateKeyEvent </span>performs ASCII translation of the <span 
+class="cmtt-10">KeyEvent</span>. It translates a physical
+key to a function key if the key is a function key, and translates the physical key to the
+ordinal of the ascii character if there is an equivalent character key.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TranslateKeyEventUniCode </span>(<a 
+href="#x47-35000011.2">304<!--tex4ht:ref: se:kbddriver--></a>)</dd></dl>
+<!--l. 513--><p class="noindent">For an example, see <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="#x47-33500011.2">295<!--tex4ht:ref: se:kbddriver--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-47-354" name="x47-35000011.2">TranslateKeyEventUniCode</a></h4><a 
+  name="dx47-350001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function TranslateKeyEventUniCode(KeyEvent: TKeyEvent): TKeyEvent;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TranslateKeyEventUniCode </span>performs Unicode translation of the <span 
+class="cmtt-10">KeyEvent</span>. It is not yet
+implemented for all platforms.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the function is not yet implemented, then the <span 
+class="cmtt-10">ErrorCode </span>of the <span 
+class="cmss-10">system </span>unit will be set to
+<span 
+class="cmtt-10">errKbdNotImplemented</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 528--><p class="noindent">No example available yet.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse32.htm" >next</a>] [<a 
+href="unitsse30.htm" >prev</a>] [<a 
+href="unitsse30.htm#tailunitsse30.htm" >prev-tail</a>] [<a 
+href="unitsse31.htm" >front</a>] [<a 
+href="unitsch11.htm#unitsse31.htm" >up</a>] </p></div><a 
+  name="tailunitsse31.htm"></a>   
+</body></html> 

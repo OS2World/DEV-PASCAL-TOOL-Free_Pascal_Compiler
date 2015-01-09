@@ -1,0 +1,198 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.2 Constants, types and variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse14.htm" >next</a>] [<a 
+href="unitsse12.htm" >prev</a>] [<a 
+href="unitsse12.htm#tailunitsse12.htm" >prev-tail</a>] [<a 
+href="#tailunitsse13.htm">tail</a>] [<a 
+href="unitsch6.htm#unitsse13.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.2</span> <a 
+href="units.htm#QQ2-24-102" name="x24-1000006.2">Constants, types and variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-24-103" name="x24-1010006.2">constants</a></h4> The following constants are used to denote filenames used by the library:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;_PATH_VARRUN&nbsp;=&nbsp;'/var/run/';
+&nbsp;_PATH_DEV&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'/dev/';
+&nbsp;GPM_NODE_DIR&nbsp;=&nbsp;_PATH_VARRUN;
+&nbsp;GPM_NODE_DIR_MODE&nbsp;=&nbsp;0775;
+&nbsp;GPM_NODE_PID&nbsp;&nbsp;=&nbsp;'/var/run/gpm.pid';
+&nbsp;GPM_NODE_DEV&nbsp;&nbsp;=&nbsp;'/dev/gpmctl';
+&nbsp;GPM_NODE_CTL&nbsp;&nbsp;=&nbsp;GPM_NODE_DEV;
+&nbsp;GPM_NODE_FIFO&nbsp;=&nbsp;'/dev/gpmdata';
+</pre>
+</td></tr></table>The following constants denote the buttons on the mouse:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;GPM_B_LEFT&nbsp;&nbsp;&nbsp;=&nbsp;4;
+&nbsp;GPM_B_MIDDLE&nbsp;=&nbsp;2;
+&nbsp;GPM_B_RIGHT&nbsp;&nbsp;=&nbsp;1;
+</pre>
+</td></tr></table>The following constants define events:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;GPM_MOVE&nbsp;=&nbsp;1;
+&nbsp;GPM_DRAG&nbsp;=&nbsp;2;
+&nbsp;GPM_DOWN&nbsp;=&nbsp;4;
+&nbsp;GPM_UP&nbsp;=&nbsp;8;
+&nbsp;GPM_SINGLE&nbsp;=&nbsp;16;
+&nbsp;GPM_DOUBLE&nbsp;=&nbsp;32;
+&nbsp;GPM_TRIPLE&nbsp;=&nbsp;64;
+&nbsp;GPM_MFLAG&nbsp;=&nbsp;128;
+&nbsp;GPM_HARD&nbsp;=&nbsp;256;
+&nbsp;GPM_ENTER&nbsp;=&nbsp;512;
+&nbsp;GPM_LEAVE&nbsp;=&nbsp;1024;
+</pre>
+</td></tr></table>The following constants are used in defining margins:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;GPM_TOP&nbsp;=&nbsp;1;
+&nbsp;GPM_BOT&nbsp;=&nbsp;2;
+&nbsp;GPM_LFT&nbsp;=&nbsp;4;
+&nbsp;GPM_RGT&nbsp;=&nbsp;8;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-24-104" name="x24-1020006.2">Types</a></h4> The following general types are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TGpmEtype&nbsp;=&nbsp;longint;
+&nbsp;&nbsp;&nbsp;TGpmMargin&nbsp;=&nbsp;longint;
+</pre>
+</td></tr></table>The following type describes an event; it is passed in many of the gpm functions.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PGpmEvent&nbsp;=&nbsp;^TGpmEvent;
+&nbsp;TGpmEvent&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;buttons&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;modifiers&nbsp;:&nbsp;byte;
+&nbsp;&nbsp;&nbsp;vc&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;dx&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;dy&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;x&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;y&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;EventType&nbsp;:&nbsp;TGpmEType;
+&nbsp;&nbsp;&nbsp;clicks&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;margin&nbsp;:&nbsp;TGpmMargin;
+&nbsp;end;
+&nbsp;TGpmHandler=function(var&nbsp;event:TGpmEvent;clientdata:pointer):longint;cdecl;
+</pre>
+</td></tr></table>The following types are used in connecting to the <span 
+class="cmss-10">gpm </span>server:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PGpmConnect&nbsp;=&nbsp;^TGpmConnect;
+&nbsp;TGpmConnect&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;eventMask&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;defaultMask&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;minMod&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;maxMod&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;pid&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;vc&nbsp;:&nbsp;longint;
+&nbsp;end;
+</pre>
+</td></tr></table>The following type is used to define <span 
+class="cmti-10">regions of interest</span>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PGpmRoi&nbsp;=&nbsp;^TGpmRoi;
+&nbsp;TGpmRoi&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;xMin&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;xMax&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;yMin&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;yMax&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;minMod&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;maxMod&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;eventMask&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;owned&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;handler&nbsp;:&nbsp;TGpmHandler;
+&nbsp;&nbsp;&nbsp;clientdata&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;prev&nbsp;:&nbsp;PGpmRoi;
+&nbsp;&nbsp;&nbsp;next&nbsp;:&nbsp;PGpmRoi;
+&nbsp;end;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-24-105" name="x24-1030006.2">Variables</a></h4> The following variables are imported from the <span 
+class="cmtt-10">gpm </span>library
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;gpm_flag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;gpm_fd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;gpm_hflag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;gpm_morekeys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Longbool;cvar;external;
+&nbsp;gpm_zerobased&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Longbool;cvar;external;
+&nbsp;gpm_visiblepointer&nbsp;:&nbsp;Longbool;cvar;external;
+&nbsp;gpm_mx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;gpm_my&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;gpm_timeout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;TTimeVal;cvar;external;
+&nbsp;_gpm_buf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;array[0..0]&nbsp;of&nbsp;char;cvar;external;
+&nbsp;_gpm_arg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;^word;cvar;external;
+&nbsp;gpm_handler&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;TGpmHandler;cvar;external;
+&nbsp;gpm_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;cvar;external;
+&nbsp;gpm_roi_handler&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;TGpmHandler;cvar;external;
+&nbsp;gpm_roi_data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;cvar;external;
+&nbsp;gpm_roi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PGpmRoi;cvar;external;
+&nbsp;gpm_current_roi&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PGpmRoi;cvar;external;
+&nbsp;gpm_consolefd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;cvar;external;
+&nbsp;Gpm_HandleRoi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;TGpmHandler;cvar;external;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse14.htm" >next</a>] [<a 
+href="unitsse12.htm" >prev</a>] [<a 
+href="unitsse12.htm#tailunitsse12.htm" >prev-tail</a>] [<a 
+href="unitsse13.htm" >front</a>] [<a 
+href="unitsch6.htm#unitsse13.htm" >up</a>] </p></div><a 
+  name="tailunitsse13.htm"></a>   
+</body></html> 

@@ -1,0 +1,7 @@
+[package]
+name=tcl
+version=1.0.8
+[require]
+libc=y
+packages_os2_i386=netdb libasync
+packages=rtl fcl

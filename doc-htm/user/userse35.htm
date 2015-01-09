@@ -1,0 +1,179 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2 Things which are extra</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse36.htm" >next</a>] [<a 
+href="userse34.htm" >prev</a>] [<a 
+href="userse34.htm#tailuserse34.htm" >prev-tail</a>] [<a 
+href="#tailuserse35.htm">tail</a>] [<a 
+href="userch7.htm#userse35.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.2</span> <a 
+href="user.htm#QQ2-51-180" name="x51-1310007.2">Things which are extra</a></h3>
+<!--l. 1538--><p class="noindent">Here we give a list of things which are possible in Free Pascal, but which didn&#8217;t exist in Turbo
+Pascal or Delphi.
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x51-131002x1"></a>There are more reserved words. (see appendix <a 
+href="userap2.htm#x80-167000B">B<!--tex4ht:ref: ch:reserved--></a> for a list of all reserved words.)
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131004x2"></a>Functions can also return complex types, such as records and arrays.
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131006x3"></a>You can handle function results in the function itself, as a variable. Example
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;function&nbsp;a&nbsp;:&nbsp;longint;
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;a:=12;
+     &nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;a&gt;4&nbsp;do
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...}
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+     &nbsp;end;
+</pre>
+     </td></tr></table>The example above would work with TP, but the compiler would assume that the <span 
+class="cmtt-10">a&gt;4 </span>is a
+     recursive call. To do a recursive call in this you must append <span 
+class="cmtt-10">() </span>behind the function
+     name:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;function&nbsp;a&nbsp;:&nbsp;longint;
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;a:=12;
+     &nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;this&nbsp;is&nbsp;the&nbsp;recursive&nbsp;call&nbsp;}
+     &nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;a()&gt;4&nbsp;then
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...}
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+     &nbsp;end;
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131008x4"></a>There is partial support of Delphi constructs. (see the <a 
+href="file:../prog/prog.htm" >Programmers guide</a> for more
+     information on this).
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131010x5"></a>The <span 
+class="cmtt-10">exit </span>call accepts a return value for functions.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;function&nbsp;a&nbsp;:&nbsp;longint;
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;a:=12;
+     &nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;a&gt;4&nbsp;then
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit(a*67);&nbsp;{function&nbsp;result&nbsp;upon&nbsp;exit&nbsp;is&nbsp;a*67&nbsp;}
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+     &nbsp;end;
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131012x6"></a>Free Pascal supports function overloading. That is, you can define many functions with the
+     same name, but with different arguments. For example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;procedure&nbsp;DoSomething&nbsp;(a&nbsp;:&nbsp;longint);
+     &nbsp;begin
+     &nbsp;{...}
+     &nbsp;end;
+     &nbsp;
+     &nbsp;procedure&nbsp;DoSomething&nbsp;(a&nbsp;:&nbsp;real);
+     &nbsp;begin
+     &nbsp;{...}
+     &nbsp;end;
+</pre>
+     </td></tr></table>You can then call procedure <span 
+class="cmtt-10">DoSomething </span>with an argument of type <span 
+class="cmtt-10">Longint </span>or
+     <span 
+class="cmtt-10">Real</span>.
+     <br class="newline">This feature has the consequence that a previously declared function must always be defined
+     with the header completely the same:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;procedure&nbsp;x&nbsp;(v&nbsp;:&nbsp;longint);&nbsp;forward;
+     &nbsp;
+     &nbsp;{...}
+     &nbsp;
+     &nbsp;procedure&nbsp;x;{&nbsp;This&nbsp;will&nbsp;overload&nbsp;the&nbsp;previously&nbsp;declared&nbsp;x}
+     &nbsp;begin
+     &nbsp;{...}
+     &nbsp;end;
+</pre>
+     </td></tr></table>This construction will generate a compiler error, because the compiler didn&#8217;t find a definition
+     of <span 
+class="cmtt-10">procedure x (v : longint);</span>. Instead you should define your procedure x
+     as:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;procedure&nbsp;x&nbsp;(v&nbsp;:&nbsp;longint);
+     &nbsp;{&nbsp;This&nbsp;correctly&nbsp;defines&nbsp;the&nbsp;previously&nbsp;declared&nbsp;x}
+     &nbsp;begin
+     &nbsp;{...}
+     &nbsp;end;
+</pre>
+     </td></tr></table>(The <span 
+class="cmtt-10">-So</span>, (see page <a 
+href="userse17.htm#x24-470005.1">5.1<!--tex4ht:ref: option:So--></a>) switch disables overloading. When you use it, the above will compile,
+     as in Turbo Pascal.
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131014x7"></a>Operator overloading. Free Pascal allows to overload operators, i.e. you can define e.g. the &#8217;+&#8217;
+     operator for matrices.
+     </li>
+     <li class="enumerate"><a 
+  name="x51-131016x8"></a>On FAT16 and FAT32 systems, long file names are supported.</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse36.htm" >next</a>] [<a 
+href="userse34.htm" >prev</a>] [<a 
+href="userse34.htm#tailuserse34.htm" >prev-tail</a>] [<a 
+href="userse35.htm" >front</a>] [<a 
+href="userch7.htm#userse35.htm" >up</a>] </p></div><a 
+  name="tailuserse35.htm"></a>  
+</body></html> 

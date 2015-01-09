@@ -1,0 +1,188 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Dispose</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu93.htm" >next</a>] [<a 
+href="refsu91.htm" >prev</a>] [<a 
+href="refsu91.htm#tailrefsu91.htm" >prev-tail</a>] [<a 
+href="#tailrefsu92.htm">tail</a>] [<a 
+href="refse64.htm#refsu92.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-177-198" name="x177-18300013.3">Dispose</a></h4><a 
+  name="dx177-183001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Dispose (P : pointer);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure Dispose (P : Typed Pointer; Des : Procedure);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The first form <span 
+class="cmtt-10">Dispose </span>releases the memory allocated with a call to <span 
+class="cmss-10">New </span>(<a 
+href="refsu138.htm#x223-22900013.3">539<!--tex4ht:ref: se:exceptclasses--></a>). The pointer
+<span 
+class="cmtt-10">P </span>must be typed. The released memory is returned to the heap.
+<!--l. 5604--><p class="noindent">The second form of <span 
+class="cmtt-10">Dispose </span>accepts as a first parameter a pointer to an object type, and
+as a second parameter the name of a destructor of this object. The destructor will be called,
+and the memory allocated for the object will be freed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">An runtime error will occur if the pointer doesn&#8217;t point to a location in the heap.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">New </span>(<a 
+href="refsu138.htm#x223-22900013.3">539<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Getmem </span>(<a 
+href="refsu110.htm#x195-20100013.3">506<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Freemem </span>(<a 
+href="refsu108.htm#x193-19900013.3">504<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5615--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 5615--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">New</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>&nbsp;<span 
+class="cmtt-10">SS</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">String[20];</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">AnObj</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Object</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">Init;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Destructor</span>&nbsp;<span 
+class="cmtt-10">Done;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">^SS;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">T</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">^AnObj;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Constructor</span>&nbsp;<span 
+class="cmtt-10">Anobj.Init;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initializing</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">instance</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">AnObj</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Destructor</span>&nbsp;<span 
+class="cmtt-10">AnObj.Done;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Destroying</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">instance</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">AnObj</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New</span>&nbsp;<span 
+class="cmtt-10">(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P^:='Hello,</span>&nbsp;<span 
+class="cmtt-10">World</span>&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">undefined</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">!}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(T,Init);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">T^.i:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(T,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu93.htm" >next</a>] [<a 
+href="refsu91.htm" >prev</a>] [<a 
+href="refsu91.htm#tailrefsu91.htm" >prev-tail</a>] [<a 
+href="refsu92.htm" >front</a>] [<a 
+href="refse64.htm#refsu92.htm" >up</a>] </p></div><a 
+  name="tailrefsu92.htm"></a>  
+</body></html> 

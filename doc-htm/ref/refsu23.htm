@@ -1,0 +1,55 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.6.0 String operators</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu24.htm" >next</a>] [<a 
+href="refsu22.htm" >prev</a>] [<a 
+href="refsu22.htm#tailrefsu22.htm" >prev-tail</a>] [<a 
+href="#tailrefsu23.htm">tail</a>] [<a 
+href="refse32.htm#refsu23.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-68-85" name="x68-740006.6">String operators</a></h4> There is only one string operator : <span 
+class="cmtt-10">+</span>. It&#8217;s action is to concatenate the contents of
+the two strings (or characters) it stands between. One cannot use <span 
+class="cmtt-10">+ </span>to concatenate null-terminated
+(<span 
+class="cmtt-10">PChar</span>) strings. The following are valid string operations:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;'This&nbsp;is&nbsp;'&nbsp;+&nbsp;'VERY&nbsp;'&nbsp;+&nbsp;'easy&nbsp;!'
+&nbsp;&nbsp;&nbsp;Dirname+'\'
+</pre>
+</td></tr></table>The following is not:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var&nbsp;Dirname&nbsp;=&nbsp;Pchar;
+&nbsp;...
+&nbsp;&nbsp;&nbsp;Dirname&nbsp;:=&nbsp;Dirname+'\';
+</pre>
+</td></tr></table>Because <span 
+class="cmtt-10">Dirname </span>is a null-terminated string. <div class="crosslinks"><p class="noindent">[<a 
+href="refsu24.htm" >next</a>] [<a 
+href="refsu22.htm" >prev</a>] [<a 
+href="refsu22.htm#tailrefsu22.htm" >prev-tail</a>] [<a 
+href="refsu23.htm" >front</a>] [<a 
+href="refse32.htm#refsu23.htm" >up</a>] </p></div><a 
+  name="tailrefsu23.htm"></a>  
+</body></html> 

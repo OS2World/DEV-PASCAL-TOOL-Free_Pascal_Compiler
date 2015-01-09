@@ -1,0 +1,136 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1.0 Declaring external variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu89.htm" >next</a>] [<a 
+href="progsu87.htm" >prev</a>] [<a 
+href="progsu87.htm#tailprogsu87.htm" >prev-tail</a>] [<a 
+href="#tailprogsu88.htm">tail</a>] [<a 
+href="progse25.htm#progsu88.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-129-134" name="x129-1260007.1">Declaring external variables</a></h4>
+<!--l. 2939--><p class="noindent">Some libaries or code blocks have variables which they export. You can access these variables much
+in the same way as external functions. To access an external variable, you declare it as
+follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;MyVar&nbsp;:&nbsp;MyType;&nbsp;external&nbsp;name&nbsp;'varname';
+</pre>
+</td></tr></table>The effect of this declaration is twofold:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x129-126002x1"></a>No space is allocated for this variable.
+     </li>
+     <li class="enumerate"><a 
+  name="x129-126004x2"></a>The name of the variable used in the assembler code is <span 
+class="cmtt-10">varname</span>. This is a case sensitive
+     name, so you must be careful.</li></ol>
+<!--l. 2953--><p class="noindent">The variable will be accessible with it&#8217;s declared name, i.e. <span 
+class="cmtt-10">MyVar </span>in this case.
+<!--l. 2956--><p class="noindent">A second possibility is the declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;varname&nbsp;:&nbsp;MyType;&nbsp;cvar;&nbsp;external;
+</pre>
+</td></tr></table>The effect of this declaration is twofold as in the previous case:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x129-126006x1"></a>The <span 
+class="cmtt-10">external </span>modifier ensures that no space is allocated for this variable.
+     </li>
+     <li class="enumerate"><a 
+  name="x129-126008x2"></a>The <span 
+class="cmtt-10">cvar </span>modifier tells the compiler that the name of the variable used in the assembler
+     code is exactly as specified in the declaration. This is a case sensitive name, so you
+     must be careful.</li></ol>
+<!--l. 2969--><p class="noindent">The first possibility allows you to change the name of the external variable for internal
+use.
+<!--l. 2972--><p class="noindent">As an example, let&#8217;s look at the following C file (in <span 
+class="cmss-10">extvar.c</span>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;/*
+&nbsp;Declare&nbsp;a&nbsp;variable,&nbsp;allocate&nbsp;storage
+&nbsp;*/
+&nbsp;int&nbsp;extvar&nbsp;=&nbsp;12;
+</pre>
+</td></tr></table>And the following program (in <span 
+class="cmss-10">extdemo.pp</span>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;ExtDemo;
+&nbsp;
+&nbsp;{$L&nbsp;extvar.o}
+&nbsp;
+&nbsp;Var&nbsp;{&nbsp;Case&nbsp;sensitive&nbsp;declaration&nbsp;!!&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extvar&nbsp;:&nbsp;longint;&nbsp;cvar;external;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;:&nbsp;longint;&nbsp;external&nbsp;name&nbsp;'extvar';
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;{&nbsp;Extvar&nbsp;can&nbsp;be&nbsp;used&nbsp;case&nbsp;insensitive&nbsp;!!&nbsp;}
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Variable&nbsp;''extvar''&nbsp;has&nbsp;value:&nbsp;',ExtVar);
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Variable&nbsp;''I''&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has&nbsp;value:&nbsp;',i);
+&nbsp;end.
+</pre>
+</td></tr></table>Compiling the C file, and the pascal program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;gcc&nbsp;-c&nbsp;-o&nbsp;extvar.o&nbsp;extvar.c
+&nbsp;ppc386&nbsp;-Sv&nbsp;extdemo
+</pre>
+</td></tr></table>Will produce a program <span 
+class="cmss-10">extdemo </span>which will print
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Variable&nbsp;'extvar'&nbsp;has&nbsp;value:&nbsp;12
+&nbsp;Variable&nbsp;'I'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has&nbsp;value:&nbsp;12
+</pre>
+</td></tr></table>on your screen.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu89.htm" >next</a>] [<a 
+href="progsu87.htm" >prev</a>] [<a 
+href="progsu87.htm#tailprogsu87.htm" >prev-tail</a>] [<a 
+href="progsu88.htm" >front</a>] [<a 
+href="progse25.htm#progsu88.htm" >up</a>] </p></div><a 
+  name="tailprogsu88.htm"></a>  
+</body></html> 

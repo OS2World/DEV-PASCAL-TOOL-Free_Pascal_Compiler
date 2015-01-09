@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.4 A note on long file names under dos </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse36.htm" >prev</a>] [<a 
+href="userse36.htm#tailuserse36.htm" >prev-tail</a>] [<a 
+href="#tailuserse37.htm">tail</a>] [<a 
+href="userch7.htm#userse37.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.4</span> <a 
+href="user.htm#QQ2-53-182" name="x53-1330007.4">A note on long file names under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span></a></h3>
+<!--l. 1704--><p class="noindent">Under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>95 and higher, long filenames are supported. Compiling for the win32 target
+ensures that long filenames are supported in all functions that do file or disk access in any
+way.
+<!--l. 1708--><p class="noindent">Moreover, Free Pascal supports the use of long filenames in the system unit and the
+dos unit also for go32v2 executables. The system unit contains the boolean variable
+<span 
+class="cmtt-10">LFNsupport</span>. If it is set to <span 
+class="cmtt-10">True </span>then all system unit functions and DOS unit functions
+will use long file names if they are available. This should be so on <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>95 and
+98, but not on <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>NT or <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>2000. The system unit will check this by
+calling <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>function <span 
+class="cmtt-10">71A0h </span>and checking whether long filenames are supported on the <span 
+class="cmss-10">C:</span>
+drive.
+<!--l. 1717--><p class="noindent">It is possible to disable the long filename support by setting the <span 
+class="cmtt-10">LFNSupport </span>variable to <span 
+class="cmtt-10">False</span>; but
+in general it is recommended to compile programs that need long filenames as native Win32
+applications;
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse36.htm" >prev</a>] [<a 
+href="userse36.htm#tailuserse36.htm" >prev-tail</a>] [<a 
+href="userse37.htm" >front</a>] [<a 
+href="userch7.htm#userse37.htm" >up</a>] </p></div><a 
+  name="tailuserse37.htm"></a>  
+</body></html> 

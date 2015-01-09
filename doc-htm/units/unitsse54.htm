@@ -1,0 +1,560 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.8 TBufStream</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse55.htm" >next</a>] [<a 
+href="unitsse53.htm" >prev</a>] [<a 
+href="unitsse53.htm#tailunitsse53.htm" >prev-tail</a>] [<a 
+href="#tailunitsse54.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse54.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.8</span> <a 
+href="units.htm#QQ2-76-666" name="x76-66000017.8">TBufStream</a></h3>
+<!--l. 978--><p class="noindent"><span 
+class="cmtt-10">Bufstream </span>implements a buffered file stream. That is, all data written to the stream is written to
+memory first. Only when the buffer is full, or on explicit request, the data is written to
+disk.
+<!--l. 982--><p class="noindent">Also, when reading from the stream, first the buffer is checked if there is any unread data in it. If
+so, this is read first. If not the buffer is filled again, and then the data is read from the
+buffer.
+<!--l. 986--><p class="noindent">The size of the buffer is fixed and is set when constructing the file.
+<!--l. 988--><p class="noindent">This is useful if you need heavy throughput for your stream, because it speeds up operations.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TBufStream&nbsp;=&nbsp;OBJECT&nbsp;(TDosStream)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastMode:&nbsp;Byte;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Last&nbsp;buffer&nbsp;mode&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BufSize&nbsp;:&nbsp;Sw_Word;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Buffer&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BufPtr&nbsp;&nbsp;:&nbsp;Sw_Word;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Buffer&nbsp;start&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BufEnd&nbsp;&nbsp;:&nbsp;Sw_Word;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Buffer&nbsp;end&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buffer&nbsp;&nbsp;:&nbsp;PByteArray;&nbsp;{&nbsp;Buffer&nbsp;allocated&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONSTRUCTOR&nbsp;Init&nbsp;(FileName:&nbsp;FNameStr;&nbsp;Mode,&nbsp;Size:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESTRUCTOR&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Close;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Flush;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Truncate;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Seek&nbsp;(Pos:&nbsp;LongInt);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Open&nbsp;(OpenMode:&nbsp;Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Read&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Write&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PBufStream&nbsp;=&nbsp;^TBufStream;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-667" name="x76-66100017.8">TBufStream.Init</a></h4><a 
+  name="dx76-661001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor Init (FileName: FNameStr; Mode,Size: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>instantiates an instance of <span 
+class="cmtt-10">TBufStream</span>. The name of the file that contains (or will contain)
+the data of the stream is given in <span 
+class="cmtt-10">FileName</span>. The <span 
+class="cmtt-10">Mode </span>parameter determines whether a new file
+should be created and what access rights you have on the file. It can be one of the following
+constants:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">stCreate</span></dt><dd 
+class="description">Creates a new file.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpenRead</span></dt><dd 
+class="description">Read access only.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpenWrite</span></dt><dd 
+class="description">Write access only.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">stOpen</span></dt><dd 
+class="description">Read and write access.</dd></dl>
+<!--l. 1027--><p class="noindent">The <span 
+class="cmtt-10">Size </span>parameter determines the size of the buffer that will be created. It should be different
+from zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">stInitError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>is set to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>error code.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TDosStream.Init </span>(<a 
+href="unitsse53.htm#x75-65200017.7">577<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x76-66200017.8">584<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1036--><p class="noindent">For an example see <span 
+class="cmss-10">TBufStream.Flush </span>(<a 
+href="#x76-66400017.8">584<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-668" name="x76-66200017.8">TBufStream.Done</a></h4><a 
+  name="dx76-662001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TBufStream.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done </span>flushes and closes the file if it was open and cleans up the instance of <span 
+class="cmtt-10">TBufStream</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TDosStream.Done </span>(<a 
+href="unitsse53.htm#x75-65300017.7">577<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x76-66100017.8">583<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Close </span>(<a 
+href="#x76-66300017.8">584<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1051--><p class="noindent">For an example see <span 
+class="cmss-10">TBufStream.Flush </span>(<a 
+href="#x76-66400017.8">584<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-669" name="x76-66300017.8">TBufStream.Close</a></h4><a 
+  name="dx76-663001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pocedure TBufStream.Close; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Close </span>flushes and closes the file if it was open, and sets <span 
+class="cmtt-10">Handle </span>to -1. Contrary to <span 
+class="cmss-10">Done</span>
+(<a 
+href="#x76-66200017.8">584<!--tex4ht:ref: se:TBufStream--></a>) it does not clean up the instance of <span 
+class="cmtt-10">TBufStream</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Close </span>(<a 
+href="unitsse52.htm#x74-63900017.6">570<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x76-66100017.8">583<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x76-66200017.8">584<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1067--><p class="noindent">For an example see <span 
+class="cmss-10">TBufStream.Flush </span>(<a 
+href="#x76-66400017.8">584<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-670" name="x76-66400017.8">TBufStream.Flush</a></h4><a 
+  name="dx76-664001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pocedure TBufStream.Flush; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">When the stream is in write mode, the contents of the buffer are written to disk, and the
+buffer position is set to zero.
+<!--l. 1076--><p class="noindent">When the stream is in read mode, the buffer position is set to zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Write errors may occur if the file was in write mode. see <span 
+class="cmss-10">Write </span>(<a 
+href="#x76-66900017.8">586<!--tex4ht:ref: se:TBufStream--></a>) for more info on the
+errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Close </span>(<a 
+href="unitsse52.htm#x74-63900017.6">570<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x76-66100017.8">583<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x76-66200017.8">584<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1085--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex15.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 1085--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStream.Flush</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PBufStream;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Only</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">Flush</span>&nbsp;<span 
+class="cmtt-10">implemented.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PBufStream,Init('test.dat',stcreate,100));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">At</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">moment,</span>&nbsp;<span 
+class="cmtt-10">there</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">data</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">disk</span>&nbsp;<span 
+class="cmtt-10">yet.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Flush;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">there</span>&nbsp;<span 
+class="cmtt-10">is.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">calls</span>&nbsp;<span 
+class="cmtt-10">flush</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Closed</span>&nbsp;<span 
+class="cmtt-10">stream.</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Open</span>&nbsp;<span 
+class="cmtt-10">(stOpenRead);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=S^.ReadStr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=P^;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DisposeStr(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">handle</span>&nbsp;<span 
+class="cmtt-10">',S^.Handle);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Close;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-671" name="x76-66500017.8">TBufStream.Truncate</a></h4><a 
+  name="dx76-665001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TBufStream.Truncate; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the status of the stream is <span 
+class="cmtt-10">stOK</span>, then <span 
+class="cmtt-10">Truncate </span>tries to flush the buffer, and then
+truncates the stream size to the current file position.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors can be those of <span 
+class="cmss-10">Flush </span>(<a 
+href="#x76-66400017.8">584<!--tex4ht:ref: se:TBufStream--></a>) or <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="unitsse53.htm#x75-65500017.7">578<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Truncate </span>(<a 
+href="unitsse52.htm#x74-64200017.6">571<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="unitsse53.htm#x75-65500017.7">578<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSize </span>(<a 
+href="unitsse52.htm#x74-63600017.6">568<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1103--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Truncate </span>(<a 
+href="unitsse53.htm#x75-65500017.7">578<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-672" name="x76-66600017.8">TBufStream.Seek</a></h4><a 
+  name="dx76-666001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TBufStream.Seek (Pos: LongInt); Virtual;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOK</span>, then <span 
+class="cmtt-10">Seek </span>sets the file position to <span 
+class="cmtt-10">Pos</span>. <span 
+class="cmtt-10">Pos </span>is a zero-based
+offset, counted from the beginning of the file.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case an error occurs, the stream&#8217;s status is set to <span 
+class="cmtt-10">stSeekError</span>, and the OS error code is
+stored in <span 
+class="cmtt-10">ErrorInfo</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Seek </span>(<a 
+href="unitsse52.htm#x74-64600017.6">572<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetPos </span>(<a 
+href="unitsse52.htm#x74-63500017.6">568<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1119--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Seek </span>(<a 
+href="unitsse52.htm#x74-64600017.6">572<!--tex4ht:ref: se:TBufStream--></a>);
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-673" name="x76-66700017.8">TBufStream.Open</a></h4><a 
+  name="dx76-667001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TBufStream.Open (OpenMode: Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the stream&#8217;s status is <span 
+class="cmtt-10">stOK</span>, and the stream is closed then <span 
+class="cmtt-10">Open </span>re-opens the file stream
+with mode <span 
+class="cmtt-10">OpenMode</span>. This call can be used after a <span 
+class="cmss-10">Close </span>(<a 
+href="#x76-66300017.8">584<!--tex4ht:ref: se:TBufStream--></a>) call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs when re-opening the file, then <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">stOpenError</span>, and the OS
+error code is stored in <span 
+class="cmtt-10">ErrorInfo</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Open </span>(<a 
+href="unitsse52.htm#x74-63800017.6">570<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Close </span>(<a 
+href="#x76-66300017.8">584<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1135--><p class="noindent">For an example, see <span 
+class="cmss-10">TDosStream.Open </span>(<a 
+href="unitsse53.htm#x75-65700017.7">580<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-674" name="x76-66800017.8">TBufStream.Read</a></h4><a 
+  name="dx76-668001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TBufStream.Read (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the Stream is open and the stream status is <span 
+class="cmtt-10">stOK </span>then <span 
+class="cmtt-10">Read </span>will read <span 
+class="cmtt-10">Count </span>bytes from
+the stream and place them in <span 
+class="cmtt-10">Buf</span>.
+<!--l. 1145--><p class="noindent"><span 
+class="cmtt-10">Read </span>will first try to read the data from the stream&#8217;s internal buffer. If insufficient data is
+available, the buffer will be filled before contiunuing to read. This process is repeated until
+all needed data has been read.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of an error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">StReadError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>gets the OS specific error,
+or 0 when an attempt was made to read beyond the end of the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Write </span>(<a 
+href="#x76-66900017.8">586<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1158--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-76-675" name="x76-66900017.8">TBufStream.Write</a></h4><a 
+  name="dx76-669001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TBufStream.Write (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">If the Stream is open and the stream status is <span 
+class="cmtt-10">stOK </span>then <span 
+class="cmtt-10">Write </span>will write <span 
+class="cmtt-10">Count </span>bytes from
+<span 
+class="cmtt-10">Buf </span>and place them in the stream.
+<!--l. 1168--><p class="noindent"><span 
+class="cmtt-10">Write </span>will first try to write the data to the stream&#8217;s internal buffer. When the internal buffer
+is full, then the contents will be written to disk. This process is repeated until all data has
+been written.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of an error, <span 
+class="cmtt-10">Status </span>is set to <span 
+class="cmtt-10">StWriteError</span>, and <span 
+class="cmtt-10">ErrorInfo </span>gets the OS specific
+error.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Read </span>(<a 
+href="#x76-66800017.8">586<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1178--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse55.htm" >next</a>] [<a 
+href="unitsse53.htm" >prev</a>] [<a 
+href="unitsse53.htm#tailunitsse53.htm" >prev-tail</a>] [<a 
+href="unitsse54.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse54.htm" >up</a>] </p></div><a 
+  name="tailunitsse54.htm"></a>   
+</body></html> 

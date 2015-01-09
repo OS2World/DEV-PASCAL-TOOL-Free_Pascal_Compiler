@@ -1,0 +1,160 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1 The CRT unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch2.htm" >next</a>] [<a 
+href="unitsli1.htm" >prev</a>] [<a 
+href="unitsli1.htm#tailunitsli1.htm" >prev-tail</a>] [<a 
+href="#tailunitsch1.htm">tail</a>] [<a 
+href="units.htm#unitsch1.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;1</span><br><a 
+href="units.htm#QQ2-4-3" name="x4-30001">The CRT unit.</a></h2>
+<!--l. 25--><p class="noindent">This chapter describes the <span 
+class="cmtt-10">CRT </span>unit for Free Pascal, both under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> <small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>. The
+unit was first written for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>by Florian kl&auml;mpfl. The unit was ported to <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>by Mark
+May<a 
+href="units5.htm" name="units5.htm" ><sup>1</sup></a>,
+and enhanced by Micha&euml;l Van Canneyt and Peter Vreman. It works on the <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>console, and in
+xterm and rxvt windows under X-Windows. The functionality for both is the same, except that
+under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>the use of an early implementation (versions 0.9.1 and earlier of the compiler) the crt
+unit automatically cleared the screen at program startup.
+<!--l. 34--><p class="noindent">There are some caveats when using the CRT unit:
+     <ul class="itemize1">
+     <li class="itemize">Programs using the CRT unit will <span 
+class="cmti-10">not </span>be usable when input/output is being redirected
+     on the command-line.
+     </li>
+     <li class="itemize">For similar reasons they are not usable as CGI-scripts for use with a webserver.
+     </li>
+     <li class="itemize">The use of the CRT unit and the graph unit may not always be supported.
+     </li>
+     <li class="itemize">On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>or other unix OSes , executing other programs that expect special terminal
+     behaviour (using one of the special functions in the linux unit) will not work. The
+     terminal is set in RAW mode, which will destroy most terminal emulation settings.</li></ul>
+<!--l. 50--><p class="noindent">This chapter is divided in two sections.
+     <ul class="itemize1">
+     <li class="itemize">The first section lists the pre-defined constants, types and variables.
+     </li>
+     <li class="itemize">The second section describes the functions which appear in the interface part of the
+     CRT unit.</li></ul>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">1.1 <a 
+href="unitsse1.htm#x6-40001.1" name="QQ2-6-4">Types, Variables, Constants</a></span>
+<br>&nbsp;<span class="sectionToc">1.2 <a 
+href="unitsse2.htm#x7-50001.2" name="QQ2-7-5">Procedures and Functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-60001.2" name="QQ2-7-6">AssignCrt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-70001.2" name="QQ2-7-7">CursorBig</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-80001.2" name="QQ2-7-8">ClrEol</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-90001.2" name="QQ2-7-9">ClrScr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-100001.2" name="QQ2-7-10">CursorOff</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-110001.2" name="QQ2-7-11">CursorOn</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-120001.2" name="QQ2-7-12">Delay</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-130001.2" name="QQ2-7-13">DelLine</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-140001.2" name="QQ2-7-14">GotoXY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-150001.2" name="QQ2-7-15">HighVideo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-160001.2" name="QQ2-7-16">InsLine</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-170001.2" name="QQ2-7-17">KeyPressed</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-180001.2" name="QQ2-7-18">LowVideo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-190001.2" name="QQ2-7-19">NormVideo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-200001.2" name="QQ2-7-20">NoSound</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-210001.2" name="QQ2-7-21">ReadKey</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-220001.2" name="QQ2-7-22">Sound</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-230001.2" name="QQ2-7-23">TextBackground</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-240001.2" name="QQ2-7-24">TextColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-250001.2" name="QQ2-7-25">TextMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-260001.2" name="QQ2-7-26">WhereX</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-270001.2" name="QQ2-7-27">WhereY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse2.htm#x7-280001.2" name="QQ2-7-28">Window</a></span>
+</div>
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch2.htm" >next</a>] [<a 
+href="unitsli1.htm" >prev</a>] [<a 
+href="unitsli1.htm#tailunitsli1.htm" >prev-tail</a>] [<a 
+href="unitsch1.htm" >front</a>] [<a 
+href="units.htm#unitsch1.htm" >up</a>] </p></div><a 
+  name="tailunitsch1.htm"></a>  
+</body></html> 

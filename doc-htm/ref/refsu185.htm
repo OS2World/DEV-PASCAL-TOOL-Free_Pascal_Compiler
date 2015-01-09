@@ -1,0 +1,94 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Write</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu186.htm" >next</a>] [<a 
+href="refsu184.htm" >prev</a>] [<a 
+href="refsu184.htm#tailrefsu184.htm" >prev-tail</a>] [<a 
+href="#tailrefsu185.htm">tail</a>] [<a 
+href="refse64.htm#refsu185.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-270-291" name="x270-27600013.3">Write</a></h4><a 
+  name="dx270-276001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Write ([Var F : Any filetype;] V1 [; V2; ... , Vn)];</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Write </span>writes the contents of the variables <span 
+class="cmtt-10">V1</span>, <span 
+class="cmtt-10">V2 </span>etc. to the file <span 
+class="cmtt-10">F</span>. <span 
+class="cmtt-10">F </span>can be a typed file,
+or a <span 
+class="cmtt-10">Text </span>file. If <span 
+class="cmtt-10">F </span>is a typed file, then the variables <span 
+class="cmtt-10">V1</span>, <span 
+class="cmtt-10">V2 </span>etc. must be of the same type
+as the type in the declaration of  <span 
+class="cmtt-10">F</span>. Untyped files are not allowed. If the parameter <span 
+class="cmtt-10">F </span>is
+omitted, standard output is assumed. If <span 
+class="cmtt-10">F </span>is of type <span 
+class="cmtt-10">Text</span>, then the necessary conversions
+are done such that the output of the variables is in human-readable format. This conversion
+is  done  for  all  numerical  types.  Strings  are  printed  exactly  as  they  are  in  memory,  as
+well as <span 
+class="cmtt-10">PChar </span>types. The format of the numerical conversions can be influenced through
+the following modifiers:  <span 
+class="cmtt-10">OutputVariable : NumChars [: Decimals ]  </span>This will print the
+value of <span 
+class="cmtt-10">OutputVariable </span>with a minimum of <span 
+class="cmtt-10">NumChars </span>characters, from which <span 
+class="cmtt-10">Decimals</span>
+are reserved for the decimals. If the number cannot be represented with <span 
+class="cmtt-10">NumChars </span>characters,
+<span 
+class="cmtt-10">NumChars </span>will be increased, until the representation fits. If the representation requires less
+than <span 
+class="cmtt-10">NumChars </span>characters then the output is filled up with spaces, to the left of the generated
+string, thus resulting in a right-aligned representation. If no formatting is specified, then the
+number is written using its natural length, with nothing in front of it if it&#8217;s positive, and a
+minus sign if it&#8217;s negative. Real numbers are, by default, written in scientific notation.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, a run-time error is generated. This behavior can be controlled with the
+<span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$i</span><span 
+class="cmsy-10">} </span>switch.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">WriteLn </span>(<a 
+href="refsu186.htm#x271-27700013.3">589<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Read </span>(<a 
+href="refsu152.htm#x237-24300013.3">551<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Readln </span>(<a 
+href="refsu153.htm#x238-24400013.3">553<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Blockwrite </span>(<a 
+href="refsu76.htm#x161-16700013.3">460<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu186.htm" >next</a>] [<a 
+href="refsu184.htm" >prev</a>] [<a 
+href="refsu184.htm#tailrefsu184.htm" >prev-tail</a>] [<a 
+href="refsu185.htm" >front</a>] [<a 
+href="refse64.htm#refsu185.htm" >up</a>] </p></div><a 
+  name="tailrefsu185.htm"></a>  
+</body></html> 

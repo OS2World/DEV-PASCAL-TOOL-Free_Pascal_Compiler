@@ -1,0 +1,97 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.1 The memory model.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse29.htm" >next</a>] [<a 
+href="#tailprogse28.htm">tail</a>] [<a 
+href="progch8.htm#progse28.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.1</span> <a 
+href="prog.htm#QQ2-139-146" name="x139-1380008.1">The memory model.</a></h3>
+<!--l. 3363--><p class="noindent">The Free Pascal compiler issues 32-bit or 64-bit code. This has several consequences:
+     <ul class="itemize1">
+     <li class="itemize">You need a 32-bit or 64-bit processor to run the generated code. The compiler functions
+                                                                            
+
+                                                                            
+     on a 286 when you compile it using Turbo Pascal, but the generated programs cannot
+     be assembled or executed.
+     </li>
+     <li class="itemize">You don&#8217;t need to bother with segment selectors. Memory can be addressed using
+     a  single  32-bit  (on  32-bit  processors)  or  64-bit  (on  64-bit  processors  with  64-bit
+     addressing) pointer. The amount of memory is limited only by the available amount of
+     (virtual) memory on your machine.
+     </li>
+     <li class="itemize">The structures you define are unlimited in size. Arrays can be as long as you want.
+     You can request memory blocks from any size.</li></ul>
+<!--l. 3378--><p class="noindent">The fact that 16-bit code is no longer used, means that some of the older Turbo Pascal constructs
+and functions are obsolete. The following is a list of functions which shouldn&#8217;t be used
+anymore:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Seg()</span> </dt><dd 
+class="description">: Returned the segment of a memory address. Since segments have no more meaning,
+     zero is returned in the Free Pascal run-time library implementation of <span 
+class="cmtt-10">Seg</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Ofs()</span> </dt><dd 
+class="description">: Returned the offset of a memory address. Since segments have no more meaning,
+     the complete address is returned in the Free Pascal implementation of this function.
+     This has as a consequence that the return type is <span 
+class="cmtt-10">longint </span>or <span 
+class="cmtt-10">int64 </span>instead of <span 
+class="cmtt-10">Word</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Cseg(), Dseg()</span> </dt><dd 
+class="description">: Returned, respectively, the code and data segments of your program. This
+     returns zero in the Free Pascal implementation of the system unit, since both code and
+     data are in the same memory space.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Ptr</span> </dt><dd 
+class="description">: Accepted a segment and offset from an address, and would return a pointer to this
+     address. This has been changed in the run-time library, it now simply returns the offset.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">memw and mem</span> </dt><dd 
+class="description">: These arrays gave access to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory. Free Pascal supports
+     them on the go32v2 platform, they are mapped into <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory space. You need the
+     <span 
+class="cmss-10">go32 </span>unit for this. On other platforms, they are <span 
+class="cmti-10">not </span>supported</dd></dl>
+<!--l. 3401--><p class="noindent">You shouldn&#8217;t use these functions, since they are very non-portable, they&#8217;re specific to <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>and the
+80x86 processor. The Free Pascal compiler is designed to be portable to other platforms, so you
+should keep your code as portable as possible, and not system specific. That is, unless you&#8217;re
+writing some driver units, of course.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse29.htm" >next</a>] [<a 
+href="progse28.htm" >front</a>] [<a 
+href="progch8.htm#progse28.htm" >up</a>] </p></div><a 
+  name="tailprogse28.htm"></a>  
+</body></html> 

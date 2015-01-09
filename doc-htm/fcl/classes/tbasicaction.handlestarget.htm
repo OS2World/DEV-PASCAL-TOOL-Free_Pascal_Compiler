@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TBasicAction.HandlesTarget</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TBasicAction.HandlesTarget</h1>
+<p>Determines whether <var>Target</var> can be handled by this action </p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/tbasicaction.htm">TBasicAction</a><span class="sym">.</span>HandlesTarget<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Target<span class="sym">: </span>TObject</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">):</span>Boolean<span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>HandlesTarget</var> returns <var>True</var> if <var>Target</var> is  a valid client for this action and if so, if it is in a suitable state to execute the action. An application programmer should never need to call <var>HandlesTarget</var> directly, it will be called by the action itself when needed. </p>
+<p>In <var>TBasicAction</var> this method is empty; descendent classes should override this method to implement appropriate checks. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tbasicaction.updatetarget.htm">TBasicAction.UpdateTarget</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Notify client controls when the action updates itself.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tbasicaction.executetarget.htm">TBasicAction.ExecuteTarget</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Executes the action on the <var>Target</var> object</p></td>
+</tr>
+</table>
+</body>
+</html>

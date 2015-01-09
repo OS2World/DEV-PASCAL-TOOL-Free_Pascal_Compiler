@@ -1,0 +1,397 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.1 File searching</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse10.htm" >next</a>] [<a 
+href="#tailuserse9.htm">tail</a>] [<a 
+href="userch3.htm#userse9.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.1</span> <a 
+href="user.htm#QQ2-14-26" name="x14-240003.1">File searching</a></h3>
+<!--l. 447--><p class="noindent">Before you start compiling a program or a series of units, it is important to know where the
+compiler looks for its source files and other files. In this section we discuss this, and we indicate
+how to influence this.
+<!--l. 452--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The use of slashes (/) and backslashes (<span class="obeylines-h"><span 
+class="cmtt-10">\</span></span>) as directory separators is irrelevant, the
+compiler will convert to whatever character is used on the current operating system.
+Examples will be given using slashes, since this avoids problems on <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems (such as
+<span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>).
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-27" name="x14-250003.1">Command line files</a></h4> The file that you specify on the command line, such as in
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;foo.pp
+</pre>
+</td></tr></table>will be looked for ONLY in the current directory. If you specify a directory in the filename, then
+the compiler will look in that directory:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;subdir/foo.pp
+</pre>
+</td></tr></table>will look for <span 
+class="cmss-10">foo.pp </span>in the subdirectory <span 
+class="cmss-10">subdir </span>of the current directory.
+<!--l. 473--><p class="noindent">Under case sensitive file systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>), the name of this file is case
+sensitive, under other operating systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT</span>, <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>) this is not the
+case.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-28" name="x14-260003.1">Unit files</a></h4>
+<!--l. 480--><p class="noindent">When you compile a unit or program that needs other units, the compiler will look for compiled
+versions of these units in the following way:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-26002x1"></a>It will look in the current directory.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26004x2"></a>It will look in the directory where the source file is being compiled.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26006x3"></a>It will look in the directory where the compiler binary is.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26008x4"></a>It will look in all the directories specified in the unit search path.</li></ol>
+<!--l. 489--><p class="noindent">You can add a directory to the unit search path with the (<span 
+class="cmtt-10">-Fu</span>, (see page <a 
+href="userse17.htm#x24-450005.1">5.1<!--tex4ht:ref: option:Fu--></a>)) option. Every
+occurrence of one of this options will <span 
+class="cmti-10">insert </span>a directory to the unit search path. i.e. the last path on
+the command line will be searched first.
+<!--l. 494--><p class="noindent">The compiler adds several paths to the unit search path:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-26010x1"></a>The contents of the environment variable <span 
+class="cmtt-10">XXUNITS</span>, where <span 
+class="cmtt-10">XX </span>must be replaced with
+     one of the supported targets: <span 
+class="cmtt-10">GO32V2</span>, <span 
+class="cmtt-10">LINUX</span>,<span 
+class="cmtt-10">WIN32</span>, <span 
+class="cmtt-10">OS2</span>, <span 
+class="cmtt-10">BEOS</span>, <span 
+class="cmtt-10">FREEBSD</span>, <span 
+class="cmtt-10">NETBSD</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26012x2"></a>The standard unit directory. This directory is determined from the <span 
+class="cmtt-10">FPCDIR </span>environment
+     variable. If this variable is not set, then it is defaulted to the following:
+         <ul class="itemize1">
+         <li class="itemize">On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>:
+                                                                            
+
+                                                                            
+         <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+         &nbsp;&nbsp;&nbsp;/usr/local/lib/fpc/VERSION
+         &nbsp;or
+         &nbsp;&nbsp;&nbsp;/usr/lib/fpc/VERSION
+</pre>
+         </td></tr></table>whichever is found first.
+         </li>
+         <li class="itemize">On other OSes: the compiler binary directory, with &#8217;../&#8217; appended to it, if it
+         exists.</li></ul>
+     <!--l. 513--><p class="noindent">After this directory is determined , the following paths are added to the search
+     path:
+         <ol type="a" class="enumerate2" 
+>
+         <li class="enumerate"><a 
+  name="x14-26014x1"></a>FPCDIR/units/TARGET
+         </li>
+         <li class="enumerate"><a 
+  name="x14-26016x2"></a>FPCDIR/units/TARGET/rtl</li></ol>
+     <!--l. 519--><p class="noindent">Here target must be replaced by the name of the target you are compiling for.</li></ol>
+<!--l. 521--><p class="noindent">You can see what paths the compiler will search by giving the compiler the <span 
+class="cmtt-10">-vu </span>option.
+<!--l. 524--><p class="noindent">On systems where filenames to lower-case (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>), the compiler will
+first convert the filename of a unit to all-lowercase. This is necessary, since Pascal is
+case-independent, and the statements <span 
+class="cmtt-10">Uses Unit1; </span>or <span 
+class="cmtt-10">uses unit1; </span>should have the same
+effect.
+<!--l. 529--><p class="noindent">Also, unit names that are longer than 8 characters will first be looked for with their
+full length. If the unit is not found with this name, the name will be truncated to 8
+characters, and the compiler will look again in the same directories, but with the truncated
+name.
+<!--l. 534--><p class="noindent">For instance, suppose that the file <span 
+class="cmss-10">foo.pp </span>needs the unit <span 
+class="cmss-10">bar</span>. Then the command
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;-Fu..&nbsp;-Fuunits&nbsp;foo.pp
+</pre>
+</td></tr></table>will tell the compiler to look for the unit <span 
+class="cmss-10">bar </span>in the following places:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-26018x1"></a>In the current directory.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26020x2"></a>In the directory where the compile binary is (not under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>).
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26022x3"></a>In the parent directory of the current directory.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26024x4"></a>In the subdirectory <span 
+class="cmss-10">units </span>of the current directory
+     </li>
+     <li class="enumerate"><a 
+  name="x14-26026x5"></a>In the standard unit directory.</li></ol>
+<!--l. 549--><p class="noindent">If the compiler finds the unit it needs, it will look for the source file of this unit in the same
+directory where it found the unit. If it finds the source of the unit, then it will compare the file
+times. If the source file was modified more recent than the unit file, the compiler will attempt to
+recompile the unit with this source file.
+<!--l. 555--><p class="noindent">If the compiler doesn&#8217;t find a compiled version of the unit, or when the <span 
+class="cmtt-10">-B </span>option is specified, then
+the compiler will look in the same manner for the unit source file, and attempt to recompile
+it.
+<!--l. 559--><p class="noindent">It is recommended to set the unit search path in the configuration file <span 
+class="cmss-10">fpc.cfg</span>. If you do this, you
+don&#8217;t need to specify the unit search path on the command-line every time you want to compile
+something.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-29" name="x14-270003.1">Include files</a></h4> If you include files in your source with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I filename</span><span 
+class="cmsy-10">} </span>directive, the compiler will
+look for it in the following places:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-27002x1"></a>It will look in the path specified in the include file name.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-27004x2"></a>It will look in the directory where the current source file is.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-27006x3"></a>it will look in all directories specified in the include file search path.</li></ol>
+<!--l. 574--><p class="noindent">You can add files to the include file search path with the <span 
+class="cmtt-10">-I</span>, (see page <a 
+href="userse17.htm#x24-450005.1">5.1<!--tex4ht:ref: option:I--></a>) or <span 
+class="cmtt-10">-Fi</span>, (see page <a 
+href="userse17.htm#x24-450005.1">5.1<!--tex4ht:ref: option:Fi--></a>)
+options.
+<!--l. 577--><p class="noindent">As an example, consider the following include statement in a file <span 
+class="cmss-10">units/foo.pp</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;
+&nbsp;{$i&nbsp;../bar.inc}
+&nbsp;
+</pre>
+</td></tr></table>Then the following command :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;-Iincfiles&nbsp;units/foo.pp
+</pre>
+</td></tr></table>will cause the compiler to look in the following directories for <span 
+class="cmss-10">bar.inc</span>:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-27008x1"></a>the parent directory of the current directory
+     </li>
+     <li class="enumerate"><a 
+  name="x14-27010x2"></a>the <span 
+class="cmss-10">units </span>subdirectory of the current directory
+     </li>
+     <li class="enumerate"><a 
+  name="x14-27012x3"></a>the <span 
+class="cmss-10">incfiles </span>directory of the current directory.</li></ol>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-30" name="x14-280003.1">Object files</a></h4> When you link to object files (using the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$L file.o</span><span 
+class="cmsy-10">} </span>directive, the compiler will look
+for this file in the same way as it looks for include files:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x14-28002x1"></a>It will look in the path specified in the object file name.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-28004x2"></a>It will look in the directory where the current source file is.
+     </li>
+     <li class="enumerate"><a 
+  name="x14-28006x3"></a>it will look in all directories specified in the object file search path.</li></ol>
+<!--l. 607--><p class="noindent">You can add files to the object file search path with the <span 
+class="cmtt-10">-Fo</span>, (see page <a 
+href="userse17.htm#x24-450005.1">5.1<!--tex4ht:ref: option:Fo--></a>) option.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-31" name="x14-290003.1">Configuration file</a></h4>
+<!--l. 613--><p class="noindent">Starting from version 1.0.6 of the compiler, usage of the file <span 
+class="cmss-10">ppc386.cfg </span>is considered
+deprecated. The file should now be called <span 
+class="cmss-10">fpc.cfg </span>and will work for all processor targets. For
+compatibility, <span 
+class="cmss-10">fpc.cfg </span>will be searched first, and if not found, the file <span 
+class="cmss-10">ppc386.cfg </span>will be
+used.
+<!--l. 620--><p class="noindent">Unless you specify the <span 
+class="cmtt-10">-n</span>, (see page <a 
+href="userse17.htm#x24-430005.1">5.1<!--tex4ht:ref: option:n--></a>) option, the compiler will look for a configuration file
+<span 
+class="cmss-10">fpc.cfg </span>in the following places:
+     <ul class="itemize1">
+     <li class="itemize">Under <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>(such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>)
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x14-29002x1"></a>The current directory.
+         </li>
+         <li class="enumerate"><a 
+  name="x14-29004x2"></a>In your home directory, it looks for <span 
+class="cmss-10">.fpc.cfg</span>.
+         </li>
+         <li class="enumerate"><a 
+  name="x14-29006x3"></a>The directory specified in the environment variable <span 
+class="cmtt-10">PPC</span>_<span 
+class="cmtt-10">CONFIG</span>_<span 
+class="cmtt-10">PATH</span>, and if it&#8217;s
+         not set under <span 
+class="cmss-10">/etc</span>.</li></ol>
+     </li>
+     <li class="itemize">Under all other OSes:
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x14-29008x1"></a>The current directory.
+                                                                            
+
+                                                                            
+         </li>
+         <li class="enumerate"><a 
+  name="x14-29010x2"></a>If it is set, the directory specified in the environment variable. <span 
+class="cmtt-10">PPC</span>_<span 
+class="cmtt-10">CONFIG</span>_<span 
+class="cmtt-10">PATH</span>.
+         </li>
+         <li class="enumerate"><a 
+  name="x14-29012x3"></a>The directory where the compiler is.</li></ol>
+     </li></ul>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-14-32" name="x14-300003.1">About long filenames</a></h4> Free Pascal can handle long filenames under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>; it will use support
+for long filenames if it is available.
+<!--l. 644--><p class="noindent">If no support for long filenames is present, it will truncate unit names to 8 characters.
+<!--l. 647--><p class="noindent">It is not recommended to put units in directories that contain spaces in their names, since the
+linker doesn&#8217;t understand such filenames.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse10.htm" >next</a>] [<a 
+href="userse9.htm" >front</a>] [<a 
+href="userch3.htm#userse9.htm" >up</a>] </p></div><a 
+  name="tailuserse9.htm"></a>   
+</body></html> 

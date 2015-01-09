@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStream.WriteBuffer</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStream.WriteBuffer</h1>
+<p>Writes data from the stream to the buffer</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tstream.htm">TStream</a><span class="sym">.</span>WriteBuffer<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">const </span>Buffer<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Count<span class="sym">: </span>LongInt</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>WriteBuffer</var> writes <var>Count</var> bytes to the stream from <var>Buffer</var>. If the stream does not allow <var>Count</var> bytes to be written, then an exception is raised. </p>
+<p><var>WriteBuffer</var> should be used to read in a fixed number of bytes, such as when writing structures or the content of variables. If the number of bytes is not determined, use <a href="../classes/tstream.write.htm">TStream.Write</a> instead. <var>WriteBuffer</var> uses <var>Write</var> internally to do the actual reading. </p>
+<h2>Errors</h2>
+<p>If the stream does not allow to write <var>Count</var> bytes, then an exception is raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstream.write.htm">TStream.Write</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes data from the stream to the buffer and returns the number of bytes written.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.readbuffer.htm">TStream.ReadBuffer</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Reads data from the stream to a buffer</p></td>
+</tr>
+</table>
+</body>
+</html>

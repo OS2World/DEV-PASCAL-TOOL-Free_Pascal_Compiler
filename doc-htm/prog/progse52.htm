@@ -1,0 +1,86 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12.6 Using a pascal preprocessor</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse51.htm" >prev</a>] [<a 
+href="progse51.htm#tailprogse51.htm" >prev-tail</a>] [<a 
+href="#tailprogse52.htm">tail</a>] [<a 
+href="progch12.htm#progse52.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">12.6</span> <a 
+href="prog.htm#QQ2-209-231" name="x209-21000012.6">Using a pascal preprocessor</a></h3>
+<!--l. 5181--><p class="noindent">Sometimes you want to use symbolic names in your resource file, and use the same names in your
+program to access the resources. To accomplish this, there exists a preprocessor for <span 
+class="cmss-10">windres </span>that
+understands pascal syntax: <span 
+class="cmss-10">fprcp</span>. This preprocessor is shipped with the Free Pascal
+distribution.
+<!--l. 5187--><p class="noindent">The idea is that the preprocessor reads a pascal unit that has some symbolic constants defined in
+it, and replaces symbolic names in the resource file by the values of the constants in the
+unit:
+<!--l. 5191--><p class="noindent">As an example: consider the follwoing unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;unit&nbsp;myunit;
+&nbsp;
+&nbsp;interface
+&nbsp;
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;First&nbsp;&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;Second&nbsp;=&nbsp;2:
+&nbsp;&nbsp;&nbsp;Third&nbsp;&nbsp;=&nbsp;3;
+&nbsp;
+&nbsp;Implementation
+&nbsp;end.
+</pre>
+</td></tr></table>And the following resource file:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#include&nbsp;&#34;myunit.pp&#34;
+&nbsp;
+&nbsp;STRINGTABLE&nbsp;{&nbsp;First,&nbsp;&#34;hello&nbsp;World&nbsp;!&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Second,&nbsp;&#34;hello&nbsp;world&nbsp;again&nbsp;!&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Third,&nbsp;&#34;last&nbsp;hello&nbsp;world&nbsp;!&#34;&nbsp;}
+&nbsp;
+</pre>
+</td></tr></table>if you invoke windres with the <span 
+class="cmtt-10">--preprocessor </span>option:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;windres&nbsp;--preprocessor&nbsp;fprcp&nbsp;-i&nbsp;myunit.rc&nbsp;-o&nbsp;myunit.res
+</pre>
+</td></tr></table>Then the preprocessor will replace the symbolic names &#8217;first&#8217;, &#8217;second&#8217; and &#8217;third&#8217; with their actual
+values.
+<!--l. 5221--><p class="noindent">In your program, you can then refer to the strings by their symbolic names (the constants) instead
+of using a numeric index.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse51.htm" >prev</a>] [<a 
+href="progse51.htm#tailprogse51.htm" >prev-tail</a>] [<a 
+href="progse52.htm" >front</a>] [<a 
+href="progch12.htm#progse52.htm" >up</a>] </p></div><a 
+  name="tailprogse52.htm"></a>  
+</body></html> 

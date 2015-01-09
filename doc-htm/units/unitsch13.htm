@@ -1,0 +1,180 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13 The MATH unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch14.htm" >next</a>] [<a 
+href="unitsch12.htm" >prev</a>] [<a 
+href="unitsch12.htm#tailunitsch12.htm" >prev-tail</a>] [<a 
+href="#tailunitsch13.htm">tail</a>] [<a 
+href="units.htm#unitsch13.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;13</span><br><a 
+href="units.htm#QQ2-54-506" name="x54-50000013">The MATH unit</a></h2>
+<!--l. 24--><p class="noindent">This chapter describes the <span 
+class="cmss-10">math </span>unit. The <span 
+class="cmtt-10">math </span>unit was initially written by Florian Kl&auml;mpfl. It
+provides mathematical functions which aren&#8217;t covered by the system unit.
+<!--l. 28--><p class="noindent">This chapter starts out with a definition of all types and constants that are defined, after which an
+overview is presented of the available functions, grouped by category, and the last part contains a
+complete explanation of each function.
+<!--l. 33--><p class="noindent">The following things must be taken into account when using this unit:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x54-500002x1"></a>This unit is compiled in Object Pascal mode so all <span 
+class="cmtt-10">integers </span>are 32 bit.
+     </li>
+     <li class="enumerate"><a 
+  name="x54-500004x2"></a>Some overloaded functions exist for data arrays of integers and floats. When using the
+     address operator (<span 
+class="cmtt-10">@</span>) to pass an array of data to such a function, make sure the address
+     is typecasted to the right type, or turn on the &#8217;typed address operator&#8217; feature. failing
+     to do so, will cause the compiler not be able to decide which function you want to call.</li></ol>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">13.1 <a 
+href="unitsse37.htm#x55-50100013.1" name="QQ2-55-507">Constants and types</a></span>
+<br>&nbsp;<span class="sectionToc">13.2 <a 
+href="unitsse38.htm#x56-50200013.2" name="QQ2-56-508">Function list by category</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50300013.2" name="QQ2-56-509">Min/max determination</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50400013.2" name="QQ2-56-510">Angle conversion</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50500013.2" name="QQ2-56-511">Trigoniometric functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50600013.2" name="QQ2-56-512">Hyperbolic functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50700013.2" name="QQ2-56-513">Exponential and logarithmic functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50800013.2" name="QQ2-56-514">Number converting</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-50900013.2" name="QQ2-56-515">Statistical functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse38.htm#x56-51000013.2" name="QQ2-56-516">Geometrical functions</a></span>
+<br>&nbsp;<span class="sectionToc">13.3 <a 
+href="unitsse39.htm#x57-51100013.3" name="QQ2-57-517">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51200013.3" name="QQ2-57-518">arccos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51300013.3" name="QQ2-57-519">arcosh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51400013.3" name="QQ2-57-520">arcsin</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51500013.3" name="QQ2-57-521">arctan2</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51600013.3" name="QQ2-57-522">arsinh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51700013.3" name="QQ2-57-523">artanh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51800013.3" name="QQ2-57-524">ceil</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-51900013.3" name="QQ2-57-525">cosh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52000013.3" name="QQ2-57-526">cotan</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52100013.3" name="QQ2-57-527">cycletorad</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52200013.3" name="QQ2-57-528">degtograd</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52300013.3" name="QQ2-57-529">degtorad</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52400013.3" name="QQ2-57-530">floor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52500013.3" name="QQ2-57-531">frexp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52600013.3" name="QQ2-57-532">gradtodeg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52700013.3" name="QQ2-57-533">gradtorad</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52800013.3" name="QQ2-57-534">hypot</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-52900013.3" name="QQ2-57-535">intpower</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53000013.3" name="QQ2-57-536">ldexp</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53100013.3" name="QQ2-57-537">lnxp1</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53200013.3" name="QQ2-57-538">log10</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53300013.3" name="QQ2-57-539">log2</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53400013.3" name="QQ2-57-540">logn</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53500013.3" name="QQ2-57-541">max</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53600013.3" name="QQ2-57-542">maxIntValue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53700013.3" name="QQ2-57-543">maxvalue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53800013.3" name="QQ2-57-544">mean</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-53900013.3" name="QQ2-57-545">meanandstddev</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54000013.3" name="QQ2-57-546">min</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54100013.3" name="QQ2-57-547">minIntValue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54200013.3" name="QQ2-57-548">minvalue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54300013.3" name="QQ2-57-549">momentskewkurtosis</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54400013.3" name="QQ2-57-550">norm</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54500013.3" name="QQ2-57-551">popnstddev</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54600013.3" name="QQ2-57-552">popnvariance</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54700013.3" name="QQ2-57-553">power</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54800013.3" name="QQ2-57-554">radtocycle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-54900013.3" name="QQ2-57-555">radtodeg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55000013.3" name="QQ2-57-556">radtograd</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55100013.3" name="QQ2-57-557">randg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55200013.3" name="QQ2-57-558">sincos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55300013.3" name="QQ2-57-559">sinh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55400013.3" name="QQ2-57-560">stddev</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55500013.3" name="QQ2-57-561">sum</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55600013.3" name="QQ2-57-562">sumofsquares</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55700013.3" name="QQ2-57-563">sumsandsquares</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55800013.3" name="QQ2-57-564">tan</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-55900013.3" name="QQ2-57-565">tanh</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-56000013.3" name="QQ2-57-566">totalvariance</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse39.htm#x57-56100013.3" name="QQ2-57-567">variance</a></span>
+                                                                            
+
+                                                                            
+</div>
+
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch14.htm" >next</a>] [<a 
+href="unitsch12.htm" >prev</a>] [<a 
+href="unitsch12.htm#tailunitsch12.htm" >prev-tail</a>] [<a 
+href="unitsch13.htm" >front</a>] [<a 
+href="units.htm#unitsch13.htm" >up</a>] </p></div><a 
+  name="tailunitsch13.htm"></a>  
+</body></html> 

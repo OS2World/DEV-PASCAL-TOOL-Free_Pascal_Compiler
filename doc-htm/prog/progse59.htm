@@ -1,0 +1,169 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>B.2 The RTL source tree</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse58.htm" >prev</a>] [<a 
+href="progse58.htm#tailprogse58.htm" >prev-tail</a>] [<a 
+href="#tailprogse59.htm">tail</a>] [<a 
+href="progap2.htm#progse59.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">B.2</span> <a 
+href="prog.htm#QQ2-218-246" name="x218-219000B.2">The RTL source tree</a></h3>
+<!--l. 5548--><p class="noindent">The RTL source tree is divided in many subdirectories, but is very structured and easy to
+understand. It mainly consists of three parts:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x218-219002x1"></a>A OS-dependent directory. This contains the files that are different for each operating
+     system. When compiling the RTL, you should do it here. The following directories
+     exist:
+         <ul class="itemize1">
+         <li class="itemize"><span 
+class="cmss-10">atari </span>for the <span 
+class="cmcsc-10">A<small 
+class="small-caps">T</small><small 
+class="small-caps">A</small><small 
+class="small-caps">R</small><small 
+class="small-caps">I</small></span>.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">amiga </span>for the <span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small></span>.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">beos </span>for <span 
+class="cmcsc-10">B<small 
+class="small-caps">E</small>OS</span>. It has one subdirectory for each of the supported processors.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">freebsd </span>for the <span 
+class="cmcsc-10">F<small 
+class="small-caps">R</small><small 
+class="small-caps">E</small><small 
+class="small-caps">E</small>BSD </span>platform.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">go32v1 </span>For <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, using the GO32v1 extender. Not maintained any more.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">go32v2 </span>For <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, using the GO32v2 extender.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">linux  </span>for  <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small>  </span>platforms.  It  has  one  subdirectory  for  each  of  the  supported
+         processors.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">netbsd </span>for <span 
+class="cmcsc-10">N<small 
+class="small-caps">E</small><small 
+class="small-caps">T</small>BSD </span>platforms. It has one subdirectory for each of the supported
+         processors.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">palmos </span>for the <span 
+class="cmcsc-10">P<small 
+class="small-caps">A</small><small 
+class="small-caps">L</small><small 
+class="small-caps">M</small>OS </span>Dragonball processor based platform.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">os2 </span>for <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">sunos </span>for the <span 
+class="cmcsc-10">S<small 
+class="small-caps">O</small><small 
+class="small-caps">L</small><small 
+class="small-caps">A</small><small 
+class="small-caps">R</small><small 
+class="small-caps">I</small><small 
+class="small-caps">S</small> </span>platform. It has one subdirectory for each of the supported
+         processors.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">qnx </span>for the <span 
+class="cmcsc-10">QNX R<small 
+class="small-caps">E</small><small 
+class="small-caps">A</small><small 
+class="small-caps">L</small><small 
+class="small-caps">T</small><small 
+class="small-caps">I</small><small 
+class="small-caps">M</small><small 
+class="small-caps">E</small> <small 
+class="small-caps">P</small><small 
+class="small-caps">L</small><small 
+class="small-caps">A</small><small 
+class="small-caps">T</small><small 
+class="small-caps">F</small><small 
+class="small-caps">O</small><small 
+class="small-caps">R</small><small 
+class="small-caps">M</small></span>.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">win32 </span>for Win32 platforms.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">posix </span>for posix interfaces (used for easier porting).
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">unix </span>for unix common interfaces (used for easier porting).</li></ul>
+                                                                            
+
+                                                                            
+     </li>
+     <li class="enumerate"><a 
+  name="x218-219004x2"></a>A processor dependent directory. This contains files that are system independent, but
+     processor dependent. It contains mostly optimized routines for a specific processor. The
+     following directories exist:
+         <ul class="itemize1">
+         <li class="itemize"><span 
+class="cmss-10">i386 </span>for the Intel 80x86 series of processors.
+         </li>
+         <li class="itemize"><span 
+class="cmss-10">m68k </span>for the Motorola 680x0 series of processors.</li></ul>
+     </li>
+     <li class="enumerate"><a 
+  name="x218-219006x3"></a>An OS-independent and Processor independent directory: <span 
+class="cmss-10">inc</span>. This contains complete units,
+     and include files containing interface parts of units as well as generic versions of processor
+     specific routines.</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse58.htm" >prev</a>] [<a 
+href="progse58.htm#tailprogse58.htm" >prev-tail</a>] [<a 
+href="progse59.htm" >front</a>] [<a 
+href="progap2.htm#progse59.htm" >up</a>] </p></div><a 
+  name="tailprogse59.htm"></a>  
+</body></html> 

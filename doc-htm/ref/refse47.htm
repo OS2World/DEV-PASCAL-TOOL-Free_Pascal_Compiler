@@ -1,0 +1,193 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.3 Assignment operators</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse48.htm" >next</a>] [<a 
+href="refse46.htm" >prev</a>] [<a 
+href="refse46.htm#tailrefse46.htm" >prev-tail</a>] [<a 
+href="#tailrefse47.htm">tail</a>] [<a 
+href="refch9.htm#refse47.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.3</span> <a 
+href="ref.htm#QQ2-116-137" name="x116-1220009.3">Assignment operators</a></h3>
+<!--l. 3795--><p class="noindent">The assignment operator defines the action of a assignent of one type of variable to another. The
+result type must match the type of the variable at the left of the assignment statement, the single
+parameter to the assignment operator must have the same type as the expression at the right of
+the assignment operator.
+<!--l. 3801--><p class="noindent">This system can be used to declare a new type, and define an assignment for that type. For
+instance, to be able to assign a newly defined type &#8217;Complex&#8217;
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;C,Z&nbsp;:&nbsp;Complex;&nbsp;//&nbsp;New&nbsp;type&nbsp;complex
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Z:=C;&nbsp;&nbsp;//&nbsp;assignments&nbsp;between&nbsp;complex&nbsp;types.
+&nbsp;end;
+</pre>
+</td></tr></table>The following assignment operator would have to be defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Operator&nbsp;:=&nbsp;(C&nbsp;:&nbsp;Complex)&nbsp;z&nbsp;:&nbsp;complex;
+</pre>
+</td></tr></table>
+<!--l. 3817--><p class="noindent">To be able to assign a real type to a complex type as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;R&nbsp;:&nbsp;real;
+&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;C:=R;
+&nbsp;end;
+</pre>
+</td></tr></table>the following assignment operator must be defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Operator&nbsp;:=&nbsp;(r&nbsp;:&nbsp;real)&nbsp;z&nbsp;:&nbsp;complex;
+</pre>
+</td></tr></table>As can be seen from this statement, it defines the action of the operator <span 
+class="cmtt-10">:= </span>with at the right a real
+expression, and at the left a complex expression.
+<!--l. 3835--><p class="noindent">an example implementation of this could be as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;operator&nbsp;:=&nbsp;(r&nbsp;:&nbsp;real)&nbsp;z&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;z.re:=r;
+&nbsp;&nbsp;&nbsp;z.im:=0.0;
+&nbsp;end;
+</pre>
+</td></tr></table>As can be seen in the example, the result identifier (<span 
+class="cmtt-10">z </span>in this case) is used to store the result of the
+assignment. When compiling in Delphi mode or objfpc mode, the use of the special identifier
+<span 
+class="cmtt-10">Result </span>is also allowed, and can be substituted for the <span 
+class="cmtt-10">z</span>, so the above would be equivalent
+to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;operator&nbsp;:=&nbsp;(r&nbsp;:&nbsp;real)&nbsp;z&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Result.re:=r;
+&nbsp;&nbsp;&nbsp;Result.im:=0.0;
+&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 3858--><p class="noindent">The assignment operator is also used to convert types from one type to another. The compiler will
+consider all overloaded assignment operators till it finds one that matches the types of the left
+hand and right hand expressions. If no such operator is found, a &#8217;type mismatch&#8217; error is
+given.
+<!--l. 3864--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The assignment operator is not commutative; the compiler will never reverse the role of the two
+arguments. in other words, given the above definition of the assignment operator, the following is
+<span 
+class="cmti-10">not </span>possible:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;R&nbsp;:&nbsp;real;
+&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;R:=C;
+&nbsp;end;
+</pre>
+</td></tr></table>if the reverse assignment should be possible (this is not so for reals and complex numbers) then the
+assigment operator must be defined for that as well.
+<span 
+class="cmbx-10">Remark:</span> The assignment operator is also used in implicit type conversions. This can have unwanted effects.
+Consider the following definitions:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;operator&nbsp;:=&nbsp;(r&nbsp;:&nbsp;real)&nbsp;z&nbsp;:&nbsp;complex;
+&nbsp;function&nbsp;exp(c&nbsp;:&nbsp;complex)&nbsp;:&nbsp;complex;
+</pre>
+</td></tr></table>then the following assignment will give a type mismatch:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;r1,r2&nbsp;:&nbsp;real;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;r1:=exp(r2);
+&nbsp;end;
+</pre>
+</td></tr></table>because the compiler will encounter the definition of the <span 
+class="cmtt-10">exp </span>function with the complex argument.
+It implicitly converts r2 to a complex, so it can use the above <span 
+class="cmtt-10">exp </span>function. The result of this
+function is a complex, which cannot be assigned to r1, so the compiler will give a &#8217;type
+mismatch&#8217; error. The compiler will not look further for another <span 
+class="cmtt-10">exp </span>which has the correct
+arguments.
+<!--l. 3904--><p class="noindent">It is possible to avoid this particular problem by specifying
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;r1:=system.exp(r2);
+</pre>
+</td></tr></table>An experimental solution for this problem exists in the compiler, but is not enabled by default.
+Maybe someday it will be.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse48.htm" >next</a>] [<a 
+href="refse46.htm" >prev</a>] [<a 
+href="refse46.htm#tailrefse46.htm" >prev-tail</a>] [<a 
+href="refse47.htm" >front</a>] [<a 
+href="refch9.htm#refse47.htm" >up</a>] </p></div><a 
+  name="tailrefse47.htm"></a>  
+</body></html> 

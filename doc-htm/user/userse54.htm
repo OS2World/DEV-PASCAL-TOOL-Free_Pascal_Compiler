@@ -1,0 +1,52 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.2 Producing output</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse55.htm" >next</a>] [<a 
+href="userse53.htm" >prev</a>] [<a 
+href="userse53.htm#tailuserse53.htm" >prev-tail</a>] [<a 
+href="#tailuserse54.htm">tail</a>] [<a 
+href="userch11.htm#userse54.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.2</span> <a 
+href="user.htm#QQ2-77-215" name="x77-16400011.2">Producing output</a></h3>
+<!--l. 2816--><p class="noindent">The previous section concentrated mostly on getting input from the web server. To send the reply
+to the server, you don&#8217;t need to do anything special.You just print your data on standard output,
+and the Web-server will intercept this, and send your output to the WWW-client waiting for
+it.
+<!--l. 2821--><p class="noindent">You can print anything you want, the only thing you must take care of is that you supply a
+<span 
+class="cmtt-10">Contents-type </span>line, followed by an empty line, as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Writeln&nbsp;('Content-type:&nbsp;text/html');
+&nbsp;Writeln;
+&nbsp;{&nbsp;...start&nbsp;output&nbsp;of&nbsp;the&nbsp;form...&nbsp;}
+&nbsp;
+</pre>
+</td></tr></table>
+<!--l. 2831--><p class="noindent">And that&#8217;s all there is to it !
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse55.htm" >next</a>] [<a 
+href="userse53.htm" >prev</a>] [<a 
+href="userse53.htm#tailuserse53.htm" >prev-tail</a>] [<a 
+href="userse54.htm" >front</a>] [<a 
+href="userch11.htm#userse54.htm" >up</a>] </p></div><a 
+  name="tailuserse54.htm"></a>  
+</body></html> 

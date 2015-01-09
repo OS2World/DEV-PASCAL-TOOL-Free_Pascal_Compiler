@@ -1,0 +1,57 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 Exporting variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu93.htm" >next</a>] [<a 
+href="progsu91.htm" >prev</a>] [<a 
+href="progsu91.htm#tailprogsu91.htm" >prev-tail</a>] [<a 
+href="#tailprogsu92.htm">tail</a>] [<a 
+href="progse26.htm#progsu92.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-134-141" name="x134-1330007.2">Exporting variables</a></h4> Similarly as when you export functions, you can export variables. When
+exportig variables, one should only consider the names of the variables. To declare a variable that
+should be used by a C program, one declares it with the <span 
+class="cmtt-10">cvar </span>modifier:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var&nbsp;MyVar&nbsp;:&nbsp;MyTpe;&nbsp;cvar;
+</pre>
+</td></tr></table>This will tell the compiler that the assembler name of the variable (the one which is used by C
+programs) should be exactly as specified in the declaration, i.e., case sensitive.
+<!--l. 3234--><p class="noindent">It is not allowed to declare multiple variables as <span 
+class="cmtt-10">cvar </span>in one statement, i.e. the following code will
+produce an error:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var&nbsp;Z1,Z2&nbsp;:&nbsp;longint;cvar;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu93.htm" >next</a>] [<a 
+href="progsu91.htm" >prev</a>] [<a 
+href="progsu91.htm#tailprogsu91.htm" >prev-tail</a>] [<a 
+href="progsu92.htm" >front</a>] [<a 
+href="progse26.htm#progsu92.htm" >up</a>] </p></div><a 
+  name="tailprogsu92.htm"></a>  
+</body></html> 

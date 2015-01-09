@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings.SetUpdateState</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings.SetUpdateState</h1>
+<p>Sets the update state. </p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">protected</span> <span class="kw">procedure</span> <a href="../classes/tstrings.htm">TStrings</a><span class="sym">.</span>SetUpdateState<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Updating<span class="sym">: </span>Boolean</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>SetUpdateState</var> sets the update state to <var>Updating</var>. The <var>TStrings</var> implementation of <var>SetUpdateState</var> does nothing. </p>
+<p>Descendent objects may override this method to implement optimizations. If <var>Updating</var> is <var>True</var> then the list of strings is about to be updated (possibly many times). If it is <var>False</var> no more updates will take place till the next <var>SetUpdateState</var> call. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.beginupdate.htm">TStrings.BeginUpdate</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Mark the beginning of an update batch.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.endupdate.htm">TStrings.EndUpdate</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Mark the end of an update batch.</p></td>
+</tr>
+</table>
+</body>
+</html>

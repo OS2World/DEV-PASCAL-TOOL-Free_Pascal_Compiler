@@ -1,0 +1,149 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Filesize</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu102.htm" >next</a>] [<a 
+href="refsu100.htm" >prev</a>] [<a 
+href="refsu100.htm#tailrefsu100.htm" >prev-tail</a>] [<a 
+href="#tailrefsu101.htm">tail</a>] [<a 
+href="refse64.htm#refsu101.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-186-207" name="x186-19200013.3">Filesize</a></h4><a 
+  name="dx186-192001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Filesize (Var F : Any file type) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Filesize </span>returns the total number of records in file <span 
+class="cmtt-10">F</span>. It cannot be invoked with a file of
+type <span 
+class="cmtt-10">Text</span>. (under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>, this also means that it cannot be invoked on pipes). If
+<span 
+class="cmtt-10">F </span>is empty, 0 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Depending on the state of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I</span><span 
+class="cmsy-10">} </span>switch, a runtime error can be generated if there is an
+error. In the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I-</span><span 
+class="cmsy-10">} </span>state, use <span 
+class="cmtt-10">IOResult </span>to check for errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Filepos </span>(<a 
+href="refsu100.htm#x185-19100013.3">494<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5776--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex24.pp</span><HR/><div class="listinginput">
+<!--l. 5776--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example24;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FileSize</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">Of</span>&nbsp;<span 
+class="cmtt-10">byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">Of</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(F,paramstr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('File</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">bytes</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FileSize(F));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(L,paramstr</span>&nbsp;<span 
+class="cmtt-10">(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset</span>&nbsp;<span 
+class="cmtt-10">(L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('File</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">Longints</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FileSize(L));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu102.htm" >next</a>] [<a 
+href="refsu100.htm" >prev</a>] [<a 
+href="refsu100.htm#tailrefsu100.htm" >prev-tail</a>] [<a 
+href="refsu101.htm" >front</a>] [<a 
+href="refse64.htm#refsu101.htm" >up</a>] </p></div><a 
+  name="tailrefsu101.htm"></a>  
+</body></html> 

@@ -1,0 +1,63 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.8.0 public</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu50.htm" >next</a>] [<a 
+href="refsu48.htm" >prev</a>] [<a 
+href="refsu48.htm#tailrefsu48.htm" >prev-tail</a>] [<a 
+href="#tailrefsu49.htm">tail</a>] [<a 
+href="refse43.htm#refsu49.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-107-127" name="x107-1130008.8">public</a></h4> The <span 
+class="cmtt-10">Public </span>keyword is used to declare a function globally in a unit. This is useful if the
+function should not be accessible from the unit file (i.e. another unit/program using
+the unit doesn&#8217;t see the function), but must be accessible from the object file. as an
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Unit&nbsp;someunit;
+&nbsp;interface
+&nbsp;Function&nbsp;First&nbsp;:&nbsp;Real;
+&nbsp;Implementation
+&nbsp;Function&nbsp;First&nbsp;:&nbsp;Real;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;First&nbsp;:=&nbsp;0;
+&nbsp;end;
+&nbsp;Function&nbsp;Second&nbsp;:&nbsp;Real;&nbsp;[Public];
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Second&nbsp;:=&nbsp;1;
+&nbsp;end;
+&nbsp;end.
+</pre>
+</td></tr></table>If another program or unit uses this unit, it will not be able to use the function <span 
+class="cmtt-10">Second</span>, since it
+isn&#8217;t declared in the interface part. However, it will be possible to access the function
+<span 
+class="cmtt-10">Second </span>at the assembly-language level, by using it&#8217;s mangled name (see the <a 
+href="file:../prog/prog.htm" >Programmers
+guide</a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu50.htm" >next</a>] [<a 
+href="refsu48.htm" >prev</a>] [<a 
+href="refsu48.htm#tailrefsu48.htm" >prev-tail</a>] [<a 
+href="refsu49.htm" >front</a>] [<a 
+href="refse43.htm#refsu49.htm" >up</a>] </p></div><a 
+  name="tailrefsu49.htm"></a>  
+</body></html> 

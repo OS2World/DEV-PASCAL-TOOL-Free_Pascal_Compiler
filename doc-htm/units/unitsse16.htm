@@ -1,0 +1,1005 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2 Protected mode memory organization</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse17.htm" >next</a>] [<a 
+href="unitsse15.htm" >prev</a>] [<a 
+href="unitsse15.htm#tailunitsse15.htm" >prev-tail</a>] [<a 
+href="#tailunitsse16.htm">tail</a>] [<a 
+href="unitsch7.htm#unitsse16.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.2</span> <a 
+href="units.htm#QQ2-28-128" name="x28-1260007.2">Protected mode memory organization</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-129" name="x28-1270007.2">What is DPMI</a></h4> The <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>Protected Mode Interface helps you with various aspects of protected
+mode programming. These are roughly divided into descriptor handling, access to <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory,
+management of interrupts and exceptions, calls to real mode functions and other stuff. Additionally
+it automatically provides swapping to disk for memory intensive applications. A DPMI
+host (either a Windows <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>box or CWSDPMI.EXE) provides these functions for your
+programs.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-130" name="x28-1280007.2">Selectors and descriptors</a></h4> Descriptors are a bit like real mode segments; they describe (as the name
+implies) a memory area in protected mode. A descriptor contains information about segment
+length, its base address and the attributes of it (i.e. type, access rights, ...). These descriptors are
+stored internally in a so-called descriptor table, which is basically an array of such descriptors.
+Selectors are roughly an index into this table. Because these &#8217;segments&#8217; can be up to 4 GB in size,
+32 bits aren&#8217;t sufficient anymore to describe a single memory location like in real mode. 48 bits are
+now needed to do this, a 32 bit address and a 16 bit sized selector. The GO32 unit provides
+the tseginfo record to store such a pointer. But due to the fact that most of the time
+data is stored and accessed in the %ds selector, FPC assumes that all pointers point
+to a memory location of this selector. So a single pointer is still only 32 bits in size.
+This value represents the offset from the data segment base address to this memory
+location.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-131" name="x28-1290007.2">FPC specialities</a></h4> The %ds and %es selector MUST always contain the same value or some system
+routines may crash when called. The %fs selector is preloaded with the DOSMEMSELECTOR
+variable at startup, and it MUST be restored after use, because again FPC relys on this for some
+functions. Luckily we asm programmers can still use the %gs selector for our own purposes, but for
+how long ? See also: <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">cs </span>(<a 
+href="unitsse18.htm#x30-1630007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ds </span>(<a 
+href="unitsse18.htm#x30-1650007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">gett</span>__<span 
+class="cmss-10">ss </span>(<a 
+href="unitsse18.htm#x30-1760007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="unitsse18.htm#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="unitsse18.htm#x30-1600007.4">159<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">to</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="unitsse18.htm#x30-1910007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">next</span>__<span 
+class="cmss-10">selector</span>__<span 
+class="cmss-10">increment</span>__<span 
+class="cmss-10">value </span>(<a 
+href="unitsse18.htm#x30-1680007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="unitsse18.htm#x30-1740007.4">168<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="unitsse18.htm#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="unitsse18.htm#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">create</span>__<span 
+class="cmss-10">code</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">alias</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="unitsse18.htm#x30-1520007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-132" name="x28-1300007.2"><span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory access</a></h4> <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory is accessed by the predefined <span 
+class="cmtt-10">dosmemselector </span>selector; the GO32
+unit additionally provides some functions to help you with standard tasks, like copying memory
+from heap to <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory and the likes. Because of this it is strongly recommened to use them,
+but you are still free to use the provided standard memory accessing functions which use
+48 bit pointers. The third, but only thought for compatibility purposes, is using the
+<span 
+class="cmtt-10">mem[]</span>-arrays. These arrays map the whole 1 Mb <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>space. They shouldn&#8217;t be used
+within new programs. To convert a segment:offset real mode address to a protected
+mode linear address you have to multiply the segment by 16 and add its offset. This
+linear address can be used in combination with the DOSMEMSELECTOR variable.
+See also: <span 
+class="cmss-10">dosmemget </span>(<a 
+href="unitsse18.htm#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemput </span>(<a 
+href="unitsse18.htm#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="unitsse18.htm#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="unitsse18.htm#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="unitsse18.htm#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), mem[]-arrays, <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="unitsse18.htm#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="unitsse18.htm#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword</span>
+                                                                            
+
+                                                                            
+(<a 
+href="unitsse18.htm#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-133" name="x28-1310007.2">I/O port access</a></h4> The I/O port access is done via the various <span 
+class="cmss-10">inportb </span>(<a 
+href="unitsse18.htm#x30-1790007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportb </span>(<a 
+href="unitsse18.htm#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>) functions
+which are available. Additionally Free Pascal supports the Turbo Pascal PORT[]-arrays but it is by
+no means recommened to use them, because they&#8217;re only for compatibility purposes. See also:
+<span 
+class="cmss-10">outportb </span>(<a 
+href="unitsse18.htm#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportb </span>(<a 
+href="unitsse18.htm#x30-1790007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), PORT[]-arrays
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-134" name="x28-1320007.2">Processor access</a></h4> These are some functions to access various segment registers (%cs, %ds,
+%ss) which makes your work a bit easier. See also: <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">cs </span>(<a 
+href="unitsse18.htm#x30-1630007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ds </span>(<a 
+href="unitsse18.htm#x30-1650007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ss</span>
+(<a 
+href="unitsse18.htm#x30-1760007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-135" name="x28-1330007.2">Interrupt redirection</a></h4> Interrupts are program interruption requests, which in one or another way get
+to the processor; there&#8217;s a distinction between software and hardware interrupts. The former are
+explicitely called by an &#8217;int&#8217; instruction and are a bit comparable to normal functions. Hardware
+interrupts come from external devices like the keyboard or mouse. Functions that handle hardware
+interrupts are called handlers.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-136" name="x28-1340007.2">Handling interrupts with DPMI</a></h4> The interrupt functions are real-mode procedures; they normally
+can&#8217;t be called in protected mode without the risk of an protection fault. So the DPMI host creates
+an interrupt descriptor table for the application. Initially all software interrupts (except for int 31h,
+2Fh and 21h function 4Ch) or external hardware interrupts are simply directed to a handler that
+reflects the interrupt in real-mode, i.e. the DPMI host&#8217;s default handlers switch the CPU to
+real-mode, issue the interrupt and switch back to protected mode. The contents of general registers
+and flags are passed to the real mode handler and the modified registers and flags are returned to
+the protected mode handler. Segment registers and stack pointer are not passed between
+modes.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-137" name="x28-1350007.2">Protected mode interrupts vs. Real mode interrupts</a></h4> As mentioned before, there&#8217;s a distinction
+between real mode interrupts and protected mode interrupts; the latter are protected mode
+programs, while the former must be real mode programs. To call a protected mode interrupt
+handler, an assembly &#8217;int&#8217; call must be issued, while the other is called via the realintr() or intr()
+function. Consequently, a real mode interrupt then must either reside in <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory (¡1MB) or
+the application must allocate a real mode callback address via the get__rm__callback()
+function.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-138" name="x28-1360007.2">Creating own interrupt handlers</a></h4> Interrupt redirection with FPC pascal is done via the
+set__pm__interrupt() for protected mode interrupts or via the set__rm__interrupt() for real mode
+interrupts.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-139" name="x28-1370007.2">Disabling interrupts</a></h4> The GO32 unit provides the two procedures disable() and enable() to disable
+and enable all interrupts.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-140" name="x28-1380007.2">Hardware interrupts</a></h4> Hardware interrupts are generated by hardware devices when something
+unusual happens; this could be a keypress or a mouse move or any other action. This is done
+to minimize CPU time, else the CPU would have to check all installed hardware for
+data in a big loop (this method is called &#8217;polling&#8217;) and this would take much time. A
+                                                                            
+
+                                                                            
+standard IBM-PC has two interrupt controllers, that are responsible for these hardware
+interrupts: both allow up to 8 different interrupt sources (IRQs, interrupt requests). The
+second controller is connected to the first through IRQ 2 for compatibility reasons, e.g. if
+controller 1 gets an IRQ 2, he hands the IRQ over to controller 2. Because of this up
+to 15 different hardware interrupt sources can be handled. IRQ 0 through IRQ 7 are
+mapped to interrupts 8h to Fh and the second controller (IRQ 8 to 15) is mapped to
+interrupt 70h to 77h. All of the code and data touched by these handlers MUST be
+locked (via the various locking functions) to avoid page faults at interrupt time. Because
+hardware interrupts are called (as in real mode) with interrupts disabled, the handler has to
+enable them before it returns to normal program execution. Additionally a hardware
+interrupt must send an EOI (end of interrupt) command to the responsible controller; this
+is acomplished by sending the value 20h to port 20h (for the first controller) or A0h
+(for the second controller). The following example shows how to redirect the keyboard
+interrupt.
+<!--l. 161--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/keyclick.pp</span><HR/><div class="listinginput">
+<!--l. 161--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{$ASMMODE</span>&nbsp;<span 
+class="cmtt-10">ATT}</span>
+<br>   <span 
+class="cmtt-10">{$MODE</span>&nbsp;<span 
+class="cmtt-10">FPC}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">kbdint</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">$9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">oldint9_handler</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint9_handler</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">clickproc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pointer;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">backupDS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>&nbsp;<span 
+class="cmtt-10">external</span>&nbsp;<span 
+class="cmtt-10">name</span>&nbsp;<span 
+class="cmtt-10">'___v2prt0_ds_alias';</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">int9_handler;</span>&nbsp;<span 
+class="cmtt-10">assembler;</span>
+<br>   <span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">cli</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%es</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%fs</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%gs</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushal</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%cs:backupDS,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%es</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">dosmemselector,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%fs</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">*clickproc</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popal</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%gs</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%fs</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%es</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ljmp</span>&nbsp;<span 
+class="cmtt-10">%cs:oldint9_handler</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">int9_dummy;</span>&nbsp;<span 
+class="cmtt-10">begin</span>&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">clicker;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sound(500);</span>&nbsp;<span 
+class="cmtt-10">delay(10);</span>&nbsp;<span 
+class="cmtt-10">nosound;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">clicker_dummy;</span>&nbsp;<span 
+class="cmtt-10">begin</span>&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">install_click;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">clickproc</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">@clicker;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(clickproc,</span>&nbsp;<span 
+class="cmtt-10">sizeof(clickproc));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(dosmemselector,</span>&nbsp;<span 
+class="cmtt-10">sizeof(dosmemselector));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_code(@clicker,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@clicker_dummy)</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">longint(@clicker));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_code(@int9_handler,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@int9_dummy)-longint(@int9_handler));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint9_handler.offset</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">@int9_handler;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint9_handler.segment</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">get_cs;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_pm_interrupt(kbdint,</span>&nbsp;<span 
+class="cmtt-10">oldint9_handler);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt(kbdint,</span>&nbsp;<span 
+class="cmtt-10">newint9_handler);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">remove_click;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt(kbdint,</span>&nbsp;<span 
+class="cmtt-10">oldint9_handler);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(dosmemselector,</span>&nbsp;<span 
+class="cmtt-10">sizeof(dosmemselector));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(clickproc,</span>&nbsp;<span 
+class="cmtt-10">sizeof(clickproc));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_code(@clicker,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@clicker_dummy)-longint(@clicker));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_code(@int9_handler,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@int9_dummy)-longint(@int9_handler));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ch</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">install_click;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Enter</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">message.</span>&nbsp;<span 
+class="cmtt-10">Press</span>&nbsp;<span 
+class="cmtt-10">return</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">finished');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(ch</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">#13)</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ch</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">readkey;</span>&nbsp;<span 
+class="cmtt-10">write(ch);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">remove_click;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-141" name="x28-1390007.2">Software interrupts</a></h4> Ordinarily, a handler installed with <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>) only services
+software interrupts that are executed in protected mode; real mode software interrupts can be
+redirected by <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>). See also <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1720007.4">167<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="unitsse18.htm#x30-1700007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="unitsse18.htm#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="unitsse18.htm#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">enable </span>(<a 
+href="unitsse18.htm#x30-1590007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">disable </span>(<a 
+href="unitsse18.htm#x30-1530007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportb </span>(<a 
+href="unitsse18.htm#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>) Executing software interrupts Simply execute a realintr() call with the
+desired interrupt number and the supplied register data structure. But some of these
+interrupts require you to supply them a pointer to a buffer where they can store data to or
+obtain data from in memory. These interrupts are real mode functions and so they
+only can access the first Mb of linear address space, not FPC&#8217;s data segment. For this
+reason FPC supplies a pre-initialized <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory location within the GO32 unit. This
+buffer is internally used for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>functions too and so it&#8217;s contents may change when
+calling other procedures. It&#8217;s size can be obtained with <span 
+class="cmss-10">tb</span>__<span 
+class="cmss-10">size </span>(<a 
+href="unitsse18.htm#x30-1980007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>) and it&#8217;s linear
+address via <span 
+class="cmss-10">transfer</span>__<span 
+class="cmss-10">buffer </span>(<a 
+href="unitsse18.htm#x30-1990007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>). Another way is to allocate a completely new <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+memory area via the <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="unitsse18.htm#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>) function for your use and supply its real
+mode address. See also: <span 
+class="cmss-10">tb</span>__<span 
+class="cmss-10">size </span>(<a 
+href="unitsse18.htm#x30-1980007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">transfer</span>__<span 
+class="cmss-10">buffer </span>(<a 
+href="unitsse18.htm#x30-1990007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>). <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="unitsse18.htm#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">free </span>(<a 
+href="unitsse18.htm#x30-1780007.4">171<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">realintr </span>(<a 
+href="unitsse18.htm#x30-1880007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>) The following examples illustrate the use of software
+interrupts.
+<!--l. 198--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/softint.pp</span><HR/><div class="listinginput">
+<!--l. 198--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.ah</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$30;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.al</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$01;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr($21,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DOS</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">r.al,'.',r.ah,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<!--l. 199--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/rmpmint.pp</span><HR/><div class="listinginput">
+<!--l. 199--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">axreg</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">oldint21h</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint21h</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">int21h_handler;</span>&nbsp;<span 
+class="cmtt-10">assembler;</span>
+<br>   <span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">cmpw</span>&nbsp;<span 
+class="cmtt-10">$0x3001,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">jne</span>&nbsp;<span 
+class="cmtt-10">.LCallOld</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">$0x3112,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">iret</span>
+<br>
+<br>   <span 
+class="cmtt-10">.LCallOld:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ljmp</span>&nbsp;<span 
+class="cmtt-10">%cs:oldint21h</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('--</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">resume</span>&nbsp;<span 
+class="cmtt-10">--');</span>&nbsp;<span 
+class="cmtt-10">readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">wherey);</span>&nbsp;<span 
+class="cmtt-10">clreol;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">clrscr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Executing</span>&nbsp;<span 
+class="cmtt-10">real</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">interrupt');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.ah</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$30;</span>&nbsp;<span 
+class="cmtt-10">r.al</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$01;</span>&nbsp;&nbsp;<span 
+class="cmtt-10">realintr($21,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DOS</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">r.al,'.',r.ah,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Executing</span>&nbsp;<span 
+class="cmtt-10">protected</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">interrupt</span>&nbsp;<span 
+class="cmtt-10">without</span>&nbsp;<span 
+class="cmtt-10">our</span>&nbsp;<span 
+class="cmtt-10">own',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">handler');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movb</span>&nbsp;<span 
+class="cmtt-10">$0x30,</span>&nbsp;<span 
+class="cmtt-10">%ah</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movb</span>&nbsp;<span 
+class="cmtt-10">$0x01,</span>&nbsp;<span 
+class="cmtt-10">%al</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int</span>&nbsp;<span 
+class="cmtt-10">$0x21</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">axreg</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DOS</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">r.al,'.',r.ah,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('As</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">can</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DPMI</span>&nbsp;<span 
+class="cmtt-10">hosts</span>&nbsp;<span 
+class="cmtt-10">default</span>&nbsp;<span 
+class="cmtt-10">protected</span>&nbsp;<span 
+class="cmtt-10">mode',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'handler');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('simply</span>&nbsp;<span 
+class="cmtt-10">redirects</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">real</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">handler');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Now</span>&nbsp;<span 
+class="cmtt-10">exchanging</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">protected</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">interrupt</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">our</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'own</span>&nbsp;<span 
+class="cmtt-10">handler');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint21h.offset</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">@int21h_handler;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint21h.segment</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">get_cs;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_pm_interrupt($21,</span>&nbsp;<span 
+class="cmtt-10">oldint21h);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt($21,</span>&nbsp;<span 
+class="cmtt-10">newint21h);</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Executing</span>&nbsp;<span 
+class="cmtt-10">real</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">interrupt</span>&nbsp;<span 
+class="cmtt-10">again');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.ah</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$30;</span>&nbsp;<span 
+class="cmtt-10">r.al</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$01;</span>&nbsp;<span 
+class="cmtt-10">realintr($21,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DOS</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">r.al,'.',r.ah,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('See,</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">didn''t</span>&nbsp;<span 
+class="cmtt-10">change</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">way.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Now</span>&nbsp;<span 
+class="cmtt-10">calling</span>&nbsp;<span 
+class="cmtt-10">protected</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">interrupt');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">resume;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movb</span>&nbsp;<span 
+class="cmtt-10">$0x30,</span>&nbsp;<span 
+class="cmtt-10">%ah</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movb</span>&nbsp;<span 
+class="cmtt-10">$0x01,</span>&nbsp;<span 
+class="cmtt-10">%al</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int</span>&nbsp;<span 
+class="cmtt-10">$0x21</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">axreg</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DOS</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">lo(axreg),'.',hi(axreg),</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Now</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">can</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">there''s</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">distinction</span>&nbsp;<span 
+class="cmtt-10">between</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'the</span>&nbsp;<span 
+class="cmtt-10">two</span>&nbsp;<span 
+class="cmtt-10">ways</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">calling</span>&nbsp;<span 
+class="cmtt-10">interrupts...');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt($21,</span>&nbsp;<span 
+class="cmtt-10">oldint21h);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-28-142" name="x28-1400007.2">Real mode callbacks</a></h4> The callback mechanism can be thought of as the converse of calling a real
+mode procedure (i.e. interrupt), which allows your program to pass information to a real
+mode program, or obtain services from it in a manner that&#8217;s transparent to the real
+mode program. In order to make a real mode callback available, you must first get the
+real mode callback address of your procedure and the selector and offset of a register
+data structure. This real mode callback address (this is a segment:offset address) can
+be passed to a real mode program via a software interrupt, a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory block or
+any other convenient mechanism. When the real mode program calls the callback (via
+a far call), the DPMI host saves the registers contents in the supplied register data
+structure, switches into protected mode, and enters the callback routine with the following
+settings:
+     <ul class="itemize1">
+     <li class="itemize">interrupts disabled
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">%CS:%EIP </span>= 48 bit pointer specified in the original call to <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="unitsse18.htm#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">%DS:%ESI </span>= 48 bit pointer to to real mode <span 
+class="cmtt-10">SS:SP</span>
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">%ES:%EDI </span>= 48 bit pointer of real mode register data structure.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">%SS:%ESP </span>= locked protected mode stack
+     </li>
+     <li class="itemize">All other registers undefined</li></ul>
+<!--l. 224--><p class="noindent">The callback procedure can then extract its parameters from the real mode register data structure
+and/or copy parameters from the real mode stack to the protected mode stack. Recall that the
+segment register fields of the real mode register data structure contain segment or paragraph
+addresses that are not valid in protected mode. Far pointers passed in the real mode register data
+structure must be translated to virtual addresses before they can be used with a protected mode
+program. The callback procedure exits by executing an IRET with the address of the real mode
+register data structure in <span 
+class="cmtt-10">%ES:%EDI</span>, passing information back to the real mode caller by
+modifying the contents of the real mode register data structure and/or manipulating
+the contents of the real mode stack. The callback procedure is responsible for setting
+                                                                            
+
+                                                                            
+the proper address for resumption of real mode execution into the real mode register
+data structure; typically, this is accomplished by extracting the return address from the
+real mode stack and placing it into the <span 
+class="cmtt-10">%CS:%EIP </span>fields of the real mode register data
+structure. After the IRET, the DPMI host switches the CPU back into real mode, loads
+ALL registers with the contents of the real mode register data structure, and finally
+returns control to the real mode program. All variables and code touched by the callback
+procedure MUST be locked to prevent page faults. See also: <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="unitsse18.htm#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="unitsse18.htm#x30-1620007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="unitsse18.htm#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="unitsse18.htm#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>) <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse17.htm" >next</a>] [<a 
+href="unitsse15.htm" >prev</a>] [<a 
+href="unitsse15.htm#tailunitsse15.htm" >prev-tail</a>] [<a 
+href="unitsse16.htm" >front</a>] [<a 
+href="unitsch7.htm#unitsse16.htm" >up</a>] </p></div><a 
+  name="tailunitsse16.htm"></a>
+ 
+</body></html> 

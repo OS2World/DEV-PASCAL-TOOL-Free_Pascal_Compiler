@@ -1,0 +1,83 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.3.0 Virtual methods</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu19.htm" >next</a>] [<a 
+href="refsu17.htm" >prev</a>] [<a 
+href="refsu17.htm#tailrefsu17.htm" >prev-tail</a>] [<a 
+href="#tailrefsu18.htm">tail</a>] [<a 
+href="refse25.htm#refsu18.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-55-67" name="x55-610005.3">Virtual methods</a></h4> Classes have virtual methods, just as objects do. There is however a difference
+between the two. For objects, it is sufficient to redeclare the same method in a descendent object
+with the keyword <span 
+class="cmtt-10">virtual </span>to override it. For classes, the situation is different: virtual methods
+<span 
+class="cmti-10">must </span>be overridden with the <span 
+class="cmtt-10">override </span>keyword. Failing to do so, will start a <span 
+class="cmti-10">new </span>batch of virtual
+methods, hiding the previous one. The <span 
+class="cmtt-10">Inherited </span>keyword will not jump to the inherited method,
+if virtual was used.
+<!--l. 1975--><p class="noindent">The following code is <span 
+class="cmti-10">wrong</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;ObjParent&nbsp;=&nbsp;Class
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;MyProc;&nbsp;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ObjChild&nbsp;&nbsp;=&nbsp;Class(ObjPArent)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;MyProc;&nbsp;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The compiler will produce a warning:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Warning:&nbsp;An&nbsp;inherited&nbsp;method&nbsp;is&nbsp;hidden&nbsp;by&nbsp;OBJCHILD.MYPROC
+</pre>
+</td></tr></table>The compiler will compile it, but using <span 
+class="cmtt-10">Inherited </span>can produce strange effects.
+<!--l. 1991--><p class="noindent">The correct declaration is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;ObjParent&nbsp;=&nbsp;Class
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;MyProc;&nbsp;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ObjChild&nbsp;&nbsp;=&nbsp;Class(ObjPArent)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;MyProc;&nbsp;override;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>This will compile and run without warnings or errors.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu19.htm" >next</a>] [<a 
+href="refsu17.htm" >prev</a>] [<a 
+href="refsu17.htm#tailrefsu17.htm" >prev-tail</a>] [<a 
+href="refsu18.htm" >front</a>] [<a 
+href="refse25.htm#refsu18.htm" >up</a>] </p></div><a 
+  name="tailrefsu18.htm"></a>  
+</body></html> 

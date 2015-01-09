@@ -1,0 +1,88 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11 CGI programming in Free Pascal</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap1.htm" >next</a>] [<a 
+href="userch10.htm" >prev</a>] [<a 
+href="userch10.htm#tailuserch10.htm" >prev-tail</a>] [<a 
+href="#tailuserch11.htm">tail</a>] [<a 
+href="user.htm#userch11.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;11</span><br><a 
+href="user.htm#QQ2-73-211" name="x73-16000011">CGI programming in Free Pascal</a></h2>
+<!--l. 2562--><p class="noindent">In these days of heavy WWW traffic on the Internet, CGI scripts have become an important topic
+in computer programming. While CGI programming can be done with almost any tool you wish,
+most languages aren&#8217;t designed for it. Perl may be a notable exception, but perl is an
+interpreted language, the executable is quite big, and hence puts a big load on the server
+machine.
+<!--l. 2568--><p class="noindent">Because of its simple, almost intuitive, string handling and its easy syntax, Pascal is very well
+suited for CGI programming. Pascal allows you to quickly produce some results, while giving you
+all the tools you need for more complex programming. The basic RTL routines in principle are
+enough to get the job done, but you can create, with relatively little effort, some units which can
+be used as a base for more complex CGI programming.
+<!--l. 2575--><p class="noindent">That&#8217;s why, in this chapter, we will discuss the basics of CGI in Free Pascal. In the subsequent, we
+will assume that the server for which the programs are created, are based upon the NCSA
+<span 
+class="cmtt-10">httpd </span>WWW server, as the examples will be based upon the NCSA method of CGI
+programming<a 
+href="user74.htm" name="user74.htm" ><sup>1</sup></a>.
+They have been tested with the <span 
+class="cmss-10">apache </span>server on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and the <span 
+class="cmss-10">xitami </span>server on <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>
+<span 
+class="cmcsc-10">NT</span>.
+<!--l. 2583--><p class="noindent">The two example programs in this chapter have been tested on the command line and worked,
+under the condition that no spaces were present in the name and value pairs provided to
+them.
+<!--l. 2587--><p class="noindent">There is however, a faster and generally better <span 
+class="cmss-10">uncgi </span>unit available, you can find it on the
+contributed units page of the Free Pascal web site. It uses techniques discussed here, but in a
+generally more efficient way, and it also provides some extra functionality, not discussed
+here.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">11.1 <a 
+href="userse53.htm#x75-16100011.1" name="QQ2-75-212">Getting your data</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse53.htm#x75-16200011.1" name="QQ2-75-213">Data coming through standard input.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse53.htm#x75-16300011.1" name="QQ2-75-214">Data passed through an environment variable</a></span>
+<br>&nbsp;<span class="sectionToc">11.2 <a 
+href="userse54.htm#x77-16400011.2" name="QQ2-77-215">Producing output</a></span>
+<br>&nbsp;<span class="sectionToc">11.3 <a 
+href="userse55.htm#x78-16500011.3" name="QQ2-78-216">I&#8217;m under Windows, what now ?</a></span>
+</div>
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap1.htm" >next</a>] [<a 
+href="userch10.htm" >prev</a>] [<a 
+href="userch10.htm#tailuserch10.htm" >prev-tail</a>] [<a 
+href="userch11.htm" >front</a>] [<a 
+href="user.htm#userch11.htm" >up</a>] </p></div><a 
+  name="tailuserch11.htm"></a>  
+</body></html> 

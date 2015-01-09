@@ -1,0 +1,89 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.2.0 $APPTYPE : Specify type of application (Win32 and AmigaOS only)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu52.htm" >next</a>] [<a 
+href="#tailprogsu51.htm">tail</a>] [<a 
+href="progse3.htm#progsu51.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-59-58" name="x59-570001.2"><span 
+class="cmtt-10">$APPTYPE </span>: Specify type of application (Win32 and AmigaOS only)</a></h4>
+<!--l. 1032--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$APPTYPE XXX</span><span 
+class="cmsy-10">} </span>accepts one argument that can have two possible values: <span 
+class="cmtt-10">GUI </span>or <span 
+class="cmtt-10">CONSOLE</span>. It
+is used to tell the <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>Operating system if an application is a console application or a
+graphical application. By default, a program compiled by Free Pascal is a console application.
+Running it will display a console window. Specifying the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$APPTYPE GUI</span><span 
+class="cmsy-10">} </span>directive will mark the
+application as a graphical application; no console window will be opened when the application is
+run. If run from the command-line, the command prompt will be returned immediatly after the
+                                                                            
+
+                                                                            
+application was started.
+<!--l. 1042--><p class="noindent">Care should be taken when compiling <span 
+class="cmtt-10">GUI </span>applications; the <span 
+class="cmtt-10">Input </span>and <span 
+class="cmtt-10">Output </span>files are not
+available in a GUI application, and attempting to read from or write to them will result in a
+run-time error.
+<!--l. 1046--><p class="noindent">It is possible to determine the application type of a <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>or <span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small> </span>application
+at runtime. The <span 
+class="cmtt-10">IsConsole </span>constant, declared in the Win32 and Amiga system units
+as
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;IsConsole&nbsp;:&nbsp;Boolean
+</pre>
+</td></tr></table>contains <span 
+class="cmtt-10">True </span>if the application is a console application, <span 
+class="cmtt-10">False </span>if the application is a GUI
+application.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu52.htm" >next</a>] [<a 
+href="progsu51.htm" >front</a>] [<a 
+href="progse3.htm#progsu51.htm" >up</a>] </p></div><a 
+  name="tailprogsu51.htm"></a>  
+</body></html> 

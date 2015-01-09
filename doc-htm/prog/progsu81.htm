@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.2.0 Modifying the mangled names</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu80.htm" >prev</a>] [<a 
+href="progsu80.htm#tailprogsu80.htm" >prev-tail</a>] [<a 
+href="#tailprogsu81.htm">tail</a>] [<a 
+href="progse18.htm#progsu81.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-114-115" name="x114-1110006.2">Modifying the mangled names</a></h4>
+<!--l. 2506--><p class="noindent">To make the symbols externally accessible, it is possible to give nicknames to mangled names, or to
+change the mangled name directly. Two modifiers can be used:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">cdecl:</span>&nbsp; </dt><dd 
+class="description">A function that has a <span 
+class="cmtt-10">cdecl </span>modifier, will be used with C calling conventions, that
+     is, the caller clears the stack. Also the mangled name will be the name <span 
+class="cmti-10">exactly </span>as it is
+     declared. <span 
+class="cmtt-10">cdecl </span>is part of the function declaration, and hence must be present both in
+     the interface and implementation section of a unit.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">alias:</span>  </dt><dd 
+class="description">The <span 
+class="cmtt-10">alias </span>modifier can be used to assign a second assembler label to your function.
+     This label has the same name as the alias name you declared. This doesn&#8217;t modify the
+     calling conventions of the function. In other words, the <span 
+class="cmtt-10">alias </span>modifier allows you to
+     specify another name (a nickname) for your function or procedure.
+     <!--l. 2523--><p class="noindent">The prototype for an aliased function or procedure is as follows:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;AliasedProc;&nbsp;alias&nbsp;:&nbsp;'AliasName';
+</pre>
+     </td></tr></table>The procedure <span 
+class="cmtt-10">AliasedProc </span>will also be known as <span 
+class="cmtt-10">AliasName</span>. Take care, the name you
+     specify is case sensitive (as C is).
+     </dd></dl>
+<!--l. 2532--><p class="noindent">Furthermore, the <span 
+class="cmtt-10">exports </span>section of a library is also used to declare the names that will be
+exported by the shared library. The names in the exports section are case-sensitive (while the
+actual declaration of the routine is not). For more information on the creating shared libraries,
+chapter <a 
+href="progch11.htm#x197-19900011">11<!--tex4ht:ref: ch:libraries--></a>, page <a 
+href="progch11.htm#x197-19900011">436<!--tex4ht:ref: ch:libraries--></a>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu80.htm" >prev</a>] [<a 
+href="progsu80.htm#tailprogsu80.htm" >prev-tail</a>] [<a 
+href="progsu81.htm" >front</a>] [<a 
+href="progse18.htm#progsu81.htm" >up</a>] </p></div><a 
+  name="tailprogsu81.htm"></a>  
+</body></html> 

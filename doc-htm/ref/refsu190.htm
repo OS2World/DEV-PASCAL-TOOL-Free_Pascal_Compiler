@@ -1,0 +1,69 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.2.0 Getmem</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu191.htm" >next</a>] [<a 
+href="refsu189.htm" >prev</a>] [<a 
+href="refsu189.htm#tailrefsu189.htm" >prev-tail</a>] [<a 
+href="#tailrefsu190.htm">tail</a>] [<a 
+href="refse66.htm#refsu190.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-278-299" name="x278-28400014.2">Getmem</a></h4><a 
+  name="dx278-284001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Getmem(Var P:pointer;Size:Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMem </span>reserves <span 
+class="cmtt-10">Size </span>bytes of memory on the heap and returns a pointer to it in <span 
+class="cmtt-10">P</span>. <span 
+class="cmtt-10">Size</span>
+is stored at offset -4 of the result, and is used to release the memory again. <span 
+class="cmtt-10">P </span>can be a typed
+or untyped pointer.
+<!--l. 7437--><p class="noindent">Be sure to release this memory with the <span 
+class="cmss-10">FreeMem </span>(<a 
+href="refsu189.htm#x277-28300014.2">600<!--tex4ht:ref: se:exceptclasses--></a>) call defined in the <span 
+class="cmss-10">objpas </span>unit.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case no more memory is available, and no more memory could be obtained from the
+system a run-time error is triggered.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FreeMem </span>(<a 
+href="refsu189.htm#x277-28300014.2">600<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Getmem </span>(<a 
+href="refsu110.htm#x195-20100013.3">506<!--tex4ht:ref: se:exceptclasses--></a>).</dd></dl>
+<!--l. 7446--><p class="noindent">For an example, see <span 
+class="cmss-10">FreeMem </span>(<a 
+href="refsu189.htm#x277-28300014.2">600<!--tex4ht:ref: se:exceptclasses--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu191.htm" >next</a>] [<a 
+href="refsu189.htm" >prev</a>] [<a 
+href="refsu189.htm#tailrefsu189.htm" >prev-tail</a>] [<a 
+href="refsu190.htm" >front</a>] [<a 
+href="refse66.htm#refsu190.htm" >up</a>] </p></div><a 
+  name="tailrefsu190.htm"></a>  
+</body></html> 

@@ -1,0 +1,11 @@
+[package]
+name=fcl
+version=1.0.6
+[require]
+packages=rtl paszlib
+packages_linux=netdb libasync pthreads
+packages_win32=netdb
+packages_os2_i386=netdb libasync
+packages_openbsd=netdb libasync
+packages_freebsd=netdb libasync
+packages_netbsd=netdb libasync

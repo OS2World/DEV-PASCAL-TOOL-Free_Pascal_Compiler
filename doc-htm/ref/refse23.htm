@@ -1,0 +1,114 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.1 Class definitions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse24.htm" >next</a>] [<a 
+href="#tailrefse23.htm">tail</a>] [<a 
+href="refch5.htm#refse23.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.1</span> <a 
+href="ref.htm#QQ2-51-63" name="x51-570005.1">Class definitions</a></h3>
+<!--l. 1895--><p class="noindent">The prototype declaration of a class is as follows :
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Class types</span>
+     <BR/>
+     <img 
+src="ref61x.png" alt="-------------class----------------------------------end-----------
+   -packed -|       heritage-|------component list----|
+                             -class visibility specifier
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref62x.png" alt="--       -  -               -  ----------------------------------
+   heritage  ( class type identifier )
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref63x.png" alt="-- component list-|-----------------|------------------------------
+                --field-definition---  ----method definition-----
+                                   --property definition--|
+                                                                            
+
+                                                                            
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref64x.png" alt="-- field definition-identifier list-:-type -;------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref65x.png" alt="-- method definition-------------function header-----;--
+                  |-class -| -procedure header| |
+                  ------constructor header------|
+                  ------desctuctor header------|
+----------------------------------------------------------------
+  -----virtual -|----------------; -| -call modifiers ;-|
+    |         -; -abstract--   |
+    |--------override----------|
+    -message --|integer constant---
+              -string constant-
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref66x.png" alt="-- class visibility specifier-|- private------------------------------------
+                     |protected -|
+                     |--public---|
+                     - published--|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1897--><p class="noindent">As many <span 
+class="cmtt-10">private</span>, <span 
+class="cmtt-10">protected</span>, <span 
+class="cmtt-10">published </span>and <span 
+class="cmtt-10">public </span>blocks as needed can be repeated. Methods
+are normal function or procedure declarations. As can be seen, the declaration of a class is almost
+identical to the declaration of an object. The real difference between objects and classes is in the
+way they are created (see further in this chapter). The visibility of the different sections is as
+follows:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Private</span>&nbsp; </dt><dd 
+class="description">All fields and methods that are in a <span 
+class="cmtt-10">private </span>block, can only be accessed in the
+     module (i.e. unit) that contains the class definition. They can be accessed from inside
+     the classes&#8217; methods or from outside them (e.g. from other classes&#8217; methods)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Protected</span>&nbsp; </dt><dd 
+class="description">Is the same as <span 
+class="cmtt-10">Private</span>, except that the members of a <span 
+class="cmtt-10">Protected </span>section are
+     also accessible to descendent types, even if they are implemented in other modules.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Public</span>&nbsp; </dt><dd 
+class="description">sections are always accessible.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Published</span>&nbsp; </dt><dd 
+class="description">Is the same as a <span 
+class="cmtt-10">Public </span>section, but the compiler generates also type information
+     that is needed for automatic streaming of these classes. Fields defined in a <span 
+class="cmtt-10">published</span>
+     section must be of class type. Array peroperties cannot be in a <span 
+class="cmtt-10">published </span>section.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse24.htm" >next</a>] [<a 
+href="refse23.htm" >front</a>] [<a 
+href="refch5.htm#refse23.htm" >up</a>] </p></div><a 
+  name="tailrefse23.htm"></a>  
+</body></html> 

@@ -1,0 +1,79 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $I or $IOCHECKS : Input/Output checking</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu22.htm" >next</a>] [<a 
+href="progsu20.htm" >prev</a>] [<a 
+href="progsu20.htm#tailprogsu20.htm" >prev-tail</a>] [<a 
+href="#tailprogsu21.htm">tail</a>] [<a 
+href="progse2.htm#progsu21.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-28-26" name="x28-260001.1"><span 
+class="cmtt-10">$I </span>or <span 
+class="cmtt-10">$IOCHECKS </span>: Input/Output checking</a></h4>
+<!--l. 424--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I-</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$IOCHECKS OFF</span><span 
+class="cmsy-10">} </span>directive tells the compiler not to generate input/output checking
+code in the program. By default, the compiler does not generate this code, it must be switched on
+using the <span 
+class="cmtt-10">-Ci </span>command-line switch.
+<!--l. 429--><p class="noindent">When compiling using the <span 
+class="cmtt-10">-Ci </span>compiler switch, the Free Pascal compiler inserts input/output
+checking code after every input/output call in the code. If an error occurred during
+input or output, then a run-time error will be generated. Use this switch to avoid this
+behaviour.
+<!--l. 434--><p class="noindent">To check if something went wrong, the <span 
+class="cmtt-10">IOResult </span>function can be used to see if everything went
+without problems.
+<!--l. 437--><p class="noindent">Conversely, <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I+</span><span 
+class="cmsy-10">} </span>will turn error-checking back on, until another directive is encountered which
+turns it off again.
+<!--l. 440--><p class="noindent">The most common use for this switch is to check if the opening of a file went without problems, as
+in the following piece of code:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;assign&nbsp;(f,'file.txt');
+&nbsp;{$I-}
+&nbsp;rewrite&nbsp;(f);
+&nbsp;{$I+}
+&nbsp;if&nbsp;IOResult&lt;&gt;0&nbsp;then
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Error&nbsp;opening&nbsp;file:&nbsp;&#34;file.txt&#34;');
+&nbsp;&nbsp;&nbsp;exit
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>See the <span 
+class="cmtt-10">IOResult </span>function explanation in <a 
+href="file:../ref/ref.htm" >Reference guide</a> for a detailed description of the possible
+errors that can occur when using input/output checking.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu22.htm" >next</a>] [<a 
+href="progsu20.htm" >prev</a>] [<a 
+href="progsu20.htm#tailprogsu20.htm" >prev-tail</a>] [<a 
+href="progsu21.htm" >front</a>] [<a 
+href="progse2.htm#progsu21.htm" >up</a>] </p></div><a 
+  name="tailprogsu21.htm"></a>  
+</body></html> 

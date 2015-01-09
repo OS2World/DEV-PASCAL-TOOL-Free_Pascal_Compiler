@@ -1,0 +1,195 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>F.4.0 Compiling the compiler</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu155.htm" >prev</a>] [<a 
+href="progsu155.htm#tailprogsu155.htm" >prev-tail</a>] [<a 
+href="#tailprogsu156.htm">tail</a>] [<a 
+href="progse76.htm#progsu156.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-265-293" name="x265-266000F.4">Compiling the compiler</a></h4>
+<!--l. 6646--><p class="noindent">Compiling the compiler can be done with one statement. It&#8217;s always best to remove all units from
+the compiler directory first, so something like
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;rm&nbsp;*.ppu&nbsp;*.o
+</pre>
+</td></tr></table>on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and on <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;del&nbsp;*.ppu
+&nbsp;del&nbsp;*.o
+</pre>
+</td></tr></table>After this, the compiler can be compiled with the following command-line:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;-Tlinux&nbsp;&nbsp;-Fu../rtl/linux&nbsp;-di386&nbsp;-dGDB&nbsp;pp.pas
+</pre>
+</td></tr></table>So, the minimum options are:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x265-266002x1"></a>The target OS. Can be skipped when compiling for the same target as the compiler
+     which is being used.
+     </li>
+     <li class="enumerate"><a 
+  name="x265-266004x2"></a>A path to an RTL. Can be skipped if a correct fpc.cfg configuration is on the system.
+     If the compiler should be compiled with the RTL that was compiled first, this should
+     be <span 
+class="cmss-10">../rtl/OS </span>(replace the OS with the appropriate operating system subdirectory of the
+     RTL).
+     </li>
+     <li class="enumerate"><a 
+  name="x265-266006x3"></a>A define with the processor for which the compiler is compiled for. Required.
+     </li>
+     <li class="enumerate"><a 
+  name="x265-266008x4"></a><span 
+class="cmtt-10">-dGDB</span>. Required.
+     </li>
+     <li class="enumerate"><a 
+  name="x265-266010x5"></a><span 
+class="cmtt-10">-Sg </span>is needed, some parts of the compiler use <span 
+class="cmtt-10">goto </span>statements (to be specific: the
+     scanner).</li></ol>
+<!--l. 6673--><p class="noindent">So the absolute minimal command line is
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;-di386&nbsp;-dGDB&nbsp;-Sg&nbsp;pp.pas
+</pre>
+</td></tr></table>
+<!--l. 6678--><p class="noindent">Some other command-line options can be used, but the above are the minimum. A list of
+recognised options can be found in table (<a 
+href="#x265-2660111">F.1<!--tex4ht:ref: tab:FPCdefines--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x265-2660111"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;F.1: </td><td  
+class="content">Possible defines when compiling FPC</td></tr></table></div><!--tex4ht:label?: x265-2660111-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-26-" ><colgroup id="TBL-26-1g"><col 
+id="TBL-26-1"><col 
+id="TBL-26-2"></colgroup><tr  
+valign="baseline" id="TBL-26-1-"><td  align="left" nowrap="nowrap" id="TBL-26-1-1"  
+class="td11"> Define                  </td><td  align="left" nowrap="nowrap" id="TBL-26-1-2"  
+class="td11"> does what                                                                     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-26-2-"><td  align="left" nowrap="nowrap" id="TBL-26-2-1"  
+class="td11"> TP                      </td><td  align="left" nowrap="nowrap" id="TBL-26-2-2"  
+class="td11"> Needed to compile the compiler with Turbo or Borland Pascal.</td>
+</tr><tr  
+valign="baseline" id="TBL-26-3-"><td  align="left" nowrap="nowrap" id="TBL-26-3-1"  
+class="td11"> GDB                    </td><td  align="left" nowrap="nowrap" id="TBL-26-3-2"  
+class="td11"> Support of the GNU Debugger (required switch).                  </td>
+</tr><tr  
+valign="baseline" id="TBL-26-4-"><td  align="left" nowrap="nowrap" id="TBL-26-4-1"  
+class="td11"> I386                     </td><td  align="left" nowrap="nowrap" id="TBL-26-4-2"  
+class="td11"> Generate a compiler for the Intel i386+ processor family.        </td>
+</tr><tr  
+valign="baseline" id="TBL-26-5-"><td  align="left" nowrap="nowrap" id="TBL-26-5-1"  
+class="td11"> M68K                   </td><td  align="left" nowrap="nowrap" id="TBL-26-5-2"  
+class="td11"> Generate a compiler for the M680x0 processor family.            </td>
+</tr><tr  
+valign="baseline" id="TBL-26-6-"><td  align="left" nowrap="nowrap" id="TBL-26-6-1"  
+class="td11"> EXTDEBUG         </td><td  align="left" nowrap="nowrap" id="TBL-26-6-2"  
+class="td11"> Some extra debug code is executed.                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-26-7-"><td  align="left" nowrap="nowrap" id="TBL-26-7-1"  
+class="td11"> MEMDEBUG        </td><td  align="left" nowrap="nowrap" id="TBL-26-7-2"  
+class="td11"> Some memory usage information is displayed.                       </td>
+</tr><tr  
+valign="baseline" id="TBL-26-8-"><td  align="left" nowrap="nowrap" id="TBL-26-8-1"  
+class="td11"> SUPPORT_MMX   </td><td  align="left" nowrap="nowrap" id="TBL-26-8-2"  
+class="td11"> only i386: enables the compiler switch <span 
+class="cmtt-10">MMX </span>which                   </td>
+</tr><tr  
+valign="baseline" id="TBL-26-9-"><td  align="left" nowrap="nowrap" id="TBL-26-9-1"  
+class="td11">                            </td><td  align="left" nowrap="nowrap" id="TBL-26-9-2"  
+class="td11"> allows the compiler to generate MMX instructions.                </td>
+</tr><tr  
+valign="baseline" id="TBL-26-10-"><td  align="left" nowrap="nowrap" id="TBL-26-10-1"  
+class="td11"> EXTERN_MSG      </td><td  align="left" nowrap="nowrap" id="TBL-26-10-2"  
+class="td11"> Don&#8217;t compile the msgfiles in the compiler, always use           </td>
+</tr><tr  
+valign="baseline" id="TBL-26-11-"><td  align="left" nowrap="nowrap" id="TBL-26-11-1"  
+class="td11">                            </td><td  align="left" nowrap="nowrap" id="TBL-26-11-2"  
+class="td11"> external messagefiles (default for TP).                                 </td>
+</tr><tr  
+valign="baseline" id="TBL-26-12-"><td  align="left" nowrap="nowrap" id="TBL-26-12-1"  
+class="td11"> LOGSECONDPASS</td><td  align="left" nowrap="nowrap" id="TBL-26-12-2"  
+class="td11"> Write compiler node information in assembler output.            </td>
+</tr><tr  
+valign="baseline" id="TBL-26-13-"><td  align="left" nowrap="nowrap" id="TBL-26-13-1"  
+class="td11"> NOOPT                </td><td  align="left" nowrap="nowrap" id="TBL-26-13-2"  
+class="td11"> Do not include the optimizer in the compiler.                       </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-26-14-"><td  align="left" nowrap="nowrap" id="TBL-26-14-1"  
+class="td11">                            </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+This list may be subject to change, the source file <span 
+class="cmss-10">pp.pas </span>always contains an up-to-date
+list.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu155.htm" >prev</a>] [<a 
+href="progsu155.htm#tailprogsu155.htm" >prev-tail</a>] [<a 
+href="progsu156.htm" >front</a>] [<a 
+href="progse76.htm#progsu156.htm" >up</a>] </p></div><a 
+  name="tailprogsu156.htm"></a>  
+</body></html> 

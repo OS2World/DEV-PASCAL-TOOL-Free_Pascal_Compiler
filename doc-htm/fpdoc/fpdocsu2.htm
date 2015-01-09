@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2.0 descr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu3.htm" >next</a>] [<a 
+href="fpdocsu1.htm" >prev</a>] [<a 
+href="fpdocsu1.htm#tailfpdocsu1.htm" >prev-tail</a>] [<a 
+href="#tailfpdocsu2.htm">tail</a>] [<a 
+href="fpdocse7.htm#fpdocsu2.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="fpdoc.htm#QQ2-14-13" name="x14-130003.2">descr</a></h4> This option specifies the name of a description file that contains the actual documentation
+for the unit. This option can be given several times, for several description files. The file will be
+searched relative to the current directory. No extension is added to the file, it should be a complete
+filename.
+<!--l. 305--><p class="noindent">If the filename starts with an &#8217;at&#8217; sign <span 
+class="cmtt-10">@</span>, then it is interpreted as a text file which contains a list
+of filenames, one per line. Each of these files will be added to the list of description
+files.
+<!--l. 309--><p class="noindent">The nodes in the description files will be merged into one big tree. This means that the
+documentation can be divided over multiple files. When merging the description files, nodes that
+occur twice will end up only once in the big node tree: the last node will always be the node that
+ends up in the parse tree. This means that the order of the various input commands or the
+ordering of the files in the file list is important.
+<!--l. 316--><p class="noindent">Examples:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;--descr=crt.xml
+</pre>
+</td></tr></table>will tell <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>to read documentation from <span 
+class="cmss-10">crt.xml</span>, while
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;--descr=@fcl.lst
+</pre>
+</td></tr></table>will tell <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>to read filenames from <span 
+class="cmss-10">fcl.lst</span>; each of the filenames found in it will be added to the
+list of files to be scanned for descriptions.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu3.htm" >next</a>] [<a 
+href="fpdocsu1.htm" >prev</a>] [<a 
+href="fpdocsu1.htm#tailfpdocsu1.htm" >prev-tail</a>] [<a 
+href="fpdocsu2.htm" >front</a>] [<a 
+href="fpdocse7.htm#fpdocsu2.htm" >up</a>] </p></div><a 
+  name="tailfpdocsu2.htm"></a>  
+</body></html> 

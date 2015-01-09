@@ -1,0 +1,209 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7 The GO32 unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch8.htm" >next</a>] [<a 
+href="unitsch6.htm" >prev</a>] [<a 
+href="unitsch6.htm#tailunitsch6.htm" >prev-tail</a>] [<a 
+href="#tailunitsch7.htm">tail</a>] [<a 
+href="units.htm#unitsch7.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;7</span><br><a 
+href="units.htm#QQ2-26-126" name="x26-1240007">The GO32 unit</a></h2>
+<!--l. 5--><p class="noindent">This chapter of the documentation describe the GO32 unit for the Free Pascal compiler under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>.
+It was donated by Thomas Schatzl (tom__at__work@geocities.com), for which my thanks. This unit
+was first written for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>by Florian Kl&#8221;ampfl. This chapter is divided in four sections. The first
+two sections are an introduction to the GO32 unit. The third section lists the pre-defined
+constants, types and variables. The last section describes the functions which appear in the
+interface part of the GO32 unit.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">7.1 <a 
+href="unitsse15.htm#x27-1250007.1" name="QQ2-27-127">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">7.2 <a 
+href="unitsse16.htm#x28-1260007.2" name="QQ2-28-128">Protected mode memory organization</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1270007.2" name="QQ2-28-129">What is DPMI</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1280007.2" name="QQ2-28-130">Selectors and descriptors</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1290007.2" name="QQ2-28-131">FPC specialities</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1300007.2" name="QQ2-28-132">dos memory access</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1310007.2" name="QQ2-28-133">I/O port access</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1320007.2" name="QQ2-28-134">Processor access</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1330007.2" name="QQ2-28-135">Interrupt redirection</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1340007.2" name="QQ2-28-136">Handling interrupts with DPMI</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1350007.2" name="QQ2-28-137">Protected mode interrupts vs. Real mode interrupts</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1360007.2" name="QQ2-28-138">Creating own interrupt handlers</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1370007.2" name="QQ2-28-139">Disabling interrupts</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1380007.2" name="QQ2-28-140">Hardware interrupts</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1390007.2" name="QQ2-28-141">Software interrupts</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse16.htm#x28-1400007.2" name="QQ2-28-142">Real mode callbacks</a></span>
+<br>&nbsp;<span class="sectionToc">7.3 <a 
+href="unitsse17.htm#x29-1410007.3" name="QQ2-29-143">Types, Variables and Constants</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse17.htm#x29-1420007.3" name="QQ2-29-144">Constants</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse17.htm#x29-1450007.3" name="QQ2-29-147">Predefined types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse17.htm#x29-1460007.3" name="QQ2-29-149">Variables.</a></span>
+<br>&nbsp;<span class="sectionToc">7.4 <a 
+href="unitsse18.htm#x30-1470007.4" name="QQ2-30-150">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1480007.4" name="QQ2-30-151">allocate____ldt____descriptors</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1490007.4" name="QQ2-30-152">allocate____memory____block</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1500007.4" name="QQ2-30-153">copyfromdos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1510007.4" name="QQ2-30-154">copytodos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1520007.4" name="QQ2-30-155">create____code____segment____alias____descriptor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1530007.4" name="QQ2-30-156">disable</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1540007.4" name="QQ2-30-157">dosmemfillchar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1550007.4" name="QQ2-30-158">dosmemfillword</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1560007.4" name="QQ2-30-159">dosmemget</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1570007.4" name="QQ2-30-160">dosmemmove</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1580007.4" name="QQ2-30-161">dosmemput</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1590007.4" name="QQ2-30-162">enable</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1600007.4" name="QQ2-30-163">free____ldt____descriptor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1610007.4" name="QQ2-30-164">free____memory____block</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1620007.4" name="QQ2-30-165">free____rm____callback</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1630007.4" name="QQ2-30-166">get____cs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1640007.4" name="QQ2-30-167">get____descriptor____access____rights</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1650007.4" name="QQ2-30-168">get____ds</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1660007.4" name="QQ2-30-169">get____linear____addr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1670007.4" name="QQ2-30-170">get____meminfo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1680007.4" name="QQ2-30-171">get____next____selector____increment____value</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1690007.4" name="QQ2-30-172">get____page____size</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1700007.4" name="QQ2-30-173">get____pm____interrupt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1710007.4" name="QQ2-30-174">get____rm____callback</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1720007.4" name="QQ2-30-175">get____rm____interrupt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1730007.4" name="QQ2-30-176">get____run____mode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1740007.4" name="QQ2-30-177">get____segment____base____address</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1750007.4" name="QQ2-30-178">get____segment____limit</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1760007.4" name="QQ2-30-179">get____ss</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1770007.4" name="QQ2-30-180">global____dos____alloc</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1780007.4" name="QQ2-30-181">global____dos____free</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1790007.4" name="QQ2-30-182">inportb</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1800007.4" name="QQ2-30-183">inportl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1810007.4" name="QQ2-30-184">inportw</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1820007.4" name="QQ2-30-185">lock____code</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1830007.4" name="QQ2-30-186">lock____data</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1840007.4" name="QQ2-30-187">lock____linear____region</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1850007.4" name="QQ2-30-188">outportb</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1860007.4" name="QQ2-30-189">outportl</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1870007.4" name="QQ2-30-190">outportw</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1880007.4" name="QQ2-30-191">realintr</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1890007.4" name="QQ2-30-192">seg____fillchar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1900007.4" name="QQ2-30-193">seg____fillword</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1910007.4" name="QQ2-30-194">segment____to____descriptor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1920007.4" name="QQ2-30-195">seg____move</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1930007.4" name="QQ2-30-196">set____descriptor____access____rights</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1940007.4" name="QQ2-30-197">set____pm____interrupt</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1950007.4" name="QQ2-30-198">set____rm____interrupt</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1960007.4" name="QQ2-30-199">set____segment____base____address</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1970007.4" name="QQ2-30-200">set____segment____limit</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1980007.4" name="QQ2-30-201">tb____size</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-1990007.4" name="QQ2-30-202">transfer____buffer</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-2000007.4" name="QQ2-30-203">unlock____code</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-2010007.4" name="QQ2-30-204">unlock____data</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse18.htm#x30-2020007.4" name="QQ2-30-205">unlock____linear____region</a></span>
+</div>
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch8.htm" >next</a>] [<a 
+href="unitsch6.htm" >prev</a>] [<a 
+href="unitsch6.htm#tailunitsch6.htm" >prev-tail</a>] [<a 
+href="unitsch7.htm" >front</a>] [<a 
+href="units.htm#unitsch7.htm" >up</a>] </p></div><a 
+  name="tailunitsch7.htm"></a>  
+</body></html> 

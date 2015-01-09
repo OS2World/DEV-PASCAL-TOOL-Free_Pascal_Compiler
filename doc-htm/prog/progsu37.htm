@@ -1,0 +1,64 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $PACKRECORDS : Alignment of record elements</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu38.htm" >next</a>] [<a 
+href="progsu36.htm" >prev</a>] [<a 
+href="progsu36.htm#tailprogsu36.htm" >prev-tail</a>] [<a 
+href="#tailprogsu37.htm">tail</a>] [<a 
+href="progse2.htm#progsu37.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-44-43" name="x44-420001.1"><span 
+class="cmtt-10">$PACKRECORDS </span>: Alignment of record elements</a></h4>
+<!--l. 814--><p class="noindent">This directive controls the byte alignment of the elements in a record, object or class type
+definition.
+<!--l. 817--><p class="noindent">It is of the following form:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$PACKRECORDS&nbsp;n}
+</pre>
+</td></tr></table>
+<!--l. 822--><p class="noindent">Where <span 
+class="cmtt-10">n </span>is one of 1, 2, 4, 16, <span 
+class="cmtt-10">C</span>, <span 
+class="cmtt-10">NORMAL </span>or <span 
+class="cmtt-10">DEFAULT</span>. This means that the elements of a record that
+have size greater than <span 
+class="cmtt-10">n </span>will be aligned on <span 
+class="cmtt-10">n </span>byte boundaries. Elements with size less
+than or equal to <span 
+class="cmtt-10">n </span>will be aligned to a natural boundary, i.e. to a power of two that
+is equal to or larger than the element&#8217;s size. The type <span 
+class="cmtt-10">C </span>is used to specify alignment
+as by the GNU CC compiler. It should be used only when making import units for C
+routines.
+<!--l. 830--><p class="noindent">The default alignment (which can be selected with <span 
+class="cmtt-10">DEFAULT</span>) is 2, contrary to Turbo Pascal, where
+it is 1.
+<!--l. 833--><p class="noindent">More information on this and an example program can be found in the reference guide, in the
+section about record types.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu38.htm" >next</a>] [<a 
+href="progsu36.htm" >prev</a>] [<a 
+href="progsu36.htm#tailprogsu36.htm" >prev-tail</a>] [<a 
+href="progsu37.htm" >front</a>] [<a 
+href="progse2.htm#progsu37.htm" >up</a>] </p></div><a 
+  name="tailprogsu37.htm"></a>  
+</body></html> 

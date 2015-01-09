@@ -1,0 +1,130 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.3 Turbo Pascal compatibility mode</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse37.htm" >next</a>] [<a 
+href="userse35.htm" >prev</a>] [<a 
+href="userse35.htm#tailuserse35.htm" >prev-tail</a>] [<a 
+href="#tailuserse36.htm">tail</a>] [<a 
+href="userch7.htm#userse36.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.3</span> <a 
+href="user.htm#QQ2-52-181" name="x52-1320007.3">Turbo Pascal compatibility mode</a></h3>
+<!--l. 1633--><p class="noindent">When you compile a program with the <span 
+class="cmtt-10">-So </span>switch, the compiler will attempt to mimic the Turbo
+Pascal compiler in the following ways:
+     <ul class="itemize1">
+     <li class="itemize">Assigning a procedural variable doesn&#8217;t require a @ operator. One of the differences
+     between Turbo Pascal and Free Pascal is that the latter requires you to specify an
+     address operator when assigning a value to a procedural variable. In Turbo Pascal
+     compatibility mode, this is not required.
+     </li>
+     <li class="itemize">Procedure overloading is disabled. If procedure overloading is disabled, the function
+     header doesn&#8217;t need to repeat the function header.
+     </li>
+     <li class="itemize">Forward defined procedures don&#8217;t need the full parameter list when they are defined. Due to
+     the procedure overloading feature of Free Pascal, you must always specify the parameter list
+     of a function when you define it, even when it was declared earlier with <span 
+class="cmtt-10">Forward</span>. In Turbo
+     Pascal compatibility mode, there is no function overloading, hence you can omit the
+     parameter list:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Procedure&nbsp;a&nbsp;(L&nbsp;:&nbsp;Longint);&nbsp;Forward;
+     &nbsp;
+     &nbsp;...
+     &nbsp;
+     &nbsp;Procedure&nbsp;a&nbsp;;&nbsp;{&nbsp;No&nbsp;need&nbsp;to&nbsp;repeat&nbsp;the&nbsp;(L&nbsp;:&nbsp;Longint)&nbsp;}
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;...
+     &nbsp;end;
+     &nbsp;
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">recursive function calls are handled differently. Consider the following example
+     :
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Function&nbsp;expr&nbsp;:&nbsp;Longint;
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;...
+     &nbsp;&nbsp;&nbsp;Expr:=L:
+     &nbsp;&nbsp;&nbsp;Writeln&nbsp;(Expr);
+     &nbsp;&nbsp;&nbsp;...
+     &nbsp;end;
+</pre>
+     </td></tr></table>In Turbo Pascal compatibility mode, the function will be called recursively when the <span 
+class="cmtt-10">writeln</span>
+     statement is processed. In Free Pascal, the function result will be printed. In order to call
+     the function recusively under Free Pascal, you need to implement it as follows
+     :
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Function&nbsp;expr&nbsp;:&nbsp;Longint;
+     &nbsp;
+     &nbsp;begin
+     &nbsp;&nbsp;&nbsp;...
+     &nbsp;&nbsp;&nbsp;Expr:=L:
+     &nbsp;&nbsp;&nbsp;Writeln&nbsp;(Expr());
+     &nbsp;&nbsp;&nbsp;...
+     &nbsp;end;
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Any text after the final <span 
+class="cmtt-10">End. </span>statement is ignored. Normally, this text is processed
+     too.
+     </li>
+     <li class="itemize">You cannot assign procedural variables to untyped pointers; so the following is
+     invalid:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;a:&nbsp;Procedure;
+     &nbsp;&nbsp;b:&nbsp;Pointer;
+     &nbsp;begin
+     &nbsp;&nbsp;b&nbsp;:=&nbsp;a;&nbsp;//&nbsp;Error&nbsp;will&nbsp;be&nbsp;generated.
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">The @ operator is typed when applied on procedures.
+     </li>
+     <li class="itemize">You cannot nest comments.</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse37.htm" >next</a>] [<a 
+href="userse35.htm" >prev</a>] [<a 
+href="userse35.htm#tailuserse35.htm" >prev-tail</a>] [<a 
+href="userse36.htm" >front</a>] [<a 
+href="userch7.htm#userse36.htm" >up</a>] </p></div><a 
+  name="tailuserse36.htm"></a>  
+</body></html> 

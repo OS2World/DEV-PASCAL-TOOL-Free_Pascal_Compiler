@@ -1,0 +1,265 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.3 Types, Variables and Constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse18.htm" >next</a>] [<a 
+href="unitsse16.htm" >prev</a>] [<a 
+href="unitsse16.htm#tailunitsse16.htm" >prev-tail</a>] [<a 
+href="#tailunitsse17.htm">tail</a>] [<a 
+href="unitsch7.htm#unitsse17.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.3</span> <a 
+href="units.htm#QQ2-29-143" name="x29-1410007.3">Types, Variables and Constants</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-29-144" name="x29-1420007.3">Constants</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="#x29-1430007.3" name="x29-1430007.3">Constants returned by get__run__mode</a></h5> Tells you under what memory environment (e.g. memory
+manager) the program currently runs.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;rm_unknown&nbsp;=&nbsp;0;&nbsp;{&nbsp;unknown&nbsp;}
+&nbsp;rm_raw&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;&nbsp;{&nbsp;raw&nbsp;(without&nbsp;HIMEM)&nbsp;}
+&nbsp;rm_xms&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;&nbsp;{&nbsp;XMS&nbsp;(for&nbsp;example&nbsp;with&nbsp;HIMEM,&nbsp;without&nbsp;EMM386)&nbsp;}
+&nbsp;rm_vcpi&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3;&nbsp;{&nbsp;VCPI&nbsp;(for&nbsp;example&nbsp;HIMEM&nbsp;and&nbsp;EMM386)&nbsp;}
+&nbsp;rm_dpmi&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;&nbsp;{&nbsp;DPMI&nbsp;(for&nbsp;example&nbsp;\dos&nbsp;box&nbsp;or&nbsp;386Max)&nbsp;}
+</pre>
+</td></tr></table>Note: GO32V2 <span 
+class="cmti-10">always </span>creates DPMI programs, so you need a suitable DPMI host like
+<span 
+class="cmss-10">CWSDPMI.EXE </span>or a Windows <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>box. So you don&#8217;t need to check it, these constants are only
+useful in GO32V1 mode.
+<h5 class="subsubsectionHead"><a 
+href="#x29-1440007.3" name="x29-1440007.3">Processor flags constants</a></h5> They are provided for a simple check with the flags identifier in the
+trealregs type. To check a single flag, simply do an AND operation with the flag you want to check.
+It&#8217;s set if the result is the same as the flag value.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const&nbsp;carryflag&nbsp;=&nbsp;$001;
+&nbsp;parityflag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$004;
+&nbsp;auxcarryflag&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$010;
+&nbsp;zeroflag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$040;
+&nbsp;signflag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$080;
+&nbsp;trapflag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$100;
+&nbsp;interruptflag&nbsp;&nbsp;&nbsp;=&nbsp;$200;
+&nbsp;directionflag&nbsp;&nbsp;&nbsp;=&nbsp;$400;
+&nbsp;overflowflag&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$800;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-29-147" name="x29-1450007.3">Predefined types</a></h4>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type&nbsp;tmeminfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;available_memory&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;available_pages&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;available_lockable_pages&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linear_space&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unlocked_pages&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;available_physical_pages&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_physical_pages&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free_linear_space&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_pages_in_paging_file&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reserved&nbsp;:&nbsp;array[0..2]&nbsp;of&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>Holds information about the memory allocation, etc. <a 
+  name="x29-1450011"></a><hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;7.1: </td><td  
+class="content">Record description</td></tr></table></div><!--tex4ht:label?: x29-1450011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-5-" ><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"></colgroup><tr  
+valign="baseline" id="TBL-5-1-"><td  align="left" nowrap="nowrap" id="TBL-5-1-1"  
+class="td11"> Record entry                        </td><td  align="left" nowrap="nowrap" id="TBL-5-1-2"  
+class="td11"> Description                                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-5-2-"><td  align="left" nowrap="nowrap" id="TBL-5-2-1"  
+class="td11"> <span 
+class="cmtt-10">available</span>_<span 
+class="cmtt-10">memory         </span></td><td  align="left" nowrap="nowrap" id="TBL-5-2-2"  
+class="td11"> Largest available free block in bytes.          </td>
+</tr><tr  
+valign="baseline" id="TBL-5-3-"><td  align="left" nowrap="nowrap" id="TBL-5-3-1"  
+class="td11"> <span 
+class="cmtt-10">available</span>_<span 
+class="cmtt-10">pages          </span></td><td  align="left" nowrap="nowrap" id="TBL-5-3-2"  
+class="td11"> Maximum unlocked page allocation in pages</td>
+</tr><tr  
+valign="baseline" id="TBL-5-4-"><td  align="left" nowrap="nowrap" id="TBL-5-4-1"  
+class="td11"> <span 
+class="cmtt-10">available</span>_<span 
+class="cmtt-10">lockable</span>_<span 
+class="cmtt-10">pages </span></td><td  align="left" nowrap="nowrap" id="TBL-5-4-2"  
+class="td11"> Maximum locked page allocation in pages.   </td>
+</tr><tr  
+valign="baseline" id="TBL-5-5-"><td  align="left" nowrap="nowrap" id="TBL-5-5-1"  
+class="td11"> <span 
+class="cmtt-10">linear</span>_<span 
+class="cmtt-10">space             </span></td><td  align="left" nowrap="nowrap" id="TBL-5-5-2"  
+class="td11"> Linear address space size in pages.             </td>
+</tr><tr  
+valign="baseline" id="TBL-5-6-"><td  align="left" nowrap="nowrap" id="TBL-5-6-1"  
+class="td11"> <span 
+class="cmtt-10">unlocked</span>_<span 
+class="cmtt-10">pages           </span></td><td  align="left" nowrap="nowrap" id="TBL-5-6-2"  
+class="td11"> Total number of unlocked pages.               </td>
+</tr><tr  
+valign="baseline" id="TBL-5-7-"><td  align="left" nowrap="nowrap" id="TBL-5-7-1"  
+class="td11"> <span 
+class="cmtt-10">available</span>_<span 
+class="cmtt-10">physical</span>_<span 
+class="cmtt-10">pages </span></td><td  align="left" nowrap="nowrap" id="TBL-5-7-2"  
+class="td11"> Total number of free pages.                      </td>
+</tr><tr  
+valign="baseline" id="TBL-5-8-"><td  align="left" nowrap="nowrap" id="TBL-5-8-1"  
+class="td11"> <span 
+class="cmtt-10">total</span>_<span 
+class="cmtt-10">physical</span>_<span 
+class="cmtt-10">pages     </span></td><td  align="left" nowrap="nowrap" id="TBL-5-8-2"  
+class="td11"> Total number of physical pages.                </td>
+</tr><tr  
+valign="baseline" id="TBL-5-9-"><td  align="left" nowrap="nowrap" id="TBL-5-9-1"  
+class="td11"> <span 
+class="cmtt-10">free</span>_<span 
+class="cmtt-10">linear</span>_<span 
+class="cmtt-10">space        </span></td><td  align="left" nowrap="nowrap" id="TBL-5-9-2"  
+class="td11"> Free linear address space in pages.             </td>
+</tr><tr  
+valign="baseline" id="TBL-5-10-"><td  align="left" nowrap="nowrap" id="TBL-5-10-1"  
+class="td11"> <span 
+class="cmtt-10">max</span>_<span 
+class="cmtt-10">pages</span>_<span 
+class="cmtt-10">in</span>_<span 
+class="cmtt-10">paging</span>_<span 
+class="cmtt-10">file</span></td><td  align="left" nowrap="nowrap" id="TBL-5-10-2"  
+class="td11"> Size of paging file/partition in pages.          </td>
+</tr><tr  
+valign="baseline" id="TBL-5-11-"><td  align="left" nowrap="nowrap" id="TBL-5-11-1"  
+class="td11">                                          </td>
+</tr><!--ll--></table>
+</div></div>
+</td></tr></table></div><hr class="endfloat">
+NOTE: The value of a field is -1 (0ffffffffh) if the value is unknown, it&#8217;s only guaranteed, that
+<span 
+class="cmtt-10">available</span>_<span 
+class="cmtt-10">memory </span>contains a valid value. The size of the pages can be determined by the
+get__page__size() function.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;trealregs&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;case&nbsp;Integer&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1:&nbsp;{&nbsp;32-bit&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(EDI,&nbsp;ESI,&nbsp;EBP,&nbsp;Res,&nbsp;EBX,&nbsp;EDX,&nbsp;ECX,&nbsp;EAX:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flags,&nbsp;ES,&nbsp;DS,&nbsp;FS,&nbsp;GS,&nbsp;IP,&nbsp;CS,&nbsp;SP,&nbsp;SS:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2:&nbsp;{&nbsp;16-bit&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(DI,&nbsp;DI2,&nbsp;SI,&nbsp;SI2,&nbsp;BP,&nbsp;BP2,&nbsp;R1,&nbsp;R2:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BX,&nbsp;BX2,&nbsp;DX,&nbsp;DX2,&nbsp;CX,&nbsp;CX2,&nbsp;AX,&nbsp;AX2:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3:&nbsp;{&nbsp;8-bit&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(stuff:&nbsp;array[1..4]&nbsp;of&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BL,&nbsp;BH,&nbsp;BL2,&nbsp;BH2,&nbsp;DL,&nbsp;DH,&nbsp;DL2,&nbsp;DH2,&nbsp;CL,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CH,&nbsp;CL2,&nbsp;CH2,&nbsp;AL,&nbsp;AH,&nbsp;AL2,&nbsp;AH2:&nbsp;Byte);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4:&nbsp;{&nbsp;Compat&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(RealEDI,&nbsp;RealESI,&nbsp;RealEBP,&nbsp;RealRES,&nbsp;RealEBX,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RealEDX,&nbsp;RealECX,&nbsp;RealEAX:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RealFlags,&nbsp;RealES,&nbsp;RealDS,&nbsp;RealFS,&nbsp;RealGS,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RealIP,&nbsp;RealCS,&nbsp;RealSP,&nbsp;RealSS:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;registers&nbsp;=&nbsp;trealregs;
+</pre>
+</td></tr></table>These two types contain the data structure to pass register values to a interrupt handler or real
+mode callback.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type&nbsp;tseginfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset&nbsp;:&nbsp;Pointer;&nbsp;segment&nbsp;:&nbsp;Word;&nbsp;end;
+</pre>
+</td></tr></table>This record is used to store a full 48-bit pointer. This may be either a protected mode
+selector:offset address or in real mode a segment:offset address, depending on application. See also:
+Selectors and descriptors, <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory access, Interrupt redirection
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-29-149" name="x29-1460007.3">Variables.</a></h4>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var&nbsp;dosmemselector&nbsp;:&nbsp;Word;
+</pre>
+</td></tr></table>Selector to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory. The whole <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory is automatically mapped to this single
+descriptor at startup. This selector is the recommened way to access <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;var&nbsp;int31error&nbsp;:&nbsp;Word;
+</pre>
+</td></tr></table>This variable holds the result of a DPMI interrupt call. Any nonzero value must be treated as a
+critical failure. <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse18.htm" >next</a>] [<a 
+href="unitsse16.htm" >prev</a>] [<a 
+href="unitsse16.htm#tailunitsse16.htm" >prev-tail</a>] [<a 
+href="unitsse17.htm" >front</a>] [<a 
+href="unitsch7.htm#unitsse17.htm" >up</a>] </p></div><a 
+  name="tailunitsse17.htm"></a>   
+</body></html> 

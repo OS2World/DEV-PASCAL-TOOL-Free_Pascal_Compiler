@@ -1,0 +1,77 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.3.0 Open array parameters</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu41.htm" >next</a>] [<a 
+href="refsu39.htm" >prev</a>] [<a 
+href="refsu39.htm#tailrefsu39.htm" >prev-tail</a>] [<a 
+href="#tailrefsu40.htm">tail</a>] [<a 
+href="refse38.htm#refsu40.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-93-113" name="x93-990008.3">Open array parameters</a></h4> Free Pascal supports the passing of open arrays, i.e. a procedure can be
+declared with an array of unspecified length as a parameter, as in Delphi. Open array parameters
+can be accessed in the procedure or function as an array that is declared with starting index 0, and
+last element index <span 
+class="cmtt-10">High(paremeter)</span>. For example, the parameter
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Row&nbsp;:&nbsp;Array&nbsp;of&nbsp;Integer;
+</pre>
+</td></tr></table>would be equivalent to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Row&nbsp;:&nbsp;Array[0..N-1]&nbsp;of&nbsp;Integer;
+</pre>
+</td></tr></table>Where <span 
+class="cmtt-10">N </span>would be the actual size of the array that is passed to the function. <span 
+class="cmtt-10">N-1 </span>can be calculated
+as <span 
+class="cmtt-10">High(Row)</span>. Open parameters can be passed by value, by reference or as a constant parameter.
+In the latter cases the procedure receives a pointer to the actual array. In the former case, it
+receives a copy of the array. In a function or procedure, open arrays can only be passed to
+functions which are also declared with open arrays as parameters, <span 
+class="cmti-10">not </span>to functions or procedures
+which accept arrays of fixed length. The following is an example of a function using an open
+array:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Function&nbsp;Average&nbsp;(Row&nbsp;:&nbsp;Array&nbsp;of&nbsp;integer)&nbsp;:&nbsp;Real;
+&nbsp;Var&nbsp;I&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Temp&nbsp;:&nbsp;Real;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Temp&nbsp;:=&nbsp;Row[0];
+&nbsp;&nbsp;&nbsp;For&nbsp;I&nbsp;:=&nbsp;1&nbsp;to&nbsp;High(Row)&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Temp&nbsp;:=&nbsp;Temp&nbsp;+&nbsp;Row[i];
+&nbsp;&nbsp;&nbsp;Average&nbsp;:=&nbsp;Temp&nbsp;/&nbsp;(High(Row)+1);
+&nbsp;end;
+</pre>
+</td></tr></table><div class="crosslinks"><p class="noindent">[<a 
+href="refsu41.htm" >next</a>] [<a 
+href="refsu39.htm" >prev</a>] [<a 
+href="refsu39.htm#tailrefsu39.htm" >prev-tail</a>] [<a 
+href="refsu40.htm" >front</a>] [<a 
+href="refse38.htm#refsu40.htm" >up</a>] </p></div><a 
+  name="tailrefsu40.htm"></a>  
+</body></html> 

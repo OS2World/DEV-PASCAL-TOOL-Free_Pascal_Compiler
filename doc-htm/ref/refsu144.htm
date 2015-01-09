@@ -1,0 +1,68 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Paramstr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu145.htm" >next</a>] [<a 
+href="refsu143.htm" >prev</a>] [<a 
+href="refsu143.htm#tailrefsu143.htm" >prev-tail</a>] [<a 
+href="#tailrefsu144.htm">tail</a>] [<a 
+href="refse64.htm#refsu144.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-229-250" name="x229-23500013.3">Paramstr</a></h4><a 
+  name="dx229-235001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Paramstr (L : Longint) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Paramstr </span>returns the <span 
+class="cmtt-10">L</span>-th command-line argument. <span 
+class="cmtt-10">L </span>must be between <span 
+class="cmtt-10">0 </span>and <span 
+class="cmtt-10">Paramcount</span>,
+these values included. The zeroth argument is the path and file name with which the program
+was started.
+<!--l. 6530--><p class="noindent">The command-line parameters will be truncated to a length of 255, even though the operating
+system may support bigger command-lines. The <span 
+class="cmtt-10">Objpas </span>unit (used in <span 
+class="cmtt-10">objfpc </span>or <span 
+class="cmtt-10">delphi</span>
+mode) define versions of <span 
+class="cmtt-10">Paramstr </span>which return the full-length command-line arguments.
+<!--l. 6535--><p class="noindent">When the complete command-line must be accessed, the <span 
+class="cmtt-10">argv </span>pointer should be used to
+retrieve the real values of the command-line parameters.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Paramcount </span>(<a 
+href="refsu143.htm#x228-23400013.3">543<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6542--><p class="noindent">For an example, see <span 
+class="cmss-10">Paramcount </span>(<a 
+href="refsu143.htm#x228-23400013.3">543<!--tex4ht:ref: se:exceptclasses--></a>). <div class="crosslinks"><p class="noindent">[<a 
+href="refsu145.htm" >next</a>] [<a 
+href="refsu143.htm" >prev</a>] [<a 
+href="refsu143.htm#tailrefsu143.htm" >prev-tail</a>] [<a 
+href="refsu144.htm" >front</a>] [<a 
+href="refse64.htm#refsu144.htm" >up</a>] </p></div><a 
+  name="tailrefsu144.htm"></a>  
+</body></html> 

@@ -1,0 +1,544 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>24.3 Writing a custom video driver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse84.htm" >prev</a>] [<a 
+href="unitsse84.htm#tailunitsse84.htm" >prev-tail</a>] [<a 
+href="#tailunitsse85.htm">tail</a>] [<a 
+href="unitsch24.htm#unitsse85.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">24.3</span> <a 
+href="units.htm#QQ2-114-1015" name="x114-100900024.3">Writing a custom video driver</a></h3>
+<!--l. 627--><p class="noindent">Writing a custom video driver is not difficult, and generally means implementing a couple of
+functions, which whould be registered with the <span 
+class="cmss-10">SetVideoDriver </span>(<a 
+href="unitsse84.htm#x113-100500024.2">894<!--tex4ht:ref: se:TBufStream--></a>) function. The various
+functions that can be implemented are located in the <span 
+class="cmtt-10">TVideoDriver </span>record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TVideoDriver&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;InitDriver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;DoneDriver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;UpdateScreen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure(Force&nbsp;:&nbsp;Boolean);
+&nbsp;&nbsp;&nbsp;ClearScreen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Procedure;
+&nbsp;&nbsp;&nbsp;SetVideoMode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function&nbsp;(Const&nbsp;Mode&nbsp;:&nbsp;TVideoMode)&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;GetVideoModeCount&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;GetVideoModeData&nbsp;&nbsp;:&nbsp;Function(Index&nbsp;:&nbsp;Word;&nbsp;Var&nbsp;Data&nbsp;:&nbsp;TVideoMode)&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;SetCursorPos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;procedure&nbsp;(NewCursorX,&nbsp;NewCursorY:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;GetCursorType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;function&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;SetCursorType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;procedure&nbsp;(NewType:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;GetCapabilities&nbsp;&nbsp;&nbsp;:&nbsp;Function&nbsp;:&nbsp;Word;
+&nbsp;end;
+</pre>
+</td></tr></table>Not all of these functions must be implemented. In fact, the only absolutely necessary function to
+write a functioning driver is the <span 
+class="cmtt-10">UpdateScreen </span>function. The general calls in the <span 
+class="cmss-10">Video </span>unit will
+check which functionality is implemented by the driver.
+<!--l. 651--><p class="noindent">The functionality of these calls is the same as the functionality of the calls in the video unit, so the
+expected behaviour can be found in the previous section. Some of the calls, however, need some
+additional remarks.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">InitDriver</span> </dt><dd 
+class="description">Called by <span 
+class="cmtt-10">InitVideo</span>, this function should initialize any data structures needed
+     for the functionality of the driver, maybe do some screen initializations. The function is
+     guaranteed to be called only once; It can only be called again after a call to <span 
+class="cmtt-10">DoneVideo</span>.
+     The variables <span 
+class="cmtt-10">ScreenWidth </span>and <span 
+class="cmtt-10">ScreenHeight </span>should be initialized correctly after a
+     call to this function, as the <span 
+class="cmtt-10">InitVideo </span>call will initialize the <span 
+class="cmtt-10">VideoBuf </span>and <span 
+class="cmtt-10">OldVideoBuf</span>
+     arrays based on their values.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">DoneDriver</span> </dt><dd 
+class="description">This  should  clean  up  any  structures  that  have  been  initialized  in  the
+     <span 
+class="cmtt-10">InitDriver </span>function. It should possibly also restore the screen as it was before the
+     driver was initialized. The VideoBuf and <span 
+class="cmtt-10">OldVideoBuf </span>arrays will be disposed of by
+     the general <span 
+class="cmtt-10">DoneVideo </span>call.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">UpdateScreen</span> </dt><dd 
+class="description">This is the only required function of the driver. It should update the screen
+     based on the <span 
+class="cmtt-10">VideoBuf </span>array&#8217;s contents. It can optimize this process by comparing
+     the  values  with  values  in  the  <span 
+class="cmtt-10">OldVideoBuf  </span>array.  After  updating  the  screen,  the
+     <span 
+class="cmtt-10">UpdateScreen </span>procedure should update the <span 
+class="cmtt-10">OldVideoBuf </span>by itself. If the <span 
+class="cmtt-10">Force</span>
+     parameter is <span 
+class="cmtt-10">True</span>, the whole screen should be updated, not just the changed values.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ClearScreen</span> </dt><dd 
+class="description">If  there  is  a  faster  way  to  clear  the  screen  than  to  write  spaces  in  all
+     character cells, then it can be implemented here. If the driver does not implement this
+     function, then the general routines will write spaces in all video cells, and will call
+     <span 
+class="cmtt-10">UpdateScreen(True)</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">SetVideoMode</span> </dt><dd 
+class="description">Should set the desired video mode, if available. It should return <span 
+class="cmtt-10">True </span>if
+     the mode was set, <span 
+class="cmtt-10">False </span>if not.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetVideoModeCount</span> </dt><dd 
+class="description">Should return the number of supported video modes. If no modes
+     are supported, this function should not be implemented; the general routines will return
+     1. (for the current mode)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetVideoModeData</span> </dt><dd 
+class="description">Should return the data for the <span 
+class="cmtt-10">Index</span>-th mode; <span 
+class="cmtt-10">Index </span>is zero based.
+     The function should return true if the data was returned correctly, false if  <span 
+class="cmtt-10">Index</span>
+     contains an invalid index. If this is not implemented, then the general routine will
+     return the current video mode when <span 
+class="cmtt-10">Index </span>equals 0.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetCapabilities</span> </dt><dd 
+class="description">If  this  function  is  not  implemented,  zero  (i.e.  no  capabilities)  will  be
+     returned by the general function.</dd></dl>
+<!--l. 692--><p class="noindent">The following unit shows how to override a video driver, with a driver that writes debug
+information to a file.
+<!--l. 695--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">videoex/viddbg.pp</span><HR/><div class="listinginput">
+<!--l. 695--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">viddbg;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">video;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartVideoLogging;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopVideoLogging;</span>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;&nbsp;<span 
+class="cmtt-10">IsVideoLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;&nbsp;<span 
+class="cmtt-10">SetVideoLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DetailedVideoLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">False;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">sysutils,keyboard;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewVideoDriver,</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldVideoDriver</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TVideoDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active,Logging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">VideoLog</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TimeStamp</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TimeStamp:=FormatDateTime('hh:nn:ss',Time());</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartVideoLogging;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,'Start</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">video</span>&nbsp;<span 
+class="cmtt-10">operations</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopVideoLogging;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,'Stop</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">video</span>&nbsp;<span 
+class="cmtt-10">operations</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">IsVideoLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">IsVideoLogging:=Logging;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ColUpd,RowUpd</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[0..1024]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DumpScreenStatistics(Force</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I,Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Force</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(VideoLog,'forced</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,'video</span>&nbsp;<span 
+class="cmtt-10">update</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FillChar(Colupd,SizeOf(ColUpd),#0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FillChar(Rowupd,SizeOf(RowUpd),#0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Count:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">VideoBufSize</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">SizeOf(TVideoCell)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">VideoBuf^[i]&lt;&gt;OldVideoBuf^[i]</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(Count);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(ColUpd[I</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth]);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(RowUpd[I</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">ScreenHeight]);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write(VideoLog,Count,'</span>&nbsp;<span 
+class="cmtt-10">videocells</span>&nbsp;<span 
+class="cmtt-10">differed</span>&nbsp;<span 
+class="cmtt-10">divided</span>&nbsp;<span 
+class="cmtt-10">over</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Count:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ColUpd[I]&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(Count);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write(VideoLog,Count,'</span>&nbsp;<span 
+class="cmtt-10">columns</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Count:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ScreenHeight-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">RowUpd[I]&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc(Count);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,Count,'</span>&nbsp;<span 
+class="cmtt-10">rows.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">DetailedVideoLogging</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ScreenWidth-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(ColUpd[I]&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,'Col</span>&nbsp;<span 
+class="cmtt-10">',i,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ColUpd[I]:3,'</span>&nbsp;<span 
+class="cmtt-10">rows</span>&nbsp;<span 
+class="cmtt-10">changed');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ScreenHeight-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(RowUpd[I]&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(VideoLog,'Row</span>&nbsp;<span 
+class="cmtt-10">',i,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',RowUpd[I]:3,'</span>&nbsp;<span 
+class="cmtt-10">colums</span>&nbsp;<span 
+class="cmtt-10">changed');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogUpdateScreen(Force</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Logging</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DumpScreenStatistics(Force);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldVideoDriver.UpdateScreen(Force);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogInitVideo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldVideoDriver.InitDriver();</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign(VideoLog,logFileName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite(VideoLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StartVideoLogging;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogDoneVideo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StopVideoLogging;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(VideoLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldVideoDriver.DoneDriver();</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetVideoLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">Active</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:=FileName;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Initialization</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetVideoDriver(OldVideoDriver);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewVideoDriver:=OldVideoDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewVideoDriver.UpdateScreen:=@LogUpdateScreen;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewVideoDriver.InitDriver:=@LogInitVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewVideoDriver.DoneDriver:=@LogDoneVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:='Video.log';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetVideoDriver(NewVideoDriver);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<!--l. 697--><p class="noindent">The unit can be used in any of the demonstration programs, by simply including it in the <span 
+class="cmtt-10">uses</span>
+clause. Setting <span 
+class="cmtt-10">DetailedVideoLogging </span>to <span 
+class="cmtt-10">True </span>will create a more detailed log (but will also slow
+down functioning)  <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse84.htm" >prev</a>] [<a 
+href="unitsse84.htm#tailunitsse84.htm" >prev-tail</a>] [<a 
+href="unitsse85.htm" >front</a>] [<a 
+href="unitsch24.htm#unitsse85.htm" >up</a>] </p></div><a 
+  name="tailunitsse85.htm"></a>  
+</body></html> 

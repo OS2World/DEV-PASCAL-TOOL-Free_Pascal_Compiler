@@ -1,0 +1,74 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>F A sample gdb.ini file</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap7.htm" >next</a>] [<a 
+href="userap5.htm" >prev</a>] [<a 
+href="userap5.htm#tailuserap5.htm" >prev-tail</a>] [<a 
+href="#tailuserap6.htm">tail</a>] [<a 
+href="user.htm#userap6.htm" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">Appendix&nbsp;F</span><br><a 
+href="user.htm#QQ2-94-235" name="x94-184000F">A sample <span 
+class="cmss-10">gdb.ini </span>file</a></h2>
+<!--l. 3562--><p class="noindent">Here you have a sample <span 
+class="cmss-10">gdb.ini </span>file listing, which gives better results when using <span 
+class="cmtt-10">gdb</span>.
+Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>you should put this in a <span 
+class="cmss-10">.gdbinit </span>file in your home directory or the current
+directory..
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;set&nbsp;print&nbsp;demangle&nbsp;off
+&nbsp;set&nbsp;gnutarget&nbsp;auto
+&nbsp;set&nbsp;verbose&nbsp;on
+&nbsp;set&nbsp;complaints&nbsp;1000
+&nbsp;dir&nbsp;./rtl/dosv2
+&nbsp;set&nbsp;language&nbsp;c++
+&nbsp;set&nbsp;print&nbsp;vtbl&nbsp;on
+&nbsp;set&nbsp;print&nbsp;object&nbsp;on
+&nbsp;set&nbsp;print&nbsp;sym&nbsp;on
+&nbsp;set&nbsp;print&nbsp;pretty&nbsp;on
+&nbsp;disp&nbsp;/i&nbsp;$eip
+&nbsp;
+&nbsp;define&nbsp;pst
+&nbsp;set&nbsp;$pos=&amp;$arg0
+&nbsp;set&nbsp;$strlen&nbsp;=&nbsp;{byte}$pos
+&nbsp;print&nbsp;{char}&amp;$arg0.st@($strlen+1)
+&nbsp;end
+&nbsp;
+&nbsp;document&nbsp;pst
+&nbsp;&nbsp;&nbsp;Print&nbsp;out&nbsp;a&nbsp;pascal&nbsp;string
+&nbsp;end
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap7.htm" >next</a>] [<a 
+href="userap5.htm" >prev</a>] [<a 
+href="userap5.htm#tailuserap5.htm" >prev-tail</a>] [<a 
+href="userap6.htm" >front</a>] [<a 
+href="user.htm#userap6.htm" >up</a>] </p></div><a 
+  name="tailuserap6.htm"></a>  
+</body></html> 

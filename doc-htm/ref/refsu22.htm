@@ -1,0 +1,109 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.6.0 Boolean operators</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu23.htm" >next</a>] [<a 
+href="refsu21.htm" >prev</a>] [<a 
+href="refsu21.htm#tailrefsu21.htm" >prev-tail</a>] [<a 
+href="#tailrefsu22.htm">tail</a>] [<a 
+href="refse32.htm#refsu22.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-67-83" name="x67-730006.6">Boolean operators</a></h4> Boolean operators can be considered logical operations on a type with 1 bit size.
+Therefore the <span 
+class="cmtt-10">shl </span>and <span 
+class="cmtt-10">shr </span>operations have little sense. Boolean operators can only have boolean
+type operands, and the resulting type is always boolean. The possible operators are listed in table
+(<a 
+href="#x67-730015">6.5<!--tex4ht:ref: tab:booleanoperators--></a>)
+                                                                            
+
+                                                                            
+<a 
+  name="x67-730015"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.5: </td><td  
+class="content">Boolean operators</td></tr></table></div><!--tex4ht:label?: x67-730015-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-12-" ><colgroup id="TBL-12-1g"><col 
+id="TBL-12-1"><col 
+id="TBL-12-2"></colgroup><tr  
+valign="baseline" id="TBL-12-1-"><td  align="left" nowrap="nowrap" id="TBL-12-1-1"  
+class="td11"> Operator</td><td  align="left" nowrap="nowrap" id="TBL-12-1-2"  
+class="td11"> Operation                  </td>
+</tr><tr  
+valign="baseline" id="TBL-12-2-"><td  align="left" nowrap="nowrap" id="TBL-12-2-1"  
+class="td11">  <span 
+class="cmtt-10">not    </span></td><td  align="left" nowrap="nowrap" id="TBL-12-2-2"  
+class="td11"> logical negation (unary)</td>
+</tr><tr  
+valign="baseline" id="TBL-12-3-"><td  align="left" nowrap="nowrap" id="TBL-12-3-1"  
+class="td11"> <span 
+class="cmtt-10">and     </span></td><td  align="left" nowrap="nowrap" id="TBL-12-3-2"  
+class="td11"> logical and                 </td>
+</tr><tr  
+valign="baseline" id="TBL-12-4-"><td  align="left" nowrap="nowrap" id="TBL-12-4-1"  
+class="td11"> <span 
+class="cmtt-10">or      </span></td><td  align="left" nowrap="nowrap" id="TBL-12-4-2"  
+class="td11"> logical or                   </td>
+</tr><tr  
+valign="baseline" id="TBL-12-5-"><td  align="left" nowrap="nowrap" id="TBL-12-5-1"  
+class="td11"> <span 
+class="cmtt-10">xor     </span></td><td  align="left" nowrap="nowrap" id="TBL-12-5-2"  
+class="td11"> logical xor                  </td>
+</tr><tr  
+valign="baseline" id="TBL-12-6-"><td  align="left" nowrap="nowrap" id="TBL-12-6-1"  
+class="td11">             </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<span 
+class="cmbx-10">Remark:</span> Boolean expressions are always evaluated with short-circuit evaluation. This means that from the
+moment the result of the complete expression is known, evaluation is stopped and the result is
+returned. For instance, in the following expression:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;B&nbsp;:=&nbsp;True&nbsp;or&nbsp;MaybeTrue;
+</pre>
+</td></tr></table>The compiler will never look at the value of <span 
+class="cmtt-10">MaybeTrue</span>, since it is obvious that the
+expression will always be true. As a result of this strategy, if <span 
+class="cmtt-10">MaybeTrue </span>is a function, it
+will not get called ! (This can have surprising effects when used in conjunction with
+properties)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu23.htm" >next</a>] [<a 
+href="refsu21.htm" >prev</a>] [<a 
+href="refsu21.htm#tailrefsu21.htm" >prev-tail</a>] [<a 
+href="refsu22.htm" >front</a>] [<a 
+href="refse32.htm#refsu22.htm" >up</a>] </p></div><a 
+  name="tailrefsu22.htm"></a>  
+</body></html> 

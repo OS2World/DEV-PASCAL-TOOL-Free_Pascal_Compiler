@@ -1,0 +1,201 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 SetTextBuf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu171.htm" >next</a>] [<a 
+href="refsu169.htm" >prev</a>] [<a 
+href="refsu169.htm#tailrefsu169.htm" >prev-tail</a>] [<a 
+href="#tailrefsu170.htm">tail</a>] [<a 
+href="refse64.htm#refsu170.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-255-276" name="x255-26100013.3">SetTextBuf</a></h4><a 
+  name="dx255-261001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetTextBuf (Var f : Text; Var Buf[; Size : Word]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetTextBuf </span>assigns an I/O buffer to a text file. The new buffer is located at <span 
+class="cmtt-10">Buf </span>and is <span 
+class="cmtt-10">Size</span>
+bytes long. If <span 
+class="cmtt-10">Size </span>is omitted, then <span 
+class="cmtt-10">SizeOf(Buf) </span>is assumed. The standard buffer of any text file is
+128 bytes long. For heavy I/O operations this may prove too slow. The <span 
+class="cmtt-10">SetTextBuf </span>procedure
+allows to set a bigger buffer for the IO of the application, thus reducing the number of system calls,
+and thus reducing the load on the system resources. The maximum size of the newly assigned
+buffer is 65355 bytes.
+<!--l. 7009--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>
+    <ul class="itemize1">
+    <li class="itemize">Never assign a new buffer to an opened file. A new buffer can be assigned immediately
+    after a call to <span 
+class="cmss-10">Rewrite </span>(<a 
+href="refsu158.htm#x243-24900013.3">559<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Reset </span>(<a 
+href="refsu157.htm#x242-24800013.3">558<!--tex4ht:ref: se:exceptclasses--></a>) or <span 
+class="cmtt-10">Append</span>, but not after the file was read
+    from/written to. This may cause loss of data. If a new buffer must be assigned after
+    read/write operations have been performed, the file should be flushed first. This will
+    ensure that the current buffer is emptied.
+    </li>
+    <li class="itemize">Take care that the assigned buffer is always valid. If a local variable is assigned as a
+    buffer, then after the program exits the local program block, the buffer will no longer
+    be valid, and stack problems may occur.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking on <span 
+class="cmtt-10">Size </span>is done.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Assign </span>(<a 
+href="refsu72.htm#x157-16300013.3">455<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Reset </span>(<a 
+href="refsu157.htm#x242-24800013.3">558<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Rewrite </span>(<a 
+href="refsu158.htm#x243-24900013.3">559<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Append </span>(<a 
+href="refsu69.htm#x154-16000013.3">452<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7028--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex61.pp</span><HR/><div class="listinginput">
+<!--l. 7028--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example61;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SetTextBuf</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Fin,Fout</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Ch</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Bufin,Bufout</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..10000]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">byte;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(Fin,paramstr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset</span>&nbsp;<span 
+class="cmtt-10">(Fin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(Fout,paramstr(2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite</span>&nbsp;<span 
+class="cmtt-10">(Fout);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">harmless</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">IO</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">begun</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Try</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">again</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">big</span>&nbsp;<span 
+class="cmtt-10">file,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">commenting</span>&nbsp;<span 
+class="cmtt-10">out</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">following</span>&nbsp;<span 
+class="cmtt-10">2</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lines</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">recompiling</span>&nbsp;<span 
+class="cmtt-10">it.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetTextBuf</span>&nbsp;<span 
+class="cmtt-10">(Fin,Bufin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetTextBuf</span>&nbsp;<span 
+class="cmtt-10">(Fout,Bufout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">eof(Fin)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Read</span>&nbsp;<span 
+class="cmtt-10">(Fin,ch);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">(Fout,ch);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(Fin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(Fout);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu171.htm" >next</a>] [<a 
+href="refsu169.htm" >prev</a>] [<a 
+href="refsu169.htm#tailrefsu169.htm" >prev-tail</a>] [<a 
+href="refsu170.htm" >front</a>] [<a 
+href="refse64.htm#refsu170.htm" >up</a>] </p></div><a 
+  name="tailrefsu170.htm"></a>  
+</body></html> 

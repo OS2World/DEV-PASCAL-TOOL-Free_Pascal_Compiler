@@ -1,0 +1,4582 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.4 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse17.htm" >prev</a>] [<a 
+href="unitsse17.htm#tailunitsse17.htm" >prev-tail</a>] [<a 
+href="#tailunitsse18.htm">tail</a>] [<a 
+href="unitsch7.htm#unitsse18.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.4</span> <a 
+href="units.htm#QQ2-30-150" name="x30-1470007.4">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-151" name="x30-1480007.4">allocate__ldt__descriptors</a></h4><a 
+  name="dx30-148001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function allocate</span>_<span 
+class="cmtt-10">ldt</span>_<span 
+class="cmtt-10">descriptors (count : Word) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Allocates a number of new descriptors. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">specifies the number of requested unique descriptors.</dd></dl>
+<!--l. 368--><p class="noindent">Return value: The base selector. Notes: The descriptors allocated must be initialized by the
+application with other function calls. This function returns descriptors with a limit and size
+value set to zero. If more than one descriptor was requested, the function returns a base
+selector referencing the first of a contiguous array of descriptors. The selector values for
+subsequent descriptors in the array can be calculated by adding the value returned by the
+<span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">next</span>__<span 
+class="cmss-10">selector</span>__<span 
+class="cmss-10">increment</span>__<span 
+class="cmss-10">value </span>(<a 
+href="#x30-1680007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>) function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 382--><p class="noindent"><span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="#x30-1600007.4">159<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">next</span>__<span 
+class="cmss-10">selector</span>__<span 
+class="cmss-10">increment</span>__<span 
+class="cmss-10">value </span>(<a 
+href="#x30-1680007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">to</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="#x30-1910007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">create</span>__<span 
+class="cmss-10">code</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">alias</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="#x30-1520007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address</span>
+(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 390--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/seldes.pp</span><HR/><div class="listinginput">
+<!--l. 390--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">delphi}</span>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">80;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">maxy</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">25;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">2;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">screensize</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">maxy</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">bytespercell;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">linB8000</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">$B800</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">type</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">string80</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">string[80];</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text_save</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">array[0..screensize-1]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text_oldx,</span>&nbsp;<span 
+class="cmtt-10">text_oldy</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text_sel</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">status(s</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string80);</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">1);</span>&nbsp;<span 
+class="cmtt-10">clreol;</span>&nbsp;<span 
+class="cmtt-10">write(s);</span>&nbsp;<span 
+class="cmtt-10">readkey;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">selinfo(sel</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word);</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">24);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">clreol;</span>&nbsp;<span 
+class="cmtt-10">writeln('Descriptor</span>&nbsp;<span 
+class="cmtt-10">base</span>&nbsp;<span 
+class="cmtt-10">address</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">$',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">hexstr(get_segment_base_address(sel),</span>&nbsp;<span 
+class="cmtt-10">8));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">clreol;</span>&nbsp;<span 
+class="cmtt-10">write('Descriptor</span>&nbsp;<span 
+class="cmtt-10">limit</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">get_segment_limit(sel));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">makechar(ch</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">char;</span>&nbsp;<span 
+class="cmtt-10">color</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">byte)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">result</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">byte(ch)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(color</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_move(dosmemselector,</span>&nbsp;<span 
+class="cmtt-10">linB8000,</span>&nbsp;<span 
+class="cmtt-10">get_ds,</span>&nbsp;<span 
+class="cmtt-10">longint(@text_save),</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">screensize);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text_oldx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">wherex;</span>&nbsp;<span 
+class="cmtt-10">text_oldy</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">wherey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_fillword(dosmemselector,</span>&nbsp;<span 
+class="cmtt-10">linB8000,</span>&nbsp;<span 
+class="cmtt-10">screensize</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">makechar('</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">Black</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(Black</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">4)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('Creating</span>&nbsp;<span 
+class="cmtt-10">selector</span>&nbsp;<span 
+class="cmtt-10">''text_sel''</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">part</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'text</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">memory');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text_sel</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">allocate_ldt_descriptors(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_segment_base_address(text_sel,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">linB8000</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_segment_limit(text_sel,</span>&nbsp;<span 
+class="cmtt-10">screensize</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">3);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">selinfo(text_sel);</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('and</span>&nbsp;<span 
+class="cmtt-10">clearing</span>&nbsp;<span 
+class="cmtt-10">entire</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">selected</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">''text_sel'''</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">descriptor');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_fillword(text_sel,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">(get_segment_limit(text_sel)+1)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">makechar('</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">LightBlue</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">4));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('Notice</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">described</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">the'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">descriptor</span>&nbsp;<span 
+class="cmtt-10">changed,</span>&nbsp;<span 
+class="cmtt-10">nothing</span>&nbsp;<span 
+class="cmtt-10">else');</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('Now</span>&nbsp;<span 
+class="cmtt-10">reducing</span>&nbsp;<span 
+class="cmtt-10">it''s</span>&nbsp;<span 
+class="cmtt-10">limit</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">base</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">setting</span>&nbsp;<span 
+class="cmtt-10">it''s</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'described</span>&nbsp;<span 
+class="cmtt-10">memory');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_segment_base_address(text_sel,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_segment_base_address(text_sel)</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">maxx);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_segment_limit(text_sel,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_segment_limit(text_sel)</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">selinfo(text_sel);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('Notice</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">base</span>&nbsp;<span 
+class="cmtt-10">addr</span>&nbsp;<span 
+class="cmtt-10">increased</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">but</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'the</span>&nbsp;<span 
+class="cmtt-10">limit</span>&nbsp;<span 
+class="cmtt-10">decreased</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">2</span>&nbsp;<span 
+class="cmtt-10">lines');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('This</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">give</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">hint</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">limit</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'relative</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">base');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_fillword(text_sel,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">(get_segment_limit(text_sel)+1)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">makechar(#176,</span>&nbsp;<span 
+class="cmtt-10">LightMagenta</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">Brown</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">4));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('Now</span>&nbsp;<span 
+class="cmtt-10">let''s</span>&nbsp;<span 
+class="cmtt-10">get</span>&nbsp;<span 
+class="cmtt-10">crazy</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">copy</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">lines</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">data</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'the</span>&nbsp;<span 
+class="cmtt-10">previously</span>&nbsp;<span 
+class="cmtt-10">saved</span>&nbsp;<span 
+class="cmtt-10">screen');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_move(get_ds,</span>&nbsp;<span 
+class="cmtt-10">longint(@text_save),</span>&nbsp;<span 
+class="cmtt-10">text_sel,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">2,</span>&nbsp;<span 
+class="cmtt-10">maxx</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">bytespercell</span>&nbsp;<span 
+class="cmtt-10">*</span>&nbsp;<span 
+class="cmtt-10">10);</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('At</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">freeing</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">descriptor</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">restoring</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">old</span>&nbsp;<span 
+class="cmtt-10">'+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">contents..');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">status('I</span>&nbsp;<span 
+class="cmtt-10">hope</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">little</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">may</span>&nbsp;<span 
+class="cmtt-10">give</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">some</span>&nbsp;<span 
+class="cmtt-10">hints</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">'+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'working</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">descriptors');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">free_ldt_descriptor(text_sel);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_move(get_ds,</span>&nbsp;<span 
+class="cmtt-10">longint(@text_save),</span>&nbsp;<span 
+class="cmtt-10">dosmemselector,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">linB8000,</span>&nbsp;<span 
+class="cmtt-10">screensize);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(text_oldx,</span>&nbsp;<span 
+class="cmtt-10">text_oldy);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-152" name="x30-1490007.4">allocate__memory__block</a></h4><a 
+  name="dx30-149001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function allocate</span>_<span 
+class="cmtt-10">memory</span>_<span 
+class="cmtt-10">block (size:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Allocates a block of linear memory. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">Size of requested linear memory block in bytes.</dd></dl>
+<!--l. 401--><p class="noindent">Returned values: blockhandle - the memory handle to this memory block. Linear address of the
+requested memory. Notes: WARNING: According to my DPMI docs this function is not
+implemented correctly. Normally you should also get a blockhandle to this block after successful
+operation. This handle can then be used to free the memory block afterwards or use this handle for
+other purposes. Since the function isn&#8217;t implemented correctly, and doesn&#8217;t return a blockhandle,
+the block can&#8217;t be deallocated and is hence unusuable ! This function doesn&#8217;t allocate any
+descriptors for this block, it&#8217;s the applications resposibility to allocate and initialize for accessing
+this memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">memory</span>__<span 
+class="cmss-10">block </span>(<a 
+href="#x30-1610007.4">159<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-153" name="x30-1500007.4">copyfromdos</a></h4><a 
+  name="dx30-150001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure copyfromdos (var addr; len : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 424--><p class="noindent">Copies data from the pre-allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory transfer buffer to the heap. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">addr:</span>&nbsp;</dt><dd 
+class="description">data to copy to.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">len:</span>&nbsp;</dt><dd 
+class="description">number of bytes to copy to heap.</dd></dl>
+<!--l. 430--><p class="noindent">Notes: Can only be used in conjunction with the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory transfer buffer.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">tb</span>__<span 
+class="cmss-10">size </span>(<a 
+href="#x30-1980007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">transfer</span>__<span 
+class="cmss-10">buffer </span>(<a 
+href="#x30-1990007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">copytodos </span>(<a 
+href="#x30-1510007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-154" name="x30-1510007.4">copytodos</a></h4><a 
+  name="dx30-151001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure copytodos (var addr; len : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies data from heap to the pre-allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory buffer. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">addr:</span>&nbsp;</dt><dd 
+class="description">data to copy from.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">len:</span>&nbsp;</dt><dd 
+class="description">number of bytes to copy to <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory buffer.</dd></dl>
+<!--l. 450--><p class="noindent">Notes: This function fails if you try to copy more bytes than the transfer buffer is in size. It can
+only be used in conjunction with the transfer buffer.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">tb</span>__<span 
+class="cmss-10">size </span>(<a 
+href="#x30-1980007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">transfer</span>__<span 
+class="cmss-10">buffer </span>(<a 
+href="#x30-1990007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">copyfromdos </span>(<a 
+href="#x30-1500007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-155" name="x30-1520007.4">create__code__segment__alias__descriptor</a></h4><a 
+  name="dx30-152001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function create</span>_<span 
+class="cmtt-10">code</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">alias</span>_<span 
+class="cmtt-10">descriptor (seg : Word) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 466--><p class="noindent">Creates a new descriptor that has the same base and limit as the specified descriptor.
+Parameters:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">Descriptor.</dd></dl>
+<!--l. 472--><p class="noindent">Return values: The data selector (alias). Notes: In effect, the function returns a copy of the
+descriptor. The descriptor alias returned by this function will not track changes to the original
+descriptor. In other words, if an alias is created with this function, and the base or limit of
+the original segment is then changed, the two descriptors will no longer map the same
+memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 483--><p class="noindent"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-156" name="x30-1530007.4">disable</a></h4><a 
+  name="dx30-153001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure disable ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Disables all hardware interrupts by execution a CLI instruction. Parameters: None.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">enable </span>(<a 
+href="#x30-1590007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-157" name="x30-1540007.4">dosmemfillchar</a></h4><a 
+  name="dx30-154001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure dosmemfillchar (seg, ofs : Word; count : Longint; c : char);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets a region of <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory to a specific byte value. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of bytes to set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">c:</span>&nbsp;</dt><dd 
+class="description">value to set memory to.</dd></dl>
+<!--l. 513--><p class="noindent">Notes: No range check is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<!--l. 519--><p class="noindent"><span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>)dosmemmove, <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 527--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/textmess.pp</span><HR/><div class="listinginput">
+<!--l. 527--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">columns</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">80;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rows</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">25;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">screensize</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">rows*columns*2;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'!</span>&nbsp;<span 
+class="cmtt-10">Hello</span>&nbsp;<span 
+class="cmtt-10">world</span>&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">textofs</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">save_screen</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">array[0..screensize-1]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">curx,</span>&nbsp;<span 
+class="cmtt-10">cury</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">randomize;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemget($B800,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">save_screen,</span>&nbsp;<span 
+class="cmtt-10">screensize);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">curx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">wherex;</span>&nbsp;<span 
+class="cmtt-10">cury</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">wherey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">1);</span>&nbsp;<span 
+class="cmtt-10">Write(text);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">textofs</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">screensize</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">length(text)*2;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemmove($B800,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">$B800,</span>&nbsp;<span 
+class="cmtt-10">textofs,</span>&nbsp;<span 
+class="cmtt-10">length(text)*2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemfillchar($B800,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">screensize,</span>&nbsp;<span 
+class="cmtt-10">#0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(not</span>&nbsp;<span 
+class="cmtt-10">keypressed)</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemfillchar($B800,</span>&nbsp;<span 
+class="cmtt-10">textofs</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">random(length(text))*2</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">1,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">1,</span>&nbsp;<span 
+class="cmtt-10">char(random(255)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemmove($B800,</span>&nbsp;<span 
+class="cmtt-10">textofs,</span>&nbsp;<span 
+class="cmtt-10">$B800,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">random(columns)*2+random(rows)*columns*2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">length(text)*2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">delay(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemput($B800,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">save_screen,</span>&nbsp;<span 
+class="cmtt-10">screensize);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(curx,</span>&nbsp;<span 
+class="cmtt-10">cury);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-158" name="x30-1550007.4">dosmemfillword</a></h4><a 
+  name="dx30-155001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure dosmemfillword (seg,ofs : Word; count : Longint; w : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets a region of <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory to a specific word value. Parameters:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of words to set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">w:</span>&nbsp;</dt><dd 
+class="description">value to set memory to.</dd></dl>
+<!--l. 541--><p class="noindent">Notes: No range check is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 547--><p class="noindent"><span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-159" name="x30-1560007.4">dosmemget</a></h4><a 
+  name="dx30-156001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure dosmemget (seg : Word; ofs : Word; var data; count : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies data from the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory onto the heap. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">source real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">source real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">destination.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of bytes to copy.</dd></dl>
+<!--l. 568--><p class="noindent">Notes: No range checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 581--><p class="noindent">For an example, see <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-160" name="x30-1570007.4">dosmemmove</a></h4><a 
+  name="dx30-157001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure dosmemmove (sseg, sofs, dseg, dofs : Word; count : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies count bytes of data between two <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>real mode memory locations. Parameters:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">sseg:</span>&nbsp;</dt><dd 
+class="description">source real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">sofs:</span>&nbsp;</dt><dd 
+class="description">source real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">dseg:</span>&nbsp;</dt><dd 
+class="description">destination real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">dofs:</span>&nbsp;</dt><dd 
+class="description">destination real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of bytes to copy.</dd></dl>
+<!--l. 596--><p class="noindent">Notes: No range check is performed in any way.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 609--><p class="noindent">For an example, see <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-161" name="x30-1580007.4">dosmemput</a></h4><a 
+  name="dx30-158001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure dosmemput (seg : Word; ofs : Word; var data; count : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies heap data to <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>real mode memory. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">destination real mode segment.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">destination real mode offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">source.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of bytes to copy.</dd></dl>
+<!--l. 623--><p class="noindent">Notes: No range checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 636--><p class="noindent">For an example, see <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-162" name="x30-1590007.4">enable</a></h4><a 
+  name="dx30-159001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure enable ;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 643--><p class="noindent">Enables all hardware interrupts by executing a STI instruction. Parameters: None.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">disable </span>(<a 
+href="#x30-1530007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-163" name="x30-1600007.4">free__ldt__descriptor</a></h4><a 
+  name="dx30-160001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function free</span>_<span 
+class="cmtt-10">ldt</span>_<span 
+class="cmtt-10">descriptor (des : Word) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Frees a previously allocated descriptor. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">des:</span>&nbsp;</dt><dd 
+class="description">The descriptor to be freed.</dd></dl>
+<!--l. 661--><p class="noindent">Return value: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise. Notes: After this call this selector is invalid and
+must not be used for any memory operations anymore. Each descriptor allocated with
+<span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>) must be freed individually with this function, even if it was
+previously allocated as a part of a contiguous array of descriptors.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 673--><p class="noindent"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">next</span>__<span 
+class="cmss-10">selector</span>__<span 
+class="cmss-10">increment</span>__<span 
+class="cmss-10">value </span>(<a 
+href="#x30-1680007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 677--><p class="noindent">For an example, see <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-164" name="x30-1610007.4">free__memory__block</a></h4><a 
+  name="dx30-161001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function free</span>_<span 
+class="cmtt-10">memory</span>_<span 
+class="cmtt-10">block (blockhandle : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Frees a previously allocated memory block. Parameters:
+    <dl class="description"><dt class="description">
+</dt><dd 
+class="description">blockhandle: the handle to the memory area to free.</dd></dl>
+<!--l. 690--><p class="noindent">Return value: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">false </span>otherwise. Notes: Frees memory that was previously
+allocated with <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">memory</span>__<span 
+class="cmss-10">block </span>(<a 
+href="#x30-1490007.4">153<!--tex4ht:ref: tab:fmxxxconstants--></a>) . This function doesn&#8217;t free any descriptors mapped to
+this block, it&#8217;s the application&#8217;s responsibility.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">memory</span>__<span 
+class="cmss-10">block </span>(<a 
+href="#x30-1490007.4">153<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-165" name="x30-1620007.4">free__rm__callback</a></h4><a 
+  name="dx30-162001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function free</span>_<span 
+class="cmtt-10">rm</span>_<span 
+class="cmtt-10">callback (var intaddr : tseginfo) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 707--><p class="noindent">Releases a real mode callback address that was previously allocated with the <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback</span>
+(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>) function. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">intaddr:</span>&nbsp;</dt><dd 
+class="description">real mode address buffer returned by <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>) .</dd></dl>
+<!--l. 714--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>if not
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 720--><p class="noindent"><span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 724--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-166" name="x30-1630007.4">get__cs</a></h4><a 
+  name="dx30-163001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">cs : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 731--><p class="noindent">Returns the cs selector. Parameters: None. Return values: The content of the cs segment
+register.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ds </span>(<a 
+href="#x30-1650007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ss </span>(<a 
+href="#x30-1760007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 740--><p class="noindent">For an example, see <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-167" name="x30-1640007.4">get__descriptor__access__rights</a></h4><a 
+  name="dx30-164001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">descriptor</span>_<span 
+class="cmtt-10">access</span>_<span 
+class="cmtt-10">rights (d : Word) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Gets the access rights of a descriptor. Parameters:
+    <dl class="description"><dt class="description">
+</dt><dd 
+class="description">d selector to descriptor.</dd></dl>
+<!--l. 751--><p class="noindent">Return value: Access rights bit field.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 757--><p class="noindent"><span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">descriptor</span>__<span 
+class="cmss-10">access</span>__<span 
+class="cmss-10">rights </span>(<a 
+href="#x30-1930007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-168" name="x30-1650007.4">get__ds</a></h4><a 
+  name="dx30-165001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">ds : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the ds selector. Parameters: None. Return values: The content of the ds segment
+register.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">cs </span>(<a 
+href="#x30-1630007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ss </span>(<a 
+href="#x30-1760007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-169" name="x30-1660007.4">get__linear__addr</a></h4><a 
+  name="dx30-166001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">linear</span>_<span 
+class="cmtt-10">addr (phys</span>_<span 
+class="cmtt-10">addr : Longint; size : Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts a physical address into a linear address. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">phys</span>__<span 
+class="cmbx-10">addr:</span>&nbsp;</dt><dd 
+class="description">physical address of device.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">Size of region to map in bytes.</dd></dl>
+<!--l. 784--><p class="noindent">Return value: Linear address that can be used to access the physical memory. Notes: It&#8217;s the
+applications resposibility to allocate and set up a descriptor for access to the memory. This
+function shouldn&#8217;t be used to map real mode addresses.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 793--><p class="noindent"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-170" name="x30-1670007.4">get__meminfo</a></h4><a 
+  name="dx30-167001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">meminfo (var meminfo : tmeminfo) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns information about the amount of available physical memory, linear address space, and
+disk space for page swapping. Parameters:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">meminfo:</span>&nbsp;</dt><dd 
+class="description">buffer to fill memory information into.</dd></dl>
+<!--l. 807--><p class="noindent">Return values: Due to an implementation bug this function always returns <span 
+class="cmtt-10">False</span>, but it always
+succeeds. Notes: Only the first field of the returned structure is guaranteed to contain a
+valid value. Any fields that are not supported by the DPMI host will be set by the
+host to <span 
+class="cmtt-10">-1 (0FFFFFFFFH) </span>to indicate that the information is not available. The size
+of the pages used by the DPMI host can be obtained with the <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">page</span>__<span 
+class="cmss-10">size </span>(<a 
+href="#x30-1690007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">page</span>__<span 
+class="cmss-10">size </span>(<a 
+href="#x30-1690007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 820--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/meminfo.pp</span><HR/><div class="listinginput">
+<!--l. 820--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">meminfo</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tmeminfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_meminfo(meminfo);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(int31error</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Error</span>&nbsp;<span 
+class="cmtt-10">getting</span>&nbsp;<span 
+class="cmtt-10">DPMI</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">information...</span>&nbsp;<span 
+class="cmtt-10">Halting');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DPMI</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">int31error);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>&nbsp;<span 
+class="cmtt-10">else</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">meminfo</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Largest</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">free</span>&nbsp;<span 
+class="cmtt-10">block</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">available_memory</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">kbytes');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(available_pages</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Maximum</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">unlocked</span>&nbsp;<span 
+class="cmtt-10">pages</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">available_pages);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(available_lockable_pages</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Maximum</span>&nbsp;<span 
+class="cmtt-10">lockable</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">pages</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">available_lockable_pages);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(linear_space</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Linear</span>&nbsp;<span 
+class="cmtt-10">address</span>&nbsp;<span 
+class="cmtt-10">space</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">linear_space*get_page_size</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">kbytes');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(unlocked_pages</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">unlocked</span>&nbsp;<span 
+class="cmtt-10">pages</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlocked_pages);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(available_physical_pages</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">free</span>&nbsp;<span 
+class="cmtt-10">pages</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">available_physical_pages);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(total_physical_pages</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">physical</span>&nbsp;<span 
+class="cmtt-10">pages</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">total_physical_pages);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(free_linear_space</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Free</span>&nbsp;<span 
+class="cmtt-10">linear</span>&nbsp;<span 
+class="cmtt-10">address</span>&nbsp;<span 
+class="cmtt-10">space</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">free_linear_space*get_page_size</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">kbytes');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(max_pages_in_paging_file</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Maximum</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">paging</span>&nbsp;<span 
+class="cmtt-10">file</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">max_pages_in_paging_file*get_page_size</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">kbytes');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-171" name="x30-1680007.4">get__next__selector__increment__value</a></h4><a 
+  name="dx30-168001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">next</span>_<span 
+class="cmtt-10">selector</span>_<span 
+class="cmtt-10">increment</span>_<span 
+class="cmtt-10">value : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the selector increment value when allocating multiple subsequent descriptors via
+<span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>). Parameters: None. Return value: Selector increment value.
+Notes: Because <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>) only returns the selector for the first descriptor
+and so the value returned by this function can be used to calculate the selectors for subsequent
+descriptors in the array.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="#x30-1600007.4">159<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-172" name="x30-1690007.4">get__page__size</a></h4><a 
+  name="dx30-169001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">page</span>_<span 
+class="cmtt-10">size : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the size of a single memory page. Return value: Size of a single page in bytes.
+Notes: The returned size is typically 4096 bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">meminfo </span>(<a 
+href="#x30-1670007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 854--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">meminfo </span>(<a 
+href="#x30-1670007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-173" name="x30-1700007.4">get__pm__interrupt</a></h4><a 
+  name="dx30-170001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">pm</span>_<span 
+class="cmtt-10">interrupt (vector : byte; var intaddr : tseginfo) :</span>
+<span 
+class="cmtt-10">boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the address of a current protected mode interrupt handler. Parameters:
+                                                                            
+
+                                                                            
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">vector:</span>&nbsp;</dt><dd 
+class="description">interrupt handler number you want the address to.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">intaddr:</span>&nbsp;</dt><dd 
+class="description">buffer to store address.</dd></dl>
+<!--l. 866--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>if not. Notes: The returned address is a protected mode
+selector:offset address.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1720007.4">167<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 875--><p class="noindent">For an example, see <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-174" name="x30-1710007.4">get__rm__callback</a></h4><a 
+  name="dx30-171001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">rm</span>_<span 
+class="cmtt-10">callback (pm</span>_<span 
+class="cmtt-10">func : pointer; const reg : trealregs; var</span>
+<span 
+class="cmtt-10">rmcb: tseginfo) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 882--><p class="noindent">Returns a unique real mode <span 
+class="cmtt-10">segment:offset </span>address, known as a &#8221;real mode callback,&#8221; that will
+transfer control from real mode to a protected mode procedure. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">pm</span>__<span 
+class="cmbx-10">func:</span>&nbsp;</dt><dd 
+class="description">pointer to the protected mode callback function.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">reg:</span>&nbsp;</dt><dd 
+class="description">supplied registers structure.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">rmcb:</span>&nbsp;</dt><dd 
+class="description">buffer to real mode address of callback function.</dd></dl>
+<!--l. 891--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, otherwise <span 
+class="cmtt-10">False</span>. Notes: Callback addresses obtained with this
+function can be passed by a protected mode program for example to an interrupt handler, device
+driver, or TSR, so that the real mode program can call procedures within the protected
+mode program or notify the protected mode program of an event. The contents of the
+supplied regs structure is not valid after function call, but only at the time of the actual
+callback.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1620007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 904--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/callback.pp</span><HR/><div class="listinginput">
+<!--l. 904--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{$ASMMODE</span>&nbsp;<span 
+class="cmtt-10">ATT}</span>
+<br>   <span 
+class="cmtt-10">{$MODE</span>&nbsp;<span 
+class="cmtt-10">FPC}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouseint</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">$33;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_regs</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>&nbsp;<span 
+class="cmtt-10">external</span>&nbsp;<span 
+class="cmtt-10">name</span>&nbsp;<span 
+class="cmtt-10">'___v2prt0_rmcb_regs';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_seginfo</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_numbuttons</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_action</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_x,</span>&nbsp;<span 
+class="cmtt-10">mouse_y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_b</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_installed</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longbool;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_length</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_proc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pointer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">callback_handler;</span>&nbsp;<span 
+class="cmtt-10">assembler;</span>
+<br>   <span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushw</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%es,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">cmpl</span>&nbsp;<span 
+class="cmtt-10">$1,</span>&nbsp;<span 
+class="cmtt-10">USERPROC_INSTALLED</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">jne</span>&nbsp;<span 
+class="cmtt-10">.LNoCallback</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushal</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">DOSmemSELECTOR,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%fs</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">*USERPROC_PROC</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popal</span>
+<br>   <span 
+class="cmtt-10">.LNoCallback:</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popw</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movl</span>&nbsp;<span 
+class="cmtt-10">(%esi),</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movl</span>&nbsp;<span 
+class="cmtt-10">%eax,</span>&nbsp;<span 
+class="cmtt-10">%es:</span>&nbsp;<span 
+class="cmtt-10">42(%edi)</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">addw</span>&nbsp;<span 
+class="cmtt-10">$4,</span>&nbsp;<span 
+class="cmtt-10">%es:46(%edi)</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">iret</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">mouse_dummy;</span>&nbsp;<span 
+class="cmtt-10">begin</span>&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">textuserproc;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_b</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">mouse_regs.bx;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_x</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">(mouse_regs.cx</span>&nbsp;<span 
+class="cmtt-10">shr</span>&nbsp;<span 
+class="cmtt-10">3)</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mouse_y</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">(mouse_regs.dx</span>&nbsp;<span 
+class="cmtt-10">shr</span>&nbsp;<span 
+class="cmtt-10">3)</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">install_mouse(userproc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pointer;</span>&nbsp;<span 
+class="cmtt-10">userproclen</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$0;</span>&nbsp;<span 
+class="cmtt-10">realintr(mouseint,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(r.eax</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">$FFFF)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('No</span>&nbsp;<span 
+class="cmtt-10">Microsoft</span>&nbsp;<span 
+class="cmtt-10">compatible</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">found');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('A</span>&nbsp;<span 
+class="cmtt-10">Microsoft</span>&nbsp;<span 
+class="cmtt-10">compatible</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">driver</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">necessary</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'to</span>&nbsp;<span 
+class="cmtt-10">run</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">example');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(r.bx</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">$ffff)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">mouse_numbuttons</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">2</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>&nbsp;<span 
+class="cmtt-10">mouse_numbuttons</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">r.bx;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(mouse_numbuttons,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">Microsoft</span>&nbsp;<span 
+class="cmtt-10">compatible</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">found.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(userproc</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">nil)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_proc</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">userproc;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_installed</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">true;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_length</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">userproclen;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_code(userproc_proc,</span>&nbsp;<span 
+class="cmtt-10">userproc_length);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>&nbsp;<span 
+class="cmtt-10">else</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_proc</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_length</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_installed</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">false;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_x,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_x));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_y,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_y));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_b,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_b));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_action,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_action));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(userproc_installed,</span>&nbsp;<span 
+class="cmtt-10">sizeof(userproc_installed));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(userproc_proc,</span>&nbsp;<span 
+class="cmtt-10">sizeof(userproc_proc));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_regs,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_regs));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_data(mouse_seginfo,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_seginfo));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock_code(@callback_handler,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@mouse_dummy)-longint(@callback_handler));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_rm_callback(@callback_handler,</span>&nbsp;<span 
+class="cmtt-10">mouse_regs,</span>&nbsp;<span 
+class="cmtt-10">mouse_seginfo);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$0c;</span>&nbsp;<span 
+class="cmtt-10">r.ecx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$7f;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.edx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">longint(mouse_seginfo.offset);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.es</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">mouse_seginfo.segment;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr(mouseint,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$01;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr(mouseint,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">remove_mouse;</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$02;</span>&nbsp;<span 
+class="cmtt-10">realintr(mouseint,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$0c;</span>&nbsp;<span 
+class="cmtt-10">r.ecx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>&nbsp;<span 
+class="cmtt-10">r.edx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>&nbsp;<span 
+class="cmtt-10">r.es</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr(mouseint,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">free_rm_callback(mouse_seginfo);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(userproc_installed)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_code(userproc_proc,</span>&nbsp;<span 
+class="cmtt-10">userproc_length);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_proc</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_length</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">userproc_installed</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">false;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_x,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_x));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_y,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_y));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_b,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_b));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_action,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_action));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(userproc_proc,</span>&nbsp;<span 
+class="cmtt-10">sizeof(userproc_proc));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(userproc_installed,</span>&nbsp;<span 
+class="cmtt-10">sizeof(userproc_installed));</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_regs,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_regs));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_data(mouse_seginfo,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_seginfo));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">unlock_code(@callback_handler,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">longint(@mouse_dummy)-longint(@callback_handler));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">fillchar(mouse_seginfo,</span>&nbsp;<span 
+class="cmtt-10">sizeof(mouse_seginfo),</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">install_mouse(@textuserproc,</span>&nbsp;<span 
+class="cmtt-10">400);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit...');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(not</span>&nbsp;<span 
+class="cmtt-10">keypressed)</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">wherey);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('MouseX</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">mouse_x:2,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">MouseY</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">mouse_y:2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">Buttons</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">mouse_b:2);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">remove_mouse;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-175" name="x30-1720007.4">get__rm__interrupt</a></h4><a 
+  name="dx30-172001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">rm</span>_<span 
+class="cmtt-10">interrupt (vector : byte; var intaddr : tseginfo) :</span>
+<span 
+class="cmtt-10">boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the contents of the current machine&#8217;s real mode interrupt vector for the specified
+interrupt. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">vector:</span>&nbsp;</dt><dd 
+class="description">interrupt vector number.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">intaddr:</span>&nbsp;</dt><dd 
+class="description">buffer to store real mode <span 
+class="cmtt-10">segment:offset </span>address.</dd></dl>
+<!--l. 918--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise. Notes: The returned address is a real mode
+segment address, which isn&#8217;t valid in protected mode.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1700007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-176" name="x30-1730007.4">get__run__mode</a></h4><a 
+  name="dx30-173001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">run</span>_<span 
+class="cmtt-10">mode : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the current mode your application runs with. Return values: One of the constants
+used by this function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">constants returned by <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">run</span>__<span 
+class="cmss-10">mode </span>(<a 
+href="#x30-1730007.4">168<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 942--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/getrunmd.pp</span><HR/><div class="listinginput">
+<!--l. 942--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">(get_run_mode)</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rm_unknown</span>&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Unknown</span>&nbsp;<span 
+class="cmtt-10">environment</span>&nbsp;<span 
+class="cmtt-10">found');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rm_raw</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('You</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">currently</span>&nbsp;<span 
+class="cmtt-10">running</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">raw</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'(without</span>&nbsp;<span 
+class="cmtt-10">HIMEM)');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rm_xms</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('You</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">currently</span>&nbsp;<span 
+class="cmtt-10">using</span>&nbsp;<span 
+class="cmtt-10">HIMEM.SYS</span>&nbsp;<span 
+class="cmtt-10">only');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rm_vcpi</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('VCPI</span>&nbsp;<span 
+class="cmtt-10">server</span>&nbsp;<span 
+class="cmtt-10">detected.</span>&nbsp;<span 
+class="cmtt-10">You''re</span>&nbsp;<span 
+class="cmtt-10">using</span>&nbsp;<span 
+class="cmtt-10">HIMEM</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'EMM386');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">rm_dpmi</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('DPMI</span>&nbsp;<span 
+class="cmtt-10">detected.</span>&nbsp;<span 
+class="cmtt-10">You''re</span>&nbsp;<span 
+class="cmtt-10">using</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">DPMI</span>&nbsp;<span 
+class="cmtt-10">host</span>&nbsp;<span 
+class="cmtt-10">like</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'a</span>&nbsp;<span 
+class="cmtt-10">windows</span>&nbsp;<span 
+class="cmtt-10">DOS</span>&nbsp;<span 
+class="cmtt-10">box</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">CWSDPMI');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-177" name="x30-1740007.4">get__segment__base__address</a></h4><a 
+  name="dx30-174001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">base</span>_<span 
+class="cmtt-10">address (d : Word) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the 32-bit linear base address from the descriptor table for the specified segment.
+Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp;</dt><dd 
+class="description">selector of the descriptor you want the base address of.</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 955--><p class="noindent">Return values: Linear base address of specified descriptor.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 961--><p class="noindent"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1750007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 968--><p class="noindent">For an example, see <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-178" name="x30-1750007.4">get__segment__limit</a></h4><a 
+  name="dx30-175001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">limit (d : Word) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns a descriptors segment limit. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp;</dt><dd 
+class="description">selector.</dd></dl>
+<!--l. 980--><p class="noindent">Return value: Limit of the descriptor in bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Returns zero if descriptor is invalid.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1740007.4">168<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-179" name="x30-1760007.4">get__ss</a></h4><a 
+  name="dx30-176001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function get</span>_<span 
+class="cmtt-10">ss : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 997--><p class="noindent">Returns the ss selector. Parameters: None. Return values: The content of the ss segment
+register.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">ds </span>(<a 
+href="#x30-1650007.4">161<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">cs </span>(<a 
+href="#x30-1630007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-180" name="x30-1770007.4">global__dos__alloc</a></h4><a 
+  name="dx30-177001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function global</span>_<span 
+class="cmtt-10">dos</span>_<span 
+class="cmtt-10">alloc (bytes : Longint) : Longint;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Allocates a block of <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>real mode memory. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">bytes:</span>&nbsp;</dt><dd 
+class="description">size of requested real mode memory.</dd></dl>
+<!--l. 1016--><p class="noindent">Return values: The low word of the returned value contains the selector to the allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+memory block, the high word the corresponding real mode segment value. The offset value is
+always zero. This function allocates memory from <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory pool, i.e. memory below the 1 MB
+boundary that is controlled by <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>. Such memory blocks are typically used to exchange data with
+real mode programs, TSRs, or device drivers. The function returns both the real mode segment
+base address of the block and one descriptor that can be used by protected mode applications to
+access the block. This function should only used for temporary buffers to get real mode information
+(e.g. interrupts that need a data structure in ES:(E)DI), because every single block needs an
+unique selector. The returned selector should only be freed by a <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">free </span>(<a 
+href="#x30-1780007.4">171<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">free </span>(<a 
+href="#x30-1780007.4">171<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1034--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/buffer.pp</span><HR/><div class="listinginput">
+<!--l. 1034--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">dosalloc(var</span>&nbsp;<span 
+class="cmtt-10">selector</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">segment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">res</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">res</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">global_dos_alloc(size);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">selector</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">word(res);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">segment</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">word(res</span>&nbsp;<span 
+class="cmtt-10">shr</span>&nbsp;<span 
+class="cmtt-10">16);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">dosfree(selector</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word);</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">global_dos_free(selector);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">type</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">VBEInfoBuf</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">packed</span>&nbsp;<span 
+class="cmtt-10">record</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Signature</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">array[0..3]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Version</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">reserved</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">array[0..505]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">selector,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">segment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">infobuf</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">VBEInfoBuf;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">fillchar(r,</span>&nbsp;<span 
+class="cmtt-10">sizeof(r),</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">fillchar(infobuf,</span>&nbsp;<span 
+class="cmtt-10">sizeof(VBEInfoBuf),</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosalloc(selector,</span>&nbsp;<span 
+class="cmtt-10">segment,</span>&nbsp;<span 
+class="cmtt-10">sizeof(VBEInfoBuf));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(int31error&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Error</span>&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">allocating</span>&nbsp;<span 
+class="cmtt-10">real</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">memory,</span>&nbsp;<span 
+class="cmtt-10">halting');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">infobuf.Signature</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">'VBE2';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemput(segment,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">infobuf,</span>&nbsp;<span 
+class="cmtt-10">sizeof(infobuf));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.ax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$4f00;</span>&nbsp;<span 
+class="cmtt-10">r.es</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">segment;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr($10,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosmemget(segment,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">infobuf,</span>&nbsp;<span 
+class="cmtt-10">sizeof(infobuf));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dosfree(selector);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(r.ax</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">$4f)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('VBE</span>&nbsp;<span 
+class="cmtt-10">BIOS</span>&nbsp;<span 
+class="cmtt-10">extension</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">available,</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'failed');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(infobuf.signature[0]</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'V')</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(infobuf.signature[1]</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'E')</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(infobuf.signature[2]</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'S')</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(infobuf.signature[3]</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'A')</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('VBE</span>&nbsp;<span 
+class="cmtt-10">version</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">hi(infobuf.version),</span>&nbsp;<span 
+class="cmtt-10">'.',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lo(infobuf.version),</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-181" name="x30-1780007.4">global__dos__free</a></h4><a 
+  name="dx30-178001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function global</span>_<span 
+class="cmtt-10">dos</span>_<span 
+class="cmtt-10">free (selector :Word) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Frees a previously allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory block. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">selector:</span>&nbsp;</dt><dd 
+class="description">selector to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory block.</dd></dl>
+<!--l. 1045--><p class="noindent">Return value: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise. Notes: The descriptor allocated for the memory
+block is automatically freed and hence invalid for further use. This function should only be used for
+memory allocated by <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1055--><p class="noindent">For an example, see <span 
+class="cmss-10">global</span>__<span 
+class="cmss-10">dos</span>__<span 
+class="cmss-10">alloc </span>(<a 
+href="#x30-1770007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-182" name="x30-1790007.4">inportb</a></h4><a 
+  name="dx30-179001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function inportb (port : Word) : byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Reads 1 byte from the selected I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number which is read.</dd></dl>
+<!--l. 1066--><p class="noindent">Return values: Current I/O port value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportw </span>(<a 
+href="#x30-1810007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportl </span>(<a 
+href="#x30-1800007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-183" name="x30-1800007.4">inportl</a></h4><a 
+  name="dx30-180001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function inportl (port : Word) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1079--><p class="noindent">Reads 1 longint from the selected I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number which is read.</dd></dl>
+<!--l. 1084--><p class="noindent">Return values: Current I/O port value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportb </span>(<a 
+href="#x30-1790007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportw </span>(<a 
+href="#x30-1810007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-184" name="x30-1810007.4">inportw</a></h4><a 
+  name="dx30-181001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function inportw (port : Word) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1097--><p class="noindent">Reads 1 word from the selected I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number which is read.</dd></dl>
+<!--l. 1102--><p class="noindent">Return values: Current I/O port value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">outportw </span>(<a 
+href="#x30-1870007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">inportb </span>(<a 
+href="#x30-1790007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">inportl </span>(<a 
+href="#x30-1800007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-185" name="x30-1820007.4">lock__code</a></h4><a 
+  name="dx30-182001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function lock</span>_<span 
+class="cmtt-10">code (functionaddr : pointer; size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Locks a memory range which is in the code segment selector. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">functionaddr:</span>&nbsp;</dt><dd 
+class="description">address of the function to be locked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">size in bytes to be locked.</dd></dl>
+<!--l. 1120--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1126--><p class="noindent"><span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-1840007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-2020007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-2010007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-2000007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1132--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-186" name="x30-1830007.4">lock__data</a></h4><a 
+  name="dx30-183001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function lock</span>_<span 
+class="cmtt-10">data (var data; size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Locks a memory range which resides in the data segment selector. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">address of data to be locked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">length of data to be locked.</dd></dl>
+<!--l. 1144--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1150--><p class="noindent"><span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-1840007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-2020007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-2010007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-2000007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1156--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-187" name="x30-1840007.4">lock__linear__region</a></h4><a 
+  name="dx30-184001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function lock</span>_<span 
+class="cmtt-10">linear</span>_<span 
+class="cmtt-10">region (linearaddr, size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Locks a memory region to prevent swapping of it. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">linearaddr:</span>&nbsp;</dt><dd 
+class="description">the linear address of the memory are to be locked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">size in bytes to be locked.</dd></dl>
+<!--l. 1168--><p class="noindent">Return value: <span 
+class="cmtt-10">True </span>if successful, False otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1174--><p class="noindent"><span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-2020007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-2010007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">code</span>
+(<a 
+href="#x30-2000007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-188" name="x30-1850007.4">outportb</a></h4><a 
+  name="dx30-185001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure outportb (port : Word; data : byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sends 1 byte of data to the specified I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number to send data to.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">value sent to I/O port.</dd></dl>
+<!--l. 1191--><p class="noindent">Return values: None.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">inportb </span>(<a 
+href="#x30-1790007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportl </span>(<a 
+href="#x30-1860007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportw </span>(<a 
+href="#x30-1870007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1198--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/outport.pp</span><HR/><div class="listinginput">
+<!--l. 1198--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">outportb($61,</span>&nbsp;<span 
+class="cmtt-10">$ff);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">delay(50);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">outportb($61,</span>&nbsp;<span 
+class="cmtt-10">$0);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-189" name="x30-1860007.4">outportl</a></h4><a 
+  name="dx30-186001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure outportl (port : Word; data : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sends 1 longint of data to the specified I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number to send data to.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">value sent to I/O port.</dd></dl>
+<!--l. 1210--><p class="noindent">Return values: None.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">inportl </span>(<a 
+href="#x30-1800007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportw </span>(<a 
+href="#x30-1870007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1217--><p class="noindent">For an example, see <span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-190" name="x30-1870007.4">outportw</a></h4><a 
+  name="dx30-187001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure outportw (port : Word; data : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sends 1 word of data to the specified I/O port. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">port:</span>&nbsp;</dt><dd 
+class="description">the I/O port number to send data to.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">value sent to I/O port.</dd></dl>
+<!--l. 1229--><p class="noindent">Return values: None.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">inportw </span>(<a 
+href="#x30-1810007.4">172<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportl </span>(<a 
+href="#x30-1860007.4">175<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1236--><p class="noindent">For an example, see <span 
+class="cmss-10">outportb </span>(<a 
+href="#x30-1850007.4">174<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-191" name="x30-1880007.4">realintr</a></h4><a 
+  name="dx30-188001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function realintr (intnr: Word; var regs : trealregs) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Simulates an interrupt in real mode. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">intnr:</span>&nbsp;</dt><dd 
+class="description">interrupt number to issue in real mode.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">regs:</span>&nbsp;</dt><dd 
+class="description">registers data structure.</dd></dl>
+<!--l. 1248--><p class="noindent">Return values: The supplied registers data structure contains the values that were returned by the
+real mode interrupt. <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>if not. Notes: The function transfers control to the
+address specified by the real mode interrupt vector of intnr. The real mode handler must return by
+executing an IRET.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+<!--l. 1260--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/flags.pp</span><HR/><div class="listinginput">
+<!--l. 1260--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.ax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$5300;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.bx</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">realintr($15,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">((r.flags</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">carryflag)=0)</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('APM</span>&nbsp;<span 
+class="cmtt-10">v',</span>&nbsp;<span 
+class="cmtt-10">(r.ah</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">$f),</span>&nbsp;<span 
+class="cmtt-10">'.',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(r.al</span>&nbsp;<span 
+class="cmtt-10">shr</span>&nbsp;<span 
+class="cmtt-10">4),</span>&nbsp;<span 
+class="cmtt-10">(r.al</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">$f),</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">detected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('APM</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">present');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-192" name="x30-1890007.4">seg__fillchar</a></h4><a 
+  name="dx30-189001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure seg</span>_<span 
+class="cmtt-10">fillchar (seg : Word; ofs : Longint; count : Longint; c :</span>
+<span 
+class="cmtt-10">char);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1267--><p class="noindent">Sets a memory area to a specific value. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">selector to memory area.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">offset to memory.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of bytes to set.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">c:</span>&nbsp;</dt><dd 
+class="description">byte data which is set.</dd></dl>
+<!--l. 1275--><p class="noindent">Return values: None. Notes: No range check is done in any way.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1289--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/vgasel.pp</span><HR/><div class="listinginput">
+<!--l. 1289--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">vgasel</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">trealregs;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$13;</span>&nbsp;<span 
+class="cmtt-10">realintr($10,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">vgasel</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">segment_to_descriptor($A000);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">seg_fillchar(vgasel,</span>&nbsp;<span 
+class="cmtt-10">0,</span>&nbsp;<span 
+class="cmtt-10">64000,</span>&nbsp;<span 
+class="cmtt-10">#15);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">readln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r.eax</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$3;</span>&nbsp;<span 
+class="cmtt-10">realintr($10,</span>&nbsp;<span 
+class="cmtt-10">r);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-193" name="x30-1900007.4">seg__fillword</a></h4><a 
+  name="dx30-190001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure seg</span>_<span 
+class="cmtt-10">fillword (seg : Word; ofs : Longint; count : Longint; w</span>
+<span 
+class="cmtt-10">:Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1296--><p class="noindent">Sets a memory area to a specific value. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">selector to memory area.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">ofs:</span>&nbsp;</dt><dd 
+class="description">offset to memory.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">number of words to set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">w:</span>&nbsp;</dt><dd 
+class="description">word data which is set.</dd></dl>
+<!--l. 1304--><p class="noindent">Return values: None. Notes: No range check is done in any way.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1311--><p class="noindent"><span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">move </span>(<a 
+href="#x30-1920007.4">178<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1319--><p class="noindent">For an example, see <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-194" name="x30-1910007.4">segment__to__descriptor</a></h4><a 
+  name="dx30-191001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function segment</span>_<span 
+class="cmtt-10">to</span>_<span 
+class="cmtt-10">descriptor (seg : Word) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1327--><p class="noindent">Maps a real mode segment (paragraph) address onto an descriptor that can be used by a protected
+mode program to access the same memory. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">seg:</span>&nbsp;</dt><dd 
+class="description">the real mode segment you want the descriptor to.</dd></dl>
+<!--l. 1333--><p class="noindent">Return values: Descriptor to real mode segment address. Notes: The returned descriptors limit will
+be set to 64 kB. Multiple calls to this function with the same segment address will return
+the same selector. Descriptors created by this function can never be modified or freed.
+Programs which need to examine various real mode addresses using the same selector
+should use the function <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>) and change the base address as
+necessary.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">free</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptor </span>(<a 
+href="#x30-1600007.4">159<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address</span>
+(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 1350--><p class="noindent">For an example, see <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-195" name="x30-1920007.4">seg__move</a></h4><a 
+  name="dx30-192001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure seg</span>_<span 
+class="cmtt-10">move (sseg : Word; source : Longint; dseg : Word; dest :</span>
+<span 
+class="cmtt-10">Longint; count : Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies data between two memory locations. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">sseg:</span>&nbsp;</dt><dd 
+class="description">source selector.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">source:</span>&nbsp;</dt><dd 
+class="description">source offset.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">dseg:</span>&nbsp;</dt><dd 
+class="description">destination selector.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">dest:</span>&nbsp;</dt><dd 
+class="description">destination offset.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">count:</span>&nbsp;</dt><dd 
+class="description">size in bytes to copy.</dd></dl>
+<!--l. 1366--><p class="noindent">Return values: None. Notes: Overlapping is only checked if the source selector is equal to the
+destination selector. No range check is done.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1374--><p class="noindent"><span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillchar </span>(<a 
+href="#x30-1890007.4">176<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">seg</span>__<span 
+class="cmss-10">fillword </span>(<a 
+href="#x30-1900007.4">177<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillchar </span>(<a 
+href="#x30-1540007.4">155<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemfillword </span>(<a 
+href="#x30-1550007.4">156<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemget </span>(<a 
+href="#x30-1560007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">dosmemput </span>(<a 
+href="#x30-1580007.4">158<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">dosmemmove </span>(<a 
+href="#x30-1570007.4">157<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1382--><p class="noindent">For an example, see <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-196" name="x30-1930007.4">set__descriptor__access__rights</a></h4><a 
+  name="dx30-193001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function set</span>_<span 
+class="cmtt-10">descriptor</span>_<span 
+class="cmtt-10">access</span>_<span 
+class="cmtt-10">rights (d : Word; w : Word) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1390--><p class="noindent">Sets the access rights of a descriptor. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp;</dt><dd 
+class="description">selector.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">w:</span>&nbsp;</dt><dd 
+class="description">new descriptor access rights.</dd></dl>
+<!--l. 1396--><p class="noindent">Return values: This function doesn&#8217;t return anything useful.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1402--><p class="noindent"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">descriptor</span>__<span 
+class="cmss-10">access</span>__<span 
+class="cmss-10">rights </span>(<a 
+href="#x30-1640007.4">160<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-197" name="x30-1940007.4">set__pm__interrupt</a></h4><a 
+  name="dx30-194001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function set</span>_<span 
+class="cmtt-10">pm</span>_<span 
+class="cmtt-10">interrupt (vector : byte; const intaddr : tseginfo) :</span>
+<span 
+class="cmtt-10">boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the address of the protected mode handler for an interrupt. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">vector:</span>&nbsp;</dt><dd 
+class="description">number of protected mode interrupt to set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">intaddr:</span>&nbsp;</dt><dd 
+class="description">selector:offset address to the interrupt vector.</dd></dl>
+<!--l. 1415--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise. Notes: The address supplied must be a valid
+<span 
+class="cmtt-10">selector:offset </span>protected mode address.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1700007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1950007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1720007.4">167<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1426--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">go32ex/intpm.pp</span><HR/><div class="listinginput">
+<!--l. 1426--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">crt,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">go32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int1c</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">$1c;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">oldint1c</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint1c</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">tseginfo;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int1c_counter</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int1c_ds</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>&nbsp;<span 
+class="cmtt-10">external</span>&nbsp;<span 
+class="cmtt-10">name</span>&nbsp;<span 
+class="cmtt-10">'___v2prt0_ds_alias';</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">int1c_handler;</span>&nbsp;<span 
+class="cmtt-10">assembler;</span>
+<br>   <span 
+class="cmtt-10">asm</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">cli</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushw</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushw</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%cs:int1c_ds,</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movw</span>&nbsp;<span 
+class="cmtt-10">%ax,</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">incl</span>&nbsp;<span 
+class="cmtt-10">int1c_counter</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popw</span>&nbsp;<span 
+class="cmtt-10">%ax</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popw</span>&nbsp;<span 
+class="cmtt-10">%ds</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sti</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">iret</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint1c.offset</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">@int1c_handler;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">newint1c.segment</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">get_cs;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">get_pm_interrupt(int1c,</span>&nbsp;<span 
+class="cmtt-10">oldint1c);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('--</span>&nbsp;<span 
+class="cmtt-10">Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">exit</span>&nbsp;<span 
+class="cmtt-10">--');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt(int1c,</span>&nbsp;<span 
+class="cmtt-10">newint1c);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(not</span>&nbsp;<span 
+class="cmtt-10">keypressed)</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(1,</span>&nbsp;<span 
+class="cmtt-10">wherey);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write('Number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">interrupts</span>&nbsp;<span 
+class="cmtt-10">occured</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">int1c_counter);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">set_pm_interrupt(int1c,</span>&nbsp;<span 
+class="cmtt-10">oldint1c);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-198" name="x30-1950007.4">set__rm__interrupt</a></h4><a 
+  name="dx30-195001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function set</span>_<span 
+class="cmtt-10">rm</span>_<span 
+class="cmtt-10">interrupt (vector : byte; const intaddr : tseginfo) :</span>
+<span 
+class="cmtt-10">boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets a real mode interrupt handler. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">vector:</span>&nbsp;</dt><dd 
+class="description">the interrupt vector number to set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">intaddr:</span>&nbsp;</dt><dd 
+class="description">address of new interrupt vector.</dd></dl>
+<!--l. 1439--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, otherwise <span 
+class="cmtt-10">False</span>. Notes: The address supplied MUST be a real
+mode segment address, not a <span 
+class="cmtt-10">selector:offset </span>address. So the interrupt handler must either
+reside in <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory (below 1 Mb boundary) or the application must allocate a real mode
+callback address with <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1449--><p class="noindent"><span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1720007.4">167<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1940007.4">179<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">pm</span>__<span 
+class="cmss-10">interrupt </span>(<a 
+href="#x30-1700007.4">163<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback</span>
+(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-199" name="x30-1960007.4">set__segment__base__address</a></h4><a 
+  name="dx30-196001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function set</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">base</span>_<span 
+class="cmtt-10">address (d : Word; s : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the 32-bit linear base address of a descriptor. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp;</dt><dd 
+class="description">selector.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">s:</span>&nbsp;</dt><dd 
+class="description">new base address of the descriptor.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1469--><p class="noindent"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1740007.4">168<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors</span>
+(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1740007.4">168<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit</span>
+(<a 
+href="#x30-1750007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-200" name="x30-1970007.4">set__segment__limit</a></h4><a 
+  name="dx30-197001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function set</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">limit (d : Word; s : Longint) : boolean;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the limit of a descriptor. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp;</dt><dd 
+class="description">selector.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">s:</span>&nbsp;</dt><dd 
+class="description">new limit of the descriptor.</dd></dl>
+<!--l. 1488--><p class="noindent">Return values: Returns <span 
+class="cmtt-10">True </span>if successful, else <span 
+class="cmtt-10">False</span>. Notes: The new limit specified must be the
+byte length of the segment - 1. Segment limits bigger than or equal to 1MB must be page aligned,
+they must have the lower 12 bits set.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">base</span>__<span 
+class="cmss-10">address </span>(<a 
+href="#x30-1960007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1750007.4">169<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">set</span>__<span 
+class="cmss-10">segment</span>__<span 
+class="cmss-10">limit </span>(<a 
+href="#x30-1970007.4">181<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 1502--><p class="noindent">For an example, see <span 
+class="cmss-10">allocate</span>__<span 
+class="cmss-10">ldt</span>__<span 
+class="cmss-10">descriptors </span>(<a 
+href="#x30-1480007.4">151<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-201" name="x30-1980007.4">tb__size</a></h4><a 
+  name="dx30-198001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function tb</span>_<span 
+class="cmtt-10">size : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the size of the pre-allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory buffer. Parameters: None. Return values:
+The size of the pre-allocated <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory buffer. Notes: This block always seems to be 16k
+in size, but don&#8217;t rely on this.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">transfer</span>__<span 
+class="cmss-10">buffer </span>(<a 
+href="#x30-1990007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">copyfromdos </span>(<a 
+href="#x30-1500007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">copytodos </span>(<a 
+href="#x30-1510007.4">154<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-202" name="x30-1990007.4">transfer__buffer</a></h4><a 
+  name="dx30-199001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function transfer</span>_<span 
+class="cmtt-10">buffer : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">transfer</span>_<span 
+class="cmtt-10">buffer </span>returns the offset of the transfer buffer.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">tb</span>__<span 
+class="cmss-10">size </span>(<a 
+href="#x30-1980007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-203" name="x30-2000007.4">unlock__code</a></h4><a 
+  name="dx30-200001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function unlock</span>_<span 
+class="cmtt-10">code (functionaddr : pointer; size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Unlocks a memory range which resides in the code segment selector. Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">functionaddr:</span>&nbsp;</dt><dd 
+class="description">address of function to be unlocked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">size bytes to be unlocked.</dd></dl>
+<!--l. 1544--><p class="noindent">Return value: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-2020007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-2010007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-1840007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1555--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-204" name="x30-2010007.4">unlock__data</a></h4><a 
+  name="dx30-201001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function unlock</span>_<span 
+class="cmtt-10">data (var data; size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Unlocks a memory range which resides in the data segment selector. Paramters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">data:</span>&nbsp;</dt><dd 
+class="description">address of memory to be unlocked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">size bytes to be unlocked.</dd></dl>
+<!--l. 1567--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-2020007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-2000007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-1840007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>),
+<span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1578--><p class="noindent">For an example, see <span 
+class="cmss-10">get</span>__<span 
+class="cmss-10">rm</span>__<span 
+class="cmss-10">callback </span>(<a 
+href="#x30-1710007.4">164<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-30-205" name="x30-2020007.4">unlock__linear__region</a></h4><a 
+  name="dx30-202001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function unlock</span>_<span 
+class="cmtt-10">linear</span>_<span 
+class="cmtt-10">region (linearaddr, size : Longint) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Unlocks a previously locked linear region range to allow it to be swapped out again if needed.
+Parameters:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">linearaddr:</span>&nbsp;</dt><dd 
+class="description">linear address of the memory to be unlocked.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">size:</span>&nbsp;</dt><dd 
+class="description">size bytes to be unlocked.</dd></dl>
+<!--l. 1591--><p class="noindent">Return values: <span 
+class="cmtt-10">True </span>if successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Check the <span 
+class="cmtt-10">int31error </span>variable.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+<!--l. 1597--><p class="noindent"><span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-2010007.4">183<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">unlock</span>__<span 
+class="cmss-10">code </span>(<a 
+href="#x30-2000007.4">182<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">linear</span>__<span 
+class="cmss-10">region </span>(<a 
+href="#x30-1840007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">data </span>(<a 
+href="#x30-1830007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">lock</span>__<span 
+class="cmss-10">code</span>
+(<a 
+href="#x30-1820007.4">173<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse17.htm" >prev</a>] [<a 
+href="unitsse17.htm#tailunitsse17.htm" >prev-tail</a>] [<a 
+href="unitsse18.htm" >front</a>] [<a 
+href="unitsch7.htm#unitsse18.htm" >up</a>] </p></div><a 
+  name="tailunitsse18.htm"></a>   
+</body></html> 

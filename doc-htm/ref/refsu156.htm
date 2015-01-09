@@ -1,0 +1,97 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Rename</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu157.htm" >next</a>] [<a 
+href="refsu155.htm" >prev</a>] [<a 
+href="refsu155.htm#tailrefsu155.htm" >prev-tail</a>] [<a 
+href="#tailrefsu156.htm">tail</a>] [<a 
+href="refse64.htm#refsu156.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-241-262" name="x241-24700013.3">Rename</a></h4><a 
+  name="dx241-247001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Rename (Var F : Any Filetype; Const S : String);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Rename </span>changes the name of the assigned file <span 
+class="cmtt-10">F </span>to <span 
+class="cmtt-10">S</span>. <span 
+class="cmtt-10">F </span>must be assigned, but not opened.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Depending on the state of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I</span><span 
+class="cmsy-10">} </span>switch, a runtime error can be generated if there is an
+error. In the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I-</span><span 
+class="cmsy-10">} </span>state, use <span 
+class="cmtt-10">IOResult </span>to check for errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Erase </span>(<a 
+href="refsu96.htm#x181-18700013.3">487<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6749--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex77.pp</span><HR/><div class="listinginput">
+<!--l. 6749--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example77;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Rename</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(F,paramstr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rename</span>&nbsp;<span 
+class="cmtt-10">(F,paramstr(2));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu157.htm" >next</a>] [<a 
+href="refsu155.htm" >prev</a>] [<a 
+href="refsu155.htm#tailrefsu155.htm" >prev-tail</a>] [<a 
+href="refsu156.htm" >front</a>] [<a 
+href="refse64.htm#refsu156.htm" >up</a>] </p></div><a 
+  name="tailrefsu156.htm"></a>  
+</body></html> 

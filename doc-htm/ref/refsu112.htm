@@ -1,0 +1,98 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Halt</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu113.htm" >next</a>] [<a 
+href="refsu111.htm" >prev</a>] [<a 
+href="refsu111.htm#tailrefsu111.htm" >prev-tail</a>] [<a 
+href="#tailrefsu112.htm">tail</a>] [<a 
+href="refse64.htm#refsu112.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-197-218" name="x197-20300013.3">Halt</a></h4><a 
+  name="dx197-203001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Halt [(Errnum : byte)];</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Halt </span>stops program execution and returns control to the calling program. The optional
+argument <span 
+class="cmtt-10">Errnum </span>specifies an exit value. If omitted, zero is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Exit </span>(<a 
+href="refsu98.htm#x183-18900013.3">491<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5950--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex30.pp</span><HR/><div class="listinginput">
+<!--l. 5950--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example30;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Halt</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Before</span>&nbsp;<span 
+class="cmtt-10">Halt.');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Halt</span>&nbsp;<span 
+class="cmtt-10">(1);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Stop</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">exit</span>&nbsp;<span 
+class="cmtt-10">code</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('After</span>&nbsp;<span 
+class="cmtt-10">Halt</span>&nbsp;<span 
+class="cmtt-10">doesn''t</span>&nbsp;<span 
+class="cmtt-10">get</span>&nbsp;<span 
+class="cmtt-10">executed.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu113.htm" >next</a>] [<a 
+href="refsu111.htm" >prev</a>] [<a 
+href="refsu111.htm#tailrefsu111.htm" >prev-tail</a>] [<a 
+href="refsu112.htm" >front</a>] [<a 
+href="refse64.htm#refsu112.htm" >up</a>] </p></div><a 
+  name="tailrefsu112.htm"></a>  
+</body></html> 

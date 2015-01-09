@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.2 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse40.htm" >prev</a>] [<a 
+href="unitsse40.htm#tailunitsse40.htm" >prev-tail</a>] [<a 
+href="#tailunitsse41.htm">tail</a>] [<a 
+href="unitsch14.htm#unitsse41.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">14.2</span> <a 
+href="units.htm#QQ2-60-570" name="x60-56400014.2">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-60-571" name="x60-56500014.2">Emms</a></h4><a 
+  name="dx60-565001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Emms ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Emms </span>sets all floating point registers to empty. This procedure must be called after you have
+used any <span 
+class="cmtt-10">MMX </span>instructions, if you want to use floating point arithmetic. If you just want to
+move floating point data around, it isn&#8217;t necessary to call this function, the compiler doesn&#8217;t
+use the FPU registers when moving data. Only when doing calculations, you should use this
+function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><a 
+href="file:../prog/prog.htm" >Programmers guide</a></dd></dl>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Example::</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;MMXDemo;
+&nbsp;uses&nbsp;mmx;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;d1&nbsp;:&nbsp;double;
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;:&nbsp;array[0..10000]&nbsp;of&nbsp;double;
+&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;:&nbsp;longint;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;d1:=1.0;
+&nbsp;{$mmx+}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;floating&nbsp;point&nbsp;data&nbsp;is&nbsp;used,&nbsp;but&nbsp;we&nbsp;do&nbsp;_no_&nbsp;arithmetic&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i:=0&nbsp;to&nbsp;10000&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i]:=d2;&nbsp;&nbsp;{&nbsp;this&nbsp;is&nbsp;done&nbsp;with&nbsp;64&nbsp;bit&nbsp;moves&nbsp;}
+&nbsp;{$mmx-}
+&nbsp;&nbsp;&nbsp;&nbsp;emms;&nbsp;&nbsp;&nbsp;{&nbsp;clear&nbsp;fpu&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;now&nbsp;we&nbsp;can&nbsp;do&nbsp;floating&nbsp;point&nbsp;arithmetic&nbsp;again&nbsp;}
+&nbsp;end.
+</pre>
+</td></tr></table></dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse40.htm" >prev</a>] [<a 
+href="unitsse40.htm#tailunitsse40.htm" >prev-tail</a>] [<a 
+href="unitsse41.htm" >front</a>] [<a 
+href="unitsch14.htm#unitsse41.htm" >up</a>] </p></div><a 
+  name="tailunitsse41.htm"></a>   
+</body></html> 

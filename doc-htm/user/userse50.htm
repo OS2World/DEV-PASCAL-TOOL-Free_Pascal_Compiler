@@ -1,0 +1,62 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.5 Detecting heap memory leaks</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse51.htm" >next</a>] [<a 
+href="userse49.htm" >prev</a>] [<a 
+href="userse49.htm#tailuserse49.htm" >prev-tail</a>] [<a 
+href="#tailuserse50.htm">tail</a>] [<a 
+href="userch10.htm#userse50.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.5</span> <a 
+href="user.htm#QQ2-70-208" name="x70-15700010.5">Detecting heap memory leaks</a></h3>
+<!--l. 2454--><p class="noindent">Free Pascal has a built in mechanism to detect memory leaks. There is a plug-in unit for the
+memory manager that analyses the memory allocation/deallocation and which prints a memory
+usage report after the program exits.
+<!--l. 2458--><p class="noindent">The unit that does this is called <span 
+class="cmss-10">heaptrc</span>. If you want to use it, you should include it as the first
+unit in you uses clause. Alternatively, you can supply the <span 
+class="cmtt-10">-gh </span>switch to the compiler, and it will
+include the unit automatically for you.
+<!--l. 2463--><p class="noindent">After the program exits, you will get a report looking like this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Marked&nbsp;memory&nbsp;at&nbsp;0040FA50&nbsp;invalid
+&nbsp;Wrong&nbsp;size&nbsp;:&nbsp;128&nbsp;allocated&nbsp;64&nbsp;freed
+&nbsp;&nbsp;&nbsp;0x00408708
+&nbsp;&nbsp;&nbsp;0x0040CB49
+&nbsp;&nbsp;&nbsp;0x0040C481
+&nbsp;Call&nbsp;trace&nbsp;for&nbsp;block&nbsp;0x0040FA50&nbsp;size&nbsp;128
+&nbsp;&nbsp;&nbsp;0x0040CB3D
+&nbsp;&nbsp;&nbsp;0x0040C481
+</pre>
+</td></tr></table>The output of the heaptrc unit is customizable by setting some variables.
+<!--l. 2476--><p class="noindent"><span 
+class="cmbx-10">version 2.0 only: </span>Output can also be customized using environment variables.
+You can find more information about the usage of the <span 
+class="cmss-10">heaptrc </span>unit in the <a 
+href="file:../units/units.htm" >Unit reference</a>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse51.htm" >next</a>] [<a 
+href="userse49.htm" >prev</a>] [<a 
+href="userse49.htm#tailuserse49.htm" >prev-tail</a>] [<a 
+href="userse50.htm" >front</a>] [<a 
+href="userch10.htm#userse50.htm" >up</a>] </p></div><a 
+  name="tailuserse50.htm"></a>  
+</body></html> 

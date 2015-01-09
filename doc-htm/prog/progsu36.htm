@@ -1,0 +1,92 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $PACKENUM : Minimum enumeration type size</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu37.htm" >next</a>] [<a 
+href="progsu35.htm" >prev</a>] [<a 
+href="progsu35.htm#tailprogsu35.htm" >prev-tail</a>] [<a 
+href="#tailprogsu36.htm">tail</a>] [<a 
+href="progse2.htm#progsu36.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-43-42" name="x43-410001.1"><span 
+class="cmtt-10">$PACKENUM </span>: Minimum enumeration type size</a></h4>
+<!--l. 782--><p class="noindent">This directive tells the compiler the minimum number of bytes it should use when storing
+enumerated types. It is of the following form:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$PACKENUM&nbsp;xxx}
+&nbsp;{$MINENUMSIZE&nbsp;xxx}
+</pre>
+</td></tr></table>Where the form with <span 
+class="cmtt-10">$MINENUMSIZE </span>is for Delphi compatibility. <span 
+class="cmtt-10">xxx </span>can be one of <span 
+class="cmtt-10">1,2 </span>or <span 
+class="cmtt-10">4</span>, or
+<span 
+class="cmtt-10">NORMAL </span>or <span 
+class="cmtt-10">DEFAULT</span>.
+<!--l. 792--><p class="noindent">As an alternative form one can use <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$Z1</span><span 
+class="cmsy-10">}</span>, <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$Z2</span><span 
+class="cmsy-10">} {</span><span 
+class="cmtt-10">$Z4</span><span 
+class="cmsy-10">}</span>. Contrary to Delphi, the default is
+(<span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$Z4</span><span 
+class="cmsy-10">}</span>).
+<!--l. 795--><p class="noindent">So the following code
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$PACKENUM&nbsp;1}
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;Days&nbsp;=&nbsp;(monday,&nbsp;tuesday,&nbsp;wednesday,&nbsp;thursday,&nbsp;friday,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saturday,&nbsp;sunday);
+</pre>
+</td></tr></table>will use 1 byte to store a variable of type <span 
+class="cmtt-10">Days</span>, whereas it nomally would use 4 bytes. The above
+code is equivalent to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$Z1}
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;Days&nbsp;=&nbsp;(monday,&nbsp;tuesday,&nbsp;wednesday,&nbsp;thursday,&nbsp;friday,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saturday,&nbsp;sunday);
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu37.htm" >next</a>] [<a 
+href="progsu35.htm" >prev</a>] [<a 
+href="progsu35.htm#tailprogsu35.htm" >prev-tail</a>] [<a 
+href="progsu36.htm" >front</a>] [<a 
+href="progse2.htm#progsu36.htm" >up</a>] </p></div><a 
+  name="tailprogsu36.htm"></a>  
+</body></html> 

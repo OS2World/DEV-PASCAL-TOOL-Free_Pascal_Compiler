@@ -1,0 +1,193 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.15 TResourceCollection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse62.htm" >next</a>] [<a 
+href="unitsse60.htm" >prev</a>] [<a 
+href="unitsse60.htm#tailunitsse60.htm" >prev-tail</a>] [<a 
+href="#tailunitsse61.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse61.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.15</span> <a 
+href="units.htm#QQ2-83-728" name="x83-72200017.15">TResourceCollection</a></h3>
+<!--l. 2141--><p class="noindent">A <span 
+class="cmtt-10">TResourceCollection </span>manages a collection of resource names. It stores the position and the
+size of a resource, as well as the name of the resource. It stores these items in records that look like
+this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TResourceItem&nbsp;=&nbsp;packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posn:&nbsp;LongInt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Size:&nbsp;LongInt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Key&nbsp;:&nbsp;String;
+&nbsp;&nbsp;&nbsp;&nbsp;End;
+&nbsp;&nbsp;&nbsp;&nbsp;PResourceItem&nbsp;=&nbsp;^TResourceItem;
+</pre>
+</td></tr></table>
+<!--l. 2154--><p class="noindent">It overrides some methods of <span 
+class="cmtt-10">TStringCollection </span>in order to accomplish this.
+<!--l. 2157--><p class="noindent">Remark that the <span 
+class="cmtt-10">TResourceCollection </span>manages the names of the resources and their assiciated
+positions and sizes, it doesn&#8217;t manage the resources themselves.
+<!--l. 2161--><p class="noindent">Here is the full declaration of the <span 
+class="cmtt-10">TResourceCollection </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TResourceCollection&nbsp;=&nbsp;OBJECT&nbsp;(TStringCollection)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;KeyOf&nbsp;(Item:&nbsp;Pointer):&nbsp;Pointer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetItem&nbsp;(Var&nbsp;S:&nbsp;TStream):&nbsp;Pointer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;FreeItem&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;PutItem&nbsp;(Var&nbsp;S:&nbsp;TStream;&nbsp;Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PResourceCollection&nbsp;=&nbsp;^TResourceCollection;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-83-729" name="x83-72300017.15">TResourceCollection.KeyOf</a></h4><a 
+  name="dx83-723001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceCollection.KeyOf (Item: Pointer): Pointer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">KeyOf </span>returns the key of an item in the collection. For resources, the key is a pointer to the
+string with the resource name.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStringCollection.Compare </span>(<a 
+href="unitsse58.htm#x80-71200017.12">620<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-83-730" name="x83-72400017.15">TResourceCollection.GetItem</a></h4><a 
+  name="dx83-724001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TResourceCollection.GetItem (Var S: TStream): Pointer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetItem </span>reads a resource item from the stream <span 
+class="cmtt-10">S</span>. It reads the position, size and name from
+the stream, in that order. It DOES NOT read the resource itself from the stream.
+<!--l. 2193--><p class="noindent">The resulting item is not inserted in the collection. This call is manly for internal use by the
+<span 
+class="cmss-10">TCollection.Load </span>(<a 
+href="unitsse56.htm#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>) method.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned are those by <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TCollection.Load </span>(<a 
+href="unitsse56.htm#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-83-731" name="x83-72500017.15">TResourceCollection.FreeItem</a></h4><a 
+  name="dx83-725001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TResourceCollection.FreeItem (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FreeItem </span>releases the memory occupied by <span 
+class="cmtt-10">Item</span>. It de-allocates the name, and then the
+resourceitem record.
+                                                                            
+
+                                                                            
+<!--l. 2208--><p class="noindent">It does NOT remove the item from the collection.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TCollection.FreeItem </span>(<a 
+href="unitsse56.htm#x78-69200017.10">605<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-83-732" name="x83-72600017.15">TResourceCollection.PutItem</a></h4><a 
+  name="dx83-726001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TResourceCollection.PutItem (Var S: TStream; Item: Pointer);</span>
+<span 
+class="cmtt-10">Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutItem </span>writes <span 
+class="cmtt-10">Item </span>to the stream <span 
+class="cmtt-10">S</span>. It does this by writing the position and size and name
+of the resource item to the stream.
+<!--l. 2222--><p class="noindent">This method is used primarily by the <span 
+class="cmss-10">Store </span>(<a 
+href="unitsse56.htm#x78-69900017.10">609<!--tex4ht:ref: se:TBufStream--></a>) method.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned are those by <span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Store </span>(<a 
+href="unitsse56.htm#x78-69900017.10">609<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse62.htm" >next</a>] [<a 
+href="unitsse60.htm" >prev</a>] [<a 
+href="unitsse60.htm#tailunitsse60.htm" >prev-tail</a>] [<a 
+href="unitsse61.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse61.htm" >up</a>] </p></div><a 
+  name="tailunitsse61.htm"></a>   
+</body></html> 

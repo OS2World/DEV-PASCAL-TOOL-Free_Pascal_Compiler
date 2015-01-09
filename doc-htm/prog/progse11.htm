@@ -1,0 +1,57 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.2 Programs</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse10.htm" >prev</a>] [<a 
+href="progse10.htm#tailprogse10.htm" >prev-tail</a>] [<a 
+href="#tailprogse11.htm">tail</a>] [<a 
+href="progch4.htm#progse11.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.2</span> <a 
+href="prog.htm#QQ2-91-91" name="x91-890004.2">Programs</a></h3>
+<!--l. 2039--><p class="noindent">When you compile a program, the compiler produces again 2 files:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x91-89002x1"></a>An assembly language file containing the statements of your program, and memory
+     allocations for all used variables.
+     </li>
+     <li class="enumerate"><a 
+  name="x91-89004x2"></a>A linker response file. This file contains a list of object files the linker must link together.</li></ol>
+<!--l. 2046--><p class="noindent">The link response file is, by default, removed from the disk. Only when you specify the <span 
+class="cmtt-10">-s</span>
+command-line option or when linking fails, then the file is left on the disk. It is named
+<span 
+class="cmss-10">link.res</span>.
+<!--l. 2050--><p class="noindent">The assembly language file is converted to an object file by the assembler, and then
+linked together with the rest of the units and a program header, to form your final
+program.
+<!--l. 2054--><p class="noindent">The program header file is a small assembly program which provides the entry point for the
+program. This is where the execution of your program starts, so it depends on the operating
+system, because operating systems pass parameters to executables in wildly different
+ways.
+<!--l. 2059--><p class="noindent">It&#8217;s name is <span 
+class="cmss-10">prt0.o</span>, and the source file resides in <span 
+class="cmss-10">prt0.as </span>or some variant of this name. It usually
+resided where the system unit source for your system resides. It&#8217;s main function is to save the
+environment and command-line arguments and set up the stack. Then it calls the main
+program.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse10.htm" >prev</a>] [<a 
+href="progse10.htm#tailprogse10.htm" >prev-tail</a>] [<a 
+href="progse11.htm" >front</a>] [<a 
+href="progch4.htm#progse11.htm" >up</a>] </p></div><a 
+  name="tailprogse11.htm"></a>  
+</body></html> 

@@ -1,0 +1,2451 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.10 TCollection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse57.htm" >next</a>] [<a 
+href="unitsse55.htm" >prev</a>] [<a 
+href="unitsse55.htm#tailunitsse55.htm" >prev-tail</a>] [<a 
+href="#tailunitsse56.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse56.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.10</span> <a 
+href="units.htm#QQ2-78-682" name="x78-67600017.10">TCollection</a></h3>
+<!--l. 1293--><p class="noindent">The <span 
+class="cmtt-10">TCollection </span>object manages a collection of pointers or objects. It also provides a series of
+methods to manipulate these pointers or objects.
+<!--l. 1297--><p class="noindent">Whether or not objects are used depends on the kind of calls you use. ALl kinds come in 2 flavors,
+one for objects, one for pointers.
+<!--l. 1300--><p class="noindent">This is the full declaration of the <span 
+class="cmtt-10">TCollection </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TItemList&nbsp;=&nbsp;Array&nbsp;[0..MaxCollectionSize&nbsp;-&nbsp;1]&nbsp;Of&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;PItemList&nbsp;=&nbsp;^TItemList;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;TCollection&nbsp;=&nbsp;OBJECT&nbsp;(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Items:&nbsp;PItemList;&nbsp;&nbsp;{&nbsp;Item&nbsp;list&nbsp;pointer&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Count:&nbsp;Sw_Integer;&nbsp;{&nbsp;Item&nbsp;count&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limit:&nbsp;Sw_Integer;&nbsp;{&nbsp;Item&nbsp;limit&nbsp;count&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delta:&nbsp;Sw_Integer;&nbsp;{&nbsp;Inc&nbsp;delta&nbsp;size&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Init&nbsp;(ALimit,&nbsp;ADelta:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Load&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destructor&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;At&nbsp;(Index:&nbsp;Sw_Integer):&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;IndexOf&nbsp;(Item:&nbsp;Pointer):&nbsp;Sw_Integer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetItem&nbsp;(Var&nbsp;S:&nbsp;TStream):&nbsp;Pointer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;LastThat&nbsp;(Test:&nbsp;Pointer):&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;FirstThat&nbsp;(Test:&nbsp;Pointer):&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Pack;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;FreeAll;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;DeleteAll;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Free&nbsp;(Item:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Insert&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Delete&nbsp;(Item:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;AtFree&nbsp;(Index:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;FreeItem&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;AtDelete&nbsp;(Index:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;ForEach&nbsp;(Action:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;SetLimit&nbsp;(ALimit:&nbsp;Sw_Integer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Error&nbsp;(Code,&nbsp;Info:&nbsp;Integer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;AtPut&nbsp;(Index:&nbsp;Sw_Integer;&nbsp;Item:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;AtInsert&nbsp;(Index:&nbsp;Sw_Integer;&nbsp;Item:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Store&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;PutItem&nbsp;(Var&nbsp;S:&nbsp;TStream;&nbsp;Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PCollection&nbsp;=&nbsp;^TCollection;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-683" name="x78-67700017.10">TCollection.Init</a></h4><a 
+  name="dx78-677001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TCollection.Init (ALimit, ADelta: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>initializes a new instance of a collection. It sets the (initial) maximum number of items
+in the collection to <span 
+class="cmtt-10">ALimit</span>. <span 
+class="cmtt-10">ADelta </span>is the increase size : The number of memory places that
+will be allocatiod in case <span 
+class="cmtt-10">ALimit </span>is reached, and another element is added to the collection.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Load </span>(<a 
+href="#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x78-67900017.10">595<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1355--><p class="noindent">For an example, see <span 
+class="cmss-10">TCollection.ForEach </span>(<a 
+href="#x78-69400017.10">606<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-684" name="x78-67800017.10">TCollection.Load</a></h4><a 
+  name="dx78-678001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TCollection.Load (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Load </span>initializes a new instance of a collection. It reads from stream <span 
+class="cmtt-10">S </span>the item count, the
+item limit count, and the increase size. After that, it reads the specified number of items
+from the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned can be those of <span 
+class="cmss-10">GetItem </span>(<a 
+href="#x78-68200017.10">597<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x78-67700017.10">593<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetItem </span>(<a 
+href="#x78-68200017.10">597<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x78-67900017.10">595<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 1373--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex22.pp</span><HR/><div class="listinginput">
+<!--l. 1373--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex22;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.Load</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMemoryStream;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(100-I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserted</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemorySTream,Init(1000,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Store(S^);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Load(S^);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">stream.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(S,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-685" name="x78-67900017.10">TCollection.Done</a></h4><a 
+  name="dx78-679001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TCollection.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done </span>frees all objects in the collection, and then releases all memory occupied by the
+instance.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x78-67700017.10">593<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">FreeAll </span>(<a 
+href="#x78-68600017.10">600<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1390--><p class="noindent">For an example, see <span 
+class="cmss-10">TCollection.ForEach </span>(<a 
+href="#x78-69400017.10">606<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-686" name="x78-68000017.10">TCollection.At</a></h4><a 
+  name="dx78-680001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TCollection.At (Index: Sw</span>_<span 
+class="cmtt-10">Integer): Pointer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">At </span>returns the item at position <span 
+class="cmtt-10">Index</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If  <span 
+class="cmtt-10">Index </span>is less than zero or larger than the number  of  items  in  the  collection,
+seeplErrorTCollection.Error is called with <span 
+class="cmtt-10">coIndexError </span>and <span 
+class="cmtt-10">Index </span>as arguments, resulting
+in a run-time error.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Insert </span>(<a 
+href="#x78-68900017.10">603<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1406--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex23.pp</span><HR/><div class="listinginput">
+<!--l. 1406--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex23;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.At</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(100-I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">C^.Count-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=C^.At(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Object</span>&nbsp;<span 
+class="cmtt-10">',i,'</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',M^.GetField);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-687" name="x78-68100017.10">TCollection.IndexOf</a></h4><a 
+  name="dx78-681001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TCollection.IndexOf (Item: Pointer): Sw</span>_<span 
+class="cmtt-10">Integer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IndexOf </span>returns the index of <span 
+class="cmtt-10">Item </span>in the collection. If <span 
+class="cmtt-10">Item </span>isn&#8217;t present in the collection,
+-1 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 1419--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex24.pp</span><HR/><div class="listinginput">
+<!--l. 1419--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex24;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.IndexOf</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M,Keep</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Keep:=Nil;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Random&lt;0.1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Keep:=M;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Keep=Nil</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Please</span>&nbsp;<span 
+class="cmtt-10">run</span>&nbsp;<span 
+class="cmtt-10">again.</span>&nbsp;<span 
+class="cmtt-10">No</span>&nbsp;<span 
+class="cmtt-10">object</span>&nbsp;<span 
+class="cmtt-10">selected');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Selected</span>&nbsp;<span 
+class="cmtt-10">object</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Keep^.GetField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Selected</span>&nbsp;<span 
+class="cmtt-10">object</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',C^.IndexOf(Keep));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">match</span>&nbsp;<span 
+class="cmtt-10">it''s</span>&nbsp;<span 
+class="cmtt-10">field.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-688" name="x78-68200017.10">TCollection.GetItem</a></h4><a 
+  name="dx78-682001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TCollection.GetItem (Var S: TStream): Pointer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetItem </span>reads a single item off the stream <span 
+class="cmtt-10">S</span>, and returns a pointer to this item. This
+method is used internally by the Load method, and should not be used directly.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Possible errors are the ones from <span 
+class="cmss-10">TStream.Get </span>(<a 
+href="unitsse52.htm#x74-63300017.6">566<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Get </span>(<a 
+href="unitsse52.htm#x74-63300017.6">566<!--tex4ht:ref: se:TBufStream--></a>), seeplStoreTCollection.Store</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-689" name="x78-68300017.10">TCollection.LastThat</a></h4><a 
+  name="dx78-683001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TCollection.LastThat (Test: Pointer): Pointer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This function returns the last item in the collection for which <span 
+class="cmtt-10">Test </span>returns a non-nil result.
+<span 
+class="cmtt-10">Test </span>is a function that accepts 1 argument: a pointer to an object, and that returns a pointer
+as a result.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FirstThat </span>(<a 
+href="#x78-68400017.10">598<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1448--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex25.pp</span><HR/><div class="listinginput">
+<!--l. 1448--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.Foreach</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">CheckField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P^.GetField&lt;56</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Checkfield:=1</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">CheckField:=0;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserted</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Last</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">which</span>&nbsp;<span 
+class="cmtt-10">Field&lt;56</span>&nbsp;&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;<span 
+class="cmtt-10">(should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">54)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.IndexOf(C^.LastThat(@CheckField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-690" name="x78-68400017.10">TCollection.FirstThat</a></h4><a 
+  name="dx78-684001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TCollection.FirstThat (Test: Pointer): Pointer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This function returns the first item in the collection for which <span 
+class="cmtt-10">Test </span>returns a non-nil result.
+<span 
+class="cmtt-10">Test </span>is a function that accepts 1 argument: a pointer to an object, and that returns a pointer
+as a result.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LastThat </span>(<a 
+href="#x78-68300017.10">597<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1464--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex26.pp</span><HR/><div class="listinginput">
+<!--l. 1464--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.FirstThat</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">CheckField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P^.GetField&gt;56</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Checkfield:=1</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">CheckField:=0;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserted</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('first</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">which</span>&nbsp;<span 
+class="cmtt-10">Field&gt;56</span>&nbsp;&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;<span 
+class="cmtt-10">(should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">56)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.IndexOf(C^.FirstThat(@CheckField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-691" name="x78-68500017.10">TCollection.Pack</a></h4><a 
+  name="dx78-685001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Pack;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pack </span>removes all <span 
+class="cmtt-10">Nil </span>pointers from the collection, and adjusts <span 
+class="cmtt-10">Count </span>to reflect this change.
+No memory is freed as a result of this call. In order to free any memory, you can call <span 
+class="cmtt-10">SetLimit</span>
+with an argument of <span 
+class="cmtt-10">Count </span>after a call to <span 
+class="cmtt-10">Pack</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetLimit </span>(<a 
+href="#x78-69500017.10">607<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1481--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex26.pp</span><HR/><div class="listinginput">
+<!--l. 1481--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.FirstThat</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">CheckField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P^.GetField&gt;56</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Checkfield:=1</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">CheckField:=0;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserted</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('first</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">which</span>&nbsp;<span 
+class="cmtt-10">Field&gt;56</span>&nbsp;&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">index</span>&nbsp;<span 
+class="cmtt-10">(should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">56)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.IndexOf(C^.FirstThat(@CheckField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-692" name="x78-68600017.10">TCollection.FreeAll</a></h4><a 
+  name="dx78-686001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.FreeAll;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FreeAll </span>calls the destructor of each object in the collection. It doesn&#8217;t release any memory
+occumpied by the collection itself, but it does set <span 
+class="cmtt-10">Count </span>to zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DeleteAll </span>(<a 
+href="#x78-68700017.10">601<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">FreeItem </span>(<a 
+href="#x78-69200017.10">605<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1496--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex28.pp</span><HR/><div class="listinginput">
+<!--l. 1496--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex28;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.FreeAll</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Freed</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-693" name="x78-68700017.10">TCollection.DeleteAll</a></h4><a 
+  name="dx78-687001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.DeleteAll;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DeleteAll </span>deletes all elements from the collection. It just sets the <span 
+class="cmtt-10">Count </span>variable to zero.
+Contrary to <span 
+class="cmss-10">FreeAll </span>(<a 
+href="#x78-68600017.10">600<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmtt-10">DeletAll </span>doesn&#8217;t call the destructor of the objects.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FreeAll </span>(<a 
+href="#x78-68600017.10">600<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Delete </span>(<a 
+href="#x78-69000017.10">603<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1513--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex29.pp</span><HR/><div class="listinginput">
+<!--l. 1513--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex29;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.DeleteAll</span>&nbsp;<span 
+class="cmtt-10">method</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Compare</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">example</span>&nbsp;<span 
+class="cmtt-10">28,</span>&nbsp;<span 
+class="cmtt-10">where</span>&nbsp;<span 
+class="cmtt-10">FreeAll</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">used.</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.DeleteAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Deleted</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-694" name="x78-68800017.10">TCollection.Free</a></h4><a 
+  name="dx78-688001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Free (Item: Pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Free </span>Deletes <span 
+class="cmtt-10">Item </span>from the collection, and calls the destructor <span 
+class="cmtt-10">Done </span>of the object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the <span 
+class="cmtt-10">Item </span>is not in the collection, <span 
+class="cmtt-10">Error </span>will be called with <span 
+class="cmtt-10">coIndexError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FreeItem </span>(<a 
+href="#x78-69200017.10">605<!--tex4ht:ref: se:TBufStream--></a>),</dd></dl>
+<!--l. 1529--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex30.pp</span><HR/><div class="listinginput">
+<!--l. 1529--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex30;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.Free</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">Count&gt;0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">Free(At(Count-1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Freed</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-695" name="x78-68900017.10">TCollection.Insert</a></h4><a 
+  name="dx78-689001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Insert (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Insert </span>inserts <span 
+class="cmtt-10">Item </span>in the collection. <span 
+class="cmtt-10">TCollection </span>inserts this item at the end, but
+descendent objects may insert it at another place.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">AtInsert </span>(<a 
+href="#x78-69800017.10">608<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">AtPut </span>(<a 
+href="#x78-69700017.10">608<!--tex4ht:ref: se:TBufStream--></a>),</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-696" name="x78-69000017.10">TCollection.Delete</a></h4><a 
+  name="dx78-690001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Delete (Item: Pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Delete </span>deletes <span 
+class="cmtt-10">Item </span>from the collection. It doesn&#8217;t call the item&#8217;s destructor, though. For
+this the <span 
+class="cmss-10">Free </span>(<a 
+href="#x78-68800017.10">602<!--tex4ht:ref: se:TBufStream--></a>) call is provided.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the <span 
+class="cmtt-10">Item </span>is not in the collection, <span 
+class="cmtt-10">Error </span>will be called with <span 
+class="cmtt-10">coIndexError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">AtDelete </span>(<a 
+href="#x78-69300017.10">605<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">Free </span>(<a 
+href="#x78-68800017.10">602<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1560--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex31.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 1560--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex31;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.Delete</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">Count&gt;0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">Delete(At(Count-1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Freed</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-697" name="x78-69100017.10">TCollection.AtFree</a></h4><a 
+  name="dx78-691001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.AtFree (Index: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AtFree </span>deletes the item at position <span 
+class="cmtt-10">Index </span>in the collection, and calls the item&#8217;s destructor
+if it is not <span 
+class="cmtt-10">Nil</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Index </span>isn&#8217;t valid then <span 
+class="cmss-10">Error </span>(<a 
+href="#x78-69600017.10">608<!--tex4ht:ref: se:TBufStream--></a>) is called with <span 
+class="cmtt-10">CoIndexError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Free </span>(<a 
+href="#x78-68800017.10">602<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">AtDelete </span>(<a 
+href="#x78-69300017.10">605<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1576--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex32.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 1576--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.AtFree</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">Count&gt;0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">AtFree(Count-1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Freed</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-698" name="x78-69200017.10">TCollection.FreeItem</a></h4><a 
+  name="dx78-692001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.FreeItem (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FreeItem </span>calls the destructor of <span 
+class="cmtt-10">Item </span>if it is not nil.
+<!--l. 1585--><p class="noindent">This function is used internally by the TCollection object, and should not be called directly.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Free </span>(<a 
+href="#x78-69100017.10">604<!--tex4ht:ref: se:TBufStream--></a>), seeplAtFreeTCollection.AtFree</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-699" name="x78-69300017.10">TCollection.AtDelete</a></h4><a 
+  name="dx78-693001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.AtDelete (Index: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AtDelete </span>deletes the pointer at position <span 
+class="cmtt-10">Index </span>in the collection. It doesn&#8217;t call the object&#8217;s
+destructor.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Index </span>isn&#8217;t valid then <span 
+class="cmss-10">Error </span>(<a 
+href="#x78-69600017.10">608<!--tex4ht:ref: se:TBufStream--></a>) is called with <span 
+class="cmtt-10">CoIndexError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Delete </span>(<a 
+href="#x78-69000017.10">603<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1608--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex33.pp</span><HR/><div class="listinginput">
+<!--l. 1608--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex33;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.AtDelete</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InitMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Initial</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',InitMem);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Added</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">Items.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('(Should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">100*',SizeOF(TMyObject));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('=',100*SizeOf(TMyObject),')');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">Count&gt;0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">AtDelete(Count-1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Freed</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">objects.</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Initmem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">bytes.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-700" name="x78-69400017.10">TCollection.ForEach</a></h4><a 
+  name="dx78-694001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.ForEach (Action: Pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ForEach </span>calls <span 
+class="cmtt-10">Action </span>for each element in the collection, and passes the element as an
+                                                                            
+
+                                                                            
+argument to <span 
+class="cmtt-10">Action</span>.
+<!--l. 1618--><p class="noindent"><span 
+class="cmtt-10">Action </span>is a procedural type variable that accepts a pointer as an argument.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FirstThat </span>(<a 
+href="#x78-68400017.10">598<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">LastThat </span>(<a 
+href="#x78-68300017.10">597<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1626--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex21.pp</span><HR/><div class="listinginput">
+<!--l. 1626--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.Foreach</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P^.GetField);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(100,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(100-I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserted</span>&nbsp;<span 
+class="cmtt-10">',C^.Count,'</span>&nbsp;<span 
+class="cmtt-10">objects');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.ForEach(@PrintField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.FreeAll;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-701" name="x78-69500017.10">TCollection.SetLimit</a></h4><a 
+  name="dx78-695001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.SetLimit (ALimit: Sw</span>_<span 
+class="cmtt-10">Integer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetLimit </span>sets the maximum number of elements in the collection. <span 
+class="cmtt-10">ALimit </span>must not be less
+than <span 
+class="cmtt-10">Count</span>, and should not be larger than <span 
+class="cmtt-10">MaxCollectionSize</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x78-67700017.10">593<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1642--><p class="noindent">For an example, see <span 
+class="cmss-10">Pack </span>(<a 
+href="#x78-68500017.10">599<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-702" name="x78-69600017.10">TCollection.Error</a></h4><a 
+  name="dx78-696001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Error (Code, Info: Integer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Error </span>is called by the various <span 
+class="cmtt-10">TCollection </span>methods in case of an error condition. The
+default behaviour is to make a call to <span 
+class="cmtt-10">RunError </span>with an error of <span 
+class="cmtt-10">212-Code</span>.
+<!--l. 1652--><p class="noindent">This method can be overridden by descendent objects to implement a different error-handling.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Abstract </span>(<a 
+href="unitsse49.htm#x71-61300017.3">549<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-703" name="x78-69700017.10">TCollection.AtPut</a></h4><a 
+  name="dx78-697001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.AtPut (Index: Sw</span>_<span 
+class="cmtt-10">Integer; Item: Pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AtPut </span>sets the element at position <span 
+class="cmtt-10">Index </span>in the collection to <span 
+class="cmtt-10">Item</span>. Any previous value is
+overwritten.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Index </span>isn&#8217;t valid then <span 
+class="cmss-10">Error </span>(<a 
+href="#x78-69600017.10">608<!--tex4ht:ref: se:TBufStream--></a>) is called with <span 
+class="cmtt-10">CoIndexError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 1671--><p class="noindent">For an example, see <span 
+class="cmss-10">Pack </span>(<a 
+href="#x78-68500017.10">599<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-704" name="x78-69800017.10">TCollection.AtInsert</a></h4><a 
+  name="dx78-698001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.AtInsert (Index: Sw</span>_<span 
+class="cmtt-10">Integer; Item: Pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AtInsert </span>inserts <span 
+class="cmtt-10">Item </span>in the collection at position <span 
+class="cmtt-10">Index</span>, shifting all elements by one
+position. In case the current limit is reached, the collection will try to expand with a call to
+<span 
+class="cmtt-10">SetLimit</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Index </span>isn&#8217;t valid then <span 
+class="cmss-10">Error </span>(<a 
+href="#x78-69600017.10">608<!--tex4ht:ref: se:TBufStream--></a>) is called with <span 
+class="cmtt-10">CoIndexError</span>. If the collection fails to
+expand, then <span 
+class="cmtt-10">coOverFlow </span>is passd to <span 
+class="cmtt-10">Error</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Insert </span>(<a 
+href="#x78-68900017.10">603<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 1688--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex34.pp</span><HR/><div class="listinginput">
+<!--l. 1688--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex34;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TCollection.AtInsert</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P^.GetField);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserting</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">records</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">random</span>&nbsp;<span 
+class="cmtt-10">places.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(I-1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">I=1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">AtInsert(Random(Count),M);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Values</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Foreach(@PrintField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-705" name="x78-69900017.10">TCollection.Store</a></h4><a 
+  name="dx78-699001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.Store (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Store </span>writes the collection to the stream <span 
+class="cmtt-10">S</span>. It does this by writeing the current <span 
+class="cmtt-10">Count</span>,
+<span 
+class="cmtt-10">Limit </span>and <span 
+class="cmtt-10">Delta </span>to the stream, and then writing each item to the stream.
+<!--l. 1699--><p class="noindent">The contents of the stream are then suitable for instantiating another collection with <span 
+class="cmss-10">Load</span>
+(<a 
+href="#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors returned are those by <span 
+class="cmss-10">TStream.Put </span>(<a 
+href="unitsse52.htm#x74-64300017.6">571<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Load </span>(<a 
+href="#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">PutItem </span>(<a 
+href="#x78-70000017.10">610<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1707--><p class="noindent">For an example, see seeplLoadTCollection.Load.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-78-706" name="x78-70000017.10">TCollection.PutItem</a></h4><a 
+  name="dx78-700001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TCollection.PutItem (Var S: TStream; Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutItem </span>writes <span 
+class="cmtt-10">Item </span>to stream <span 
+class="cmtt-10">S</span>. This method is used internaly by the <span 
+class="cmtt-10">TCollection </span>object,
+and should not be called directly.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are those returned by <span 
+class="cmss-10">TStream.Put </span>(<a 
+href="unitsse52.htm#x74-64300017.6">571<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Store </span>(<a 
+href="#x78-69900017.10">609<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetItem </span>(<a 
+href="#x78-68200017.10">597<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse57.htm" >next</a>] [<a 
+href="unitsse55.htm" >prev</a>] [<a 
+href="unitsse55.htm#tailunitsse55.htm" >prev-tail</a>] [<a 
+href="unitsse56.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse56.htm" >up</a>] </p></div><a 
+  name="tailunitsse56.htm"></a>   
+</body></html> 

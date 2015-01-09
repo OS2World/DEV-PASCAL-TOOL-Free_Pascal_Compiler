@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TMemoryStream.Capacity</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TMemoryStream.Capacity</h1>
+<p>Current capacity of the stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">protected</span> <span class="kw">property </span><a href="../classes/tmemorystream.htm">TMemoryStream</a><span class="sym">.</span>Capacity<span class="sym">: </span>LongInt<br>&nbsp;&nbsp;<span class="kw">read </span>FCapacity<br>&nbsp;&nbsp;<span class="kw">write </span>SetCapacity<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Capacity</var> is the current capacity of the stream, this is the  current size of the memory allocated to the stream. This is not necessarily equal to the size of the stream, but will always be larger than or equal to the size of the stream. When writing to the stream, the <a href="../classes/tmemorystream.write.htm">TMemoryStream.Write</a> sets the capacity to the needed value. </p>
+<p>If a lot of write operations will occur, performance may be improved by setting the capacity to a large value, so less reallocations of memory will occur while writing to the stream. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tmemorystream.realloc.htm">TMemoryStream.ReAlloc</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the new capacity for the memory stream</p></td>
+</tr>
+</table>
+</body>
+</html>

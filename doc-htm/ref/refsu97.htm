@@ -1,0 +1,203 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Exclude</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu98.htm" >next</a>] [<a 
+href="refsu96.htm" >prev</a>] [<a 
+href="refsu96.htm#tailrefsu96.htm" >prev-tail</a>] [<a 
+href="#tailrefsu97.htm">tail</a>] [<a 
+href="refse64.htm#refsu97.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-182-203" name="x182-18800013.3">Exclude</a></h4><a 
+  name="dx182-188001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Exclude (Var S : Any set type; E : Set element);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Exclude </span>removes <span 
+class="cmtt-10">E </span>from the set <span 
+class="cmtt-10">S </span>if it is included inthe set. E should be of the same type
+as the base type of the set <span 
+class="cmtt-10">S</span>.
+<!--l. 5695--><p class="noindent">Thus, the two following statements do the same thing:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;S:=S-[E];
+&nbsp;Exclude(S,E);
+</pre>
+</td></tr></table>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the type of the element <span 
+class="cmtt-10">E </span>is not equal to the base type of the set <span 
+class="cmtt-10">S</span>, the compiler will generate an
+error.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Include </span>(<a 
+href="refsu117.htm#x202-20800013.3">514<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5707--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex111.pp</span><HR/><div class="listinginput">
+<!--l. 5707--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">Example111;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Include/Exclude</span>&nbsp;<span 
+class="cmtt-10">functions</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TEnumA</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">(aOne,aTwo,aThree);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TEnumAs</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Set</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">TEnumA;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SA</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TEnumAs;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintSet(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TEnumAs);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">DoEl(A</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TEnumA;</span>&nbsp;<span 
+class="cmtt-10">Desc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">A</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(',');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">B:=True;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(Desc);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('[');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">B:=False;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoEl(aOne,'aOne');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoEl(aTwo,'aTwo');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoEl(aThree,'aThree');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(']')</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SA:=[];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Include(SA,aOne);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintSet(SA);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Include(SA,aThree);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintSet(SA);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exclude(SA,aOne);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintSet(SA);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exclude(SA,aTwo);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintSet(SA);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exclude(SA,aThree);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintSet(SA);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu98.htm" >next</a>] [<a 
+href="refsu96.htm" >prev</a>] [<a 
+href="refsu96.htm#tailrefsu96.htm" >prev-tail</a>] [<a 
+href="refsu97.htm" >front</a>] [<a 
+href="refse64.htm#refsu97.htm" >up</a>] </p></div><a 
+  name="tailrefsu97.htm"></a>  
+</body></html> 

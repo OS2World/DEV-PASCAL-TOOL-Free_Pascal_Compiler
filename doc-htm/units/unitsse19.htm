@@ -1,0 +1,837 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.1 Introduction</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse20.htm" >next</a>] [<a 
+href="#tailunitsse19.htm">tail</a>] [<a 
+href="unitsch8.htm#unitsse19.htm" >up</a>] </p></div>
+                                                                            
+
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">8.1</span> <a 
+href="units.htm#QQ2-32-207" name="x32-2040008.1">Introduction</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-32-208" name="x32-2050008.1">Requirements</a></h4> The unit Graph exports functions and procedures for graphical output. It requires at
+least a VGA-compatible Card or a VGA-Card with software-driver (min. <span 
+class="cmbx-10">512Kb </span>video
+memory).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-32-209" name="x32-2060008.1">A word about mode selection</a></h4> The graph unit was implemented for compatibility with the old
+Turbo Pascal graph unit. For this reason, the mode constants as they were defined in the Turbo
+Pascal graph unit are retained.
+<!--l. 49--><p class="noindent">However, since
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x32-206002x1"></a>Video cards have evolved very much
+     </li>
+     <li class="enumerate"><a 
+  name="x32-206004x2"></a>Free Pascal runs on multiple platforms</li></ol>
+<!--l. 54--><p class="noindent">it was decided to implement new mode and graphic driver constants, which are more independent
+of the specific platform the program runs on.
+<!--l. 57--><p class="noindent">In this section we give a short explanation of the new mode system. the following drivers were
+defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;D1bit&nbsp;=&nbsp;11;
+&nbsp;D2bit&nbsp;=&nbsp;12;
+&nbsp;D4bit&nbsp;=&nbsp;13;
+&nbsp;D6bit&nbsp;=&nbsp;14;&nbsp;&nbsp;{&nbsp;64&nbsp;colors&nbsp;Half-brite&nbsp;mode&nbsp;-&nbsp;Amiga&nbsp;}
+&nbsp;D8bit&nbsp;=&nbsp;15;
+&nbsp;D12bit&nbsp;=&nbsp;16;&nbsp;{&nbsp;4096&nbsp;color&nbsp;modes&nbsp;HAM&nbsp;mode&nbsp;-&nbsp;Amiga&nbsp;}
+&nbsp;D15bit&nbsp;=&nbsp;17;
+&nbsp;D16bit&nbsp;=&nbsp;18;
+&nbsp;D24bit&nbsp;=&nbsp;19;&nbsp;{&nbsp;not&nbsp;yet&nbsp;supported&nbsp;}
+&nbsp;D32bit&nbsp;=&nbsp;20;&nbsp;{&nbsp;not&nbsp;yet&nbsp;supported&nbsp;}
+&nbsp;D64bit&nbsp;=&nbsp;21;&nbsp;{&nbsp;not&nbsp;yet&nbsp;supported&nbsp;}
+&nbsp;
+&nbsp;lowNewDriver&nbsp;=&nbsp;11;
+&nbsp;highNewDriver&nbsp;=&nbsp;21;
+</pre>
+</td></tr></table>Each of these drivers specifies a desired color-depth.
+<!--l. 77--><p class="noindent">The following modes have been defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;detectMode&nbsp;=&nbsp;30000;
+&nbsp;m320x200&nbsp;=&nbsp;30001;
+&nbsp;m320x256&nbsp;=&nbsp;30002;&nbsp;{&nbsp;amiga&nbsp;resolution&nbsp;(PAL)&nbsp;}
+&nbsp;m320x400&nbsp;=&nbsp;30003;&nbsp;{&nbsp;amiga/atari&nbsp;resolution&nbsp;}
+&nbsp;m512x384&nbsp;=&nbsp;30004;&nbsp;{&nbsp;mac&nbsp;resolution&nbsp;}
+&nbsp;m640x200&nbsp;=&nbsp;30005;&nbsp;{&nbsp;vga&nbsp;resolution&nbsp;}
+&nbsp;m640x256&nbsp;=&nbsp;30006;&nbsp;{&nbsp;amiga&nbsp;resolution&nbsp;(PAL)&nbsp;}
+&nbsp;m640x350&nbsp;=&nbsp;30007;&nbsp;{&nbsp;vga&nbsp;resolution&nbsp;}
+&nbsp;m640x400&nbsp;=&nbsp;30008;
+&nbsp;m640x480&nbsp;=&nbsp;30009;
+&nbsp;m800x600&nbsp;=&nbsp;30010;
+&nbsp;m832x624&nbsp;=&nbsp;30011;&nbsp;{&nbsp;mac&nbsp;resolution&nbsp;}
+&nbsp;m1024x768&nbsp;=&nbsp;30012;
+&nbsp;m1280x1024&nbsp;=&nbsp;30013;
+&nbsp;m1600x1200&nbsp;=&nbsp;30014;
+&nbsp;m2048x1536&nbsp;=&nbsp;30015;
+&nbsp;
+&nbsp;lowNewMode&nbsp;=&nbsp;30001;
+&nbsp;highNewMode&nbsp;=&nbsp;30015;
+</pre>
+</td></tr></table>These modes start at 30000 because Borland specified that the mode number should be ascending
+with increasing X resolution, and the new constants shouldn&#8217;t interfere with the old
+ones.
+<!--l. 103--><p class="noindent">The above constants can be used to set a certain color depth and resultion, as demonstrated in the
+following example:
+<!--l. 106--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">graphex/inigraph1.pp</span><HR/><div class="listinginput">
+<!--l. 106--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">inigraph1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">static</span>&nbsp;<span 
+class="cmtt-10">graphics</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">selection</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">graph;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TheLine</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'We</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">640</span>&nbsp;<span 
+class="cmtt-10">x</span>&nbsp;<span 
+class="cmtt-10">480</span>&nbsp;<span 
+class="cmtt-10">x</span>&nbsp;<span 
+class="cmtt-10">256</span>&nbsp;<span 
+class="cmtt-10">colors!'+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">&lt;Return&gt;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">continue)';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gd,</span>&nbsp;<span 
+class="cmtt-10">gm,</span>&nbsp;<span 
+class="cmtt-10">lo,</span>&nbsp;<span 
+class="cmtt-10">hi,</span>&nbsp;<span 
+class="cmtt-10">error,tw,th:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">found:</span>&nbsp;<span 
+class="cmtt-10">boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">We</span>&nbsp;<span 
+class="cmtt-10">want</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">8</span>&nbsp;<span 
+class="cmtt-10">bit</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gd</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">D8bit;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gm</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">m640x480;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">initgraph(gd,gm,'');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sure</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">always</span>&nbsp;<span 
+class="cmtt-10">check</span>&nbsp;<span 
+class="cmtt-10">graphresult!</span>&nbsp;<span 
+class="cmtt-10">}</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">graphResult;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(error</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">grOk)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln('640x480x256</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">supported!');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">We</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">640x480x256</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">setColor(cyan);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rectangle(0,0,getmaxx,getmaxy);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">nice</span>&nbsp;<span 
+class="cmtt-10">message</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">center</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">setTextStyle(defaultFont,horizDir,1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">tw:=TextWidth(TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">th:=TextHeight(TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">outTextXY((getMaxX</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">TW)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(getMaxY</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">TH)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Wait</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">return</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">readln;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Back</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">closegraph;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<!--l. 108--><p class="noindent">If other modes than the ones above are supported by the graphics card, you will not be able to
+select them with this mechanism.
+<!--l. 111--><p class="noindent">For this reason, there is also a &#8217;dynamic&#8217; mode number, which is assigned at run-time. This number
+increases with increasing X resolution. It can be queried with the <span 
+class="cmtt-10">getmoderange </span>call. This call will
+return the range of modes which are valid for a certain graphics driver. The numbers are
+guaranteed to be consecutive, and can be used to search for a certain resolution, as in the following
+example:
+<!--l. 118--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">graphex/inigraph2.pp</span><HR/><div class="listinginput">
+<!--l. 118--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">inigraph2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">dynamic</span>&nbsp;<span 
+class="cmtt-10">graphics</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">selection</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">graph;</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TheLine</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'We</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">640</span>&nbsp;<span 
+class="cmtt-10">x</span>&nbsp;<span 
+class="cmtt-10">480</span>&nbsp;<span 
+class="cmtt-10">x</span>&nbsp;<span 
+class="cmtt-10">256</span>&nbsp;<span 
+class="cmtt-10">colors!'+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">&lt;Return&gt;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">continue)';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">th,tw,gd,</span>&nbsp;<span 
+class="cmtt-10">gm,</span>&nbsp;<span 
+class="cmtt-10">lo,</span>&nbsp;<span 
+class="cmtt-10">hi,</span>&nbsp;<span 
+class="cmtt-10">error:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">found:</span>&nbsp;<span 
+class="cmtt-10">boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">We</span>&nbsp;<span 
+class="cmtt-10">want</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">8</span>&nbsp;<span 
+class="cmtt-10">bit</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gd</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">D8bit;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Get</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">resolutions</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">bitdepth</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">getmoderange(gd,lo,hi);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">highest</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">-1,</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">resolutions</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">supported</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">bitdepth</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">hi</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln('no</span>&nbsp;<span 
+class="cmtt-10">8</span>&nbsp;<span 
+class="cmtt-10">bit</span>&nbsp;<span 
+class="cmtt-10">modes</span>&nbsp;<span 
+class="cmtt-10">supported!');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">found</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">false;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Search</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">resolutions</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">640x480</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">gm</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">lo</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">hi</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">initgraph(gd,gm,'');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Make</span>&nbsp;<span 
+class="cmtt-10">sure</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">always</span>&nbsp;<span 
+class="cmtt-10">check</span>&nbsp;<span 
+class="cmtt-10">graphresult!</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">graphResult;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(error</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">grOk)</span>&nbsp;<span 
+class="cmtt-10">and</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(getmaxx</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">639)</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">(getmaxy</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">479)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">found</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">true;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">break;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">found</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln('640x480x256</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">supported!');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">We</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">640x480x256</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">setColor(cyan);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rectangle(0,0,getmaxx,getmaxy);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">nice</span>&nbsp;<span 
+class="cmtt-10">message</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">center</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">setTextStyle(defaultFont,horizDir,1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TW:=TextWidth(TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TH:=TextHeight(TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">outTextXY((getMaxX</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">TW)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(getMaxY</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">TH)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2,TheLine);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Wait</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">return</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">readln;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Back</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">closegraph;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<!--l. 121--><p class="noindent">Thus, the <span 
+class="cmtt-10">getmoderange </span>function can be used to detect all available modes and drivers, as in the
+following example:
+<!--l. 124--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">graphex/modrange.pp</span><HR/><div class="listinginput">
+<!--l. 124--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">GetModeRange_Example;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">how</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">find</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">graph</span>&nbsp;<span 
+class="cmtt-10">modes</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">graph;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Currently,</span>&nbsp;<span 
+class="cmtt-10">only</span>&nbsp;<span 
+class="cmtt-10">4,</span>&nbsp;<span 
+class="cmtt-10">8,</span>&nbsp;<span 
+class="cmtt-10">15</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">16</span>&nbsp;<span 
+class="cmtt-10">bit</span>&nbsp;<span 
+class="cmtt-10">modes</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">supported</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">but</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">may</span>&nbsp;&nbsp;<span 
+class="cmtt-10">change</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">future</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gdnames:</span>&nbsp;<span 
+class="cmtt-10">array[D4bit..D16bit]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string[6]</span>&nbsp;<span 
+class="cmtt-10">=</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">('4</span>&nbsp;<span 
+class="cmtt-10">bit','6</span>&nbsp;<span 
+class="cmtt-10">bit','8</span>&nbsp;<span 
+class="cmtt-10">bit','12</span>&nbsp;<span 
+class="cmtt-10">bit','15</span>&nbsp;<span 
+class="cmtt-10">bit','16</span>&nbsp;<span 
+class="cmtt-10">bit');</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">t:</span>&nbsp;<span 
+class="cmtt-10">text;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">gd,</span>&nbsp;<span 
+class="cmtt-10">c,</span>&nbsp;<span 
+class="cmtt-10">low,</span>&nbsp;<span 
+class="cmtt-10">high,</span>&nbsp;<span 
+class="cmtt-10">res:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">assign(t,'modes.txt');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rewrite(t);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">gd</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">D4bit</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">D16bit</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Get</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">numbers</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">driver</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">getModeRange(gd,low,high);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">append(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write(t,gdnames[gd]);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(t,':</span>&nbsp;<span 
+class="cmtt-10">low</span>&nbsp;<span 
+class="cmtt-10">modenr</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',low,',</span>&nbsp;<span 
+class="cmtt-10">high</span>&nbsp;<span 
+class="cmtt-10">modenr</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',high);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">high</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">-1,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">resolutions</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">supported</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">bitdepth</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">high</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">append(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t,'</span>&nbsp;&nbsp;<span 
+class="cmtt-10">No</span>&nbsp;<span 
+class="cmtt-10">modes</span>&nbsp;<span 
+class="cmtt-10">supported!');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Enter</span>&nbsp;<span 
+class="cmtt-10">all</span>&nbsp;<span 
+class="cmtt-10">supported</span>&nbsp;<span 
+class="cmtt-10">resolutions</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">bitdepth</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">their</span>&nbsp;<span 
+class="cmtt-10">characteristics</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">file</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">low</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">high</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">append(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t,'</span>&nbsp;&nbsp;<span 
+class="cmtt-10">testing</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">nr</span>&nbsp;<span 
+class="cmtt-10">',c);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">initgraph(gd,c,'');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">res</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">graphresult;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">append(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">An</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">occurred</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">entering</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mode?</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">res</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">grok</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t,grapherrormsg(res))</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write(t,'maxx:</span>&nbsp;<span 
+class="cmtt-10">',getmaxx,',</span>&nbsp;<span 
+class="cmtt-10">maxy:</span>&nbsp;<span 
+class="cmtt-10">',getmaxy);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(t,',</span>&nbsp;<span 
+class="cmtt-10">maxcolor:</span>&nbsp;<span 
+class="cmtt-10">',getmaxcolor);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">closegraph;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">append(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">close(t);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('All</span>&nbsp;<span 
+class="cmtt-10">supported</span>&nbsp;<span 
+class="cmtt-10">modes</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">listed</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">modes.txt</span>&nbsp;<span 
+class="cmtt-10">files');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse20.htm" >next</a>] [<a 
+href="unitsse19.htm" >front</a>] [<a 
+href="unitsch8.htm#unitsse19.htm" >up</a>] </p></div><a 
+  name="tailunitsse19.htm"></a>   
+</body></html> 

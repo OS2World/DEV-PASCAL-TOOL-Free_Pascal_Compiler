@@ -1,0 +1,316 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.2 Installing the compiler.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse6.htm" >next</a>] [<a 
+href="userse4.htm" >prev</a>] [<a 
+href="userse4.htm#tailuserse4.htm" >prev-tail</a>] [<a 
+href="#tailuserse5.htm">tail</a>] [<a 
+href="userch2.htm#userse5.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.2</span> <a 
+href="user.htm#QQ2-9-14" name="x9-140002.2">Installing the compiler.</a></h3>
+<!--l. 197--><p class="noindent">The installation of Free Pascal is easy, but is platform-dependent. We discuss the process for each
+platform separately.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-9-15" name="x9-150002.2">Installing under DOS or Windows</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="#x9-160002.2" name="x9-160002.2">Mandatory installation steps.</a></h5> First, you must get the latest distribution files of Free Pascal. They
+come as zip files, which you must unzip first, or you can download the compiler as a series of
+separate files. This is especially useful if you have a slow connection, but it is also nice if you
+want to install only some parts of the compiler distribution. The distribution zip file
+contains an installation program <span 
+class="cmss-10">INSTALL.EXE</span>. You must run this program to install the
+compiler.
+<!--l. 211--><p class="noindent">The screen of the installation program looks like figure <a 
+href="#x9-160011">2.1<!--tex4ht:ref: fig:install1--></a>.
+<!--l. 213--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x9-160011"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;2.1: </td><td  
+class="content">The <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>install program screen</td></tr></table></div><!--tex4ht:label?: x9-160011-->
+<!--l. 213--><p class="noindent"><img 
+src="user0x.png" alt="PIC" class="graphics" width="400.34999pt" height="225.9129pt" ><!--tex4ht:graphics  
+name="user0x.png" src="pics//install1.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure"> <hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x9-160022"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;2.2: </td><td  
+class="content"></td></tr></table></div><!--tex4ht:label?: x9-160022-->
+<!--l. 214--><p class="noindent"><img 
+src="user1x.png" alt="PIC" class="graphics" width="400.34999pt" height="225.19588pt" ><!--tex4ht:graphics  
+name="user1x.png" src="pics//install2.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 216--><p class="noindent">The program allows you to select:
+     <ul class="itemize1">
+     <li class="itemize">What components you wish to install. e.g do you want the sources or not, do you want
+     docs or not. Items that you didn&#8217;t download when downloading as separate files, will
+     not be enabled, i.e. you can&#8217;t select them.
+     </li>
+     <li class="itemize">Where you want to install (the default location is <span class="obeylines-h"><span 
+class="cmtt-10">C:\PP</span></span>).</li></ul>
+<!--l. 226--><p class="noindent">In order to run Free Pascal from any directory on your system, you must extend your path variable
+to contain the <span class="obeylines-h"><span 
+class="cmtt-10">C:\PP\BIN</span></span> directory. Usually this is done in the <span 
+class="cmss-10">AUTOEXEC.BAT </span>file. It should look
+something like this :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;SET&nbsp;PATH=%PATH%;C:\PP\BIN\GO32V2
+</pre>
+</td></tr></table>for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>or
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;SET&nbsp;PATH=%PATH%;C:\PP\BIN\WIN32
+</pre>
+</td></tr></table>for <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and finally
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;SET&nbsp;PATH=%PATH%;C:\PP\BIN\OS2
+</pre>
+</td></tr></table>for <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>. (Again, assuming that you installed in the default location).
+<!--l. 244--><p class="noindent">On <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>, Free Pascal installs some libraries from the EMX package if they were not yet
+installed (the installer will notify you if they should be installed). They are located in
+the
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;C:\PP\DLL
+</pre>
+</td></tr></table>directory. The name of this directory should be added to the <span 
+class="cmtt-10">LIBPATH </span>directive in the <span 
+class="cmss-10">config.sys</span>
+file:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;LIBPATH=XXX;C:\PP\DLL
+</pre>
+</td></tr></table>Obviously, any existing directories in the <span 
+class="cmtt-10">LIBPATH </span>directive (indicated by <span 
+class="cmtt-10">XXX </span>in the above
+example) should be preserved.
+<h5 class="subsubsectionHead"><a 
+href="#x9-170002.2" name="x9-170002.2">Optional Installation: The coprocessor emulation</a></h5> For people who have an older CPU type, without
+math coprocessor (i387) it is necessary to install a coprocessor emulation, since Free Pascal uses
+the coprocessor to do all floating point operations.
+<!--l. 263--><p class="noindent">The installation of the coprocessor emulation is handled by the installation program
+(<span 
+class="cmss-10">INSTALL.EXE</span>) under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>and <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-9-20" name="x9-180002.2">Installing under Linux</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="#x9-190002.2" name="x9-190002.2">Mandatory installation steps.</a></h5> The <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>distribution of Free Pascal comes in three
+forms:
+     <ul class="itemize1">
+     <li class="itemize">a <span 
+class="cmss-10">tar.gz </span>version, also available as seperate files.
+     </li>
+     <li class="itemize">a <span 
+class="cmss-10">.rpm </span>(Red Hat Package Manager) version, and
+     </li>
+     <li class="itemize">a <span 
+class="cmss-10">.deb </span>(Debian) version.</li></ul>
+<!--l. 277--><p class="noindent">All of these packages contain a <span 
+class="cmtt-10">ELF </span>version of the compiler binaries and units. the older <span 
+class="cmtt-10">aout</span>
+binaries are no longer distributed, although you still can use the comiler on an <span 
+class="cmtt-10">aout </span>system if you
+recompile it.
+<!--l. 281--><p class="noindent">If you use the <span 
+class="cmss-10">.rpm </span>format, installation is limited to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;rpm&nbsp;-i&nbsp;fpc-pascal-XXX.rpm
+</pre>
+</td></tr></table>(<span 
+class="cmtt-10">XXX </span>is the version number of the <span 
+class="cmss-10">.rpm </span>file)
+<!--l. 287--><p class="noindent">If you use Debian, installation is limited to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;dpkg&nbsp;-i&nbsp;fpc-XXX.deb
+</pre>
+</td></tr></table>Here again, <span 
+class="cmtt-10">XXX </span>is the version number of the <span 
+class="cmss-10">.deb </span>file.
+<!--l. 293--><p class="noindent">You need root access to install these packages. The <span 
+class="cmss-10">.tar </span>file allows you to do an installation if you
+don&#8217;t have root permissions.
+<!--l. 296--><p class="noindent">When downloading the <span 
+class="cmtt-10">.tar </span>file, or the separate files, installation is more interactive.
+<!--l. 299--><p class="noindent">In case you downloaded the <span 
+class="cmss-10">.tar </span>file, you should first untar the file, in some directory where you
+have write permission, using the following command:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tar&nbsp;-xvf&nbsp;fpc.tar
+</pre>
+</td></tr></table>We supposed here that you downloaded the file <span 
+class="cmss-10">fpc.tar </span>somewhere from the Internet. (The real
+filename will have some version number in it, which we omit here for clarity.)
+<!--l. 309--><p class="noindent">When the file is untarred, you will be left with more archive files, and an install program: an
+installation shell script.
+<!--l. 312--><p class="noindent">If you downloaded the files as separate files, you should at least download the <span 
+class="cmss-10">install.sh </span>script, and
+the libraries (in <span 
+class="cmss-10">libs.tar.gz</span>).
+<!--l. 315--><p class="noindent">To install Free Pascal, all that you need to do now is give the following command:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;./install.sh
+</pre>
+</td></tr></table>And then you must answer some questions. They&#8217;re very simple, they&#8217;re mainly concerned with 2
+things :
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x9-19002x1"></a>Places where you can install different things.
+     </li>
+     <li class="enumerate"><a 
+  name="x9-19004x2"></a>Deciding  if  you  want  to  install  certain  components  (such  as  sources  and  demo
+     programs).</li></ol>
+<!--l. 326--><p class="noindent">The script will automatically detect which components are present and can be installed. It will
+only offer to install what has been found. because of this feature, you must keep the original names
+when downloading, since the script expects this.
+<!--l. 331--><p class="noindent">If you run the installation script as the <span 
+class="cmtt-10">root </span>user, you can just accept all installation defaults. If
+you don&#8217;t run as <span 
+class="cmtt-10">root</span>, you must take care to supply the installation program with directory names
+where you have write permission, as it will attempt to create the directories you specify. In
+principle, you can install it wherever you want, though.
+<!--l. 337--><p class="noindent">At the end of installation, the installation program will generate a configuration file (<span 
+class="cmss-10">fpc.cfg</span>) for
+the Free Pascal compiler which reflects the settings that you chose. It will install this file in the
+<span 
+class="cmss-10">/etc </span>directory or in your home directory (with name <span 
+class="cmss-10">.fpc.cfg</span>) if you do not have write
+permission in the <span 
+class="cmss-10">/etc </span>directory. It will make a copy in the directory where you installed the
+libraries.
+<!--l. 345--><p class="noindent">The compiler will first look for a file <span 
+class="cmss-10">.fpc.cfg </span>in your home directory before looking in the <span 
+class="cmss-10">/etc</span>
+directory.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse6.htm" >next</a>] [<a 
+href="userse4.htm" >prev</a>] [<a 
+href="userse4.htm#tailuserse4.htm" >prev-tail</a>] [<a 
+href="userse5.htm" >front</a>] [<a 
+href="userch2.htm#userse5.htm" >up</a>] </p></div><a 
+  name="tailuserse5.htm"></a>    
+</body></html> 

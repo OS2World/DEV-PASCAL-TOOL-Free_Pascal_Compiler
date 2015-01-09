@@ -1,0 +1,179 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.18 TStrListMaker</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse63.htm" >prev</a>] [<a 
+href="unitsse63.htm#tailunitsse63.htm" >prev-tail</a>] [<a 
+href="#tailunitsse64.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse64.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.18</span> <a 
+href="units.htm#QQ2-86-748" name="x86-74200017.18">TStrListMaker</a></h3>
+<!--l. 2457--><p class="noindent">The <span 
+class="cmtt-10">TStrListMaker </span>object can be used to generate a stream with strings, which can be read with
+the <span 
+class="cmtt-10">TStringList </span>object. If you register this object with the <span 
+class="cmss-10">RegisterType </span>(<a 
+href="unitsse49.htm#x71-61500017.3">549<!--tex4ht:ref: se:TBufStream--></a>) function, you
+cannot register the <span 
+class="cmtt-10">TStringList </span>object.
+<!--l. 2462--><p class="noindent">This is the public declaration of the <span 
+class="cmtt-10">TStrListMaker </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TStrListMaker&nbsp;=&nbsp;OBJECT&nbsp;(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Init&nbsp;(AStrSize,&nbsp;AIndexSize:&nbsp;Sw_Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destructor&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Put&nbsp;(Key:&nbsp;SwWord;&nbsp;S:&nbsp;String);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Store&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PStrListMaker&nbsp;=&nbsp;^TStrListMaker;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-86-749" name="x86-74300017.18">TStrListMaker.Init</a></h4><a 
+  name="dx86-743001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TStrListMaker.Init (AStrSize, AIndexSize: SwWord);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The <span 
+class="cmtt-10">Init </span>constructor creates a new instance of the <span 
+class="cmtt-10">TstrListMaker </span>object. It allocates
+<span 
+class="cmtt-10">AStrSize </span>bytes on the heap to hold all the strings you wish to store. It also allocates enough
+room for <span 
+class="cmtt-10">AIndexSize </span>key description entries (of the type <span 
+class="cmtt-10">TStrIndexrec</span>).
+<!--l. 2483--><p class="noindent"><span 
+class="cmtt-10">AStrSize </span>must be large enough to contain all the strings you wish to store. If not enough
+memory is allocated, other memory will be overwritten. The same is true for <span 
+class="cmtt-10">AIndexSize </span>:
+maximally <span 
+class="cmtt-10">AIndexSize </span>strings can be written to the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TObject.Init </span>(<a 
+href="unitsse51.htm#x73-62900017.5">563<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="#x86-74400017.18">642<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-86-750" name="x86-74400017.18">TStrListMaker.Done</a></h4><a 
+  name="dx86-744001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TStrListMaker.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The <span 
+class="cmtt-10">Done </span>destructor de-allocates the memory for the index description records and the
+string data, and then destroys the object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TObject.Done </span>(<a 
+href="unitsse51.htm#x73-63100017.5">564<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Init </span>(<a 
+href="#x86-74300017.18">642<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-86-751" name="x86-74500017.18">TStrListMaker.Put</a></h4><a 
+  name="dx86-745001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStrListMaker.Put (Key: Sw</span>_<span 
+class="cmtt-10">Word; S: String);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Put </span>adds they string <span 
+class="cmtt-10">S </span>with key <span 
+class="cmtt-10">Key </span>to the collection of strings. This action doesn&#8217;t write
+the string to a stream. To write the strings to the stream, see the <span 
+class="cmss-10">Store </span>(<a 
+href="#x86-74600017.18">643<!--tex4ht:ref: se:TBufStream--></a>) method.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Store </span>(<a 
+href="#x86-74600017.18">643<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-86-752" name="x86-74600017.18">TStrListMaker.Store</a></h4><a 
+  name="dx86-746001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStrListMaker.Store (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Store </span>writes the collection of strings to the stream <span 
+class="cmtt-10">S</span>. The collection can then be read with
+the <span 
+class="cmtt-10">TStringList </span>object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">A stream error may occur when writing the strings to the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStringList.Load </span>(<a 
+href="unitsse63.htm#x85-73900017.17">640<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Put </span>(<a 
+href="#x86-74500017.18">642<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse63.htm" >prev</a>] [<a 
+href="unitsse63.htm#tailunitsse63.htm" >prev-tail</a>] [<a 
+href="unitsse64.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse64.htm" >up</a>] </p></div><a 
+  name="tailunitsse64.htm"></a>   
+</body></html> 

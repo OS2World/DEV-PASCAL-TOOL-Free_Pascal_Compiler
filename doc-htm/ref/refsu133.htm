@@ -1,0 +1,162 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Maxavail</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu134.htm" >next</a>] [<a 
+href="refsu132.htm" >prev</a>] [<a 
+href="refsu132.htm#tailrefsu132.htm" >prev-tail</a>] [<a 
+href="#tailrefsu133.htm">tail</a>] [<a 
+href="refse64.htm#refsu133.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-218-239" name="x218-22400013.3">Maxavail</a></h4><a 
+  name="dx218-224001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Maxavail : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Maxavail </span>returns the size, in bytes, of the biggest free memory block in the heap.
+<!--l. 6354--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The heap grows dynamically if more memory is needed than is available.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Release </span>(<a 
+href="refsu155.htm#x240-24600013.3">556<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Memavail </span>(<a 
+href="refsu134.htm#x219-22500013.3">535<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">Freemem </span>(<a 
+href="refsu108.htm#x193-19900013.3">504<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Getmem </span>(<a 
+href="refsu110.htm#x195-20100013.3">506<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6363--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex40.pp</span><HR/><div class="listinginput">
+<!--l. 6363--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example40;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MaxAvail</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">allocate</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">there</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">more</span>&nbsp;<span 
+class="cmtt-10">memory}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">MaxAvail&gt;=1000</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(P,1000);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Default</span>&nbsp;<span 
+class="cmtt-10">4MB</span>&nbsp;<span 
+class="cmtt-10">heap</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">allocated,</span>&nbsp;<span 
+class="cmtt-10">so</span>&nbsp;<span 
+class="cmtt-10">4000</span>&nbsp;<span 
+class="cmtt-10">blocks</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">allocated.</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">When</span>&nbsp;<span 
+class="cmtt-10">compiled</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">-Ch10000</span>&nbsp;<span 
+class="cmtt-10">switch,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">program</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">able</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">allocate</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">block</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Allocated</span>&nbsp;<span 
+class="cmtt-10">',i,'</span>&nbsp;<span 
+class="cmtt-10">blocks</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">1000</span>&nbsp;<span 
+class="cmtt-10">bytes');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu134.htm" >next</a>] [<a 
+href="refsu132.htm" >prev</a>] [<a 
+href="refsu132.htm#tailrefsu132.htm" >prev-tail</a>] [<a 
+href="refsu133.htm" >front</a>] [<a 
+href="refse64.htm#refsu133.htm" >up</a>] </p></div><a 
+  name="tailrefsu133.htm"></a>  
+</body></html> 

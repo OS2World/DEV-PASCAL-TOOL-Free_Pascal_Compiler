@@ -1,0 +1,128 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.3 Constructors and destructors </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse20.htm" >next</a>] [<a 
+href="refse18.htm" >prev</a>] [<a 
+href="refse18.htm#tailrefse18.htm" >prev-tail</a>] [<a 
+href="#tailrefse19.htm">tail</a>] [<a 
+href="refch4.htm#refse19.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.3</span> <a 
+href="ref.htm#QQ2-46-55" name="x46-490004.3">Constructors and destructors </a></h3>
+<!--l. 1634--><p class="noindent">As can be seen in the syntax diagram for an object declaration, Free Pascal supports constructors
+and destructors. The programmer is responsible for calling the constructor and the
+destructor explicitly when using objects. The declaration of a constructor or destructor is as
+follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Constructors and destructors</span>
+     <BR/>
+     <img 
+src="ref57x.png" alt="-- constructor declaration-constructor header-; subroutine block-----------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref58x.png" alt="-- destructor declaration- destructor header- ;-subroutine block--------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref59x.png" alt="-- constructor header-constructor-|------identifier---------
+                              -qualified method identifier--
+---formal parameter list--------------------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref60x.png" alt="-- desctructor header-destructor-|------identifier---------
+                             -qualified method identifier--
+---formal parameter list--------------------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1639--><p class="noindent">A constructor/destructor pair is <span 
+class="cmti-10">required </span>if the object uses virtual methods. In the declaration of
+the object type, a simple identifier should be used for the name of the constuctor or destructor.
+When the constructor or destructor is implemented, A qualified method identifier should be used,
+i.e. an identifier of the form <span 
+class="cmtt-10">objectidentifier.methodidentifier</span>. Free Pascal supports also the
+extended syntax of the <span 
+class="cmtt-10">New </span>and <span 
+class="cmtt-10">Dispose </span>procedures. In case a dynamic variable of an object type
+must be allocated the constructor&#8217;s name can be specified in the call to <span 
+class="cmtt-10">New</span>. The <span 
+class="cmtt-10">New </span>is
+implemented as a function which returns a pointer to the instantiated object. Consider the
+following declarations:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TObj&nbsp;=&nbsp;object;
+&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;init;
+&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;Pobj&nbsp;=&nbsp;^TObj;
+&nbsp;Var&nbsp;PP&nbsp;:&nbsp;Pobj;
+</pre>
+</td></tr></table>Then the following 3 calls are equivalent:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;pp&nbsp;:=&nbsp;new&nbsp;(Pobj,Init);
+</pre>
+</td></tr></table>and
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;new(pp,init);
+</pre>
+</td></tr></table>and also
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;new&nbsp;(pp);
+&nbsp;&nbsp;&nbsp;pp^.init;
+</pre>
+</td></tr></table>In the last case, the compiler will issue a warning that the extended syntax of <span 
+class="cmtt-10">new </span>and <span 
+class="cmtt-10">dispose</span>
+must be used to generate instances of an object. It is possible to ignore this warning, but it&#8217;s better
+programming practice to use the extended syntax to create instances of an object. Similarly, the
+<span 
+class="cmtt-10">Dispose </span>procedure accepts the name of a destructor. The destructor will then be called, before
+removing the object from the heap.
+<!--l. 1678--><p class="noindent">In view of the compiler warning remark, the following chapter presents the Delphi approach to
+object-oriented programming, and may be considered a more natural way of object-oriented
+programming.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse20.htm" >next</a>] [<a 
+href="refse18.htm" >prev</a>] [<a 
+href="refse18.htm#tailrefse18.htm" >prev-tail</a>] [<a 
+href="refse19.htm" >front</a>] [<a 
+href="refch4.htm#refse19.htm" >up</a>] </p></div><a 
+  name="tailrefse19.htm"></a>  
+</body></html> 

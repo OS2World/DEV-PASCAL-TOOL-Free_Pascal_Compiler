@@ -1,0 +1,115 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.2.0 Freemem</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu190.htm" >next</a>] [<a 
+href="refsu188.htm" >prev</a>] [<a 
+href="refsu188.htm#tailrefsu188.htm" >prev-tail</a>] [<a 
+href="#tailrefsu189.htm">tail</a>] [<a 
+href="refse66.htm#refsu189.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-277-298" name="x277-28300014.2">Freemem</a></h4><a 
+  name="dx277-283001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FreeMem(Var p:pointer[;Size:Longint]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FreeMem </span>releases the memory reserved by a call to <span 
+class="cmss-10">GetMem </span>(<a 
+href="refsu190.htm#x278-28400014.2">601<!--tex4ht:ref: se:exceptclasses--></a>). The (optional) <span 
+class="cmtt-10">Size</span>
+parameter is ignored, since the object pascal version of <span 
+class="cmtt-10">GetMem </span>stores the amount of memory
+that was requested.
+<!--l. 7417--><p class="noindent">Be  sure  not  to  release  memory  that  was  not  obtained  with  the  <span 
+class="cmtt-10">Getmem  </span>call  in  <span 
+class="cmss-10">Objpas</span>.
+Normally, this should not happen, since objpas changes the default memory manager to it&#8217;s
+own memory manager.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Freemem </span>(<a 
+href="refsu108.htm#x193-19900013.3">504<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">GetMem </span>(<a 
+href="refsu190.htm#x278-28400014.2">601<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Getmem </span>(<a 
+href="refsu110.htm#x195-20100013.3">506<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7426--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex89.pp</span><HR/><div class="listinginput">
+<!--l. 7426--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example89;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FreeMem</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">{$Mode</span>&nbsp;<span 
+class="cmtt-10">Delphi}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memory</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem(P,10000);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FreeMem(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Memory</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu190.htm" >next</a>] [<a 
+href="refsu188.htm" >prev</a>] [<a 
+href="refsu188.htm#tailrefsu188.htm" >prev-tail</a>] [<a 
+href="refsu189.htm" >front</a>] [<a 
+href="refse66.htm#refsu189.htm" >up</a>] </p></div><a 
+  name="tailrefsu189.htm"></a>  
+</body></html> 

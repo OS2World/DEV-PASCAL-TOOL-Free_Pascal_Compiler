@@ -1,0 +1,134 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.2.0 Hash</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu196.htm" >next</a>] [<a 
+href="refsu194.htm" >prev</a>] [<a 
+href="refsu194.htm#tailrefsu194.htm" >prev-tail</a>] [<a 
+href="#tailrefsu195.htm">tail</a>] [<a 
+href="refse66.htm#refsu195.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-283-304" name="x283-28900014.2">Hash</a></h4><a 
+  name="dx283-289001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Hash(S : AnsiString) : longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Hash </span>calculates the hash value of the string <span 
+class="cmtt-10">S </span>in a manner that is compatible with the GNU
+gettext hash value for the string. It is the same value that is stored in the Resource string
+tables, and which can be retrieved with the <span 
+class="cmss-10">GetResourceStringHash </span>(<a 
+href="refsu193.htm#x281-28700014.2">604<!--tex4ht:ref: se:exceptclasses--></a>) function call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None. In case the calculated hash value should be 0, the returned result will be -1.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetResourceStringHash </span>(<a 
+href="refsu193.htm#x281-28700014.2">604<!--tex4ht:ref: se:exceptclasses--></a>),</dd></dl>
+<!--l. 7569--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex93.pp</span><HR/><div class="listinginput">
+<!--l. 7569--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example93;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Hash</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">{$Mode</span>&nbsp;<span 
+class="cmtt-10">Delphi}</span>
+<br>
+<br>   <span 
+class="cmtt-10">ResourceString</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">First</span>&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'First</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Second</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'Second</span>&nbsp;<span 
+class="cmtt-10">String';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ResourceStringTableCount-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">J:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ResourceStringCount(i)-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Hash(GetResourceStringDefaultValue(I,J))</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">&lt;&gt;GetResourceStringHash(I,J)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Hash</span>&nbsp;<span 
+class="cmtt-10">mismatch</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',I,',',J)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Hash</span>&nbsp;<span 
+class="cmtt-10">(',I,',',J,')</span>&nbsp;<span 
+class="cmtt-10">matches.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu196.htm" >next</a>] [<a 
+href="refsu194.htm" >prev</a>] [<a 
+href="refsu194.htm#tailrefsu194.htm" >prev-tail</a>] [<a 
+href="refsu195.htm" >front</a>] [<a 
+href="refse66.htm#refsu195.htm" >up</a>] </p></div><a 
+  name="tailrefsu195.htm"></a>  
+</body></html> 

@@ -1,0 +1,277 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.3 Windows</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse23.htm" >next</a>] [<a 
+href="userse21.htm" >prev</a>] [<a 
+href="userse21.htm#tailuserse21.htm" >prev-tail</a>] [<a 
+href="#tailuserse22.htm">tail</a>] [<a 
+href="userch6.htm#userse22.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.3</span> <a 
+href="user.htm#QQ2-32-71" name="x32-680006.3">Windows</a></h3>
+<!--l. 208--><p class="noindent">Nowadays, working with windowed applications should be no problem for most <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and
+<span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>users. Nevertheless, the following section describes how the windows work in the Free Pascal
+IDE, to allow efficient work with it.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-32-72" name="x32-690006.3">Window basics</a></h4>
+<!--l. 218--><p class="noindent">A common IDE window is displayed in figure (<a 
+href="#x32-690012">6.2<!--tex4ht:ref: fig:idewin--></a>).
+<!--l. 220--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x32-690012"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.2: </td><td  
+class="content">A common IDE window</td></tr></table></div><!--tex4ht:label?: x32-690012-->
+<!--l. 220--><p class="noindent"><img 
+src="user3x.png" alt="PIC" class="graphics" width="400.34999pt" height="168.42203pt" ><!--tex4ht:graphics  
+name="user3x.png" src="pics//idewin.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 222--><p class="noindent">The window is surrounded by a so-called <span 
+class="cmti-10">frame</span>, the white double line around the window.
+<!--l. 225--><p class="noindent">At the top of the window 4 things are displayed:
+     <ul class="itemize1">
+     <li class="itemize">At the upper left corner of the window, a <span 
+class="cmti-10">close icon  </span>is shown. When clicked, the
+     window will be closed. It can be also closed by pressing <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-F3 </span>or selecting the menu
+     item <span 
+class="cmbx-10">&#8221;Window--Close&#8221;</span>. All open windows can be closed by selecting the menu item
+     <span 
+class="cmbx-10">&#8221;Window--Close all&#8221;</span>.
+     </li>
+     <li class="itemize">In the middle, the title of the window is displayed.
+     </li>
+     <li class="itemize">Almost at the upper right corner, a number is visible. This number identifies the editor
+     window, and pressing <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-N<small 
+class="small-caps">U</small><small 
+class="small-caps">M</small><small 
+class="small-caps">B</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>will jump to this window. Only the first 9 windows
+     will get such a number.
+     </li>
+     <li class="itemize">At the upper right corner, a small green arrow is visible. Clicking this arrow zooms
+     the window so it covers the whole desktop. Clicking this arrow on a zoomed window
+     will restore old size of the window. Pressing the key <span 
+class="cmcsc-10">F5 </span>has the same effect as clicking
+     that arrow. The same effect can be achieved with the menu item <span 
+class="cmbx-10">&#8221;Window--Zoom&#8221;</span>.
+     Windows and dialogs which aren&#8217;t resizeable can&#8217;t be zoomed, either.</li></ul>
+<!--l. 246--><p class="noindent">The right edge and bottom edges of a window contain scrollbars. They can be used to scroll the
+window contents with the mouse. The arrows at the ends of the scrollbars can be clicked to scroll
+the contents line by line. Clicking on the dotted area between the arrows and the cyan-coloured
+rectangle will scroll the window&#8217;s content page by page. By dragging the rectangle the content can
+be scrolled continuously.
+<!--l. 254--><p class="noindent">The star and the numbers in the lower left corner of the window display information about the
+contents of the window. They are explained in the section about the editor, see section <a 
+href="userse24.htm#x34-850006.5">6.5<!--tex4ht:ref: se:editingtext--></a>, page
+<a 
+href="userse24.htm#x34-850006.5">133<!--tex4ht:ref: se:editingtext--></a>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-32-74" name="x32-700006.3">Sizing and moving windows</a></h4> A window can be moved and sized using the mouse and the keyboard:
+To move a window:
+     <ul class="itemize1">
+     <li class="itemize">using the mouse, click on the title bar and drag the window with the mouse.
+     </li>
+     <li class="itemize">using the keyboard, go into the size/move mode by pressing <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-F5 </span>or selecting
+     the menu item <span 
+class="cmbx-10">&#8221;Window--Size/Move&#8221;</span>. . Using the cursor keys the window can be
+     moved. The size/move mode can be left by pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small></span>. In this case, the window
+     will keep its size and position. Alternatively, pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">S</small><small 
+class="small-caps">C</small> </span>will restore the old position.</li></ul>
+<!--l. 275--><p class="noindent">To resize a window:
+     <ul class="itemize1">
+     <li class="itemize">using the mouse, click on the lower right corner of the window and drag it.
+     </li>
+     <li class="itemize">using the keyboard, go into the size/move mode by pressing <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-F5 </span>or selecting the
+                                                                            
+
+                                                                            
+     menu item <span 
+class="cmbx-10">&#8221;Window--Size/Move&#8221;</span>. The window frame will be green to indicate that
+     the IDE is in size/move mode. By pressing shift and the cursor keys simultaneously,
+     the window can be resized. The size/move mode can be left by pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small></span>. In this
+     case, the window will keep the new size. Pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">S</small><small 
+class="small-caps">C</small> </span>will restore the old size.</li></ul>
+<!--l. 288--><p class="noindent">Not all windows can be resized. This applies, for example, to <span 
+class="cmti-10">dialog windows </span>(section <a 
+href="#x32-720006.3">6.3<!--tex4ht:ref: se:dialogwindow--></a>, page
+<a 
+href="#x32-720006.3">120<!--tex4ht:ref: se:dialogwindow--></a>).
+<!--l. 291--><p class="noindent">A window can also be hidden. To hide a window, the <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-F6 </span>key combination can be used, or
+the <span 
+class="cmbx-10">&#8221;Window--Hide&#8221; </span>menu may be selected. To restore a Hidden window, it is necessary to
+select it from the window list. More information about the window list can be found in the next
+section.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-32-75" name="x32-710006.3">Working with multiple windows</a></h4> When working with larger projects, it is likely that multiple
+windows will appear on the desktop. However, only one of these windows will be the active
+window, all other windows will be inactive.
+<!--l. 305--><p class="noindent">An inactive window is identified by a grey frame. An inactive window can be made active in one of
+several ways:
+     <ul class="itemize1">
+     <li class="itemize">using the mouse, activate a window by clicking on it.
+     </li>
+     <li class="itemize">using the keyboard, pressing <span 
+class="cmcsc-10">F6 </span>will step trough all open windows. To activate the
+     previously activated window, <span 
+class="cmcsc-10">S<small 
+class="small-caps">H</small><small 
+class="small-caps">I</small><small 
+class="small-caps">F</small><small 
+class="small-caps">T</small>-F6 </span>can be used.
+     </li>
+     <li class="itemize">the menu item <span 
+class="cmbx-10">&#8221;Window--Next&#8221; </span>can be used to activate the next window in the
+     list of windows, while <span 
+class="cmtt-10">Window|Previous </span>will select the previous window.
+     </li>
+     <li class="itemize">If the window has a number in the upper right corner, it can be activated by pressing
+     <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-¡<small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">M</small><small 
+class="small-caps">B</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small>¿</span>.
+     </li>
+     <li class="itemize">Pressing <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-0 </span>will pop up a dialog with all available windows which allows a quick
+     activation of windows which don&#8217;t have a number.</li></ul>
+<!--l. 322--><p class="noindent">The windows can be ordered and placed on the IDE desktop by zooming and resizing them with
+the mouse or keyboard. This is a time-consuming task, and particularly difficult with the
+keyboard. Instead, the menu items <span 
+class="cmbx-10">&#8221;Window--Tile&#8221; </span>and <span 
+class="cmbx-10">&#8221;Window--Cascade&#8221; </span>can be
+used:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Tile</span> </dt><dd 
+class="description">will divide whole desktop space evenly between all resizable windows.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Cascade</span> </dt><dd 
+class="description">puts all windows in a cascaded position.</dd></dl>
+<!--l. 332--><p class="noindent">In very rare cases the screen of the IDE may be mixed up. In this case the whole IDE screen can be
+refreshed by selecting the menu item <span 
+class="cmbx-10">&#8221;Window--Refresh display&#8221;</span>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-32-76" name="x32-720006.3">Dialog windows</a></h4> In many cases the IDE displays a dialog window to get user input. The
+main difference to normal windows is that other windows cannot be activated while a
+dialog is active. Also the menu is not accessible while in a dialog. This behaviour is
+                                                                            
+
+                                                                            
+called <span 
+class="cmti-10">modal</span>. To activate another window, the modal window or dialog must be closed
+first.
+<!--l. 346--><p class="noindent">A typical dialog window is shown in figure (<a 
+href="#x32-720013">6.3<!--tex4ht:ref: fig:idedlg--></a>).
+<!--l. 348--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x32-720013"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.3: </td><td  
+class="content">A typical dialog window</td></tr></table></div><!--tex4ht:label?: x32-720013-->
+<!--l. 348--><p class="noindent"><img 
+src="user4x.png" alt="PIC" class="graphics" width="400.34999pt" height="175.37779pt" ><!--tex4ht:graphics  
+name="user4x.png" src="pics//idedlg.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse23.htm" >next</a>] [<a 
+href="userse21.htm" >prev</a>] [<a 
+href="userse21.htm#tailuserse21.htm" >prev-tail</a>] [<a 
+href="userse22.htm" >front</a>] [<a 
+href="userch6.htm#userse22.htm" >up</a>] </p></div><a 
+  name="tailuserse22.htm"></a>   
+</body></html> 

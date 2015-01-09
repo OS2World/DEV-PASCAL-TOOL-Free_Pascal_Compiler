@@ -1,0 +1,430 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>22.7 PChar functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse79.htm" >next</a>] [<a 
+href="unitsse77.htm" >prev</a>] [<a 
+href="unitsse77.htm#tailunitsse77.htm" >prev-tail</a>] [<a 
+href="#tailunitsse78.htm">tail</a>] [<a 
+href="unitsch22.htm#unitsse78.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">22.7</span> <a 
+href="units.htm#QQ2-105-890" name="x105-88400022.7">PChar functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-891" name="x105-88500022.7">Introduction</a></h4>
+<!--l. 1612--><p class="noindent">Most PChar functions are the same as their counterparts in the <span 
+class="cmss-10">STRINGS </span>unit. The following
+functions are the same :
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x105-885002x1"></a><span 
+class="cmss-10">StrCat </span>(<a 
+href="unitsse71.htm#x97-78500021.1">674<!--tex4ht:ref: se:TBufStream--></a>) : Concatenates two <span 
+class="cmtt-10">PChar </span>strings.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885004x2"></a><span 
+class="cmss-10">StrComp </span>(<a 
+href="unitsse71.htm#x97-78600021.1">674<!--tex4ht:ref: se:TBufStream--></a>) : Compares two <span 
+class="cmtt-10">PChar </span>strings.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885006x3"></a><span 
+class="cmss-10">StrCopy </span>(<a 
+href="unitsse71.htm#x97-78700021.1">675<!--tex4ht:ref: se:TBufStream--></a>) : Copies a <span 
+class="cmtt-10">PChar </span>string.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885008x4"></a><span 
+class="cmss-10">StrECopy </span>(<a 
+href="unitsse71.htm#x97-78900021.1">676<!--tex4ht:ref: se:TBufStream--></a>) : Copies a <span 
+class="cmtt-10">PChar </span>string and returns a pointer to the terminating null
+     byte.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885010x5"></a><span 
+class="cmss-10">StrEnd </span>(<a 
+href="unitsse71.htm#x97-79000021.1">677<!--tex4ht:ref: se:TBufStream--></a>) : Returns a pointer to the terminating null byte.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885012x6"></a><span 
+class="cmss-10">StrIComp </span>(<a 
+href="unitsse71.htm#x97-79100021.1">678<!--tex4ht:ref: se:TBufStream--></a>) : Case insensitive compare of 2 <span 
+class="cmtt-10">PChar </span>strings.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885014x7"></a><span 
+class="cmss-10">StrLCat </span>(<a 
+href="unitsse71.htm#x97-79200021.1">678<!--tex4ht:ref: se:TBufStream--></a>) : Appends at most L characters from one <span 
+class="cmtt-10">PChar </span>to another <span 
+class="cmtt-10">PChar</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885016x8"></a><span 
+class="cmss-10">StrLComp </span>(<a 
+href="unitsse71.htm#x97-79300021.1">679<!--tex4ht:ref: se:TBufStream--></a>) : Case sensitive compare of at most L characters of 2 <span 
+class="cmtt-10">PChar </span>strings.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885018x9"></a><span 
+class="cmss-10">StrLCopy </span>(<a 
+href="unitsse71.htm#x97-79400021.1">680<!--tex4ht:ref: se:TBufStream--></a>) : Copies at most L characters from one <span 
+class="cmtt-10">PChar </span>to another.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885020x10"></a><span 
+class="cmss-10">StrLen </span>(<a 
+href="unitsse71.htm#x97-79500021.1">681<!--tex4ht:ref: se:TBufStream--></a>) : Returns the length (exclusive terminating null byte) of a <span 
+class="cmtt-10">PChar </span>string.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885022x11"></a><span 
+class="cmss-10">StrLIComp </span>(<a 
+href="unitsse71.htm#x97-79600021.1">681<!--tex4ht:ref: se:TBufStream--></a>) : Case insensitive compare of at most L characters of 2 <span 
+class="cmtt-10">PChar </span>strings.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885024x12"></a><span 
+class="cmss-10">StrLower </span>(<a 
+href="unitsse71.htm#x97-79700021.1">682<!--tex4ht:ref: se:TBufStream--></a>) : Converts a <span 
+class="cmtt-10">PChar </span>to all lowercase letters.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885026x13"></a><span 
+class="cmss-10">StrMove </span>(<a 
+href="unitsse71.htm#x97-79800021.1">682<!--tex4ht:ref: se:TBufStream--></a>) : Moves one <span 
+class="cmtt-10">PChar </span>to another.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885028x14"></a><span 
+class="cmss-10">StrNew </span>(<a 
+href="unitsse71.htm#x97-79900021.1">683<!--tex4ht:ref: se:TBufStream--></a>) : Makes a copy of a <span 
+class="cmtt-10">PChar </span>on the heap, and returns a pointer to this
+     copy.
+                                                                            
+
+                                                                            
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885030x15"></a><span 
+class="cmss-10">StrPos </span>(<a 
+href="unitsse71.htm#x97-80200021.1">685<!--tex4ht:ref: se:TBufStream--></a>) : Returns the position of one <span 
+class="cmtt-10">PChar </span>string in another?
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885032x16"></a><span 
+class="cmss-10">StrRScan </span>(<a 
+href="unitsse71.htm#x97-80300021.1">686<!--tex4ht:ref: se:TBufStream--></a>) : returns a pointer to the last occurrence of on <span 
+class="cmtt-10">PChar </span>string in another
+     one.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885034x17"></a><span 
+class="cmss-10">StrScan </span>(<a 
+href="unitsse71.htm#x97-80400021.1">686<!--tex4ht:ref: se:TBufStream--></a>) : returns a pointer to the first occurrence of on <span 
+class="cmtt-10">PChar </span>string in another
+     one.
+     </li>
+     <li class="enumerate"><a 
+  name="x105-885036x18"></a><span 
+class="cmss-10">StrUpper </span>(<a 
+href="unitsse71.htm#x97-80500021.1">687<!--tex4ht:ref: se:TBufStream--></a>) : Converts a <span 
+class="cmtt-10">PChar </span>to all uppercase letters.</li></ol>
+<!--l. 1645--><p class="noindent">The subsequent functions are different from their counterparts in <span 
+class="cmss-10">STRINGS</span>, although the same
+examples can be used.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-892" name="x105-88600022.7">StrAlloc</a></h4><a 
+  name="dx105-886001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrAlloc(Size: cardinal): PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrAlloc </span>reserves memory on the heap for a string with length <span 
+class="cmtt-10">Len</span>, terminating  <span 
+class="cmtt-10">#0</span>
+included, and returns a pointer to it.
+<!--l. 1656--><p class="noindent">Additionally, <span 
+class="cmtt-10">StrAlloc </span>allocates 4 extra bytes to store the size of the allocated memory.
+Therefore this function is NOT compatible with the <span 
+class="cmss-10">StrAlloc </span>(<a 
+href="unitsse71.htm#x97-78400021.1">673<!--tex4ht:ref: se:TBufStream--></a>) function of the <span 
+class="cmtt-10">Strings</span>
+unit.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrBufSize </span>(<a 
+href="#x105-88700022.7">759<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrDispose </span>(<a 
+href="#x105-88800022.7">760<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrAlloc </span>(<a 
+href="unitsse71.htm#x97-78400021.1">673<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1665--><p class="noindent">For an example, see <span 
+class="cmss-10">StrBufSize </span>(<a 
+href="#x105-88700022.7">759<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-893" name="x105-88700022.7">StrBufSize</a></h4><a 
+  name="dx105-887001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrBufSize(var Str: PChar): cardinal;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrBufSize </span>returns the memory allocated for <span 
+class="cmtt-10">Str</span>. This function ONLY gives the correct
+result if <span 
+class="cmtt-10">Str </span>was allocated using <span 
+class="cmss-10">StrAlloc </span>(<a 
+href="#x105-88600022.7">759<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If no more memory is available, a runtime error occurs.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrAlloc </span>(<a 
+href="#x105-88600022.7">759<!--tex4ht:ref: se:TBufStream--></a>).<span 
+class="cmss-10">StrDispose </span>(<a 
+href="#x105-88800022.7">760<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 1680--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex46.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 1680--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example46;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrBufSize</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">{$H+}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'Some</span>&nbsp;<span 
+class="cmtt-10">nice</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P:=StrAlloc(Length(S)+1);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">StrPCopy(P,S);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">(P,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">length</span>&nbsp;<span 
+class="cmtt-10">',length(S));</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;&nbsp;<span 
+class="cmtt-10">buffer</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">',StrBufSize(P));</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">StrDispose(P);</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-894" name="x105-88800022.7">StrDispose</a></h4><a 
+  name="dx105-888001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure StrDispose(var Str: PChar);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrDispose </span>frees any memory allocated for <span 
+class="cmtt-10">Str</span>. This function will only function correctly
+if <span 
+class="cmtt-10">Str </span>has been allocated using <span 
+class="cmss-10">StrAlloc </span>(<a 
+href="#x105-88600022.7">759<!--tex4ht:ref: se:TBufStream--></a>) from the <span 
+class="cmss-10">SYSUTILS </span>unit.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an invalid pointer is passed, or a pointer not allocated with <span 
+class="cmtt-10">StrAlloc</span>, an error may occur.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrBufSize </span>(<a 
+href="#x105-88700022.7">759<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrAlloc </span>(<a 
+href="#x105-88600022.7">759<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrDispose </span>(<a 
+href="unitsse71.htm#x97-78800021.1">676<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1698--><p class="noindent">For an example, see <span 
+class="cmss-10">StrBufSize </span>(<a 
+href="#x105-88700022.7">759<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-895" name="x105-88900022.7">StrPCopy</a></h4><a 
+  name="dx105-889001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPCopy(Dest: PChar; Source: string): PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrPCopy </span>Converts the Ansistring in <span 
+class="cmtt-10">Source </span>to a Null-terminated string, and copies it to
+<span 
+class="cmtt-10">Dest</span>. <span 
+class="cmtt-10">Dest </span>needs enough room to contain the string <span 
+class="cmtt-10">Source</span>, i.e. <span 
+class="cmtt-10">Length(Source)+1 </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is performed to see whether <span 
+class="cmtt-10">Dest </span>points to enough memory to contain <span 
+class="cmtt-10">Source</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPLCopy </span>(<a 
+href="#x105-89000022.7">761<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrPCopy </span>(<a 
+href="unitsse71.htm#x97-80100021.1">684<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1714--><p class="noindent">For an example, see <span 
+class="cmss-10">StrPCopy </span>(<a 
+href="unitsse71.htm#x97-80100021.1">684<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-896" name="x105-89000022.7">StrPLCopy</a></h4><a 
+  name="dx105-890001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPLCopy(Dest: PChar; Source: string; MaxLen: cardinal): PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrPLCopy </span>Converts maximally  <span 
+class="cmtt-10">MaxLen </span>characters of the Ansistring in <span 
+class="cmtt-10">Source </span>to a
+Null-terminated  string,  and  copies  it  to  <span 
+class="cmtt-10">Dest</span>.  <span 
+class="cmtt-10">Dest  </span>needs  enough  room  to  contain  the
+characters.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is performed to see whether <span 
+class="cmtt-10">Dest </span>points to enough memory to contain L
+characters of <span 
+class="cmtt-10">Source</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPCopy </span>(<a 
+href="#x105-88900022.7">760<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-105-897" name="x105-89100022.7">StrPas</a></h4><a 
+  name="dx105-891001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPas(Str: PChar): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts a null terminated string in <span 
+class="cmtt-10">Str </span>to an Ansitring, and returns this string. This string
+is NOT truncated at 255 characters as is the
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPas </span>(<a 
+href="unitsse71.htm#x97-80000021.1">684<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 1745--><p class="noindent">For an example, see <span 
+class="cmss-10">StrPas </span>(<a 
+href="unitsse71.htm#x97-80000021.1">684<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse79.htm" >next</a>] [<a 
+href="unitsse77.htm" >prev</a>] [<a 
+href="unitsse77.htm#tailunitsse77.htm" >prev-tail</a>] [<a 
+href="unitsse78.htm" >front</a>] [<a 
+href="unitsch22.htm#unitsse78.htm" >up</a>] </p></div><a 
+  name="tailunitsse78.htm"></a>   
+</body></html> 

@@ -1,0 +1,81 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.1 Programs</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse51.htm" >next</a>] [<a 
+href="#tailrefse50.htm">tail</a>] [<a 
+href="refch10.htm#refse50.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.1</span> <a 
+href="ref.htm#QQ2-120-141" name="x120-12600010.1">Programs</a></h3>
+<!--l. 4061--><p class="noindent">A pascal program consists of the program header, followed possibly by a &#8217;uses&#8217; clause, and a
+block.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Programs</span>
+     <BR/>
+     <img 
+src="ref127x.png" alt="-- program - program header-;--|------------block- .------------------
+                           -uses clause-
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref128x.png" alt="-- program header -program - identifier--|-----------------------------
+                                  -(- program parameters-) --
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref129x.png" alt="-- program parameters-identifier list-----------------------------------
+     " ><BR/>
+     <BR/>
+                                                                            
+
+                                                                            
+     <img 
+src="ref130x.png" alt="-- uses clause uses -- identifier --; ----------------------------------
+                  ----, ----|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4064--><p class="noindent">The program header is provided for backwards compatibility, and is ignored by the compiler. The
+uses clause serves to identify all units that are needed by the program. The system unit doesn&#8217;t
+have to be in this list, since it is always loaded by the compiler. The order in which the units
+appear is significant, it determines in which order they are initialized. Units are initialized in the
+same order as they appear in the uses clause. Identifiers are searched in the opposite order, i.e.
+when the compiler searches for an identifier, then it looks first in the last unit in the uses clause,
+then the last but one, and so on. This is important in case two units declare different types with
+the same identifier. When the compiler looks for unit files, it adds the extension <span 
+class="cmss-10">.ppu</span>
+(<span 
+class="cmss-10">.ppw </span>for Win32 platforms) to the name of the unit. On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and in operating systems
+where filenames are case sensitive, when looking for a unit, the unit name is first looked
+for in the original case, and when not found, converted to all lowercase and searched
+for.
+<!--l. 4082--><p class="noindent">If a unit name is longer than 8 characters, the compiler will first look for a unit name
+with this length, and then it will truncate the name to 8 characters and look for it
+again. For compatibility reasons, this is also true on platforms that suport long file
+names.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse51.htm" >next</a>] [<a 
+href="refse50.htm" >front</a>] [<a 
+href="refch10.htm#refse50.htm" >up</a>] </p></div><a 
+  name="tailrefse50.htm"></a>  
+</body></html> 

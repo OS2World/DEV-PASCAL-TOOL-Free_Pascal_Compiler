@@ -1,0 +1,88 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.5 Forward defined functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse41.htm" >next</a>] [<a 
+href="refse39.htm" >prev</a>] [<a 
+href="refse39.htm#tailrefse39.htm" >prev-tail</a>] [<a 
+href="#tailrefse40.htm">tail</a>] [<a 
+href="refch8.htm#refse40.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.5</span> <a 
+href="ref.htm#QQ2-96-116" name="x96-1020008.5">Forward defined functions</a></h3>
+<!--l. 3411--><p class="noindent">A function can be declared without having it followed by it&#8217;s implementation, by having it followed
+by the <span 
+class="cmtt-10">forward </span>procedure. The effective implementation of that function must follow later in the
+module. The function can be used after a <span 
+class="cmtt-10">forward </span>declaration as if it had been implemented
+already. The following is an example of a forward declaration.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;testforward;
+&nbsp;Procedure&nbsp;First&nbsp;(n&nbsp;:&nbsp;longint);&nbsp;forward;
+&nbsp;Procedure&nbsp;Second;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('In&nbsp;second.&nbsp;Calling&nbsp;first...');
+&nbsp;&nbsp;&nbsp;First&nbsp;(1);
+&nbsp;end;
+&nbsp;Procedure&nbsp;First&nbsp;(n&nbsp;:&nbsp;longint);
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('First&nbsp;received&nbsp;:&nbsp;',n);
+&nbsp;end;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Second;
+&nbsp;end.
+</pre>
+</td></tr></table>A function can be defined as forward only once. Likewise, in units, it is not allowed to have a
+forward declared function of a function that has been declared in the interface part. The interface
+declaration counts as a <span 
+class="cmtt-10">forward </span>declaration. The following unit will give an error when
+compiled:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Unit&nbsp;testforward;
+&nbsp;interface
+&nbsp;Procedure&nbsp;First&nbsp;(n&nbsp;:&nbsp;longint);
+&nbsp;Procedure&nbsp;Second;
+&nbsp;implementation
+&nbsp;Procedure&nbsp;First&nbsp;(n&nbsp;:&nbsp;longint);&nbsp;forward;
+&nbsp;Procedure&nbsp;Second;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('In&nbsp;second.&nbsp;Calling&nbsp;first...');
+&nbsp;&nbsp;&nbsp;First&nbsp;(1);
+&nbsp;end;
+&nbsp;Procedure&nbsp;First&nbsp;(n&nbsp;:&nbsp;longint);
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('First&nbsp;received&nbsp;:&nbsp;',n);
+&nbsp;end;
+&nbsp;end.
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse41.htm" >next</a>] [<a 
+href="refse39.htm" >prev</a>] [<a 
+href="refse39.htm#tailrefse39.htm" >prev-tail</a>] [<a 
+href="refse40.htm" >front</a>] [<a 
+href="refch8.htm#refse40.htm" >up</a>] </p></div><a 
+  name="tailrefse40.htm"></a>  
+</body></html> 

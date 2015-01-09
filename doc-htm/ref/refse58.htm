@@ -1,0 +1,50 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.4 Exception handling nesting</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse59.htm" >next</a>] [<a 
+href="refse57.htm" >prev</a>] [<a 
+href="refse57.htm#tailrefse57.htm" >prev-tail</a>] [<a 
+href="#tailrefse58.htm">tail</a>] [<a 
+href="refch11.htm#refse58.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.4</span> <a 
+href="ref.htm#QQ2-133-154" name="x133-13900011.4">Exception handling nesting</a></h3>
+<!--l. 4448--><p class="noindent">It is possible to nest <span 
+class="cmtt-10">Try...Except </span>blocks with <span 
+class="cmtt-10">Try...Finally </span>blocks. Program flow will be
+done according to a <span 
+class="cmtt-10">lifo </span>(last in, first out) principle: The code of the last encountered
+<span 
+class="cmtt-10">Try...Except </span>or <span 
+class="cmtt-10">Try...Finally </span>block will be executed first. If the exception is not caught, or it
+was a finally statement, program flow will be transferred to the last-but-one block, <span 
+class="cmti-10">ad</span>
+<span 
+class="cmti-10">infinitum</span>.
+<!--l. 4455--><p class="noindent">If an exception occurs, and there is no exception handler present, then a runerror 217 will be
+generated. When using the <span 
+class="cmss-10">sysutils </span>unit, a default handler is installed which will show the exception
+object message, and the address where the exception occurred, after which the program will exit
+with a <span 
+class="cmtt-10">Halt </span>instruction.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse59.htm" >next</a>] [<a 
+href="refse57.htm" >prev</a>] [<a 
+href="refse57.htm#tailrefse57.htm" >prev-tail</a>] [<a 
+href="refse58.htm" >front</a>] [<a 
+href="refch11.htm#refse58.htm" >up</a>] </p></div><a 
+  name="tailrefse58.htm"></a>  
+</body></html> 

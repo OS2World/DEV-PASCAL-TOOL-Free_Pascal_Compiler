@@ -1,0 +1,461 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.2 Procedures and functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse10.htm" >prev</a>] [<a 
+href="unitsse10.htm#tailunitsse10.htm" >prev-tail</a>] [<a 
+href="#tailunitsse11.htm">tail</a>] [<a 
+href="unitsch5.htm#unitsse11.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.2</span> <a 
+href="units.htm#QQ2-21-97" name="x21-950005.2">Procedures and functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-21-98" name="x21-960005.2">GetLongOpts</a></h4><a 
+  name="dx21-96001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetLongOpts (Shortopts : String, LongOpts : POption; var Longint :</span>
+<span 
+class="cmtt-10">Longint ) : Char;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 84--><p class="noindent">Returns the next option found on the command-line, taking into account long options as well. If no
+more options are found, returns <span 
+class="cmtt-10">EndOfOptions</span>. If the option requires an argument, it is returned
+in the <span 
+class="cmtt-10">OptArg </span>variable. <span 
+class="cmtt-10">ShortOptions </span>is a string containing all possible one-letter options. (see
+<span 
+class="cmss-10">Getopt </span>(<a 
+href="#x21-970005.2">111<!--tex4ht:ref: tab:fmxxxconstants--></a>) for its description and use) <span 
+class="cmtt-10">LongOpts </span>is a pointer to the first element of an array of
+<span 
+class="cmtt-10">Option </span>records, the last of which needs a name of zero length. The function tries to match the
+names even partially (i.e. <span 
+class="cmtt-10">--app </span>will match e.g. the <span 
+class="cmtt-10">append </span>option), but will report an error in case
+of ambiguity. If the option needs an argument, set <span 
+class="cmtt-10">Has</span>_<span 
+class="cmtt-10">arg </span>to <span 
+class="cmtt-10">Required</span>_<span 
+class="cmtt-10">argument</span>, if the option
+optionally has an argument, set <span 
+class="cmtt-10">Has</span>_<span 
+class="cmtt-10">arg </span>to <span 
+class="cmtt-10">Optional</span>_<span 
+class="cmtt-10">argument</span>. If the option needs
+no argument, set <span 
+class="cmtt-10">Has</span>_<span 
+class="cmtt-10">arg </span>to zero. Required arguments can be specified in two ways
+:
+    <ol type="1" class="enumerate1" 
+>
+    <li class="enumerate"><a 
+  name="x21-96003x1"></a>&nbsp;Pasted to the option : <span 
+class="cmtt-10">--option=value</span>
+    </li>
+    <li class="enumerate"><a 
+  name="x21-96005x2"></a>&nbsp;As a separate argument : <span 
+class="cmtt-10">--option value</span></li></ol>
+<!--l. 104--><p class="noindent">Optional arguments can only be specified through the first method.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">see <span 
+class="cmss-10">Getopt </span>(<a 
+href="#x21-970005.2">111<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmtt-10">getopt </span>(3)
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">Getopt</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-21-99" name="x21-970005.2">Getopt</a></h4><a 
+  name="dx21-97001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Getopt (Shortopts : String) : Char;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 117--><p class="noindent">Returns the next option found on the command-line. If no more options are found, returns
+<span 
+class="cmtt-10">EndOfOptions</span>. If the option requires an argument, it is returned in the <span 
+class="cmtt-10">OptArg </span>variable.
+<span 
+class="cmtt-10">ShortOptions </span>is a string containing all possible one-letter options. If a letter is followed
+by a colon (:), then that option needs an argument. If a letter is followed by 2 colons,
+the option has an optional argument. If the first character of <span 
+class="cmtt-10">shortoptions </span>is a <span 
+class="cmtt-10">'+' </span>then
+                                                                            
+
+                                                                            
+options following a non-option are regarded as non-options (standard Unix behavior). If it
+is a <span 
+class="cmtt-10">'-'</span>, then all non-options are treated as arguments of a option with character <span 
+class="cmtt-10">#0</span>. This
+is useful for applications that require their options in the exact order as they appear on
+the command-line. If the first character of <span 
+class="cmtt-10">shortoptions </span>is none of the above, options and
+non-options are permuted, so all non-options are behind all options. This allows options and
+non-options to be in random order on the command line.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+<!--l. 135--><p class="noindent">Errors are reported through giving back a <span 
+class="cmtt-10">'?' </span>character. <span 
+class="cmtt-10">OptOpt </span>then gives the character
+which caused the error. If <span 
+class="cmtt-10">OptErr </span>is <span 
+class="cmtt-10">True </span>then getopt prints an error-message to <span 
+class="cmtt-10">stdout</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetLongOpts </span>(<a 
+href="#x21-960005.2">111<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmtt-10">getopt </span>(3) </dd></dl>
+<!--l. 143--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">optex/optex.pp</span><HR/><div class="listinginput">
+<!--l. 143--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">testopt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">depmonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">getopts</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Valid</span>&nbsp;<span 
+class="cmtt-10">calls</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">are</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">optex</span>&nbsp;<span 
+class="cmtt-10">--verbose</span>&nbsp;<span 
+class="cmtt-10">--add</span>&nbsp;<span 
+class="cmtt-10">me</span>&nbsp;<span 
+class="cmtt-10">--delete</span>&nbsp;<span 
+class="cmtt-10">you</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">optex</span>&nbsp;<span 
+class="cmtt-10">--append</span>&nbsp;<span 
+class="cmtt-10">--create</span>&nbsp;<span 
+class="cmtt-10">child</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">optex</span>&nbsp;<span 
+class="cmtt-10">-ab</span>&nbsp;<span 
+class="cmtt-10">-c</span>&nbsp;<span 
+class="cmtt-10">me</span>&nbsp;<span 
+class="cmtt-10">-d</span>&nbsp;<span 
+class="cmtt-10">you</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">so</span>&nbsp;<span 
+class="cmtt-10">on</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">getopts;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">optionindex</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">theopts</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">array[1..7]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">TOption;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[1]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='add';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[2]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='append';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[3]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='delete';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=1;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[4]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='verbose';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[5]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='create';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:='c'</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[6]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='file';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">value:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">theopts[7]</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">name:='';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">has_arg:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">flag:=nil;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">c:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">c:=getlongopts('abc:d:012',@theopts[1],optionindex);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'1','2','3','4','5','6','7','8','9'</span>&nbsp;<span 
+class="cmtt-10">:</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Got</span>&nbsp;<span 
+class="cmtt-10">optind</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',c)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">#0</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('Long</span>&nbsp;<span 
+class="cmtt-10">option</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',theopts[optionindex].name);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">theopts[optionindex].has_arg&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',optarg)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'a'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Option</span>&nbsp;<span 
+class="cmtt-10">a.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'b'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Option</span>&nbsp;<span 
+class="cmtt-10">b.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'c'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Option</span>&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">optarg);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'d'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Option</span>&nbsp;<span 
+class="cmtt-10">d</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',</span>&nbsp;<span 
+class="cmtt-10">optarg);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'?',':'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Error</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">opt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',optopt);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">c=endofoptions;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">optind&lt;=paramcount</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('Non</span>&nbsp;<span 
+class="cmtt-10">options</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">optind&lt;=paramcount</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">(paramstr(optind),'</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">inc(optind)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse10.htm" >prev</a>] [<a 
+href="unitsse10.htm#tailunitsse10.htm" >prev-tail</a>] [<a 
+href="unitsse11.htm" >front</a>] [<a 
+href="unitsch5.htm#unitsse11.htm" >up</a>] </p></div><a 
+  name="tailunitsse11.htm"></a>  
+</body></html> 

@@ -1,0 +1,114 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.6.0 Relational operators</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu24.htm" >prev</a>] [<a 
+href="refsu24.htm#tailrefsu24.htm" >prev-tail</a>] [<a 
+href="#tailrefsu25.htm">tail</a>] [<a 
+href="refse32.htm#refsu25.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-70-88" name="x70-760006.6">Relational operators</a></h4> The relational operators are listed in table (<a 
+href="#x70-760017">6.7<!--tex4ht:ref: tab:relationoperators--></a>)
+                                                                            
+
+                                                                            
+<a 
+  name="x70-760017"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.7: </td><td  
+class="content">Relational operators</td></tr></table></div><!--tex4ht:label?: x70-760017-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-14-" ><colgroup id="TBL-14-1g"><col 
+id="TBL-14-1"><col 
+id="TBL-14-2"></colgroup><tr  
+valign="baseline" id="TBL-14-1-"><td  align="left" nowrap="nowrap" id="TBL-14-1-1"  
+class="td11"> Operator</td><td  align="left" nowrap="nowrap" id="TBL-14-1-2"  
+class="td11"> Action                    </td>
+</tr><tr  
+valign="baseline" id="TBL-14-2-"><td  align="left" nowrap="nowrap" id="TBL-14-2-1"  
+class="td11">  <span 
+class="cmtt-10">=      </span></td><td  align="left" nowrap="nowrap" id="TBL-14-2-2"  
+class="td11"> Equal                     </td>
+</tr><tr  
+valign="baseline" id="TBL-14-3-"><td  align="left" nowrap="nowrap" id="TBL-14-3-1"  
+class="td11"> <span 
+class="cmtt-10">&lt;&gt;      </span></td><td  align="left" nowrap="nowrap" id="TBL-14-3-2"  
+class="td11"> Not equal                </td>
+</tr><tr  
+valign="baseline" id="TBL-14-4-"><td  align="left" nowrap="nowrap" id="TBL-14-4-1"  
+class="td11"> <span 
+class="cmtt-10">&lt;       </span></td><td  align="left" nowrap="nowrap" id="TBL-14-4-2"  
+class="td11"> Stricty less than       </td>
+</tr><tr  
+valign="baseline" id="TBL-14-5-"><td  align="left" nowrap="nowrap" id="TBL-14-5-1"  
+class="td11"> <span 
+class="cmtt-10">&gt;       </span></td><td  align="left" nowrap="nowrap" id="TBL-14-5-2"  
+class="td11"> Strictly greater than  </td>
+</tr><tr  
+valign="baseline" id="TBL-14-6-"><td  align="left" nowrap="nowrap" id="TBL-14-6-1"  
+class="td11"> <span 
+class="cmtt-10">&lt;=      </span></td><td  align="left" nowrap="nowrap" id="TBL-14-6-2"  
+class="td11"> Less than or equal    </td>
+</tr><tr  
+valign="baseline" id="TBL-14-7-"><td  align="left" nowrap="nowrap" id="TBL-14-7-1"  
+class="td11"> <span 
+class="cmtt-10">&gt;=      </span></td><td  align="left" nowrap="nowrap" id="TBL-14-7-2"  
+class="td11"> Greater than or equal</td>
+</tr><tr  
+valign="baseline" id="TBL-14-8-"><td  align="left" nowrap="nowrap" id="TBL-14-8-1"  
+class="td11"> <span 
+class="cmtt-10">in      </span></td><td  align="left" nowrap="nowrap" id="TBL-14-8-2"  
+class="td11"> Element of              </td>
+</tr><tr  
+valign="baseline" id="TBL-14-9-"><td  align="left" nowrap="nowrap" id="TBL-14-9-1"  
+class="td11">             </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+Left and right operands must be of the same type. Only integer and real types can be mixed in
+relational expressions. Comparing strings is done on the basis of their ASCII code representation.
+When comparing pointers, the addresses to which they point are compared. This also is
+true for <span 
+class="cmtt-10">PChar </span>type pointers. To compare the strings the <span 
+class="cmtt-10">Pchar </span>point to, the <span 
+class="cmtt-10">StrComp</span>
+function from the <span 
+class="cmss-10">strings </span>unit must be used. The <span 
+class="cmtt-10">in </span>returns <span 
+class="cmtt-10">True </span>if the left operand
+(which must have the same ordinal type as the set type, and which must be in the
+range 0..255) is an element of the set which is the right operand, otherwise it returns
+<span 
+class="cmtt-10">False</span>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu24.htm" >prev</a>] [<a 
+href="refsu24.htm#tailrefsu24.htm" >prev-tail</a>] [<a 
+href="refsu25.htm" >front</a>] [<a 
+href="refse32.htm#refsu25.htm" >up</a>] </p></div><a 
+  name="tailrefsu25.htm"></a>  
+</body></html> 

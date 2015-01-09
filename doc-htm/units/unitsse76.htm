@@ -1,0 +1,576 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>22.5 Disk functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse77.htm" >next</a>] [<a 
+href="unitsse75.htm" >prev</a>] [<a 
+href="unitsse75.htm#tailunitsse75.htm" >prev-tail</a>] [<a 
+href="#tailunitsse76.htm">tail</a>] [<a 
+href="unitsch22.htm#unitsse76.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">22.5</span> <a 
+href="units.htm#QQ2-103-850" name="x103-84400022.5">Disk functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-851" name="x103-84500022.5">AddDisk (Linux only)</a></h4><a 
+  name="dx103-845001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function AddDisk (Const PAth : String) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">On Linux both the <span 
+class="cmss-10">DiskFree </span>(<a 
+href="unitsse5.htm#x12-440002.3">80<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">DiskSize </span>(<a 
+href="unitsse5.htm#x12-450002.3">81<!--tex4ht:ref: se:TBufStream--></a>) functions need a file on the specified
+drive, since is required for the statfs system call.
+<!--l. 905--><p class="noindent">These filenames are set in drivestr[0..26], and the first 4 have been preset to :
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Disk 0</span></dt><dd 
+class="description"><span 
+class="cmtt-10">'.' </span>default drive - hence current directory is used.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Disk 1</span></dt><dd 
+class="description"><span 
+class="cmtt-10">'/fd0/.' </span>floppy drive 1.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Disk 2</span></dt><dd 
+class="description"><span 
+class="cmtt-10">'/fd1/.' </span>floppy drive 2.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Disk 3</span></dt><dd 
+class="description"><span 
+class="cmtt-10">'/' </span><span 
+class="cmss-10">C: </span>equivalent of DOS is the root partition.</dd></dl>
+<!--l. 913--><p class="noindent">Drives 4..26 can be set by your own applications with the <span 
+class="cmtt-10">AddDisk </span>call.
+<!--l. 915--><p class="noindent">The <span 
+class="cmtt-10">AddDisk </span>call adds <span 
+class="cmtt-10">Path </span>to the names of drive files, and returns the number of the disk
+that corresponds to this drive. If you add more than 21 drives, the count is wrapped to
+4.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x103-84700022.5">735<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x103-84800022.5">736<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-852" name="x103-84600022.5">CreateDir</a></h4><a 
+  name="dx103-846001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function CreateDir(Const NewDir : String) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">CreateDir </span>creates a new directory with name <span 
+class="cmtt-10">NewDir</span>. If the directory doesn&#8217;t contain an
+absolute path, then the directory is created below the current working directory.
+<!--l. 932--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the directory was successfully created, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of an error, the function returns <span 
+class="cmtt-10">False</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">RemoveDir </span>(<a 
+href="#x103-85000022.5">737<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 940--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex26.pp</span><HR/><div class="listinginput">
+<!--l. 940--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example26;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">CreateDir</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">RemoveDir</span>&nbsp;<span 
+class="cmtt-10">functions</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Run</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">twice</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">same</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">FileExists('NewDir')</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">CreateDir</span>&nbsp;<span 
+class="cmtt-10">('NewDir')</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Failed</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">create</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">!')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Created</span>&nbsp;<span 
+class="cmtt-10">&#34;NewDir&#34;</span>&nbsp;<span 
+class="cmtt-10">directory')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">RemoveDir</span>&nbsp;<span 
+class="cmtt-10">('NewDir')</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Failed</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">remove</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">!')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Removed</span>&nbsp;<span 
+class="cmtt-10">&#34;NewDir&#34;</span>&nbsp;<span 
+class="cmtt-10">directory');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-853" name="x103-84700022.5">DiskFree</a></h4><a 
+  name="dx103-847001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DiskFree(Drive : Byte) : Int64;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DiskFree </span>returns the free space (in bytes) on disk <span 
+class="cmtt-10">Drive</span>. Drive is the number of the disk
+drive:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">for the current drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">for the first floppy drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">2</span></dt><dd 
+class="description">for the second floppy drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">3</span></dt><dd 
+class="description">for the first hard-disk parttion.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">4-26</span></dt><dd 
+class="description">for all other drives and partitions.</dd></dl>
+<!--l. 957--><p class="noindent"><span 
+class="cmti-10">Remark </span>Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and Unix in general, the concept of disk is different than the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>one, since
+the filesystem is seen as one big directory tree. For this reason, the <span 
+class="cmtt-10">DiskFree </span>and <span 
+class="cmss-10">DiskSize </span>(<a 
+href="unitsse5.htm#x12-450002.3">81<!--tex4ht:ref: se:TBufStream--></a>)
+functions must be mimicked using filenames that reside on the partitions. For more information,
+see <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x103-84500022.5">734<!--tex4ht:ref: se:TBufStream--></a>)
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">-1 </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x103-84800022.5">736<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x103-84500022.5">734<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 968--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex27.pp</span><HR/><div class="listinginput">
+<!--l. 968--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example27;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DiskFree</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">current</span>&nbsp;<span 
+class="cmtt-10">disk</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DiskSize(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">(=</span>&nbsp;<span 
+class="cmtt-10">',DiskSize(0)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,'k)');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Free</span>&nbsp;<span 
+class="cmtt-10">space</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">current</span>&nbsp;<span 
+class="cmtt-10">disk</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Diskfree(0));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">(=</span>&nbsp;<span 
+class="cmtt-10">',Diskfree(0)</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">1024,'k)');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-854" name="x103-84800022.5">DiskSize</a></h4><a 
+  name="dx103-848001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DiskSize(Drive : Byte) : Int64;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DiskSize </span>returns the size (in bytes) of disk <span 
+class="cmtt-10">Drive</span>. Drive is the number of the disk
+drive:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">for the current drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">for the first floppy drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">2</span></dt><dd 
+class="description">for the second floppy drive.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">3</span></dt><dd 
+class="description">for the first hard-disk parttion.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">4-26</span></dt><dd 
+class="description">for all other drives and partitions.</dd></dl>
+<!--l. 985--><p class="noindent"><span 
+class="cmti-10">Remark </span>Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and Unix in general, the concept of disk is different than the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>one, since
+the filesystem is seen as one big directory tree. For this reason, the <span 
+class="cmss-10">DiskFree </span>(<a 
+href="unitsse5.htm#x12-440002.3">80<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmtt-10">DiskSize</span>
+functions must be mimicked using filenames that reside on the partitions. For more information,
+see <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x103-84500022.5">734<!--tex4ht:ref: se:TBufStream--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">-1 </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x103-84700022.5">735<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x103-84500022.5">734<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 996--><p class="noindent">For an example, see <span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x103-84700022.5">735<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-855" name="x103-84900022.5">GetCurrentDir</a></h4><a 
+  name="dx103-849001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetCurrentDir : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetCurrentDir </span>returns the current working directory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetCurrentDir </span>(<a 
+href="#x103-85100022.5">737<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DiskFree </span>(<a 
+href="unitsse5.htm#x12-440002.3">80<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DiskSize </span>(<a 
+href="unitsse5.htm#x12-450002.3">81<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1009--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex28.pp</span><HR/><div class="listinginput">
+<!--l. 1009--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example28;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetCurrentDir</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Current</span>&nbsp;<span 
+class="cmtt-10">Directory</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetCurrentDir);</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-856" name="x103-85000022.5">RemoveDir</a></h4><a 
+  name="dx103-850001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function RemoveDir(Const Dir : String) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">RemoveDir </span>removes directory  <span 
+class="cmtt-10">Dir </span>from the disk. If the directory is not absolue, it is
+appended to the current working directory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error (e.g. the directory isn&#8217;t empty) the function returns <span 
+class="cmtt-10">False</span>. If successful,
+<span 
+class="cmtt-10">True </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 1025--><p class="noindent">For an example, see <span 
+class="cmss-10">CreateDir </span>(<a 
+href="#x103-84600022.5">734<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-103-857" name="x103-85100022.5">SetCurrentDir</a></h4><a 
+  name="dx103-851001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SetCurrentDir(Const NewDir : String) : Boolean;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetCurrentDir </span>sets the current working directory of your program to <span 
+class="cmtt-10">NewDir</span>. It returns
+<span 
+class="cmtt-10">True </span>if the function was successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error, <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetCurrentDir </span>(<a 
+href="#x103-84900022.5">737<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1040--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex29.pp</span><HR/><div class="listinginput">
+<!--l. 1040--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example29;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SetCurrentDir</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">SetCurrentDir</span>&nbsp;<span 
+class="cmtt-10">('..')</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">',GetCurrentDir)</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Change</span>&nbsp;<span 
+class="cmtt-10">directory</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">..</span>&nbsp;<span 
+class="cmtt-10">failed.');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse77.htm" >next</a>] [<a 
+href="unitsse75.htm" >prev</a>] [<a 
+href="unitsse75.htm#tailunitsse75.htm" >prev-tail</a>] [<a 
+href="unitsse76.htm" >front</a>] [<a 
+href="unitsch22.htm#unitsse76.htm" >up</a>] </p></div><a 
+  name="tailunitsse76.htm"></a>   
+</body></html> 

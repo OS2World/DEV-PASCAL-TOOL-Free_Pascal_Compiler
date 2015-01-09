@@ -1,0 +1,134 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Pos</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu147.htm" >next</a>] [<a 
+href="refsu145.htm" >prev</a>] [<a 
+href="refsu145.htm#tailrefsu145.htm" >prev-tail</a>] [<a 
+href="#tailrefsu146.htm">tail</a>] [<a 
+href="refse64.htm#refsu146.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-231-252" name="x231-23700013.3">Pos</a></h4><a 
+  name="dx231-237001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Pos (Const Substr : String;Const S : String) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pos </span>returns the index of <span 
+class="cmtt-10">Substr </span>in <span 
+class="cmtt-10">S</span>, if <span 
+class="cmtt-10">S </span>contains <span 
+class="cmtt-10">Substr</span>. In case <span 
+class="cmtt-10">Substr </span>isn&#8217;t found, <span 
+class="cmtt-10">0</span>
+is returned. The search is case-sensitive.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Length </span>(<a 
+href="refsu126.htm#x211-21700013.3">527<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Copy </span>(<a 
+href="refsu87.htm#x172-17800013.3">477<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Delete </span>(<a 
+href="refsu91.htm#x176-18200013.3">481<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Insert </span>(<a 
+href="refsu122.htm#x207-21300013.3">521<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6570--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex48.pp</span><HR/><div class="listinginput">
+<!--l. 6570--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example48;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Pos</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='The</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">space</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">sentence</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S,pos('</span>&nbsp;<span 
+class="cmtt-10">',S));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='The</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">letter</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">alphabet</span>&nbsp;<span 
+class="cmtt-10">doesn''t</span>&nbsp;<span 
+class="cmtt-10">appear</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">sentence</span>&nbsp;<span 
+class="cmtt-10">';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Pos</span>&nbsp;<span 
+class="cmtt-10">('Z',S)=0)</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">(Pos('z',S)=0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu147.htm" >next</a>] [<a 
+href="refsu145.htm" >prev</a>] [<a 
+href="refsu145.htm#tailrefsu145.htm" >prev-tail</a>] [<a 
+href="refsu146.htm" >front</a>] [<a 
+href="refse64.htm#refsu146.htm" >up</a>] </p></div><a 
+  name="tailrefsu146.htm"></a>  
+</body></html> 

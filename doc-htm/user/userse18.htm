@@ -1,0 +1,345 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.2 Using the configuration file</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse19.htm" >next</a>] [<a 
+href="userse17.htm" >prev</a>] [<a 
+href="userse17.htm#tailuserse17.htm" >prev-tail</a>] [<a 
+href="#tailuserse18.htm">tail</a>] [<a 
+href="userch5.htm#userse18.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.2</span> <a 
+href="user.htm#QQ2-25-50" name="x25-480005.2">Using the configuration file</a></h3>
+<!--l. 1229--><p class="noindent">Using the configuration file <span 
+class="cmss-10">fpc.cfg </span>is an alternative to command line options. When a
+configuration file is found, it is read, and the lines in it are treated like you typed them on the
+command line. They are treated before the options that you type on the command
+line.
+<!--l. 1234--><p class="noindent">You can specify comments in the configuration file with the <span 
+class="cmtt-10"># </span>sign. Everything from the <span 
+class="cmtt-10"># </span>on will
+be ignored.
+<!--l. 1237--><p class="noindent">The algorithm to determine which file is used as a configuration file is decribed in <a 
+href="userse9.htm#x14-290003.1">3.1<!--tex4ht:ref: searchconfig--></a> on page
+<a 
+href="userse9.htm#x14-290003.1">50<!--tex4ht:ref: searchconfig--></a>.
+<!--l. 1240--><p class="noindent">When the compiler has finished reading the configuration file, it continues to treat the command
+line options.
+<!--l. 1243--><p class="noindent">One of the command-line options allows you to specify a second configuration file: Specifying <span 
+class="cmss-10">@foo</span>
+on the command line will open file <span 
+class="cmss-10">foo</span>, and read further options from there. When the compiler
+has finished reading this file, it continues to process the command line.
+<!--l. 1248--><p class="noindent">The configuration file allows some kind of preprocessing. It understands the following directives,
+which you should place on the first column of a line :
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">#IFDEF</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#IFNDEF</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#ELSE</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#ENDIF</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#DEFINE</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#UNDEF</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#WRITE</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#INCLUDE</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">#SECTION</span> </dt><dd 
+class="description"></dd></dl>
+<!--l. 1261--><p class="noindent">They work the same way as their <span 
+class="cmsy-10">{</span>$...<span 
+class="cmsy-10">} </span>counterparts in Pascal. All the default defines used to
+compile source code are also defined while processing the configuration file. For example, if the
+target compiler is an intel 80x86 compatile linux platform, both <span 
+class="cmtt-10">cpu86 </span>and <span 
+class="cmtt-10">linux </span>will be defined
+                                                                            
+
+                                                                            
+while interpreting the configuration file. For the possible default defines when compiling, consult
+Appendix G of the <a 
+href="file:../prog/prog.htm" >Programmers guide</a>.
+<!--l. 1268--><p class="noindent">What follows is a description of the different directives.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-51" name="x25-490005.2">#IFDEF</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFDEF&nbsp;name
+</pre>
+</td></tr></table>Lines following <span 
+class="cmtt-10">#IFDEF </span>are skipped read if the keyword <span 
+class="cmtt-10">name </span>following it is not defined.
+<!--l. 1278--><p class="noindent">They are read until the keywords <span 
+class="cmtt-10">#ELSE </span>or <span 
+class="cmtt-10">#ENDIF </span>are encountered, after which normal processing
+is resumed.
+<!--l. 1281--><p class="noindent">Example :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFDEF&nbsp;VER0_99_5
+&nbsp;-Fu/usr/lib/fpc/0.99.5/linuxunits
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>In the above example, <span 
+class="cmss-10">/usr/lib/fpc/0.99.5/linuxunits </span>will be added to the path if you&#8217;re compiling
+with version 0.99.5 of the compiler.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-52" name="x25-500005.2">#IFNDEF</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFNDEF&nbsp;name
+</pre>
+</td></tr></table>Lines following <span 
+class="cmtt-10">#IFNDEF </span>are skipped read if the keyword <span 
+class="cmtt-10">name </span>following it is defined.
+<!--l. 1298--><p class="noindent">They are read until the keywords <span 
+class="cmtt-10">#ELSE </span>or <span 
+class="cmtt-10">#ENDIF </span>are encountered, after which normal processing
+is resumed.
+<!--l. 1301--><p class="noindent">Example :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFNDEF&nbsp;VER0_99_5
+&nbsp;-Fu/usr/lib/fpc/0.99.6/linuxunits
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>In the above example, <span 
+class="cmss-10">/usr/lib/fpc/0.99.6/linuxunits </span>will be added to the path if you&#8217;re NOT
+compiling with version 0.99.5 of the compiler.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-53" name="x25-510005.2">#ELSE</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#ELSE
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#ELSE </span>can be specified after a <span 
+class="cmtt-10">#IFDEF </span>or <span 
+class="cmtt-10">#IFNDEF </span>directive as an alternative. Lines following <span 
+class="cmtt-10">#ELSE</span>
+are skipped read if the preceding <span 
+class="cmtt-10">#IFDEF </span>or <span 
+class="cmtt-10">#IFNDEF </span>was accepted.
+<!--l. 1320--><p class="noindent">They are skipped until the keyword <span 
+class="cmtt-10">#ENDIF </span>is encountered, after which normal processing is
+resumed.
+<!--l. 1323--><p class="noindent">Example :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFDEF&nbsp;VER0_99_5
+&nbsp;-Fu/usr/lib/fpc/0.99.5/linuxunits
+&nbsp;#ELSE
+&nbsp;-Fu/usr/lib/fpc/0.99.6/linuxunits
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>In the above example, <span 
+class="cmss-10">/usr/lib/fpc/0.99.5/linuxunits </span>will be added to the path if you&#8217;re compiling
+with version 0.99.5 of the compiler, otherwise <span 
+class="cmss-10">/usr/lib/fpc/0.99.6/linuxunits </span>will be added to the
+path.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-54" name="x25-520005.2">#ENDIF</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#ENDIF
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#ENDIF </span>marks the end of a block that started with <span 
+class="cmtt-10">#IF(N)DEF</span>, possibly with an <span 
+class="cmtt-10">#ELSE </span>between
+it.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-55" name="x25-530005.2">#DEFINE</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#DEFINE&nbsp;name
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#DEFINE </span>defines a new keyword. This has the same effect as a <span 
+class="cmtt-10">-dname </span>command-line
+option.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-56" name="x25-540005.2">#UNDEF</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#UNDEF&nbsp;name
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#UNDEF </span>un-defines a keyword if it existed. This has the same effect as a <span 
+class="cmtt-10">-uname </span>command-line
+option.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-57" name="x25-550005.2">#WRITE</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#WRITE&nbsp;Message&nbsp;Text
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#WRITE </span>writes <span 
+class="cmtt-10">Message Text </span>to the screen. This can be useful to display warnings if certain
+options are set.
+<!--l. 1367--><p class="noindent">Example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFDEF&nbsp;DEBUG
+&nbsp;#WRITE&nbsp;Setting&nbsp;debugging&nbsp;ON...
+&nbsp;-g
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>if <span 
+class="cmtt-10">DEBUG </span>is defined, this will produce a line
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Setting&nbsp;debugging&nbsp;ON...
+</pre>
+</td></tr></table>and will then switch on debugging information in the compiler.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-58" name="x25-560005.2">#INCLUDE</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#INCLUDE&nbsp;filename
+</pre>
+</td></tr></table><span 
+class="cmtt-10">#INCLUDE </span>instructs the compiler to read the contents of <span 
+class="cmss-10">filename </span>before continuing to process
+options in the current file.
+<!--l. 1388--><p class="noindent">This can be useful if you want to have a particular configuration file for a project (or, under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>,
+in your home directory), but still want to have the global options that are set in a global
+configuration file.
+<!--l. 1392--><p class="noindent">Example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#IFDEF&nbsp;LINUX
+&nbsp;&nbsp;&nbsp;#INCLUDE&nbsp;/etc/fpc.cfg
+&nbsp;#ELSE
+&nbsp;&nbsp;&nbsp;#IFDEF&nbsp;GO32V2
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#INCLUDE&nbsp;c:\pp\bin\fpc.cfg
+&nbsp;&nbsp;&nbsp;#ENDIF
+&nbsp;#ENDIF
+</pre>
+</td></tr></table>This will include <span 
+class="cmss-10">/etc/fpc.cfg </span>if you&#8217;re on a linux machine, and will include <span class="obeylines-h"><span 
+class="cmtt-10">c:\pp\bin\fpc.cfg</span></span> on
+a dos machine.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-25-59" name="x25-570005.2">#SECTION</a></h4> Syntax:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;#SECTION&nbsp;name
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">#SECTION </span>directive acts as a <span 
+class="cmtt-10">#IFDEF </span>directive, only it doesn&#8217;t require an <span 
+class="cmtt-10">#ENDIF </span>directive. the
+special name <span 
+class="cmtt-10">COMMON </span>always exists, i.e. lines following <span 
+class="cmtt-10">#SECTION COMMON </span>are always
+read.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse19.htm" >next</a>] [<a 
+href="userse17.htm" >prev</a>] [<a 
+href="userse17.htm#tailuserse17.htm" >prev-tail</a>] [<a 
+href="userse18.htm" >front</a>] [<a 
+href="userch5.htm#userse18.htm" >up</a>] </p></div><a 
+  name="tailuserse18.htm"></a>   
+</body></html> 

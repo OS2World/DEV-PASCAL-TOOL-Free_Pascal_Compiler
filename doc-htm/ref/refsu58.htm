@@ -1,0 +1,252 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.1.0 Types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu59.htm" >next</a>] [<a 
+href="#tailrefsu58.htm">tail</a>] [<a 
+href="refse62.htm#refsu58.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-141-162" name="x141-14700013.1">Types</a></h4> The following integer types are defined in the System unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Shortint&nbsp;=&nbsp;-128..127;
+&nbsp;SmallInt&nbsp;=&nbsp;-32768..32767;
+&nbsp;Longint&nbsp;&nbsp;=&nbsp;$80000000..$7fffffff;
+&nbsp;byte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0..255;
+&nbsp;word&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0..65535;
+&nbsp;dword&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;longword;
+&nbsp;cardinal&nbsp;=&nbsp;longword;
+&nbsp;Integer&nbsp;&nbsp;=&nbsp;smallint;
+</pre>
+</td></tr></table>The following types are used for the functions that need compiler magic such as <span 
+class="cmss-10">Val </span>(<a 
+href="refsu184.htm#x269-27500013.3">588<!--tex4ht:ref: se:exceptclasses--></a>) or <span 
+class="cmss-10">Str</span>
+(<a 
+href="refsu177.htm#x262-26800013.3">580<!--tex4ht:ref: se:exceptclasses--></a>):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;StrLenInt&nbsp;=&nbsp;LongInt;
+&nbsp;ValSInt&nbsp;=&nbsp;Longint;
+&nbsp;ValUInt&nbsp;=&nbsp;Cardinal;
+&nbsp;ValReal&nbsp;=&nbsp;Extended;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">Real48 </span>type is defined to emulate the old Turbo Pascal <span 
+class="cmtt-10">Real </span>type:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Real48&nbsp;=&nbsp;Array[0..5]&nbsp;of&nbsp;byte;
+</pre>
+</td></tr></table>The assignment operator has been overloaded so this type can be assigned to the Free Pascal
+native <span 
+class="cmtt-10">Double </span>and <span 
+class="cmtt-10">Extended </span>types. <span 
+class="cmss-10">Real2Double </span>(<a 
+href="refsu154.htm#x239-24500013.3">554<!--tex4ht:ref: se:exceptclasses--></a>).
+<!--l. 4595--><p class="noindent">The following character types are defined for Delphi compatibility:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TAnsiChar&nbsp;&nbsp;&nbsp;=&nbsp;Char;
+&nbsp;AnsiChar&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;TAnsiChar;
+</pre>
+</td></tr></table>And the following pointer types as well:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;PChar&nbsp;=&nbsp;^char;
+&nbsp;&nbsp;&nbsp;pPChar&nbsp;=&nbsp;^PChar;
+&nbsp;&nbsp;&nbsp;PAnsiChar&nbsp;&nbsp;&nbsp;=&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;PQWord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;^QWord;
+&nbsp;&nbsp;&nbsp;PInt64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;^Int64;
+&nbsp;&nbsp;&nbsp;pshortstring&nbsp;=&nbsp;^shortstring;
+&nbsp;&nbsp;&nbsp;plongstring&nbsp;&nbsp;=&nbsp;^longstring;
+&nbsp;&nbsp;&nbsp;pansistring&nbsp;&nbsp;=&nbsp;^ansistring;
+&nbsp;&nbsp;&nbsp;pwidestring&nbsp;&nbsp;=&nbsp;^widestring;
+&nbsp;&nbsp;&nbsp;pextended&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;^extended;
+&nbsp;&nbsp;&nbsp;ppointer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;^pointer;
+</pre>
+</td></tr></table>For the <span 
+class="cmss-10">SetJmp </span>(<a 
+href="refsu167.htm#x252-25800013.3">569<!--tex4ht:ref: se:exceptclasses--></a>) and <span 
+class="cmss-10">LongJmp </span>(<a 
+href="refsu129.htm#x214-22000013.3">530<!--tex4ht:ref: se:exceptclasses--></a>) calls, the following jump bufer type is defined (for the
+I386 processor):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;jmp_buf&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ebx,esi,edi&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bp,sp,pc&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;PJmp_buf&nbsp;=&nbsp;^jmp_buf;
+</pre>
+</td></tr></table>The following records and pointers can be used to scan the entries in the string message handler
+tables:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;tmsgstrtable&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;:&nbsp;pshortstring;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;pmsgstrtable&nbsp;=&nbsp;^tmsgstrtable;
+&nbsp;
+&nbsp;&nbsp;&nbsp;tstringmessagetable&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count&nbsp;:&nbsp;dword;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgstrtable&nbsp;:&nbsp;array[0..0]&nbsp;of&nbsp;tmsgstrtable;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;pstringmessagetable&nbsp;=&nbsp;^tstringmessagetable;
+</pre>
+</td></tr></table>
+<!--l. 4639--><p class="noindent">The base class for all classes is defined as:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TObject&nbsp;=&nbsp;Class
+&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor&nbsp;create;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destructor&nbsp;destroy;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;newinstance&nbsp;:&nbsp;tobject;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;freeinstance;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;safecallexception(exceptobject&nbsp;:&nbsp;tobject;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exceptaddr&nbsp;:&nbsp;pointer)&nbsp;:&nbsp;longint;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;defaulthandler(var&nbsp;message);virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;free;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;initinstance(instance&nbsp;:&nbsp;pointer)&nbsp;:&nbsp;tobject;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;cleanupinstance;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;classtype&nbsp;:&nbsp;tclass;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;classinfo&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;classname&nbsp;:&nbsp;shortstring;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;classnameis(const&nbsp;name&nbsp;:&nbsp;string)&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;classparent&nbsp;:&nbsp;tclass;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;instancesize&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;inheritsfrom(aclass&nbsp;:&nbsp;tclass)&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;inheritsfrom(aclass&nbsp;:&nbsp;tclass)&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;stringmessagetable&nbsp;:&nbsp;pstringmessagetable;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;dispatch(var&nbsp;message);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;dispatchstr(var&nbsp;message);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;methodaddress(const&nbsp;name&nbsp;:&nbsp;shortstring)&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;function&nbsp;methodname(address&nbsp;:&nbsp;pointer)&nbsp;:&nbsp;shortstring;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;fieldaddress(const&nbsp;name&nbsp;:&nbsp;shortstring)&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;AfterConstruction;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;BeforeDestruction;virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;DefaultHandlerStr(var&nbsp;message);virtual;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;TClass&nbsp;=&nbsp;Class&nbsp;Of&nbsp;TObject;
+&nbsp;&nbsp;&nbsp;PClass&nbsp;=&nbsp;^TClass;
+</pre>
+</td></tr></table>Unhandled exceptions can be treated using a constant of the <span 
+class="cmtt-10">TExceptProc </span>type:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TExceptProc&nbsp;=&nbsp;Procedure&nbsp;(Obj&nbsp;:&nbsp;TObject;&nbsp;Addr,Frame:&nbsp;Pointer);
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Obj </span>is the exception object that was used to raise the exception, <span 
+class="cmtt-10">Addr </span>and <span 
+class="cmtt-10">Frame </span>contain the exact
+address and stack frame where the exception was raised.
+<!--l. 4684--><p class="noindent">The <span 
+class="cmtt-10">TVarRec </span>type is used to access the elements passed in a <span 
+class="cmtt-10">Array of Const </span>argument to a
+function or procedure:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PVarRec&nbsp;=&nbsp;^TVarRec;
+&nbsp;&nbsp;&nbsp;TVarRec&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;VType&nbsp;:&nbsp;Longint&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtInteger&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VInteger:&nbsp;Longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtBoolean&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VBoolean:&nbsp;Boolean);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VChar:&nbsp;Char);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtExtended&nbsp;&nbsp;&nbsp;:&nbsp;(VExtended:&nbsp;PExtended);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VString:&nbsp;PShortString);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPointer&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VPointer:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtPChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VPChar:&nbsp;PChar);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtObject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VObject:&nbsp;TObject);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VClass:&nbsp;TClass);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtAnsiString&nbsp;:&nbsp;(VAnsiString:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtWideString&nbsp;:&nbsp;(VWideString:&nbsp;Pointer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vtInt64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(VInt64:&nbsp;PInt64);
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The heap manager uses the <span 
+class="cmtt-10">TMemoryManager </span>type:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;PMemoryManager&nbsp;=&nbsp;^TMemoryManager;
+&nbsp;&nbsp;&nbsp;TMemoryManager&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Getmem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(Size:Longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freemem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(var&nbsp;p:pointer):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FreememSize&nbsp;:&nbsp;Function(var&nbsp;p:pointer;Size:Longint):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AllocMem&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function(Size:longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReAllocMem&nbsp;&nbsp;:&nbsp;Function(var&nbsp;p:pointer;Size:longint):Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;function(p:pointer):Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemAvail&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MaxAvail&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HeapSize&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Function:Longint;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>More information on using this record can be found in <a 
+href="file:../prog/prog.htm" >Programmers guide</a>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu59.htm" >next</a>] [<a 
+href="refsu58.htm" >front</a>] [<a 
+href="refse62.htm#refsu58.htm" >up</a>] </p></div><a 
+  name="tailrefsu58.htm"></a>  
+</body></html> 

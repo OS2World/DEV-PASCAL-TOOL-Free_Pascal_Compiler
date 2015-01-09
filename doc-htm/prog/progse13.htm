@@ -1,0 +1,80 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.2 Saturation support</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse14.htm" >next</a>] [<a 
+href="progse12.htm" >prev</a>] [<a 
+href="progse12.htm#tailprogse12.htm" >prev-tail</a>] [<a 
+href="#tailprogse13.htm">tail</a>] [<a 
+href="progch5.htm#progse13.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.2</span> <a 
+href="prog.htm#QQ2-94-94" name="x94-920005.2">Saturation support</a></h3>
+<!--l. 2115--><p class="noindent">One important point of MMX is the support of saturated operations. If a operation would cause an
+overflow, the value stays at the highest or lowest possible value for the data type: If you use byte
+values you get normally 250+12=6. This is very annoying when doing color manipulations or
+changing audio samples, when you have to do a word add and check if the value is greater than
+255. The solution is saturation: 250+12 gives 255. Saturated operations are supported by
+the <span 
+class="cmtt-10">MMX </span>unit. If you want to use them, you have simple turn the switch saturation on:
+<span 
+class="cmtt-10">$saturation+</span>
+<!--l. 2126--><p class="noindent">Here is an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;SaturationDemo;
+&nbsp;{
+&nbsp;&nbsp;&nbsp;example&nbsp;for&nbsp;saturation,&nbsp;scales&nbsp;data&nbsp;(for&nbsp;example&nbsp;audio)
+&nbsp;&nbsp;&nbsp;with&nbsp;1.5&nbsp;with&nbsp;rounding&nbsp;to&nbsp;negative&nbsp;infinity
+&nbsp;}
+&nbsp;uses&nbsp;mmx;
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;audio1&nbsp;:&nbsp;tmmxword;
+&nbsp;&nbsp;&nbsp;&nbsp;i:&nbsp;smallint;
+&nbsp;
+&nbsp;const
+&nbsp;&nbsp;&nbsp;&nbsp;helpdata1&nbsp;:&nbsp;tmmxword&nbsp;=&nbsp;($c000,$c000,$c000,$c000);
+&nbsp;&nbsp;&nbsp;&nbsp;helpdata2&nbsp;:&nbsp;tmmxword&nbsp;=&nbsp;($8000,$8000,$8000,$8000);
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;audio1&nbsp;contains&nbsp;four&nbsp;16&nbsp;bit&nbsp;audio&nbsp;samples&nbsp;}
+&nbsp;{$mmx+}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;convert&nbsp;it&nbsp;to&nbsp;$8000&nbsp;is&nbsp;defined&nbsp;as&nbsp;zero,&nbsp;multiply&nbsp;data&nbsp;with&nbsp;0.75&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;audio1:=(audio1+helpdata2)*(helpdata1);
+&nbsp;{$saturation+}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;avoid&nbsp;overflows&nbsp;(all&nbsp;values&gt;$7fff&nbsp;becomes&nbsp;$ffff)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;audio1:=(audio1+helpdata2)-helpdata2;
+&nbsp;{$saturation-}
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;now&nbsp;mupltily&nbsp;with&nbsp;2&nbsp;and&nbsp;change&nbsp;to&nbsp;integer&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i:=0&nbsp;to&nbsp;3&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;audio1[i]&nbsp;:=&nbsp;audio1[i]&nbsp;shl&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;audio1:=audio1-helpdata2;
+&nbsp;{$mmx-}
+&nbsp;end.
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse14.htm" >next</a>] [<a 
+href="progse12.htm" >prev</a>] [<a 
+href="progse12.htm#tailprogse12.htm" >prev-tail</a>] [<a 
+href="progse13.htm" >front</a>] [<a 
+href="progch5.htm#progse13.htm" >up</a>] </p></div><a 
+  name="tailprogse13.htm"></a>  
+</body></html> 

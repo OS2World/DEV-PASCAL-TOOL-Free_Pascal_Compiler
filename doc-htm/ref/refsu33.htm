@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 The Repeat..until statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu34.htm" >next</a>] [<a 
+href="refsu32.htm" >prev</a>] [<a 
+href="refsu32.htm#tailrefsu32.htm" >prev-tail</a>] [<a 
+href="#tailrefsu33.htm">tail</a>] [<a 
+href="refse34.htm#refsu33.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-81-101" name="x81-870007.2">The <span 
+class="cmtt-10">Repeat..until </span>statement</a></h4> The <span 
+class="cmtt-10">repeat </span>statement is used to execute a statement until a
+certain condition is reached. The statement will be executed at least once. The prototype syntax of
+the <span 
+class="cmtt-10">Repeat..until </span>statement is
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Repeat statement</span>
+     <BR/>
+     <img 
+src="ref103x.png" alt="-- repeat statement-repeat--|statement --until -expression---------------
+                         ----;------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2934--><p class="noindent">This will execute the statements between <span 
+class="cmtt-10">repeat </span>and <span 
+class="cmtt-10">until </span>up to the moment when
+<span 
+class="cmtt-10">Expression </span>evaluates to <span 
+class="cmtt-10">True</span>. Since the <span 
+class="cmtt-10">expression </span>is evaluated <span 
+class="cmti-10">after </span>the execution of the
+statements, they are executed at least once. Be aware of the fact that the boolean expression
+<span 
+class="cmtt-10">Expression </span>will be short-cut evaluated. (Meaning that the evaluation will be stopped at
+the point where the outcome is known with certainty) The following are valid <span 
+class="cmtt-10">repeat</span>
+statements
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;repeat
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('I&nbsp;=',i);
+&nbsp;&nbsp;&nbsp;I&nbsp;:=&nbsp;I+2;
+&nbsp;until&nbsp;I&gt;100;
+&nbsp;repeat
+&nbsp;&nbsp;X&nbsp;:=&nbsp;X/2
+&nbsp;until&nbsp;x&lt;10e-3
+</pre>
+</td></tr></table>The <span 
+class="cmss-10">Break </span>(<a 
+href="refsu77.htm#x162-16800013.3">461<!--tex4ht:ref: tab:assignments--></a>) and <span 
+class="cmss-10">Continue </span>(<a 
+href="refsu86.htm#x171-17700013.3">475<!--tex4ht:ref: tab:assignments--></a>) reserved words can be used to jump to the end or just after
+the end of the <span 
+class="cmtt-10">repeat .. until  </span>statement.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu34.htm" >next</a>] [<a 
+href="refsu32.htm" >prev</a>] [<a 
+href="refsu32.htm#tailrefsu32.htm" >prev-tail</a>] [<a 
+href="refsu33.htm" >front</a>] [<a 
+href="refse34.htm#refsu33.htm" >up</a>] </p></div><a 
+  name="tailrefsu33.htm"></a>  
+</body></html> 

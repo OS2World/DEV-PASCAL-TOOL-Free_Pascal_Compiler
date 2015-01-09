@@ -1,0 +1,158 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>24 The VIDEO unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch23.htm" >prev</a>] [<a 
+href="unitsch23.htm#tailunitsch23.htm" >prev-tail</a>] [<a 
+href="#tailunitsch24.htm">tail</a>] [<a 
+href="units.htm#unitsch24.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;24</span><br><a 
+href="units.htm#QQ2-111-991" name="x111-98500024">The VIDEO unit</a></h2>
+<!--l. 29--><p class="noindent">The <span 
+class="cmss-10">Video </span>unit implements a screen access layer which is system independent. It can be used to
+write on the screen in a system-independent way, which should be optimal on all platforms for
+which the unit is implemented.
+<!--l. 34--><p class="noindent">The working of the <span 
+class="cmss-10">Video </span>is simple: After calling <span 
+class="cmss-10">InitVideo </span>(<a 
+href="unitsse84.htm#x113-100100024.2">891<!--tex4ht:ref: se:TBufStream--></a>), the array <span 
+class="cmtt-10">VideoBuf </span>contains a
+representation of the video screen of size <span 
+class="cmtt-10">ScreenWidth*ScreenHeight</span>, going from left to right and
+top to bottom when walking the array elements: <span 
+class="cmtt-10">VideoBuf[0] </span>contains the character and
+color code of the top-left character on the screen. <span 
+class="cmtt-10">VideoBuf[ScreenWidth] </span>contains
+the data for the character in the first column of the second row on the screen, and so
+on.
+<!--l. 42--><p class="noindent">To write to the &#8217;screen&#8217;, the text to be written should be written to the <span 
+class="cmtt-10">VideoBuf </span>array. Calling
+<span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="unitsse84.htm#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will then cp the text to the screen in the most optimal way. (an example can be
+found further on).
+<!--l. 46--><p class="noindent">The color attribute is a combination of the foreground and background color, plus the blink bit.
+The bits describe the various color combinations:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">bits 0-3</span> </dt><dd 
+class="description">The foreground color. Can be set using all color constants.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">bits 4-6</span> </dt><dd 
+class="description">The background color. Can be set using a subset of the color constants.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">bit 7</span> </dt><dd 
+class="description">The blinking bit. If this bit is set, the character will appear blinking.</dd></dl>
+<!--l. 55--><p class="noindent">Each possible color has a constant associated with it, see page <a 
+href="unitsse83.htm#x112-98700024.1">865<!--tex4ht:ref: se:TBufStream--></a> for a list of constants.
+<!--l. 58--><p class="noindent">The contents of the <span 
+class="cmtt-10">VideoBuf </span>array may be modified: This is &#8217;writing&#8217; to the screen. As soon as
+everything that needs to be written in the array is in the <span 
+class="cmtt-10">VideoBuf </span>array, calling <span 
+class="cmtt-10">UpdateScreen</span>
+will copy the contents of the array screen to the screen, in a manner that is as efficient as
+possible.
+<!--l. 64--><p class="noindent">The updating of the screen can be prohibited to optimize performance; To this end, the
+<span 
+class="cmss-10">LockScreenUpdate </span>(<a 
+href="unitsse84.htm#x113-100200024.2">891<!--tex4ht:ref: se:TBufStream--></a>) function can be used: This will increment an internal counter. As long as
+the counter differs from zero, calling <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="unitsse84.htm#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>) will not do anything. The counter can be
+lowered with <span 
+class="cmss-10">UnlockScreenUpdate </span>(<a 
+href="unitsse84.htm#x113-100700024.2">895<!--tex4ht:ref: se:TBufStream--></a>). When it reaches zero, the next call to <span 
+class="cmss-10">UpdateScreen </span>(<a 
+href="unitsse84.htm#x113-100800024.2">895<!--tex4ht:ref: se:TBufStream--></a>)
+will actually update the screen. This is useful when having nested procedures that do a lot of
+screen writing.
+<!--l. 72--><p class="noindent">The video unit also presents an interface for custom screen drivers, thus it is possible to
+override the default screen driver with a custom screen driver, see the <span 
+class="cmss-10">SetVideoDriver</span>
+(<a 
+href="unitsse84.htm#x113-100500024.2">894<!--tex4ht:ref: se:TBufStream--></a>) call. The current video driver can be retrieved using the <span 
+class="cmss-10">GetVideoDriver </span>(<a 
+href="unitsse84.htm#x113-99700024.2">888<!--tex4ht:ref: se:TBufStream--></a>)
+call.
+<!--l. 77--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The video unit should <span 
+class="cmti-10">not </span>be used together with the <span 
+class="cmss-10">crt </span>unit. Doing so will result in very strange
+behaviour, possibly program crashes.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">24.1 <a 
+href="unitsse83.htm#x112-98600024.1" name="QQ2-112-992">Constants, Type and variables </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse83.htm#x112-98700024.1" name="QQ2-112-993">Constants</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse83.htm#x112-98800024.1" name="QQ2-112-994">Types</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse83.htm#x112-98900024.1" name="QQ2-112-995">Variables</a></span>
+<br>&nbsp;<span class="sectionToc">24.2 <a 
+href="unitsse84.htm#x113-99000024.2" name="QQ2-113-996">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99100024.2" name="QQ2-113-997">ClearScreen</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99200024.2" name="QQ2-113-998">DefaultErrorHandler</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99300024.2" name="QQ2-113-999">DoneVideo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99400024.2" name="QQ2-113-1000">GetCapabilities</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99500024.2" name="QQ2-113-1001">GetCursorType</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99600024.2" name="QQ2-113-1002">GetLockScreenCount</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99700024.2" name="QQ2-113-1003">GetVideoDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99800024.2" name="QQ2-113-1004">GetVideoMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-99900024.2" name="QQ2-113-1005">GetVideoModeCount</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100000024.2" name="QQ2-113-1006">GetVideoModeData</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100100024.2" name="QQ2-113-1007">InitVideo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100200024.2" name="QQ2-113-1008">LockScreenUpdate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100300024.2" name="QQ2-113-1009">SetCursorPos</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100400024.2" name="QQ2-113-1010">SetCursorType</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100500024.2" name="QQ2-113-1011">SetVideoDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100600024.2" name="QQ2-113-1012">SetVideoMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100700024.2" name="QQ2-113-1013">UnlockScreenUpdate</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse84.htm#x113-100800024.2" name="QQ2-113-1014">UpdateScreen</a></span>
+<br>&nbsp;<span class="sectionToc">24.3 <a 
+href="unitsse85.htm#x114-100900024.3" name="QQ2-114-1015">Writing a custom video driver</a></span>
+</div>
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch23.htm" >prev</a>] [<a 
+href="unitsch23.htm#tailunitsch23.htm" >prev-tail</a>] [<a 
+href="unitsch24.htm" >front</a>] [<a 
+href="units.htm#unitsch24.htm" >up</a>] </p></div><a 
+  name="tailunitsch24.htm"></a>  
+</body></html> 

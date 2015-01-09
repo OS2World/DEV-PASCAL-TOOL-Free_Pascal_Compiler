@@ -1,0 +1,194 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.2 Usage</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse26.htm" >next</a>] [<a 
+href="unitsse24.htm" >prev</a>] [<a 
+href="unitsse24.htm#tailunitsse24.htm" >prev-tail</a>] [<a 
+href="#tailunitsse25.htm">tail</a>] [<a 
+href="unitsch9.htm#unitsse25.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.2</span> <a 
+href="units.htm#QQ2-39-305" name="x39-3020009.2">Usage</a></h3>
+<!--l. 48--><p class="noindent">All that you need to do is to include <span 
+class="cmss-10">heaptrc </span>in the uses clause of your program. Make sure that it
+is the first unit in the clause, otherwise memory allocated in initialization code of units that
+precede the heaptrc unit will not be accounted for, causing an incorrect memory usage
+report.
+<!--l. 54--><p class="noindent">If you use the <span 
+class="cmtt-10">-gh </span>switch, the compiler will insert the unit by itself, so you don&#8217;t have to include it
+in your uses clause.
+<!--l. 57--><p class="noindent">The following example shows how to use the heaptrc unit.
+<!--l. 59--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">heapex/heapex.pp</span><HR/><div class="listinginput">
+<!--l. 59--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">heapex;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">used</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">usage</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">heaptrc</span>&nbsp;<span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">heaptrc;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">^Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">causes</span>&nbsp;<span 
+class="cmtt-10">previous</span>&nbsp;<span 
+class="cmtt-10">allocation</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">de-allocated</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">When</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">even,</span>&nbsp;<span 
+class="cmtt-10">deallocate</span>&nbsp;<span 
+class="cmtt-10">block.</span>&nbsp;<span 
+class="cmtt-10">We</span>&nbsp;<span 
+class="cmtt-10">loose</span>&nbsp;<span 
+class="cmtt-10">5</span>&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">128</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">bytes</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">way.</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(I</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">2)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">0</span>&nbsp;<span 
+class="cmtt-10">Then</span>&nbsp;<span 
+class="cmtt-10">FreeMem(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem(P2,128);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">provoke</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">dump</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Freemem</span>&nbsp;<span 
+class="cmtt-10">(P2,64);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<!--l. 61--><p class="noindent">This is the memory dump shown when running this program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Marked&nbsp;memory&nbsp;at&nbsp;0040FA50&nbsp;invalid
+&nbsp;Wrong&nbsp;size&nbsp;:&nbsp;128&nbsp;allocated&nbsp;64&nbsp;freed
+&nbsp;&nbsp;&nbsp;0x00408708
+&nbsp;&nbsp;&nbsp;0x0040CB49
+&nbsp;&nbsp;&nbsp;0x0040C481
+&nbsp;Call&nbsp;trace&nbsp;for&nbsp;block&nbsp;0x0040FA50&nbsp;size&nbsp;128
+&nbsp;&nbsp;&nbsp;0x0040CB3D
+&nbsp;&nbsp;&nbsp;0x0040C481
+</pre>
+</td></tr></table>
+<!--l. 73--><p class="noindent">If you use the <span 
+class="cmss-10">lineinfo </span>unit (or use the <span 
+class="cmtt-10">-gl </span>switch) as well, then <span 
+class="cmss-10">heaptrc </span>will also give you the
+filenames and line-numbers of the procedures in the backtrace:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Marked&nbsp;memory&nbsp;at&nbsp;00410DA0&nbsp;invalid
+&nbsp;Wrong&nbsp;size&nbsp;:&nbsp;128&nbsp;allocated&nbsp;64&nbsp;freed
+&nbsp;&nbsp;&nbsp;0x004094B8
+&nbsp;&nbsp;&nbsp;0x0040D8F9&nbsp;&nbsp;main,&nbsp;&nbsp;line&nbsp;25&nbsp;of&nbsp;heapex.pp
+&nbsp;&nbsp;&nbsp;0x0040D231
+&nbsp;Call&nbsp;trace&nbsp;for&nbsp;block&nbsp;0x00410DA0&nbsp;size&nbsp;128
+&nbsp;&nbsp;&nbsp;0x0040D8ED&nbsp;&nbsp;main,&nbsp;&nbsp;line&nbsp;23&nbsp;of&nbsp;heapex.pp
+&nbsp;&nbsp;&nbsp;0x0040D231
+</pre>
+</td></tr></table>If lines without filename/line-number occur, this means there is a unit which has no debug info
+included.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse26.htm" >next</a>] [<a 
+href="unitsse24.htm" >prev</a>] [<a 
+href="unitsse24.htm#tailunitsse24.htm" >prev-tail</a>] [<a 
+href="unitsse25.htm" >front</a>] [<a 
+href="unitsch9.htm#unitsse25.htm" >up</a>] </p></div><a 
+  name="tailunitsse25.htm"></a>  
+</body></html> 

@@ -1,0 +1,90 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8 Memory issues</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch9.htm" >next</a>] [<a 
+href="progch7.htm" >prev</a>] [<a 
+href="progch7.htm#tailprogch7.htm" >prev-tail</a>] [<a 
+href="#tailprogch8.htm">tail</a>] [<a 
+href="prog.htm#progch8.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;8</span><br><a 
+href="prog.htm#QQ2-138-145" name="x138-1370008">Memory issues</a></h2>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="progse28.htm#x139-1380008.1" name="QQ2-139-146">The memory model.</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="progse29.htm#x140-1390008.2" name="QQ2-140-147">Data formats</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu95.htm#x141-1400008.2" name="QQ2-141-148">integer types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu96.htm#x142-1410008.2" name="QQ2-142-149">char types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu97.htm#x143-1420008.2" name="QQ2-143-150">boolean types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu98.htm#x144-1430008.2" name="QQ2-144-151">enumeration types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu99.htm#x145-1440008.2" name="QQ2-145-153">floating point types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu100.htm#x146-1500008.2" name="QQ2-146-162">pointer types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu101.htm#x148-1510008.2" name="QQ2-148-163">string types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu102.htm#x149-1550008.2" name="QQ2-149-168">set types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu103.htm#x150-1560008.2" name="QQ2-150-169">array types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu104.htm#x151-1570008.2" name="QQ2-151-170">record types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu105.htm#x152-1580008.2" name="QQ2-152-171">object types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu106.htm#x153-1590008.2" name="QQ2-153-174">class types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu107.htm#x154-1600008.2" name="QQ2-154-177">file types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu108.htm#x155-1610008.2" name="QQ2-155-178">procedural types</a></span>
+<br>&nbsp;<span class="sectionToc">8.3 <a 
+href="progse30.htm#x156-1620008.3" name="QQ2-156-179">Data alignment</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu109.htm#x157-1630008.3" name="QQ2-157-180">Typed constants and variable alignment</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu110.htm#x159-1640008.3" name="QQ2-159-182">Structured types alignment</a></span>
+<br>&nbsp;<span class="sectionToc">8.4 <a 
+href="progse31.htm#x160-1650008.4" name="QQ2-160-183">The heap</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu111.htm#x161-1660008.4" name="QQ2-161-184">Heap allocation strategy</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu112.htm#x162-1670008.4" name="QQ2-162-185">The HeapError variable</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu113.htm#x163-1680008.4" name="QQ2-163-187">The heap grows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu114.htm#x164-1690008.4" name="QQ2-164-189">Debugging the heap</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu115.htm#x165-1700008.4" name="QQ2-165-190">Writing your own memory manager</a></span>
+<br>&nbsp;<span class="sectionToc">8.5 <a 
+href="progse32.htm#x167-1710008.5" name="QQ2-167-191">Using dos memory under the Go32 extender</a></span>
+</div>
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch9.htm" >next</a>] [<a 
+href="progch7.htm" >prev</a>] [<a 
+href="progch7.htm#tailprogch7.htm" >prev-tail</a>] [<a 
+href="progch8.htm" >front</a>] [<a 
+href="prog.htm#progch8.htm" >up</a>] </p></div><a 
+  name="tailprogch8.htm"></a>  
+</body></html> 

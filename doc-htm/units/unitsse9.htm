@@ -1,0 +1,71 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.1 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="#tailunitsse9.htm">tail</a>] [<a 
+href="unitsch4.htm#unitsse9.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.1</span> <a 
+href="units.htm#QQ2-18-90" name="x18-880004.1">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-18-91" name="x18-890004.1">npxsetup</a></h4><a 
+  name="dx18-89001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure npxsetup(prog</span>_<span 
+class="cmtt-10">name : string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">npxsetup </span>checks whether a coprocessor is found. If not, it loads the file <span 
+class="cmss-10">wmemu387.dxe </span>into
+memory and initializes the code in it.
+<!--l. 41--><p class="noindent">If the environment variable <span 
+class="cmtt-10">387 </span>is set to <span 
+class="cmtt-10">N</span>, then the emulation will be loaded, even if there
+is a coprocessor present. If the variable doesn&#8217;t exist, or is set to any other value, the unit
+will try to detect the presence of a coprocessor unit.
+<!--l. 46--><p class="noindent">The function searches the file <span 
+class="cmss-10">wmemu387.dxe </span>in the following way:
+    <ol type="1" class="enumerate1" 
+>
+    <li class="enumerate"><a 
+  name="x18-89003x1"></a>If  the  environment  variable  <span 
+class="cmtt-10">EMU387  </span>is  set,  then  it  is  assumed  to  point  at  the
+    <span 
+class="cmss-10">wmemu387.dxe </span>file.
+    </li>
+    <li class="enumerate"><a 
+  name="x18-89005x2"></a>if the environment variable <span 
+class="cmtt-10">EMU387 </span>does not exist, then the function will take the path
+    part of <span 
+class="cmtt-10">prog</span>_<span 
+class="cmtt-10">name </span>and look in that directory for the file <span 
+class="cmss-10">wmemu387.dxe</span>.</li></ol>
+<!--l. 55--><p class="noindent">It should never be necessary to call this function, because the initialization code of the unit
+contains a call to the function with as an argument <span 
+class="cmtt-10">paramstr(0)</span>. This means that you should
+deliver the file <span 
+class="cmtt-10">wmemu387.dxe </span>together with your program.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If there is an error, an error message is printed to standard error, and the program is halted, since
+any floating-point code is bound to fail anyhow.</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse9.htm" >front</a>] [<a 
+href="unitsch4.htm#unitsse9.htm" >up</a>] </p></div><a 
+  name="tailunitsse9.htm"></a>   
+</body></html> 

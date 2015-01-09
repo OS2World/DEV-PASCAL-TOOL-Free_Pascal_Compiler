@@ -1,0 +1,1624 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>20.2 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse69.htm" >prev</a>] [<a 
+href="unitsse69.htm#tailunitsse69.htm" >prev-tail</a>] [<a 
+href="#tailunitsse70.htm">tail</a>] [<a 
+href="unitsch20.htm#unitsse70.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">20.2</span> <a 
+href="units.htm#QQ2-95-764" name="x95-75800020.2">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-765" name="x95-75900020.2">Accept</a></h4><a 
+  name="dx95-759001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Accept (Sock:Longint;Var Addr;Var Addrlen:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Accept </span>accepts a connection from a socket <span 
+class="cmtt-10">Sock</span>, which was listening for a connection. If a
+connection is accepted, a file descriptor is returned. On error <span 
+class="cmtt-10">-1 </span>is returned. The returned
+socket may NOT be used to accept more connections. The original socket remains open.
+<!--l. 110--><p class="noindent">The <span 
+class="cmtt-10">Accept </span>call fills the address of the connecting entity in <span 
+class="cmtt-10">Addr</span>, and sets its length in
+<span 
+class="cmtt-10">Addrlen</span>. <span 
+class="cmtt-10">Addr </span>should be pointing to enough space, and <span 
+class="cmtt-10">Addrlen </span>should be set to the amount
+of space available, prior to the call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">-1 </span>is returned, and errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the
+following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EOPNOTSUPP</span></dt><dd 
+class="description">The socket type doesn&#8217;t support the <span 
+class="cmtt-10">Listen </span>operation.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">Addr </span>points outside your address space.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EWOULDBLOCK</span></dt><dd 
+class="description">The requested operation would block the process.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Listen </span>(<a 
+href="#x95-77200020.2">668<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 131--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sockex/socksvr.pp</span><HR/><div class="listinginput">
+<!--l. 131--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">server;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">test</span>&nbsp;<span 
+class="cmtt-10">Sockets</span>&nbsp;<span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">Michael</span>&nbsp;<span 
+class="cmtt-10">van</span>&nbsp;<span 
+class="cmtt-10">Canneyt</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Peter</span>&nbsp;<span 
+class="cmtt-10">Vreman</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Server</span>&nbsp;<span 
+class="cmtt-10">Version,</span>&nbsp;<span 
+class="cmtt-10">First</span>&nbsp;<span 
+class="cmtt-10">Run</span>&nbsp;<span 
+class="cmtt-10">sock_svr</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">let</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">create</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">socket</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">then</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">sock_cli</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">connect</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">socket</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Linux,Sockets;</span>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SPath='ServerSoc';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FromName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string[255];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Sin,Sout</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">perror</span>&nbsp;<span 
+class="cmtt-10">(const</span>&nbsp;<span 
+class="cmtt-10">S:string);</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(S,SocketError);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">halt(100);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=Socket</span>&nbsp;<span 
+class="cmtt-10">(AF_UNIX,SOCK_STREAM,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">SocketError&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Perror</span>&nbsp;<span 
+class="cmtt-10">('Server</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Socket</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UnLink(SPath);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Bind(S,SPath)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PError</span>&nbsp;<span 
+class="cmtt-10">('Server</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Bind</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Listen</span>&nbsp;<span 
+class="cmtt-10">(S,1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PError</span>&nbsp;<span 
+class="cmtt-10">('Server</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Listen</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Waiting</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">Connect</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">Client,</span>&nbsp;<span 
+class="cmtt-10">run</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">sock_cli</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">other</span>&nbsp;<span 
+class="cmtt-10">tty');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Accept</span>&nbsp;<span 
+class="cmtt-10">(S,FromName,Sin,Sout)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PError</span>&nbsp;<span 
+class="cmtt-10">('Server</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Accept</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">'+fromname);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset(Sin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReWrite(Sout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Sout,'Message</span>&nbsp;<span 
+class="cmtt-10">From</span>&nbsp;<span 
+class="cmtt-10">Server');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Flush(SOut);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">eof(sin)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(Sin,Buffer);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Server</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">read</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',buffer);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Unlink(SPath);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-766" name="x95-76000020.2">Accept</a></h4><a 
+  name="dx95-760001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Accept (Sock:longint;var addr:string;var SockIn,SockOut:text) :</span>
+<span 
+class="cmtt-10">Boolean;</span>
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This is an alternate form of the <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>) command. It is equivalent to subsequently
+calling the regular <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>) function and the <span 
+class="cmss-10">Sock2Text </span>(<a 
+href="#x95-77800020.2">671<!--tex4ht:ref: se:TBufStream--></a>) function. The function
+returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-767" name="x95-76100020.2">Accept</a></h4><a 
+  name="dx95-761001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Accept (Sock:longint;var addr:string;var SockIn,SockOut:File) :</span>
+<span 
+class="cmtt-10">Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This is an alternate form of the <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>) command. It is equivalent to subsequently
+calling  the  regular  <span 
+class="cmss-10">Accept  </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)  function  and  the  <span 
+class="cmss-10">Sock2File  </span>(<a 
+href="#x95-77700020.2">671<!--tex4ht:ref: se:TBufStream--></a>)  function.  The  <span 
+class="cmtt-10">Addr</span>
+parameter contains the name of the unix socket file to be opened. The function returns <span 
+class="cmtt-10">True</span>
+if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-768" name="x95-76200020.2">Accept</a></h4><a 
+  name="dx95-762001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Accept (Sock:longint;var addr:TInetSockAddr;var</span>
+<span 
+class="cmtt-10">SockIn,SockOut:File) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This is an alternate form of the <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>) command. It is equivalent to subsequently
+calling  the  regular  <span 
+class="cmss-10">Accept  </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)  function  and  the  <span 
+class="cmss-10">Sock2File  </span>(<a 
+href="#x95-77700020.2">671<!--tex4ht:ref: se:TBufStream--></a>)  function.  The  <span 
+class="cmtt-10">Addr</span>
+parameter contains the parameters of the internet socket that should be opened. The function
+returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-769" name="x95-76300020.2">Bind</a></h4><a 
+  name="dx95-763001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Bind (Sock:Longint;Var Addr;AddrLen:Longint) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Bind </span>binds the socket <span 
+class="cmtt-10">Sock </span>to address <span 
+class="cmtt-10">Addr</span>. <span 
+class="cmtt-10">Addr </span>has length <span 
+class="cmtt-10">Addrlen</span>. The function returns
+<span 
+class="cmtt-10">True </span>if the call was succesful, <span 
+class="cmtt-10">False </span>if not.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are returned in <span 
+class="cmtt-10">SocketError </span>and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EINVAL</span></dt><dd 
+class="description">The socket is already bound to an address,
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EACCESS</span></dt><dd 
+class="description">Address is protected and you don&#8217;t have permission to open it.</dd></dl>
+<!--l. 201--><p class="noindent">More arrors can be found in the Unix man pages.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-770" name="x95-76400020.2">Bind</a></h4><a 
+  name="dx95-764001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Bind (Sock:longint;const addr:string) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This  is  an  alternate  form  of  the  <span 
+class="cmtt-10">Bind  </span>command.  This  form  of  the  <span 
+class="cmtt-10">Bind  </span>command  is
+equivalent  to  subsequently  calling  <span 
+class="cmss-10">Str2UnixSockAddr  </span>(<a 
+href="#x95-78100020.2">672<!--tex4ht:ref: se:TBufStream--></a>)  and  the  regular  <span 
+class="cmss-10">Bind  </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>)
+function. The function returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are those of the regular <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>) command.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-771" name="x95-76500020.2">Connect</a></h4><a 
+  name="dx95-765001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Connect (Sock:Longint;Var Addr;Addrlen:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Connect </span>opens a connection to a peer, whose address is described by <span 
+class="cmtt-10">Addr</span>. <span 
+class="cmtt-10">AddrLen </span>contains
+the length of the address. The type of <span 
+class="cmtt-10">Addr </span>depends on the kind of connection you&#8217;re trying
+to make, but is generally one of <span 
+class="cmtt-10">TSockAddr </span>or <span 
+class="cmtt-10">TUnixSockAddr</span>.
+<!--l. 231--><p class="noindent">The <span 
+class="cmtt-10">Connect </span>function returns a file descriptor if the call was successfull, <span 
+class="cmtt-10">-1 </span>in case of error.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">-1 </span>is returned and errors are reported in <span 
+class="cmtt-10">SocketError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Listen </span>(<a 
+href="#x95-77200020.2">668<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 239--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sockex/sockcli.pp</span><HR/><div class="listinginput">
+<!--l. 239--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Client;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">test</span>&nbsp;<span 
+class="cmtt-10">Sockets</span>&nbsp;<span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">Michael</span>&nbsp;<span 
+class="cmtt-10">van</span>&nbsp;<span 
+class="cmtt-10">Canneyt</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">Peter</span>&nbsp;<span 
+class="cmtt-10">Vreman</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Client</span>&nbsp;<span 
+class="cmtt-10">Version,</span>&nbsp;<span 
+class="cmtt-10">First</span>&nbsp;<span 
+class="cmtt-10">Run</span>&nbsp;<span 
+class="cmtt-10">sock_svr</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">let</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">create</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">socket</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">sock_cli</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">connect</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">that</span>&nbsp;<span 
+class="cmtt-10">socket</span>
+<br>   <span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Sockets,Linux;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">PError(const</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string);</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(S,SocketError);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">halt(100);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Saddr</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String[25];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">[255];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Sin,Sout</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=Socket</span>&nbsp;<span 
+class="cmtt-10">(AF_UNIX,SOCK_STREAM,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">SocketError&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Perror('Client</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Socket</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Saddr:='ServerSoc';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Connect</span>&nbsp;<span 
+class="cmtt-10">(S,SAddr,Sin,Sout)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PError('Client</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Connect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset(Sin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReWrite(Sout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buffer:='This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">textstring</span>&nbsp;<span 
+class="cmtt-10">sent</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Client.';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Sout,Buffer);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Flush(Sout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Readln(SIn,Buffer);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(Buffer);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(sout);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-772" name="x95-76600020.2">Connect</a></h4><a 
+  name="dx95-766001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Connect (Sock:longint;const addr:string;var SockIn,SockOut:text) :</span>
+<span 
+class="cmtt-10">Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This is an alternate form of the <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>) command. It is equivalent to subsequently
+calling the regular <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>) function and the <span 
+class="cmss-10">Sock2Text </span>(<a 
+href="#x95-77800020.2">671<!--tex4ht:ref: se:TBufStream--></a>) function. The function
+returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-773" name="x95-76700020.2">Connect</a></h4><a 
+  name="dx95-767001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Connect (Sock:longint;const addr:string;var SockIn,SockOut:file) :</span>
+<span 
+class="cmtt-10">Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This is an alternate form of the <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>) command. The parameter <span 
+class="cmtt-10">addr </span>contains
+the name of the unix socket file to be opened. It is equivalent to subsequently calling the
+regular <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>) function and the <span 
+class="cmss-10">Sock2File </span>(<a 
+href="#x95-77700020.2">671<!--tex4ht:ref: se:TBufStream--></a>) function. The function returns <span 
+class="cmtt-10">True</span>
+if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-774" name="x95-76800020.2">Connect</a></h4><a 
+  name="dx95-768001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Connect (Sock:longint;const addr: TInetSockAddr;var</span>
+<span 
+class="cmtt-10">SockIn,SockOut:file) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This  is  another  alternate  form  of  the  <span 
+class="cmss-10">Connect  </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)  command.  It  is  equivalent  to
+subsequently calling the regular <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>) function and the <span 
+class="cmss-10">Sock2File </span>(<a 
+href="#x95-77700020.2">671<!--tex4ht:ref: se:TBufStream--></a>) function. The
+<span 
+class="cmtt-10">Addr </span>parameter contains the parameters of the internet socket to connect to. The function
+returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors are those of <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 288--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sockex/pfinger.pp</span><HR/><div class="listinginput">
+<!--l. 288--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">pfinger;</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">sockets,errors;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Addr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TInetSockAddr;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Sin,Sout</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Line</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Addr.family:=AF_INET;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">port</span>&nbsp;<span 
+class="cmtt-10">79</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">network</span>&nbsp;<span 
+class="cmtt-10">order</span>&nbsp;<span 
+class="cmtt-10">}</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Addr.port:=79</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">8;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">localhost</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">127.0.0.1</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">network</span>&nbsp;<span 
+class="cmtt-10">order</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Addr.addr:=((1</span>&nbsp;<span 
+class="cmtt-10">shl</span>&nbsp;<span 
+class="cmtt-10">24)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">127);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=Socket(AF_INET,SOCK_STREAM,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">Connect</span>&nbsp;<span 
+class="cmtt-10">(S,ADDR,SIN,SOUT)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Couldn''t</span>&nbsp;<span 
+class="cmtt-10">connect</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">localhost');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Socket</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',strerror(SocketError));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rewrite</span>&nbsp;<span 
+class="cmtt-10">(sout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">reset(sin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(sout,paramstr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">flush(sout);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">eof(sin)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">readln</span>&nbsp;<span 
+class="cmtt-10">(Sin,line);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(line);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Shutdown(s,2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">close</span>&nbsp;<span 
+class="cmtt-10">(sin);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">close</span>&nbsp;<span 
+class="cmtt-10">(sout);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-775" name="x95-76900020.2">GetPeerName</a></h4><a 
+  name="dx95-769001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPeerName (Sock:Longint;Var Addr;Var Addrlen:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPeerName </span>returns the name of the entity connected to the specified socket <span 
+class="cmtt-10">Sock</span>. The
+Socket must be connected for this call to work. <span 
+class="cmtt-10">Addr </span>should point to enough space to store
+the name, the amount of space pointed to should be set in <span 
+class="cmtt-10">Addrlen</span>. When the function
+returns succesfully, <span 
+class="cmtt-10">Addr </span>will be filled with the name, and <span 
+class="cmtt-10">Addrlen </span>will be set to the length
+of <span 
+class="cmtt-10">Addr</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOBUFS</span></dt><dd 
+class="description">The system doesn&#8217;t have enough buffers to perform the operation.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">Addr </span>points outside your address space.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTCONN</span></dt><dd 
+class="description">The socket isn&#8217;t connected.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmtt-10">connect </span>(2) </dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-776" name="x95-77000020.2">GetSocketName</a></h4><a 
+  name="dx95-770001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetSocketName (Sock:Longint;Var Addr;Var Addrlen:Longint) :</span>
+<span 
+class="cmtt-10">Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetSockName </span>returns the current name of the specified socket <span 
+class="cmtt-10">Sock</span>. <span 
+class="cmtt-10">Addr </span>should point to
+enough space to store the name, the amount of space pointed to should be set in <span 
+class="cmtt-10">Addrlen</span>.
+When the function returns succesfully, <span 
+class="cmtt-10">Addr </span>will be filled with the name, and <span 
+class="cmtt-10">Addrlen </span>will
+be set to the length of <span 
+class="cmtt-10">Addr</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOBUFS</span></dt><dd 
+class="description">The system doesn&#8217;t have enough buffers to perform the operation.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">Addr </span>points outside your address space.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-777" name="x95-77100020.2">GetSocketOptions</a></h4><a 
+  name="dx95-771001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetSocketOptions (Sock,Level,OptName:Longint;Var</span>
+<span 
+class="cmtt-10">OptVal;optlen:longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetSocketOptions </span>gets the connection options for socket <span 
+class="cmtt-10">Sock</span>. The socket may be obtained from
+different levels, indicated by <span 
+class="cmtt-10">Level</span>, which can be one of the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SOL</span>__<span 
+class="cmbx-10">SOCKET</span></dt><dd 
+class="description">From the socket itself.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">XXX</span></dt><dd 
+class="description">set <span 
+class="cmtt-10">Level </span>to <span 
+class="cmtt-10">XXX</span>, the protocol number of the protocol which should interprete the
+    option.</dd></dl>
+<!--l. 353--><p class="noindent">For more information on this call, refer to the unix manual page <span 
+class="cmtt-10">getsockopt </span>(2) .
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">OptVal </span>points outside your address space.</dd></dl>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetSocketOptions </span>(<a 
+href="#x95-77100020.2">667<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-778" name="x95-77200020.2">Listen</a></h4><a 
+  name="dx95-772001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Listen (Sock,MaxConnect:Longint) : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Listen </span>listens for up to <span 
+class="cmtt-10">MaxConnect </span>connections from socket <span 
+class="cmtt-10">Sock</span>. The socket <span 
+class="cmtt-10">Sock </span>must
+be of type <span 
+class="cmtt-10">SOCK</span>_<span 
+class="cmtt-10">STREAM </span>or <span 
+class="cmtt-10">Sock</span>_<span 
+class="cmtt-10">SEQPACKET</span>. The function returns <span 
+class="cmtt-10">True </span>if a connection was
+accepted, <span 
+class="cmtt-10">False </span>if an error occurred.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EOPNOTSUPP</span></dt><dd 
+class="description">The socket type doesn&#8217;t support the <span 
+class="cmtt-10">Listen </span>operation.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-779" name="x95-77300020.2">Recv</a></h4><a 
+  name="dx95-773001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Recv (Sock:Longint;Var Addr;AddrLen,Flags:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Recv </span>reads at most <span 
+class="cmtt-10">Addrlen </span>bytes from socket <span 
+class="cmtt-10">Sock </span>into address <span 
+class="cmtt-10">Addr</span>. The socket must be in a
+connected state. <span 
+class="cmtt-10">Flags </span>can be one of the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">: Process out-of band data.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">4</span></dt><dd 
+class="description">: Bypass routing, use a direct interface.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">??</span></dt><dd 
+class="description">: Wait for full request or report an error.</dd></dl>
+<!--l. 402--><p class="noindent">The functions returns the number of bytes actually read from the socket, or -1 if a detectable error
+occurred.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTCONN</span></dt><dd 
+class="description">The socket isn&#8217;t connected.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description">The address is outside your address space.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EMSGSIZE</span></dt><dd 
+class="description">The message cannot be sent atomically.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EWOULDBLOCK</span></dt><dd 
+class="description">The requested operation would block the process.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOBUFS</span></dt><dd 
+class="description">The system doesn&#8217;t have enough free buffers available.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Send </span>(<a 
+href="#x95-77400020.2">669<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-780" name="x95-77400020.2">Send</a></h4><a 
+  name="dx95-774001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Send (Sock:Longint;Var Addr;AddrLen,Flags:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Send </span>sends <span 
+class="cmtt-10">AddrLen </span>bytes starting from address <span 
+class="cmtt-10">Addr </span>to socket <span 
+class="cmtt-10">Sock</span>. <span 
+class="cmtt-10">Sock </span>must be in a
+connected state. The function returns the number of bytes sent, or -1 if a detectable error occurred.
+<span 
+class="cmtt-10">Flags </span>can be one of the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">: Process out-of band data.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">4</span></dt><dd 
+class="description">: Bypass routing, use a direct interface.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description">The address is outside your address space.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EMSGSIZE</span></dt><dd 
+class="description">The message cannot be sent atomically.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EWOULDBLOCK</span></dt><dd 
+class="description">The requested operation would block the process.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOBUFS</span></dt><dd 
+class="description">The system doesn&#8217;t have enough free buffers available.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Recv </span>(<a 
+href="#x95-77300020.2">668<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmtt-10">send </span>(2) </dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-781" name="x95-77500020.2">SetSocketOptions</a></h4><a 
+  name="dx95-775001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SetSocketOptions (Sock,Level,OptName:Longint;Var</span>
+<span 
+class="cmtt-10">OptVal;optlen:longint) : Longint;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetSocketOptions </span>sets the connection options for socket <span 
+class="cmtt-10">Sock</span>. The socket may be manipulated
+at different levels, indicated by <span 
+class="cmtt-10">Level</span>, which can be one of the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SOL</span>__<span 
+class="cmbx-10">SOCKET</span></dt><dd 
+class="description">To manipulate the socket itself.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">XXX</span></dt><dd 
+class="description">set <span 
+class="cmtt-10">Level </span>to <span 
+class="cmtt-10">XXX</span>, the protocol number of the protocol which should interprete the
+    option.</dd></dl>
+<!--l. 461--><p class="noindent">For more information on this call, refer to the unix manual page <span 
+class="cmtt-10">setsockopt </span>(2) .
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and include the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EFAULT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">OptVal </span>points outside your address space.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetSocketOptions </span>(<a 
+href="#x95-77100020.2">667<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-782" name="x95-77600020.2">Shutdown</a></h4><a 
+  name="dx95-776001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Shutdown (Sock:Longint;How:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ShutDown </span>closes one end of a full duplex socket connection, described by <span 
+class="cmtt-10">Sock</span>. <span 
+class="cmtt-10">How </span>determines
+how the connection will be shut down, and can be one of the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">: Further receives are disallowed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">: Further sends are disallowed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">2</span></dt><dd 
+class="description">: Sending nor receiving are allowed.</dd></dl>
+<!--l. 487--><p class="noindent">On succes, the function returns 0, on error -1 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SocketError </span>is used to report errors, and includes the following:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EBADF</span></dt><dd 
+class="description">The socket descriptor is invalid.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTCONN</span></dt><dd 
+class="description">The socket isn&#8217;t connected.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOTSOCK</span></dt><dd 
+class="description">The descriptor is not a socket.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Connect </span>(<a 
+href="#x95-76500020.2">663<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-783" name="x95-77700020.2">Sock2File</a></h4><a 
+  name="dx95-777001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Sock2File (Sock:Longint;Var SockIn,SockOut:File);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sock2File </span>transforms a socket <span 
+class="cmtt-10">Sock </span>into 2 Pascal file descriptors of type <span 
+class="cmtt-10">File</span>, one for
+reading from the socket (<span 
+class="cmtt-10">SockIn</span>), one for writing to the socket (<span 
+class="cmtt-10">SockOut</span>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Sock2Text </span>(<a 
+href="#x95-77800020.2">671<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-784" name="x95-77800020.2">Sock2Text</a></h4><a 
+  name="dx95-778001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Sock2Text (Sock:Longint;Var SockIn,SockOut: Text);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sock2Text </span>transforms a socket <span 
+class="cmtt-10">Sock </span>into 2 Pascal file descriptors of type <span 
+class="cmtt-10">Text</span>, one for
+reading from the socket (<span 
+class="cmtt-10">SockIn</span>), one for writing to the socket (<span 
+class="cmtt-10">SockOut</span>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Sock2File </span>(<a 
+href="#x95-77700020.2">671<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-785" name="x95-77900020.2">Socket</a></h4><a 
+  name="dx95-779001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Socket (Domain,SocketType,Protocol:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Socket </span>creates a new socket in domain <span 
+class="cmtt-10">Domain</span>, from type <span 
+class="cmtt-10">SocketType </span>using protocol
+<span 
+class="cmtt-10">Protocol</span>. The Domain, Socket type and Protocol can be specified using predefined constants
+(see the section on constants for available constants) If succesfull, the function returns a
+socket descriptor, which can be passed to a subsequent <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>) call. If unsuccesfull, the
+function returns -1.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are returned in <span 
+class="cmtt-10">SocketError</span>, and include the follwing:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EPROTONOSUPPORT</span></dt><dd 
+class="description">The  protocol  type  or  the  specified  protocol  is  not
+    supported within this domain.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EMFILE</span></dt><dd 
+class="description">The per-process descriptor table is full.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENFILE</span></dt><dd 
+class="description">The system file table is full.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">EACCESS</span></dt><dd 
+class="description">Permission to create a socket of the specified type and/or protocol is
+    denied.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SYS</span>__<span 
+class="cmbx-10">ENOBUFS</span></dt><dd 
+class="description">Insufficient buffer space is available. The socket cannot be created until
+    sufficient resources are freed.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SocketPair </span>(<a 
+href="#x95-78000020.2">672<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmtt-10">socket </span>(2) </dd></dl>
+<!--l. 560--><p class="noindent">for an example, see <span 
+class="cmss-10">Accept </span>(<a 
+href="#x95-75900020.2">660<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-786" name="x95-78000020.2">SocketPair</a></h4><a 
+  name="dx95-780001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SocketPair (Domain,SocketType,Protocol:Longint;var</span>
+<span 
+class="cmtt-10">Pair:TSockArray) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SocketPair </span>creates 2 sockets in domain <span 
+class="cmtt-10">Domain</span>, from type <span 
+class="cmtt-10">SocketType </span>and using protocol
+<span 
+class="cmtt-10">Protocol</span>. The pair is returned in <span 
+class="cmtt-10">Pair</span>, and they are indistinguishable. The function returns
+-1 upon error and 0 upon success.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">SocketError</span>, and are the same as in <span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Str2UnixSockAddr </span>(<a 
+href="#x95-78100020.2">672<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-95-787" name="x95-78100020.2">Str2UnixSockAddr</a></h4><a 
+  name="dx95-781001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Str2UnixSockAddr(const addr:string;var t:TUnixSockAddr;var</span>
+<span 
+class="cmtt-10">len:longint)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Str2UnixSockAddr </span>transforms a Unix socket  address  in  a  string  to  a  <span 
+class="cmtt-10">TUnixSockAddr</span>
+structure which can be passed to the <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>) call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Socket </span>(<a 
+href="#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Bind </span>(<a 
+href="#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse69.htm" >prev</a>] [<a 
+href="unitsse69.htm#tailunitsse69.htm" >prev-tail</a>] [<a 
+href="unitsse70.htm" >front</a>] [<a 
+href="unitsch20.htm#unitsse70.htm" >up</a>] </p></div><a 
+  name="tailunitsse70.htm"></a>   
+</body></html> 

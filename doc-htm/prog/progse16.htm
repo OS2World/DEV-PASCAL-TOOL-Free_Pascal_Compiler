@@ -1,0 +1,46 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.5 Optimizing MMX support</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse15.htm" >prev</a>] [<a 
+href="progse15.htm#tailprogse15.htm" >prev-tail</a>] [<a 
+href="#tailprogse16.htm">tail</a>] [<a 
+href="progch5.htm#progse16.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.5</span> <a 
+href="prog.htm#QQ2-97-97" name="x97-950005.5">Optimizing MMX support</a></h3>
+<!--l. 2209--><p class="noindent">Here are some helpful hints to get optimal performance:
+     <ul class="itemize1">
+     <li class="itemize">The <span 
+class="cmtt-10">EMMS </span>call takes a lot of time, so try to seperate floating point and MMX operations.
+     </li>
+     <li class="itemize">Use MMX only in low level routines because the compiler saves all used MMX registers
+     when calling a subroutine.
+     </li>
+     <li class="itemize">The NOT-operator isn&#8217;t supported natively by MMX, so the compiler has to generate
+     a workaround and this operation is inefficient.
+     </li>
+     <li class="itemize">Simple assignements of floating point numbers don&#8217;t access floating point registers, so
+     you need no call to the <span 
+class="cmtt-10">EMMS </span>procedure. Only when doing arithmetic, you need to call
+     the <span 
+class="cmtt-10">EMMS </span>procedure.</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse15.htm" >prev</a>] [<a 
+href="progse15.htm#tailprogse15.htm" >prev-tail</a>] [<a 
+href="progse16.htm" >front</a>] [<a 
+href="progch5.htm#progse16.htm" >up</a>] </p></div><a 
+  name="tailprogse16.htm"></a>  
+</body></html> 

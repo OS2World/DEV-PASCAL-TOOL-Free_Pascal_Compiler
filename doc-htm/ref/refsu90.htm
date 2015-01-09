@@ -1,0 +1,144 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Dec</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu91.htm" >next</a>] [<a 
+href="refsu89.htm" >prev</a>] [<a 
+href="refsu89.htm#tailrefsu89.htm" >prev-tail</a>] [<a 
+href="#tailrefsu90.htm">tail</a>] [<a 
+href="refse64.htm#refsu90.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-175-196" name="x175-18100013.3">Dec</a></h4><a 
+  name="dx175-181001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Dec (Var X : Any ordinal type[; Decrement : Any ordinal type]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Dec </span>decreases the value of <span 
+class="cmtt-10">X </span>with <span 
+class="cmtt-10">Decrement</span>. If <span 
+class="cmtt-10">Decrement </span>isn&#8217;t specified, then 1 is taken
+as a default.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">A range check can occur, or an underflow error, if an attempt it made to decrease <span 
+class="cmtt-10">X </span>below
+its minimum value.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Inc </span>(<a 
+href="refsu116.htm#x201-20700013.3">513<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5576--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 5576--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">W</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Si</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">ShortInt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">I:=1;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">L:=2;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">W:=3;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">B:=4;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Si:=5;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">(i);</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">i:=0</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">(L,2);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">L:=0</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">(W,2);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">W:=1</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">(B,-2);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">B:=6</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Dec</span>&nbsp;<span 
+class="cmtt-10">(Si,0);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Si:=5</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu91.htm" >next</a>] [<a 
+href="refsu89.htm" >prev</a>] [<a 
+href="refsu89.htm#tailrefsu89.htm" >prev-tail</a>] [<a 
+href="refsu90.htm" >front</a>] [<a 
+href="refse64.htm#refsu90.htm" >up</a>] </p></div><a 
+  name="tailrefsu90.htm"></a>  
+</body></html> 

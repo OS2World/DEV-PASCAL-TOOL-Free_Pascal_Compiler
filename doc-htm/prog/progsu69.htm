@@ -1,0 +1,301 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.1.0 Intel syntax</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu70.htm" >next</a>] [<a 
+href="#tailprogsu69.htm">tail</a>] [<a 
+href="progse7.htm#progsu69.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-85-85" name="x85-830003.1">Intel syntax</a></h4>
+<!--l. 1690--><p class="noindent">Free Pascal supports Intel syntax for the Intel family of Ix86 processors in it&#8217;s <span 
+class="cmtt-10">asm </span>blocks.
+<!--l. 1693--><p class="noindent">The Intel syntax in your <span 
+class="cmtt-10">asm </span>block is converted to AT&amp;T syntax by the compiler, after which it is
+inserted in the compiled source. The supported assembler constructs are a subset of the normal
+assembly syntax. In what follows we specify what constructs are not supported in Free Pascal, but
+which exist in Turbo Pascal:
+     <ul class="itemize1">
+     <li class="itemize">The <span 
+class="cmtt-10">TBYTE </span>qualifier is not supported.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">&amp; </span>identifier override is not supported.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">HIGH </span>operator is not supported.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">LOW </span>operator is not supported.
+     </li>
+                                                                            
+
+                                                                            
+     <li class="itemize">The  <span 
+class="cmtt-10">OFFSET </span>and  <span 
+class="cmtt-10">SEG </span>operators  are  not  supported.  Use  <span 
+class="cmtt-10">LEA </span>and  the  various  <span 
+class="cmtt-10">Lxx</span>
+     instructions instead.
+     </li>
+     <li class="itemize">Expressions with constant strings are not allowed.
+     </li>
+     <li class="itemize">Access to record fields via parenthesis is not allowed
+     </li>
+     <li class="itemize">Typecasts with normal pascal types are not allowed, only recognized assembler typecasts are
+     allowed. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,&nbsp;byte&nbsp;ptr&nbsp;MyWord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;allowed,
+     &nbsp;mov&nbsp;al,&nbsp;byte(MyWord)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;allowed,
+     &nbsp;mov&nbsp;al,&nbsp;shortint(MyWord)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed.
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Pascal type typecasts on constants are not allowed. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;const&nbsp;s=&nbsp;10;&nbsp;const&nbsp;t&nbsp;=&nbsp;32767;
+</pre>
+     </td></tr></table>in Turbo Pascal:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,&nbsp;byte(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;useless&nbsp;typecast.
+     &nbsp;mov&nbsp;al,&nbsp;byte(t)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;syntax&nbsp;error!
+</pre>
+     </td></tr></table>In this parser, either of those cases will give out a syntax error.
+     </li>
+     <li class="itemize">Constant references expressions with constants only are not allowed (in all cases they do not
+     work in protected mode, under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>i386). Examples:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,byte&nbsp;ptr&nbsp;['c']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed.
+     &nbsp;mov&nbsp;&nbsp;al,byte&nbsp;ptr&nbsp;[100h]&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed.
+</pre>
+     </td></tr></table>(This is due to the limitation of Turbo Assembler).
+     </li>
+     <li class="itemize">Brackets within brackets are not allowed
+     </li>
+     <li class="itemize">Expressions with segment overrides fully in brackets are presently not supported, but they
+     can easily be implemented in BuildReference if requested. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,[ds:bx]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed
+</pre>
+     </td></tr></table>use instead:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,ds:[bx]
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Possible allowed indexing are as follows:
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">Sreg:[REG+REG*SCALING+/-disp]</span>
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">SReg:[REG+/-disp]</span>
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">SReg:[REG]</span>
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">SReg:[REG+REG+/-disp]</span>
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">SReg:[REG+REG*SCALING]</span></li></ul>
+     <!--l. 1753--><p class="noindent">Where <span 
+class="cmtt-10">Sreg </span>is optional and specifies the segment override. <span 
+class="cmti-10">Notes:</span>
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x85-83002x1"></a>The order of terms is important contrary to Turbo Pascal.
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83004x2"></a>The Scaling value must be a value, and not an identifier to a symbol. Examples:
+                                                                            
+
+                                                                            
+         <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+         &nbsp;const&nbsp;myscale&nbsp;=&nbsp;1;
+         &nbsp;...
+         &nbsp;mov&nbsp;al,byte&nbsp;ptr&nbsp;[esi+ebx*myscale]&nbsp;--&nbsp;not&nbsp;allowed.
+</pre>
+         </td></tr></table>use:
+                                                                            
+
+                                                                            
+         <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+         &nbsp;mov&nbsp;al,&nbsp;byte&nbsp;ptr&nbsp;[esi+ebx*1]
+</pre>
+         </td></tr></table></li></ol>
+     </li>
+     <li class="itemize">Possible variable identifier syntax is as follows: (Id = Variable or typed constant
+     identifier.)
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x85-83006x1"></a><span 
+class="cmtt-10">ID</span>
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83008x2"></a><span 
+class="cmtt-10">[ID]</span>
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83010x3"></a><span 
+class="cmtt-10">[ID+expr]</span>
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83012x4"></a><span 
+class="cmtt-10">ID[expr]</span></li></ol>
+     <!--l. 1777--><p class="noindent">Possible fields are as follow:
+         <ol type="1" class="enumerate1" 
+>
+         <li class="enumerate"><a 
+  name="x85-83014x1"></a><span 
+class="cmtt-10">ID.subfield.subfield ...</span>
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83016x2"></a><span 
+class="cmtt-10">[ref].ID.subfield.subfield ...</span>
+         </li>
+         <li class="enumerate"><a 
+  name="x85-83018x3"></a><span 
+class="cmtt-10">[ref].typename.subfield ...</span></li></ol>
+     </li>
+     <li class="itemize">Local abels: Contrary to Turbo Pascal, local labels, must at least contain one character after
+     the local symbol indicator. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;@:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed
+</pre>
+     </td></tr></table>use instead, for example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;@1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;allowed
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Contrary to Turbo Pascal local references cannot be used as references, only as
+     displacements. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;lds&nbsp;si,@mylabel&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Contrary to Turbo Pascal, <span 
+class="cmtt-10">SEGCS</span>, <span 
+class="cmtt-10">SEGDS</span>, <span 
+class="cmtt-10">SEGES </span>and <span 
+class="cmtt-10">SEGSS </span>segment overrides are presently
+     not supported. (This is a planned addition though).
+     </li>
+     <li class="itemize">Contrary to Turbo Pascal where memory sizes specifiers can be practically anywhere, the
+     Free Pascal Intel inline assembler requires memory size specifiers to be outside the brackets.
+     Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,[byte&nbsp;ptr&nbsp;myvar]&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;not&nbsp;allowed.
+</pre>
+     </td></tr></table>use:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;mov&nbsp;al,byte&nbsp;ptr&nbsp;[myvar]&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;allowed.
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">Base and Index registers must be 32-bit registers. (limitation of the GNU Assembler).
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">XLAT </span>is equivalent to <span 
+class="cmtt-10">XLATB</span>.
+     </li>
+     <li class="itemize">Only Single and Double FPU opcodes are supported.
+     </li>
+     <li class="itemize">Floating point opcodes are currently not supported (except those which involve only floating
+     point registers).</li></ul>
+<!--l. 1819--><p class="noindent">The Intel inline assembler supports the following macros:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">@Result</span> </dt><dd 
+class="description">represents the function result return value.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Self</span> </dt><dd 
+class="description">represents the object method pointer in methods.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu70.htm" >next</a>] [<a 
+href="progsu69.htm" >front</a>] [<a 
+href="progse7.htm#progsu69.htm" >up</a>] </p></div><a 
+  name="tailprogsu69.htm"></a>  
+</body></html> 

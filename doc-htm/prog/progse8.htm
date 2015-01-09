@@ -1,0 +1,76 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2 Motorola 680x0 Inline assembler</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse9.htm" >next</a>] [<a 
+href="progse7.htm" >prev</a>] [<a 
+href="progse7.htm#tailprogse7.htm" >prev-tail</a>] [<a 
+href="#tailprogse8.htm">tail</a>] [<a 
+href="progch3.htm#progse8.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.2</span> <a 
+href="prog.htm#QQ2-87-87" name="x87-850003.2">Motorola 680x0 Inline assembler</a></h3>
+<!--l. 1923--><p class="noindent">The inline assembler reader for the Motorola 680x0 family of processors, uses the Motorola
+Assembler syntax (q.v). A few differences do exit:
+     <ul class="itemize1">
+     <li class="itemize">Local labels start with the @ character, such as
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;@MyLabel:
+</pre>
+     </td></tr></table>
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">XDEF </span>directive in an assembler block will make the symbol available publicly with the
+     specified name (this name is case sensitive)
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">DB</span>, <span 
+class="cmtt-10">DW</span>, <span 
+class="cmtt-10">DD </span>directives can only be used to declare constants which will be stored in the
+     code segment.
+     </li>
+     <li class="itemize">The <span 
+class="cmtt-10">Align </span>directive is not supported.
+     </li>
+     <li class="itemize">Arithmetic operations on constant expression use the same operands as the intel version (e.g :
+     <span 
+class="cmtt-10">AND</span>, <span 
+class="cmtt-10">XOR </span>...)
+     </li>
+     <li class="itemize">Segment directives are not supported
+     </li>
+     <li class="itemize">Only 68000 and a subset of 68020 opcodes are currently supported</li></ul>
+<!--l. 1944--><p class="noindent">The inline assembler supports the following macros:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">@Result</span> </dt><dd 
+class="description">represents the function result return value.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Self</span> </dt><dd 
+class="description">represents the object method pointer in methods.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse9.htm" >next</a>] [<a 
+href="progse7.htm" >prev</a>] [<a 
+href="progse7.htm#tailprogse7.htm" >prev-tail</a>] [<a 
+href="progse8.htm" >front</a>] [<a 
+href="progch3.htm#progse8.htm" >up</a>] </p></div><a 
+  name="tailprogse8.htm"></a>  
+</body></html> 

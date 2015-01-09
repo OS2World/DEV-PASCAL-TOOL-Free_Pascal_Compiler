@@ -1,0 +1,109 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E Using fpcmake</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap6.htm" >next</a>] [<a 
+href="progap4.htm" >prev</a>] [<a 
+href="progap4.htm#tailprogap4.htm" >prev-tail</a>] [<a 
+href="#tailprogap5.htm">tail</a>] [<a 
+href="prog.htm#progap5.htm" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">Appendix&nbsp;E</span><br><a 
+href="prog.htm#QQ2-226-254" name="x226-227000E">Using <span 
+class="cmss-10">fpcmake</span></a></h2>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">E.1 <a 
+href="progse65.htm#x227-228000E.1" name="QQ2-227-255">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">E.2 <a 
+href="progse66.htm#x228-229000E.2" name="QQ2-228-256">Functionality</a></span>
+<br>&nbsp;<span class="sectionToc">E.3 <a 
+href="progse67.htm#x229-230000E.3" name="QQ2-229-257">Usage</a></span>
+<br>&nbsp;<span class="sectionToc">E.4 <a 
+href="progse68.htm#x230-231000E.4" name="QQ2-230-258">Format of the configuration file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu131.htm#x231-232000E.4" name="QQ2-231-259">clean</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu132.htm#x232-233000E.4" name="QQ2-232-260">compiler</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu133.htm#x233-234000E.4" name="QQ2-233-261">Default</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu134.htm#x234-235000E.4" name="QQ2-234-262">Dist</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu135.htm#x235-236000E.4" name="QQ2-235-263">Install</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu136.htm#x236-237000E.4" name="QQ2-236-264">Package</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu137.htm#x237-238000E.4" name="QQ2-237-265">Prerules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu138.htm#x238-239000E.4" name="QQ2-238-266">Requires</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu139.htm#x239-240000E.4" name="QQ2-239-267">Rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu140.htm#x240-241000E.4" name="QQ2-240-268">Target</a></span>
+<br>&nbsp;<span class="sectionToc">E.5 <a 
+href="progse69.htm#x241-242000E.5" name="QQ2-241-269">Programs needed to use the generated makefile</a></span>
+<br>&nbsp;<span class="sectionToc">E.6 <a 
+href="progse70.htm#x242-243000E.6" name="QQ2-242-270">Variables that affect the generated makefile</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu141.htm#x243-244000E.6" name="QQ2-243-271">Directory variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu142.htm#x244-245000E.6" name="QQ2-244-272">Compiler command-line variables </a></span>
+<br>&nbsp;<span class="sectionToc">E.7 <a 
+href="progse71.htm#x245-246000E.7" name="QQ2-245-273">Variables set by fpcmake</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu143.htm#x246-247000E.7" name="QQ2-246-274">Directory variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu144.htm#x247-248000E.7" name="QQ2-247-275">Target variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu145.htm#x248-249000E.7" name="QQ2-248-276">Compiler command-line variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu146.htm#x249-250000E.7" name="QQ2-249-277">Program names</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu147.htm#x250-251000E.7" name="QQ2-250-278">File extensions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu148.htm#x251-252000E.7" name="QQ2-251-279">Target files</a></span>
+<br>&nbsp;<span class="sectionToc">E.8 <a 
+href="progse72.htm#x252-253000E.8" name="QQ2-252-280">Rules and targets created by fpcmake</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu149.htm#x253-254000E.8" name="QQ2-253-281">Pattern rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu150.htm#x254-255000E.8" name="QQ2-254-282">Build rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu151.htm#x255-256000E.8" name="QQ2-255-283">Cleaning rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu152.htm#x256-257000E.8" name="QQ2-256-284">archiving rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu153.htm#x257-258000E.8" name="QQ2-257-285">Installation rules</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu154.htm#x258-259000E.8" name="QQ2-258-286">Informative rules</a></span>
+                                                                            
+
+                                                                            
+</div>
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap6.htm" >next</a>] [<a 
+href="progap4.htm" >prev</a>] [<a 
+href="progap4.htm#tailprogap4.htm" >prev-tail</a>] [<a 
+href="progap5.htm" >front</a>] [<a 
+href="prog.htm#progap5.htm" >up</a>] </p></div><a 
+  name="tailprogap5.htm"></a>  
+</body></html> 

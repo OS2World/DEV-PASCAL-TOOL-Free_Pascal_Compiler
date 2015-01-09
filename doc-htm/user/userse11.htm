@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.3 Compiling a unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse12.htm" >next</a>] [<a 
+href="userse10.htm" >prev</a>] [<a 
+href="userse10.htm#tailuserse10.htm" >prev-tail</a>] [<a 
+href="#tailuserse11.htm">tail</a>] [<a 
+href="userch3.htm#userse11.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.3</span> <a 
+href="user.htm#QQ2-16-34" name="x16-320003.3">Compiling a unit</a></h3>
+<!--l. 684--><p class="noindent">Compiling a unit is not essentially different from compiling a program. The difference is mainly
+that the linker isn&#8217;t called in this case.
+<!--l. 687--><p class="noindent">To compile a unit in the file <span 
+class="cmss-10">foo.pp</span>, just type :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;fpc&nbsp;&nbsp;foo
+</pre>
+</td></tr></table>Recall the remark about file extensions in the previous section.
+<!--l. 693--><p class="noindent">When all went well, you will be left with 2 (two) unit files:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x16-32002x1"></a><span 
+class="cmss-10">foo.ppu </span>This is the file describing the unit you just compiled.
+     </li>
+     <li class="enumerate"><a 
+  name="x16-32004x2"></a><span 
+class="cmss-10">foo.o </span>This file contains the actual code of the unit. This file will eventually end up in
+     the executables.</li></ol>
+<!--l. 700--><p class="noindent">Both files are needed if you plan to use the unit for some programs. So don&#8217;t delete them. If you
+want to distribute the unit, you must provide both the <span 
+class="cmss-10">.ppu </span>and <span 
+class="cmss-10">.o </span>file. One is useless without the
+other.
+<!--l. 705--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>, a unit source file <span 
+class="cmti-10">must </span>have a lowercase filename. Since Pascal is case
+independent, you can specify the names of units in the <span 
+class="cmtt-10">uses </span>clause in either case. To get a unique
+filename, the Free Pascal compiler changes the name of the unit to all lowercase when looking for
+unit files.
+The compiler produces lowercase files, so your unit will be found, even if your source file has
+uppercase letters in it. Only when the compiler tries to recompile the unit, it will not find your
+source because of the uppercase letters.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse12.htm" >next</a>] [<a 
+href="userse10.htm" >prev</a>] [<a 
+href="userse10.htm#tailuserse10.htm" >prev-tail</a>] [<a 
+href="userse11.htm" >front</a>] [<a 
+href="userch3.htm#userse11.htm" >up</a>] </p></div><a 
+  name="tailuserse11.htm"></a>  
+</body></html> 

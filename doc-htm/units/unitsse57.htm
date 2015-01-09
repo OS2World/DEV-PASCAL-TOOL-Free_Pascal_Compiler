@@ -1,0 +1,789 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.11 TSortedCollection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse58.htm" >next</a>] [<a 
+href="unitsse56.htm" >prev</a>] [<a 
+href="unitsse56.htm#tailunitsse56.htm" >prev-tail</a>] [<a 
+href="#tailunitsse57.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse57.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.11</span> <a 
+href="units.htm#QQ2-79-707" name="x79-70100017.11">TSortedCollection</a></h3>
+<!--l. 1725--><p class="noindent"><span 
+class="cmtt-10">TSortedCollection </span>is an abstract class, implementing a sorted collection. You should never use an
+instance of <span 
+class="cmtt-10">TSortedCollection </span>directly, instead you should declare a descendent type, and
+override the <span 
+class="cmss-10">Compare </span>(<a 
+href="#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>) method.
+<!--l. 1730--><p class="noindent">Because the collection is ordered, <span 
+class="cmtt-10">TSortedCollection </span>overrides some <span 
+class="cmtt-10">TCollection </span>methods, to
+provide faster routines for lookup.
+<!--l. 1733--><p class="noindent">The <span 
+class="cmss-10">Compare </span>(<a 
+href="#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>) method decides how elements in the collection should be ordered. Since
+<span 
+class="cmtt-10">TCollection </span>has no way of knowing how to order pointers, you must override the compare
+method.
+<!--l. 1737--><p class="noindent">Additionally, <span 
+class="cmtt-10">TCollection </span>provides a means to filter out duplicates. if you set <span 
+class="cmtt-10">Duplicates </span>to
+<span 
+class="cmtt-10">False </span>(the default) then duplicates will not be allowed.
+<!--l. 1741--><p class="noindent">Here is the complete declaration of <span 
+class="cmtt-10">TSortedCollection</span>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TSortedCollection&nbsp;=&nbsp;OBJECT&nbsp;(TCollection)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicates:&nbsp;Boolean;&nbsp;{&nbsp;Duplicates&nbsp;flag&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Init&nbsp;(ALimit,&nbsp;ADelta:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Load&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;KeyOf&nbsp;(Item:&nbsp;Pointer):&nbsp;Pointer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;IndexOf&nbsp;(Item:&nbsp;Pointer):&nbsp;Sw_Integer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Compare&nbsp;(Key1,&nbsp;Key2:&nbsp;Pointer):&nbsp;Sw_Integer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Search&nbsp;(Key:&nbsp;Pointer;&nbsp;Var&nbsp;Index:&nbsp;Sw_Integer):&nbsp;Boolean;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Insert&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Store&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PSortedCollection&nbsp;=&nbsp;^TSortedCollection;
+</pre>
+</td></tr></table>
+<!--l. 1759--><p class="noindent">In the subsequent examples, the following descendent of <span 
+class="cmtt-10">TSortedCollection </span>is used:
+<!--l. 1762--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/mysortc.pp</span><HR/><div class="listinginput">
+<!--l. 1762--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Unit</span>&nbsp;<span 
+class="cmtt-10">MySortC;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">^TMySortedCollection;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Object(TSortedCollection)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">Compare</span>&nbsp;<span 
+class="cmtt-10">(Key1,Key2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer):</span>&nbsp;<span 
+class="cmtt-10">Sw_integer;</span>&nbsp;<span 
+class="cmtt-10">virtual;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MyObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TMySortedCollection.Compare</span>&nbsp;<span 
+class="cmtt-10">(Key1,Key2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer)</span>&nbsp;<span 
+class="cmtt-10">:sw_integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Compare:=PMyobject(Key1)^.GetField</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">PMyObject(Key2)^.GetField;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-708" name="x79-70200017.11">TSortedCollection.Init</a></h4><a 
+  name="dx79-702001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TSortedCollection.Init (ALimit, ADelta: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>calls the inherited constuctor (see <span 
+class="cmss-10">TCollection.Init </span>(<a 
+href="unitsse56.htm#x78-67700017.10">593<!--tex4ht:ref: se:TBufStream--></a>)) and sets the <span 
+class="cmtt-10">Duplicates </span>flag
+to false.
+<!--l. 1772--><p class="noindent">You  should  not  call  this  method  directly,  since  <span 
+class="cmtt-10">TSortedCollection  </span>is  a  abstract  class.
+Instead, the descendent classes should call it via the <span 
+class="cmtt-10">inherited </span>keyword.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Load </span>(<a 
+href="#x79-70300017.11">613<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="unitsse56.htm#x78-67900017.10">595<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1781--><p class="noindent">For an example, see
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-709" name="x79-70300017.11">TSortedCollection.Load</a></h4><a 
+  name="dx79-703001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor Load (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Load </span>calls the inherited constuctor (see <span 
+class="cmss-10">TCollection.Load </span>(<a 
+href="unitsse56.htm#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>)) and reads the <span 
+class="cmtt-10">Duplicates</span>
+flag from the stream..
+<!--l. 1790--><p class="noindent">You  should  not  call  this  method  directly,  since  <span 
+class="cmtt-10">TSortedCollection  </span>is  a  abstract  class.
+Instead, the descendent classes should call it via the <span 
+class="cmtt-10">inherited </span>keyword.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x79-70200017.11">612<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Done </span>(<a 
+href="unitsse56.htm#x78-67900017.10">595<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1799--><p class="noindent">For an example, see <span 
+class="cmss-10">TCollection.Load </span>(<a 
+href="unitsse56.htm#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-710" name="x79-70400017.11">TSortedCollection.KeyOf</a></h4><a 
+  name="dx79-704001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TSortedCollection.KeyOf (Item: Pointer): Pointer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">KeyOf </span>returns the key associated with <span 
+class="cmtt-10">Item</span>. <span 
+class="cmtt-10">TSortedCollection </span>returns the item itself as
+the key, descendent objects can override this method to calculate a (unique) key based on
+the item passed (such as hash values).
+<!--l. 1810--><p class="noindent"><span 
+class="cmtt-10">Keys </span>are used to sort the objects, they are used to search and sort the items in the collection.
+If descendent types override this method then it allows possibly for faster search/sort methods
+based on keys rather than on the objects themselves.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IndexOf </span>(<a 
+href="#x79-70500017.11">613<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Compare </span>(<a 
+href="#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-711" name="x79-70500017.11">TSortedCollection.IndexOf</a></h4><a 
+  name="dx79-705001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TSortedCollection.IndexOf (Item: Pointer): Sw</span>_<span 
+class="cmtt-10">Integer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IndexOf </span>returns the index of <span 
+class="cmtt-10">Item </span>in the collection. It searches for the object based on it&#8217;s
+key. If duplicates are allowed, then it returns the index of last object that matches <span 
+class="cmtt-10">Item</span>.
+<!--l. 1829--><p class="noindent">In case <span 
+class="cmtt-10">Item </span>is not found in the collection, -1 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Search </span>(<a 
+href="#x79-70700017.11">615<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Compare </span>(<a 
+href="#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 1837--><p class="noindent">For an example, see <span 
+class="cmss-10">TCollection.IndexOf </span>(<a 
+href="unitsse56.htm#x78-68100017.10">596<!--tex4ht:ref: se:TBufStream--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-712" name="x79-70600017.11">TSortedCollection.Compare</a></h4><a 
+  name="dx79-706001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TSortedCollection.Compare (Key1, Key2: Pointer): Sw</span>_<span 
+class="cmtt-10">Integer;</span>
+<span 
+class="cmtt-10">Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Compare </span>is an abstract method that should be overridden by descendent objects in order
+to compare two items in the collection. This method is used in the <span 
+class="cmss-10">Search </span>(<a 
+href="#x79-70700017.11">615<!--tex4ht:ref: se:TBufStream--></a>) method and
+in the <span 
+class="cmss-10">Insert </span>(<a 
+href="#x79-70800017.11">616<!--tex4ht:ref: se:TBufStream--></a>) method to determine the ordering of the objects.
+<!--l. 1849--><p class="noindent">The function should compare the two keys of items and return the following function
+results:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Result ¡ 0</span></dt><dd 
+class="description">If <span 
+class="cmtt-10">Key1 </span>is logically before <span 
+class="cmtt-10">Key2 </span>(<span 
+class="cmtt-10">Key1&lt;Key2</span>)
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Result = 0</span></dt><dd 
+class="description">If <span 
+class="cmtt-10">Key1 </span>and <span 
+class="cmtt-10">Key2 </span>are equal. (<span 
+class="cmtt-10">Key1=Key2</span>)
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Result ¿ 0</span></dt><dd 
+class="description">If <span 
+class="cmtt-10">Key1 </span>is logically after <span 
+class="cmtt-10">Key2 </span>(<span 
+class="cmtt-10">Key1&gt;Key2</span>)</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">An &#8217;abstract run-time error&#8217; will be generated if you call <span 
+class="cmtt-10">TSortedCollection.Compare</span>
+directly.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IndexOf </span>(<a 
+href="#x79-70500017.11">613<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Search </span>(<a 
+href="#x79-70700017.11">615<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1866--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/mysortc.pp</span><HR/><div class="listinginput">
+<!--l. 1866--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Unit</span>&nbsp;<span 
+class="cmtt-10">MySortC;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">^TMySortedCollection;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Object(TSortedCollection)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">Compare</span>&nbsp;<span 
+class="cmtt-10">(Key1,Key2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer):</span>&nbsp;<span 
+class="cmtt-10">Sw_integer;</span>&nbsp;<span 
+class="cmtt-10">virtual;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MyObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TMySortedCollection.Compare</span>&nbsp;<span 
+class="cmtt-10">(Key1,Key2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer)</span>&nbsp;<span 
+class="cmtt-10">:sw_integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Compare:=PMyobject(Key1)^.GetField</span>&nbsp;<span 
+class="cmtt-10">-</span>&nbsp;<span 
+class="cmtt-10">PMyObject(Key2)^.GetField;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-713" name="x79-70700017.11">TSortedCollection.Search</a></h4><a 
+  name="dx79-707001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TSortedCollection.Search (Key: Pointer; Var Index: Sw</span>_<span 
+class="cmtt-10">Integer):</span>
+<span 
+class="cmtt-10">Boolean;Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Search </span>looks for the item with key <span 
+class="cmtt-10">Key </span>and returns the position of the item (if present) in
+the collection in <span 
+class="cmtt-10">Index</span>.
+<!--l. 1876--><p class="noindent">Instead of a linear search as <span 
+class="cmtt-10">TCollection </span>does, <span 
+class="cmtt-10">TSortedCollection </span>uses a binary search
+based on the keys of the objects. It uses the <span 
+class="cmss-10">Compare </span>(<a 
+href="#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>) function to implement this search.
+<!--l. 1881--><p class="noindent">If the item is found, <span 
+class="cmtt-10">Search </span>returns <span 
+class="cmtt-10">True</span>, otherwise <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IndexOf </span>(<a 
+href="unitsse56.htm#x78-68100017.10">596<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 1889--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex36.pp</span><HR/><div class="listinginput">
+<!--l. 1889--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex36;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TSortedCollection.Insert</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject,MySortC;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject,TMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PSortedCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject);</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P^.GetField);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PMySortedCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Duplicates:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserting</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">records</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">random</span>&nbsp;<span 
+class="cmtt-10">places.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(Random(100));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Value</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">search</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">(-1</span>&nbsp;<span 
+class="cmtt-10">stops)</span>&nbsp;<span 
+class="cmtt-10">:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">read</span>&nbsp;<span 
+class="cmtt-10">(I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">I&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(i);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">C^.Search</span>&nbsp;<span 
+class="cmtt-10">(M,I)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('No</span>&nbsp;<span 
+class="cmtt-10">such</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">found')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('Value</span>&nbsp;<span 
+class="cmtt-10">',PMyObject(C^.At(I))^.GetField);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;<span 
+class="cmtt-10">present</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">',I);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">I=-1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(M,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-714" name="x79-70800017.11">TSortedCollection.Insert</a></h4><a 
+  name="dx79-708001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TSortedCollection.Insert (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Insert </span>inserts an item in the collection at the correct position, such that the collection is
+ordered at all times. You should never use <span 
+class="cmss-10">Atinsert </span>(<a 
+href="unitsse56.htm#x78-69800017.10">608<!--tex4ht:ref: se:TBufStream--></a>), since then the collection ordering
+is not guaranteed.
+<!--l. 1901--><p class="noindent">If <span 
+class="cmtt-10">Item </span>is already present in the collection, and <span 
+class="cmtt-10">Duplicates </span>is <span 
+class="cmtt-10">False</span>, the item will not be
+inserted.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">AtInsert </span>(<a 
+href="unitsse56.htm#x78-69800017.10">608<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 1909--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex35.pp</span><HR/><div class="listinginput">
+<!--l. 1909--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex35;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TSortedCollection.Insert</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,MyObject,MySortC;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">TMyObject,TMySortedCollection</span>&nbsp;<span 
+class="cmtt-10">definition</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">registration</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PSortedCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintField</span>&nbsp;<span 
+class="cmtt-10">(Dummy:</span>&nbsp;<span 
+class="cmtt-10">Pointer;P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMyObject);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Field</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P^.GetField);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PMySortedCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserting</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">records</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">random</span>&nbsp;<span 
+class="cmtt-10">places.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M:=New(PMyObject,Init);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">M^.SetField(Random(100));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(M)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Values</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Foreach(@PrintField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-79-715" name="x79-70900017.11">TSortedCollection.Store</a></h4><a 
+  name="dx79-709001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TSortedCollection.Store (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Store </span>writes the collection to the stream <span 
+class="cmtt-10">S</span>. It does this by calling the inherited
+<span 
+class="cmss-10">TCollection.Store </span>(<a 
+href="unitsse56.htm#x78-69900017.10">609<!--tex4ht:ref: se:TBufStream--></a>), and then writing the <span 
+class="cmtt-10">Duplicates </span>flag to the stream.
+<!--l. 1920--><p class="noindent">After a <span 
+class="cmtt-10">Store</span>, the collection can be loaded from the stream with the constructor <span 
+class="cmss-10">Load </span>(<a 
+href="#x79-70300017.11">613<!--tex4ht:ref: se:TBufStream--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors can be those of <span 
+class="cmss-10">TStream.Put </span>(<a 
+href="unitsse52.htm#x74-64300017.6">571<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Load </span>(<a 
+href="#x79-70300017.11">613<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 1928--><p class="noindent">For an example, see <span 
+class="cmss-10">TCollection.Load </span>(<a 
+href="unitsse56.htm#x78-67800017.10">594<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse58.htm" >next</a>] [<a 
+href="unitsse56.htm" >prev</a>] [<a 
+href="unitsse56.htm#tailunitsse56.htm" >prev-tail</a>] [<a 
+href="unitsse57.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse57.htm" >up</a>] </p></div><a 
+  name="tailunitsse57.htm"></a>   
+</body></html> 

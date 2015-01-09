@@ -1,0 +1,149 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Truncate</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu183.htm" >next</a>] [<a 
+href="refsu181.htm" >prev</a>] [<a 
+href="refsu181.htm#tailrefsu181.htm" >prev-tail</a>] [<a 
+href="#tailrefsu182.htm">tail</a>] [<a 
+href="refse64.htm#refsu182.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-267-288" name="x267-27300013.3">Truncate</a></h4><a 
+  name="dx267-273001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Truncate (Var F : file);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Truncate </span>truncates the (opened) file <span 
+class="cmtt-10">F </span>at the current file position.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Depending on the state of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I</span><span 
+class="cmsy-10">} </span>switch, a runtime error can be generated if there is an
+error. In the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I-</span><span 
+class="cmsy-10">} </span>state, use <span 
+class="cmtt-10">IOResult </span>to check for errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Append </span>(<a 
+href="refsu69.htm#x154-16000013.3">452<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Filepos </span>(<a 
+href="refsu100.htm#x185-19100013.3">494<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Seek </span>(<a 
+href="refsu162.htm#x247-25300013.3">563<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7229--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex71.pp</span><HR/><div class="listinginput">
+<!--l. 7229--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example71;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Truncate</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(F,'test.tmp');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">Do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">(F,I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Filesize</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">Truncate</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FileSize(F));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Read</span>&nbsp;<span 
+class="cmtt-10">(F,I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">i=5;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Truncate</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Filesize</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">Truncate</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Filesize(F));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu183.htm" >next</a>] [<a 
+href="refsu181.htm" >prev</a>] [<a 
+href="refsu181.htm#tailrefsu181.htm" >prev-tail</a>] [<a 
+href="refsu182.htm" >front</a>] [<a 
+href="refse64.htm#refsu182.htm" >up</a>] </p></div><a 
+  name="tailrefsu182.htm"></a>  
+</body></html> 

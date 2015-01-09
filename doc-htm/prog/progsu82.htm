@@ -1,0 +1,63 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.5.0 objects</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu83.htm" >next</a>] [<a 
+href="#tailprogsu82.htm">tail</a>] [<a 
+href="progse21.htm#progsu82.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-118-121" name="x118-1150006.5">objects</a></h4>
+<!--l. 2629--><p class="noindent">The actual invisible declaration of an object constructoir is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;constructor&nbsp;init(_vmt&nbsp;:&nbsp;pointer;&nbsp;_self&nbsp;:&nbsp;pointer&nbsp;...);
+</pre>
+</td></tr></table>
+<!--l. 2636--><p class="noindent">Where _<span 
+class="cmtt-10">vmt </span>is a pointer to the virtual method table for this object. This value is nil if a
+constructor is called within the object instance (such as calling an ihnerited constructor).
+<!--l. 2640--><p class="noindent">_<span 
+class="cmtt-10">self </span>is either nil if the instance must be allocated dynamically (object is declared as pointer), or
+the address of the object instance if the object is declared as a normal object (stored in the data
+area) or if the object instance has already been allocated.
+<!--l. 2646--><p class="noindent">The allocated instance (if allocated via new) (<span 
+class="cmtt-10">self</span>) is returned in the accumulator.
+<!--l. 2650--><p class="noindent">The declaration of a destructor is as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;destructor&nbsp;done(_vmt&nbsp;:&nbsp;pointer;&nbsp;_self&nbsp;:&nbsp;pointer&nbsp;...);
+</pre>
+</td></tr></table>
+<!--l. 2656--><p class="noindent">Where _<span 
+class="cmtt-10">vmt </span>is a pointer to the virtual method table for this object. This value is nil if a destructor
+is called within the object instance (such as calling an ihnerited constructor), or if the object
+instance is a variable and not a pointer.
+<!--l. 2661--><p class="noindent">_<span 
+class="cmtt-10">self </span>is the address of the object instance.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu83.htm" >next</a>] [<a 
+href="progsu82.htm" >front</a>] [<a 
+href="progse21.htm#progsu82.htm" >up</a>] </p></div><a 
+  name="tailprogsu82.htm"></a>  
+</body></html> 

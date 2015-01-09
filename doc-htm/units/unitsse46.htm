@@ -1,0 +1,2008 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>16.2 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse45.htm" >prev</a>] [<a 
+href="unitsse45.htm#tailunitsse45.htm" >prev-tail</a>] [<a 
+href="#tailunitsse46.htm">tail</a>] [<a 
+href="unitsch16.htm#unitsse46.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">16.2</span> <a 
+href="units.htm#QQ2-67-595" name="x67-58900016.2">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-596" name="x67-59000016.2">GetLastButtonPress</a></h4><a 
+  name="dx67-590001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetLastButtonPress (Button: Longint; Var x,y:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 79--><p class="noindent"><span 
+class="cmtt-10">GetLastButtonPress </span>Stores the position where <span 
+class="cmtt-10">Button </span>was last pressed in <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>and
+returns the number of times this button has been pressed since the last call to this function
+with <span 
+class="cmtt-10">Button </span>as parameter. For <span 
+class="cmtt-10">Button </span>you can use the <span 
+class="cmtt-10">LButton</span>, <span 
+class="cmtt-10">RButton </span>and <span 
+class="cmtt-10">MButton</span>
+constants for resp. the left, right and middle button. With certain mouse drivers, checking
+the middle button when using a two-button mouse to gives and clears the stats of the right
+button.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetLastButtonRelease </span>(<a 
+href="#x67-59100016.2">521<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 95--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse5.pp</span><HR/><div class="listinginput">
+<!--l. 95--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonPress</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonRelease}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y,</span>&nbsp;<span 
+class="cmtt-10">times:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">c:</span>&nbsp;<span 
+class="cmtt-10">Char;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Move</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">click</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">buttons</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">escape</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit).');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">L-key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">stats</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">left</span>&nbsp;<span 
+class="cmtt-10">button.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">R-key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">stats</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">button.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">M-key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">stats</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">middle</span>&nbsp;<span 
+class="cmtt-10">button.');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,19);</span>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Since</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonPress</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">parameter,</span>&nbsp;<span 
+class="cmtt-10">the');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,22);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Since</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonRelease</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">parameter,</span>&nbsp;<span 
+class="cmtt-10">the');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Keypressed</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">UpCase(Readkey);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">c</span>&nbsp;<span 
+class="cmtt-10">Of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'L':</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,</span>&nbsp;<span 
+class="cmtt-10">20);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonPress(LButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('left</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">pressed</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonRelease(LButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,23);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('left</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">released</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'R':</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,</span>&nbsp;<span 
+class="cmtt-10">20);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonPress(RButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('right</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">pressed</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonRelease(RButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,23);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('right</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">released</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'M':</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,</span>&nbsp;<span 
+class="cmtt-10">20);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonPress(MButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('middle</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">pressed</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">GetLastButtonRelease(MButton,</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,23);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('middle</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">been</span>&nbsp;<span 
+class="cmtt-10">released</span>&nbsp;<span 
+class="cmtt-10">',times,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">times,</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">(',x,',',y,')')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(c</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">#27);</span>&nbsp;<span 
+class="cmtt-10">{escape}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,24);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-597" name="x67-59100016.2">GetLastButtonRelease</a></h4><a 
+  name="dx67-591001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetLastButtonRelease (Button: Longint; Var x,y:Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 103--><p class="noindent"><span 
+class="cmtt-10">GetLastButtonRelease </span>stores the position where <span 
+class="cmtt-10">Button </span>was last released in <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>and
+returns the number of times this button has been released since the last call to this function
+with <span 
+class="cmtt-10">Button </span>as parameter. For button you can use the <span 
+class="cmtt-10">LButton</span>, <span 
+class="cmtt-10">RButton </span>and <span 
+class="cmtt-10">MButton</span>
+constants for resp. the left, right and middle button. With certain mouse drivers, checking
+the middle button when using a two-button mouse to gives and clears the stats of the right
+button.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetLastButtonPress </span>(<a 
+href="#x67-59000016.2">519<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 119--><p class="noindent">For an example, see <span 
+class="cmss-10">GetLastButtonPress </span>(<a 
+href="#x67-59000016.2">519<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-598" name="x67-59200016.2">GetMouseState</a></h4><a 
+  name="dx67-592001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetMouseState (Var x, y, buttons: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 127--><p class="noindent"><span 
+class="cmtt-10">GetMouseState </span>Returns information on the current mouse position and which buttons are
+currently  pressed.  <span 
+class="cmtt-10">x  </span>and  <span 
+class="cmtt-10">y  </span>return  the  mouse  cursor  coordinates  in  pixels.  <span 
+class="cmtt-10">Buttons  </span>is  a
+bitmask. Check the example program to see how you can get the necessary information from
+it.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LPressed </span>(<a 
+href="#x67-59500016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">MPressed </span>(<a 
+href="#x67-59600016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">RPressed </span>(<a 
+href="#x67-59700016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">SetMousePos </span>(<a 
+href="#x67-60000016.2">527<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 140--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse3.pp</span><HR/><div class="listinginput">
+<!--l. 140--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">GetMouseState,</span>&nbsp;<span 
+class="cmtt-10">IsLPressed,</span>&nbsp;<span 
+class="cmtt-10">IsRPressed</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">IsMPressed}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">X,</span>&nbsp;<span 
+class="cmtt-10">Y,</span>&nbsp;<span 
+class="cmtt-10">State:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(5,24);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Left</span>&nbsp;<span 
+class="cmtt-10">button:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(30,24);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Right</span>&nbsp;<span 
+class="cmtt-10">button:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(55,24);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Middle</span>&nbsp;<span 
+class="cmtt-10">button:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">Readkey;</span>&nbsp;<span 
+class="cmtt-10">{clear</span>&nbsp;<span 
+class="cmtt-10">keyboard</span>&nbsp;<span 
+class="cmtt-10">buffer}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMouseState(x,</span>&nbsp;<span 
+class="cmtt-10">y,</span>&nbsp;<span 
+class="cmtt-10">State);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(20,</span>&nbsp;<span 
+class="cmtt-10">22);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('X:</span>&nbsp;<span 
+class="cmtt-10">',x:5,'</span>&nbsp;<span 
+class="cmtt-10">(column:</span>&nbsp;<span 
+class="cmtt-10">',(x</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">8):2,')</span>&nbsp;&nbsp;<span 
+class="cmtt-10">Y:</span>&nbsp;<span 
+class="cmtt-10">',y:5,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">(row:</span>&nbsp;<span 
+class="cmtt-10">',(y</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">8):2,')');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(18,</span>&nbsp;<span 
+class="cmtt-10">24);</span>&nbsp;<span 
+class="cmtt-10">{left</span>&nbsp;<span 
+class="cmtt-10">button}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(State</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">LButton)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">LButton</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   <span 
+class="cmtt-10">{or:</span>&nbsp;<span 
+class="cmtt-10">&#34;If</span>&nbsp;<span 
+class="cmtt-10">LPressed</span>&nbsp;<span 
+class="cmtt-10">Then&#34;.</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">use</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">function,</span>&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">GetMouseState</span>
+<br>   &nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">necessary}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Down')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Up</span>&nbsp;&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(44,</span>&nbsp;<span 
+class="cmtt-10">24);</span>&nbsp;<span 
+class="cmtt-10">{right</span>&nbsp;<span 
+class="cmtt-10">button}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(State</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">RButton)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">RButton</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   <span 
+class="cmtt-10">{or:</span>&nbsp;<span 
+class="cmtt-10">&#34;If</span>&nbsp;<span 
+class="cmtt-10">RPressed</span>&nbsp;<span 
+class="cmtt-10">Then&#34;}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Down')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Up</span>&nbsp;&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(70,</span>&nbsp;<span 
+class="cmtt-10">24);</span>&nbsp;<span 
+class="cmtt-10">{middle</span>&nbsp;<span 
+class="cmtt-10">button}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(State</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">MButton)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">MButton</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   <span 
+class="cmtt-10">{or:</span>&nbsp;<span 
+class="cmtt-10">&#34;If</span>&nbsp;<span 
+class="cmtt-10">MPressed</span>&nbsp;<span 
+class="cmtt-10">Then&#34;}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Down')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Up</span>&nbsp;&nbsp;<span 
+class="cmtt-10">')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">KeyPressed;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">Do</span>&nbsp;<span 
+class="cmtt-10">Readkey</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-599" name="x67-59300016.2">HideMouse</a></h4><a 
+  name="dx67-593001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure HideMouse ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 148--><p class="noindent"><span 
+class="cmtt-10">HideMouse </span>makes the mouse cursor invisible. Multiple calls to HideMouse will require just
+                                                                            
+
+                                                                            
+as many calls to ShowMouse to make the mouse cursor visible again.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ShowMouse </span>(<a 
+href="#x67-60600016.2">532<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">SetMouseHideWindow </span>(<a 
+href="#x67-59900016.2">526<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 157--><p class="noindent">For an example, see <span 
+class="cmss-10">ShowMouse </span>(<a 
+href="#x67-60600016.2">532<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-600" name="x67-59400016.2">InitMouse</a></h4><a 
+  name="dx67-594001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure InitMouse ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 164--><p class="noindent"><span 
+class="cmtt-10">InitMouse </span>Initializes the mouse driver sets the variable <span 
+class="cmtt-10">MouseFound </span>depending on whether
+or not a mouse is found. This is Automatically called at the start of your program. You
+should never have to call it, unless you want to reset everything to its default values.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MouseFound </span>variable.</dd></dl>
+<!--l. 177--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse1.pp</span><HR/><div class="listinginput">
+<!--l. 177--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Mouse1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">InitMouse</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">MouseFound}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{go</span>&nbsp;<span 
+class="cmtt-10">into</span>&nbsp;<span 
+class="cmtt-10">graphics</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">13h}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movl</span>&nbsp;<span 
+class="cmtt-10">$0x013,</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%ebp</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int</span>&nbsp;<span 
+class="cmtt-10">$0x010</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%ebp</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">InitMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>&nbsp;<span 
+class="cmtt-10">{otherwise</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">stays</span>&nbsp;<span 
+class="cmtt-10">invisible}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Mouse</span>&nbsp;<span 
+class="cmtt-10">Found!</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">enter</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit)');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{back</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">text</span>&nbsp;<span 
+class="cmtt-10">mode}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Asm</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">movl</span>&nbsp;<span 
+class="cmtt-10">$3,</span>&nbsp;<span 
+class="cmtt-10">%eax</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">pushl</span>&nbsp;<span 
+class="cmtt-10">%ebp</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">int</span>&nbsp;<span 
+class="cmtt-10">$0x010</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">popl</span>&nbsp;<span 
+class="cmtt-10">%ebp</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-601" name="x67-59500016.2">LPressed</a></h4><a 
+  name="dx67-595001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function LPressed : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 185--><p class="noindent"><span 
+class="cmtt-10">LPressed </span>returns <span 
+class="cmtt-10">True </span>if the left mouse button is pressed. This is simply a wrapper for the
+GetMouseState procedure.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">MPressed </span>(<a 
+href="#x67-59600016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">RPressed </span>(<a 
+href="#x67-59700016.2">524<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 194--><p class="noindent">For an example, see <span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-602" name="x67-59600016.2">MPressed</a></h4><a 
+  name="dx67-596001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function MPressed : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 202--><p class="noindent"><span 
+class="cmtt-10">MPressed </span>returns <span 
+class="cmtt-10">True </span>if the middle mouse button is pressed. This is simply a wrapper for
+the GetMouseState procedure.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">LPressed </span>(<a 
+href="#x67-59500016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">RPressed </span>(<a 
+href="#x67-59700016.2">524<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 211--><p class="noindent">For an example, see <span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-603" name="x67-59700016.2">RPressed</a></h4><a 
+  name="dx67-597001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function RPressed : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 219--><p class="noindent"><span 
+class="cmtt-10">RPressed </span>returns <span 
+class="cmtt-10">True </span>if the right mouse button is pressed. This is simply a wrapper for
+the GetMouseState procedure.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">LPressed </span>(<a 
+href="#x67-59500016.2">524<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">MPressed </span>(<a 
+href="#x67-59600016.2">524<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 228--><p class="noindent">For an example, see <span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-604" name="x67-59800016.2">SetMouseAscii</a></h4><a 
+  name="dx67-598001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseAscii (Ascii: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 236--><p class="noindent"><span 
+class="cmtt-10">SetMouseAscii </span>sets the <span 
+class="cmtt-10">Ascii </span>value of the character that depicts the mouse cursor in text
+mode. The difference between this one and <span 
+class="cmss-10">SetMouseShape </span>(<a 
+href="#x67-60100016.2">528<!--tex4ht:ref: se:mousedrv--></a>), is that the foreground and
+background colors stay the same and that the Ascii code you enter is the character that you
+will get on screen; there&#8217;s no XOR&#8217;ing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseShape </span>(<a 
+href="#x67-60100016.2">528<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 249--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse8.pp</span><HR/><div class="listinginput">
+<!--l. 249--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">SetMouseAscii}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{warning:</span>&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">checking</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">performed</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">input}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ascii:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">x,y:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">you''ve</span>&nbsp;<span 
+class="cmtt-10">entered</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">Ascii</span>&nbsp;<span 
+class="cmtt-10">value.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('ASCII</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">cursor:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(30,3);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(ascii);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseAscii(ascii)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(LButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(RButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(MButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-605" name="x67-59900016.2">SetMouseHideWindow</a></h4><a 
+  name="dx67-599001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseHideWindow (xmin,ymin,xmax,ymax: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 257--><p class="noindent"><span 
+class="cmtt-10">SetMouseHideWindow </span>defines a rectangle on screen with top-left corner at (<span 
+class="cmtt-10">xmin,ymin</span>) and
+botto-right corner at (<span 
+class="cmtt-10">xmax,ymax</span>),which causes the mouse cursor to be turned off when it
+is moved into it. When the mouse is moved into the specified region, it is turned off until
+you call <span 
+class="cmtt-10">ShowMouse </span>again. However, once you&#8217;ve called <span 
+class="cmss-10">ShowMouse </span>(<a 
+href="#x67-60600016.2">532<!--tex4ht:ref: se:mousedrv--></a>), you&#8217;ll have to call
+<span 
+class="cmtt-10">SetMouseHideWindow </span>again to redefine the hide window... This may be annoying, but it&#8217;s the
+way it&#8217;s implemented in the mouse driver. While <span 
+class="cmtt-10">xmin, ymin, xmax </span>and <span 
+class="cmtt-10">ymax </span>are Longint
+parameters, only the lower 16 bits are used.
+<!--l. 268--><p class="noindent">Warning: it seems Win98 SE doesn&#8217;t (properly) support this function, maybe this already
+the case with earlier versions too!
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ShowMouse </span>(<a 
+href="#x67-60600016.2">532<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">HideMouse </span>(<a 
+href="#x67-59300016.2">522<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 277--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse9.pp</span><HR/><div class="listinginput">
+<!--l. 277--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">SetMouseHideWindow}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{warning:</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">moved</span>&nbsp;<span 
+class="cmtt-10">into</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">specified</span>&nbsp;<span 
+class="cmtt-10">region,</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">turned</span>&nbsp;<span 
+class="cmtt-10">off</span>
+<br>   &nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">ShowMouse</span>&nbsp;<span 
+class="cmtt-10">again.</span>&nbsp;<span 
+class="cmtt-10">However,</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">you've</span>&nbsp;<span 
+class="cmtt-10">called</span>&nbsp;<span 
+class="cmtt-10">ShowMouse,</span>
+<br>   &nbsp;<span 
+class="cmtt-10">you'll</span>&nbsp;<span 
+class="cmtt-10">have</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">call</span>&nbsp;<span 
+class="cmtt-10">SetMouseHideWindow</span>&nbsp;<span 
+class="cmtt-10">again</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">redefine</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">hide</span>&nbsp;<span 
+class="cmtt-10">window...</span>
+<br>   &nbsp;<span 
+class="cmtt-10">It's</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">our</span>&nbsp;<span 
+class="cmtt-10">fault,</span>&nbsp;<span 
+class="cmtt-10">that's</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">way</span>&nbsp;<span 
+class="cmtt-10">it's</span>&nbsp;<span 
+class="cmtt-10">implemented</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">driver.</span>
+<br>
+<br>   &nbsp;<span 
+class="cmtt-10">Below</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">can</span>&nbsp;<span 
+class="cmtt-10">find</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">example</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">how</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">define</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">&#34;permanent&#34;</span>&nbsp;<span 
+class="cmtt-10">hide</span>&nbsp;<span 
+class="cmtt-10">region</span>
+<br>   &nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cursor</span>&nbsp;<span 
+class="cmtt-10">showing</span>&nbsp;<span 
+class="cmtt-10">up</span>&nbsp;<span 
+class="cmtt-10">again</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">move</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">out</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">region</span>
+<br>
+<br>   &nbsp;<span 
+class="cmtt-10">Note:</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">functions</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">zero-based,</span>&nbsp;<span 
+class="cmtt-10">GotoXY</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">1-based}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y,</span>&nbsp;<span 
+class="cmtt-10">buttons:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseOn:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">y</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">25</span>&nbsp;<span 
+class="cmtt-10">Do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(20,y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('|');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(60,y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('|');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseOn</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">true;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(30,</span>&nbsp;<span 
+class="cmtt-10">24);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMousePos(1,1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">Do</span>&nbsp;<span 
+class="cmtt-10">Readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMouseState(x,y,buttons);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not(MouseOn)</span>&nbsp;<span 
+class="cmtt-10">And</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">((x</span>&nbsp;<span 
+class="cmtt-10">&lt;=</span>&nbsp;<span 
+class="cmtt-10">19*8)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(x</span>&nbsp;<span 
+class="cmtt-10">&gt;=</span>&nbsp;<span 
+class="cmtt-10">59*8))</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseOn</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">true</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseOn</span>&nbsp;<span 
+class="cmtt-10">And</span>&nbsp;<span 
+class="cmtt-10">(x</span>&nbsp;<span 
+class="cmtt-10">&gt;</span>&nbsp;<span 
+class="cmtt-10">19*8)</span>&nbsp;<span 
+class="cmtt-10">And</span>&nbsp;<span 
+class="cmtt-10">(x&lt;59*8)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseHideWindow(20*8,0,60*8,25*8);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseOn</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">false</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">KeyPressed;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">Do</span>&nbsp;<span 
+class="cmtt-10">Readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-606" name="x67-60000016.2">SetMousePos</a></h4><a 
+  name="dx67-600001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMousePos (x,y:Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 285--><p class="noindent"><span 
+class="cmtt-10">SetMosusePos </span>sets the position of the mouse cursor on the screen. <span 
+class="cmtt-10">x </span>is the horizontal position
+in pixels, <span 
+class="cmtt-10">y </span>the vertical position in pixels. The upper-left hand corner of the screen is the
+origin. While <span 
+class="cmtt-10">x </span>and <span 
+class="cmtt-10">y </span>are longints, only the lower 16 bits are used.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMouseState </span>(<a 
+href="#x67-59200016.2">521<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 296--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse4.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 296--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">SetMousePos}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMousePos(Random(80*8),</span>&nbsp;<span 
+class="cmtt-10">Random(25*8));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">delay(100);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">Keypressed;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-607" name="x67-60100016.2">SetMouseShape</a></h4><a 
+  name="dx67-601001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseShape (ForeColor,BackColor,Ascii: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 304--><p class="noindent"><span 
+class="cmtt-10">SetMouseShape </span>defines how the mouse cursor looks in textmode The character and its
+attributes  that  are  on  the  mouse  cursor&#8217;s  position  on  screen  are  XOR&#8217;ed  with  resp.
+<span 
+class="cmtt-10">ForeColor</span>, <span 
+class="cmtt-10">BackColor </span>and <span 
+class="cmtt-10">Ascii</span>. Set them all to 0 for a &#8221;transparent&#8221; cursor.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseAscii </span>(<a 
+href="#x67-59800016.2">525<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 316--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse7.pp</span><HR/><div class="listinginput">
+<!--l. 316--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">SetMouseShape}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{warning:</span>&nbsp;<span 
+class="cmtt-10">no</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">checking</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">performed</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">input}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{the</span>&nbsp;<span 
+class="cmtt-10">Ascii</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">enter</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">XOR'ed</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Ascii</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">character</span>
+<br>   &nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">screen</span>&nbsp;<span 
+class="cmtt-10">over</span>&nbsp;<span 
+class="cmtt-10">which</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">move</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cursor.</span>&nbsp;<span 
+class="cmtt-10">To</span>&nbsp;<span 
+class="cmtt-10">get</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">&#34;transparent&#34;</span>&nbsp;<span 
+class="cmtt-10">cursor,</span>
+<br>   &nbsp;<span 
+class="cmtt-10">use</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Ascii</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">0}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ascii,</span>&nbsp;<span 
+class="cmtt-10">fc,</span>&nbsp;<span 
+class="cmtt-10">bc:</span>&nbsp;<span 
+class="cmtt-10">Byte;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">x,y:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">you''ve</span>&nbsp;<span 
+class="cmtt-10">entered</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">sequence</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">numbers.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('ASCII</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">cursor:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Forground</span>&nbsp;<span 
+class="cmtt-10">color:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Background</span>&nbsp;<span 
+class="cmtt-10">color:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(30,3);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(ascii);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(18,4);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(fc);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(19,5);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(bc);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseShape(fc,</span>&nbsp;<span 
+class="cmtt-10">bc,</span>&nbsp;<span 
+class="cmtt-10">ascii)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(LButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(RButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(MButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End;</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-608" name="x67-60200016.2">SetMouseSpeed</a></h4><a 
+  name="dx67-602001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseSpeed (Horizontal, Vertical: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 324--><p class="noindent"><span 
+class="cmtt-10">SetMouseSpeed </span>sets the mouse speed in mickeys per 8 pixels. A mickey is the smallest
+measurement unit handled by a mouse. With this procedure you can set how many mickeys
+the mouse should move to move the cursor 8 pixels horizontally of vertically. The default
+values are 8 for horizontal and 16 for vertical movement. While this procedure accepts longint
+parameters, only the low 16 bits are actually used.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 338--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse10.pp</span><HR/><div class="listinginput">
+<!--l. 338--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">hor,</span>&nbsp;<span 
+class="cmtt-10">vert:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">x,</span>&nbsp;<span 
+class="cmtt-10">y:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Click</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">button</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit</span>&nbsp;<span 
+class="cmtt-10">after</span>&nbsp;<span 
+class="cmtt-10">you''ve</span>&nbsp;<span 
+class="cmtt-10">entered</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">sequence</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">numbers.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Horizontal</span>&nbsp;<span 
+class="cmtt-10">mickey''s</span>&nbsp;<span 
+class="cmtt-10">per</span>&nbsp;<span 
+class="cmtt-10">pixel:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Vertical</span>&nbsp;<span 
+class="cmtt-10">mickey''s</span>&nbsp;<span 
+class="cmtt-10">per</span>&nbsp;<span 
+class="cmtt-10">pixel:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(32,3);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(hor);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(30,4);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln(vert);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseSpeed(hor,</span>&nbsp;<span 
+class="cmtt-10">vert);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Until</span>&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(LButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(RButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0)</span>&nbsp;<span 
+class="cmtt-10">Or</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">(GetLastButtonPress(MButton,x,y)</span>&nbsp;<span 
+class="cmtt-10">&lt;&gt;</span>&nbsp;<span 
+class="cmtt-10">0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-609" name="x67-60300016.2">SetMouseWindow</a></h4><a 
+  name="dx67-603001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseWindow (xmin,ymin,xmax,ymax: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 346--><p class="noindent"><span 
+class="cmtt-10">SetMousWindow </span>defines a rectangle on screen with top-left corner at (<span 
+class="cmtt-10">xmin,ymin</span>) and
+bottom-right  corner  at  (<span 
+class="cmtt-10">xmax,ymax</span>),  out  of  which  the  mouse  cursor  can&#8217;t  move.  This
+procedure is simply a wrapper for the <span 
+class="cmss-10">SetMouseXRange </span>(<a 
+href="#x67-60400016.2">531<!--tex4ht:ref: se:mousedrv--></a>) and <span 
+class="cmss-10">SetMouseYRange </span>(<a 
+href="#x67-60500016.2">531<!--tex4ht:ref: se:mousedrv--></a>)
+procedures. While <span 
+class="cmtt-10">xmin, ymin, xmax </span>and <span 
+class="cmtt-10">ymax </span>are Longint parameters, only the lower 16
+bits are used.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseXRange </span>(<a 
+href="#x67-60400016.2">531<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">SetMouseYRange </span>(<a 
+href="#x67-60500016.2">531<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 361--><p class="noindent">For an example, see <span 
+class="cmss-10">SetMouseXRange </span>(<a 
+href="#x67-60400016.2">531<!--tex4ht:ref: se:mousedrv--></a>).
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-610" name="x67-60400016.2">SetMouseXRange</a></h4><a 
+  name="dx67-604001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseXRange (Min, Max: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 369--><p class="noindent"><span 
+class="cmtt-10">SetMouseXRange </span>sets the minimum (<span 
+class="cmtt-10">Min</span>) and maximum (<span 
+class="cmtt-10">Max</span>) horizontal coordinates in
+between which the mouse cursor can move. While <span 
+class="cmtt-10">Min </span>and <span 
+class="cmtt-10">Max </span>are Longint parameters, only
+the lower 16 bits are used.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseYRange </span>(<a 
+href="#x67-60500016.2">531<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">SetMouseWindow </span>(<a 
+href="#x67-60300016.2">530<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 381--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse6.pp</span><HR/><div class="listinginput">
+<!--l. 381--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">SetMouseXRange,</span>&nbsp;<span 
+class="cmtt-10">SetMouseYRange</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">SetMouseWindow}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse,</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseXRange(20*8,50*8);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{charracter</span>&nbsp;<span 
+class="cmtt-10">width</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">height</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">8</span>&nbsp;<span 
+class="cmtt-10">pixels}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseYRange(10*8,15*8);</span>
+<br>
+<br>   <span 
+class="cmtt-10">{the</span>&nbsp;<span 
+class="cmtt-10">two</span>&nbsp;<span 
+class="cmtt-10">lines</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">code</span>&nbsp;<span 
+class="cmtt-10">have</span>&nbsp;<span 
+class="cmtt-10">exactly</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">same</span>&nbsp;<span 
+class="cmtt-10">effect</span>&nbsp;<span 
+class="cmtt-10">as</span>
+<br>   &nbsp;<span 
+class="cmtt-10">SetMouseWindow(20*8,10*8,50*8,15*8)}</span>
+<br>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit.');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">Do</span>&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">Do</span>&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-611" name="x67-60500016.2">SetMouseYRange</a></h4><a 
+  name="dx67-605001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMouseYRange (Min, Max: Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<!--l. 389--><p class="noindent"><span 
+class="cmtt-10">SetMouseYRange </span>sets the minimum (<span 
+class="cmtt-10">Min</span>) and maximum (<span 
+class="cmtt-10">Max</span>) vertical coordinates in
+between which the mouse cursor can move. While <span 
+class="cmtt-10">Min </span>and <span 
+class="cmtt-10">Max </span>are Longint parameters, only
+the lower 16 bits are used.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMouseXRange </span>(<a 
+href="#x67-60400016.2">531<!--tex4ht:ref: se:mousedrv--></a>), <span 
+class="cmss-10">SetMouseWindow </span>(<a 
+href="#x67-60300016.2">530<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 401--><p class="noindent">For an example, see <span 
+class="cmss-10">SetMouseXRange </span>(<a 
+href="#x67-60400016.2">531<!--tex4ht:ref: se:mousedrv--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-67-612" name="x67-60600016.2">ShowMouse</a></h4><a 
+  name="dx67-606001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ShowMouse ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 409--><p class="noindent"><span 
+class="cmtt-10">ShowMouse </span>makes the mouse cursor visible. At the start of your progam, the mouse cursor
+is invisible.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">HideMouse </span>(<a 
+href="#x67-59300016.2">522<!--tex4ht:ref: se:mousedrv--></a>),<span 
+class="cmss-10">SetMouseHideWindow </span>(<a 
+href="#x67-59900016.2">526<!--tex4ht:ref: se:mousedrv--></a>)</dd></dl>
+<!--l. 418--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mmouseex/mouse2.pp</span><HR/><div class="listinginput">
+<!--l. 418--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">{example</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">ShowMouse</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">HideMouse}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">MsMouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">MouseFound</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Now</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">can</span>&nbsp;<span 
+class="cmtt-10">see</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">mouse...</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">enter</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">continue)');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ShowMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">HideMouse;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('And</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">you</span>&nbsp;<span 
+class="cmtt-10">can''t...</span>&nbsp;<span 
+class="cmtt-10">(press</span>&nbsp;<span 
+class="cmtt-10">enter</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">quit)');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">End</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+<br>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse45.htm" >prev</a>] [<a 
+href="unitsse45.htm#tailunitsse45.htm" >prev-tail</a>] [<a 
+href="unitsse46.htm" >front</a>] [<a 
+href="unitsch16.htm#unitsse46.htm" >up</a>] </p></div><a 
+  name="tailunitsse46.htm"></a>   
+</body></html> 

@@ -1,0 +1,174 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.5 Creating an executable for GO32V1 and PMODE/DJ targets</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse14.htm" >next</a>] [<a 
+href="userse12.htm" >prev</a>] [<a 
+href="userse12.htm#tailuserse12.htm" >prev-tail</a>] [<a 
+href="#tailuserse13.htm">tail</a>] [<a 
+href="userch3.htm#userse13.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.5</span> <a 
+href="user.htm#QQ2-18-36" name="x18-340003.5">Creating an executable for GO32V1 and PMODE/DJ targets</a></h3>
+<!--l. 732--><p class="noindent">The GO32V1 platform is officially no longer supported, so this section is of interest only to people
+who wish to make go32V1 binaries anyway.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-18-37" name="x18-350003.5">GO32V1</a></h4> When compiling under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, GO32V2 is the default target. However, if you use
+go32V1 (using the <span 
+class="cmtt-10">-TGO32V1 </span>switch), the compilation process leaves you with a file
+which you cannot execute right away. There are 2 things you can do when compiling has
+finished.
+<!--l. 744--><p class="noindent">The first thing is to use the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>extender from D.J. Delorie to execute your program
+:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;go32&nbsp;prog
+</pre>
+</td></tr></table>This is fine for testing, but if you want to use a program regularly, it would be easier if you could
+just type the program name, i.e.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;prog
+</pre>
+</td></tr></table>This can be accomplished by making a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>executable of your compiled program.
+<!--l. 756--><p class="noindent">There two ways to create a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>executable (under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>only):
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x18-35002x1"></a>if the <span 
+class="cmss-10">GO32.EXE </span>is already installed on the computers where the program should run,
+     you must only copy a program called <span 
+class="cmss-10">STUB.EXE </span>at the begin of the AOUT file.
+     This is accomplished with the <span 
+class="cmss-10">AOUT2EXE.EXE </span>program. which comes with the
+     compiler:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;AOUT2EXE&nbsp;PROG
+</pre>
+     </td></tr></table>and you get a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>executable which loads the <span 
+class="cmss-10">GO32.EXE </span>automatically. the <span 
+class="cmss-10">GO32.EXE</span>
+     executable must be in current directory or be in a directory in the <span 
+class="cmtt-10">PATH </span>variable.
+     </li>
+     <li class="enumerate"><a 
+  name="x18-35004x2"></a>The second way to create a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>executable is to put <span 
+class="cmss-10">GO32.EXE </span>at the beginning of the
+     <span 
+class="cmss-10">AOUT </span>file. To do this, at the command prompt, type :
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;COPY&nbsp;/B&nbsp;GO32.EXE+PROG&nbsp;PROG.EXE
+</pre>
+     </td></tr></table>(assuming Free Pascal created a file called <span 
+class="cmss-10">PROG</span>, of course.) This becomes then a
+     stand-alone executable for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, which doesn&#8217;t need the <span 
+class="cmss-10">GO32.EXE </span>on the machine where it
+     should run.</li></ol>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-18-38" name="x18-360003.5">PMODE/DJ</a></h4> You can also use the PMODE/DJ extender to run your Free Pascal applications. To
+make an executable which works with the PMODE extender, you can simply create an GO32V2
+executable (the default), and then convert it to a PMODE executable with the following two extra
+commands:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x18-36002x1"></a>First, strip the GO32V2 header of the executable:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;EXE2COFF&nbsp;PROG.EXE
+</pre>
+     </td></tr></table>(we suppose that <span 
+class="cmss-10">PROG.EXE </span>is the program generated by the compilation process.
+     </li>
+     <li class="enumerate"><a 
+  name="x18-36004x2"></a>Secondly, add the PMODE stub:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;COPY&nbsp;/B&nbsp;PMODSTUB.EXE+PROG&nbsp;PROG.EXE
+</pre>
+     </td></tr></table>If the <span 
+class="cmss-10">PMODSTUB.EXE </span>file isn&#8217;t in your local directory, you need to supply the whole path to
+     it.</li></ol>
+<!--l. 805--><p class="noindent">That&#8217;s it. No additional steps are needed to create a PMODE extender executable.
+<!--l. 808--><p class="noindent">Be aware, though, that the PMODE extender doesn&#8217;t support virtual memory, so if you&#8217;re short on
+memory, you may run unto trouble. Also, officially there is not support for the PMODE/DJ
+extender. It just happens that the compiler and some of the programs it generates, run under this
+extender too.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse14.htm" >next</a>] [<a 
+href="userse12.htm" >prev</a>] [<a 
+href="userse12.htm#tailuserse12.htm" >prev-tail</a>] [<a 
+href="userse13.htm" >front</a>] [<a 
+href="userch3.htm#userse13.htm" >up</a>] </p></div><a 
+  name="tailuserse13.htm"></a>   
+</body></html> 

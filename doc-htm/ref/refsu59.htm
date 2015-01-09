@@ -1,0 +1,251 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.1.0 Constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu60.htm" >next</a>] [<a 
+href="refsu58.htm" >prev</a>] [<a 
+href="refsu58.htm#tailrefsu58.htm" >prev-tail</a>] [<a 
+href="#tailrefsu59.htm">tail</a>] [<a 
+href="refse62.htm#refsu59.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-142-163" name="x142-14800013.1">Constants</a></h4> The following constants define the maximum values that can be used with various
+types:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;MaxSIntValue&nbsp;=&nbsp;High(ValSInt);
+&nbsp;&nbsp;&nbsp;MaxUIntValue&nbsp;=&nbsp;High(ValUInt);
+&nbsp;&nbsp;&nbsp;maxint&nbsp;&nbsp;&nbsp;=&nbsp;maxsmallint;
+&nbsp;&nbsp;&nbsp;maxLongint&nbsp;&nbsp;=&nbsp;$7fffffff;
+&nbsp;&nbsp;&nbsp;maxSmallint&nbsp;=&nbsp;32767;
+</pre>
+</td></tr></table>The following constants for file-handling are defined in the system unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;fmclosed&nbsp;=&nbsp;$D7B0;
+&nbsp;&nbsp;&nbsp;fminput&nbsp;&nbsp;=&nbsp;$D7B1;
+&nbsp;&nbsp;&nbsp;fmoutput&nbsp;=&nbsp;$D7B2;
+&nbsp;&nbsp;&nbsp;fminout&nbsp;&nbsp;=&nbsp;$D7B3;
+&nbsp;&nbsp;&nbsp;fmappend&nbsp;=&nbsp;$D7B4;
+&nbsp;&nbsp;&nbsp;filemode&nbsp;:&nbsp;byte&nbsp;=&nbsp;2;
+</pre>
+</td></tr></table>
+<!--l. 4743--><p class="noindent">The <span 
+class="cmtt-10">filemode </span>variable is used when a non-text file is opened using <span 
+class="cmtt-10">Reset</span>. It indicates how the file
+will be opened. <span 
+class="cmtt-10">filemode </span>can have one of the following values:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span> </dt><dd 
+class="description">The file is opened for reading.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">1</span> </dt><dd 
+class="description">The file is opened for writing.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">2</span> </dt><dd 
+class="description">The file is opened for reading and writing.</dd></dl>
+<!--l. 4751--><p class="noindent">The default value is 2. Other values are possible but are operating system specific.
+<!--l. 4753--><p class="noindent">Further, the following non processor specific general-purpose constants are also defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;erroraddr&nbsp;:&nbsp;pointer&nbsp;=&nbsp;nil;
+&nbsp;&nbsp;&nbsp;errorcode&nbsp;:&nbsp;word&nbsp;=&nbsp;0;
+&nbsp;&nbsp;{&nbsp;max&nbsp;level&nbsp;in&nbsp;dumping&nbsp;on&nbsp;error&nbsp;}
+&nbsp;&nbsp;&nbsp;max_frame_dump&nbsp;:&nbsp;word&nbsp;=&nbsp;20;
+</pre>
+</td></tr></table>
+<!--l. 4762--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Processor specific global constants are named Testxxxx where xxxx represents the processor
+number (such as Test8086, Test68000), and are used to determine on what generation of processor
+the program is running on.
+The following constants are defined to access VMT entries:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;vmtInstanceSize&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtParent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtClassName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;12;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtDynamicTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;16;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtMethodTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;20;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtFieldTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;24;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtTypeInfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;28;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtInitTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;32;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtAutoTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;36;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtIntfTable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;40;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtMsgStrPtr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;44;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtMethodStart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;48;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtDestroy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtNewInstance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+4;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtFreeInstance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+8;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtSafeCallException&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+12;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtDefaultHandler&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+16;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtAfterConstruction&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+20;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtBeforeDestruction&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+24;
+&nbsp;&nbsp;&nbsp;&nbsp;vmtDefaultHandlerStr&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;vmtMethodStart+28;
+</pre>
+</td></tr></table>The constant names should be used, and never their values, because the VMT table can change,
+breaking code that uses direct values.
+<!--l. 4794--><p class="noindent">The following constants will be used for the planned <span 
+class="cmtt-10">variant </span>support:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;varEmpty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0000;
+&nbsp;&nbsp;&nbsp;varNull&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0001;
+&nbsp;&nbsp;&nbsp;varSmallint&nbsp;&nbsp;=&nbsp;$0002;
+&nbsp;&nbsp;&nbsp;varInteger&nbsp;&nbsp;&nbsp;=&nbsp;$0003;
+&nbsp;&nbsp;&nbsp;varSingle&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0004;
+&nbsp;&nbsp;&nbsp;varDouble&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0005;
+&nbsp;&nbsp;&nbsp;varCurrency&nbsp;&nbsp;=&nbsp;$0006;
+&nbsp;&nbsp;&nbsp;varDate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0007;
+&nbsp;&nbsp;&nbsp;varOleStr&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0008;
+&nbsp;&nbsp;&nbsp;varDispatch&nbsp;&nbsp;=&nbsp;$0009;
+&nbsp;&nbsp;&nbsp;varError&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$000A;
+&nbsp;&nbsp;&nbsp;varBoolean&nbsp;&nbsp;&nbsp;=&nbsp;$000B;
+&nbsp;&nbsp;&nbsp;varVariant&nbsp;&nbsp;&nbsp;=&nbsp;$000C;
+&nbsp;&nbsp;&nbsp;varUnknown&nbsp;&nbsp;&nbsp;=&nbsp;$000D;
+&nbsp;&nbsp;&nbsp;varByte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0011;
+&nbsp;&nbsp;&nbsp;varString&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0100;
+&nbsp;&nbsp;&nbsp;varAny&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$0101;
+&nbsp;&nbsp;&nbsp;varTypeMask&nbsp;&nbsp;=&nbsp;$0FFF;
+&nbsp;&nbsp;&nbsp;varArray&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$2000;
+&nbsp;&nbsp;&nbsp;varByRef&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$4000;
+</pre>
+</td></tr></table>The following constants are used in the <span 
+class="cmtt-10">TVarRec </span>record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;vtInteger&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;vtBoolean&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;vtChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+&nbsp;vtExtended&nbsp;&nbsp;&nbsp;=&nbsp;3;
+&nbsp;vtString&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;
+&nbsp;vtPointer&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;5;
+&nbsp;vtPChar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;6;
+&nbsp;vtObject&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;7;
+&nbsp;vtClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;
+&nbsp;vtWideChar&nbsp;&nbsp;&nbsp;=&nbsp;9;
+&nbsp;vtPWideChar&nbsp;&nbsp;=&nbsp;10;
+&nbsp;vtAnsiString&nbsp;=&nbsp;11;
+&nbsp;vtCurrency&nbsp;&nbsp;&nbsp;=&nbsp;12;
+&nbsp;vtVariant&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;13;
+&nbsp;vtInterface&nbsp;&nbsp;=&nbsp;14;
+&nbsp;vtWideString&nbsp;=&nbsp;15;
+&nbsp;vtInt64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;16;
+&nbsp;vtQWord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;17;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">ExceptProc </span>is called when an unhandled exception occurs:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;ExceptProc&nbsp;:&nbsp;TExceptProc&nbsp;=&nbsp;Nil;
+</pre>
+</td></tr></table>It is set in the <span 
+class="cmss-10">objpas </span>unit, but it can be set by the programmer to change the default exception
+handling.
+<!--l. 4846--><p class="noindent">The following constants are defined to describe the operating system&#8217;s file system:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;LineEnding&nbsp;=&nbsp;#10;
+&nbsp;LFNSupport&nbsp;=&nbsp;true;
+&nbsp;DirectorySeparator&nbsp;=&nbsp;'/';
+&nbsp;DriveSeparator&nbsp;=&nbsp;':';
+&nbsp;PathSeparator&nbsp;=&nbsp;':';
+&nbsp;FileNameCaseSensitive&nbsp;:&nbsp;Boolean&nbsp;=&nbsp;True;
+</pre>
+</td></tr></table>(the shown values are for <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>platforms, but will be different on other platforms) The meaning of
+the constants is the following:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">LineEnding</span> </dt><dd 
+class="description">End of line marker. This constant is used when writing end of lines to text
+     files.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">LFNSupport</span> </dt><dd 
+class="description">This is <span 
+class="cmtt-10">True </span>if the system supports long file names, i.e. filenames that are
+     not restricted to 8.3 characters.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">DirectorySeparator</span> </dt><dd 
+class="description">The character that is used as a directory separator, i.e. it appears
+     between various parts of a path to a file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">DriveSeparator</span> </dt><dd 
+class="description">On systems that support drive letters, this character separates the drive
+     indication from the rest of a filename.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PathSeparator</span> </dt><dd 
+class="description">This character can be found between elements in a series of paths (such as
+     the contents of the <span 
+class="cmtt-10">PATH </span>environment variable.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FileNameCaseSensitive</span> </dt><dd 
+class="description">Indicates whether filenames are case sensitive.</dd></dl>
+<!--l. 4873--><p class="noindent">When programming cross-platform, use these constants instead of hard-coded characters. This will
+enhance portability of an application.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu60.htm" >next</a>] [<a 
+href="refsu58.htm" >prev</a>] [<a 
+href="refsu58.htm#tailrefsu58.htm" >prev-tail</a>] [<a 
+href="refsu59.htm" >front</a>] [<a 
+href="refse62.htm#refsu59.htm" >up</a>] </p></div><a 
+  name="tailrefsu59.htm"></a>  
+</body></html> 

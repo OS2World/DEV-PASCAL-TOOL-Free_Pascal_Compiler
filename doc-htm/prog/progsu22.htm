@@ -1,0 +1,67 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $I or $INCLUDE : Include file </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu23.htm" >next</a>] [<a 
+href="progsu21.htm" >prev</a>] [<a 
+href="progsu21.htm#tailprogsu21.htm" >prev-tail</a>] [<a 
+href="#tailprogsu22.htm">tail</a>] [<a 
+href="progse2.htm#progsu22.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-29-27" name="x29-270001.1"><span 
+class="cmtt-10">$I </span>or <span 
+class="cmtt-10">$INCLUDE </span>: Include file </a></h4>
+<!--l. 459--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$I filename</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$INCLUDE filename</span><span 
+class="cmsy-10">} </span>directive tells the compiler to read further
+statements from the file <span 
+class="cmtt-10">filename</span>. The statements read there will be inserted as if they occurred
+in the current file.
+<!--l. 464--><p class="noindent">The compiler will append the <span 
+class="cmss-10">.pp </span>extension to the file if no extension is given. Do not put the
+filename between quotes, as they will be regarded as part of the file&#8217;s name.
+<!--l. 468--><p class="noindent">Include files can be nested, but not infinitely deep. The number of files is restricted to the number
+of file descriptors available to the Free Pascal compiler.
+<!--l. 471--><p class="noindent">Contrary to Turbo Pascal, include files can cross blocks. I.e. a block can start in one file (with a
+<span 
+class="cmtt-10">Begin </span>keyword) and can end in another (with a <span 
+class="cmtt-10">End </span>keyword). The smallest entity in an include
+file must be a token, i.e. an identifier, keyword or operator.
+<!--l. 476--><p class="noindent">The compiler will look for the file to include in the following places:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x29-27002x1"></a>It will look in the path specified in the include file name.
+     </li>
+     <li class="enumerate"><a 
+  name="x29-27004x2"></a>It will look in the directory where the current source file is.
+     </li>
+     <li class="enumerate"><a 
+  name="x29-27006x3"></a>it will look in all directories specified in the include file search path.</li></ol>
+<!--l. 484--><p class="noindent">Directories can be added to the include file search path with the <span 
+class="cmtt-10">-I </span>command-line option.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu23.htm" >next</a>] [<a 
+href="progsu21.htm" >prev</a>] [<a 
+href="progsu21.htm#tailprogsu21.htm" >prev-tail</a>] [<a 
+href="progsu22.htm" >front</a>] [<a 
+href="progse2.htm#progsu22.htm" >up</a>] </p></div><a 
+  name="tailprogsu22.htm"></a>  
+</body></html> 

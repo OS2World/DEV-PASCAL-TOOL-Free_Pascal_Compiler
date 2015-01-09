@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.1 Compiling your program with debugger support</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse47.htm" >next</a>] [<a 
+href="#tailuserse46.htm">tail</a>] [<a 
+href="userch10.htm#userse46.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.1</span> <a 
+href="user.htm#QQ2-65-204" name="x65-15300010.1">Compiling your program with debugger support</a></h3>
+<!--l. 2256--><p class="noindent">First of all, you must be sure that the compiler is compiled with debugging support. Unfortunately,
+there is no way to check this at run time, except by trying to compile a program with debugging
+support.
+<!--l. 2260--><p class="noindent">To compile a program with debugging support, just specify the <span 
+class="cmtt-10">-g </span>option on the command-line, as
+follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;-g&nbsp;hello.pp
+</pre>
+</td></tr></table>This will generate debugging information in the executable from your program.
+You will notice that the size of the executable increases substantially because of
+this<a 
+href="user66.htm" name="user66.htm" ><sup>1</sup></a>.
+<!--l. 2270--><p class="noindent">Note that the above will only generate debug information <span 
+class="cmti-10">for the code that has been generated </span>when
+compiling <span 
+class="cmss-10">hello.pp</span>. This means that if you used some units (the system unit, for instance) which
+were not compiled with debugging support, no debugging support will be available for the code in
+these units.
+<!--l. 2276--><p class="noindent">There are 2 solutions for this problem.
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x65-153003x1"></a>Recompile all units manually with the <span 
+class="cmtt-10">-g </span>option.
+     </li>
+     <li class="enumerate"><a 
+  name="x65-153005x2"></a>Specify  the  &#8217;build&#8217;  option  (<span 
+class="cmtt-10">-B</span>)  when  compiling  with  debugging  support.  This  will
+     recompile all units, and insert debugging information in each of the units.</li></ol>
+<!--l. 2283--><p class="noindent">The second option may have undesirable side effects. It may be that some units aren&#8217;t found, or
+compile incorrectly due to missing conditionals, etc..
+<!--l. 2287--><p class="noindent">If all went well, the executable now contains the necessary information with which you can debug it
+using <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small> </span><span 
+class="cmtt-10">gdb</span>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse47.htm" >next</a>] [<a 
+href="userse46.htm" >front</a>] [<a 
+href="userch10.htm#userse46.htm" >up</a>] </p></div><a 
+  name="tailuserse46.htm"></a>  
+</body></html> 

@@ -1,0 +1,295 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.13 TStrCollection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse60.htm" >next</a>] [<a 
+href="unitsse58.htm" >prev</a>] [<a 
+href="unitsse58.htm#tailunitsse58.htm" >prev-tail</a>] [<a 
+href="#tailunitsse59.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse59.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.13</span> <a 
+href="units.htm#QQ2-81-721" name="x81-71500017.13">TStrCollection</a></h3>
+<!--l. 2019--><p class="noindent">The <span 
+class="cmtt-10">TStrCollection </span>object manages a sorted collection of null-terminated strings (pchar strings).
+To this end, it overrides the <span 
+class="cmss-10">Compare </span>(<a 
+href="unitsse57.htm#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>) method of <span 
+class="cmtt-10">TSortedCollection</span>, and it introduces
+methods to read/write strings from a stream.
+<!--l. 2025--><p class="noindent">Here is the full declaration of the <span 
+class="cmtt-10">TStrCollection </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TStrCollection&nbsp;=&nbsp;OBJECT&nbsp;(TSortedCollection)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Compare&nbsp;(Key1,&nbsp;Key2:&nbsp;Pointer):&nbsp;Sw_Integer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetItem&nbsp;(Var&nbsp;S:&nbsp;TStream):&nbsp;Pointer;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;FreeItem&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;PutItem&nbsp;(Var&nbsp;S:&nbsp;TStream;&nbsp;Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PStrCollection&nbsp;=&nbsp;^TStrCollection;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-81-722" name="x81-71600017.13">TStrCollection.GetItem</a></h4><a 
+  name="dx81-716001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStrCollection.GetItem (Var S: TStream): Pointer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetItem </span>reads a null-terminated string from the stream <span 
+class="cmtt-10">S </span>and returns a pointer to it. It
+doesn&#8217;t insert the string in the collection.
+<!--l. 2046--><p class="noindent">This method is primarily introduced to be able to load and store the collection from and to
+a stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The errors returned are those of <span 
+class="cmss-10">TStream.StrRead </span>(<a 
+href="unitsse52.htm#x74-63400017.6">567<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">PutItem </span>(<a 
+href="#x81-71900017.13">625<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-81-723" name="x81-71700017.13">TStrCollection.Compare</a></h4><a 
+  name="dx81-717001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStrCollection.Compare (Key1, Key2: Pointer): Sw</span>_<span 
+class="cmtt-10">Integer; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TStrCollection </span>overrides the <span 
+class="cmtt-10">Compare </span>function so it compares the two keys as if they were
+pointers to strings. The compare is done case sensitive. It returns
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-1</span></dt><dd 
+class="description">if the first string is alphabetically earlier than the second string.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">if the two strings are equal.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">1</span></dt><dd 
+class="description">if the first string is alphabetically later than the second string.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TSortedCollection.Compare </span>(<a 
+href="unitsse57.htm#x79-70600017.11">614<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 2073--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex38.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 2073--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex38;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TStrCollection.Compare</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,Strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PStrCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PStrCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C^.Duplicates:=True;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Duplicates</span>&nbsp;<span 
+class="cmtt-10">allowed</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserting</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">records</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">random</span>&nbsp;<span 
+class="cmtt-10">places.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Str(Random(100),S);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S:='String</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">'+S;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P:=StrAlloc(Length(S)+1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(StrPCopy(P,S));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">98</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">C^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Compare</span>&nbsp;<span 
+class="cmtt-10">(At(I),At(I+1))=0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Duplicate</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">found</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">',I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-81-724" name="x81-71800017.13">TStrCollection.FreeItem</a></h4><a 
+  name="dx81-718001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStrCollection.FreeItem (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TStrCollection </span>overrides <span 
+class="cmtt-10">FreeItem </span>so that the string pointed to by <span 
+class="cmtt-10">Item </span>is disposed from
+memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TCollection.FreeItem </span>(<a 
+href="unitsse56.htm#x78-69200017.10">605<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-81-725" name="x81-71900017.13">TStrCollection.PutItem</a></h4><a 
+  name="dx81-719001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TStrCollection.PutItem (Var S: TStream; Item: Pointer); Virtual;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutItem </span>writes the string pointed to by <span 
+class="cmtt-10">Item </span>to the stream <span 
+class="cmtt-10">S</span>.
+<!--l. 2095--><p class="noindent">This method is primarily used in the <span 
+class="cmtt-10">Load </span>and <span 
+class="cmtt-10">Store </span>methods, and should not be used
+directly.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are those of <span 
+class="cmss-10">TStream.StrWrite </span>(<a 
+href="unitsse52.htm#x74-64400017.6">572<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetItem </span>(<a 
+href="#x81-71600017.13">624<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse60.htm" >next</a>] [<a 
+href="unitsse58.htm" >prev</a>] [<a 
+href="unitsse58.htm#tailunitsse58.htm" >prev-tail</a>] [<a 
+href="unitsse59.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse59.htm" >up</a>] </p></div><a 
+  name="tailunitsse59.htm"></a>   
+</body></html> 

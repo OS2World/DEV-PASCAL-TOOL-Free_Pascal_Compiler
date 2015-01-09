@@ -1,0 +1,409 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.1 Types, Constants and variables : </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse29.htm" >next</a>] [<a 
+href="#tailunitsse28.htm">tail</a>] [<a 
+href="unitsch10.htm#unitsse28.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.1</span> <a 
+href="units.htm#QQ2-43-313" name="x43-31000010.1">Types, Constants and variables : </a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-43-314" name="x43-31100010.1">Variables</a></h4>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;IPCerror&nbsp;:&nbsp;longint;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">IPCerror </span>variable is used to report errors, by all calls.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-43-315" name="x43-31200010.1">Constants</a></h4> Many constants here are provided for completeness only, and should under normal
+circumstances not be used by the programmer.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;IPC_CREAT&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;shl&nbsp;9;&nbsp;&nbsp;{&nbsp;create&nbsp;if&nbsp;key&nbsp;is&nbsp;nonexistent&nbsp;}
+&nbsp;&nbsp;&nbsp;IPC_EXCL&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;2&nbsp;shl&nbsp;9;&nbsp;&nbsp;{&nbsp;fail&nbsp;if&nbsp;key&nbsp;exists&nbsp;}
+&nbsp;&nbsp;&nbsp;IPC_NOWAIT&nbsp;=&nbsp;&nbsp;4&nbsp;shl&nbsp;9;&nbsp;&nbsp;{&nbsp;return&nbsp;error&nbsp;on&nbsp;wait&nbsp;}
+</pre>
+</td></tr></table>These constants are used in the various <span 
+class="cmtt-10">xxxget </span>calls.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;IPC_RMID&nbsp;=&nbsp;0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;remove&nbsp;resource&nbsp;}
+&nbsp;&nbsp;&nbsp;IPC_SET&nbsp;&nbsp;=&nbsp;1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;set&nbsp;ipc_perm&nbsp;options&nbsp;}
+&nbsp;&nbsp;&nbsp;IPC_STAT&nbsp;=&nbsp;2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;get&nbsp;ipc_perm&nbsp;options&nbsp;}
+&nbsp;&nbsp;&nbsp;IPC_INFO&nbsp;=&nbsp;3;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;see&nbsp;ipcs&nbsp;}
+</pre>
+</td></tr></table>These constants can be passed to the various <span 
+class="cmtt-10">xxxctl </span>calls.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;MSG_NOERROR&nbsp;=&nbsp;1&nbsp;shl&nbsp;12;
+&nbsp;&nbsp;&nbsp;MSG_EXCEPT&nbsp;&nbsp;=&nbsp;2&nbsp;shl&nbsp;12;
+&nbsp;&nbsp;&nbsp;MSGMNI&nbsp;=&nbsp;128;
+&nbsp;&nbsp;&nbsp;MSGMAX&nbsp;=&nbsp;4056;
+&nbsp;&nbsp;&nbsp;MSGMNB&nbsp;=&nbsp;16384;
+</pre>
+</td></tr></table>These constants are used in the messaging system, they are not for use by the programmer.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;SEM_UNDO&nbsp;=&nbsp;$1000;
+&nbsp;&nbsp;&nbsp;GETPID&nbsp;=&nbsp;11;
+&nbsp;&nbsp;&nbsp;GETVAL&nbsp;=&nbsp;12;
+&nbsp;&nbsp;&nbsp;GETALL&nbsp;=&nbsp;13;
+&nbsp;&nbsp;&nbsp;GETNCNT&nbsp;=&nbsp;14;
+&nbsp;&nbsp;&nbsp;GETZCNT&nbsp;=&nbsp;15;
+&nbsp;&nbsp;&nbsp;SETVAL&nbsp;=&nbsp;16;
+&nbsp;&nbsp;&nbsp;SETALL&nbsp;=&nbsp;17;
+</pre>
+</td></tr></table>These constants call be specified in the <span 
+class="cmss-10">semop </span>(<a 
+href="unitsse29.htm#x44-32100010.2">271<!--tex4ht:ref: tab:fmxxxconstants--></a>) call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;SEMMNI&nbsp;=&nbsp;128;
+&nbsp;&nbsp;&nbsp;SEMMSL&nbsp;=&nbsp;32;
+&nbsp;&nbsp;&nbsp;SEMMNS&nbsp;=&nbsp;(SEMMNI&nbsp;*&nbsp;SEMMSL);
+&nbsp;&nbsp;&nbsp;SEMOPM&nbsp;=&nbsp;32;
+&nbsp;&nbsp;&nbsp;SEMVMX&nbsp;=&nbsp;32767;
+</pre>
+</td></tr></table>These constanst are used internally by the semaphore system, they should not be used by the
+programmer.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;SHM_R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4&nbsp;shl&nbsp;6;
+&nbsp;&nbsp;&nbsp;SHM_W&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2&nbsp;shl&nbsp;6;
+&nbsp;&nbsp;&nbsp;SHM_RDONLY&nbsp;=&nbsp;1&nbsp;shl&nbsp;12;
+&nbsp;&nbsp;&nbsp;SHM_RND&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2&nbsp;shl&nbsp;12;
+&nbsp;&nbsp;&nbsp;SHM_REMAP&nbsp;&nbsp;=&nbsp;4&nbsp;shl&nbsp;12;
+&nbsp;&nbsp;&nbsp;SHM_LOCK&nbsp;&nbsp;&nbsp;=&nbsp;11;
+&nbsp;&nbsp;&nbsp;SHM_UNLOCK&nbsp;=&nbsp;12;
+</pre>
+</td></tr></table>These constants are used in the <span 
+class="cmss-10">shmctl </span>(<a 
+href="unitsse29.htm#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>) call.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-43-316" name="x43-31300010.1">Types</a></h4> The following two types are provided because they are needed. One they they should be
+defined in the system unit, however.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PULong&nbsp;=&nbsp;^Cardinal;
+&nbsp;&nbsp;&nbsp;PWord&nbsp;&nbsp;=&nbsp;^Word;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;TKey&nbsp;&nbsp;&nbsp;=&nbsp;Longint;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">TKey </span>is the type returned by the <span 
+class="cmss-10">ftok </span>(<a 
+href="unitsse29.htm#x44-31500010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>) key generating function.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;PIPC_Perm&nbsp;=&nbsp;^TIPC_Perm;
+&nbsp;&nbsp;&nbsp;TIPC_Perm&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;:&nbsp;TKey;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uid,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gid,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cuid,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cgid,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seq&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TIPC</span>_<span 
+class="cmtt-10">Perm </span>structure is used in all IPC systems to specify the permissions.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PSHMid_DS&nbsp;=&nbsp;^TSHMid_ds;
+&nbsp;&nbsp;&nbsp;TSHMid_ds&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_perm&nbsp;&nbsp;:&nbsp;TIPC_Perm;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_segsz&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_atime&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_dtime&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_ctime&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_cpid&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_lpid&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_nattch&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_npages&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shm_pages&nbsp;&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attaches&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSHMid</span>_<span 
+class="cmtt-10">ds </span>strucure is used in the <span 
+class="cmss-10">shmctl </span>(<a 
+href="unitsse29.htm#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>) call to set or retrieve settings concerning
+shared memory.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;PSHMinfo&nbsp;=&nbsp;^TSHMinfo;
+&nbsp;&nbsp;&nbsp;TSHMinfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shmmax&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shmmin&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shmmni&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shmseg&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shmall&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSHMinfo </span>record is used by the shared memory system, and should not be accessed by the
+programer directly.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;PMSG&nbsp;=&nbsp;^TMSG;
+&nbsp;&nbsp;&nbsp;TMSG&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_next&nbsp;&nbsp;:&nbsp;PMSG;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_type&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_spot&nbsp;&nbsp;:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_stime&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_ts&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TMSG </span>record is used in the handling of message queues. There should be few cases where the
+programmer needs to access this data.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;PMSQid_ds&nbsp;=&nbsp;^TMSQid_ds;
+&nbsp;&nbsp;&nbsp;TMSQid_ds&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_perm&nbsp;&nbsp;&nbsp;:&nbsp;TIPC_perm;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_first&nbsp;&nbsp;:&nbsp;PMsg;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_last&nbsp;&nbsp;&nbsp;:&nbsp;PMsg;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_stime&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_rtime&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_ctime&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wwait&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rwait&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_cbytes&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_qnum&nbsp;&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_qbytes&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_lspid&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg_lrpid&nbsp;&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TMSQid</span>_<span 
+class="cmtt-10">ds </span>record is returned by the <span 
+class="cmss-10">msgctl </span>(<a 
+href="unitsse29.htm#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>) call, and contains all data about a message
+queue.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;PMSGbuf&nbsp;=&nbsp;^TMSGbuf;
+&nbsp;&nbsp;&nbsp;TMSGbuf&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtype&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mtext&nbsp;:&nbsp;array[0..0]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TMSGbuf </span>record is a record containing the data of a record. you should never use this record
+directly, instead you should make your own record that follows the structure of the <span 
+class="cmtt-10">TMSGbuf </span>record,
+but that has a size that is big enough to accomodate your messages. The <span 
+class="cmtt-10">mtype </span>field should always
+be present, and should always be filled.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PMSGinfo&nbsp;=&nbsp;^TMSGinfo;
+&nbsp;&nbsp;&nbsp;TMSGinfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgpool&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgmap&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgmax&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgmnb&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgmni&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgssz&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgtql&nbsp;&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgseg&nbsp;&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TMSGinfo </span>record is used internally by the message queue system, and should not be used by
+the programmer directly.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PSEMid_ds&nbsp;=&nbsp;^PSEMid_ds;
+&nbsp;&nbsp;&nbsp;TSEMid_ds&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_perm&nbsp;:&nbsp;tipc_perm;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_otime&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_ctime&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_pending&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_pending_last&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;undo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_nsems&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSEMid</span>_<span 
+class="cmtt-10">ds </span>structure is returned by the <span 
+class="cmss-10">semctl </span>(<a 
+href="unitsse29.htm#x44-32200010.2">272<!--tex4ht:ref: tab:fmxxxconstants--></a>) call, and contains all data concerning a
+semahore.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PSEMbuf&nbsp;=&nbsp;^TSEMbuf;
+&nbsp;&nbsp;&nbsp;TSEMbuf&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_num&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_op&nbsp;&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_flg&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSEMbuf </span>record us use in the <span 
+class="cmss-10">semop </span>(<a 
+href="unitsse29.htm#x44-32100010.2">271<!--tex4ht:ref: tab:fmxxxconstants--></a>) call, and is used to specify which operations you
+want to do.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PSEMinfo&nbsp;=&nbsp;^TSEMinfo;
+&nbsp;&nbsp;&nbsp;TSEMinfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semmap&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semmni&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semmns&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semmnu&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semmsl&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semopm&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semume&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semusz&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semvmx&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semaem&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSEMinfo </span>record is used internally by the semaphore system, and should not be used
+directly.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PSEMun&nbsp;=&nbsp;^TSEMun;
+&nbsp;&nbsp;&nbsp;TSEMun&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;longint&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;:&nbsp;(&nbsp;val&nbsp;:&nbsp;longint&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;:&nbsp;(&nbsp;buf&nbsp;:&nbsp;PSEMid_ds&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;:&nbsp;(&nbsp;arr&nbsp;:&nbsp;PWord&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;:&nbsp;(&nbsp;padbuf&nbsp;:&nbsp;PSeminfo&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;:&nbsp;(&nbsp;padpad&nbsp;:&nbsp;pointer&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TSEMun </span>variant record (actually a C union) is used in the <span 
+class="cmss-10">semctl </span>(<a 
+href="unitsse29.htm#x44-32200010.2">272<!--tex4ht:ref: tab:fmxxxconstants--></a>) call.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse29.htm" >next</a>] [<a 
+href="unitsse28.htm" >front</a>] [<a 
+href="unitsch10.htm#unitsse28.htm" >up</a>] </p></div><a 
+  name="tailunitsse28.htm"></a>   
+</body></html> 

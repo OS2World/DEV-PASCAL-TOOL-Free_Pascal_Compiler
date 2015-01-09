@@ -1,0 +1,161 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1 Things that will not work</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse35.htm" >next</a>] [<a 
+href="#tailuserse34.htm">tail</a>] [<a 
+href="userch7.htm#userse34.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.1</span> <a 
+href="user.htm#QQ2-49-179" name="x49-1300007.1">Things that will not work</a></h3>
+<!--l. 1480--><p class="noindent">Here we give a list of things which are defined/allowed in Turbo Pascal, but which are not
+supported by Free Pascal. Where possible, we indicate the reason.
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x49-130002x1"></a>Duplicate case labels are not allowed. This is a bug in Turbo Pascal and will not be
+     changed.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130004x2"></a>Parameter lists of previously defined functions and procedures must match exactly.
+     The reason for this is the function overloading mechanism of Free Pascal. (however,
+     the <span 
+class="cmtt-10">-So</span>, (see page <a 
+href="userse17.htm#x24-470005.1">5.1<!--tex4ht:ref: option:So--></a>) option solves this.)
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130006x3"></a>The <span 
+class="cmtt-10">MEM, MEMW, MEML </span>and <span 
+class="cmtt-10">PORT </span>variables for memory and port access are not available
+     in the system unit. This is due to the operating system. Under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, the extender unit
+     (<span 
+class="cmss-10">GO32.PPU</span>) implements the mem constuct. under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, the <span 
+class="cmss-10">ports </span>unit implements
+     such a construct.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130008x4"></a><span 
+class="cmtt-10">PROTECTED, PUBLIC, PUBLISHED, TRY, FINALLY, EXCEPT, RAISE            </span>are
+     reserved words. This means you cannot create procedures or variables with the same
+     name. While they are not reserved words in Turbo Pascal, they are in Delphi. Using
+     the <span 
+class="cmtt-10">-So </span>switch will solve this problem if you want to compile Turbo Pascal code that
+                                                                            
+
+                                                                            
+     uses these words.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130010x5"></a>The reserved words <span 
+class="cmtt-10">FAR, NEAR </span>are ignored. This is because Free Pascal is a 32 bit
+     compiler, so they&#8217;re obsolete.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130012x6"></a><span 
+class="cmtt-10">INTERRUPT </span>will work only on the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>target.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130014x7"></a>Boolean expressions are only evaluated until their result is completely determined. The
+     rest of the expression will be ignored.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130016x8"></a>By default the compiler uses <span 
+class="cmtt-10">AT&amp;T </span>assembler syntax. This is mainly because Free Pascal
+     uses <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small> </span><span 
+class="cmtt-10">as</span>. However, other assembler forms are available. For more information, see
+     <a 
+href="file:../prog/prog.htm" >Programmers guide</a>.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130018x9"></a>Turbo Vision is not completely available. There is FreeVision, but the degree of compatibility
+     with Turbo Vision is unclear at this time<a 
+href="user50.htm" name="user50.htm" ><sup>1</sup></a>.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130021x10"></a>The &#8217;overlay&#8217; unit is not available. It also isn&#8217;t necessary, since Free Pascal is a 32 bit
+     compiler, so program size shouldn&#8217;t be a point.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130023x11"></a>There are more reserved words. (see appendix <a 
+href="userap2.htm#x80-167000B">B<!--tex4ht:ref: ch:reserved--></a> for a list of all reserved words.)
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130025x12"></a>The command-line parameters of the compiler are different.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130027x13"></a>Compiler switches and directives are mostly the same, but some extra exist.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130029x14"></a>Units are not binary compatible.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130031x15"></a>Sets are always 4 bytes in Free Pascal; this means that some typecasts which were
+     possible in Turbo Pascal are no longer possible in Free Pascal.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130033x16"></a>A file is opened for output only (using <span 
+class="cmtt-10">fmOutput</span>) when it is opened with <span 
+class="cmtt-10">Rewrite</span>. In
+     order to be able to read from it, it should be reset with <span 
+class="cmtt-10">Reset</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130035x17"></a>Destructors cannot have parameters. This restriction can be solved by using the <span 
+class="cmtt-10">-So</span>
+     switch.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130037x18"></a>There can be only one destructor. This restriction can also be solved by using the <span 
+class="cmtt-10">-So</span>
+     switch.
+     </li>
+     <li class="enumerate"><a 
+  name="x49-130039x19"></a>The order in which expressions are evaluated is not necessarily the same. In the following
+     expression:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;a&nbsp;:=&nbsp;g(2)&nbsp;+&nbsp;f(3);
+</pre>
+     </td></tr></table>it is not guaranteed that <span 
+class="cmtt-10">g(2) </span>will be evaluated before <span 
+class="cmtt-10">f(3)</span>.</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse35.htm" >next</a>] [<a 
+href="userse34.htm" >front</a>] [<a 
+href="userch7.htm#userse34.htm" >up</a>] </p></div><a 
+  name="tailuserse34.htm"></a>  
+</body></html> 

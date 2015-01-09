@@ -1,0 +1,57 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.3 Restrictions of MMX support</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse15.htm" >next</a>] [<a 
+href="progse13.htm" >prev</a>] [<a 
+href="progse13.htm#tailprogse13.htm" >prev-tail</a>] [<a 
+href="#tailprogse14.htm">tail</a>] [<a 
+href="progch5.htm#progse14.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.3</span> <a 
+href="prog.htm#QQ2-95-95" name="x95-930005.3">Restrictions of MMX support</a></h3>
+<!--l. 2163--><p class="noindent">In the beginning of 1997 the MMX instructions were introduced in the Pentium processors, so
+multitasking systems wouldn&#8217;t save the newly introduced MMX registers. To work around that
+problem, Intel mapped the MMX registers to the FPU register.
+<!--l. 2168--><p class="noindent">The consequence is that you can&#8217;t mix MMX and floating point operations. After using MMX
+operations and before using floating point operations, you have to call the routine <span 
+class="cmtt-10">EMMS </span>of the <span 
+class="cmtt-10">MMX</span>
+unit. This routine restores the FPU registers.
+<!--l. 2174--><p class="noindent"><span 
+class="cmti-10">Careful: </span>The compiler doesn&#8217;t warn if you mix floating point and MMX operations, so be
+careful.
+<!--l. 2177--><p class="noindent">The MMX instructions are optimized for multi media (what else?). So it isn&#8217;t possible to perform
+each operation, some operations give a type mismatch, see section <a 
+href="progse15.htm#x96-940005.4">5.4<!--tex4ht:ref: se:SupportedMMX--></a> for the supported MMX
+operations
+<!--l. 2182--><p class="noindent">An important restriction is that MMX operations aren&#8217;t range or overflow checked,
+even when you turn range and overflow checking on. This is due to the nature of MMX
+operations.
+<!--l. 2186--><p class="noindent">The <span 
+class="cmtt-10">MMX </span>unit must always be used when doing MMX operations because the exit code of this unit
+clears the MMX unit. If it wouldn&#8217;t do that, other program will crash. A consequence of this is
+that you can&#8217;t use MMX operations in the exit code of your units or programs, since they would
+interfere with the exit code of the <span 
+class="cmtt-10">MMX </span>unit. The compiler can&#8217;t check this, so you are responsible
+for this!
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse15.htm" >next</a>] [<a 
+href="progse13.htm" >prev</a>] [<a 
+href="progse13.htm#tailprogse13.htm" >prev-tail</a>] [<a 
+href="progse14.htm" >front</a>] [<a 
+href="progch5.htm#progse14.htm" >up</a>] </p></div><a 
+  name="tailprogse14.htm"></a>  
+</body></html> 

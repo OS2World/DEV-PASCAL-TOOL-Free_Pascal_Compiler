@@ -1,0 +1,95 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.2.0 Cross referencing: the link tag</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu27.htm" >prev</a>] [<a 
+href="fpdocsu27.htm#tailfpdocsu27.htm" >prev-tail</a>] [<a 
+href="#tailfpdocsu28.htm">tail</a>] [<a 
+href="fpdocse11.htm#fpdocsu28.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="fpdoc.htm#QQ2-45-44" name="x45-440004.2">Cross referencing: the <span 
+class="cmtt-10">link </span>tag</a></h4> To refer to another point in the documentation (a related function,
+class or whatever), a <span 
+class="cmbx-10">link </span>tag exists. The <span 
+class="cmtt-10">link </span>tag takes as a sole attribute a target <span 
+class="cmti-10">id </span>attribute.
+The link tag usually encloses a piece of text. In the HTML version of the documentation, this piece
+of text will function as a hyperlink. In the latex version, a page number reference will be
+printed.
+<!--l. 820--><p class="noindent">The <span 
+class="cmti-10">id </span>attribute contains the name of an element to which the link refers. The name is not case
+sensitive, but it must be a fully qualified name.
+<!--l. 824--><p class="noindent">An example of the link type would be:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;The&nbsp;&lt;link&nbsp;id=&#34;MyEnum&#34;&gt;MyEnum&lt;/link&gt;&nbsp;type&nbsp;is&nbsp;a&nbsp;simple&nbsp;type.
+</pre>
+</td></tr></table>
+<!--l. 829--><p class="noindent">The link attribute also has a short form:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;The&nbsp;&lt;link&nbsp;id=&#34;MyEnum&#34;/&gt;&nbsp;type&nbsp;is&nbsp;a&nbsp;simple&nbsp;type.
+</pre>
+</td></tr></table>In the short form, the value of the <span 
+class="cmti-10">id </span>attribute will be used as the text which will be hyperlinked.
+This is especially useful in the <span 
+class="cmbx-10">seealso </span>tag.
+<!--l. 837--><p class="noindent">To refer to a type in another unit, the unit name must be prepended to the <span 
+class="cmti-10">id </span>attribute:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;link&nbsp;id=&#34;myunit.myenum&#34;/&gt;
+</pre>
+</td></tr></table>will link to the <span 
+class="cmtt-10">myenum </span>type in a unit named <span 
+class="cmss-10">myunit</span>.
+<!--l. 844--><p class="noindent">To refer to a node in the documentation of another package, the package name should
+be prepended to the <span 
+class="cmti-10">id </span>attribute, and it should be prepended with the hash symbol
+(#):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;link&nbsp;id=&#34;#fcl.classes.sofrombeginning&#34;/&gt;
+</pre>
+</td></tr></table>will link to the constant <span 
+class="cmtt-10">sofrombeginning </span>in the <span 
+class="cmss-10">classes </span>unit of the FCL reference documentation.
+Note that for this to work correctly, the contents file which was created when generating the
+documentation of the type must be imported correctly (see the <span 
+class="cmtt-10">import </span>option).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu27.htm" >prev</a>] [<a 
+href="fpdocsu27.htm#tailfpdocsu27.htm" >prev-tail</a>] [<a 
+href="fpdocsu28.htm" >front</a>] [<a 
+href="fpdocse11.htm#fpdocsu28.htm" >up</a>] </p></div><a 
+  name="tailfpdocsu28.htm"></a>  
+</body></html> 

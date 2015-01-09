@@ -1,0 +1,74 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Include</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu118.htm" >next</a>] [<a 
+href="refsu116.htm" >prev</a>] [<a 
+href="refsu116.htm#tailrefsu116.htm" >prev-tail</a>] [<a 
+href="#tailrefsu117.htm">tail</a>] [<a 
+href="refse64.htm#refsu117.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-202-223" name="x202-20800013.3">Include</a></h4><a 
+  name="dx202-208001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Include (Var S : Any set type; E : Set element);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Include </span>includes <span 
+class="cmtt-10">E </span>in the set <span 
+class="cmtt-10">S </span>if it is not yet part of the set. E should be of the same type
+as the base type of the set <span 
+class="cmtt-10">S</span>.
+<!--l. 6037--><p class="noindent">Thus, the two following statements do the same thing:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;S:=S+[E];
+&nbsp;Include(S,E);
+</pre>
+</td></tr></table>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the type of the element <span 
+class="cmtt-10">E </span>is not equal to the base type of the set <span 
+class="cmtt-10">S</span>, the compiler will generate an
+error.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Exclude </span>(<a 
+href="refsu97.htm#x182-18800013.3">488<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6049--><p class="noindent">For an example, see <span 
+class="cmss-10">Exclude </span>(<a 
+href="refsu97.htm#x182-18800013.3">488<!--tex4ht:ref: se:exceptclasses--></a>)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu118.htm" >next</a>] [<a 
+href="refsu116.htm" >prev</a>] [<a 
+href="refsu116.htm#tailrefsu116.htm" >prev-tail</a>] [<a 
+href="refsu117.htm" >front</a>] [<a 
+href="refse64.htm#refsu117.htm" >up</a>] </p></div><a 
+  name="tailrefsu117.htm"></a>  
+</body></html> 

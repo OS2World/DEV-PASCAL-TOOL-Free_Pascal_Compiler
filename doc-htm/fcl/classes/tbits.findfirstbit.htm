@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TBits.FindFirstBit</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TBits.FindFirstBit</h1>
+<p>Find first bit with a particular value</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/tbits.htm">TBits</a><span class="sym">.</span>FindFirstBit<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;State<span class="sym">: </span>Boolean</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">):</span>LongInt<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>FindFirstBit</var> searches for the first bit with value <var>State</var>. It returns the position of this bit, or <var>-1</var> if no such bit was found. </p>
+<p>The search starts at position 0 in the array. If the first search returned a positive result, the found position is saved, and the <a href="../classes/tbits.findnextbit.htm">FindNextBit</a> and <a href="../classes/tbits.findprevbit.htm">FindPrevBit</a> will use this position to resume the search. To start a search from a certain position, the start position can be set with the <a href="../classes/tbits.setindex.htm">SetIndex</a> instead. </p>
+<h2>Errors</h2>
+<p>None. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tbits.findnextbit.htm">TBits.FindNextBit</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Searches the next bit with a particular value.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tbits.findprevbit.htm">TBits.FindPrevBit</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Searches the previous bit with a particular value.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tbits.openbit.htm">TBits.OpenBit</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Returns the position of the first bit that is set to <var>False</var>.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tbits.setindex.htm">TBits.SetIndex</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Sets the start position for <a href="../classes/tbits.findnextbit.htm">FindNextBit</a> and <a href="../classes/tbits.findprevbit.htm">FindPrevBit</a></p></td>
+</tr>
+</table>
+</body>
+</html>

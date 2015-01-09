@@ -1,0 +1,2413 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>22.4 Date and time functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse76.htm" >next</a>] [<a 
+href="unitsse74.htm" >prev</a>] [<a 
+href="unitsse74.htm#tailunitsse74.htm" >prev-tail</a>] [<a 
+href="#tailunitsse75.htm">tail</a>] [<a 
+href="unitsch22.htm#unitsse75.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">22.4</span> <a 
+href="units.htm#QQ2-102-821" name="x102-81500022.4">Date and time functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-822" name="x102-81600022.4">Date and time formatting characters</a></h4>
+<!--l. 384--><p class="noindent">Various date and time formatting routines accept a format string. to format the date and or time.
+The following characters can be used to control the date and time formatting:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">c</span> </dt><dd 
+class="description">: shortdateformat + &#8217; &#8217; + shorttimeformat
+     </dd><dt class="description">
+<span 
+class="cmbx-10">d</span> </dt><dd 
+class="description">: day of month
+     </dd><dt class="description">
+<span 
+class="cmbx-10">dd</span> </dt><dd 
+class="description">: day of month (leading zero)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ddd</span> </dt><dd 
+class="description">: day of week (abbreviation)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">dddd</span> </dt><dd 
+class="description">: day of week (full)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ddddd</span> </dt><dd 
+class="description">: shortdateformat
+     </dd><dt class="description">
+<span 
+class="cmbx-10">dddddd</span> </dt><dd 
+class="description">: longdateformat
+     </dd><dt class="description">
+<span 
+class="cmbx-10">m</span> </dt><dd 
+class="description">: month
+     </dd><dt class="description">
+<span 
+class="cmbx-10">mm</span> </dt><dd 
+class="description">: month (leading zero)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">mmm</span> </dt><dd 
+class="description">: month (abbreviation)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">mmmm</span> </dt><dd 
+class="description">: month (full)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">y</span> </dt><dd 
+class="description">: year (four digits)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">yy</span> </dt><dd 
+class="description">: year (two digits)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">yyyy</span> </dt><dd 
+class="description">: year (with century)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">h</span> </dt><dd 
+class="description">: hour
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">hh</span> </dt><dd 
+class="description">: hour (leading zero)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">n</span> </dt><dd 
+class="description">: minute
+     </dd><dt class="description">
+<span 
+class="cmbx-10">nn</span> </dt><dd 
+class="description">: minute (leading zero)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">s</span> </dt><dd 
+class="description">: second
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ss</span> </dt><dd 
+class="description">: second (leading zero)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">t</span> </dt><dd 
+class="description">: shorttimeformat
+     </dd><dt class="description">
+<span 
+class="cmbx-10">tt</span> </dt><dd 
+class="description">: longtimeformat
+     </dd><dt class="description">
+<span 
+class="cmbx-10">am/pm</span> </dt><dd 
+class="description">: use 12 hour clock and display am and pm accordingly
+     </dd><dt class="description">
+<span 
+class="cmbx-10">a/p</span> </dt><dd 
+class="description">: use 12 hour clock and display a and p accordingly
+     </dd><dt class="description">
+<span 
+class="cmbx-10">/</span> </dt><dd 
+class="description">: insert date seperator
+     </dd><dt class="description">
+<span 
+class="cmbx-10">:</span> </dt><dd 
+class="description">: insert time seperator
+     </dd><dt class="description">
+<span 
+class="cmbx-10">&#8221;xx&#8221;</span> </dt><dd 
+class="description">: literal text
+     </dd><dt class="description">
+<span 
+class="cmbx-10">&#8217;xx&#8217;</span> </dt><dd 
+class="description">: literal text</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-823" name="x102-81700022.4">TDateTime</a></h4><a 
+  name="dx102-817001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TDateTime = Double;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Many functions return or require a <span 
+class="cmtt-10">TDateTime </span>type, which contains a date and time in encoded
+form. The date and time are converted to a double as follows:
+    <ul class="itemize1">
+    <li class="itemize">The date part is stored in the integer part of the double as the number of days passed
+    since January 1, 1900.
+    </li>
+    <li class="itemize">The time part is stored in the fractional part of the double, as the number of milliseconds
+    passed since midnight (00:00), divided by the total number of milliseconds in a day.</li></ul>
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-824" name="x102-81800022.4">Date</a></h4><a 
+  name="dx102-818001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Date: TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Date </span>returns the current date in <span 
+class="cmtt-10">TDateTime </span>format. For more information about the
+<span 
+class="cmtt-10">TDateTime </span>type, see <span 
+class="cmss-10">TDateTime </span>(<a 
+href="#x102-81700022.4">715<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Time </span>(<a 
+href="#x102-84000022.4">731<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">Now </span>(<a 
+href="#x102-83500022.4">727<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TDateTime </span>(<a 
+href="#x102-81700022.4">715<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 446--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 446--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Date</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">YY,MM,DD</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Date</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Date);</span>
+<br>   &nbsp;<span 
+class="cmtt-10">DeCodeDate</span>&nbsp;<span 
+class="cmtt-10">(Date,YY,MM,DD);</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(format</span>&nbsp;<span 
+class="cmtt-10">('Date</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">(DD/MM/YY):</span>&nbsp;<span 
+class="cmtt-10">%d/%d/%d</span>&nbsp;<span 
+class="cmtt-10">',[dd,mm,yy]));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-825" name="x102-81900022.4">DateTimeToFileDate</a></h4><a 
+  name="dx102-819001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DateTimeToFileDate(DateTime : TDateTime) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateTimeToFileDate </span>function converts a date/time indication in <span 
+class="cmtt-10">TDateTime </span>format to a
+filedate function, such as returned for instance by the <span 
+class="cmss-10">FileAge </span>(<a 
+href="unitsse77.htm#x104-86400022.6">745<!--tex4ht:ref: se:TBufStream--></a>) function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Time   </span>(<a 
+href="#x102-84000022.4">731<!--tex4ht:ref: se:TBufStream--></a>),   <span 
+class="cmss-10">Date   </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>),   <span 
+class="cmss-10">FileDateToDateTime   </span>(<a 
+href="#x102-83000022.4">724<!--tex4ht:ref: se:TBufStream--></a>),   <span 
+class="cmss-10">DateTimeToSystemTime   </span>(<a 
+href="#x102-82200022.4">718<!--tex4ht:ref: se:TBufStream--></a>),
+<span 
+class="cmss-10">DateTimeToTimeStamp </span>(<a 
+href="#x102-82300022.4">719<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 463--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 463--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateTimeToFileDate</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('FileTime</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">would</span>&nbsp;<span 
+class="cmtt-10">be:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToFileDate</span>&nbsp;<span 
+class="cmtt-10">(Now));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-826" name="x102-82000022.4">DateTimeToStr</a></h4><a 
+  name="dx102-820001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DateTimeToStr(DateTime: TDateTime): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateTimeToStr </span>returns a string representation of <span 
+class="cmtt-10">DateTime </span>using the formatting specified
+in <span 
+class="cmtt-10">ShortDateTimeFormat</span>. It corresponds to a call to <span 
+class="cmtt-10">FormatDateTime('c',DateTime) </span>(see
+section <a 
+href="#x102-81600022.4">22.4<!--tex4ht:ref: se:formatchars--></a>, page <a 
+href="#x102-81600022.4">714<!--tex4ht:ref: se:formatchars--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FormatDateTime </span>(<a 
+href="#x102-83100022.4">724<!--tex4ht:ref: se:formatchars--></a>), <span 
+class="cmss-10">TDateTime </span>(<a 
+href="#x102-81700022.4">715<!--tex4ht:ref: se:formatchars--></a>).</dd></dl>
+<!--l. 480--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 480--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateTimeToStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(Now));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime('c',Now));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-827" name="x102-82100022.4">DateTimeToString</a></h4><a 
+  name="dx102-821001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DateTimeToString(var Result: string; const FormatStr: string;</span>
+<span 
+class="cmtt-10">const DateTime: TDateTime);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateTimeToString </span>returns in <span 
+class="cmtt-10">Result </span>a string representation of  <span 
+class="cmtt-10">DateTime </span>using the
+formatting specified in <span 
+class="cmtt-10">FormatStr</span>.
+<!--l. 490--><p class="noindent">for a list of characters that can be used in the <span 
+class="cmtt-10">FormatStr </span>formatting string, see section <a 
+href="#x102-81600022.4">22.4<!--tex4ht:ref: se:formatchars--></a>,
+page <a 
+href="#x102-81600022.4">714<!--tex4ht:ref: se:formatchars--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case a wrong formatting character is found, an <span 
+class="cmtt-10">EConvertError </span>is raised.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FormatDateTime </span>(<a 
+href="#x102-83100022.4">724<!--tex4ht:ref: se:formatchars--></a>), section <a 
+href="#x102-81600022.4">22.4<!--tex4ht:ref: se:formatchars--></a>, page <a 
+href="#x102-81600022.4">714<!--tex4ht:ref: se:formatchars--></a>.</dd></dl>
+<!--l. 499--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 499--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateTimeToString</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">today</span>&nbsp;<span 
+class="cmtt-10">(Fmt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">AnsiString;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DateTimeToString</span>&nbsp;<span 
+class="cmtt-10">(S,Fmt,Date);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">(Fmt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">AnsiString;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DateTimeToString</span>&nbsp;<span 
+class="cmtt-10">(S,Fmt,Time);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Today</span>&nbsp;<span 
+class="cmtt-10">('&#34;Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">&#34;dddd</span>&nbsp;<span 
+class="cmtt-10">dd</span>&nbsp;<span 
+class="cmtt-10">mmmm</span>&nbsp;<span 
+class="cmtt-10">y');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Today</span>&nbsp;<span 
+class="cmtt-10">('&#34;Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">&#34;d</span>&nbsp;<span 
+class="cmtt-10">mmm</span>&nbsp;<span 
+class="cmtt-10">yy');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Today</span>&nbsp;<span 
+class="cmtt-10">('&#34;Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">&#34;d/mmm/yy');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">('''The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">''am/pmh:n:s');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">('''The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">''hh:nn:ssam/pm');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">('''The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">''tt');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-828" name="x102-82200022.4">DateTimeToSystemTime</a></h4><a 
+  name="dx102-822001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DateTimeToSystemTime(DateTime: TDateTime; var SystemTime:</span>
+<span 
+class="cmtt-10">TSystemTime);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateTimeToSystemTime </span>converts a date/time pair in <span 
+class="cmtt-10">DateTime</span>, with <span 
+class="cmtt-10">TDateTime </span>format to
+a system time <span 
+class="cmtt-10">SystemTime</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToFileDate </span>(<a 
+href="#x102-81900022.4">716<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SystemTimeToDateTime </span>(<a 
+href="#x102-83900022.4">730<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DateTimeToTimeStamp </span>(<a 
+href="#x102-82300022.4">719<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 515--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 515--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateTimeToSystemTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ST</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSystemTime;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DateTimeToSystemTime(Now,ST);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">St</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">',year,'/',month,'/',Day);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',Hour,':',minute,':',Second,'.',MilliSecond);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-829" name="x102-82300022.4">DateTimeToTimeStamp</a></h4><a 
+  name="dx102-823001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DateTimeToTimeStamp(DateTime: TDateTime): TTimeStamp;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateTimeToSystemTime </span>converts a date/time pair in <span 
+class="cmtt-10">DateTime</span>, with <span 
+class="cmtt-10">TDateTime </span>format to
+a <span 
+class="cmtt-10">TTimeStamp </span>format.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToFileDate </span>(<a 
+href="#x102-81900022.4">716<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SystemTimeToDateTime </span>(<a 
+href="#x102-83900022.4">730<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DateTimeToSystemTime </span>(<a 
+href="#x102-82200022.4">718<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 531--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 531--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateTimeToTimeStamp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">TS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TTimeStamp;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TS:=DateTimeToTimeStamp</span>&nbsp;<span 
+class="cmtt-10">(Now);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">TS</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',time,'</span>&nbsp;<span 
+class="cmtt-10">millisecond</span>&nbsp;<span 
+class="cmtt-10">past</span>&nbsp;<span 
+class="cmtt-10">midnight');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">,Date,'</span>&nbsp;<span 
+class="cmtt-10">days</span>&nbsp;<span 
+class="cmtt-10">past</span>&nbsp;<span 
+class="cmtt-10">1/1/0001');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-830" name="x102-82400022.4">DateToStr</a></h4><a 
+  name="dx102-824001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DateToStr(Date: TDateTime): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DateToStr </span>converts <span 
+class="cmtt-10">Date </span>to a string representation. It uses <span 
+class="cmtt-10">ShortDateFormat </span>as it&#8217;s
+formatting string. It is hence completely equivalent to a <span 
+class="cmtt-10">FormatDateTime('ddddd', Date)</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TimeToStr </span>(<a 
+href="#x102-84300022.4">732<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DateTimeToStr </span>(<a 
+href="#x102-82000022.4">717<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">FormatDateTime </span>(<a 
+href="#x102-83100022.4">724<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrToDate </span>(<a 
+href="#x102-83600022.4">728<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 549--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 549--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DateToStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Format</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is:</span>&nbsp;<span 
+class="cmtt-10">%s',[DateToStr(Date)]));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-831" name="x102-82500022.4">DayOfWeek</a></h4><a 
+  name="dx102-825001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DayOfWeek(DateTime: TDateTime): integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DayOfWeek </span>returns the day of the week from <span 
+class="cmtt-10">DateTime</span>. <span 
+class="cmtt-10">Sunday </span>is counted as day 1,
+<span 
+class="cmtt-10">Saturday </span>is counted as day 7. The result of  <span 
+class="cmtt-10">DayOfWeek </span>can serve as an index to the
+<span 
+class="cmtt-10">LongDayNames </span>constant array, to retrieve the name of the day.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Date </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DateToStr </span>(<a 
+href="#x102-82400022.4">720<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 568--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 568--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DayOfWeek</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today''s</span>&nbsp;<span 
+class="cmtt-10">day</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',LongDayNames[DayOfWeek(Date)]);</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-832" name="x102-82600022.4">DecodeDate</a></h4><a 
+  name="dx102-826001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DecodeDate(Date: TDateTime; var Year, Month, Day: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DecodeDate </span>decodes the Year, Month and Day stored in <span 
+class="cmtt-10">Date</span>, and returns them in the
+<span 
+class="cmtt-10">Year</span>, <span 
+class="cmtt-10">Month </span>and <span 
+class="cmtt-10">Day </span>variables.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EncodeDate </span>(<a 
+href="#x102-82800022.4">722<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DecodeTime </span>(<a 
+href="#x102-82700022.4">721<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 583--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 583--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DecodeDate</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">YY,MM,DD</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DecodeDate(Date,YY,MM,DD);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(Format</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">%d/%d/%d',[dd,mm,yy]));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-833" name="x102-82700022.4">DecodeTime</a></h4><a 
+  name="dx102-827001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DecodeTime(Time: TDateTime; var Hour, Minute, Second,</span>
+<span 
+class="cmtt-10">MilliSecond: word);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DecodeDate </span>decodes the hours, minutes, second and milliseconds stored in <span 
+class="cmtt-10">Time</span>, and returns
+them in the <span 
+class="cmtt-10">Hour</span>, <span 
+class="cmtt-10">Minute </span>and <span 
+class="cmtt-10">Second </span>and <span 
+class="cmtt-10">MilliSecond </span>variables.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EncodeTime </span>(<a 
+href="#x102-82900022.4">723<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DecodeDate </span>(<a 
+href="#x102-82600022.4">721<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 600--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 600--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DecodeTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">HH,MM,SS,MS:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DecodeTime(Time,HH,MM,SS,MS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(format('The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">%d:%d:%d.%d',[hh,mm,ss,ms]));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-834" name="x102-82800022.4">EncodeDate</a></h4><a 
+  name="dx102-828001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function EncodeDate(Year, Month, Day :word): TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">EncodeDate </span>encodes the <span 
+class="cmtt-10">Year</span>, <span 
+class="cmtt-10">Month </span>and <span 
+class="cmtt-10">Day </span>variables to a date in <span 
+class="cmtt-10">TDateTime </span>format. It
+does the opposite of the <span 
+class="cmss-10">DecodeDate </span>(<a 
+href="#x102-82600022.4">721<!--tex4ht:ref: se:TBufStream--></a>) procedure.
+<!--l. 611--><p class="noindent">The parameters must lie withing valid ranges (boundaries included):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Year</span></dt><dd 
+class="description">must be between 1 and 9999.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Month</span></dt><dd 
+class="description">must be within the range 1-12.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Day</span></dt><dd 
+class="description">msut be between 1 and 31.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case one of the parameters is out of it&#8217;s valid range, 0 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EncodeTime </span>(<a 
+href="#x102-82900022.4">723<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DecodeDate </span>(<a 
+href="#x102-82600022.4">721<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 623--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex11.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 623--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example11;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">EncodeDate</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">YY,MM,DD</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DecodeDate</span>&nbsp;<span 
+class="cmtt-10">(Date,YY,MM,DD);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime</span>&nbsp;<span 
+class="cmtt-10">('dd</span>&nbsp;<span 
+class="cmtt-10">mmmm</span>&nbsp;<span 
+class="cmtt-10">yyyy',EnCodeDate(YY,Mm,Dd)));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-835" name="x102-82900022.4">EncodeTime</a></h4><a 
+  name="dx102-829001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function EncodeTime(Hour, Minute, Second, MilliSecond:word): TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">EncodeTime </span>encodes the <span 
+class="cmtt-10">Hour</span>, <span 
+class="cmtt-10">Minute</span>, <span 
+class="cmtt-10">Second</span>, <span 
+class="cmtt-10">MilliSecond </span>variables to a <span 
+class="cmtt-10">TDateTime</span>
+format result. It does the opposite of the <span 
+class="cmss-10">DecodeTime </span>(<a 
+href="#x102-82700022.4">721<!--tex4ht:ref: se:TBufStream--></a>) procedure.
+<!--l. 634--><p class="noindent">The parameters must have a valid range (boundaries included):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Hour</span></dt><dd 
+class="description">must be between 0 and 23.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Minute,second</span></dt><dd 
+class="description">must both be between 0 and 59.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Millisecond</span></dt><dd 
+class="description">must be between 0 and 999.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case one of the parameters is outside of it&#8217;s valid range, 0 is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EncodeDate </span>(<a 
+href="#x102-82800022.4">722<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DecodeTime </span>(<a 
+href="#x102-82700022.4">721<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 646--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 646--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example12;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">EncodeTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Hh,MM,SS,MS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DeCodeTime</span>&nbsp;<span 
+class="cmtt-10">(Time,Hh,MM,SS,MS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Present</span>&nbsp;<span 
+class="cmtt-10">Time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime('hh:mm:ss',EnCodeTime</span>&nbsp;<span 
+class="cmtt-10">(HH,MM,SS,MS)));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-836" name="x102-83000022.4">FileDateToDateTime</a></h4><a 
+  name="dx102-830001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FileDateToDateTime(Filedate : Longint) : TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FileDateToDateTime </span>converts the date/time encoded in <span 
+class="cmtt-10">filedate </span>to a <span 
+class="cmtt-10">TDateTime </span>encoded
+form. It can be used to convert date/time values returned by the <span 
+class="cmss-10">FileAge </span>(<a 
+href="unitsse77.htm#x104-86400022.6">745<!--tex4ht:ref: se:TBufStream--></a>) or <span 
+class="cmss-10">FindFirst</span>
+(<a 
+href="unitsse77.htm#x104-87900022.6">753<!--tex4ht:ref: se:TBufStream--></a>)/<span 
+class="cmss-10">FindNext </span>(<a 
+href="unitsse77.htm#x104-88000022.6">754<!--tex4ht:ref: se:TBufStream--></a>) functions to <span 
+class="cmtt-10">TDateTime </span>form.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToFileDate </span>(<a 
+href="#x102-81900022.4">716<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 664--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex13.pp</span><HR/><div class="listinginput">
+<!--l. 664--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FileDateToDateTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ThisAge</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('ex13.pp</span>&nbsp;<span 
+class="cmtt-10">created</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">:');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">ThisAge:=FileAge('ex13.pp');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(DateTimeToStr(FileDateToDateTime(ThisAge)));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-837" name="x102-83100022.4">FormatDateTime</a></h4><a 
+  name="dx102-831001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FormatDateTime(FormatStr: string; DateTime: TDateTime):string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FormatDateTime </span>formats the date and time encoded in <span 
+class="cmtt-10">DateTime </span>according to the
+formatting given in <span 
+class="cmtt-10">FormatStr</span>. The complete list of formatting characters can be found in
+section <a 
+href="#x102-81600022.4">22.4<!--tex4ht:ref: se:formatchars--></a>, page <a 
+href="#x102-81600022.4">714<!--tex4ht:ref: se:formatchars--></a>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On  error  (such  as  an  invalid  character  in  the  formatting  string),  and  <span 
+class="cmtt-10">EConvertError</span>
+exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToStr </span>(<a 
+href="#x102-82000022.4">717<!--tex4ht:ref: se:formatchars--></a>), <span 
+class="cmss-10">DateToStr </span>(<a 
+href="#x102-82400022.4">720<!--tex4ht:ref: se:formatchars--></a>), <span 
+class="cmss-10">TimeToStr </span>(<a 
+href="#x102-84300022.4">732<!--tex4ht:ref: se:formatchars--></a>), <span 
+class="cmss-10">StrToDateTime </span>(<a 
+href="#x102-83700022.4">729<!--tex4ht:ref: se:formatchars--></a>)</dd></dl>
+<!--l. 682--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex14.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 682--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FormatDateTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ThisMoment</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TDateTime;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ThisMoment:=Now;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime('hh:nn',ThisMoment));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime('DD</span>&nbsp;<span 
+class="cmtt-10">MM</span>&nbsp;<span 
+class="cmtt-10">YYYY',ThisMoment));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',FormatDateTime('c',ThisMoment));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-838" name="x102-83200022.4">IncMonth</a></h4><a 
+  name="dx102-832001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function IncMonth(const DateTime: TDateTime; NumberOfMonths: integer):</span>
+<span 
+class="cmtt-10">TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IncMonth </span>increases the month number in <span 
+class="cmtt-10">DateTime </span>with <span 
+class="cmtt-10">NumberOfMonths</span>. It wraps the
+result as to get a month between 1 and 12, and updates the year accordingly. <span 
+class="cmtt-10">NumberOfMonths</span>
+can be negative, and can be larger than 12 (in absolute value).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Date </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Time </span>(<a 
+href="#x102-84000022.4">731<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Now </span>(<a 
+href="#x102-83500022.4">727<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 701--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 701--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">IncMonth</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ThisDay</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TDateTime;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ThisDay:=Date;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ThisDay</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateToStr(ThisDay));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('6</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">ago</span>&nbsp;<span 
+class="cmtt-10">:',DateToStr(IncMonth(ThisDay,-6)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('6</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">:'</span>&nbsp;<span 
+class="cmtt-10">,DateToStr(IncMonth(ThisDay,6)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('12</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">ago</span>&nbsp;<span 
+class="cmtt-10">:',DateToStr(IncMonth(ThisDay,-12)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('12</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">:'</span>&nbsp;<span 
+class="cmtt-10">,DateToStr(IncMonth(ThisDay,12)));</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('18</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">ago</span>&nbsp;<span 
+class="cmtt-10">:',DateToStr(IncMonth(ThisDay,-18)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('18</span>&nbsp;<span 
+class="cmtt-10">months</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">:'</span>&nbsp;<span 
+class="cmtt-10">,DateToStr(IncMonth(ThisDay,18)));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-839" name="x102-83300022.4">IsLeapYear</a></h4><a 
+  name="dx102-833001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function IsLeapYear(Year: Word): boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IsLeapYear </span>returns <span 
+class="cmtt-10">True </span>if <span 
+class="cmtt-10">Year </span>is a leap year, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IncMonth </span>(<a 
+href="#x102-83200022.4">725<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Date </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 716--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 716--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">IsLeapYear</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">YY,MM,dd</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TestYear</span>&nbsp;<span 
+class="cmtt-10">(Y</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(Y,'</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">leap</span>&nbsp;<span 
+class="cmtt-10">year</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',IsLeapYear(Y));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DeCodeDate(Date,YY,mm,dd);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(yy);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(2000);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(1900);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(1600);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(1992);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestYear(1995);</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-840" name="x102-83400022.4">MSecsToTimeStamp</a></h4><a 
+  name="dx102-834001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function MSecsToTimeStamp(MSecs: Comp): TTimeStamp;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MSecsTiTimeStamp </span>converts the given number of milliseconds to a <span 
+class="cmtt-10">TTimeStamp </span>date/time
+notation.
+<!--l. 726--><p class="noindent">Use <span 
+class="cmtt-10">TTimeStamp </span>variables if you need to keep very precise track of time.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TimeStampToMSecs </span>(<a 
+href="#x102-84200022.4">732<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">DateTimeToTimeStamp </span>(<a 
+href="#x102-82300022.4">719<!--tex4ht:ref: se:TBufStream--></a>),</dd></dl>
+<!--l. 734--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex17.pp</span><HR/><div class="listinginput">
+<!--l. 734--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example17;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MSecsToTimeStamp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">MS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Comp;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">TS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TTimeStamp;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TDateTime;</span>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TS:=DateTimeToTimeStamp(Now);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">days</span>&nbsp;<span 
+class="cmtt-10">since</span>&nbsp;<span 
+class="cmtt-10">1/1/0001</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TS.Date);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">millisecs</span>&nbsp;<span 
+class="cmtt-10">since</span>&nbsp;<span 
+class="cmtt-10">midnight</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TS.Time);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MS:=TimeStampToMSecs(TS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">millisecs</span>&nbsp;<span 
+class="cmtt-10">since</span>&nbsp;<span 
+class="cmtt-10">1/1/0001</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MS:=MS-1000*3600*2;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TS:=MSecsToTimeStamp(MS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DT:=TimeStampToDateTime(TS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">minus</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">day</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(DT));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-841" name="x102-83500022.4">Now</a></h4><a 
+  name="dx102-835001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Now: TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Now </span>returns the current date and time. It is equivalent to <span 
+class="cmtt-10">Date+Time</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Date </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Time </span>(<a 
+href="#x102-84000022.4">731<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 749--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex18.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 749--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example18;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Now</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(Now));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-842" name="x102-83600022.4">StrToDate</a></h4><a 
+  name="dx102-836001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrToDate(const S: string): TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrToDate </span>converts the string <span 
+class="cmtt-10">S </span>to a <span 
+class="cmtt-10">TDateTime </span>date value. The Date must consist of 1 to
+three digits, separated by the <span 
+class="cmtt-10">DateSeparator </span>character. If two numbers are given, they are
+supposed to form the day and month of the current year. If only one number is given, it is
+supposed to represent the day of the current month. (This is <span 
+class="cmti-10">not supported in Delphi)</span>
+<!--l. 763--><p class="noindent"><span 
+class="cmti-10">The order of the digits (y/m/d, m/d/y, d/m/y) is determined from the </span><span 
+class="cmitt-10">ShortDateFormat</span>
+<span 
+class="cmti-10">variable.</span>
+</dd><dt class="list">
+<span 
+class="cmssi-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmti-10">On error (e.g. an invalid date or invalid character), an </span><span 
+class="cmitt-10">EConvertError </span><span 
+class="cmti-10">exception is raised.</span>
+</dd><dt class="list">
+<span 
+class="cmssi-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmssi-10">StrToTime </span><span 
+class="cmti-10">(</span><a 
+href="#x102-83800022.4"><span 
+class="cmti-10">729</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">), </span><span 
+class="cmssi-10">DateToStr </span><span 
+class="cmti-10">(</span><a 
+href="#x102-82400022.4"><span 
+class="cmti-10">720</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">)n </span><span 
+class="cmssi-10">TimeToStr </span><span 
+class="cmti-10">(</span><a 
+href="#x102-84300022.4"><span 
+class="cmti-10">732</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">).</span></dd></dl>
+<!--l. 772--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex19.pp</span><HR/><div class="listinginput">
+<!--l. 772--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example19;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrToDate</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TestStr</span>&nbsp;<span 
+class="cmtt-10">(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateToStr(StrToDate(S)));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ShortDateFormat</span>&nbsp;<span 
+class="cmtt-10">',ShortDateFormat);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr(DateTimeToStr(Date));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('05/05/1999');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('5/5');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('5');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-843" name="x102-83700022.4">StrToDateTime</a></h4><a 
+  name="dx102-837001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrToDateTime(const S: string): TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrToDateTime </span>converts the string <span 
+class="cmtt-10">S </span>to a <span 
+class="cmtt-10">TDateTime </span>date and time value. The Date must
+consist of 1 to three digits, separated by the <span 
+class="cmtt-10">DateSeparator </span>character. If two numbers are
+given, they are supposed to form the day and month of the current year. If only one number
+is given, it is supposed to represent the day of the current month. (This is <span 
+class="cmti-10">not supported in</span>
+<span 
+class="cmti-10">Delphi)</span>
+<!--l. 786--><p class="noindent"><span 
+class="cmti-10">The order of the digits (y/m/d, m/d/y, d/m/y) is determined from the </span><span 
+class="cmitt-10">ShortDateFormat</span>
+<span 
+class="cmti-10">variable.</span>
+</dd><dt class="list">
+<span 
+class="cmssi-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmti-10">On error (e.g. an invalid date or invalid character), an </span><span 
+class="cmitt-10">EConvertError </span><span 
+class="cmti-10">exception is raised.</span>
+</dd><dt class="list">
+<span 
+class="cmssi-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmssi-10">StrToDate </span><span 
+class="cmti-10">(</span><a 
+href="#x102-83600022.4"><span 
+class="cmti-10">728</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">), </span><span 
+class="cmssi-10">StrToTime </span><span 
+class="cmti-10">(</span><a 
+href="#x102-83800022.4"><span 
+class="cmti-10">729</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">), </span><span 
+class="cmssi-10">DateTimeToStr </span><span 
+class="cmti-10">(</span><a 
+href="#x102-82000022.4"><span 
+class="cmti-10">717</span><!--tex4ht:ref: se:TBufStream--></a><span 
+class="cmti-10">)</span></dd></dl>
+<!--l. 795--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex20.pp</span><HR/><div class="listinginput">
+<!--l. 795--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example20;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrToDateTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TestStr</span>&nbsp;<span 
+class="cmtt-10">(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(StrToDateTime(S)));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ShortDateFormat</span>&nbsp;<span 
+class="cmtt-10">',ShortDateFormat);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr(DateTimeToStr(Now));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('05-05-1999</span>&nbsp;<span 
+class="cmtt-10">15:50');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('5-5</span>&nbsp;<span 
+class="cmtt-10">13:30');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TestStr('5</span>&nbsp;<span 
+class="cmtt-10">1:30PM');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-844" name="x102-83800022.4">StrToTime</a></h4><a 
+  name="dx102-838001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrToTime(const S: string): TDateTime;</span>
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrToTime </span>converts the string <span 
+class="cmtt-10">S </span>to a <span 
+class="cmtt-10">TDateTime </span>time value. The time must consist of 1
+to 4 digits, separated by the <span 
+class="cmtt-10">TimeSeparator </span>character. If two numbers are given, they are
+supposed to form the hour and minutes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error (e.g. an invalid date or invalid character), an <span 
+class="cmtt-10">EConvertError </span>exception is raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrToDate </span>(<a 
+href="#x102-83600022.4">728<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrToDateTime </span>(<a 
+href="#x102-83700022.4">729<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TimeToStr </span>(<a 
+href="#x102-84300022.4">732<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 813--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex21.pp</span><HR/><div class="listinginput">
+<!--l. 813--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example21;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrToTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TestStr</span>&nbsp;<span 
+class="cmtt-10">(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(S,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TimeToStr(StrToTime(S)));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">teststr</span>&nbsp;<span 
+class="cmtt-10">(TimeToStr(Time));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">teststr</span>&nbsp;<span 
+class="cmtt-10">('12:00');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">teststr</span>&nbsp;<span 
+class="cmtt-10">('15:30');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">teststr</span>&nbsp;<span 
+class="cmtt-10">('3:30PM');</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-845" name="x102-83900022.4">SystemTimeToDateTime</a></h4><a 
+  name="dx102-839001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function SystemTimeToDateTime(const SystemTime: TSystemTime): TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SystemTimeToDateTime </span>converts a <span 
+class="cmtt-10">TSystemTime </span>record to a <span 
+class="cmtt-10">TDateTime </span>style date/time
+indication.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToSystemTime </span>(<a 
+href="#x102-82200022.4">718<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 828--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex22.pp</span><HR/><div class="listinginput">
+<!--l. 828--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example22;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SystemTimeToDateTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ST</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSystemTime;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DateTimeToSystemTime(Now,ST);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">St</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">',year,'/',month,'/',Day);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',Hour,':',minute,':',Second,'.',MilliSecond);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Converted</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(SystemTimeToDateTime(ST)));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-846" name="x102-84000022.4">Time</a></h4><a 
+  name="dx102-840001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Time: TDateTime;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Time </span>returns the current time in <span 
+class="cmtt-10">TDateTime </span>format. The date part of the <span 
+class="cmtt-10">TDateTimeValue</span>
+is set to zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Now </span>(<a 
+href="#x102-83500022.4">727<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Date </span>(<a 
+href="#x102-81800022.4">715<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 844--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex23.pp</span><HR/><div class="listinginput">
+<!--l. 844--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example23;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Time</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('The</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TimeToStr(Time));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-847" name="x102-84100022.4">TimeStampToDateTime</a></h4><a 
+  name="dx102-841001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TimeStampToDateTime(const TimeStamp: TTimeStamp): TDateTime;</span>
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TimeStampToDateTime </span>converts <span 
+class="cmtt-10">TimeStamp </span>to a <span 
+class="cmtt-10">TDateTime </span>format variable. It is the inverse
+operation of <span 
+class="cmss-10">DateTimeToTimeStamp </span>(<a 
+href="#x102-82300022.4">719<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DateTimeToTimeStamp </span>(<a 
+href="#x102-82300022.4">719<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TimeStampToMSecs </span>(<a 
+href="#x102-84200022.4">732<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 859--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex24.pp</span><HR/><div class="listinginput">
+<!--l. 859--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example24;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TimeStampToDateTime</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">TS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TTimeStamp;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TDateTime;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TS:=DateTimeToTimeStamp</span>&nbsp;<span 
+class="cmtt-10">(Now);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">TS</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Now</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',time,'</span>&nbsp;<span 
+class="cmtt-10">millisecond</span>&nbsp;<span 
+class="cmtt-10">past</span>&nbsp;<span 
+class="cmtt-10">midnight');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Today</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">,Date,'</span>&nbsp;<span 
+class="cmtt-10">days</span>&nbsp;<span 
+class="cmtt-10">past</span>&nbsp;<span 
+class="cmtt-10">1/1/0001');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DT:=TimeStampToDateTime(TS);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Together</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',DateTimeToStr(DT));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-848" name="x102-84200022.4">TimeStampToMSecs</a></h4><a 
+  name="dx102-842001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TimeStampToMSecs(const TimeStamp: TTimeStamp): comp;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TimeStampToMSecs </span>converts TimeStamp to the number of seconds since <span 
+class="cmtt-10">1/1/0001</span>.
+<!--l. 869--><p class="noindent">Use <span 
+class="cmtt-10">TTimeStamp </span>variables if you need to keep very precise track of time.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">MSecsToTimeStamp </span>(<a 
+href="#x102-83400022.4">726<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TimeStampToDateTime </span>(<a 
+href="#x102-84100022.4">731<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 877--><p class="noindent">For an example, see <span 
+class="cmss-10">MSecsToTimeStamp </span>(<a 
+href="#x102-83400022.4">726<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-102-849" name="x102-84300022.4">TimeToStr</a></h4><a 
+  name="dx102-843001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TimeToStr(Time: TDateTime): string;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TimeToStr </span>converts the time in <span 
+class="cmtt-10">Time </span>to a string. It uses the <span 
+class="cmtt-10">ShortTimeFormat </span>variable
+to  see  what  formatting  needs  to  be  applied.  It  is  therefor  entirely  equivalent  to  a
+<span 
+class="cmtt-10">FormatDateTime('t',Time) </span>call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 892--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">sysutex/ex25.pp</span><HR/><div class="listinginput">
+<!--l. 892--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example25;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TimeToStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('The</span>&nbsp;<span 
+class="cmtt-10">current</span>&nbsp;<span 
+class="cmtt-10">time</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',TimeToStr(Time));</span>
+<br>   <span 
+class="cmtt-10">End.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse76.htm" >next</a>] [<a 
+href="unitsse74.htm" >prev</a>] [<a 
+href="unitsse74.htm#tailunitsse74.htm" >prev-tail</a>] [<a 
+href="unitsse75.htm" >front</a>] [<a 
+href="unitsch22.htm#unitsse75.htm" >up</a>] </p></div><a 
+  name="tailunitsse75.htm"></a>   
+</body></html> 

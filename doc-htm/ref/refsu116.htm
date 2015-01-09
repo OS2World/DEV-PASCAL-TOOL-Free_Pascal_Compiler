@@ -1,0 +1,169 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Inc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu117.htm" >next</a>] [<a 
+href="refsu115.htm" >prev</a>] [<a 
+href="refsu115.htm#tailrefsu115.htm" >prev-tail</a>] [<a 
+href="#tailrefsu116.htm">tail</a>] [<a 
+href="refse64.htm#refsu116.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-201-222" name="x201-20700013.3">Inc</a></h4><a 
+  name="dx201-207001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Inc (Var X : Any ordinal type[; Increment : Any ordinal type]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Inc </span>increases the value of <span 
+class="cmtt-10">X </span>with <span 
+class="cmtt-10">Increment</span>. If <span 
+class="cmtt-10">Increment </span>isn&#8217;t specified, then 1 is taken
+as a default.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If range checking is on, then A range check can occur, or an overflow error, when an attempt
+is made to increase <span 
+class="cmtt-10">X </span>over its maximum value.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Dec </span>(<a 
+href="refsu90.htm#x175-18100013.3">480<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6027--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex32.pp</span><HR/><div class="listinginput">
+<!--l. 6027--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example32;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Cardinal</span>&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">W</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Byte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">ShortInt</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CH</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'A';</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(C);</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">C:=2</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(L,5);</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">L:=6</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(I,-3);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">I:=-2</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(W,3);</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">W:=4</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(B,100);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">B:=101</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(SI,-3);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Si:=-2</span>&nbsp;&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Inc</span>&nbsp;<span 
+class="cmtt-10">(CH,1);</span>&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">ch:='B'</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu117.htm" >next</a>] [<a 
+href="refsu115.htm" >prev</a>] [<a 
+href="refsu115.htm#tailrefsu115.htm" >prev-tail</a>] [<a 
+href="refsu116.htm" >front</a>] [<a 
+href="refse64.htm#refsu116.htm" >up</a>] </p></div><a 
+  name="tailrefsu116.htm"></a>  
+</body></html> 

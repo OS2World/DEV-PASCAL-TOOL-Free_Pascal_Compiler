@@ -1,0 +1,88 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.1 Types, Constants and variables : </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse11.htm" >next</a>] [<a 
+href="#tailunitsse10.htm">tail</a>] [<a 
+href="unitsch5.htm#unitsse10.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.1</span> <a 
+href="units.htm#QQ2-20-93" name="x20-910005.1">Types, Constants and variables : </a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-20-94" name="x20-920005.1">Constants</a></h4> <span 
+class="cmtt-10">No</span>_<span 
+class="cmtt-10">Argument=0 </span>: Specifies that a long option does not take an argument.
+<br class="newline"><span 
+class="cmtt-10">Required</span>_<span 
+class="cmtt-10">Argument=1 </span>: Specifies that a long option needs an argument.
+<br class="newline"><span 
+class="cmtt-10">Optional</span>_<span 
+class="cmtt-10">Argument=2 </span>: Specifies that a long option optionally takes an argument.
+<br class="newline"><span 
+class="cmtt-10">EndOfOptions=#255 </span>: Returned by getopt, getlongopts to indicate that there are no more
+options.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-20-95" name="x20-930005.1">Types</a></h4>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TOption&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;String;
+&nbsp;&nbsp;&nbsp;Has_arg&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;Flag&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;Value&nbsp;&nbsp;&nbsp;:&nbsp;Char;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;POption&nbsp;=&nbsp;^TOption;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">option </span>type is used to communicate the long options to <span 
+class="cmtt-10">GetLongOpts</span>. The <span 
+class="cmtt-10">Name </span>field is the
+name of the option. <span 
+class="cmtt-10">Has</span>_<span 
+class="cmtt-10">arg </span>specifies if the option wants an argument, <span 
+class="cmtt-10">Flag </span>is a pointer to a
+<span 
+class="cmtt-10">char</span>, which is set to <span 
+class="cmtt-10">Value</span>, if it is non-<span 
+class="cmtt-10">nil</span>. <span 
+class="cmtt-10">POption </span>is a pointer to a <span 
+class="cmtt-10">Option </span>record. It is used as
+an argument to the <span 
+class="cmtt-10">GetLongOpts </span>function.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-20-96" name="x20-940005.1">Variables</a></h4> <span 
+class="cmtt-10">OptArg:String </span>&nbsp;Is set to the argument of an option, if the option needs one.
+<br class="newline"><span 
+class="cmtt-10">Optind:Longint </span>&nbsp;Is the index of the current <span 
+class="cmtt-10">paramstr()</span>. When all options have been processed,
+<span 
+class="cmtt-10">optind </span>is the index of the first non-option parameter. This is a read-only variable. Note that it can
+become equal to <span 
+class="cmtt-10">paramcount+1</span>
+<br class="newline"><span 
+class="cmtt-10">OptErr:Boolean </span>&nbsp;Indicates whether <span 
+class="cmtt-10">getopt() </span>prints error messages.
+<br class="newline"><span 
+class="cmtt-10">OptOpt:Char </span>&nbsp;In case of an error, contains the character causing the error.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse11.htm" >next</a>] [<a 
+href="unitsse10.htm" >front</a>] [<a 
+href="unitsch5.htm#unitsse10.htm" >up</a>] </p></div><a 
+  name="tailunitsse10.htm"></a>   
+</body></html> 

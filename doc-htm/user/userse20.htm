@@ -1,0 +1,195 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.1 First steps with the IDE</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse21.htm" >next</a>] [<a 
+href="#tailuserse20.htm">tail</a>] [<a 
+href="userch6.htm#userse20.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.1</span> <a 
+href="user.htm#QQ2-28-62" name="x28-600006.1">First steps with the IDE</a></h3>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-28-63" name="x28-610006.1">Starting the IDE</a></h4> The IDE is started by entering the command:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fp
+</pre>
+</td></tr></table>at the command line. It can also be started from a graphical user interface such as
+<span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>.
+<!--l. 48--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, it is possible to switch between windowed mode and full screen mode by
+pressing <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small></span>).
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-28-64" name="x28-620006.1">IDE Command line options</a></h4> When starting the IDE, command line options can be passed:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fp&nbsp;[-option]&nbsp;[-option]&nbsp;...&nbsp;&lt;file&nbsp;name&gt;&nbsp;...
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Option </span>is one of the following switches (the option letters are case insensitive):
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-N</span> </dt><dd 
+class="description">(<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>only) Do not use long file names. <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>95 and later versions of <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>
+     provide an interface to DOS applications to access long file names. The IDE uses
+     this interface by default to access files. Under certain circumstances, this can lead to
+     problems. This switch tells the IDE not to use the long filenames.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-Cfilename</span> </dt><dd 
+class="description">This option, followed by a filename, tells the IDE to read its options from
+     <span 
+class="cmss-10">filename</span>. There should be no whitespace between the file name and the <span 
+class="cmtt-10">-C</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-F</span> </dt><dd 
+class="description">use alternative graphic characters. This can be used to run the IDE on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>in an
+     X-term or through a telnet session.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-R</span> </dt><dd 
+class="description">After starting the IDE, it changes automatically to the directory which was active when
+     the IDE exited the last time.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-S</span> </dt><dd 
+class="description">Disable the mouse. When this option is used, then the mouse is disabled, even if a mouse
+     is present.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-Tttyname</span> </dt><dd 
+class="description">(linux/unix only) Sends program output to tty <span 
+class="cmtt-10">ttyname</span>. This is useful so one
+     doesn&#8217;t have to switch between program output and ide all the time.</dd></dl>
+<!--l. 82--><p class="noindent">The files given at the command line are loaded into edit windows automatically.
+<!--l. 84--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Under DOS/Win32, the first character of a command-line option can be a <span 
+class="cmtt-10">/ </span>character instead of a
+<span 
+class="cmtt-10">- </span>character. So <span 
+class="cmtt-10">/S </span>is equivalent to <span 
+class="cmtt-10">-S</span>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-28-65" name="x28-630006.1">The IDE screen</a></h4>
+<!--l. 91--><p class="noindent">After start up, the screen of the IDE can look like figure (<a 
+href="#x28-630011">6.1<!--tex4ht:ref: fig:idestart--></a>).
+<!--l. 93--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x28-630011"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.1: </td><td  
+class="content">The IDE screen immediately after startup</td></tr></table></div><!--tex4ht:label?: x28-630011-->
+<!--l. 93--><p class="noindent"><img 
+src="user2x.png" alt="PIC" class="graphics" width="400.34999pt" height="204.72603pt" ><!--tex4ht:graphics  
+name="user2x.png" src="pics//idestart.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 95--><p class="noindent">At top of the screen the <span 
+class="cmti-10">menu bar </span>is visible, at the bottom the <span 
+class="cmti-10">status bar</span>. The empty space
+between them is called the <span 
+class="cmti-10">desktop</span>.
+<!--l. 99--><p class="noindent">The status bar shows the keyboard shortcuts for frequently used commands, and allows quick
+access to these commands by clicking them with the mouse. At the right edge of the status
+bar, the current amount of unused memory is displayed. This is only an indication,
+since the IDE tries to allocate more memory from the operating system if it runs out of
+memory.
+<!--l. 107--><p class="noindent">The menu provides access to all of the IDE&#8217;s functionality, and at the right edge of the menu, a
+clock is displayed.
+<!--l. 110--><p class="noindent">The IDE can be left by selecting <span 
+class="cmbx-10">&#8221;File--Exit&#8221; </span>in the menu
+<a 
+href="user29.htm" name="user29.htm" ><sup>1</sup></a> or by
+pressing <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small>-X</span>.
+<!--l. 114--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> If a file <span 
+class="cmss-10">fp.ans </span>is found in the current directory, then it is loaded and used to paint the background.
+This file should contain ANSI drawing commands to draw on a screen.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse21.htm" >next</a>] [<a 
+href="userse20.htm" >front</a>] [<a 
+href="userch6.htm#userse20.htm" >up</a>] </p></div><a 
+  name="tailuserse20.htm"></a>   
+</body></html> 

@@ -1,0 +1,1820 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>21.1 Functions and procedures.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="#tailunitsse71.htm">tail</a>] [<a 
+href="unitsch21.htm#unitsse71.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">21.1</span> <a 
+href="units.htm#QQ2-97-789" name="x97-78300021.1">Functions and procedures.</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-790" name="x97-78400021.1">StrAlloc</a></h4><a 
+  name="dx97-784001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrAlloc (Len : Longint) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StrAlloc </span>reserves memory on the heap for a string with length <span 
+class="cmtt-10">Len</span>, terminating  <span 
+class="cmtt-10">#0</span>
+included, and returns a pointer to it.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If there is not enough memory, a run-time error occurs.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrNew </span>(<a 
+href="#x97-79900021.1">683<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrPCopy </span>(<a 
+href="#x97-80100021.1">684<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-791" name="x97-78500021.1">StrCat</a></h4><a 
+  name="dx97-785001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrCat (Dest,Source : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Attaches <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest </span>and returns <span 
+class="cmtt-10">Dest</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No length checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Concat </span>() </dd></dl>
+<!--l. 58--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex11.pp</span><HR/><div class="listinginput">
+<!--l. 58--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example11;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrCat</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">String.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2:=StrAlloc</span>&nbsp;<span 
+class="cmtt-10">(StrLen(P1)*2+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrMove</span>&nbsp;<span 
+class="cmtt-10">(P2,P1,StrLen(P1)+1);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">P2=P1</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrCat</span>&nbsp;<span 
+class="cmtt-10">(P2,P1);</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Append</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">once</span>&nbsp;<span 
+class="cmtt-10">more</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-792" name="x97-78600021.1">StrComp</a></h4><a 
+  name="dx97-786001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrComp (S1,S2 : PChar) : Longint;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Compares the null-terminated strings <span 
+class="cmtt-10">S1 </span>and <span 
+class="cmtt-10">S2</span>. The result is
+    <ul class="itemize1">
+    <li class="itemize">A negative <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&lt;S2</span>.
+    </li>
+    <li class="itemize">0 when <span 
+class="cmtt-10">S1=S2</span>.
+    </li>
+    <li class="itemize">A positive <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&gt;S2</span>.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLComp </span>(<a 
+href="#x97-79300021.1">679<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrIComp </span>(<a 
+href="#x97-79100021.1">678<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrLIComp </span>(<a 
+href="#x97-79600021.1">681<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 77--><p class="noindent">For an example, see <span 
+class="cmss-10">StrLComp </span>(<a 
+href="#x97-79300021.1">679<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-793" name="x97-78700021.1">StrCopy</a></h4><a 
+  name="dx97-787001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrCopy (Dest,Source : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copy the null terminated string in <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest</span>, and returns a pointer to <span 
+class="cmtt-10">Dest</span>. <span 
+class="cmtt-10">Dest</span>
+needs enough room to contain <span 
+class="cmtt-10">Source</span>, i.e. <span 
+class="cmtt-10">StrLen(Source)+1 </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No length checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPCopy </span>(<a 
+href="#x97-80100021.1">684<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrLCopy </span>(<a 
+href="#x97-79400021.1">680<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrECopy </span>(<a 
+href="#x97-78900021.1">676<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 92--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 92--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrCopy</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP:=StrAlloc(Strlen(P)+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">STrCopy</span>&nbsp;<span 
+class="cmtt-10">(PP,P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">StrComp</span>&nbsp;<span 
+class="cmtt-10">(PP,P)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Oh-oh</span>&nbsp;<span 
+class="cmtt-10">problems...')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('All</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">well</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PP=',PP);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-794" name="x97-78800021.1">StrDispose</a></h4><a 
+  name="dx97-788001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure StrDispose (P : PChar);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Removes the string in <span 
+class="cmtt-10">P </span>from the heap and releases the memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Dispose </span>() , <span 
+class="cmss-10">StrNew </span>(<a 
+href="#x97-79900021.1">683<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 105--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex17.pp</span><HR/><div class="listinginput">
+<!--l. 105--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example17;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrDispose</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Before</span>&nbsp;<span 
+class="cmtt-10">StnNew</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MemAvail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2:=StrNew</span>&nbsp;<span 
+class="cmtt-10">(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('After</span>&nbsp;<span 
+class="cmtt-10">StrNew</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MemAvail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrDispose(P2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('After</span>&nbsp;<span 
+class="cmtt-10">StrDispose</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Memory</span>&nbsp;<span 
+class="cmtt-10">available</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',MemAvail);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-795" name="x97-78900021.1">StrECopy</a></h4><a 
+  name="dx97-789001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrECopy (Dest,Source : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies the Null-terminated string in <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest</span>, and returns a pointer to the end (i.e.
+the terminating Null-character) of the copied string.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No length checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLCopy </span>(<a 
+href="#x97-79400021.1">680<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrCopy </span>(<a 
+href="#x97-78700021.1">675<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 120--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex6.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 120--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrECopy</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP:=StrAlloc</span>&nbsp;<span 
+class="cmtt-10">(StrLen(P)+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Longint(StrECopy(PP,P))-Longint(PP)&lt;&gt;StrLen(P)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Something</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">wrong</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">!')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('PP=</span>&nbsp;<span 
+class="cmtt-10">',PP);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-796" name="x97-79000021.1">StrEnd</a></h4><a 
+  name="dx97-790001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrEnd (P : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns a pointer to the end of <span 
+class="cmtt-10">P</span>. (i.e. to the terminating null-character.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLen </span>(<a 
+href="#x97-79500021.1">681<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 134--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 134--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrEnd</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Longint(StrEnd(P))-Longint(P)&lt;&gt;StrLen(P)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Something</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">wrong</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">!')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('All</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">well..');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-797" name="x97-79100021.1">StrIComp</a></h4><a 
+  name="dx97-791001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrIComp (S1,S2 : PChar) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Compares the null-terminated strings <span 
+class="cmtt-10">S1 </span>and <span 
+class="cmtt-10">S2</span>, ignoring case. The result is
+    <ul class="itemize1">
+    <li class="itemize">A negative <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&lt;S2</span>.
+    </li>
+    <li class="itemize">0 when <span 
+class="cmtt-10">S1=S2</span>.
+    </li>
+    <li class="itemize">A positive <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&gt;S2</span>.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLComp </span>(<a 
+href="#x97-79300021.1">679<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrComp </span>(<a 
+href="#x97-78600021.1">674<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrLIComp </span>(<a 
+href="#x97-79600021.1">681<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 153--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 153--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLComp</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">second</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('P1</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">StrComp</span>&nbsp;<span 
+class="cmtt-10">(P1,P2)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('NOT</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('equal.</span>&nbsp;<span 
+class="cmtt-10">The</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">StrLComp(P1,P2,L)=0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">inc</span>&nbsp;<span 
+class="cmtt-10">(L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dec(l);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(l,'</span>&nbsp;<span 
+class="cmtt-10">characters</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">same.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-798" name="x97-79200021.1">StrLCat</a></h4><a 
+  name="dx97-792001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLCat (Dest,Source : PChar; MaxLen : Longint) : PChar;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Adds  <span 
+class="cmtt-10">MaxLen  </span>characters  from  <span 
+class="cmtt-10">Source  </span>to  <span 
+class="cmtt-10">Dest</span>,  and  adds  a  terminating  null-character.
+Returns <span 
+class="cmtt-10">Dest</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrCat </span>(<a 
+href="#x97-78500021.1">674<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 167--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 167--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example12;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLCat</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'1234567890';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2:=StrAlloc</span>&nbsp;<span 
+class="cmtt-10">(StrLen(P1)*2+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2^:=#0;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Zero</span>&nbsp;<span 
+class="cmtt-10">length</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrCat</span>&nbsp;<span 
+class="cmtt-10">(P2,P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrLCat</span>&nbsp;<span 
+class="cmtt-10">(P2,P1,5);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P2</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',P2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-799" name="x97-79300021.1">StrLComp</a></h4><a 
+  name="dx97-793001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLComp (S1,S2 : PChar; L : Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Compares maximum <span 
+class="cmtt-10">L </span>characters of the null-terminated strings <span 
+class="cmtt-10">S1 </span>and <span 
+class="cmtt-10">S2</span>. The result
+is
+    <ul class="itemize1">
+    <li class="itemize">A negative <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&lt;S2</span>.
+    </li>
+    <li class="itemize">0 when <span 
+class="cmtt-10">S1=S2</span>.
+    </li>
+    <li class="itemize">A positive <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&gt;S2</span>.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrComp </span>(<a 
+href="#x97-78600021.1">674<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrIComp </span>(<a 
+href="#x97-79100021.1">678<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrLIComp </span>(<a 
+href="#x97-79600021.1">681<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 187--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 187--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLComp</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">second</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('P1</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">StrComp</span>&nbsp;<span 
+class="cmtt-10">(P1,P2)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('NOT</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">write</span>&nbsp;<span 
+class="cmtt-10">('equal.</span>&nbsp;<span 
+class="cmtt-10">The</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:=1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">StrLComp(P1,P2,L)=0</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">inc</span>&nbsp;<span 
+class="cmtt-10">(L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">dec(l);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(l,'</span>&nbsp;<span 
+class="cmtt-10">characters</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">same.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-800" name="x97-79400021.1">StrLCopy</a></h4><a 
+  name="dx97-794001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLCopy (Dest,Source : PChar; MaxLen : Longint) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies <span 
+class="cmtt-10">MaxLen </span>characters from <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest</span>, and makes <span 
+class="cmtt-10">Dest </span>a null terminated string.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No length checking is performed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrCopy </span>(<a 
+href="#x97-78700021.1">675<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrECopy </span>(<a 
+href="#x97-78900021.1">676<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 201--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 201--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLCopy</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'123456789ABCDEF';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHar;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP:=StrAlloc(11);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('First</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">characters</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StrLCopy</span>&nbsp;<span 
+class="cmtt-10">(PP,P,10));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-801" name="x97-79500021.1">StrLen</a></h4><a 
+  name="dx97-795001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLen (p : PChar) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the length of the null-terminated string <span 
+class="cmtt-10">P</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Length </span>() </dd></dl>
+<!--l. 214--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 214--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLen</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">pchar</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',p);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('length(P)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StrLen(P));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-802" name="x97-79600021.1">StrLIComp</a></h4><a 
+  name="dx97-796001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLIComp (S1,S2 : PChar; L : Longint) : Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Compares maximum <span 
+class="cmtt-10">L </span>characters of the null-terminated strings <span 
+class="cmtt-10">S1 </span>and <span 
+class="cmtt-10">S2</span>, ignoring case. The
+result is
+    <ul class="itemize1">
+    <li class="itemize">A negative <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&lt;S2</span>.
+    </li>
+    <li class="itemize">0 when <span 
+class="cmtt-10">S1=S2</span>.
+    </li>
+    <li class="itemize">A positive <span 
+class="cmtt-10">Longint </span>when <span 
+class="cmtt-10">S1&gt;S2</span>.</li></ul>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLComp </span>(<a 
+href="#x97-79300021.1">679<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrComp </span>(<a 
+href="#x97-78600021.1">674<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrIComp </span>(<a 
+href="#x97-79100021.1">678<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 234--><p class="noindent">For an example, see <span 
+class="cmss-10">StrIComp </span>(<a 
+href="#x97-79100021.1">678<!--tex4ht:ref: se:TBufStream--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-803" name="x97-79700021.1">StrLower</a></h4><a 
+  name="dx97-797001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrLower (P : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts <span 
+class="cmtt-10">P </span>to an all-lowercase string. Returns <span 
+class="cmtt-10">P</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Upcase </span>() , <span 
+class="cmss-10">StrUpper </span>(<a 
+href="#x97-80500021.1">687<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 247--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 247--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrLower</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">StrUpper</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'THIS</span>&nbsp;<span 
+class="cmtt-10">IS</span>&nbsp;<span 
+class="cmtt-10">AN</span>&nbsp;<span 
+class="cmtt-10">UPPERCASE</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">STRING';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'this</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">lowercase</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Uppercase</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StrUpper(P2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrLower</span>&nbsp;<span 
+class="cmtt-10">(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Lowercase</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P1);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-804" name="x97-79800021.1">StrMove</a></h4><a 
+  name="dx97-798001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrMove (Dest,Source : PChar; MaxLen : Longint) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies <span 
+class="cmtt-10">MaxLen </span>characters from <span 
+class="cmtt-10">Source </span>to <span 
+class="cmtt-10">Dest</span>. No terminating null-character is copied.
+Returns <span 
+class="cmtt-10">Dest</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrLCopy </span>(<a 
+href="#x97-79400021.1">680<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrCopy </span>(<a 
+href="#x97-78700021.1">675<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 262--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 262--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrMove</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">pchar</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2:=StrAlloc(StrLen(P1)+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrMove</span>&nbsp;<span 
+class="cmtt-10">(P2,P1,StrLen(P1)+1);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">P2:=P1</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P2</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',P2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-805" name="x97-79900021.1">StrNew</a></h4><a 
+  name="dx97-799001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrNew (P : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Copies <span 
+class="cmtt-10">P </span>to the Heap, and returns a pointer to the copy.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Returns <span 
+class="cmtt-10">Nil </span>if no memory was available for the copy.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">New </span>() , <span 
+class="cmss-10">StrCopy </span>(<a 
+href="#x97-78700021.1">675<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrDispose </span>(<a 
+href="#x97-78800021.1">676<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 275--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 275--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrNew</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P2:=StrNew</span>&nbsp;<span 
+class="cmtt-10">(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">P1=P2</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('This</span>&nbsp;<span 
+class="cmtt-10">can''t</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">happening...')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',P2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-806" name="x97-80000021.1">StrPas</a></h4><a 
+  name="dx97-800001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPas (P : PChar) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts a null terminated string in <span 
+class="cmtt-10">P </span>to a Pascal string, and returns this string. The string
+is truncated at 255 characters.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPCopy </span>(<a 
+href="#x97-80100021.1">684<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 289--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 289--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrPas</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=StrPas</span>&nbsp;<span 
+class="cmtt-10">(P);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',S);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-807" name="x97-80100021.1">StrPCopy</a></h4><a 
+  name="dx97-801001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPCopy (Dest : PChar; Const Source : String) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts the Pascal string in <span 
+class="cmtt-10">Source </span>to a Null-terminated string, and copies it to <span 
+class="cmtt-10">Dest</span>.
+<span 
+class="cmtt-10">Dest </span>needs enough room to contain the string <span 
+class="cmtt-10">Source</span>, i.e. <span 
+class="cmtt-10">Length(Source)+1 </span>bytes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No length checking is performed.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">StrPas </span>(<a 
+href="#x97-80000021.1">684<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 304--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 304--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrPCopy</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">normal</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">p:=StrAlloc</span>&nbsp;<span 
+class="cmtt-10">(length(S)+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">StrPCopy</span>&nbsp;<span 
+class="cmtt-10">(P,S)&lt;&gt;P</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">impossible</span>&nbsp;<span 
+class="cmtt-10">!!')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(P);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-808" name="x97-80200021.1">StrPos</a></h4><a 
+  name="dx97-802001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrPos (S1,S2 : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns a pointer to the first occurrence of <span 
+class="cmtt-10">S2 </span>in <span 
+class="cmtt-10">S1</span>. If <span 
+class="cmtt-10">S2 </span>does not occur in <span 
+class="cmtt-10">S1</span>, returns
+<span 
+class="cmtt-10">Nil</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pos </span>() , <span 
+class="cmss-10">StrScan </span>(<a 
+href="#x97-80400021.1">686<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrRScan </span>(<a 
+href="#x97-80300021.1">686<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 318--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 318--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrPos</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'is';</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Position</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">''is''</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',longint(StrPos(P,S))-Longint(P));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-809" name="x97-80300021.1">StrRScan</a></h4><a 
+  name="dx97-803001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrRScan (P : PChar; C : Char) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns a pointer to the last occurrence of the character <span 
+class="cmtt-10">C </span>in the null-terminated string <span 
+class="cmtt-10">P</span>.
+If <span 
+class="cmtt-10">C </span>does not occur, returns <span 
+class="cmtt-10">Nil</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pos </span>() , <span 
+class="cmss-10">StrScan </span>(<a 
+href="#x97-80400021.1">686<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrPos </span>(<a 
+href="#x97-80200021.1">685<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 334--><p class="noindent">For an example, see <span 
+class="cmss-10">StrScan </span>(<a 
+href="#x97-80400021.1">686<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-810" name="x97-80400021.1">StrScan</a></h4><a 
+  name="dx97-804001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrScan (P : PChar; C : Char) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns a pointer to the first occurrence of the character <span 
+class="cmtt-10">C </span>in the null-terminated string <span 
+class="cmtt-10">P</span>.
+If <span 
+class="cmtt-10">C </span>does not occur, returns <span 
+class="cmtt-10">Nil</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Pos </span>() , <span 
+class="cmss-10">StrRScan </span>(<a 
+href="#x97-80300021.1">686<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StrPos </span>(<a 
+href="#x97-80200021.1">685<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 351--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">stringex/ex13.pp</span><HR/><div class="listinginput">
+<!--l. 351--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">StrScan</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">StrRScan</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PChar</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">PCHAR</span>&nbsp;<span 
+class="cmtt-10">string.';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">'s'</span>&nbsp;<span 
+class="cmtt-10">;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P,</span>&nbsp;<span 
+class="cmtt-10">starting</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">''s''</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StrScan(P,s));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('P,</span>&nbsp;<span 
+class="cmtt-10">starting</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">''s''</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',StrRScan(P,s));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-97-811" name="x97-80500021.1">StrUpper</a></h4><a 
+  name="dx97-805001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function StrUpper (P : PChar) : PChar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Converts <span 
+class="cmtt-10">P </span>to an all-uppercase string. Returns <span 
+class="cmtt-10">P</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Upcase </span>() , <span 
+class="cmss-10">StrLower </span>(<a 
+href="#x97-79700021.1">682<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 364--><p class="noindent">For an example, see <span 
+class="cmss-10">StrLower </span>(<a 
+href="#x97-79700021.1">682<!--tex4ht:ref: se:TBufStream--></a>)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse71.htm" >front</a>] [<a 
+href="unitsch21.htm#unitsse71.htm" >up</a>] </p></div><a 
+  name="tailunitsse71.htm"></a>   
+</body></html> 

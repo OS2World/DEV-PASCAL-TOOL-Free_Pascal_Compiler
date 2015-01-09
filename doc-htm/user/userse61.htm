@@ -1,0 +1,350 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.6 Code generator messages</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse62.htm" >next</a>] [<a 
+href="userse60.htm" >prev</a>] [<a 
+href="userse60.htm#tailuserse60.htm" >prev-tail</a>] [<a 
+href="#tailuserse61.htm">tail</a>] [<a 
+href="userap3.htm#userse61.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.6</span> <a 
+href="user.htm#QQ2-87-225" name="x87-174000C.6">Code generator messages</a></h3>
+<!--l. 1118--><p class="noindent">This section lists all messages that can be displayed if the code generator encounters an error
+condition.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Error: BREAK not allowed</span> </dt><dd 
+class="description">You&#8217;re trying to use <span 
+class="cmtt-10">break </span>outside a loop construction.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: CONTINUE not allowed</span> </dt><dd 
+class="description">You&#8217;re   trying   to   use   <span 
+class="cmtt-10">continue   </span>outside   a   loop
+     construction.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Expression too complicated - FPU stack overflow</span> </dt><dd 
+class="description">Your   expression   is   too
+     long for the compiler. You should try dividing the construct over multiple assignments.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal expression</span> </dt><dd 
+class="description">This can occur under many circumstances. Mostly when trying
+     to evaluate constant expressions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Invalid integer expression</span> </dt><dd 
+class="description">You made an expression which isn&#8217;t an integer, and
+     the compiler expects the result to be an integer.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal qualifier</span> </dt><dd 
+class="description">One of the following is happening :
+         <ul class="itemize1">
+         <li class="itemize">You&#8217;re trying to access a field of a variable that is not a record.
+         </li>
+         <li class="itemize">You&#8217;re indexing a variable that is not an array.
+         </li>
+         <li class="itemize">You&#8217;re dereferencing a variable that is not a pointer.</li></ul>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: High range limit ¡ low range limit</span> </dt><dd 
+class="description">You are declaring a subrange, and the lower limit
+     is higher than the high limit of the range.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal counter variable</span> </dt><dd 
+class="description">The type of a <span 
+class="cmtt-10">for </span>loop variable must be an ordinal type. Loop
+     variables cannot be reals or strings.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Can&#8217;t determine which overloaded function to call</span> </dt><dd 
+class="description">You&#8217;re calling overloaded
+     functions with a parameter that doesn&#8217;t correspond to any of the declared function
+     parameter lists. e.g. when you have declared a function with parameters <span 
+class="cmtt-10">word </span>and <span 
+class="cmtt-10">longint</span>,
+     and then you call it with a parameter which is of type <span 
+class="cmtt-10">integer</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Parameter list size exceeds 65535 bytes</span> </dt><dd 
+class="description">The I386 processor limits the parameter list
+     to 65535 bytes (the <span 
+class="cmtt-10">RET </span>instruction causes this)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal type conversion</span> </dt><dd 
+class="description">When doing a type-cast, you must take care that the sizes of the
+     variable and the destination type are the same.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Conversion between ordinals and pointers is not portable across platforms</span> </dt><dd 
+class="description">If you
+     typecast a pointer to a longint, this code will not compile on a machine using 64bit for
+     pointer storage.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: File types must be var parameters</span> </dt><dd 
+class="description">You cannot specify files as value parameters, i.e.
+     they must always be declared <span 
+class="cmtt-10">var </span>parameters.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: The use of a far pointer isn&#8217;t allowed there</span> </dt><dd 
+class="description">Free Pascal doesn&#8217;t support far pointers,
+     so you cannot take the address of an expression which has a far reference as a result. The <span 
+class="cmtt-10">mem</span>
+     construct has a far reference as a result, so the following code will produce this
+     error:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;var&nbsp;p&nbsp;:&nbsp;pointer;
+     &nbsp;&nbsp;...
+     &nbsp;&nbsp;p:=@mem[a000:000];
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: illegal call by reference parameters</span> </dt><dd 
+class="description">You are trying to pass a constant or an expression
+     to a procedure that requires a <span 
+class="cmtt-10">var </span>parameter. Only variables can be passed as a <span 
+class="cmtt-10">var</span>
+     parameter.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: EXPORT declared functions can&#8217;t be called</span> </dt><dd 
+class="description">No longer in use.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Possible illegal call of constructor or destructor (doesn&#8217;t match to this context)</span> </dt><dd 
+class="description">
+     No longer in use.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Inefficient code</span> </dt><dd 
+class="description">You construction seems dubious to the compiler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: unreachable code</span> </dt><dd 
+class="description">You specified a loop which will never be executed. Example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;while&nbsp;false&nbsp;do
+     &nbsp;&nbsp;&nbsp;&nbsp;begin
+     &nbsp;&nbsp;&nbsp;&nbsp;{..&nbsp;code&nbsp;...}
+     &nbsp;&nbsp;&nbsp;&nbsp;end;
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: procedure call with stackframe ESP/SP</span> </dt><dd 
+class="description">The compiler encountered a procedure or
+     function call inside a procedure that uses a <span 
+class="cmtt-10">ESP/SP </span>stackframe. Normally, when a call is done
+     the procedure needs a <span 
+class="cmtt-10">EBP </span>stackframe.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Abstract methods can&#8217;t be called directly</span> </dt><dd 
+class="description">You cannot call an abstract method
+     directy, instead you must call a overriding child method, because an abstract method isn&#8217;t
+     implemented.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Internal Error in getfloatreg(), allocation failure</span> </dt><dd 
+class="description">An internal error occurred
+     in the compiler; If you encounter such an error, please contact the developers
+     and try to provide an exact description of the circumstances in which the error
+     occurs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Unknown float type</span> </dt><dd 
+class="description">The compiler cannot determine the kind of float that occurs in an
+     expression.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: SecondVecn() base defined twice</span> </dt><dd 
+class="description">An internal error occurred in the compiler; If you
+     encounter such an error, please contact the developers and try to provide an exact description
+     of the circumstances in which the error occurs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Extended cg68k not supported</span> </dt><dd 
+class="description">The <span 
+class="cmtt-10">extended </span>type is not supported on the m68k
+     platform.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: 32-bit unsigned not supported in MC68000 mode</span> </dt><dd 
+class="description">The cardinal is not supported on
+     the m68k platform.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Internal Error in secondinline()</span> </dt><dd 
+class="description">An internal error occurred in the compiler; If you
+     encounter such an error, please contact the developers and try to provide an exact description
+     of the circumstances in which the error occurs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Register arg1 weight arg2 arg3</span> </dt><dd 
+class="description">Debugging message. Shown when the compiler considers a
+     variable for keeping in the registers.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Stack limit excedeed in local routine</span> </dt><dd 
+class="description">Your code requires a too big stack. Some
+     operating systems pose limits on the stack size. You should use less variables or try ro put
+     large variables on the heap.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Stack frame is omitted</span> </dt><dd 
+class="description">Some procedure/functions do not need a complete stack-frame, so it is
+     omitted. This message will be displayed when the -vd switch is used.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Object or class methods can&#8217;t be inline.</span> </dt><dd 
+class="description">You cannot have inlined object
+     methods.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Procvar calls can&#8217;t be inline.</span> </dt><dd 
+class="description">A procedure with a procedural variable call cannot be
+     inlined.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: No code for inline procedure stored</span> </dt><dd 
+class="description">The compiler couldn&#8217;t store code for the inline
+     procedure.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Direct call of interrupt procedure arg1 is not possible</span> </dt><dd 
+class="description">You can not call an
+     interrupt procedure directly from FPC code
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Element zero of an ansi/wide- or longstring can&#8217;t be accessed, use (set)length instead</span> </dt><dd 
+class="description">
+     You should use <span 
+class="cmtt-10">setlength </span>to set the length of an ansi/wide/longstring and <span 
+class="cmtt-10">length </span>to get the
+     length of such kinf of string
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Include and exclude not implemented in this case</span> </dt><dd 
+class="description"><span 
+class="cmtt-10">include </span>and <span 
+class="cmtt-10">exclude </span>are only
+     partially implemented for <span 
+class="cmtt-10">i386 </span>processors and not at all for <span 
+class="cmtt-10">m68k </span>processors.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Constructors or destructors can not be called inside a &#8217;with&#8217; clause</span> </dt><dd 
+class="description">Inside a
+     <span 
+class="cmtt-10">With </span>clause you cannot call a constructor or destructor for the object you have in the <span 
+class="cmtt-10">with</span>
+     clause.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Cannot call message handler method directly</span> </dt><dd 
+class="description">A message method handler method
+     can&#8217;t be called directly if it contains an explicit self argument
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Jump in or outside of an exception block</span> </dt><dd 
+class="description">It isn&#8217;t allowed to jump in or outside of an
+     exception block like <span 
+class="cmtt-10">try..finally..end;</span>:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;label&nbsp;1;
+     &nbsp;
+     &nbsp;&nbsp;...
+     &nbsp;
+     &nbsp;&nbsp;try
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not(final)&nbsp;then
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;goto&nbsp;1;&nbsp;&nbsp;&nbsp;//&nbsp;this&nbsp;line&nbsp;will&nbsp;cause&nbsp;an&nbsp;error
+     &nbsp;&nbsp;finally
+     &nbsp;&nbsp;&nbsp;&nbsp;...
+     &nbsp;&nbsp;end;
+     &nbsp;&nbsp;1:
+     &nbsp;&nbsp;...
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Control flow statements aren&#8217;t allowed in a finally block</span> </dt><dd 
+class="description">It isn&#8217;t allowed to use the
+     control flow statements <span 
+class="cmtt-10">break</span>, <span 
+class="cmtt-10">continue </span>and <span 
+class="cmtt-10">exit </span>inside a finally statement. The following
+     example shows the problem:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;...
+     &nbsp;&nbsp;&nbsp;&nbsp;try
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p;
+     &nbsp;&nbsp;&nbsp;&nbsp;finally
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;&nbsp;&nbsp;//&nbsp;This&nbsp;exit&nbsp;ISN'T&nbsp;allowed
+     &nbsp;&nbsp;&nbsp;&nbsp;end;
+     &nbsp;&nbsp;...
+     &nbsp;
+     &nbsp;&nbsp;
+</pre>
+     </td></tr></table>If the procedure <span 
+class="cmtt-10">p </span>raises an exception the finally block is executed. If the execution reaches
+     the exit, it&#8217;s unclear what to do: exiting the procedure or searching for another exception
+     handler</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse62.htm" >next</a>] [<a 
+href="userse60.htm" >prev</a>] [<a 
+href="userse60.htm#tailuserse60.htm" >prev-tail</a>] [<a 
+href="userse61.htm" >front</a>] [<a 
+href="userap3.htm#userse61.htm" >up</a>] </p></div><a 
+  name="tailuserse61.htm"></a>  
+</body></html> 

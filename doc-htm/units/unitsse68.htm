@@ -1,0 +1,159 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>19.2 Procedures and functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse67.htm" >prev</a>] [<a 
+href="unitsse67.htm#tailunitsse67.htm" >prev-tail</a>] [<a 
+href="#tailunitsse68.htm">tail</a>] [<a 
+href="unitsch19.htm#unitsse68.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">19.2</span> <a 
+href="units.htm#QQ2-92-760" name="x92-75400019.2">Procedures and functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-92-761" name="x92-75500019.2">AssignLst</a></h4><a 
+  name="dx92-755001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure AssignLst ( Var F : text; ToFile : string[255]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>only.
+<br class="newline">Assigns to F a printing device. ToFile is a string with the following form:
+    <ul class="itemize1">
+    <li class="itemize">  <span 
+class="cmtt-10">'|filename  options' </span>: This sets up a pipe with the program filename, with the given
+    options, such as in the popen() call.
+    </li>
+    <li class="itemize">  <span 
+class="cmtt-10">'filename' </span>: Prints to file filename. Filename can contain the string &#8217;PID&#8217;  (No
+    Quotes), which will be replaced by the PID of your program. When closing lst, the file
+    will be sent to lpr and deleted. (lpr should be in PATH)
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'filename|' </span>Idem as previous, only the file is NOT sent to lpr, nor is it deleted. (useful
+    for opening /dev/printer or for later printing)</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in Linuxerror.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">lpr </span>(1) </dd></dl>
+<!--l. 72--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">printex/printex.pp</span><HR/><div class="listinginput">
+<!--l. 72--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">testprn;</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">printer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">f</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Test</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">printer</span>&nbsp;<span 
+class="cmtt-10">unit');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">lst...');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">80</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(lst,'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">',i,'.'#13);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">close</span>&nbsp;<span 
+class="cmtt-10">(lst);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Done.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">Unix}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">pipe...');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">assignlst</span>&nbsp;<span 
+class="cmtt-10">(f,'|/usr/bin/lpr</span>&nbsp;<span 
+class="cmtt-10">-m');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rewrite</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">80</span>&nbsp;<span 
+class="cmtt-10">do</span>&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(f,'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">',i,'.'#13);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">close</span>&nbsp;<span 
+class="cmtt-10">(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Done.')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{$endif}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/> <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse67.htm" >prev</a>] [<a 
+href="unitsse67.htm#tailunitsse67.htm" >prev-tail</a>] [<a 
+href="unitsse68.htm" >front</a>] [<a 
+href="unitsch19.htm#unitsse68.htm" >up</a>] </p></div><a 
+  name="tailunitsse68.htm"></a>  
+</body></html> 

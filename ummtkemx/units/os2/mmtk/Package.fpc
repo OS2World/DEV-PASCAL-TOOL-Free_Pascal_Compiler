@@ -1,0 +1,6 @@
+[package]
+name=mmtk
+version=1.0.6
+[require]
+packages=rtl 
+packages_os2_i386=

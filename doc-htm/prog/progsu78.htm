@@ -1,0 +1,167 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.1.0 Processor mapping of registers</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu77.htm" >prev</a>] [<a 
+href="progsu77.htm#tailprogsu77.htm" >prev-tail</a>] [<a 
+href="#tailprogsu78.htm">tail</a>] [<a 
+href="progse17.htm#progsu78.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-108-107" name="x108-1050006.1">Processor mapping of registers</a></h4>
+<!--l. 2291--><p class="noindent">This indicates what registers are used for what purposes on each of the processors supported by
+Free Pascal. It also indicates which registers can be used as scratch registers.
+<h5 class="subsubsectionHead"><a 
+href="progse17.htm#QQ2-108-108" name="x108-1060006.1">Intel 80x86 version</a></h5>
+                                                                            
+
+                                                                            
+<a 
+  name="x108-1060011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.1: </td><td  
+class="content">Intel 80x86 Register table</td></tr></table></div><!--tex4ht:label?: x108-1060011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-4-" ><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"><col 
+id="TBL-4-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-4-1-"><td  align="left" nowrap="nowrap" id="TBL-4-1-1"  
+class="td11"> Generic register name             </td><td  align="left" nowrap="nowrap" id="TBL-4-1-2"  
+class="td11"> CPU Register name</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-4-2-"><td  align="left" nowrap="nowrap" id="TBL-4-2-1"  
+class="td11"> accumulator                          </td><td  align="left" nowrap="nowrap" id="TBL-4-2-2"  
+class="td11"> EAX                    </td>
+</tr><tr  
+valign="baseline" id="TBL-4-3-"><td  align="left" nowrap="nowrap" id="TBL-4-3-1"  
+class="td11"> accumulator (64-bit) high / low</td><td  align="left" nowrap="nowrap" id="TBL-4-3-2"  
+class="td11"> EDX:EAX            </td>
+</tr><tr  
+valign="baseline" id="TBL-4-4-"><td  align="left" nowrap="nowrap" id="TBL-4-4-1"  
+class="td11"> float result                           </td><td  align="left" nowrap="nowrap" id="TBL-4-4-2"  
+class="td11"> FP(0)                  </td>
+</tr><tr  
+valign="baseline" id="TBL-4-5-"><td  align="left" nowrap="nowrap" id="TBL-4-5-1"  
+class="td11"> self                                     </td><td  align="left" nowrap="nowrap" id="TBL-4-5-2"  
+class="td11"> ESI                     </td>
+</tr><tr  
+valign="baseline" id="TBL-4-6-"><td  align="left" nowrap="nowrap" id="TBL-4-6-1"  
+class="td11"> frame pointer                        </td><td  align="left" nowrap="nowrap" id="TBL-4-6-2"  
+class="td11"> EBP                    </td>
+</tr><tr  
+valign="baseline" id="TBL-4-7-"><td  align="left" nowrap="nowrap" id="TBL-4-7-1"  
+class="td11"> stack pointer                         </td><td  align="left" nowrap="nowrap" id="TBL-4-7-2"  
+class="td11"> ESP                    </td>
+</tr><tr  
+valign="baseline" id="TBL-4-8-"><td  align="left" nowrap="nowrap" id="TBL-4-8-1"  
+class="td11"> scratch regs.                         </td><td  align="left" nowrap="nowrap" id="TBL-4-8-2"  
+class="td11"> N/A                    </td>
+</tr><tr  
+valign="baseline" id="TBL-4-9-"><td  align="left" nowrap="nowrap" id="TBL-4-9-1"  
+class="td11">                                           </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<h5 class="subsubsectionHead"><a 
+href="progse17.htm#QQ2-108-110" name="x108-1070006.1">Motorola 680x0 version</a></h5>
+                                                                            
+
+                                                                            
+<a 
+  name="x108-1070012"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.2: </td><td  
+class="content">Motorola 680x0 Register table</td></tr></table></div><!--tex4ht:label?: x108-1070012-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-5-" ><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-5-1-"><td  align="left" nowrap="nowrap" id="TBL-5-1-1"  
+class="td11"> Generic register name             </td><td  align="left" nowrap="nowrap" id="TBL-5-1-2"  
+class="td11"> CPU Register name         </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-5-2-"><td  align="left" nowrap="nowrap" id="TBL-5-2-1"  
+class="td11"> accumulator                          </td><td  align="left" nowrap="nowrap" id="TBL-5-2-2"  
+class="td11"> D0<a 
+  name=" "  ><sup>2</sup></a>                              </td>
+</tr><tr  
+valign="baseline" id="TBL-5-3-"><td  align="left" nowrap="nowrap" id="TBL-5-3-1"  
+class="td11"> accumulator (64-bit) high / low</td><td  align="left" nowrap="nowrap" id="TBL-5-3-2"  
+class="td11"> D0:D1                           </td>
+</tr><tr  
+valign="baseline" id="TBL-5-4-"><td  align="left" nowrap="nowrap" id="TBL-5-4-1"  
+class="td11"> float result                           </td><td  align="left" nowrap="nowrap" id="TBL-5-4-2"  
+class="td11"> FP0<a 
+href="prog109.htm" name="prog109.htm" ><sup>3</sup></a>                            </td>
+</tr><tr  
+valign="baseline" id="TBL-5-5-"><td  align="left" nowrap="nowrap" id="TBL-5-5-1"  
+class="td11"> self                                     </td><td  align="left" nowrap="nowrap" id="TBL-5-5-2"  
+class="td11"> A5                                </td>
+</tr><tr  
+valign="baseline" id="TBL-5-6-"><td  align="left" nowrap="nowrap" id="TBL-5-6-1"  
+class="td11"> frame pointer                        </td><td  align="left" nowrap="nowrap" id="TBL-5-6-2"  
+class="td11"> A6                                </td>
+</tr><tr  
+valign="baseline" id="TBL-5-7-"><td  align="left" nowrap="nowrap" id="TBL-5-7-1"  
+class="td11"> stack pointer                         </td><td  align="left" nowrap="nowrap" id="TBL-5-7-2"  
+class="td11"> A7                                </td>
+</tr><tr  
+valign="baseline" id="TBL-5-8-"><td  align="left" nowrap="nowrap" id="TBL-5-8-1"  
+class="td11"> scratch regs.                         </td><td  align="left" nowrap="nowrap" id="TBL-5-8-2"  
+class="td11"> D0, D1, A0, A1, FP0, FP1</td>
+</tr><tr  
+valign="baseline" id="TBL-5-9-"><td  align="left" nowrap="nowrap" id="TBL-5-9-1"  
+class="td11">                                           </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+
+<br ><span class="footnotetext"><sup>3</sup><a 
+  name="x108-107003f3"></a>On simulated FPU&#8217;s the result is returned in D0</span>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu77.htm" >prev</a>] [<a 
+href="progsu77.htm#tailprogsu77.htm" >prev-tail</a>] [<a 
+href="progsu78.htm" >front</a>] [<a 
+href="progse17.htm#progsu78.htm" >up</a>] </p></div><a 
+  name="tailprogsu78.htm"></a>   
+</body></html> 

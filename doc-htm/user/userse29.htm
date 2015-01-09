@@ -1,0 +1,977 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.10 Using Tools</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse30.htm" >next</a>] [<a 
+href="userse28.htm" >prev</a>] [<a 
+href="userse28.htm#tailuserse28.htm" >prev-tail</a>] [<a 
+href="#tailuserse29.htm">tail</a>] [<a 
+href="userch6.htm#userse29.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.10</span> <a 
+href="user.htm#QQ2-40-119" name="x40-1010006.10">Using Tools</a></h3>
+<!--l. 1282--><p class="noindent">The tools menu provides easy access to external tools. It also has three pre-defined tools for
+programmers: an ASCII table, a grep tool and a calculator. The output of the external tools can be
+accessed through this menu as well.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-120" name="x40-1020006.10">The messages window</a></h4> The output of the external utilities is redirected by the IDE and it will be
+displayed in the messages window. The messages window is displayed automatically, if an external
+tool was run. The messages window can be also displayed manually by the selecting the menu item
+<span 
+class="cmbx-10">&#8221;Tools--Messages&#8221; </span>or by pressing the key <span 
+class="cmcsc-10">F11</span>. The messages window is shown in figure
+(<a 
+href="#x40-10200117">6.17<!--tex4ht:ref: fig:messages--></a>).
+<!--l. 1299--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x40-10200117"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.17: </td><td  
+class="content">The messages window</td></tr></table></div><!--tex4ht:label?: x40-10200117-->
+<!--l. 1299--><p class="noindent"><img 
+src="user18x.png" alt="PIC" class="graphics" width="400.34999pt" height="69.95372pt" ><!--tex4ht:graphics  
+name="user18x.png" src="pics/ide/messages.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1301--><p class="noindent">If the output of the tool contains filenames and line numbers, the messages window can be used to
+navigate the source as in a browse window:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x40-102003x1"></a>Pressing <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>or double clicking the output line will jump to the specified source
+     line and close the messages window.
+     </li>
+     <li class="enumerate"><a 
+  name="x40-102005x2"></a>Pressing the space bar will jump to the specified source line, but will leave the messages
+     window open, with the focus on it. This allows to quickly select another message line
+     with the arrow keys and jump to another location in the sources.</li></ol>
+<!--l. 1312--><p class="noindent">The algorithm which extracts the file names and line numbers from the tool output is quite sophisticated, but in
+some cases it may fail<a 
+href="user41.htm" name="user41.htm" ><sup>4</sup></a>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-122" name="x40-1030006.10">Grep</a></h4> One external tool in the Tools menu is already predefined: a menu item to call the <span 
+class="cmss-10">grep </span>utility
+(<span 
+class="cmbx-10">&#8221;Tools--Grep&#8221; </span>or <span 
+class="cmcsc-10">S<small 
+class="small-caps">H</small><small 
+class="small-caps">I</small><small 
+class="small-caps">F</small><small 
+class="small-caps">T</small>-F2</span>). <span 
+class="cmss-10">Grep </span>searches for a given string in files and returns the lines
+which contain the string. The search string can be even a regular expression. For this menu
+item to work, the <span 
+class="cmss-10">grep </span>program must be installed, since it does not come with Free
+Pascal.
+<!--l. 1328--><p class="noindent">The messages window displayed in figure (<a 
+href="#x40-10200117">6.17<!--tex4ht:ref: fig:messages--></a>) in the previous section shows the output of a
+typical <span 
+class="cmss-10">grep </span>session. The messages window can be used in combination with <span 
+class="cmss-10">grep </span>to find special
+occurrences in the text.
+<!--l. 1333--><p class="noindent"><span 
+class="cmss-10">Grep </span>supports regular expressions. A regular expression is a string with special characters which
+describe a whole class of expressions. The command line in <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>or <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>have limited support for
+regular expressions: entering <span 
+class="cmtt-10">ls *.pas </span>(or <span 
+class="cmtt-10">dir *.pas</span>) to get a list of all Pascal files in a directory.
+<span 
+class="cmss-10">*.pas </span>is something similar to a regular expression. It uses a wildcard to describe a whole class of
+strings: those which end on &#8221;<span 
+class="cmss-10">.pas</span>&#8221;. Regular expressions offer much more: for example
+<span 
+class="cmtt-10">[A-Z][0-9]+ </span>describes all strings which begin with a upper case letter followed by one or more
+digits.
+<!--l. 1345--><p class="noindent">It is outside the scope of this manual to describe regular expressions in great detail. Users of a
+<span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>system can get more information on grep using <span 
+class="cmtt-10">man grep </span>on the command-line.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-123" name="x40-1040006.10">The ASCII table</a></h4> The tools menu provides also an ASCII table (<span 
+class="cmbx-10">&#8221;Tools--Ascii table&#8221;</span>), The
+ASCII table can be used to look up ASCII codes as well as inserting characters into the window
+which was active when invoking the table. To get the ASCII code of a char move the
+cursor on this char or click with the mouse on it. To insert a char into an editor window
+either:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x40-104002x1"></a>using the mouse, double click it,
+     </li>
+     <li class="enumerate"><a 
+  name="x40-104004x2"></a>using the keyboard, press <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>while the cursor is on it.</li></ol>
+                                                                            
+
+                                                                            
+<!--l. 1363--><p class="noindent">This is especially useful for pasting graphical characters in a constant string.
+<!--l. 1366--><p class="noindent">The ASCII table remains active till another window is explicitly activated, thus multiple characters
+can be inserted at once. The ASCII table is shown in figure (<a 
+href="#x40-10400518">6.18<!--tex4ht:ref: fig:ascii--></a>).
+<!--l. 1370--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x40-10400518"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.18: </td><td  
+class="content">The ASCII table</td></tr></table></div><!--tex4ht:label?: x40-10400518-->
+<!--l. 1370--><p class="noindent"><img 
+src="user19x.png" alt="PIC" class="graphics" width="400.34999pt" height="212.74303pt" ><!--tex4ht:graphics  
+name="user19x.png" src="pics/ide/ascii.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-125" name="x40-1050006.10">The calculator</a></h4> The calculator allows to do some quick calculations. It is a simple calculator, since
+it does not take care of operator precedence, and bracketing of operations is not (yet)
+supported.
+<!--l. 1381--><p class="noindent">The result of the calculations can be pasted into the text using the <span 
+class="cmcsc-10">C<small 
+class="small-caps">T</small><small 
+class="small-caps">R</small><small 
+class="small-caps">L</small>-E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small> </span>keystroke. The
+calculator dialog is shown in figure (<a 
+href="#x40-10500119">6.19<!--tex4ht:ref: fig:calc--></a>).
+<!--l. 1385--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x40-10500119"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.19: </td><td  
+class="content">The calculator dialog</td></tr></table></div><!--tex4ht:label?: x40-10500119-->
+<!--l. 1385--><p class="noindent"><img 
+src="user20x.png" alt="PIC" class="graphics" width="400.34999pt" height="236.51761pt" ><!--tex4ht:graphics  
+name="user20x.png" src="pics/ide/calc.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1387--><p class="noindent">The calculator supports all basic mathematical operations such as addition, subtraction, division
+and multiplication. They are summarised in table (<a 
+href="#x40-1050021">6.1<!--tex4ht:ref: tab:calculatorbasic--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x40-1050021"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.1: </td><td  
+class="content">Advanced calculator commands</td></tr></table></div><!--tex4ht:label?: x40-1050021-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-2-" ><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"><col 
+id="TBL-2-2"><col 
+id="TBL-2-3"><col 
+id="TBL-2-4"></colgroup><tr  
+valign="baseline" id="TBL-2-1-"><td  align="left" id="TBL-2-1-1"  
+class="td11"> Operation                                                       </td><td  align="left" nowrap="nowrap" id="TBL-2-1-2"  
+class="td11"> Button</td><td  align="left" nowrap="nowrap" id="TBL-2-1-3"  
+class="td11"> Key           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-2-2-"><td  align="left" id="TBL-2-2-1"  
+class="td11"> Add two numbers                                             </td><td  align="left" nowrap="nowrap" id="TBL-2-2-2"  
+class="td11"> <span 
+class="cmtt-10">+     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-2-3"  
+class="td11"> <span 
+class="cmcsc-10">+            </span></td>
+</tr><tr  
+valign="baseline" id="TBL-2-3-"><td  align="left" id="TBL-2-3-1"  
+class="td11"> Subtract two numbers                                       </td><td  align="left" nowrap="nowrap" id="TBL-2-3-2"  
+class="td11">          </td><td  align="left" nowrap="nowrap" id="TBL-2-3-3"  
+class="td11">                 </td>
+</tr><tr  
+valign="baseline" id="TBL-2-4-"><td  align="left" id="TBL-2-4-1"  
+class="td11"> Multiply two numbers                                       </td><td  align="left" nowrap="nowrap" id="TBL-2-4-2"  
+class="td11"> <span 
+class="cmtt-10">*     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-4-3"  
+class="td11"> <span 
+class="cmcsc-10">*             </span></td>
+</tr><tr  
+valign="baseline" id="TBL-2-5-"><td  align="left" id="TBL-2-5-1"  
+class="td11"> Divide two numbers                                          </td><td  align="left" nowrap="nowrap" id="TBL-2-5-2"  
+class="td11"> <span 
+class="cmtt-10">/     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-5-3"  
+class="td11"> <span 
+class="cmcsc-10">/             </span></td>
+</tr><tr  
+valign="baseline" id="TBL-2-6-"><td  align="left" id="TBL-2-6-1"  
+class="td11"> Delete the last typed digit                                  </td><td  align="left" nowrap="nowrap" id="TBL-2-6-2"  
+class="td11"> <span 
+class="cmtt-10">&lt;-    </span></td><td  align="left" nowrap="nowrap" id="TBL-2-6-3"  
+class="td11"> <span 
+class="cmcsc-10">B<small 
+class="small-caps">A</small><small 
+class="small-caps">C</small><small 
+class="small-caps">K</small><small 
+class="small-caps">S</small><small 
+class="small-caps">P</small><small 
+class="small-caps">A</small><small 
+class="small-caps">C</small><small 
+class="small-caps">E</small></span></td>
+</tr><tr  
+valign="baseline" id="TBL-2-7-"><td  align="left" id="TBL-2-7-1"  
+class="td11"> Delete the display                                             </td><td  align="left" nowrap="nowrap" id="TBL-2-7-2"  
+class="td11"> <span 
+class="cmtt-10">C     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-7-3"  
+class="td11"> <span 
+class="cmcsc-10">C            </span></td>
+</tr><tr  
+valign="baseline" id="TBL-2-8-"><td  align="left" id="TBL-2-8-1"  
+class="td11"> Change the sign                                               </td><td  align="left" nowrap="nowrap" id="TBL-2-8-2"  
+class="td11"> <span 
+class="cmtt-10">+     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-8-3"  
+class="td11">                 </td>
+</tr><tr  
+valign="baseline" id="TBL-2-9-"><td  align="left" id="TBL-2-9-1"  
+class="td11"> Do per cent calculation                                      </td><td  align="left" nowrap="nowrap" id="TBL-2-9-2"  
+class="td11"> <span 
+class="cmtt-10">%     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-9-3"  
+class="td11"> <span 
+class="cmcsc-10">%            </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-2-10-"><td  align="left" id="TBL-2-10-1"  
+class="td11"> Get result of operation                                      </td><td  align="left" nowrap="nowrap" id="TBL-2-10-2"  
+class="td11"> <span 
+class="cmtt-10">=     </span></td><td  align="left" nowrap="nowrap" id="TBL-2-10-3"  
+class="td11"> <span 
+class="cmcsc-10">E<small 
+class="small-caps">N</small><small 
+class="small-caps">T</small><small 
+class="small-caps">E</small><small 
+class="small-caps">R</small>      </span></td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-2-11-"><td  align="left" id="TBL-2-11-1"  
+class="td11">                                                                     </td>
+</tr><!--p{8cm}lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+But also more sophisticated mathematical operations such as exponentiation and logarithms are
+supported. The available mathematical calculations are shown in table (<a 
+href="#x40-1050032">6.2<!--tex4ht:ref: tab:calculatoradvanced--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x40-1050032"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.2: </td><td  
+class="content">Advanced calculator commands</td></tr></table></div><!--tex4ht:label?: x40-1050032-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-3-" ><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"><col 
+id="TBL-3-3"><col 
+id="TBL-3-4"></colgroup><tr  
+valign="baseline" id="TBL-3-1-"><td  align="left" id="TBL-3-1-1"  
+class="td11"> Operation                                                       </td><td  align="left" nowrap="nowrap" id="TBL-3-1-2"  
+class="td11"> Button</td><td  align="left" nowrap="nowrap" id="TBL-3-1-3"  
+class="td11"> Key</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-3-2-"><td  align="left" id="TBL-3-2-1"  
+class="td11"> Calculate power                                               </td><td  align="left" nowrap="nowrap" id="TBL-3-2-2"  
+class="td11"> <span 
+class="cmtt-10">x^y   </span></td><td  align="left" nowrap="nowrap" id="TBL-3-2-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-3-3-"><td  align="left" id="TBL-3-3-1"  
+class="td11"> Calculate the inverse value                                 </td><td  align="left" nowrap="nowrap" id="TBL-3-3-2"  
+class="td11"> <span 
+class="cmtt-10">1/x   </span></td><td  align="left" nowrap="nowrap" id="TBL-3-3-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-3-4-"><td  align="left" id="TBL-3-4-1"  
+class="td11"> Calculate the square root                                   </td><td  align="left" nowrap="nowrap" id="TBL-3-4-2"  
+class="td11"> <span 
+class="cmtt-10">sqr   </span></td><td  align="left" nowrap="nowrap" id="TBL-3-4-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-3-5-"><td  align="left" id="TBL-3-5-1"  
+class="td11"> Calculate the natural logarithm                           </td><td  align="left" nowrap="nowrap" id="TBL-3-5-2"  
+class="td11"> <span 
+class="cmtt-10">log   </span></td><td  align="left" nowrap="nowrap" id="TBL-3-5-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-3-6-"><td  align="left" id="TBL-3-6-1"  
+class="td11"> Square the display contents                                </td><td  align="left" nowrap="nowrap" id="TBL-3-6-2"  
+class="td11"> <span 
+class="cmtt-10">x^2   </span></td><td  align="left" nowrap="nowrap" id="TBL-3-6-3"  
+class="td11">      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-3-7-"><td  align="left" id="TBL-3-7-1"  
+class="td11"> .                                                                   </td>
+</tr><!--p{8cm}lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+Like many calculators, the calculator in the IDE also supports storing a single value in memory,
+and several operations can be done on this memory value. The available operations are listed in
+table (<a 
+href="#x40-1050043">6.3<!--tex4ht:ref: tab:calculatormemory--></a>)
+                                                                            
+
+                                                                            
+<a 
+  name="x40-1050043"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;6.3: </td><td  
+class="content">Advanced calculator commands</td></tr></table></div><!--tex4ht:label?: x40-1050043-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-4-" ><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"><col 
+id="TBL-4-2"><col 
+id="TBL-4-3"><col 
+id="TBL-4-4"></colgroup><tr  
+valign="baseline" id="TBL-4-1-"><td  align="left" id="TBL-4-1-1"  
+class="td11"> Operation                                                       </td><td  align="left" nowrap="nowrap" id="TBL-4-1-2"  
+class="td11"> Button</td><td  align="left" nowrap="nowrap" id="TBL-4-1-3"  
+class="td11"> Key</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-4-2-"><td  align="left" id="TBL-4-2-1"  
+class="td11"> Add the displayed number to the memory             </td><td  align="left" nowrap="nowrap" id="TBL-4-2-2"  
+class="td11"> <span 
+class="cmtt-10">M+    </span></td><td  align="left" nowrap="nowrap" id="TBL-4-2-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-4-3-"><td  align="left" id="TBL-4-3-1"  
+class="td11"> Subtract the displayed number from the memory    </td><td  align="left" nowrap="nowrap" id="TBL-4-3-2"  
+class="td11"> <span 
+class="cmtt-10">M-    </span></td><td  align="left" nowrap="nowrap" id="TBL-4-3-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-4-4-"><td  align="left" id="TBL-4-4-1"  
+class="td11"> Move the memory contents to the display              </td><td  align="left" nowrap="nowrap" id="TBL-4-4-2"  
+class="td11"> <span 
+class="cmtt-10">M-&gt;   </span></td><td  align="left" nowrap="nowrap" id="TBL-4-4-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-4-5-"><td  align="left" id="TBL-4-5-1"  
+class="td11"> Move the display contents to the memory              </td><td  align="left" nowrap="nowrap" id="TBL-4-5-2"  
+class="td11"> <span 
+class="cmtt-10">M&lt;-   </span></td><td  align="left" nowrap="nowrap" id="TBL-4-5-3"  
+class="td11">      </td>
+</tr><tr  
+valign="baseline" id="TBL-4-6-"><td  align="left" id="TBL-4-6-1"  
+class="td11"> Exchange display and memory contents                </td><td  align="left" nowrap="nowrap" id="TBL-4-6-2"  
+class="td11"> <span 
+class="cmtt-10">M&lt;-&gt;  </span></td><td  align="left" nowrap="nowrap" id="TBL-4-6-3"  
+class="td11">      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-4-7-"><td  align="left" id="TBL-4-7-1"  
+class="td11">                                                                     </td>
+</tr><!--p{8cm}lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-130" name="x40-1060006.10">Adding new tools</a></h4> The tools menu can be extended with any external program which is
+command-line oriented. The output of such a program will be caught and displayed in the messages
+window.
+<!--l. 1435--><p class="noindent">Adding a tool to the tools menu can be done using the <span 
+class="cmbx-10">&#8221;Options--Tools&#8221; </span>menu. This will
+display the tools dialog. The tools dialog is shown in figure (<a 
+href="#x40-10600120">6.20<!--tex4ht:ref: fig:otools--></a>).
+<!--l. 1438--><p class="noindent"><hr class="figure"><div align="center" class="figure" 
+><table class="figure"><tr class="figure"><td class="figure" 
+>
+                                                                            
+
+                                                                            
+<a 
+  name="x40-10600120"></a>
+                                                                            
+
+                                                                            
+<div class="center" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Figure&nbsp;6.20: </td><td  
+class="content">The tools configuration dialog</td></tr></table></div><!--tex4ht:label?: x40-10600120-->
+<!--l. 1438--><p class="noindent"><img 
+src="user21x.png" alt="PIC" class="graphics" width="400.34999pt" height="207.2648pt" ><!--tex4ht:graphics  
+name="user21x.png" src="pics/ide/otools.eps"  
+--></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfigure">
+<!--l. 1440--><p class="noindent">In the tools dialog, the following actions are available:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">New</span> </dt><dd 
+class="description">Shows the tool properties dialog where the properties of a new tool can be entered.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Edit</span> </dt><dd 
+class="description">Shows the tool properties dialog where the properties of the highlighted tool can be
+     edited.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Delete</span> </dt><dd 
+class="description">Removes the currently highlighted tool.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Cancel</span> </dt><dd 
+class="description">Discards all changes and closes the dialog.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">OK</span> </dt><dd 
+class="description">Saves all changes and closes the dialog.</dd></dl>
+<!--l. 1450--><p class="noindent">The definitions of the tools are written in the desktop configuration file, so unless auto-saving of
+the desktop file is enabled, the desktop file should be saved explicitly after the dialog is
+closed.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-132" name="x40-1070006.10">Meta parameters</a></h4> When specifying the command line for the called tool, meta parameters can be
+used. Meta parameters are variables and and they are replaced by their contents before passing the
+command line to the tool.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">$CAP</span> </dt><dd 
+class="description">Captures the output of the tool.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$CAP</span>_<span 
+class="cmbx-10">MSG</span> </dt><dd 
+class="description">Captures the output of the tool and puts it in the messages window.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$CAP</span>_<span 
+class="cmbx-10">EDIT</span> </dt><dd 
+class="description">Captures the output of the tool and puts it in a separate editor window.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$COL</span> </dt><dd 
+class="description">Replaced by the column of the cursor in the active editor window. If there is no
+     active window or the active window is a dialog, then it is replaced by 0.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$CONFIG</span> </dt><dd 
+class="description">Replaced by the complete filename of the current configuration file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$DIR()</span> </dt><dd 
+class="description">Replaced by the full directory of the filename argument, including trailing directory
+     separator. e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;$DIR('d:\data\myfile.pas')
+</pre>
+     </td></tr></table>would return <span class="obeylines-h"><span 
+class="cmtt-10">d:\data\</span></span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$DRIVE()</span> </dt><dd 
+class="description">Replaced by the drive letter of the filename argument. e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;$DRIVE('d:\data\myfile.pas')
+</pre>
+     </td></tr></table>would return <span 
+class="cmss-10">d:</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$EDNAME</span> </dt><dd 
+class="description">Replaced by the complete file name of the file in the active edit window. If there is
+     no active edit window, this is an empty string.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$EXENAME</span> </dt><dd 
+class="description">Replaced by the executable name that would be created if the make command was
+     used. (i.e. from the &#8217;Primary File&#8217; setting or the active edit window).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$EXT()</span> </dt><dd 
+class="description">Replaced by the extension of the filename argument. The extension includes the dot.
+     e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;$EXT('d:\data\myfile.pas')
+</pre>
+     </td></tr></table>would return <span 
+class="cmss-10">.pas</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$LINE</span> </dt><dd 
+class="description">Replaced by the line number of the cursor in the active edit window. If no edit window is
+     present or active, this is 0.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$NAME()</span> </dt><dd 
+class="description">Replaced by the name part (excluding extension and dot) of the filename argument.
+     e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;$NAME('d:\data\myfile.pas')
+</pre>
+     </td></tr></table>would return <span 
+class="cmss-10">myfile</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$NAMEEXT()</span> </dt><dd 
+class="description">Replaced by the name and extension part of the filename argument.
+     e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;&nbsp;&nbsp;$NAMEEXT('d:\data\myfile.pas')
+</pre>
+     </td></tr></table>would return <span 
+class="cmss-10">myfile.pas</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$NOSWAP</span> </dt><dd 
+class="description">Does nothing in the IDE, it is provided for compatibility with Turbo Pascal
+     only.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$PROMPT()</span> </dt><dd 
+class="description">Prompt displays a dialog bow that allows editing of all arguments that come
+     after it. Arguments that appear before the <span 
+class="cmtt-10">$PROMPT </span>keyword are not presented for
+     editing.
+     <!--l. 1524--><p class="noindent">If a (optional) filename argument is present, <span 
+class="cmtt-10">$PROMPT() </span>will load a dialog description from
+     the filename argument, e.g.
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;$PROMPT(cvsco.tdf)
+</pre>
+     </td></tr></table>would parse the file <span 
+class="cmss-10">cvsco.tdf</span>, construct a dialog with it and display it. After the dialog
+     closed, the information entered by the user is used to construct the tool command
+     line.
+     <!--l. 1533--><p class="noindent">See section <a 
+href="#x40-1080006.10">6.10<!--tex4ht:ref: se:commanddialogs--></a>, page <a 
+href="#x40-1080006.10">209<!--tex4ht:ref: se:commanddialogs--></a> for more information on how to create a dialog description.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$SAVE</span> </dt><dd 
+class="description">Before executing the command, the active editor window is saved, even if it is not
+     modified.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$SAVE</span>_<span 
+class="cmbx-10">ALL</span> </dt><dd 
+class="description">Before executing the command, all unsaved editor files are saved without
+     prompting.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$SAVE</span>_<span 
+class="cmbx-10">CUR</span> </dt><dd 
+class="description">Before executing the command the contents of the active editor window are saved
+     without prompting if they are modified.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$SAVE</span>_<span 
+class="cmbx-10">PROMPT</span> </dt><dd 
+class="description">Before executing the command, a dialog is displayed asking whether any
+     unsaved files should be saved before executing the command.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">$WRITEMSG()</span> </dt><dd 
+class="description">Writes the parsed tool output information to a file with name as in the
+     argument.</dd></dl>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-40-133" name="x40-1080006.10">Building a command line dialog box</a></h4> When defining a tool, it is possible to show a dialog to the
+user, asking for additional arguments, using the <span 
+class="cmtt-10">$PROMPT(filename) </span>command-macro. Free Pascal
+comes with some dialogs, such as a &#8217;grep&#8217; dialog, a &#8217;cvs checkout&#8217; dialog and a &#8217;cvs check in&#8217;
+dialog. The files for these dialogs are in the binary directory and have an extension
+<span 
+class="cmss-10">.tdf</span>.
+<!--l. 1557--><p class="noindent">In this section, the file format for the dialog description file is explained. The format of this file
+resembles a windows <span 
+class="cmss-10">.INI </span>file, where each section in the file describes an element (or control) in the
+dialog. An <span 
+class="cmtt-10">OK </span>and an <span 
+class="cmtt-10">Cancel </span>button will be added to the bottom of the dialog, so these should not
+be specified in the dialog definition.
+<!--l. 1563--><p class="noindent">A special section is the <span 
+class="cmtt-10">Main </span>section. It describes how the result of the dialog will be passed on the
+command-line, and the total size of the dialog.
+<!--l. 1566--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Keywords that contain a string value, should have the string value enclosed in double quotes as
+in
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Title=&#34;Dialog&nbsp;title&#34;
+</pre>
+</td></tr></table>
+The <span 
+class="cmtt-10">Main </span>section should contain the following keywords:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Title</span> </dt><dd 
+class="description">The title of the dialog. This will appear in the frame title of the dialog. The string
+     should be enclosed in quotes.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Size</span> </dt><dd 
+class="description">The size of the dialog, this is formatted as <span 
+class="cmtt-10">(Cols,Rows)</span>, so
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Size=(59,9)
+</pre>
+     </td></tr></table>means the dialog is 59 characters wide, and 9 lines high. This size does not include the border
+     of the dialog.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">CommandLine</span> </dt><dd 
+class="description">specifies how the command-line will be passed to the program, based on the
+     entries made in the dialog. The text typed here will be passed on after replacing some control
+     placeholders with their values.
+     <!--l. 1588--><p class="noindent">A control placeholder is the name of some control in the dialog, enclosed in percent (<span 
+class="cmtt-10">%</span>)
+     characters. The name of the control will be replaced with the text, associated with the
+     control. Consider the following example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;CommandLine=&#34;-n&nbsp;%l%&nbsp;%v%&nbsp;%i%&nbsp;%w%&nbsp;%searchstr%&nbsp;%filemask%&#34;
+</pre>
+     </td></tr></table>Here the values associated with the controls named <span 
+class="cmtt-10">l, i, v, w </span>and <span 
+class="cmtt-10">searchstr </span>and
+     <span 
+class="cmtt-10">filemask </span>will be inserted in the command-line string.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Default</span> </dt><dd 
+class="description">The name of the control that is the default control, i.e. the control that has the focus
+     when the dialog is opened.</dd></dl>
+<!--l. 1601--><p class="noindent">The following is an example of a valid main section:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;[Main]
+&nbsp;Title=&#34;GNU&nbsp;Grep&#34;
+&nbsp;Size=(56,9)
+&nbsp;CommandLine=&#34;-n&nbsp;%l%&nbsp;%v%&nbsp;%i%&nbsp;%w%&nbsp;%searchstr%&nbsp;%filemask%&#34;
+&nbsp;Default=&#34;searchstr&#34;
+</pre>
+</td></tr></table>
+<!--l. 1610--><p class="noindent">After the <span 
+class="cmtt-10">Main </span>section, a section must be specified for each control that should appear on
+the dialog. Each section has the name of the control it describes, as in the following
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;[CaseSensitive]
+&nbsp;Type=CheckBox
+&nbsp;Name=&#34;~C~ase&nbsp;sensitive&#34;
+&nbsp;Origin=(2,6)
+&nbsp;Size=(25,1)
+&nbsp;Default=On
+&nbsp;On=&#34;-i&#34;
+</pre>
+</td></tr></table>Each control section must have at least the following keywords associated with it:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Type</span> </dt><dd 
+class="description">The type of control. Possible values are:
+         <dl class="description"><dt class="description">
+     <span 
+class="cmbx-10">Label</span> </dt><dd 
+class="description">A plain text label which will be shown on the dialog. A control can be linked
+         to this label, so it will be focused when the user presses the highlighted letter in
+         the label caption (if any).
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">InputLine</span> </dt><dd 
+class="description">An edit field where a text can be entered.
+         </dd><dt class="description">
+     <span 
+class="cmbx-10">CheckBox</span> </dt><dd 
+class="description">A Checkbox which can be in a on or off state.</dd></dl>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Origin</span> </dt><dd 
+class="description">Specifies where the control should be located in the dialog. The origin is specified as
+     <span 
+class="cmtt-10">(left,Top) </span>and the top-left corned of the dialog has coordinate <span 
+class="cmtt-10">(1,1) </span>(not counting the
+     frame).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Size</span> </dt><dd 
+class="description">Specifies the size of the control, which should be specified as <span 
+class="cmtt-10">(Cols,Rows)</span>.</dd></dl>
+<!--l. 1640--><p class="noindent">Each control has some specific keywords associated with it; they will be described below.
+<!--l. 1643--><p class="noindent">A label (<span 
+class="cmtt-10">Type=Label</span>) has the following extra keywords associated with it:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Text</span> </dt><dd 
+class="description">the text displayed in the label. If one of the letters should be highlighted so it
+     can be used as a shortcut, then it should be enclosed in tilde characters (~), e.g.
+     in
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Text=&#34;~T~ext&nbsp;to&nbsp;find&#34;
+</pre>
+     </td></tr></table>The <span 
+class="cmtt-10">T </span>will be highlighted.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Link</span> </dt><dd 
+class="description">here the name of a control in the dialog may be specified. If specified, pressing the label&#8217;s
+     highlighted letter in combination with the <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small> </span>key will put the focus on the control specified
+     here.</dd></dl>
+<!--l. 1657--><p class="noindent">A label does not contribute to the text of the command-line, it is for informational and
+navigational purposes only. The following is an example of a label description section:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;[label2]
+&nbsp;Type=Label
+&nbsp;Origin=(2,3)
+&nbsp;Size=(22,1)
+&nbsp;Text=&#34;File&nbsp;~m~ask&#34;
+&nbsp;Link=&#34;filemask&#34;
+</pre>
+</td></tr></table>
+<!--l. 1669--><p class="noindent">An edit control (<span 
+class="cmtt-10">Type=InputLine</span>) allows to enter arbitrary text. The text of the edit control will
+be pasted in the command-line if it is referenced there. The following keyword can be specified in a
+inputline control section:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Value</span> </dt><dd 
+class="description">here a standard value (text) for the edit control can be specified. This value will be
+     filled in when the dialog appears.</dd></dl>
+<!--l. 1677--><p class="noindent">The following is an example of a input line section:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;[filemask]
+&nbsp;Type=InputLine
+&nbsp;Origin=(2,4)
+&nbsp;Size=(22,1)
+&nbsp;Value=&#34;*.pas&nbsp;*.pp&nbsp;*.inc&#34;
+</pre>
+</td></tr></table>
+<!--l. 1686--><p class="noindent">A combo-box control (<span 
+class="cmtt-10">Type=CheckBox</span>) presents a checkbox which can be in one of two
+states, <span 
+class="cmtt-10">on </span>or <span 
+class="cmtt-10">off</span>. With each of these states, a value can be associated which will be
+passed on to the command-line. The following keywords can appear in a checkbox type
+section:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Name</span> </dt><dd 
+class="description">the text that appears after the checkbox. If there is a highlighted letter in it, this
+     letter can be used to set or unset the checkbox using the <span 
+class="cmcsc-10">A<small 
+class="small-caps">L</small><small 
+class="small-caps">T</small></span>-letter combination.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Default</span> </dt><dd 
+class="description">specifies whether the checkbox is checked or not when the dialog appears (values
+     <span 
+class="cmtt-10">on </span>or <span 
+class="cmtt-10">off</span>)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">On</span> </dt><dd 
+class="description">the text associated with this checkbox if it is in the checked state.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Off</span> </dt><dd 
+class="description">the text associated with this checkbox if it is in the unchecked state.</dd></dl>
+<!--l. 1702--><p class="noindent">The following is a example of a valid checkbox description:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;[i]
+&nbsp;Type=CheckBox
+&nbsp;Name=&#34;~C~ase&nbsp;sensitive&#34;
+&nbsp;Origin=(2,6)
+&nbsp;Size=(25,1)
+&nbsp;Default=On
+&nbsp;On=&#34;-i&#34;
+</pre>
+</td></tr></table>If the checkbox is checked, then the value <span 
+class="cmtt-10">-i </span>will be added on the command-line of the tool. If it is
+unchecked, no value will be added.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse30.htm" >next</a>] [<a 
+href="userse28.htm" >prev</a>] [<a 
+href="userse28.htm#tailuserse28.htm" >prev-tail</a>] [<a 
+href="userse29.htm" >front</a>] [<a 
+href="userch6.htm#userse29.htm" >up</a>] </p></div><a 
+  name="tailuserse29.htm"></a>   
+</body></html> 

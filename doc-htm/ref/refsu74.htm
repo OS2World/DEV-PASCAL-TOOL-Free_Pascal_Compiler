@@ -1,0 +1,108 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 BinStr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu75.htm" >next</a>] [<a 
+href="refsu73.htm" >prev</a>] [<a 
+href="refsu73.htm#tailrefsu73.htm" >prev-tail</a>] [<a 
+href="#tailrefsu74.htm">tail</a>] [<a 
+href="refse64.htm#refsu74.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-159-180" name="x159-16500013.3">BinStr</a></h4><a 
+  name="dx159-165001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function BinStr (Value : longint; cnt : byte) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">BinStr </span>returns a string with the binary representation of <span 
+class="cmtt-10">Value</span>. The string has at most
+<span 
+class="cmtt-10">cnt </span>characters. (i.e. only the <span 
+class="cmtt-10">cnt </span>rightmost bits are taken into account) To have a complete
+representation of any longint-type value, 32 bits are needed, i.e. <span 
+class="cmtt-10">cnt=32</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Str </span>(<a 
+href="refsu177.htm#x262-26800013.3">580<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">Val </span>(<a 
+href="refsu184.htm#x269-27500013.3">588<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">HexStr </span>(<a 
+href="refsu113.htm#x198-20400013.3">509<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">OctStr </span>(<a 
+href="refsu140.htm#x225-23100013.3">540<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5245--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex82.pp</span><HR/><div class="listinginput">
+<!--l. 5245--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example82;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">BinStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">Value</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">45678;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=8</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">20</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(BinStr(Value,I):20);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu75.htm" >next</a>] [<a 
+href="refsu73.htm" >prev</a>] [<a 
+href="refsu73.htm#tailrefsu73.htm" >prev-tail</a>] [<a 
+href="refsu74.htm" >front</a>] [<a 
+href="refse64.htm#refsu74.htm" >up</a>] </p></div><a 
+  name="tailrefsu74.htm"></a>  
+</body></html> 

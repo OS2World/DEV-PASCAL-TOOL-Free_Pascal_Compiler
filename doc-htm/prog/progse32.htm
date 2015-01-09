@@ -1,0 +1,140 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.5 Using dos memory under the Go32 extender</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse31.htm" >prev</a>] [<a 
+href="progse31.htm#tailprogse31.htm" >prev-tail</a>] [<a 
+href="#tailprogse32.htm">tail</a>] [<a 
+href="progch8.htm#progse32.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.5</span> <a 
+href="prog.htm#QQ2-167-191" name="x167-1710008.5">Using <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory under the Go32 extender</a></h3>
+<!--l. 4185--><p class="noindent">Because Free Pascal for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>is a 32 bit compiler, and uses a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>extender, accessing DOS memory
+isn&#8217;t trivial. What follows is an attempt to an explanation of how to access and use <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>or real mode
+memory<a 
+href="prog168.htm" name="prog168.htm" ><sup>4</sup></a>.
+<!--l. 4190--><p class="noindent">In <span 
+class="cmti-10">Proteced Mode</span>, memory is accessed through <span 
+class="cmti-10">Selectors </span>and <span 
+class="cmti-10">Offsets</span>. You can think of Selectors as
+the protected mode equivalents of segments.
+<!--l. 4194--><p class="noindent">In Free Pascal, a pointer is an offset into the <span 
+class="cmtt-10">DS </span>selector, which points to the Data of your
+program.
+<!--l. 4197--><p class="noindent">To access the (real mode) <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>memory, somehow you need a selector that points to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+memory. The <span 
+class="cmss-10">go32 </span>unit provides you with such a selector: The <span 
+class="cmtt-10">DosMemSelector </span>variable, as it is
+conveniently called.
+<!--l. 4202--><p class="noindent">You can also allocate memory in <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>&#8217;s memory space, using the <span 
+class="cmtt-10">global</span>_<span 
+class="cmtt-10">dos</span>_<span 
+class="cmtt-10">alloc</span>
+function of the <span 
+class="cmss-10">go32 </span>unit. This function will allocate memory in a place where <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>sees
+it.
+<!--l. 4206--><p class="noindent">As an example, here is a function that returns memory in real mode <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>and returns a
+selector:offset pair for it.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;procedure&nbsp;dosalloc(var&nbsp;selector&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;segment&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size&nbsp;:&nbsp;longint);
+&nbsp;
+&nbsp;var&nbsp;result&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;:=&nbsp;global_dos_alloc(size);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selector&nbsp;:=&nbsp;word(result);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;segment&nbsp;:=&nbsp;word(result&nbsp;shr&nbsp;16);
+&nbsp;end;
+</pre>
+</td></tr></table>(You need to free this memory using the <span 
+class="cmtt-10">global</span>_<span 
+class="cmtt-10">dos</span>_<span 
+class="cmtt-10">free </span>function.)
+<!--l. 4223--><p class="noindent">You can access any place in memory using a selector. You can get a selector using the
+<span 
+class="cmtt-10">allocate</span>_<span 
+class="cmtt-10">ldt</span>_<span 
+class="cmtt-10">descriptor </span>function, and then let this selector point to the physical
+memory you want using the <span 
+class="cmtt-10">set</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">base</span>_<span 
+class="cmtt-10">address </span>function, and set its length
+using <span 
+class="cmtt-10">set</span>_<span 
+class="cmtt-10">segment</span>_<span 
+class="cmtt-10">limit </span>function. You can manipulate the memory pointed to by the
+selector using the functions of the GO32 unit. For instance with the <span 
+class="cmtt-10">seg</span>_<span 
+class="cmtt-10">fillchar</span>
+function. After using the selector, you must free it again using the <span 
+class="cmtt-10">free</span>_<span 
+class="cmtt-10">ldt</span>_<span 
+class="cmtt-10">selector</span>
+function.
+<!--l. 4233--><p class="noindent">More information on all this can be found in the <a 
+href="file:../units/units.htm" >Unit reference</a>, the chapter on the <span 
+class="cmss-10">go32</span>
+unit.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse31.htm" >prev</a>] [<a 
+href="progse31.htm#tailprogse31.htm" >prev-tail</a>] [<a 
+href="progse32.htm" >front</a>] [<a 
+href="progch8.htm#progse32.htm" >up</a>] </p></div><a 
+  name="tailprogse32.htm"></a>  
+</body></html> 

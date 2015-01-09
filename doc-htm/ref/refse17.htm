@@ -1,0 +1,148 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.1 Declaration</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse18.htm" >next</a>] [<a 
+href="#tailrefse17.htm">tail</a>] [<a 
+href="refch4.htm#refse17.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.1</span> <a 
+href="ref.htm#QQ2-44-53" name="x44-470004.1">Declaration</a></h3>
+<!--l. 1520--><p class="noindent">Free Pascal supports object oriented programming. In fact, most of the compiler is written using
+objects. Here we present some technical questions regarding object oriented programming in Free
+Pascal. Objects should be treated as a special kind of record. The record contains all the fields that
+are declared in the objects definition, and pointers to the methods that are associated to the
+objects&#8217; type.
+<!--l. 1527--><p class="noindent">An object is declared just as a record would be declared; except that now,procedures and functions
+can be declared as if they were part of the record. Objects can &#8221;inherit&#8221; fields and methods from
+&#8221;parent&#8221; objects. This means that these fields and methods can be used as if they were included in
+the objects declared as a &#8221;child&#8221; object.
+<!--l. 1533--><p class="noindent">Furthermore, a concept of visibility is introduced: fields, procedures and functions can
+be delcared as <span 
+class="cmtt-10">public </span>or <span 
+class="cmtt-10">private</span>. By default, fields and methods are <span 
+class="cmtt-10">public</span>, and
+are exported outside the current unit. Fields or methods that are declared <span 
+class="cmtt-10">private</span>
+are only accessible in the current unit. The prototype declaration of an object is as
+follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">object types</span>
+     <BR/>
+     <img 
+src="ref50x.png" alt="-------------object-----------------------------------end -------
+   -packed -|        -heritage| -----component list-----|
+                              -object visibility specifier|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref51x.png" alt="--       -  -                -  ---------------------------------
+   heritage  ( object type identifier )
+     " ><BR/>
+     <BR/>
+                                                                            
+
+                                                                            
+     <img 
+src="ref52x.png" alt="-- component list--------------------------------------------------
+                --field definition---| --method definition--|
+                 --------------|   ----------------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref53x.png" alt="-- field definition-identifier list-:-type -;------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref54x.png" alt="--              ----            ---- -              -------------
+   method definition  - function header --|;  method directives
+                  -pcrooncstedruucrteo hre haeadderer-|
+                  -desctuctor header-|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref55x.png" alt="-- method directives-------------------------------------------------
+                   virtual  ;    abstract  ;    call modifiers ;
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref56x.png" alt="-- object visibility specifier-|--private ----------------------------------
+                      | protected -|
+                      ---public----
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1540--><p class="noindent">As can be seen, as many <span 
+class="cmtt-10">private </span>and <span 
+class="cmtt-10">public </span>blocks as needed can be declared. <span 
+class="cmtt-10">Method</span>
+<span 
+class="cmtt-10">definitions </span>are normal function or procedure declarations. Fields cannot be declared after
+methods in the same block, i.e. the following will generate an error when compiling:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;MyObj&nbsp;=&nbsp;Object
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Doit;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>But the following will be accepted:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;MyObj&nbsp;=&nbsp;Object
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Doit;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>because the field is in a different section.
+<!--l. 1562--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Free Pascal also supports the packed object. This is the same as an object, only the elements
+(fields) of the object are byte-aligned, just as in the packed record. The declaration of a packed
+object is similar to the declaration of a packed record :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TObj&nbsp;=&nbsp;packed&nbsp;object;
+&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;init;
+&nbsp;&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;Pobj&nbsp;=&nbsp;^TObj;
+&nbsp;Var&nbsp;PP&nbsp;:&nbsp;Pobj;
+</pre>
+</td></tr></table>Similarly, the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$PackRecords </span><span 
+class="cmsy-10">} </span>directive acts on objects as well.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse18.htm" >next</a>] [<a 
+href="refse17.htm" >front</a>] [<a 
+href="refch4.htm#refse17.htm" >up</a>] </p></div><a 
+  name="tailrefse17.htm"></a>  
+</body></html> 

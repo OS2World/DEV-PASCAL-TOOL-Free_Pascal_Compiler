@@ -1,0 +1,185 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 FillByte</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu103.htm" >next</a>] [<a 
+href="refsu101.htm" >prev</a>] [<a 
+href="refsu101.htm#tailrefsu101.htm" >prev-tail</a>] [<a 
+href="#tailrefsu102.htm">tail</a>] [<a 
+href="refse64.htm#refsu102.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-187-208" name="x187-19300013.3">FillByte</a></h4><a 
+  name="dx187-193001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FillByte(var X;Count:longint;Value:byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FillByte </span>fills the memory starting at <span 
+class="cmtt-10">X </span>with <span 
+class="cmtt-10">Count </span>bytes with value equal to <span 
+class="cmtt-10">Value</span>.
+<!--l. 5785--><p class="noindent">This is useful for quickly zeroing out a memory location. When the size of the memory
+location to be filled out is a multiple of 2 bytes, it is better to use <span 
+class="cmss-10">Fillword </span>(<a 
+href="refsu105.htm#x190-19600013.3">501<!--tex4ht:ref: se:exceptclasses--></a>), and if it
+is a multiple of 4 bytes it is better to use <span 
+class="cmss-10">FillDWord </span>(<a 
+href="refsu104.htm#x189-19500013.3">500<!--tex4ht:ref: se:exceptclasses--></a>), these routines are optimized for
+their respective sizes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking on the size of <span 
+class="cmtt-10">X </span>is done.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Fillchar </span>(<a 
+href="refsu103.htm#x188-19400013.3">499<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">FillDWord </span>(<a 
+href="refsu104.htm#x189-19500013.3">500<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Fillword </span>(<a 
+href="refsu105.htm#x190-19600013.3">501<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Move </span>(<a 
+href="refsu136.htm#x221-22700013.3">536<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5796--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex102.pp</span><HR/><div class="listinginput">
+<!--l. 5796--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example102;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">CompareWord</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">100;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;<span 
+class="cmtt-10">Div</span>&nbsp;<span 
+class="cmtt-10">2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf1,Buf2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..ArraySize]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">CheckPos(Len</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('First</span>&nbsp;<span 
+class="cmtt-10">',Len,'</span>&nbsp;<span 
+class="cmtt-10">words</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">CompareWord(Buf1,Buf2,Len)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('NOT</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('equal');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">ArraySize</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[i]:=I;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">I&lt;=HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf2[I]:=I</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf2[i]:=HalfArraySize-I;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">div</span>&nbsp;<span 
+class="cmtt-10">2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize+1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CheckPos(HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">+</span>&nbsp;<span 
+class="cmtt-10">HalfArraySize</span>&nbsp;<span 
+class="cmtt-10">Div</span>&nbsp;<span 
+class="cmtt-10">2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu103.htm" >next</a>] [<a 
+href="refsu101.htm" >prev</a>] [<a 
+href="refsu101.htm#tailrefsu101.htm" >prev-tail</a>] [<a 
+href="refsu102.htm" >front</a>] [<a 
+href="refse64.htm#refsu102.htm" >up</a>] </p></div><a 
+  name="tailrefsu102.htm"></a>  
+</body></html> 

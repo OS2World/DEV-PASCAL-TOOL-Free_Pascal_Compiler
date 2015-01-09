@@ -1,0 +1,226 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 class types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu107.htm" >next</a>] [<a 
+href="progsu105.htm" >prev</a>] [<a 
+href="progsu105.htm#tailprogsu105.htm" >prev-tail</a>] [<a 
+href="#tailprogsu106.htm">tail</a>] [<a 
+href="progse29.htm#progsu106.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-153-174" name="x153-1590008.2">class types</a></h4>
+<!--l. 3693--><p class="noindent">Just like objects, classes are stored in memory just as ordinary records with an extra field: a
+pointer to the Virtual Method Table (VMT). This field is stored first, and all fields in the class are
+stored in the order they are declared.
+<!--l. 3698--><p class="noindent">Contrary to objects, all data fields of a class are always stored in heap memory.
+<!--l. 3701--><p class="noindent">The memory allocated looks as in table (<a 
+href="#x153-1590016">8.6<!--tex4ht:ref: tab:ClassMem--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x153-1590016"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.6: </td><td  
+class="content">Class memory layout (32-bit model)</td></tr></table></div><!--tex4ht:label?: x153-1590016-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-15-" ><colgroup id="TBL-15-1g"><col 
+id="TBL-15-1"><col 
+id="TBL-15-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-15-1-"><td  align="left" nowrap="nowrap" id="TBL-15-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-15-1-2"  
+class="td11"> What                                                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-15-2-"><td  align="left" nowrap="nowrap" id="TBL-15-2-1"  
+class="td11"> +0    </td><td  align="left" nowrap="nowrap" id="TBL-15-2-2"  
+class="td11"> Pointer to VMT.                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-15-3-"><td  align="left" nowrap="nowrap" id="TBL-15-3-1"  
+class="td11"> +4    </td><td  align="left" nowrap="nowrap" id="TBL-15-3-2"  
+class="td11"> Data. All fields in the order they&#8217;ve been declared.</td>
+</tr><tr  
+valign="baseline" id="TBL-15-4-"><td  align="left" nowrap="nowrap" id="TBL-15-4-1"  
+class="td11"> . . .    </td><td  align="left" nowrap="nowrap" id="TBL-15-4-2"  
+class="td11">                                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-15-5-"><td  align="left" nowrap="nowrap" id="TBL-15-5-1"  
+class="td11">         </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The Virtual Method Table (VMT) of each class consists of several fields, which are used for
+runtime type information. The VMT layout is illustrated in table (<a 
+href="#x153-1590027">8.7<!--tex4ht:ref: tab:ClassVMTMem--></a>). The VMT is constructed
+by the compiler.
+                                                                            
+
+                                                                            
+<a 
+  name="x153-1590027"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.7: </td><td  
+class="content">Class Virtual Method Table memory layout (32-bit model)</td></tr></table></div><!--tex4ht:label?: x153-1590027-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-16-" ><colgroup id="TBL-16-1g"><col 
+id="TBL-16-1"><col 
+id="TBL-16-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-16-1-"><td  align="left" nowrap="nowrap" id="TBL-16-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-16-1-2"  
+class="td11"> What                                                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-16-2-"><td  align="left" nowrap="nowrap" id="TBL-16-2-1"  
+class="td11"> +0    </td><td  align="left" nowrap="nowrap" id="TBL-16-2-2"  
+class="td11"> Size of object type data                                                                          </td>
+</tr><tr  
+valign="baseline" id="TBL-16-3-"><td  align="left" nowrap="nowrap" id="TBL-16-3-1"  
+class="td11"> +4    </td><td  align="left" nowrap="nowrap" id="TBL-16-3-2"  
+class="td11"> Minus the size of object type data. Enables determining of valid VMT pointers.</td>
+</tr><tr  
+valign="baseline" id="TBL-16-4-"><td  align="left" nowrap="nowrap" id="TBL-16-4-1"  
+class="td11"> +8    </td><td  align="left" nowrap="nowrap" id="TBL-16-4-2"  
+class="td11"> Pointer to ancestor VMT, <span 
+class="cmtt-10">Nil </span>if no ancestor available.                                 </td>
+</tr><tr  
+valign="baseline" id="TBL-16-5-"><td  align="left" nowrap="nowrap" id="TBL-16-5-1"  
+class="td11"> +12  </td><td  align="left" nowrap="nowrap" id="TBL-16-5-2"  
+class="td11"> Pointer to the class name (stored as a <span 
+class="cmtt-10">shortstring</span>).                                   </td>
+</tr><tr  
+valign="baseline" id="TBL-16-6-"><td  align="left" nowrap="nowrap" id="TBL-16-6-1"  
+class="td11"> +16  </td><td  align="left" nowrap="nowrap" id="TBL-16-6-2"  
+class="td11"> Pointer to the dynamic method table (using <span 
+class="cmtt-10">message </span>with integers).               </td>
+</tr><tr  
+valign="baseline" id="TBL-16-7-"><td  align="left" nowrap="nowrap" id="TBL-16-7-1"  
+class="td11"> +20  </td><td  align="left" nowrap="nowrap" id="TBL-16-7-2"  
+class="td11"> Pointer to the method definition table.                                                      </td>
+</tr><tr  
+valign="baseline" id="TBL-16-8-"><td  align="left" nowrap="nowrap" id="TBL-16-8-1"  
+class="td11"> +24  </td><td  align="left" nowrap="nowrap" id="TBL-16-8-2"  
+class="td11"> Pointer to the field definition table.                                                          </td>
+</tr><tr  
+valign="baseline" id="TBL-16-9-"><td  align="left" nowrap="nowrap" id="TBL-16-9-1"  
+class="td11"> +28  </td><td  align="left" nowrap="nowrap" id="TBL-16-9-2"  
+class="td11"> Pointer to type information table.                                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-16-10-"><td  align="left" nowrap="nowrap" id="TBL-16-10-1"  
+class="td11"> +32  </td><td  align="left" nowrap="nowrap" id="TBL-16-10-2"  
+class="td11"> Pointer to instance initialization table.                                                      </td>
+</tr><tr  
+valign="baseline" id="TBL-16-11-"><td  align="left" nowrap="nowrap" id="TBL-16-11-1"  
+class="td11"> +36  </td><td  align="left" nowrap="nowrap" id="TBL-16-11-2"  
+class="td11"> Reserved.                                                                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-16-12-"><td  align="left" nowrap="nowrap" id="TBL-16-12-1"  
+class="td11"> +40  </td><td  align="left" nowrap="nowrap" id="TBL-16-12-2"  
+class="td11"> Pointer to the interface table.                                                                  </td>
+</tr><tr  
+valign="baseline" id="TBL-16-13-"><td  align="left" nowrap="nowrap" id="TBL-16-13-1"  
+class="td11"> +44  </td><td  align="left" nowrap="nowrap" id="TBL-16-13-2"  
+class="td11"> Pointer to the dynamic method table (using <span 
+class="cmtt-10">message </span>with strings).                </td>
+</tr><tr  
+valign="baseline" id="TBL-16-14-"><td  align="left" nowrap="nowrap" id="TBL-16-14-1"  
+class="td11"> +48  </td><td  align="left" nowrap="nowrap" id="TBL-16-14-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">Destroy </span>destructor.                                                           </td>
+</tr><tr  
+valign="baseline" id="TBL-16-15-"><td  align="left" nowrap="nowrap" id="TBL-16-15-1"  
+class="td11"> +52  </td><td  align="left" nowrap="nowrap" id="TBL-16-15-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">NewInstance </span>method.                                                        </td>
+</tr><tr  
+valign="baseline" id="TBL-16-16-"><td  align="left" nowrap="nowrap" id="TBL-16-16-1"  
+class="td11"> +56  </td><td  align="left" nowrap="nowrap" id="TBL-16-16-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">FreeInstance </span>method.                                                       </td>
+</tr><tr  
+valign="baseline" id="TBL-16-17-"><td  align="left" nowrap="nowrap" id="TBL-16-17-1"  
+class="td11"> +60  </td><td  align="left" nowrap="nowrap" id="TBL-16-17-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">SafeCallException </span>method.                                               </td>
+</tr><tr  
+valign="baseline" id="TBL-16-18-"><td  align="left" nowrap="nowrap" id="TBL-16-18-1"  
+class="td11"> +64  </td><td  align="left" nowrap="nowrap" id="TBL-16-18-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">DefaultHandler </span>method.                                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-16-19-"><td  align="left" nowrap="nowrap" id="TBL-16-19-1"  
+class="td11"> +68  </td><td  align="left" nowrap="nowrap" id="TBL-16-19-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">AfterConstruction </span>method.                                               </td>
+</tr><tr  
+valign="baseline" id="TBL-16-20-"><td  align="left" nowrap="nowrap" id="TBL-16-20-1"  
+class="td11"> +72  </td><td  align="left" nowrap="nowrap" id="TBL-16-20-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">BeforeDestruction </span>method.                                               </td>
+</tr><tr  
+valign="baseline" id="TBL-16-21-"><td  align="left" nowrap="nowrap" id="TBL-16-21-1"  
+class="td11"> +76  </td><td  align="left" nowrap="nowrap" id="TBL-16-21-2"  
+class="td11"> Pointer to the <span 
+class="cmtt-10">DefaultHandlerStr </span>method.                                               </td>
+</tr><tr  
+valign="baseline" id="TBL-16-22-"><td  align="left" nowrap="nowrap" id="TBL-16-22-1"  
+class="td11"> +80  </td><td  align="left" nowrap="nowrap" id="TBL-16-22-2"  
+class="td11"> Pointers to other virtual methods.                                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-16-23-"><td  align="left" nowrap="nowrap" id="TBL-16-23-1"  
+class="td11"> . . .    </td><td  align="left" nowrap="nowrap" id="TBL-16-23-2"  
+class="td11">                                                                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-16-24-"><td  align="left" nowrap="nowrap" id="TBL-16-24-1"  
+class="td11">         </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu107.htm" >next</a>] [<a 
+href="progsu105.htm" >prev</a>] [<a 
+href="progsu105.htm#tailprogsu105.htm" >prev-tail</a>] [<a 
+href="progsu106.htm" >front</a>] [<a 
+href="progse29.htm#progsu106.htm" >up</a>] </p></div><a 
+  name="tailprogsu106.htm"></a>  
+</body></html> 

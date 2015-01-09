@@ -1,0 +1,112 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Ptr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu150.htm" >next</a>] [<a 
+href="refsu148.htm" >prev</a>] [<a 
+href="refsu148.htm#tailrefsu148.htm" >prev-tail</a>] [<a 
+href="#tailrefsu149.htm">tail</a>] [<a 
+href="refse64.htm#refsu149.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-234-255" name="x234-24000013.3">Ptr</a></h4><a 
+  name="dx234-240001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function Ptr (Sel,Off : Longint) : Pointer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Ptr </span>returns a pointer, pointing to the address specified by segment <span 
+class="cmtt-10">Sel </span>and offset <span 
+class="cmtt-10">Off</span>.
+<!--l. 6614--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>
+    <ol type="1" class="enumerate1" 
+>
+    <li class="enumerate"><a 
+  name="x234-240003x1"></a>In the 32-bit flat-memory model supported by Free Pascal, this function is obsolete.
+    </li>
+    <li class="enumerate"><a 
+  name="x234-240005x2"></a>The returned address is simply the offset.</li></ol>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Addr </span>(<a 
+href="refsu68.htm#x153-15900013.3">451<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6627--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex59.pp</span><HR/><div class="listinginput">
+<!--l. 6627--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example59;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Ptr</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">^String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='Hello,</span>&nbsp;<span 
+class="cmtt-10">World</span>&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">P:=Ptr(Seg(S),Longint(Ofs(S)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{P</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">points</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">!}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(P^);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu150.htm" >next</a>] [<a 
+href="refsu148.htm" >prev</a>] [<a 
+href="refsu148.htm#tailrefsu148.htm" >prev-tail</a>] [<a 
+href="refsu149.htm" >front</a>] [<a 
+href="refse64.htm#refsu149.htm" >up</a>] </p></div><a 
+  name="tailrefsu149.htm"></a>  
+</body></html> 

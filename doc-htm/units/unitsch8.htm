@@ -1,0 +1,255 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8 The GRAPH unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch9.htm" >next</a>] [<a 
+href="unitsch7.htm" >prev</a>] [<a 
+href="unitsch7.htm#tailunitsch7.htm" >prev-tail</a>] [<a 
+href="#tailunitsch8.htm">tail</a>] [<a 
+href="units.htm#unitsch8.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;8</span><br><a 
+href="units.htm#QQ2-31-206" name="x31-2030008">The GRAPH unit.</a></h2>  This document describes the <span 
+class="cmtt-10">GRAPH </span>unit for Free Pascal, for all
+platforms. The unit was first written for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>by Florian kl&auml;mpfl, but was later completely
+rewritten by Carl-Eric Codere to be completely portable.
+<!--l. 29--><p class="noindent">This chapter is divided in 4 sections.
+     <ul class="itemize1">
+     <li class="itemize">The first section gives an introduction to the graph unit.
+     </li>
+     <li class="itemize">The second section lists the pre-defined constants, types and variables.
+     </li>
+     <li class="itemize">The second section describes the functions which appear in the interface part of the
+     <span 
+class="cmss-10">GRAPH </span>unit.
+     </li>
+     <li class="itemize">The last part describes some system-specific issues.
+     </li></ul>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="unitsse19.htm#x32-2040008.1" name="QQ2-32-207">Introduction</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse19.htm#x32-2050008.1" name="QQ2-32-208">Requirements</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse19.htm#x32-2060008.1" name="QQ2-32-209">A word about mode selection</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="unitsse20.htm#x33-2070008.2" name="QQ2-33-210">Constants, Types and Variables</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse20.htm#x33-2080008.2" name="QQ2-33-211">Types</a></span>
+<br>&nbsp;<span class="sectionToc">8.3 <a 
+href="unitsse21.htm#x34-2090008.3" name="QQ2-34-212">Function list by category</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2100008.3" name="QQ2-34-213">Initialization</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2110008.3" name="QQ2-34-214">screen management</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2120008.3" name="QQ2-34-215">Color management</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2130008.3" name="QQ2-34-216">Drawing primitives</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2140008.3" name="QQ2-34-217">Filled drawings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse21.htm#x34-2150008.3" name="QQ2-34-218">Text and font handling</a></span>
+<br>&nbsp;<span class="sectionToc">8.4 <a 
+href="unitsse22.htm#x35-2160008.4" name="QQ2-35-219">Functions and procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2170008.4" name="QQ2-35-220">Arc</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2180008.4" name="QQ2-35-221">Bar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2190008.4" name="QQ2-35-222">Bar3D</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2200008.4" name="QQ2-35-223">Circle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2210008.4" name="QQ2-35-224">ClearDevice</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2220008.4" name="QQ2-35-225">ClearViewPort</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2230008.4" name="QQ2-35-226">CloseGraph</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2240008.4" name="QQ2-35-227">DetectGraph</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2250008.4" name="QQ2-35-228">DrawPoly</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2260008.4" name="QQ2-35-229">Ellipse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2270008.4" name="QQ2-35-230">FillEllipse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2280008.4" name="QQ2-35-231">FillPoly</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2290008.4" name="QQ2-35-232">FloodFill</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2300008.4" name="QQ2-35-233">GetArcCoords</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2310008.4" name="QQ2-35-234">GetAspectRatio</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2320008.4" name="QQ2-35-235">GetBkColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2330008.4" name="QQ2-35-236">GetColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2340008.4" name="QQ2-35-237">GetDefaultPalette</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2350008.4" name="QQ2-35-238">GetDriverName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2360008.4" name="QQ2-35-239">GetFillPattern</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2370008.4" name="QQ2-35-240">GetFillSettings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2380008.4" name="QQ2-35-241">GetGraphMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2390008.4" name="QQ2-35-242">GetImage</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2400008.4" name="QQ2-35-243">GetLineSettings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2410008.4" name="QQ2-35-244">GetMaxColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2420008.4" name="QQ2-35-245">GetMaxMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2430008.4" name="QQ2-35-246">GetMaxX</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2440008.4" name="QQ2-35-247">GetMaxY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2450008.4" name="QQ2-35-248">GetModeName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2460008.4" name="QQ2-35-249">GetModeRange</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2470008.4" name="QQ2-35-250">GetPalette</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2480008.4" name="QQ2-35-251">GetPaletteSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2490008.4" name="QQ2-35-252">GetPixel</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2500008.4" name="QQ2-35-253">GetTextSettings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2510008.4" name="QQ2-35-254">GetViewSettings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2520008.4" name="QQ2-35-255">GetX</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2530008.4" name="QQ2-35-256">GetY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2540008.4" name="QQ2-35-257">GraphDefaults</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2550008.4" name="QQ2-35-258">GraphErrorMsg</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2560008.4" name="QQ2-35-259">GraphResult</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2570008.4" name="QQ2-35-260">ImageSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2580008.4" name="QQ2-35-261">InitGraph</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2590008.4" name="QQ2-35-262">InstallUserDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2600008.4" name="QQ2-35-263">InstallUserFont</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2610008.4" name="QQ2-35-264">Line</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2620008.4" name="QQ2-35-265">LineRel</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2630008.4" name="QQ2-35-266">LineTo</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2640008.4" name="QQ2-35-267">MoveRel</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2650008.4" name="QQ2-35-268">MoveTo</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2660008.4" name="QQ2-35-269">OutText</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2670008.4" name="QQ2-35-270">OutTextXY</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2680008.4" name="QQ2-35-271">PieSlice</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2690008.4" name="QQ2-35-272">PutImage</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2700008.4" name="QQ2-35-273">PutPixel</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2710008.4" name="QQ2-35-274">Rectangle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2720008.4" name="QQ2-35-275">RegisterBGIDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2730008.4" name="QQ2-35-276">RegisterBGIFont</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2740008.4" name="QQ2-35-277">RestoreCRTMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2750008.4" name="QQ2-35-278">Sector</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2760008.4" name="QQ2-35-279">SetActivePage</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2770008.4" name="QQ2-35-280">SetAllPallette</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2780008.4" name="QQ2-35-281">SetAspectRatio</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2790008.4" name="QQ2-35-282">SetBkColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2800008.4" name="QQ2-35-283">SetColor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2810008.4" name="QQ2-35-284">SetFillPattern</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2820008.4" name="QQ2-35-285">SetFillStyle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2830008.4" name="QQ2-35-286">SetGraphBufSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2840008.4" name="QQ2-35-287">SetGraphMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2850008.4" name="QQ2-35-288">SetLineStyle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2860008.4" name="QQ2-35-289">SetPalette</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2870008.4" name="QQ2-35-290">SetRGBPalette</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2880008.4" name="QQ2-35-291">SetTextJustify</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2890008.4" name="QQ2-35-292">SetTextStyle</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2900008.4" name="QQ2-35-293">SetUserCharSize</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2910008.4" name="QQ2-35-294">SetViewPort</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2920008.4" name="QQ2-35-295">SetVisualPage</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2930008.4" name="QQ2-35-296">SetWriteMode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2940008.4" name="QQ2-35-297">TextHeight</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse22.htm#x35-2950008.4" name="QQ2-35-298">TextWidth</a></span>
+<br>&nbsp;<span class="sectionToc">8.5 <a 
+href="unitsse23.htm#x36-2960008.5" name="QQ2-36-299">Target specific issues</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse23.htm#x36-2970008.5" name="QQ2-36-300">dos </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse23.htm#x36-2980008.5" name="QQ2-36-301">Windows </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse23.htm#x36-2990008.5" name="QQ2-36-302">linux </a></span>
+</div>
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch9.htm" >next</a>] [<a 
+href="unitsch7.htm" >prev</a>] [<a 
+href="unitsch7.htm#tailunitsch7.htm" >prev-tail</a>] [<a 
+href="unitsch8.htm" >front</a>] [<a 
+href="units.htm#unitsch8.htm" >up</a>] </p></div><a 
+  name="tailunitsch8.htm"></a>  
+</body></html> 

@@ -1,0 +1,76 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $C or $ASSERTIONS : Assertion support</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu5.htm" >next</a>] [<a 
+href="progsu3.htm" >prev</a>] [<a 
+href="progsu3.htm#tailprogsu3.htm" >prev-tail</a>] [<a 
+href="#tailprogsu4.htm">tail</a>] [<a 
+href="progse2.htm#progsu4.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-11-9" name="x11-90001.1"><span 
+class="cmtt-10">$C </span>or <span 
+class="cmtt-10">$ASSERTIONS </span>: Assertion support</a></h4>
+<!--l. 154--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$ASSERTIONS</span><span 
+class="cmsy-10">} </span>switch determines if assert statements are compiled into the binary or not. If
+the switch is on, the statement
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Assert(BooleanExpression,AssertMessage);
+</pre>
+</td></tr></table>Will be compiled in the binary. If te <span 
+class="cmtt-10">BooleanExpression </span>evaluates to <span 
+class="cmtt-10">False</span>, the RTL will check if
+the <span 
+class="cmtt-10">AssertErrorProc </span>is set. If it is set, it will be called with as parameters the <span 
+class="cmtt-10">AssertMessage</span>
+message, the name of the file, the LineNumber and the address. If it is not set, a runtime error 227
+is generated.
+<!--l. 165--><p class="noindent">The <span 
+class="cmtt-10">AssertErrorProc </span>is defined as
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TAssertErrorProc=procedure(const&nbsp;msg,fname:string;lineno,erroraddr:longint);
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;AssertErrorProc&nbsp;=&nbsp;TAssertErrorProc;
+</pre>
+</td></tr></table>This can be used mainly for debugging purposes. The <span 
+class="cmss-10">system </span>unit sets the <span 
+class="cmtt-10">AssertErrorProc </span>to a
+handler that displays a message on <span 
+class="cmtt-10">stderr </span>and simply exits. The <span 
+class="cmss-10">sysutils </span>unit catches the run-time
+error 227 and raises an <span 
+class="cmtt-10">EAssertionFailed </span>exception.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu5.htm" >next</a>] [<a 
+href="progsu3.htm" >prev</a>] [<a 
+href="progsu3.htm#tailprogsu3.htm" >prev-tail</a>] [<a 
+href="progsu4.htm" >front</a>] [<a 
+href="progse2.htm#progsu4.htm" >up</a>] </p></div><a 
+  name="tailprogsu4.htm"></a>  
+</body></html> 

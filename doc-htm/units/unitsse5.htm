@@ -1,0 +1,2515 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.3 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse4.htm" >prev</a>] [<a 
+href="unitsse4.htm#tailunitsse4.htm" >prev-tail</a>] [<a 
+href="#tailunitsse5.htm">tail</a>] [<a 
+href="unitsch2.htm#unitsse5.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.3</span> <a 
+href="units.htm#QQ2-12-44" name="x12-420002.3">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-45" name="x12-430002.3">AddDisk</a></h4><a 
+  name="dx12-43001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure AddDisk (Const S : String);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AddDisk </span>adds a filename <span 
+class="cmtt-10">S </span>to the internal list of disks. It is implemented for systems which do not
+use DOS type drive letters. This list is used to determine which disks to use in the
+<span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x12-440002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>) and <span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x12-450002.3">81<!--tex4ht:ref: tab:fmxxxconstants--></a>) calls. The <span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x12-440002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>) and <span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x12-450002.3">81<!--tex4ht:ref: tab:fmxxxconstants--></a>) functions
+need a file on the specified drive, since this is required for the <span 
+class="cmtt-10">statfs </span>system call. The
+names are added sequentially. The dos initialization code presets the first three disks
+to:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">'.' </span>for the current drive,
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd0/.' </span>for the first floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd1/.' </span>for the second floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/' </span>for the first hard disk.</li></ul>
+<!--l. 313--><p class="noindent">The first call to <span 
+class="cmtt-10">AddDisk </span>will therefore add a name for the second harddisk, The second call for the
+third drive, and so on until 23 drives have been added (corresponding to drives <span 
+class="cmtt-10">'D:' </span>to
+<span 
+class="cmtt-10">'Z:'</span>)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x12-440002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x12-450002.3">81<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-46" name="x12-440002.3">DiskFree</a></h4><a 
+  name="dx12-44001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DiskFree (Drive: byte) : int64;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 328--><p class="noindent"><span 
+class="cmtt-10">DiskFree </span>returns the number of free bytes on a disk. The parameter <span 
+class="cmtt-10">Drive </span>indicates which
+disk should be checked. This parameter is 1 for floppy <span 
+class="cmtt-10">a:</span>, 2 for floppy <span 
+class="cmtt-10">b:</span>, etc. A value of 0
+returns the free space on the current drive.
+                                                                            
+
+                                                                            
+<!--l. 333--><p class="noindent"><span 
+class="cmbx-10">For unix only:</span>
+<br class="newline">The <span 
+class="cmtt-10">diskfree </span>and <span 
+class="cmtt-10">disksize </span>functions need a file on the specified drive, since this is required for
+the <span 
+class="cmtt-10">statfs </span>system call. These filenames are set in the initialization of the dos unit, and have been
+preset to :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">'.' </span>for the current drive,
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd0/.' </span>for the first floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd1/.' </span>for the second floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/' </span>for the first hard disk.</li></ul>
+<!--l. 344--><p class="noindent">There is room for 1-26 drives. You can add a drive with the <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x12-430002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>) procedure. These settings
+can be coded in <span 
+class="cmtt-10">dos.pp</span>, in the initialization part.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">-1 when a failure occurs, or an invalid drive number is given.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskSize </span>(<a 
+href="#x12-450002.3">81<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x12-430002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 354--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 354--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DiskSize</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">DiskFree</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">partition</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">',DiskSize(0),'</span>&nbsp;<span 
+class="cmtt-10">bytes');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Currently</span>&nbsp;<span 
+class="cmtt-10">',DiskFree(0),'</span>&nbsp;<span 
+class="cmtt-10">bytes</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">free');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-47" name="x12-450002.3">DiskSize</a></h4><a 
+  name="dx12-45001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DiskSize (Drive: byte) : int64;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 361--><p class="noindent"><span 
+class="cmtt-10">DiskSize </span>returns the total size (in bytes) of a disk. The parameter <span 
+class="cmtt-10">Drive </span>indicates which
+disk should be checked. This parameter is 1 for floppy <span 
+class="cmtt-10">a:</span>, 2 for floppy <span 
+class="cmtt-10">b:</span>, etc. A value of 0
+returns the size of the current drive.
+<!--l. 366--><p class="noindent"><span 
+class="cmbx-10">For unix only:</span>
+<br class="newline">The <span 
+class="cmtt-10">diskfree </span>and <span 
+class="cmtt-10">disksize </span>functions need a file on the specified drive, since this is required for
+the <span 
+class="cmtt-10">statfs </span>system call. These filenames are set in the initialization of the dos unit, and have been
+preset to :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">'.' </span>for the current drive,
+                                                                            
+
+                                                                            
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd0/.' </span>for the first floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/fd1/.' </span>for the second floppy-drive (linux only).
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">'/' </span>for the first hard disk.</li></ul>
+<!--l. 377--><p class="noindent">There is room for 1-26 drives. You can add a drive with the <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x12-430002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>) procedure. These settings
+can be coded in <span 
+class="cmtt-10">dos.pp</span>, in the initialization part.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">-1 when a failure occurs, or an invalid drive number is given.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x12-440002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">AddDisk </span>(<a 
+href="#x12-430002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 386--><p class="noindent">For an example, see <span 
+class="cmss-10">DiskFree </span>(<a 
+href="#x12-440002.3">80<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-48" name="x12-460002.3">DosExitCode</a></h4><a 
+  name="dx12-46001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DosExitCode : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 392--><p class="noindent"><span 
+class="cmtt-10">DosExitCode </span>contains (in the low byte) the exit-code of a program executed with the <span 
+class="cmtt-10">Exec</span>
+call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Exec </span>(<a 
+href="#x12-500002.3">85<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 400--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 400--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Exec</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">DosExitCode</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   <span 
+class="cmtt-10">{$IFDEF</span>&nbsp;<span 
+class="cmtt-10">Unix}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Executing</span>&nbsp;<span 
+class="cmtt-10">/bin/ls</span>&nbsp;<span 
+class="cmtt-10">-la');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exec('/bin/ls','-la');</span>
+<br>   <span 
+class="cmtt-10">{$ELSE}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Executing</span>&nbsp;<span 
+class="cmtt-10">Dir');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exec(GetEnv('COMSPEC'),'/C</span>&nbsp;<span 
+class="cmtt-10">dir');</span>
+<br>   <span 
+class="cmtt-10">{$ENDIF}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Program</span>&nbsp;<span 
+class="cmtt-10">returned</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">ExitCode</span>&nbsp;<span 
+class="cmtt-10">',Lo(DosExitCode));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-49" name="x12-470002.3">DosVersion</a></h4><a 
+  name="dx12-47001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function DosVersion : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DosVersion </span>returns the operating system or kernel version. The low byte contains the major
+version number, while the high byte contains the minor version number.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On systems where versions consists of more then two numbers, only the first two numbers will
+be returned. For example Linux version 2.1.76 will give you DosVersion 2.1. Some operating
+systems, such as <span 
+class="cmcsc-10">F<small 
+class="small-caps">R</small><small 
+class="small-caps">E</small><small 
+class="small-caps">E</small>BSD</span>, do not have system calls to return the kernel version, in that
+case a value of 0 will be returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+<!--l. 422--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 422--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">DosVersion</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string[32];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Version</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   <span 
+class="cmtt-10">{$IFDEF</span>&nbsp;<span 
+class="cmtt-10">LINUX}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='Linux';</span>
+<br>   <span 
+class="cmtt-10">{$ENDIF}</span>
+<br>   <span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">FreeBSD}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='FreeBSD';</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>   <span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">NetBSD}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='NetBSD';</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>   <span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">Solaris}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='Solaris';</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>   <span 
+class="cmtt-10">{$ifdef</span>&nbsp;<span 
+class="cmtt-10">QNX}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='QNX';</span>
+<br>   <span 
+class="cmtt-10">{$endif}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$IFDEF</span>&nbsp;<span 
+class="cmtt-10">DOS}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OS:='Dos';</span>
+<br>   <span 
+class="cmtt-10">{$ENDIF}</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Version:=DosVersion;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Current</span>&nbsp;<span 
+class="cmtt-10">',OS,'</span>&nbsp;<span 
+class="cmtt-10">version</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',Lo(Version),'.',Hi(Version));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-50" name="x12-480002.3">EnvCount</a></h4><a 
+  name="dx12-48001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function EnvCount : longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">EnvCount </span>returns the number of environment variables.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EnvStr </span>(<a 
+href="#x12-490002.3">84<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Dos:GetEnv </span>(<a 
+href="#x12-590002.3">90<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-51" name="x12-490002.3">EnvStr</a></h4><a 
+  name="dx12-49001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function EnvStr (Index: integer) : string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 439--><p class="noindent"><span 
+class="cmtt-10">EnvStr </span>returns the <span 
+class="cmtt-10">Index</span>-th <span 
+class="cmtt-10">Name=Value </span>pair from the list of environment variables. The
+index of the first pair is zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The length is limited to 255 characters.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EnvCount </span>(<a 
+href="#x12-480002.3">84<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Dos:GetEnv </span>(<a 
+href="#x12-590002.3">90<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 448--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex13.pp</span><HR/><div class="listinginput">
+<!--l. 448--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example13;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">EnvCount</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">EnvStr</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Current</span>&nbsp;<span 
+class="cmtt-10">Environment</span>&nbsp;<span 
+class="cmtt-10">is:');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=1to</span>&nbsp;<span 
+class="cmtt-10">EnvCount</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(EnvStr(i));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-52" name="x12-500002.3">Exec</a></h4><a 
+  name="dx12-50001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Exec (const Path: pathstr; const ComLine: comstr);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 455--><p class="noindent"><span 
+class="cmtt-10">Exec </span>executes the program in <span 
+class="cmtt-10">Path</span>, with the options given by <span 
+class="cmtt-10">ComLine</span>. After the program
+has terminated, the procedure returns. The Exit value of the program can be consulted with
+the <span 
+class="cmtt-10">DosExitCode </span>function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">DosError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DosExitCode </span>(<a 
+href="#x12-460002.3">82<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 465--><p class="noindent">For an example, see <span 
+class="cmss-10">DosExitCode </span>(<a 
+href="#x12-460002.3">82<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-53" name="x12-510002.3">FExpand</a></h4><a 
+  name="dx12-51001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FExpand (const path: pathstr) : pathstr;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 471--><p class="noindent"><span 
+class="cmtt-10">FExpand </span>takes its argument and expands it to a complete filename, i.e. a filename starting
+from the root directory of the current drive, prepended with the drive-letter or volume name
+(when supported).
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On case sensitive file systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>), the resulting name is left as it is,
+otherwise it is converted to uppercase.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FSplit </span>(<a 
+href="#x12-560002.3">88<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 482--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 482--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Exec</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">DosExitCode</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   <span 
+class="cmtt-10">{$IFDEF</span>&nbsp;<span 
+class="cmtt-10">Unix}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Executing</span>&nbsp;<span 
+class="cmtt-10">/bin/ls</span>&nbsp;<span 
+class="cmtt-10">-la');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exec('/bin/ls','-la');</span>
+<br>   <span 
+class="cmtt-10">{$ELSE}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Executing</span>&nbsp;<span 
+class="cmtt-10">Dir');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Exec(GetEnv('COMSPEC'),'/C</span>&nbsp;<span 
+class="cmtt-10">dir');</span>
+<br>   <span 
+class="cmtt-10">{$ENDIF}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Program</span>&nbsp;<span 
+class="cmtt-10">returned</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">ExitCode</span>&nbsp;<span 
+class="cmtt-10">',Lo(DosExitCode));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-54" name="x12-520002.3">FindClose</a></h4><a 
+  name="dx12-52001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FindClose (Var F: SearchRec);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FindClose </span>frees any resources associated with the search record <span 
+class="cmtt-10">F</span>.
+<!--l. 491--><p class="noindent">This call is needed to free any internal resources allocated by the <span 
+class="cmss-10">FindFirst </span>(<a 
+href="unitsse77.htm#x104-87900022.6">753<!--tex4ht:ref: tab:fmxxxconstants--></a>) or <span 
+class="cmss-10">FindNext</span>
+(<a 
+href="unitsse77.htm#x104-88000022.6">754<!--tex4ht:ref: tab:fmxxxconstants--></a>) calls.
+<!--l. 495--><p class="noindent">The <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>implementation of the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>unit therefore keeps a table of open directories, and
+when the table is full, closes one of the directories, and reopens another. This system is
+adequate but slow if you use a lot of  <span 
+class="cmtt-10">searchrecs</span>. So, to speed up the findfirst/findnext
+system, the <span 
+class="cmtt-10">FindClose </span>call was implemented. When you don&#8217;t need a <span 
+class="cmtt-10">searchrec </span>any more,
+you can tell this to the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>unit by issuing a <span 
+class="cmtt-10">FindClose </span>call. The directory which is kept
+open for this <span 
+class="cmtt-10">searchrec </span>is then closed, and the table slot freed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">It is recommended to use the <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>call <span 
+class="cmtt-10">Glob </span>when looking for files on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in DosError.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Glob </span>(<a 
+href="unitsse36.htm#x53-43400012.3">401<!--tex4ht:ref: tab:fmxxxconstants--></a>).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-55" name="x12-530002.3">FindFirst</a></h4><a 
+  name="dx12-53001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FindFirst (const Path: pathstr; Attr: word; var F: SearchRec);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 520--><p class="noindent"><span 
+class="cmtt-10">FindFirst </span>searches the file specified in <span 
+class="cmtt-10">Path</span>. Normal files, as well as all special files which
+have the attributes specified in <span 
+class="cmtt-10">Attr </span>will be returned.
+<!--l. 524--><p class="noindent">It returns a <span 
+class="cmtt-10">SearchRec </span>record for further searching in <span 
+class="cmtt-10">F</span>. <span 
+class="cmtt-10">Path </span>can contain the wildcard
+characters <span 
+class="cmtt-10">? </span>(matches any single character) and <span 
+class="cmtt-10">* </span>(matches 0 ore more arbitrary characters).
+In  this  case  <span 
+class="cmtt-10">FindFirst  </span>will  return  the  first  file  which  matches  the  specified  criteria.  If
+<span 
+class="cmtt-10">DosError </span>is different from zero, no file(s) matching the criteria was(were) found.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>, you cannot issue two different <span 
+class="cmtt-10">FindFirst </span>calls. That is, you must close any
+previous search operation with <span 
+class="cmss-10">FindClose </span>(<a 
+href="#x12-520002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>) before starting a new one. Failure to do so will
+end in a Run-Time Error 6 (Invalid file handle)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in DosError.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FindNext </span>(<a 
+href="#x12-540002.3">87<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindClose </span>(<a 
+href="#x12-520002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 545--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 545--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FindFirst</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">FindNext</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dir</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">SearchRec;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FindFirst('*.*',archive,Dir);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('FileName'+Space(32),'FileSize':9);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(DosError=0)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Dir.Name+Space(40-Length(Dir.Name)),Dir.Size:9);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">FindNext(Dir);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FindClose(Dir);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-56" name="x12-540002.3">FindNext</a></h4><a 
+  name="dx12-54001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FindNext (var f: searchRec);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 552--><p class="noindent"><span 
+class="cmtt-10">FindNext </span>takes as an argument a <span 
+class="cmtt-10">SearchRec </span>from a previous <span 
+class="cmtt-10">FindNext </span>call, or a <span 
+class="cmtt-10">FindFirst</span>
+call, and tries to find another file which matches the criteria, specified in the <span 
+class="cmtt-10">FindFirst </span>call.
+If <span 
+class="cmtt-10">DosError </span>is different from zero, no more files matching the criteria were found.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DosError </span>is used to report errors.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FindFirst </span>(<a 
+href="#x12-530002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindClose </span>(<a 
+href="#x12-520002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 562--><p class="noindent">For an example, see <span 
+class="cmss-10">FindFirst </span>(<a 
+href="#x12-530002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-57" name="x12-550002.3">FSearch</a></h4><a 
+  name="dx12-55001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FSearch (Path: pathstr; DirList: string) : pathstr;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FSearch </span>searches the file <span 
+class="cmtt-10">Path </span>in all directories listed in <span 
+class="cmtt-10">DirList</span>. The full name of the
+found file is returned. <span 
+class="cmtt-10">DirList </span>must be a list of directories, separated by semi-colons. When
+no file is found, an empty string is returned.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On  <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small>  </span>systems,  <span 
+class="cmtt-10">DirList  </span>can  also  be  separated  by  colons,  as  is  customary  on  those
+environments.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FExpand </span>(<a 
+href="#x12-510002.3">85<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 580--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 580--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FSearch</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s:=FSearch(ParamStr(1),GetEnv('PATH'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">s=''</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(ParamStr(1),'</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Found</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">PATH')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(ParamStr(1),'</span>&nbsp;<span 
+class="cmtt-10">Found</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">PATH</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',s);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-58" name="x12-560002.3">FSplit</a></h4><a 
+  name="dx12-56001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FSplit (path: pathstr;</span>
+<br class="newline"><span 
+class="cmtt-10">var dir: dirstr; var name: namestr; var ext: extstr);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 589--><p class="noindent"><span 
+class="cmtt-10">FSplit </span>splits a full file name into 3 parts : A <span 
+class="cmtt-10">Path</span>, a <span 
+class="cmtt-10">Name </span>and an extension (in <span 
+class="cmtt-10">ext</span>.) The
+extension is taken to be all letters after the <span 
+class="cmti-10">last </span>dot (.). For <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, however, an exception is
+made when <span 
+class="cmtt-10">LFNSupport=False</span>, then the extension is defined as all characters after the <span 
+class="cmti-10">first</span>
+dot.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">FSearch </span>(<a 
+href="#x12-550002.3">87<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 601--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 601--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example12;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FSplit</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Path,Name,Ext</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FSplit(ParamStr(1),Path,Name,Ext);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Splitted</span>&nbsp;<span 
+class="cmtt-10">',ParamStr(1),'</span>&nbsp;<span 
+class="cmtt-10">in:');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Path</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Path);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Name</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Name);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Extension:</span>&nbsp;<span 
+class="cmtt-10">',Ext);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-59" name="x12-570002.3">GetCBreak</a></h4><a 
+  name="dx12-57001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetCBreak (var breakvalue: boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 608--><p class="noindent"><span 
+class="cmtt-10">GetCBreak </span>gets the status of CTRL-Break checking  under  <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>  </span>and  <span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small></span>.  When
+<span 
+class="cmtt-10">BreakValue </span>is <span 
+class="cmtt-10">false</span>, then <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>only checks for the CTRL-Break key-press when I/O is
+performed. When it is set to <span 
+class="cmtt-10">True</span>, then a check is done at every system call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>and non-<span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small> </span>operating systems, <span 
+class="cmtt-10">BreakValue </span>always returns <span 
+class="cmtt-10">True</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetCBreak </span>(<a 
+href="#x12-710002.3">97<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-60" name="x12-580002.3">GetDate</a></h4><a 
+  name="dx12-58001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetDate (var year, month, mday, wday: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 625--><p class="noindent"><span 
+class="cmtt-10">GetDate </span>returns the system&#8217;s date. <span 
+class="cmtt-10">Year </span>is a number in the range 1980..2099.<span 
+class="cmtt-10">mday </span>is the day
+of the month, <span 
+class="cmtt-10">wday </span>is the day of the week, starting with Sunday as day 0.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetTime </span>(<a 
+href="#x12-650002.3">94<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetDate </span>(<a 
+href="#x12-720002.3">97<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 634--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex2.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 634--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetDate</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">const</span>
+<br>
+&nbsp;&nbsp;<span 
+class="cmtt-10">DayStr:array[0..6]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string[3]=('Sun','Mon','Tue','Wed','Thu','Fri','Sat');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MonthStr:array[1..12]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">string[3]=('Jan','Feb','Mar','Apr','May','Jun',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'Jul','Aug','Sep','Oct','Nov','Dec');</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Year,Month,Day,WDay</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetDate(Year,Month,Day,WDay);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Current</span>&nbsp;<span 
+class="cmtt-10">date');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(DayStr[WDay],',</span>&nbsp;<span 
+class="cmtt-10">',Day,'</span>&nbsp;<span 
+class="cmtt-10">',MonthStr[Month],'</span>&nbsp;<span 
+class="cmtt-10">',Year,'.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-61" name="x12-590002.3">GetEnv</a></h4><a 
+  name="dx12-59001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetEnv (EnvVar: String) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 641--><p class="noindent"><span 
+class="cmtt-10">Getenv </span>returns the value of the environment variable <span 
+class="cmtt-10">EnvVar</span>. When there is no environment
+variable <span 
+class="cmtt-10">EnvVar </span>defined, an empty string is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under some operating systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>), case is important when looking for <span 
+class="cmtt-10">EnvVar</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">EnvCount </span>(<a 
+href="#x12-480002.3">84<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">EnvStr </span>(<a 
+href="#x12-490002.3">84<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 653--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 653--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetEnv</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Current</span>&nbsp;<span 
+class="cmtt-10">PATH</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',GetEnv('PATH'));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-62" name="x12-600002.3">GetFAttr</a></h4><a 
+  name="dx12-60001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetFAttr (var F; var Attr: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 660--><p class="noindent"><span 
+class="cmtt-10">GetFAttr </span>returns the file attributes of the file-variable <span 
+class="cmtt-10">f</span>. <span 
+class="cmtt-10">F </span>can be a untyped or typed file, or of
+type <span 
+class="cmtt-10">Text</span>. <span 
+class="cmtt-10">f </span>must have been assigned, but not opened. The attributes can be examined with the
+following constants :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">ReadOnly</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Hidden</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">SysFile</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">VolumeId</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Directory</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Archive</span></li></ul>
+<!--l. 672--><p class="noindent">Under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, supported attributes are:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">Directory</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">ReadOnly </span>if the current process doesn&#8217;t have access to the file.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Hidden </span>for files whose name starts with a dot <span 
+class="cmtt-10">('.')</span>.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">DosError</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFAttr </span>(<a 
+href="#x12-730002.3">98<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 685--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 685--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetFAttr</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Attr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Word;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">f</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign(f,ParamStr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetFAttr(f,Attr);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('File</span>&nbsp;<span 
+class="cmtt-10">',ParamStr(1),'</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">attribute</span>&nbsp;<span 
+class="cmtt-10">',Attr);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(Attr</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">archive)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">WriteLn('-</span>&nbsp;<span 
+class="cmtt-10">Archive');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(Attr</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">directory)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">WriteLn('-</span>&nbsp;<span 
+class="cmtt-10">Directory');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(Attr</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">readonly)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">WriteLn('-</span>&nbsp;<span 
+class="cmtt-10">Read-Only');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(Attr</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">sysfile)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">WriteLn('-</span>&nbsp;<span 
+class="cmtt-10">System');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(Attr</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">hidden)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">WriteLn('-</span>&nbsp;<span 
+class="cmtt-10">Hidden');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-63" name="x12-610002.3">GetFTime</a></h4><a 
+  name="dx12-61001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetFTime (var F; var Time: longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 692--><p class="noindent"><span 
+class="cmtt-10">GetFTime </span>returns the modification time of a file. This time is encoded and must be decoded
+with <span 
+class="cmtt-10">UnPackTime</span>. <span 
+class="cmtt-10">F </span>must be a file type, which has been assigned, and opened.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">DosError</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFTime </span>(<a 
+href="#x12-740002.3">98<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">PackTime </span>(<a 
+href="#x12-700002.3">96<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">UnPackTime </span>(<a 
+href="#x12-790002.3">100<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 702--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 702--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example9;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetFTime</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">L0(w:word):string;</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(w,s);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">w&lt;10</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L0:='0'+s</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L0:=s;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">f</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Time</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">DateTime;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign(f,ParamStr(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetFTime(f,Time);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(f);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UnPackTime(Time,DT);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">('File</span>&nbsp;<span 
+class="cmtt-10">',ParamStr(1),'</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">last</span>&nbsp;<span 
+class="cmtt-10">modified</span>&nbsp;<span 
+class="cmtt-10">on</span>&nbsp;<span 
+class="cmtt-10">');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(L0(DT.Month),'-',L0(DT.Day),'-',DT.Year,</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',L0(DT.Hour),':',L0(DT.Min));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-64" name="x12-620002.3">GetIntVec</a></h4><a 
+  name="dx12-62001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetIntVec (IntNo: byte; var Vector: pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 709--><p class="noindent"><span 
+class="cmtt-10">GetIntVec </span>returns the address of interrupt vector <span 
+class="cmtt-10">IntNo</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">This call does nothing, it is present for compatibility only.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetIntVec </span>(<a 
+href="#x12-750002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-65" name="x12-630002.3">GetLongName</a></h4><a 
+  name="dx12-63001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetLongName(var p : String) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This function is only implemented in the GO32V2 version of Free Pascal.
+<!--l. 724--><p class="noindent"><span 
+class="cmtt-10">GetLongName </span>changes the filename <span 
+class="cmtt-10">p </span>to a long filename if the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call to do this is successful.
+The resulting string is the long file name corresponding to the short filename <span 
+class="cmtt-10">p</span>.
+<!--l. 728--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call was successful, <span 
+class="cmtt-10">False </span>otherwise.
+<!--l. 731--><p class="noindent">This function should only be necessary when using the DOS extender under Windows 95
+and higher.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call was not succesfull, <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetShortName </span>(<a 
+href="#x12-640002.3">93<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-66" name="x12-640002.3">GetShortName</a></h4><a 
+  name="dx12-64001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function GetShortName(var p : String) : boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">This function is only implemented in the GO32V2 version of Free Pascal.
+<!--l. 744--><p class="noindent"><span 
+class="cmtt-10">GetShortName </span>changes the filename <span 
+class="cmtt-10">p </span>to a short filename if the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call to do this is
+successful. The resulting string is the short file name corresponding to the long filename <span 
+class="cmtt-10">p</span>.
+<!--l. 748--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call was successful, <span 
+class="cmtt-10">False </span>otherwise.
+                                                                            
+
+                                                                            
+<!--l. 751--><p class="noindent">This function should only be necessary when using the DOS extender under Windows 95
+and higher.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>call was not successful, <span 
+class="cmtt-10">False </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetLongName </span>(<a 
+href="#x12-630002.3">93<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-67" name="x12-650002.3">GetTime</a></h4><a 
+  name="dx12-65001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetTime (var hour, minute, second, sec100: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 764--><p class="noindent"><span 
+class="cmtt-10">GetTime </span>returns the system&#8217;s time. <span 
+class="cmtt-10">Hour </span>is a on a 24-hour time scale. <span 
+class="cmtt-10">sec100 </span>is in hundredth
+of a second.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Certain operating systems (such as <span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small></span>), always set the <span 
+class="cmtt-10">sec100 </span>field to zero.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetDate </span>(<a 
+href="#x12-580002.3">89<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetTime </span>(<a 
+href="#x12-760002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 778--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 778--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetTime</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">L0(w:word):string;</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">s</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Str(w,s);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">w&lt;10</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L0:='0'+s</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">L0:=s;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Hour,Min,Sec,HSec</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetTime(Hour,Min,Sec,HSec);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Current</span>&nbsp;<span 
+class="cmtt-10">time');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(L0(Hour),':',L0(Min),':',L0(Sec));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-68" name="x12-660002.3">GetVerify</a></h4><a 
+  name="dx12-66001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetVerify (var verify: boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 786--><p class="noindent"><span 
+class="cmtt-10">GetVerify </span>returns the status of the verify flag under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>. When <span 
+class="cmtt-10">Verify </span>is <span 
+class="cmtt-10">True</span>, then <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+checks data which are written to disk, by reading them after writing. If <span 
+class="cmtt-10">Verify </span>is <span 
+class="cmtt-10">False</span>,
+then data written to disk are not verified.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>systems (excluding <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>applications running under vanilla DOS), Verify
+is always <span 
+class="cmtt-10">True</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetVerify </span>(<a 
+href="#x12-770002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-69" name="x12-670002.3">Intr</a></h4><a 
+  name="dx12-67001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Intr (IntNo: byte; var Regs: registers);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 803--><p class="noindent"><span 
+class="cmtt-10">Intr </span>executes a software  interrupt  number  <span 
+class="cmtt-10">IntNo  </span>(must  be  between  0  and  255),  with
+processor registers set to <span 
+class="cmtt-10">Regs</span>. After the interrupt call returned, the processor registers are
+saved in <span 
+class="cmtt-10">Regs</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>operating systems, this call does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">MSDos </span>(<a 
+href="#x12-690002.3">96<!--tex4ht:ref: tab:fmxxxconstants--></a>), see the <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>unit.</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-70" name="x12-680002.3">Keep</a></h4><a 
+  name="dx12-68001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Keep (ExitCode: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Keep </span>terminates the program, but stays in memory. This is used for TSR (Terminate Stay
+Resident) programs which catch some interrupt. <span 
+class="cmtt-10">ExitCode </span>is the same parameter as the <span 
+class="cmtt-10">Halt</span>
+function takes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">This call does nothing, it is present for compatibility only.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Halt </span>() </dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-71" name="x12-690002.3">MSDos</a></h4><a 
+  name="dx12-69001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure MSDos (var regs: registers);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 833--><p class="noindent"><span 
+class="cmtt-10">MSDos </span>executes an operating system. This is the same as doing a <span 
+class="cmtt-10">Intr </span>call with the interrupt
+number for an os call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under  non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>  </span>operating  systems,  this  call  does  nothing.  On  <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>  </span>systems,  this  calls
+interrupt $21.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Intr </span>(<a 
+href="#x12-670002.3">95<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-72" name="x12-700002.3">PackTime</a></h4><a 
+  name="dx12-70001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure PackTime (var T: datetime; var P: longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 848--><p class="noindent"><span 
+class="cmtt-10">UnPackTime </span>converts the date and time specified in <span 
+class="cmtt-10">T </span>to a packed-time format which can be
+fed to <span 
+class="cmtt-10">SetFTime</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFTime </span>(<a 
+href="#x12-740002.3">98<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindFirst </span>(<a 
+href="#x12-530002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindNext </span>(<a 
+href="#x12-540002.3">87<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">UnPackTime </span>(<a 
+href="#x12-790002.3">100<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 856--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">dosex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 856--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example4;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Dos;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PackTime</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">UnPackTime</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">DateTime;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Time</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Year:=1998;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Month:=11;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Day:=11;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Hour:=11;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Min:=11;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Sec:=11;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PackTime(DT,Time);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Packed</span>&nbsp;<span 
+class="cmtt-10">Time</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Time);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">UnPackTime(Time,DT);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Unpacked</span>&nbsp;<span 
+class="cmtt-10">Again:');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">DT</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Year</span>&nbsp;&nbsp;<span 
+class="cmtt-10">',Year);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Month</span>&nbsp;<span 
+class="cmtt-10">',Month);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Day</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">',Day);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Hour</span>&nbsp;&nbsp;<span 
+class="cmtt-10">',Hour);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Min</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">',Min);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Sec</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">',Sec);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-73" name="x12-710002.3">SetCBreak</a></h4><a 
+  name="dx12-71001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetCBreak (breakvalue: boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 863--><p class="noindent"><span 
+class="cmtt-10">SetCBreak </span>sets the status of CTRL-Break checking. When <span 
+class="cmtt-10">BreakValue </span>is <span 
+class="cmtt-10">false</span>, then <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+only checks for the CTRL-Break key-press when I/O is performed. When it is set to <span 
+class="cmtt-10">True</span>,
+then a check is done at every system call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>and non-<span 
+class="cmcsc-10">A<small 
+class="small-caps">M</small><small 
+class="small-caps">I</small><small 
+class="small-caps">G</small><small 
+class="small-caps">A</small> </span>operating systems, this call does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetCBreak </span>(<a 
+href="#x12-570002.3">89<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-74" name="x12-720002.3">SetDate</a></h4><a 
+  name="dx12-72001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetDate (year,month,day: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<!--l. 879--><p class="noindent"><span 
+class="cmtt-10">SetDate </span>sets the system&#8217;s internal date. <span 
+class="cmtt-10">Year </span>is a number between 1980 and 2099.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On a <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>machine, there must be root privileges, otherwise this routine will do nothing.
+On other <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems, this call currently does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Dos:GetDate </span>(<a 
+href="#x12-580002.3">89<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetTime </span>(<a 
+href="#x12-760002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-75" name="x12-730002.3">SetFAttr</a></h4><a 
+  name="dx12-73001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetFAttr (var F; Attr: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 897--><p class="noindent"><span 
+class="cmtt-10">SetFAttr </span>sets the file attributes of the file-variable <span 
+class="cmtt-10">F</span>. <span 
+class="cmtt-10">F </span>can be a untyped or typed file, or of type
+<span 
+class="cmtt-10">Text</span>. <span 
+class="cmtt-10">F </span>must have been assigned, but not opened. The attributes can be a sum of the following
+constants:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">ReadOnly</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Hidden</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">SysFile</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">VolumeId</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Directory</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Archive</span></li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>like systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10">B<small 
+class="small-caps">E</small>OS</span>) the call exists, but is not implemented, i.e. it
+does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">DosError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetFAttr </span>(<a 
+href="#x12-600002.3">90<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-76" name="x12-740002.3">SetFTime</a></h4><a 
+  name="dx12-74001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetFTime (var F; Time: longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<!--l. 923--><p class="noindent"><span 
+class="cmtt-10">SetFTime </span>sets the modification time of a file, this time is encoded and must be encoded with
+<span 
+class="cmtt-10">PackTime</span>. <span 
+class="cmtt-10">F </span>must be a file type, which has been assigned, and opened.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>like systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10">B<small 
+class="small-caps">E</small>OS</span>) the call exists, but is not implemented,
+i.e. it does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Errors are reported in <span 
+class="cmtt-10">DosError</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetFTime </span>(<a 
+href="#x12-610002.3">92<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">PackTime </span>(<a 
+href="#x12-700002.3">96<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">UnPackTime </span>(<a 
+href="#x12-790002.3">100<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-77" name="x12-750002.3">SetIntVec</a></h4><a 
+  name="dx12-75001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetIntVec (IntNo: byte; Vector: pointer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetIntVec </span>sets interrupt vector <span 
+class="cmtt-10">IntNo </span>to <span 
+class="cmtt-10">Vector</span>. <span 
+class="cmtt-10">Vector </span>should point to an interrupt
+procedure.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">This call does nothing, it is present for compatibility only.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetIntVec </span>(<a 
+href="#x12-620002.3">93<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-78" name="x12-760002.3">SetTime</a></h4><a 
+  name="dx12-76001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetTime (hour,minute,second,sec100: word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetTime </span>sets the system&#8217;s internal clock. The <span 
+class="cmtt-10">Hour </span>parameter is on a 24-hour time scale.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">On a <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>machine, there must be root privileges, otherwise this routine will do nothing.
+On other <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems, this call currently does nothing.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Dos:GetTime </span>(<a 
+href="#x12-650002.3">94<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetDate </span>(<a 
+href="#x12-720002.3">97<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-79" name="x12-770002.3">SetVerify</a></h4><a 
+  name="dx12-77001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetVerify (verify: boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+<!--l. 970--><p class="noindent"><span 
+class="cmtt-10">SetVerify </span>sets the status of the verify flag under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>. When <span 
+class="cmtt-10">Verify </span>is <span 
+class="cmtt-10">True</span>, then <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+checks data which are written to disk, by reading them after writing. If <span 
+class="cmtt-10">Verify </span>is <span 
+class="cmtt-10">False</span>,
+then data written to disk are not verified.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under non-<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>operating systems (excluding <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>applications running under vanilla dos),
+Verify is always <span 
+class="cmtt-10">True</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetVerify </span>(<a 
+href="#x12-770002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-80" name="x12-780002.3">SwapVectors</a></h4><a 
+  name="dx12-78001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SwapVectors ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 987--><p class="noindent"><span 
+class="cmtt-10">SwapVectors </span>swaps the contents of the internal table of interrupt vectors with the current
+contents of the interrupt vectors. This is called typically in before and after an <span 
+class="cmtt-10">Exec </span>call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Portability:</span> </dt><dd 
+class="list">Under certain operating systems, this routine may be implemented as an empty stub.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Exec </span>(<a 
+href="#x12-500002.3">85<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetIntVec </span>(<a 
+href="#x12-750002.3">99<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-12-81" name="x12-790002.3">UnPackTime</a></h4><a 
+  name="dx12-79001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure UnPackTime (p: longint; var T: datetime);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 1004--><p class="noindent"><span 
+class="cmtt-10">UnPackTime  </span>converts  the  file-modification  time  in  <span 
+class="cmtt-10">p  </span>to  a  <span 
+class="cmtt-10">DateTime  </span>record.  The
+file-modification time can be returned by <span 
+class="cmtt-10">GetFTime</span>, <span 
+class="cmtt-10">FindFirst </span>or <span 
+class="cmtt-10">FindNext </span>calls.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetFTime </span>(<a 
+href="#x12-610002.3">92<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindFirst </span>(<a 
+href="#x12-530002.3">86<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FindNext </span>(<a 
+href="#x12-540002.3">87<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">PackTime </span>(<a 
+href="#x12-700002.3">96<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 1012--><p class="noindent">For an example, see <span 
+class="cmss-10">PackTime </span>(<a 
+href="#x12-700002.3">96<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse4.htm" >prev</a>] [<a 
+href="unitsse4.htm#tailunitsse4.htm" >prev-tail</a>] [<a 
+href="unitsse5.htm" >front</a>] [<a 
+href="unitsch2.htm#unitsse5.htm" >up</a>] </p></div><a 
+  name="tailunitsse5.htm"></a>   
+</body></html> 

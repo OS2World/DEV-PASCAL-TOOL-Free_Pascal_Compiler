@@ -1,0 +1,133 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.1 Expression syntax</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse28.htm" >next</a>] [<a 
+href="#tailrefse27.htm">tail</a>] [<a 
+href="refch6.htm#refse27.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.1</span> <a 
+href="ref.htm#QQ2-59-72" name="x59-650006.1">Expression syntax</a></h3>
+<!--l. 2331--><p class="noindent">An expression applies relational operators to simple expressions. Simple expressions are a series of
+terms (what a term is, is explained below), joined by adding operators.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Expressions</span>
+     <BR/>
+     <img 
+src="ref75x.png" alt="-- expression -simple expression---------------------------------------
+                            - * -|simple expression
+                            --&lt;&gt;=-|
+                            - &gt;=-|
+                            --= -|
+                            - &lt;&gt;-|
+                            | in-|
+                            - is-
+     " ><BR/>
+                                                                            
+
+                                                                            
+     <BR/>
+     <img 
+src="ref76x.png" alt="-- simple expression -|-term ------------------------------------------
+                 |--+  ---|
+                   -----|
+                   |or -|
+                   -xor--
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2335--><p class="noindent">The following are valid expressions:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;GraphResult&lt;&gt;grError
+&nbsp;(DoItToday=Yes)&nbsp;and&nbsp;(DoItTomorrow=No);
+&nbsp;Day&nbsp;in&nbsp;Weekend
+</pre>
+</td></tr></table>And here are some simple expressions:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;A&nbsp;+&nbsp;B
+&nbsp;-Pi
+&nbsp;ToBe&nbsp;or&nbsp;NotToBe
+</pre>
+</td></tr></table>Terms consist of factors, connected by multiplication operators.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Terms</span>
+     <BR/>
+     <img 
+src="ref77x.png" alt="-- term ---factor--------------------------------------------------
+        ---- *----|
+          -- /--|
+          |div--|
+          |mod -|
+          |and -|
+          |shl--|
+          |shr--|
+          --as--
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2349--><p class="noindent">Here are some valid terms:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;2&nbsp;*&nbsp;Pi
+&nbsp;A&nbsp;Div&nbsp;B
+&nbsp;(DoItToday=Yes)&nbsp;and&nbsp;(DoItTomorrow=No);
+</pre>
+</td></tr></table>Factors are all other constructions:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Factors</span>
+     <BR/>
+     <img 
+src="ref78x.png" alt="-- factor---( -expression- )-----------------------------------------
+         - variable reference -|
+         ---function call---|
+         |unsigned constant|
+         |--not -factor---|
+         |--sign -factor---|
+         |-set constructor-|
+         |--value typecast--|
+         ---address factor ---
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref79x.png" alt="-- unsigned constant--|-unsigned number --------------------------------
+                  |-character string-|
+                  |constant identifier|
+                  -------Nil-------
+     " ><BR/>
+     ___________________________________________________________________</div>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse28.htm" >next</a>] [<a 
+href="refse27.htm" >front</a>] [<a 
+href="refch6.htm#refse27.htm" >up</a>] </p></div><a 
+  name="tailrefse27.htm"></a>  
+</body></html> 

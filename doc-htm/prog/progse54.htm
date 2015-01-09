@@ -1,0 +1,62 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A.2 reading ppufiles</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse55.htm" >next</a>] [<a 
+href="progse53.htm" >prev</a>] [<a 
+href="progse53.htm#tailprogse53.htm" >prev-tail</a>] [<a 
+href="#tailprogse54.htm">tail</a>] [<a 
+href="progap1.htm#progse54.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">A.2</span> <a 
+href="prog.htm#QQ2-212-235" name="x212-213000A.2">reading ppufiles</a></h3>
+<!--l. 5272--><p class="noindent">We will first create an object ppufile which will be used below. We are opening unit <span 
+class="cmss-10">test.ppu </span>as an
+example.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;ppufile&nbsp;:&nbsp;pppufile;
+&nbsp;begin
+&nbsp;{&nbsp;Initialize&nbsp;object&nbsp;}
+&nbsp;&nbsp;&nbsp;ppufile:=new(pppufile,init('test.ppu');
+&nbsp;{&nbsp;open&nbsp;the&nbsp;unit&nbsp;and&nbsp;read&nbsp;the&nbsp;header,&nbsp;returns&nbsp;false&nbsp;when&nbsp;it&nbsp;fails&nbsp;}
+&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;ppufile.openfile&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error('error&nbsp;opening&nbsp;unit&nbsp;test.ppu');
+&nbsp;
+&nbsp;{&nbsp;here&nbsp;we&nbsp;can&nbsp;read&nbsp;the&nbsp;unit&nbsp;}
+&nbsp;
+&nbsp;{&nbsp;close&nbsp;unit&nbsp;}
+&nbsp;&nbsp;&nbsp;ppufile.closefile;
+&nbsp;{&nbsp;release&nbsp;object&nbsp;}
+&nbsp;&nbsp;&nbsp;dispose(ppufile,done);
+&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 5294--><p class="noindent">Note: When a function fails (for example not enough bytes left in an entry) it sets the
+<span 
+class="cmtt-10">ppufile.error </span>variable.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse55.htm" >next</a>] [<a 
+href="progse53.htm" >prev</a>] [<a 
+href="progse53.htm#tailprogse53.htm" >prev-tail</a>] [<a 
+href="progse54.htm" >front</a>] [<a 
+href="progap1.htm#progse54.htm" >up</a>] </p></div><a 
+  name="tailprogse54.htm"></a>  
+</body></html> 

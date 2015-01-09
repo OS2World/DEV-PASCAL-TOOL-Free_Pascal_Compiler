@@ -1,0 +1,123 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.5 Comparision operator</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse48.htm" >prev</a>] [<a 
+href="refse48.htm#tailrefse48.htm" >prev-tail</a>] [<a 
+href="#tailrefse49.htm">tail</a>] [<a 
+href="refch9.htm#refse49.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.5</span> <a 
+href="ref.htm#QQ2-118-139" name="x118-1240009.5">Comparision operator</a></h3>
+<!--l. 3984--><p class="noindent">The comparision operator can be overloaded to compare two different types or to compare two
+equal types that are not basic types. The result type of a comparision operator is always a
+boolean.
+<!--l. 3988--><p class="noindent">The comparision operators that can be overloaded are:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">equal to</span> </dt><dd 
+class="description">(=) to determine if two variables are equal.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">less than</span> </dt><dd 
+class="description">(<span 
+class="cmmi-10">&lt;</span>) to determine if one variable is less than another.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">greater than</span> </dt><dd 
+class="description">(<span 
+class="cmmi-10">&gt;</span>) to determine if one variable is greater than another.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">greater than or equal to</span> </dt><dd 
+class="description">(<span 
+class="cmmi-10">&gt;</span>=) to determine if one variable is greater than or equal to
+     another.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">less than or equal to</span> </dt><dd 
+class="description">(<span 
+class="cmmi-10">&lt;</span>=) to determine if one variable is greater than or equal to another.</dd></dl>
+<!--l. 3998--><p class="noindent">There is no separate operator for <span 
+class="cmti-10">unequal to </span>(<span 
+class="cmmi-10">&lt;&gt;</span>). To evaluate a statement that contans
+the <span 
+class="cmti-10">unequal to </span>operator, the compiler uses the <span 
+class="cmti-10">equal to </span>operator (=), and negates the
+result.
+<!--l. 4003--><p class="noindent">As an example, the following opetrator allows to compare two complex numbers:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;operator&nbsp;=&nbsp;(z1,&nbsp;z2&nbsp;:&nbsp;complex)&nbsp;b&nbsp;:&nbsp;boolean;
+</pre>
+</td></tr></table>the above definition allows comparisions of the following form:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;C1,C2&nbsp;:&nbsp;Complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;If&nbsp;C1=C2&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writeln('C1&nbsp;and&nbsp;C2&nbsp;are&nbsp;equal');
+&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 4019--><p class="noindent">The comparision operator definition needs 2 parameters, with the types that the operator is meant
+to compare. Here also, the compiler doesn&#8217;t apply commutativity; if the two types are different,
+then it necessary to define 2 comparision operators.
+<!--l. 4024--><p class="noindent">In the case of complex numbers, it is, for instance necessary to define 2 comparsions: one with the
+complex type first, and one with the real type first.
+<!--l. 4028--><p class="noindent">Given the definitions
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;operator&nbsp;=&nbsp;(z1&nbsp;:&nbsp;complex;r&nbsp;:&nbsp;real)&nbsp;b&nbsp;:&nbsp;boolean;
+&nbsp;operator&nbsp;=&nbsp;(r&nbsp;:&nbsp;real;&nbsp;z1&nbsp;:&nbsp;complex)&nbsp;b&nbsp;:&nbsp;boolean;
+</pre>
+</td></tr></table>the following two comparisions are possible:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;R,S&nbsp;:&nbsp;Real;
+&nbsp;&nbsp;&nbsp;C&nbsp;:&nbsp;Complex;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;If&nbsp;(C=R)&nbsp;or&nbsp;(S=C)&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Ok');
+&nbsp;end;
+</pre>
+</td></tr></table>Note that the order of the real and complex type in the two comparisions is reversed.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse48.htm" >prev</a>] [<a 
+href="refse48.htm#tailrefse48.htm" >prev-tail</a>] [<a 
+href="refse49.htm" >front</a>] [<a 
+href="refch9.htm#refse49.htm" >up</a>] </p></div><a 
+  name="tailrefse49.htm"></a>  
+</body></html> 

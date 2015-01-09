@@ -1,0 +1,746 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2 Supplied programs</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse38.htm" >prev</a>] [<a 
+href="userse38.htm#tailuserse38.htm" >prev-tail</a>] [<a 
+href="#tailuserse39.htm">tail</a>] [<a 
+href="userch8.htm#userse39.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.2</span> <a 
+href="user.htm#QQ2-56-185" name="x56-1360008.2">Supplied programs</a></h3>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-56-186" name="x56-1370008.2">ppudump program</a></h4>
+<!--l. 1748--><p class="noindent"><span 
+class="cmss-10">ppudump </span>is a program which shows the contents of a Free Pascal unit. It is distributed with the
+compiler. You can just issue the following command
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;ppudump&nbsp;[options]&nbsp;foo.ppu
+</pre>
+</td></tr></table>to display the contents of the <span 
+class="cmss-10">foo.ppu </span>unit. You can specify multiple files on the command
+line.
+<!--l. 1756--><p class="noindent">The options can be used to change the verbosity of the display. By default, all available
+information is displayed. You can set the verbosity level using the <span 
+class="cmtt-10">-Vxxx </span>option. Here, <span 
+class="cmtt-10">xxx </span>is a
+combination of the following letters:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">h:</span>&nbsp; </dt><dd 
+class="description">show header info.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">i:</span>&nbsp; </dt><dd 
+class="description">show interface information.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">m:</span>&nbsp; </dt><dd 
+class="description">show implementation information.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">d:</span>&nbsp; </dt><dd 
+class="description">show only (interface) definitions.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">s:</span>&nbsp; </dt><dd 
+class="description">show only (interface) symbols.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">b:</span>&nbsp; </dt><dd 
+class="description">show browser info.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">a:</span>&nbsp; </dt><dd 
+class="description">show everything (default if no -V option is present).</dd></dl>
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-56-187" name="x56-1380008.2">ppumove program</a></h4>
+<!--l. 1774--><p class="noindent"><span 
+class="cmss-10">ppumove </span>is a program to make shared or static libraries from multiple units. It can be compared
+with the <span 
+class="cmss-10">tpumove </span>program that comes with Turbo Pascal.
+<!--l. 1779--><p class="noindent">It should be distributed in binary form along with the compiler.
+<!--l. 1781--><p class="noindent">Its usage is very simple:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppumove&nbsp;[options]&nbsp;unit1.ppu&nbsp;unit2.ppu&nbsp;...&nbsp;unitn.ppu
+</pre>
+</td></tr></table>Where <span 
+class="cmtt-10">options </span>is a combination of
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-b:</span>&nbsp; </dt><dd 
+class="description">If specified, ppumve will generate a batch file that will contain the external linking and
+     archiving commands that must be executed. The name of this batch file is <span 
+class="cmss-10">pmove.sh</span>
+     on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and <span 
+class="cmss-10">pmove.bat </span>otherwise.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-d xxx:</span>&nbsp; </dt><dd 
+class="description">If specified, the output files will put in the directory <span 
+class="cmss-10">xxx</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-e xxx:</span>&nbsp; </dt><dd 
+class="description">Sets the extension of the moved unit files to <span 
+class="cmss-10">xxx</span>. By default, this is <span 
+class="cmss-10">.ppl</span>. You don&#8217;t
+     have to specify the dot.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-o xxx:</span>&nbsp; </dt><dd 
+class="description">sets the name of the output file, i.e. the name of the file containing all the units. This
+     parameter is mandatory when you use multiple files. On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, <span 
+class="cmss-10">ppumove </span>will prepend
+     this name with <span 
+class="cmss-10">lib </span>if it isn&#8217;t already there, and will add an extension appropriate to
+     the type of library.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-q:</span>&nbsp; </dt><dd 
+class="description">Causes <span 
+class="cmss-10">ppumove </span>to operate silently.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-s:</span>&nbsp; </dt><dd 
+class="description">Tells <span 
+class="cmss-10">ppumove </span>to make a static library instead of a dynamic one; By default a dynamic
+     library is made on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-w:</span>&nbsp; </dt><dd 
+class="description">Tells ppumove that it is working under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT</span>. This will change the names of
+     te linker and archiving program to <span 
+class="cmss-10">ldw </span>and <span 
+class="cmss-10">arw</span>, respectively.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-h or -?:</span>&nbsp; </dt><dd 
+class="description">will display a short help.</dd></dl>
+<!--l. 1808--><p class="noindent">The action of the ppumve program is as follows: It takes each of the unit files, and modifies it so
+that the compile will know that it should look for the unit code in the library. The new unit files
+will have an extension <span 
+class="cmss-10">.ppu</span>, this can be changed with the <span 
+class="cmtt-10">-e </span>option. It will then put together all
+the object files of the units into one library, static or dynamic, depending on the presence of the <span 
+class="cmtt-10">-s</span>
+option.
+<!--l. 1816--><p class="noindent">The name of this library must be set with the <span 
+class="cmtt-10">-o </span>option. If needed, the prefix <span 
+class="cmss-10">lib </span>will be prepended
+under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.. The extension will be set to <span 
+class="cmss-10">.a </span>for static libraries, for shared libraries the extensions
+are <span 
+class="cmtt-10">.so </span>on linux, and <span 
+class="cmtt-10">.dll </span>under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>.
+<!--l. 1822--><p class="noindent">As an example, the following command
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;./ppumove&nbsp;-o&nbsp;both&nbsp;-e&nbsp;ppl&nbsp;ppu.ppu&nbsp;timer.ppu
+</pre>
+</td></tr></table>under linux, will generate the following output:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PPU-Mover&nbsp;Version&nbsp;0.99.7
+&nbsp;Copyright&nbsp;(c)&nbsp;1998&nbsp;by&nbsp;the&nbsp;Free&nbsp;Pascal&nbsp;Development&nbsp;Team
+&nbsp;
+&nbsp;Processing&nbsp;ppu.ppu...&nbsp;Done.
+&nbsp;Processing&nbsp;timer.ppu...&nbsp;Done.
+&nbsp;Linking&nbsp;timer.o&nbsp;ppu.o
+&nbsp;Done.
+</pre>
+</td></tr></table>And it will produce the following files:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x56-138002x1"></a><span 
+class="cmss-10">libboth.so </span>: The shared library containing the code from <span 
+class="cmss-10">ppu.o </span>and <span 
+class="cmss-10">timer.o</span>. Under
+     <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT</span>, this file would be called <span 
+class="cmss-10">both.dll</span>.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-138004x2"></a><span 
+class="cmss-10">timer.ppl </span>: The unit file that tells the Free Pascal compiler to look for the timer code
+     in the library.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-138006x3"></a><span 
+class="cmss-10">ppu.ppl </span>: The unit file that tells the Free Pascal compiler to look for the timer code in
+     the library.</li></ol>
+<!--l. 1846--><p class="noindent">You could then use or distribute the files <span 
+class="cmss-10">libboth.so</span>, <span 
+class="cmss-10">timer.ppl </span>and <span 
+class="cmss-10">ppu.ppl</span>.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-56-188" name="x56-1390008.2">ptop - Pascal source beautifier</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="#x56-1400008.2" name="x56-1400008.2">ptop program</a></h5>
+<!--l. 1856--><p class="noindent"><span 
+class="cmss-10">ptop </span>is a source beautifier written by Peter Grogono based on the ancient pretty-printer by
+Ledgard, Hueras, and Singer, modernized by the Free Pascal team (objects, streams, configurability
+etc)
+<!--l. 1859--><p class="noindent">This configurability, and the thorough bottom-up design are the advantages of this program over
+the diverse TurboPascal sourcebeautifiers on e.g. SIMTEL.
+<!--l. 1862--><p class="noindent">The program is quite simple to operate:
+<!--l. 1864--><p class="noindent">ptop &#8221;[-v] [-i indent] [-b bufsize ][-c <span 
+class="cmss-10">optsfile</span>] <span 
+class="cmss-10">infile outfile</span>&#8221;
+<!--l. 1866--><p class="noindent">The <span 
+class="cmss-10">Infile </span>parameter is the pascal file to be processed, and will be written to <span 
+class="cmss-10">outfile</span>, overwriting an
+existing <span 
+class="cmss-10">outfile </span>if it exists.
+<!--l. 1869--><p class="noindent">Some options modify the behaviour of ptop:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-h</span> </dt><dd 
+class="description">Writes an overview of the possible parameters and commandline syntax.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-c </span><span 
+class="cmssbx-10">ptop.cfg</span> </dt><dd 
+class="description">Read  some  configuration  data  from  configuration  file  instead  of  using  the
+     internal defaults then. A config file is not required, the program can operate without
+     one. See also -g.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-i ident</span> </dt><dd 
+class="description">Sets the number of indent spaces used for BEGIN END; and other blocks.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-b bufsize</span> </dt><dd 
+class="description">Sets the streaming buffersize to bufsize. Default 255, 0 is considered non-valid
+     and ignored.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-v</span> </dt><dd 
+class="description">be verbose. Currently only outputs the number of lines read/written and some error
+     messages.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-g </span><span 
+class="cmssbx-10">ptop.cfg</span> </dt><dd 
+class="description">Writes a default configuration file to be edited to the file &#8221;ptop.cfg&#8221;</dd></dl>
+<h5 class="subsubsectionHead"><a 
+href="#x56-1410008.2" name="x56-1410008.2">The ptop configuration file</a></h5>
+<!--l. 1884--><p class="noindent">Creating and distributing a configuration file for ptop is not necesarry, unless you want to modify
+the standard behaviour of <span 
+class="cmss-10">ptop</span>. The configuration file is never preloaded, so if you want to use it
+you should always specify it with a <span 
+class="cmtt-10">-c ptop.cfg </span>parameter.
+<!--l. 1889--><p class="noindent">The structure of a ptop configuration file is a simple buildingblock repeated several (20-30) times,
+for each pascal keyword known to the <span 
+class="cmss-10">ptop </span>program. (see the default configuration file or <span 
+class="cmss-10">ptopu.pp</span>
+source to find out which keywords are known)
+<!--l. 1894--><p class="noindent">The basic building block of the configuration file consists out of one or two lines, describing how
+<span 
+class="cmss-10">ptop </span>should react on a certain keyword. First a line without square brackets with the following
+format:
+<!--l. 1898--><p class="noindent">keyword=option1,option2,option3,...
+<!--l. 1900--><p class="noindent">If one of the options is &#8221;dindonkey&#8221; (see further below), a second line (with square brackets) is
+needed like this:
+<!--l. 1903--><p class="noindent">[keyword]=otherkeyword1,otherkeyword2,otherkeyword3,...
+<!--l. 1905--><p class="noindent">As you can see the block contains two types of identifiers, keywords(keyword and otherkeyword1..3
+in above example) and options, (option1..3 above).
+<!--l. 1908--><p class="noindent"><span 
+class="cmtt-10">Keywords </span>are the built-in valid Pascal structure-identifiers like BEGIN, END, CASE,
+IF, THEN, ELSE, IMPLEMENTATION. The default configuration file lists most of
+these.
+<!--l. 1911--><p class="noindent">Besides the real Pascal keywords, some other codewords are used for operators and comment
+expressions. table (<a 
+href="#x56-1410011">8.1<!--tex4ht:ref: tab:keywords--></a>)
+                                                                            
+
+                                                                            
+<a 
+  name="x56-1410011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.1: </td><td  
+class="content">keywords for operators</td></tr></table></div><!--tex4ht:label?: x56-1410011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-12-" ><colgroup id="TBL-12-1g"><col 
+id="TBL-12-1"><col 
+id="TBL-12-2"><col 
+id="TBL-12-3"></colgroup><tr  
+valign="baseline" id="TBL-12-1-"><td  align="left" nowrap="nowrap" id="TBL-12-1-1"  
+class="td11"> Name of codeword</td><td  align="left" nowrap="nowrap" id="TBL-12-1-2"  
+class="td11"> operator                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-12-2-"><td  align="left" nowrap="nowrap" id="TBL-12-2-1"  
+class="td11"> casevar               </td><td  align="left" nowrap="nowrap" id="TBL-12-2-2"  
+class="td11"> : in a case label ( unequal &#8217;colon&#8217;)</td>
+</tr><tr  
+valign="baseline" id="TBL-12-3-"><td  align="left" nowrap="nowrap" id="TBL-12-3-1"  
+class="td11"> becomes             </td><td  align="left" nowrap="nowrap" id="TBL-12-3-2"  
+class="td11"> :=                                         </td>
+</tr><tr  
+valign="baseline" id="TBL-12-4-"><td  align="left" nowrap="nowrap" id="TBL-12-4-1"  
+class="td11"> delphicomment    </td><td  align="left" nowrap="nowrap" id="TBL-12-4-2"  
+class="td11"> //                                          </td>
+</tr><tr  
+valign="baseline" id="TBL-12-5-"><td  align="left" nowrap="nowrap" id="TBL-12-5-1"  
+class="td11"> opencomment      </td><td  align="left" nowrap="nowrap" id="TBL-12-5-2"  
+class="td11"> <span 
+class="cmsy-10">{ </span>or (*                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-12-6-"><td  align="left" nowrap="nowrap" id="TBL-12-6-1"  
+class="td11"> closecomment      </td><td  align="left" nowrap="nowrap" id="TBL-12-6-2"  
+class="td11"> <span 
+class="cmsy-10">} </span>or *)                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-12-7-"><td  align="left" nowrap="nowrap" id="TBL-12-7-1"  
+class="td11"> semicolon            </td><td  align="left" nowrap="nowrap" id="TBL-12-7-2"  
+class="td11"> ;                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-8-"><td  align="left" nowrap="nowrap" id="TBL-12-8-1"  
+class="td11"> colon                  </td><td  align="left" nowrap="nowrap" id="TBL-12-8-2"  
+class="td11"> :                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-9-"><td  align="left" nowrap="nowrap" id="TBL-12-9-1"  
+class="td11"> equals                </td><td  align="left" nowrap="nowrap" id="TBL-12-9-2"  
+class="td11"> =                                          </td>
+</tr><tr  
+valign="baseline" id="TBL-12-10-"><td  align="left" nowrap="nowrap" id="TBL-12-10-1"  
+class="td11"> openparen           </td><td  align="left" nowrap="nowrap" id="TBL-12-10-2"  
+class="td11"> [                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-11-"><td  align="left" nowrap="nowrap" id="TBL-12-11-1"  
+class="td11"> closeparen           </td><td  align="left" nowrap="nowrap" id="TBL-12-11-2"  
+class="td11"> ]                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-12-"><td  align="left" nowrap="nowrap" id="TBL-12-12-1"  
+class="td11"> period                </td><td  align="left" nowrap="nowrap" id="TBL-12-12-2"  
+class="td11"> .                                            </td>
+</tr><tr  
+valign="baseline" id="TBL-12-13-"><td  align="left" nowrap="nowrap" id="TBL-12-13-1"  
+class="td11">                         </td>
+</tr><!--lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The <span 
+class="cmbx-10">Options </span>codewords define actions to be taken when the keyword before the equal sign is
+found, table (<a 
+href="#x56-1410022">8.2<!--tex4ht:ref: tab:ptopoptions--></a>)
+                                                                            
+
+                                                                            
+<a 
+  name="x56-1410022"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.2: </td><td  
+class="content">Possible options</td></tr></table></div><!--tex4ht:label?: x56-1410022-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-13-" ><colgroup id="TBL-13-1g"><col 
+id="TBL-13-1"><col 
+id="TBL-13-2"><col 
+id="TBL-13-3"></colgroup><tr  
+valign="baseline" id="TBL-13-1-"><td  align="left" nowrap="nowrap" id="TBL-13-1-1"  
+class="td11"> Option    </td><td  align="left" nowrap="nowrap" id="TBL-13-1-2"  
+class="td11"> does what                                     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-13-2-"><td  align="left" nowrap="nowrap" id="TBL-13-2-1"  
+class="td11"> crsupp     </td><td  align="left" nowrap="nowrap" id="TBL-13-2-2"  
+class="td11"> suppress CR before the keyword.       </td>
+</tr><tr  
+valign="baseline" id="TBL-13-3-"><td  align="left" nowrap="nowrap" id="TBL-13-3-1"  
+class="td11"> crbefore   </td><td  align="left" nowrap="nowrap" id="TBL-13-3-2"  
+class="td11"> force CR before keyword                 </td>
+</tr><tr  
+valign="baseline" id="TBL-13-4-"><td  align="left" nowrap="nowrap" id="TBL-13-4-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-4-2"  
+class="td11"> (doesn&#8217;t go with crsupp :) )              </td>
+</tr><tr  
+valign="baseline" id="TBL-13-5-"><td  align="left" nowrap="nowrap" id="TBL-13-5-1"  
+class="td11"> blinbefore </td><td  align="left" nowrap="nowrap" id="TBL-13-5-2"  
+class="td11"> blank line before keyword.               </td>
+</tr><tr  
+valign="baseline" id="TBL-13-6-"><td  align="left" nowrap="nowrap" id="TBL-13-6-1"  
+class="td11"> dindonkey</td><td  align="left" nowrap="nowrap" id="TBL-13-6-2"  
+class="td11"> de-indent on associated keywords      </td>
+</tr><tr  
+valign="baseline" id="TBL-13-7-"><td  align="left" nowrap="nowrap" id="TBL-13-7-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-7-2"  
+class="td11"> (see below)                                   </td>
+</tr><tr  
+valign="baseline" id="TBL-13-8-"><td  align="left" nowrap="nowrap" id="TBL-13-8-1"  
+class="td11"> dindent    </td><td  align="left" nowrap="nowrap" id="TBL-13-8-2"  
+class="td11"> deindent (always)                           </td>
+</tr><tr  
+valign="baseline" id="TBL-13-9-"><td  align="left" nowrap="nowrap" id="TBL-13-9-1"  
+class="td11"> spbef       </td><td  align="left" nowrap="nowrap" id="TBL-13-9-2"  
+class="td11"> space before                                  </td>
+</tr><tr  
+valign="baseline" id="TBL-13-10-"><td  align="left" nowrap="nowrap" id="TBL-13-10-1"  
+class="td11"> spaft       </td><td  align="left" nowrap="nowrap" id="TBL-13-10-2"  
+class="td11"> space after                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-13-11-"><td  align="left" nowrap="nowrap" id="TBL-13-11-1"  
+class="td11"> gobsym   </td><td  align="left" nowrap="nowrap" id="TBL-13-11-2"  
+class="td11"> Print symbols which follow a            </td>
+</tr><tr  
+valign="baseline" id="TBL-13-12-"><td  align="left" nowrap="nowrap" id="TBL-13-12-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-12-2"  
+class="td11"> keyword but which do not                </td>
+</tr><tr  
+valign="baseline" id="TBL-13-13-"><td  align="left" nowrap="nowrap" id="TBL-13-13-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-13-2"  
+class="td11"> affect layout. prints until                 </td>
+</tr><tr  
+valign="baseline" id="TBL-13-14-"><td  align="left" nowrap="nowrap" id="TBL-13-14-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-14-2"  
+class="td11"> terminators occur.                          </td>
+</tr><tr  
+valign="baseline" id="TBL-13-15-"><td  align="left" nowrap="nowrap" id="TBL-13-15-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-15-2"  
+class="td11"> (terminators are hard-coded in pptop,</td>
+</tr><tr  
+valign="baseline" id="TBL-13-16-"><td  align="left" nowrap="nowrap" id="TBL-13-16-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-16-2"  
+class="td11"> still needs changing)                       </td>
+</tr><tr  
+valign="baseline" id="TBL-13-17-"><td  align="left" nowrap="nowrap" id="TBL-13-17-1"  
+class="td11"> inbytab    </td><td  align="left" nowrap="nowrap" id="TBL-13-17-2"  
+class="td11"> indent by tab.                               </td>
+</tr><tr  
+valign="baseline" id="TBL-13-18-"><td  align="left" nowrap="nowrap" id="TBL-13-18-1"  
+class="td11"> crafter     </td><td  align="left" nowrap="nowrap" id="TBL-13-18-2"  
+class="td11"> force CR after keyword.                   </td>
+</tr><tr  
+valign="baseline" id="TBL-13-19-"><td  align="left" nowrap="nowrap" id="TBL-13-19-1"  
+class="td11"> upper      </td><td  align="left" nowrap="nowrap" id="TBL-13-19-2"  
+class="td11"> prints keyword all uppercase            </td>
+</tr><tr  
+valign="baseline" id="TBL-13-20-"><td  align="left" nowrap="nowrap" id="TBL-13-20-1"  
+class="td11"> lower       </td><td  align="left" nowrap="nowrap" id="TBL-13-20-2"  
+class="td11"> prints keyword all lowercase             </td>
+</tr><tr  
+valign="baseline" id="TBL-13-21-"><td  align="left" nowrap="nowrap" id="TBL-13-21-1"  
+class="td11"> capital     </td><td  align="left" nowrap="nowrap" id="TBL-13-21-2"  
+class="td11"> capitalizes keyword: 1st letter           </td>
+</tr><tr  
+valign="baseline" id="TBL-13-22-"><td  align="left" nowrap="nowrap" id="TBL-13-22-1"  
+class="td11">              </td><td  align="left" nowrap="nowrap" id="TBL-13-22-2"  
+class="td11"> uppercase, rest lowercase.                </td>
+</tr><tr  
+valign="baseline" id="TBL-13-23-"><td  align="left" nowrap="nowrap" id="TBL-13-23-1"  
+class="td11">              </td>
+</tr><!--lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The option &#8221;dindonkey&#8221; requires some extra parameters, which are set by a second line for that
+option (the one with the square brackets), which is therefore is only needed if the options contain
+&#8221;dinkdonkey&#8221; (contraction of de-indent on assiociated keyword).
+<!--l. 1962--><p class="noindent">&#8221;dinkdonkey&#8221; deindents if any of the keywords specified by the extra options of the square-bracket
+line is found.
+<!--l. 1965--><p class="noindent">Example: The lines
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;else=crbefore,dindonkey,inbytab,upper
+&nbsp;[else]=if,then,else
+</pre>
+</td></tr></table>
+<!--l. 1972--><p class="noindent">mean the following:
+     <ul class="itemize1">
+     <li class="itemize">The keyword this block is about is <span 
+class="cmbx-10">else </span>because it&#8217;s on the LEFT side of both equal
+     signs.
+     </li>
+     <li class="itemize">The option <span 
+class="cmtt-10">crbefore </span>signals not to allow other code (so just spaces) before the ELSE
+     keyword on the same line.
+     </li>
+     <li class="itemize">The option <span 
+class="cmtt-10">dindonkey </span>de-indents if the parser finds any of the keywords in the square
+     brackets line (if,then,else)
+     </li>
+     <li class="itemize">The option <span 
+class="cmtt-10">inbytab </span>means indent by a tab.
+     </li>
+     <li class="itemize">The option <span 
+class="cmtt-10">upper </span>uppercase the keyword (else or Else becomes ELSE)</li></ul>
+<!--l. 1985--><p class="noindent">Try to play with the configfile step by step until you find the effect you desire. The configurability
+and possibilities of ptop are quite large. E.g. I like all keywords uppercased instead of capitalized,
+so I replaced all capital keywords in the default file by upper.
+<!--l. 1990--><p class="noindent"><span 
+class="cmss-10">ptop </span>is still development software, so it is wise to visually check the generated source and try to
+compile it, to see if <span 
+class="cmss-10">ptop </span>hasn&#8217;t made any errors.
+<h5 class="subsubsectionHead"><a 
+href="#x56-1420008.2" name="x56-1420008.2">ptopu unit</a></h5>
+<!--l. 1995--><p class="noindent">The source of the <span 
+class="cmss-10">PtoP </span>program is conveniently split in two files: One is a unit containing an
+object that does the actual beautifying of the source, the other is a shell built around
+this object so it can be used from the command line. This design makes it possible
+to include the object in some program (e.g. an IDE) and use its features to format
+code.
+<!--l. 2001--><p class="noindent">The object resided in the <span 
+class="cmss-10">PtoPU </span>unit, and is declared as follows
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TPrettyPrinter=Object(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indent&nbsp;:&nbsp;Integer;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;How&nbsp;many&nbsp;characters&nbsp;to&nbsp;indent&nbsp;?&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InS&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PStream;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutS&nbsp;&nbsp;&nbsp;:&nbsp;PStream;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DiagS&nbsp;&nbsp;:&nbsp;PStream;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CfgS&nbsp;:&nbsp;PStream;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Create;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;PrettyPrint&nbsp;:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 2014--><p class="noindent">Using this object is very simple. The procedure is as follows:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x56-142002x1"></a>Create the object, using its constructor.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142004x2"></a>Set the <span 
+class="cmtt-10">Ins </span>stream. This is an open stream, from which pascal source will be read.
+     This is a mandatory step.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142006x3"></a>Set the <span 
+class="cmtt-10">OutS </span>stream. This is an open stream, to which the beautified pascal source will
+     be written. This is a mandatory step.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142008x4"></a>Set the <span 
+class="cmtt-10">DiagS </span>stream. Any diagnostics will be written to this stream. This step is
+     optional. If you don&#8217;t set this, no diagnostics are written.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142010x5"></a>Set the <span 
+class="cmtt-10">Cfgs </span>stream. A configuration is read from this stream. (see the previous section
+     for more information about configuration). This step is optional. If you don&#8217;t set this,
+     a default configuration is used.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142012x6"></a>Set the <span 
+class="cmtt-10">Indent </span>variable. This is the number of spaces to use when indenting. Tab
+     characters are not used in the program. This step is optional. The indent variable is
+     initialized to 2.
+     </li>
+     <li class="enumerate"><a 
+  name="x56-142014x7"></a>Call <span 
+class="cmtt-10">PrettyPrint</span>. This will pretty-print the source in <span 
+class="cmtt-10">Ins </span>and write the result to <span 
+class="cmtt-10">OutS</span>.
+     The function returns <span 
+class="cmtt-10">True </span>if no errors occurred, <span 
+class="cmtt-10">False </span>otherwise.</li></ol>
+<!--l. 2035--><p class="noindent">So, a minimal procedure would be:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;CleanUpCode;
+&nbsp;
+&nbsp;var
+&nbsp;&nbsp;&nbsp;Ins,OutS&nbsp;:&nbsp;PBufStream;
+&nbsp;&nbsp;&nbsp;PPRinter&nbsp;:&nbsp;TPrettyPrinter;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Ins:=New(PBufStream,Init('ugly.pp',StopenRead,TheBufSize));
+&nbsp;&nbsp;&nbsp;OutS:=New(PBufStream,Init('beauty.pp',StCreate,TheBufSize));
+&nbsp;&nbsp;&nbsp;PPrinter.Create;
+&nbsp;&nbsp;&nbsp;PPrinter.Ins:=Ins;
+&nbsp;&nbsp;&nbsp;PPrinter.outS:=OutS;
+&nbsp;&nbsp;&nbsp;PPrinter.PrettyPrint;
+&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 2053--><p class="noindent">Using memory streams allows very fast formatting of code, and is perfectly suitable for
+editors.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-56-194" name="x56-1430008.2">rstconv program</a></h4>
+<!--l. 2058--><p class="noindent">The <span 
+class="cmss-10">rstconv </span>program converts the resource string files generates by the compiler (when you
+use resource string sections) to <span 
+class="cmss-10">.po </span>files that can be understood by the GNU <span 
+class="cmss-10">msgfmt</span>
+program.
+<!--l. 2062--><p class="noindent">Its usage is very easy; it accepts the following options:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">-i file</span> </dt><dd 
+class="description">Use the specified file instead of stdin as input file. This option is optional.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-o file</span> </dt><dd 
+class="description">write output to the specified file. This option is required.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">-f format</span> </dt><dd 
+class="description">Specifies the output format. At the moment, only one output format is supported:
+     <span 
+class="cmti-10">po </span>for GNU gettext <span 
+class="cmss-10">.po </span>format. It is the default format.</dd></dl>
+<!--l. 2071--><p class="noindent">As an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;rstconv&nbsp;-i&nbsp;resdemo.rst&nbsp;-o&nbsp;resdemo.po
+</pre>
+</td></tr></table>will convert the <span 
+class="cmss-10">resdemo.rst </span>file to <span 
+class="cmss-10">resdemo.po</span>.
+<!--l. 2077--><p class="noindent">More information on the <span 
+class="cmss-10">rstconv </span>utility can be found in the <a 
+href="file:../prog/prog.htm" >Programmers guide</a>, under the chapter
+about resource strings.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-56-195" name="x56-1440008.2">fpcmake</a></h4>
+<!--l. 2082--><p class="noindent"><span 
+class="cmss-10">fpcmake </span>is the Free Pascal makefile constructor program.
+<!--l. 2084--><p class="noindent">It reads a <span 
+class="cmss-10">Makefile.fpc </span>configuration file and converts it to a <span 
+class="cmss-10">Makefile </span>suitable for reading by GNU
+<span 
+class="cmss-10">make </span>to compile your projects. It is similar in functionality to GNU <span 
+class="cmss-10">autoconf </span>or <span 
+class="cmss-10">Imake </span>for making
+X projects.
+<!--l. 2089--><p class="noindent"><span 
+class="cmss-10">fpcmake </span>accepts filenames of makefile description files as its command-line arguments. For each of
+these files it will create a <span 
+class="cmss-10">Makefile </span>in the same directory where the file is located, overwriting any
+other existing file.
+<!--l. 2094--><p class="noindent">If no options are given, it just attempts to read the file <span 
+class="cmss-10">Makefile.fpc </span>in the current directory and
+tries to construct a makefile from it. any previously existing <span 
+class="cmss-10">Makefile </span>will be erased.
+<!--l. 2098--><p class="noindent">The format of the <span 
+class="cmss-10">fpcmake </span>configuration file is described in great detail in the appendices of the
+<a 
+href="file:../prog/prog.htm" >Programmers guide</a>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse38.htm" >prev</a>] [<a 
+href="userse38.htm#tailuserse38.htm" >prev-tail</a>] [<a 
+href="userse39.htm" >front</a>] [<a 
+href="userch8.htm#userse39.htm" >up</a>] </p></div><a 
+  name="tailuserse39.htm"></a>   
+</body></html> 

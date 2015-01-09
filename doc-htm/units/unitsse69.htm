@@ -1,0 +1,128 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>20.1 Types, Constants and variables : </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse70.htm" >next</a>] [<a 
+href="#tailunitsse69.htm">tail</a>] [<a 
+href="unitsch20.htm#unitsse69.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">20.1</span> <a 
+href="units.htm#QQ2-94-763" name="x94-75700020.1">Types, Constants and variables : </a></h3>
+<!--l. 35--><p class="noindent">The following constants identify the different socket types, as needed in the <span 
+class="cmss-10">Socket </span>(<a 
+href="unitsse70.htm#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>)
+call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;SOCK_STREAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;&nbsp;{&nbsp;stream&nbsp;(connection)&nbsp;socket&nbsp;&nbsp;&nbsp;}
+&nbsp;SOCK_DGRAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;&nbsp;{&nbsp;datagram&nbsp;(conn.less)&nbsp;socket&nbsp;&nbsp;}
+&nbsp;SOCK_RAW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3;&nbsp;{&nbsp;raw&nbsp;socket&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;SOCK_RDM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;&nbsp;{&nbsp;reliably-delivered&nbsp;message&nbsp;&nbsp;&nbsp;}
+&nbsp;SOCK_SEQPACKET&nbsp;&nbsp;=&nbsp;5;&nbsp;{&nbsp;sequential&nbsp;packet&nbsp;socket&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;SOCK_PACKET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=10;
+</pre>
+</td></tr></table>The following constants determine the socket domain, they are used in the <span 
+class="cmss-10">Socket </span>(<a 
+href="unitsse70.htm#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>)
+call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;AF_UNSPEC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;AF_UNIX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1;&nbsp;{&nbsp;Unix&nbsp;domain&nbsp;sockets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_INET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;&nbsp;{&nbsp;Internet&nbsp;IP&nbsp;Protocol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_AX25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3;&nbsp;{&nbsp;Amateur&nbsp;Radio&nbsp;AX.25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_IPX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;&nbsp;{&nbsp;Novell&nbsp;IPX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_APPLETALK&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;5;&nbsp;{&nbsp;Appletalk&nbsp;DDP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_NETROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;6;&nbsp;{&nbsp;Amateur&nbsp;radio&nbsp;NetROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_BRIDGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;7;&nbsp;{&nbsp;Multiprotocol&nbsp;bridge&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_AAL5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;&nbsp;{&nbsp;Reserved&nbsp;for&nbsp;Werner's&nbsp;ATM&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_X25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;9;&nbsp;{&nbsp;Reserved&nbsp;for&nbsp;X.25&nbsp;project&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_INET6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;10;&nbsp;{&nbsp;IP&nbsp;version&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;AF_MAX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;12;
+</pre>
+</td></tr></table>The following constants determine the protocol family, they are used in the <span 
+class="cmss-10">Socket </span>(<a 
+href="unitsse70.htm#x95-77900020.2">671<!--tex4ht:ref: se:TBufStream--></a>)
+call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PF_UNSPEC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_UNSPEC;
+&nbsp;PF_UNIX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_UNIX;
+&nbsp;PF_INET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_INET;
+&nbsp;PF_AX25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_AX25;
+&nbsp;PF_IPX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_IPX;
+&nbsp;PF_APPLETALK&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_APPLETALK;
+&nbsp;PF_NETROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_NETROM;
+&nbsp;PF_BRIDGE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_BRIDGE;
+&nbsp;PF_AAL5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_AAL5;
+&nbsp;PF_X25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_X25;
+&nbsp;PF_INET6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_INET6;
+&nbsp;PF_MAX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;AF_MAX;
+</pre>
+</td></tr></table>The following types are used to store different kinds of eddresses for the <span 
+class="cmss-10">Bind </span>(<a 
+href="unitsse70.htm#x95-76300020.2">662<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Recv </span>(<a 
+href="unitsse70.htm#x95-77300020.2">668<!--tex4ht:ref: se:TBufStream--></a>) and
+<span 
+class="cmss-10">Send </span>(<a 
+href="unitsse70.htm#x95-77400020.2">669<!--tex4ht:ref: se:TBufStream--></a>) calls.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TSockAddr&nbsp;=&nbsp;packed&nbsp;Record
+&nbsp;&nbsp;&nbsp;family:word;
+&nbsp;&nbsp;&nbsp;data&nbsp;&nbsp;:array&nbsp;[0..13]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;TUnixSockAddr&nbsp;=&nbsp;packed&nbsp;Record
+&nbsp;&nbsp;&nbsp;family:word;
+&nbsp;&nbsp;&nbsp;path:array[0..108]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;TInetSockAddr&nbsp;=&nbsp;packed&nbsp;Record
+&nbsp;&nbsp;&nbsp;family:Word;
+&nbsp;&nbsp;&nbsp;port&nbsp;&nbsp;:Word;
+&nbsp;&nbsp;&nbsp;addr&nbsp;&nbsp;:Cardinal;
+&nbsp;&nbsp;&nbsp;pad&nbsp;&nbsp;&nbsp;:array&nbsp;[1..8]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The following type is returned by the <span 
+class="cmss-10">SocketPair </span>(<a 
+href="unitsse70.htm#x95-78000020.2">672<!--tex4ht:ref: se:TBufStream--></a>) call.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TSockArray&nbsp;=&nbsp;Array[1..2]&nbsp;of&nbsp;Longint;
+</pre>
+</td></tr></table><div class="crosslinks"><p class="noindent">[<a 
+href="unitsse70.htm" >next</a>] [<a 
+href="unitsse69.htm" >front</a>] [<a 
+href="unitsch20.htm#unitsse69.htm" >up</a>] </p></div><a 
+  name="tailunitsse69.htm"></a>  
+</body></html> 

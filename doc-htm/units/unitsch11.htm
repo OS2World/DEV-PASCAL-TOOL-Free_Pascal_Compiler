@@ -1,0 +1,101 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11 The KEYBOARD unit</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch12.htm" >next</a>] [<a 
+href="unitsch10.htm" >prev</a>] [<a 
+href="unitsch10.htm#tailunitsch10.htm" >prev-tail</a>] [<a 
+href="#tailunitsch11.htm">tail</a>] [<a 
+href="units.htm#unitsch11.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;11</span><br><a 
+href="units.htm#QQ2-45-330" name="x45-32700011">The KEYBOARD unit</a></h2>
+<!--l. 29--><p class="noindent">The <span 
+class="cmss-10">KeyBoard </span>unit implements a keyboard access layer which is system independent. It can be
+used to poll the keyboard state and wait for certain events. Waiting for a keyboard event can be
+done with the <span 
+class="cmss-10">GetKeyEvent </span>(<a 
+href="unitsse31.htm#x47-33500011.2">295<!--tex4ht:ref: tab:fmxxxconstants--></a>) function, which will return a driver-dependent key
+event. This key event can be translated to a interpretable event by the <span 
+class="cmss-10">TranslateKeyEvent</span>
+(<a 
+href="unitsse31.htm#x47-34900011.2">304<!--tex4ht:ref: tab:fmxxxconstants--></a>) function. The result of this function can be used in the other event examining
+functions.
+<!--l. 37--><p class="noindent">A custom keyboard driver can be installed using the <span 
+class="cmss-10">SetKeyboardDriver </span>(<a 
+href="unitsse31.htm#x47-34700011.2">303<!--tex4ht:ref: tab:fmxxxconstants--></a>) function. The current
+keyboard driver can be retrieved using the <span 
+class="cmss-10">GetKeyboardDriver </span>(<a 
+href="unitsse31.htm#x47-33400011.2">295<!--tex4ht:ref: tab:fmxxxconstants--></a>) function. The last section of
+this chapter demonstrates how to make a keyboard driver.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">11.1 <a 
+href="unitsse30.htm#x46-32800011.1" name="QQ2-46-331">Constants, Type and variables </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse30.htm#x46-32900011.1" name="QQ2-46-332">Constants</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse30.htm#x46-33000011.1" name="QQ2-46-333">Types</a></span>
+<br>&nbsp;<span class="sectionToc">11.2 <a 
+href="unitsse31.htm#x47-33100011.2" name="QQ2-47-335">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33200011.2" name="QQ2-47-336">DoneKeyboard</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33300011.2" name="QQ2-47-337">FunctionKeyName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33400011.2" name="QQ2-47-338">GetKeyboardDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33500011.2" name="QQ2-47-339">GetKeyEvent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33600011.2" name="QQ2-47-340">GetKeyEventChar</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33700011.2" name="QQ2-47-341">GetKeyEventCode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33800011.2" name="QQ2-47-342">GetKeyEventFlags</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-33900011.2" name="QQ2-47-343">GetKeyEventShiftState</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34000011.2" name="QQ2-47-344">GetKeyEventUniCode</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34100011.2" name="QQ2-47-345">InitKeyBoard</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34200011.2" name="QQ2-47-346">IsFunctionKey</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34300011.2" name="QQ2-47-347">KeyEventToString</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34400011.2" name="QQ2-47-348">PollKeyEvent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34500011.2" name="QQ2-47-349">PollShiftStateEvent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34600011.2" name="QQ2-47-350">PutKeyEvent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34700011.2" name="QQ2-47-351">SetKeyboardDriver</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34800011.2" name="QQ2-47-352">ShiftStateToString</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-34900011.2" name="QQ2-47-353">TranslateKeyEvent</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse31.htm#x47-35000011.2" name="QQ2-47-354">TranslateKeyEventUniCode</a></span>
+<br>&nbsp;<span class="sectionToc">11.3 <a 
+href="unitsse32.htm#x48-35100011.3" name="QQ2-48-355">Keyboard scan codes</a></span>
+<br>&nbsp;<span class="sectionToc">11.4 <a 
+href="unitsse33.htm#x49-35200011.4" name="QQ2-49-358">Writing a keyboard driver</a></span>
+</div>
+
+
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch12.htm" >next</a>] [<a 
+href="unitsch10.htm" >prev</a>] [<a 
+href="unitsch10.htm#tailunitsch10.htm" >prev-tail</a>] [<a 
+href="unitsch11.htm" >front</a>] [<a 
+href="units.htm#unitsch11.htm" >up</a>] </p></div><a 
+  name="tailunitsch11.htm"></a>  
+</body></html> 

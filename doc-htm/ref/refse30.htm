@@ -1,0 +1,71 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.4 Value typecasts</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse31.htm" >next</a>] [<a 
+href="refse29.htm" >prev</a>] [<a 
+href="refse29.htm#tailrefse29.htm" >prev-tail</a>] [<a 
+href="#tailrefse30.htm">tail</a>] [<a 
+href="refch6.htm#refse30.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.4</span> <a 
+href="ref.htm#QQ2-62-75" name="x62-680006.4">Value typecasts</a></h3>
+<!--l. 2453--><p class="noindent">Sometimes it is necessary to change the type of an expression, or a part of the expression, to be
+able to be assignment compatible. This is done through a value typecast. The syntax diagram for a
+value typecast is as follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Typecasts</span>
+     <BR/>
+     <img 
+src="ref84x.png" alt="-- value typecast-type identifier-( -expression- )------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2457--><p class="noindent">Value typecasts cannot be used on the left side of assignments, as variable typecasts. Here are some
+valid typecasts:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Byte('A')
+&nbsp;Char(48)
+&nbsp;boolean(1)
+&nbsp;longint(@Buffer)
+</pre>
+</td></tr></table>The type size of the expression and the size of the type cast must be the same. That is, the
+following doesn&#8217;t work:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Integer('A')
+&nbsp;Char(4875)
+&nbsp;boolean(100)
+&nbsp;Word(@Buffer)
+</pre>
+</td></tr></table>This is different from Delphi or Turbo Pascal behaviour.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse31.htm" >next</a>] [<a 
+href="refse29.htm" >prev</a>] [<a 
+href="refse29.htm#tailrefse29.htm" >prev-tail</a>] [<a 
+href="refse30.htm" >front</a>] [<a 
+href="refch6.htm#refse30.htm" >up</a>] </p></div><a 
+  name="tailrefse30.htm"></a>  
+</body></html> 

@@ -1,0 +1,118 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 MoveChar0</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu138.htm" >next</a>] [<a 
+href="refsu136.htm" >prev</a>] [<a 
+href="refsu136.htm#tailrefsu136.htm" >prev-tail</a>] [<a 
+href="#tailrefsu137.htm">tail</a>] [<a 
+href="refse64.htm#refsu137.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-222-243" name="x222-22800013.3">MoveChar0</a></h4><a 
+  name="dx222-228001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure MoveChar0(var Src,Dest;Count:longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MoveChar0 </span>moves <span 
+class="cmtt-10">Count </span>bytes from <span 
+class="cmtt-10">Src </span>to <span 
+class="cmtt-10">Dest</span>, and stops moving if a zero character is
+found.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done to see if <span 
+class="cmtt-10">Count </span>stays within the memory allocated to the process.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Move </span>(<a 
+href="refsu136.htm#x221-22700013.3">536<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6425--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex109.pp</span><HR/><div class="listinginput">
+<!--l. 6425--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example109;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">MoveChar0</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf1,Buf2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Array[1..80]</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">80</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[i]:=chr(Random(16)+Ord('A'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Original</span>&nbsp;<span 
+class="cmtt-10">buffer');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln(Buf1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf1[Random(80)+1]:=#0;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MoveChar0(Buf1,Buf2,80);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Randomly</span>&nbsp;<span 
+class="cmtt-10">zero-terminated</span>&nbsp;<span 
+class="cmtt-10">Buffer');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Buf2);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu138.htm" >next</a>] [<a 
+href="refsu136.htm" >prev</a>] [<a 
+href="refsu136.htm#tailrefsu136.htm" >prev-tail</a>] [<a 
+href="refsu137.htm" >front</a>] [<a 
+href="refse64.htm#refsu137.htm" >up</a>] </p></div><a 
+  name="tailrefsu137.htm"></a>  
+</body></html> 

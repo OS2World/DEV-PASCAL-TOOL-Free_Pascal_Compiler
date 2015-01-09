@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TPersistent.Assign</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TPersistent.Assign</h1>
+<p>Assign the contents of one class to another.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tpersistent.htm">TPersistent</a><span class="sym">.</span>Assign<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Source<span class="sym">: </span><a href="../classes/tpersistent.htm">TPersistent</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Assign</var> copies the contents of <var>Source</var> to <var>Self</var>, if the classes of the destination and source classes are compatible. </p>
+<p>The <var>TPersistent</var> implementation of <var>Assign</var> does nothing but calling the <a href="../classes/tpersistent.assignto.htm">AssignTo</a> method of source. This means that if the destination class does not know how to assign the contents of the source class, the source class instance is asked to assign itself to the destination class. This means that it is necessary to implement only one of the two methods so that two classes can be assiged to one another. </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td><p>In general, a statement of the form </p><pre>Destination<span class="sym">:=</span>Source<span class="sym">;</span>
+</pre><p>(where <var>Destination</var> and <var>Source</var> are classes) does not  achieve the same as a statement of the form </p><pre>Destination<span class="sym">.</span>Assign<span class="sym">(</span>Source<span class="sym">)</span><span class="sym">;</span>
+</pre><p>After the former statement, both <var>Source</var> and <var>Destination</var> will point to the same object. The latter statemtent will copy the <i>contents</i> of the <var>Source</var> class to the <var>Destination</var> class. </p></td>
+</tr>
+</table>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tpersistent.assignto.htm">TPersistent.AssignTo</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Generic assignment function.</p></td>
+</tr>
+</table>
+</body>
+</html>

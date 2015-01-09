@@ -1,0 +1,176 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.9 Command-line handling errors</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse65.htm" >next</a>] [<a 
+href="userse63.htm" >prev</a>] [<a 
+href="userse63.htm#tailuserse63.htm" >prev-tail</a>] [<a 
+href="#tailuserse64.htm">tail</a>] [<a 
+href="userap3.htm#userse64.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.9</span> <a 
+href="user.htm#QQ2-90-228" name="x90-177000C.9">Command-line handling errors</a></h3>
+<!--l. 1447--><p class="noindent">This section lists errors that occur when the compiler is processing the command line or handling
+the configuration files.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Warning: Only one source file supported</span> </dt><dd 
+class="description">You can specify only one source file on the
+     command line. The first one will be compiled, others will be ignored. This may indicate
+     that you forgot a <span 
+class="cmtt-10">'-' </span>sign.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: DEF file can be created only for OS/2</span> </dt><dd 
+class="description">This option can only be specified
+     when you&#8217;re compiling for OS/2
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: nested response files are not supported</span> </dt><dd 
+class="description">you cannot nest response files with the
+     <span 
+class="cmtt-10">@file </span>command-line option.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: No source file name in command line</span> </dt><dd 
+class="description">The compiler expects a source file name
+     on the command line.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: No option inside arg1 config file</span> </dt><dd 
+class="description">The  compiler  didn&#8217;t  find  any  option  in  that
+     config file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal parameter: arg1</span> </dt><dd 
+class="description">You specified an unknown option.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: -? writes help pages</span> </dt><dd 
+class="description">When an unknown option is given, this message is diplayed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Too many config files nested</span> </dt><dd 
+class="description">You can only nest up to 16 config files.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Unable to open file arg1</span> </dt><dd 
+class="description">The option file cannot be found.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Reading further options from arg1</span> </dt><dd 
+class="description">Displayed when you have notes turned on, and the
+     compiler switches to another options file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Target is already set to: arg1</span> </dt><dd 
+class="description">Displayed  if  more  than  one  <span 
+class="cmtt-10">-T </span>option  is
+     specified.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Shared libs not supported on DOS platform, reverting to static</span> </dt><dd 
+class="description">If you
+     specify <span 
+class="cmtt-10">-CD </span>for the <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>platform, this message is displayed. The compiler supports only
+     static libraries under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: too many IF(N)DEFs</span> </dt><dd 
+class="description">the  <span 
+class="cmtt-10">#IF(N)DEF </span>statements  in  the  options  file  are  not
+     balanced with the <span 
+class="cmtt-10">#ENDIF </span>statements.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: too many ENDIFs</span> </dt><dd 
+class="description">the <span 
+class="cmtt-10">#IF(N)DEF </span>statements in the options file are not balanced
+     with the <span 
+class="cmtt-10">#ENDIF </span>statements.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: open conditional at the end of the file</span> </dt><dd 
+class="description">the   <span 
+class="cmtt-10">#IF(N)DEF  </span>statements   in   the
+     options file are not balanced with the <span 
+class="cmtt-10">#ENDIF </span>statements.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Debug information generation is not supported by this executable</span> </dt><dd 
+class="description">
+     It is possible to have a compiler executable that doesn&#8217;t support the generation of
+     debugging info. If you use such an executable with the <span 
+class="cmtt-10">-g </span>switch, this warning will be
+     displayed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Try recompiling with -dGDB</span> </dt><dd 
+class="description">It is possible to have a compiler executable that
+     doesn&#8217;t support the generation of debugging info. If you use such an executable with
+     the <span 
+class="cmtt-10">-g </span>switch, this warning will be displayed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: You are using the obsolete switch arg1</span> </dt><dd 
+class="description">this warns you when you use a switch
+     that is not needed/supported anymore. It is recommended that you remove the switch
+     to overcome problems in the future, when the switch meaning may change.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: You are using the obsolete switch arg1, please use arg2</span> </dt><dd 
+class="description">this
+     warns you when you use a switch that is not supported anymore. You must now use
+     the second switch instead. It is recommended that you change the switch to overcome
+     problems in the future, when the switch meaning may change.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Note: Switching assembler to default source writing assembler</span> </dt><dd 
+class="description">this   notifies   you
+     that the assembler has been changed because you used the -a switch which can&#8217;t be
+     used with a binary assembler writer.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Assembler output selected &#8221;arg1&#8221; is not compatible with &#8221;arg2&#8221;</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: &#8221;arg1&#8221; assembler use forced</span> </dt><dd 
+class="description">The assembler output selected can not generate
+     object files with the correct format. Therefore, the default assembler for this target is
+     used instead.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">*** press enter ***</span> </dt><dd 
+class="description"></dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse65.htm" >next</a>] [<a 
+href="userse63.htm" >prev</a>] [<a 
+href="userse63.htm#tailuserse63.htm" >prev-tail</a>] [<a 
+href="userse64.htm" >front</a>] [<a 
+href="userap3.htm#userse64.htm" >up</a>] </p></div><a 
+  name="tailuserse64.htm"></a>  
+</body></html> 

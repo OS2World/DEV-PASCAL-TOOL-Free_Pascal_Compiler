@@ -1,0 +1,52 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $B or $BOOLEVAL : Complete boolean evaluation</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu4.htm" >next</a>] [<a 
+href="progsu2.htm" >prev</a>] [<a 
+href="progsu2.htm#tailprogsu2.htm" >prev-tail</a>] [<a 
+href="#tailprogsu3.htm">tail</a>] [<a 
+href="progse2.htm#progsu3.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-10-8" name="x10-80001.1"><span 
+class="cmtt-10">$B </span>or <span 
+class="cmtt-10">$BOOLEVAL </span>: Complete boolean evaluation</a></h4>
+<!--l. 139--><p class="noindent">This switch is understood by the Free Pascal compiler, but is ignored. The compiler always uses
+shortcut evaluation, i.e. the evaluation of a boolean expression is stopped once the result of the
+total exression is known with certainty.
+<!--l. 143--><p class="noindent">So, in the following example, the function <span 
+class="cmtt-10">Bofu</span>, which has a boolean result, will never get
+called.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;False&nbsp;and&nbsp;Bofu&nbsp;then
+&nbsp;&nbsp;&nbsp;...
+</pre>
+</td></tr></table>This has as a consequence that any additional actions that are done by <span 
+class="cmtt-10">Bofu </span>are not
+executed.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu4.htm" >next</a>] [<a 
+href="progsu2.htm" >prev</a>] [<a 
+href="progsu2.htm#tailprogsu2.htm" >prev-tail</a>] [<a 
+href="progsu3.htm" >front</a>] [<a 
+href="progse2.htm#progsu3.htm" >up</a>] </p></div><a 
+  name="tailprogsu3.htm"></a>  
+</body></html> 

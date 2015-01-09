@@ -1,0 +1,114 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $I or $INCLUDE : Include compiler info</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu24.htm" >next</a>] [<a 
+href="progsu22.htm" >prev</a>] [<a 
+href="progsu22.htm#tailprogsu22.htm" >prev-tail</a>] [<a 
+href="#tailprogsu23.htm">tail</a>] [<a 
+href="progse2.htm#progsu23.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-30-28" name="x30-280001.1"><span 
+class="cmtt-10">$I </span>or <span 
+class="cmtt-10">$INCLUDE </span>: Include compiler info</a></h4>
+<!--l. 489--><p class="noindent">In this form:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$INCLUDE&nbsp;%xxx%}
+</pre>
+</td></tr></table>where <span 
+class="cmtt-10">xxx </span>is one of the following:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">DATE</span> </dt><dd 
+class="description">Inserts the current date.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCTARGET</span> </dt><dd 
+class="description">Inserts the target CPU name. (deprecated, use <span 
+class="cmtt-10">FPCTARGETCPU</span>)
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCTARGETCPU</span> </dt><dd 
+class="description">Inserts the target CPU name.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCTARGETOS</span> </dt><dd 
+class="description">Inserts the target OS name.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCVERSION</span> </dt><dd 
+class="description">Current compiler version number.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FILE</span> </dt><dd 
+class="description">Filename in which the directive is found.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">LINE</span> </dt><dd 
+class="description">Linenumer on which the directive is found.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TIME</span> </dt><dd 
+class="description">Current time.</dd></dl>
+<!--l. 505--><p class="noindent">If <span 
+class="cmtt-10">xxx </span>is none of the above, then it is assumed to be the name of an environment variable. Its value
+will be fetched. As a reult, this will generate a macro with the value of these things, as if it were a
+string.
+<!--l. 510--><p class="noindent">For example, the following program
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;InfoDemo;
+&nbsp;
+&nbsp;Const&nbsp;User&nbsp;=&nbsp;{$I&nbsp;%USER%};
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Write&nbsp;('This&nbsp;program&nbsp;was&nbsp;compiled&nbsp;at&nbsp;',{$I&nbsp;%TIME%});
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('&nbsp;on&nbsp;',{$I&nbsp;%DATE%});
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('By&nbsp;',User);
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Compiler&nbsp;version:&nbsp;',{$I&nbsp;%FPCVERSION%});
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;('Target&nbsp;CPU:&nbsp;',{$I&nbsp;%FPCTARGET%});
+&nbsp;end.
+</pre>
+</td></tr></table>Creates the following output:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;This&nbsp;program&nbsp;was&nbsp;compiled&nbsp;at&nbsp;17:40:18&nbsp;on&nbsp;1998/09/09
+&nbsp;By&nbsp;michael
+&nbsp;Compiler&nbsp;version:&nbsp;0.99.7
+&nbsp;Target&nbsp;CPU:&nbsp;i386
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu24.htm" >next</a>] [<a 
+href="progsu22.htm" >prev</a>] [<a 
+href="progsu22.htm#tailprogsu22.htm" >prev-tail</a>] [<a 
+href="progsu23.htm" >front</a>] [<a 
+href="progse2.htm#progsu23.htm" >up</a>] </p></div><a 
+  name="tailprogsu23.htm"></a>  
+</body></html> 

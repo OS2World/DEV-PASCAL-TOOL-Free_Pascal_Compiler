@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TComponent.GetChildren</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TComponent.GetChildren</h1>
+<p>Must be overridden by descendents to return all child components that must be streamed.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">protected</span> <span class="kw">procedure</span> <a href="../classes/tcomponent.htm">TComponent</a><span class="sym">.</span>GetChildren<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Proc<span class="sym">: </span><a href="../classes/tgetchildproc.htm">TGetChildProc</a><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Root<span class="sym">: </span><a href="../classes/tcomponent.htm">TComponent</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> dynamic</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>GetChildren</var> is called by the streaming system to determine which child components should be streamed as well when the component is being  streamed.  By default, no child components are streamed, i.e. the <var>TComponent</var> implementation is empty. </p>
+<p><var>TComponent</var> descendents should override this method. For each child that needs to be streamed, <var>Proc</var> should be called with as an argument the child component that must be streamed. The <var>Root</var> argument contains the root component relative to which all streaming is done. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tcomponent.writestate.htm">TComponent.WriteState</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes the component to a stream.</p></td>
+</tr>
+</table>
+</body>
+</html>

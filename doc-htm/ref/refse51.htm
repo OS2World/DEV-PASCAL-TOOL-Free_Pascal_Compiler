@@ -1,0 +1,147 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.2 Units</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse52.htm" >next</a>] [<a 
+href="refse50.htm" >prev</a>] [<a 
+href="refse50.htm#tailrefse50.htm" >prev-tail</a>] [<a 
+href="#tailrefse51.htm">tail</a>] [<a 
+href="refch10.htm#refse51.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.2</span> <a 
+href="ref.htm#QQ2-121-142" name="x121-12700010.2">Units</a></h3>
+<!--l. 4090--><p class="noindent">A unit contains a set of declarations, procedures and functions that can be used by a program or
+another unit. The syntax for a unit is as follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Units</span>
+     <BR/>
+     <img 
+src="ref131x.png" alt="-- unit- unit header interface part- implementation part--
+--|---------------------------------end - .-----------------------
+  -initialization part-|---------------|
+  |               -finalization part-- |
+  --------begin --statement----------
+                     ;
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref132x.png" alt="-- unit header-unit -unit identifier-;----------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref133x.png" alt="-- interface part interface --|-----------|-|--------------------------
+                        -uses clause- | |constant declaration part|
+                                    | |-type declaration part--||
+                                    |---procedure headers-part--|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref134x.png" alt="-- procedure headers part|procedure header---;--|---------------------
+                      -function header---    -call modifiers ;--
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref135x.png" alt="-- implementation part- implementation---------------declaration part-----
+                                  -uses clause-|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref136x.png" alt="--              -          ---        ---------------------------
+   initialization part initialization  -statem;ent-|
+     " ><BR/>
+     <BR/>
+                                                                            
+
+                                                                            
+     <img 
+src="ref137x.png" alt="-- finalization part-finalization---statement-----------------------------
+                           ---- ;----|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4094--><p class="noindent">The interface part declares all identifiers that must be exported from the unit. This can be
+constant, type or variable identifiers, and also procedure or function identifier declarations.
+Declarations inside the implementation part are <span 
+class="cmti-10">not </span>accessible outside the unit. The
+implementation must contain a function declaration for each function or procedure that is declared
+in the interface part. If a function is declared in the interface part, but no declaration
+of that function is present in the implementation part, then the compiler will give an
+error.
+<!--l. 4103--><p class="noindent">When a program uses a unit (say <span 
+class="cmss-10">unitA</span>) and this units uses a second unit, say <span 
+class="cmss-10">unitB</span>, then the
+program depends indirectly also on <span 
+class="cmtt-10">unitB</span>. This means that the compiler must have access to <span 
+class="cmss-10">unitB</span>
+when trying to compile the program. If the unit is not present at compile time, an error
+occurs.
+<!--l. 4109--><p class="noindent">Note that the identifiers from a unit on which a program depends indirectly, are not accessible to
+the program. To have access to the identifiers of a unit, the unit must be in the uses clause of the
+program or unit where the identifiers are needed.
+<!--l. 4114--><p class="noindent">Units can be mutually dependent, that is, they can reference each other in their uses
+clauses. This is allowed, on the condition that at least one of the references is in the
+implementation section of the unit. This also holds for indirect mutually dependent
+units.
+<!--l. 4119--><p class="noindent">If it is possible to start from one interface uses clause of a unit, and to return there via uses clauses
+of interfaces only, then there is circular unit dependence, and the compiler will generate an error.
+As and example : the following is not allowed:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Unit&nbsp;UnitA;
+&nbsp;interface
+&nbsp;Uses&nbsp;UnitB;
+&nbsp;implementation
+&nbsp;end.
+&nbsp;
+&nbsp;Unit&nbsp;UnitB
+&nbsp;interface
+&nbsp;Uses&nbsp;UnitA;
+&nbsp;implementation
+&nbsp;end.
+</pre>
+</td></tr></table>But this is allowed :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Unit&nbsp;UnitA;
+&nbsp;interface
+&nbsp;Uses&nbsp;UnitB;
+&nbsp;implementation
+&nbsp;end.
+&nbsp;Unit&nbsp;UnitB
+&nbsp;implementation
+&nbsp;Uses&nbsp;UnitA;
+&nbsp;end.
+</pre>
+</td></tr></table>Because <span 
+class="cmss-10">UnitB </span>uses <span 
+class="cmss-10">UnitA </span>only in it&#8217;s implentation section. In general, it is a bad idea to have
+circular unit dependencies, even if it is only in implementation sections.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse52.htm" >next</a>] [<a 
+href="refse50.htm" >prev</a>] [<a 
+href="refse50.htm#tailrefse50.htm" >prev-tail</a>] [<a 
+href="refse51.htm" >front</a>] [<a 
+href="refch10.htm#refse51.htm" >up</a>] </p></div><a 
+  name="tailrefse51.htm"></a>  
+</body></html> 

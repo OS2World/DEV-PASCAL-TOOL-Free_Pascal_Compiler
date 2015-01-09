@@ -1,0 +1,125 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 The If..then..else statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu32.htm" >next</a>] [<a 
+href="refsu30.htm" >prev</a>] [<a 
+href="refsu30.htm#tailrefsu30.htm" >prev-tail</a>] [<a 
+href="#tailrefsu31.htm">tail</a>] [<a 
+href="refse34.htm#refsu31.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-79-99" name="x79-850007.2">The <span 
+class="cmtt-10">If..then..else </span>statement</a></h4> The <span 
+class="cmtt-10">If .. then .. else.. </span>prototype syntax is
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">If then statements</span>
+     <BR/>
+     <img 
+src="ref98x.png" alt="-- if statement if- expression -then- statement-------------------------
+                                          -else- statement -|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2835--><p class="noindent">The expression between the <span 
+class="cmtt-10">if </span>and <span 
+class="cmtt-10">then </span>keywords must have a boolean return type. If the
+expression evaluates to <span 
+class="cmtt-10">True </span>then the statement following <span 
+class="cmtt-10">then </span>is executed.
+<!--l. 2839--><p class="noindent">If the expression evaluates to <span 
+class="cmtt-10">False</span>, then the statement following <span 
+class="cmtt-10">else </span>is executed, if it is
+present.
+<!--l. 2842--><p class="noindent">Be aware of the fact that the boolean expression will be short-cut evaluated. (Meaning that the
+evaluation will be stopped at the point where the outcome is known with certainty)
+Also, before the <span 
+class="cmtt-10">else </span>keyword, no semicolon (<span 
+class="cmtt-10">;</span>) is allowed, but all statements can be
+compound statements. In nested <span 
+class="cmtt-10">If.. then .. else </span>constructs, some ambiguity may araise
+as to which <span 
+class="cmtt-10">else </span>statement pairs with which <span 
+class="cmtt-10">if </span>statement. The rule is that the <span 
+class="cmtt-10">else</span>
+keyword matches the first <span 
+class="cmtt-10">if </span>keyword not already matched by an <span 
+class="cmtt-10">else </span>keyword. For
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;exp1&nbsp;Then
+&nbsp;&nbsp;&nbsp;If&nbsp;exp2&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stat1
+&nbsp;else
+&nbsp;&nbsp;&nbsp;stat2;
+</pre>
+</td></tr></table>Despite it&#8217;s appearance, the statement is syntactically equivalent to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;exp1&nbsp;Then
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;exp2&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stat1
+&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stat2
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>and not to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{&nbsp;NOT&nbsp;EQUIVALENT&nbsp;}
+&nbsp;If&nbsp;exp1&nbsp;Then
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;exp2&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stat1
+&nbsp;&nbsp;&nbsp;&nbsp;end
+&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;stat2
+</pre>
+</td></tr></table>If it is this latter construct is needed, the <span 
+class="cmtt-10">begin </span>and <span 
+class="cmtt-10">end </span>keywords must be present. When in
+doubt, it is better to add them.
+<!--l. 2883--><p class="noindent">The following is a valid statement:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;If&nbsp;Today&nbsp;in&nbsp;[Monday..Friday]&nbsp;then
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Must&nbsp;work&nbsp;harder')
+&nbsp;else
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Take&nbsp;a&nbsp;day&nbsp;off.');
+</pre>
+</td></tr></table><div class="crosslinks"><p class="noindent">[<a 
+href="refsu32.htm" >next</a>] [<a 
+href="refsu30.htm" >prev</a>] [<a 
+href="refsu30.htm#tailrefsu30.htm" >prev-tail</a>] [<a 
+href="refsu31.htm" >front</a>] [<a 
+href="refse34.htm#refsu31.htm" >up</a>] </p></div><a 
+  name="tailrefsu31.htm"></a>  
+</body></html> 

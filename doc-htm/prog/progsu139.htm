@@ -1,0 +1,60 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.4.0 Rules</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu140.htm" >next</a>] [<a 
+href="progsu138.htm" >prev</a>] [<a 
+href="progsu138.htm#tailprogsu138.htm" >prev-tail</a>] [<a 
+href="#tailprogsu139.htm">tail</a>] [<a 
+href="progse68.htm#progsu139.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-239-267" name="x239-240000E.4">Rules</a></h4> In this section dependency rules for the units and any other needed targets can be inserted.
+It will be included at the end of the generated makefile. Targets or &#8217;default rules&#8217; that are defined
+by <span 
+class="cmss-10">fpcmake </span>can be inserted here; if they are not present, then <span 
+class="cmss-10">fpcmake </span>will generate a rule that will
+call the generic <span 
+class="cmtt-10">fpc</span>_ version. For a list of standard targets that will be defined by <span 
+class="cmss-10">fpcmake</span>, see
+section <a 
+href="progse66.htm#x228-229000E.2">E.2<!--tex4ht:ref: se:fpcmakefunctionality--></a>, page <a 
+href="progse66.htm#x228-229000E.2">518<!--tex4ht:ref: se:fpcmakefunctionality--></a>.
+<!--l. 5999--><p class="noindent">For example, it is possible to define a target <span 
+class="cmtt-10">all:</span>. If it is not defined, then <span 
+class="cmss-10">fpcmake </span>will generate
+one which simply calls <span 
+class="cmtt-10">fpc</span>_<span 
+class="cmtt-10">all</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;all:&nbsp;fpc_all
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">fpc</span>_<span 
+class="cmtt-10">all </span>rule will make all targets as defined in the <span 
+class="cmtt-10">Target </span>section.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu140.htm" >next</a>] [<a 
+href="progsu138.htm" >prev</a>] [<a 
+href="progsu138.htm#tailprogsu138.htm" >prev-tail</a>] [<a 
+href="progsu139.htm" >front</a>] [<a 
+href="progse68.htm#progsu139.htm" >up</a>] </p></div><a 
+  name="tailprogsu139.htm"></a>  
+</body></html> 

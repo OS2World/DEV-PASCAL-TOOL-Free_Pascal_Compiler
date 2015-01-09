@@ -1,0 +1,380 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Free Pascal supplied units : Reference guide.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div align="center" class="maketitle">
+                                                                            
+
+                                                                            
+<h2 class="titleHead">Free
+Pascal
+supplied
+units
+:<br>
+Reference
+guide.</h2><br>
+_____________________________________________________________________
+<br class="newline"><span 
+class="cmr-12">Reference guide for standard Free Pascal units.</span>
+<br>                         <span 
+class="cmr-12">Document version 1.9</span>
+<br>                                     <div class="date" align="center"><span 
+class="cmr-12">May 2003</span></div>
+                                                                            <br>
+<div class="author" align="center"><span 
+class="cmss-12">Micha</span><span 
+class="cmss-12">&euml;l Van Canneyt</span>
+<br class="newline"><span 
+class="cmss-12">Florian Kl</span><span 
+class="cmss-12">&auml;mpfl</span></div>
+<br class="newline">____________________________________________________________________________
+                                                                            
+
+                                                                            
+</div>
+                                                                            
+
+                                                                            
+<div class="tableofcontents">
+<span class="likechapterToc"><a 
+href="unitsli1.htm#x2-1000" name="QQ2-2-1">Contents</a></span>
+<br>&nbsp;<span class="likesectionToc"><a 
+href="unitsli2.htm#x3-2000" name="QQ2-3-2">About this guide</a></span>
+<br><span class="chapterToc">1 <a 
+href="unitsch1.htm#x4-30001" name="QQ2-4-3">The CRT unit.</a></span>
+<br>&nbsp;<span class="sectionToc">1.1 <a 
+href="unitsse1.htm#x6-40001.1" name="QQ2-6-4">Types, Variables, Constants</a></span>
+<br>&nbsp;<span class="sectionToc">1.2 <a 
+href="unitsse2.htm#x7-50001.2" name="QQ2-7-5">Procedures and Functions</a></span>
+<br><span class="chapterToc">2 <a 
+href="unitsch2.htm#x8-290002" name="QQ2-8-29">The DOS unit.</a></span>
+<br>&nbsp;<span class="sectionToc">2.1 <a 
+href="unitsse3.htm#x10-300002.1" name="QQ2-10-30">Types, Variables, Constants</a></span>
+<br>&nbsp;<span class="sectionToc">2.2 <a 
+href="unitsse4.htm#x11-370002.2" name="QQ2-11-39">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">2.3 <a 
+href="unitsse5.htm#x12-420002.3" name="QQ2-12-44">Functions and Procedures</a></span>
+<br><span class="chapterToc">3 <a 
+href="unitsch3.htm#x13-800003" name="QQ2-13-82">The DXELOAD unit</a></span>
+<br>&nbsp;<span class="sectionToc">3.1 <a 
+href="unitsse6.htm#x14-810003.1" name="QQ2-14-83">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">3.2 <a 
+href="unitsse7.htm#x15-820003.2" name="QQ2-15-84">Constants, types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">3.3 <a 
+href="unitsse8.htm#x16-850003.3" name="QQ2-16-87">Functions and Procedures</a></span>
+<br><span class="chapterToc">4 <a 
+href="unitsch4.htm#x17-870004" name="QQ2-17-89">The EMU387 unit</a></span>
+<br>&nbsp;<span class="sectionToc">4.1 <a 
+href="unitsse9.htm#x18-880004.1" name="QQ2-18-90">Functions and procedures</a></span>
+<br><span class="chapterToc">5 <a 
+href="unitsch5.htm#x19-900005" name="QQ2-19-92">The GETOPTS unit.</a></span>
+<br>&nbsp;<span class="sectionToc">5.1 <a 
+href="unitsse10.htm#x20-910005.1" name="QQ2-20-93">Types, Constants and variables : </a></span>
+<br>&nbsp;<span class="sectionToc">5.2 <a 
+href="unitsse11.htm#x21-950005.2" name="QQ2-21-97">Procedures and functions</a></span>
+<br><span class="chapterToc">6 <a 
+href="unitsch6.htm#x22-980006" name="QQ2-22-100">The GPM unit</a></span>
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="unitsse12.htm#x23-990006.1" name="QQ2-23-101">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="unitsse13.htm#x24-1000006.2" name="QQ2-24-102">Constants, types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="unitsse14.htm#x25-1040006.3" name="QQ2-25-106">Functions and procedures</a></span>
+<br><span class="chapterToc">7 <a 
+href="unitsch7.htm#x26-1240007" name="QQ2-26-126">The GO32 unit</a></span>
+<br>&nbsp;<span class="sectionToc">7.1 <a 
+href="unitsse15.htm#x27-1250007.1" name="QQ2-27-127">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">7.2 <a 
+href="unitsse16.htm#x28-1260007.2" name="QQ2-28-128">Protected mode memory organization</a></span>
+<br>&nbsp;<span class="sectionToc">7.3 <a 
+href="unitsse17.htm#x29-1410007.3" name="QQ2-29-143">Types, Variables and Constants</a></span>
+<br>&nbsp;<span class="sectionToc">7.4 <a 
+href="unitsse18.htm#x30-1470007.4" name="QQ2-30-150">Functions and Procedures</a></span>
+<br><span class="chapterToc">8 <a 
+href="unitsch8.htm#x31-2030008" name="QQ2-31-206">The GRAPH unit.</a></span>
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="unitsse19.htm#x32-2040008.1" name="QQ2-32-207">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="unitsse20.htm#x33-2070008.2" name="QQ2-33-210">Constants, Types and Variables</a></span>
+<br>&nbsp;<span class="sectionToc">8.3 <a 
+href="unitsse21.htm#x34-2090008.3" name="QQ2-34-212">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">8.4 <a 
+href="unitsse22.htm#x35-2160008.4" name="QQ2-35-219">Functions and procedures</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;<span class="sectionToc">8.5 <a 
+href="unitsse23.htm#x36-2960008.5" name="QQ2-36-299">Target specific issues</a></span>
+<br><span class="chapterToc">9 <a 
+href="unitsch9.htm#x37-3000009" name="QQ2-37-303">The HEAPTRC unit.</a></span>
+<br>&nbsp;<span class="sectionToc">9.1 <a 
+href="unitsse24.htm#x38-3010009.1" name="QQ2-38-304">Purpose</a></span>
+<br>&nbsp;<span class="sectionToc">9.2 <a 
+href="unitsse25.htm#x39-3020009.2" name="QQ2-39-305">Usage</a></span>
+<br>&nbsp;<span class="sectionToc">9.3 <a 
+href="unitsse26.htm#x40-3030009.3" name="QQ2-40-306">Constants, Types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">9.4 <a 
+href="unitsse27.htm#x41-3040009.4" name="QQ2-41-307">Functions and procedures</a></span>
+<br><span class="chapterToc">10 <a 
+href="unitsch10.htm#x42-30900010" name="QQ2-42-312">The IPC unit.</a></span>
+<br>&nbsp;<span class="sectionToc">10.1 <a 
+href="unitsse28.htm#x43-31000010.1" name="QQ2-43-313">Types, Constants and variables : </a></span>
+<br>&nbsp;<span class="sectionToc">10.2 <a 
+href="unitsse29.htm#x44-31400010.2" name="QQ2-44-317">Functions and procedures</a></span>
+<br><span class="chapterToc">11 <a 
+href="unitsch11.htm#x45-32700011" name="QQ2-45-330">The KEYBOARD unit</a></span>
+<br>&nbsp;<span class="sectionToc">11.1 <a 
+href="unitsse30.htm#x46-32800011.1" name="QQ2-46-331">Constants, Type and variables </a></span>
+<br>&nbsp;<span class="sectionToc">11.2 <a 
+href="unitsse31.htm#x47-33100011.2" name="QQ2-47-335">Functions and Procedures</a></span>
+<br>&nbsp;<span class="sectionToc">11.3 <a 
+href="unitsse32.htm#x48-35100011.3" name="QQ2-48-355">Keyboard scan codes</a></span>
+<br>&nbsp;<span class="sectionToc">11.4 <a 
+href="unitsse33.htm#x49-35200011.4" name="QQ2-49-358">Writing a keyboard driver</a></span>
+<br><span class="chapterToc">12 <a 
+href="unitsch12.htm#x50-35300012" name="QQ2-50-359">The LINUX unit.</a></span>
+<br>&nbsp;<span class="sectionToc">12.1 <a 
+href="unitsse34.htm#x51-35400012.1" name="QQ2-51-360">Type, Variable and Constant declarations</a></span>
+<br>&nbsp;<span class="sectionToc">12.2 <a 
+href="unitsse35.htm#x52-35800012.2" name="QQ2-52-364">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">12.3 <a 
+href="unitsse36.htm#x53-36900012.3" name="QQ2-53-375">Functions and procedures</a></span>
+<br><span class="chapterToc">13 <a 
+href="unitsch13.htm#x54-50000013" name="QQ2-54-506">The MATH unit</a></span>
+<br>&nbsp;<span class="sectionToc">13.1 <a 
+href="unitsse37.htm#x55-50100013.1" name="QQ2-55-507">Constants and types</a></span>
+<br>&nbsp;<span class="sectionToc">13.2 <a 
+href="unitsse38.htm#x56-50200013.2" name="QQ2-56-508">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">13.3 <a 
+href="unitsse39.htm#x57-51100013.3" name="QQ2-57-517">Functions and Procedures</a></span>
+<br><span class="chapterToc">14 <a 
+href="unitsch14.htm#x58-56200014" name="QQ2-58-568">The MMX unit</a></span>
+<br>&nbsp;<span class="sectionToc">14.1 <a 
+href="unitsse40.htm#x59-56300014.1" name="QQ2-59-569">Variables, Types and constants</a></span>
+<br>&nbsp;<span class="sectionToc">14.2 <a 
+href="unitsse41.htm#x60-56400014.2" name="QQ2-60-570">Functions and Procedures</a></span>
+<br><span class="chapterToc">15 <a 
+href="unitsch15.htm#x61-56600015" name="QQ2-61-572">The MOUSE unit</a></span>
+<br>&nbsp;<span class="sectionToc">15.1 <a 
+href="unitsse42.htm#x62-56700015.1" name="QQ2-62-573">Constants, Types and Variables</a></span>
+<br>&nbsp;<span class="sectionToc">15.2 <a 
+href="unitsse43.htm#x63-57100015.2" name="QQ2-63-577">Functions and procedures</a></span>
+<br>&nbsp;<span class="sectionToc">15.3 <a 
+href="unitsse44.htm#x64-58600015.3" name="QQ2-64-592">Writing a custom mouse driver</a></span>
+<br><span class="chapterToc">16 <a 
+href="unitsch16.htm#x65-58700016" name="QQ2-65-593">The MsMouse unit</a></span>
+<br>&nbsp;<span class="sectionToc">16.1 <a 
+href="unitsse45.htm#x66-58800016.1" name="QQ2-66-594">Constants, types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">16.2 <a 
+href="unitsse46.htm#x67-58900016.2" name="QQ2-67-595">Functions and procedures</a></span>
+<br><span class="chapterToc">17 <a 
+href="unitsch17.htm#x68-60700017" name="QQ2-68-613">The Objects unit.</a></span>
+<br>&nbsp;<span class="sectionToc">17.1 <a 
+href="unitsse47.htm#x69-60800017.1" name="QQ2-69-614">Constants</a></span>
+<br>&nbsp;<span class="sectionToc">17.2 <a 
+href="unitsse48.htm#x70-60900017.2" name="QQ2-70-615">Types</a></span>
+<br>&nbsp;<span class="sectionToc">17.3 <a 
+href="unitsse49.htm#x71-61000017.3" name="QQ2-71-616">Procedures and Functions</a></span>
+<br>&nbsp;<span class="sectionToc">17.4 <a 
+href="unitsse50.htm#x72-61800017.4" name="QQ2-72-624">TRect</a></span>
+<br>&nbsp;<span class="sectionToc">17.5 <a 
+href="unitsse51.htm#x73-62800017.5" name="QQ2-73-634">TObject</a></span>
+<br>&nbsp;<span class="sectionToc">17.6 <a 
+href="unitsse52.htm#x74-63200017.6" name="QQ2-74-638">TStream</a></span>
+<br>&nbsp;<span class="sectionToc">17.7 <a 
+href="unitsse53.htm#x75-65100017.7" name="QQ2-75-657">TDosStream</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;<span class="sectionToc">17.8 <a 
+href="unitsse54.htm#x76-66000017.8" name="QQ2-76-666">TBufStream</a></span>
+<br>&nbsp;<span class="sectionToc">17.9 <a 
+href="unitsse55.htm#x77-67000017.9" name="QQ2-77-676">TMemoryStream</a></span>
+<br>&nbsp;<span class="sectionToc">17.10 <a 
+href="unitsse56.htm#x78-67600017.10" name="QQ2-78-682">TCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.11 <a 
+href="unitsse57.htm#x79-70100017.11" name="QQ2-79-707">TSortedCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.12 <a 
+href="unitsse58.htm#x80-71000017.12" name="QQ2-80-716">TStringCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.13 <a 
+href="unitsse59.htm#x81-71500017.13" name="QQ2-81-721">TStrCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.14 <a 
+href="unitsse60.htm#x82-72000017.14" name="QQ2-82-726">TUnSortedStrCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.15 <a 
+href="unitsse61.htm#x83-72200017.15" name="QQ2-83-728">TResourceCollection</a></span>
+<br>&nbsp;<span class="sectionToc">17.16 <a 
+href="unitsse62.htm#x84-72700017.16" name="QQ2-84-733">TResourceFile</a></span>
+<br>&nbsp;<span class="sectionToc">17.17 <a 
+href="unitsse63.htm#x85-73800017.17" name="QQ2-85-744">TStringList</a></span>
+<br>&nbsp;<span class="sectionToc">17.18 <a 
+href="unitsse64.htm#x86-74200017.18" name="QQ2-86-748">TStrListMaker</a></span>
+<br><span class="chapterToc">18 <a 
+href="unitsch18.htm#x87-74700018" name="QQ2-87-753">The PORTS unit</a></span>
+<br>&nbsp;<span class="sectionToc">18.1 <a 
+href="unitsse65.htm#x88-74800018.1" name="QQ2-88-754">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">18.2 <a 
+href="unitsse66.htm#x89-74900018.2" name="QQ2-89-755">Types,constants and variables</a></span>
+<br><span class="chapterToc">19 <a 
+href="unitsch19.htm#x90-75200019" name="QQ2-90-758">The PRINTER unit.</a></span>
+<br>&nbsp;<span class="sectionToc">19.1 <a 
+href="unitsse67.htm#x91-75300019.1" name="QQ2-91-759">Types, Constants and variables : </a></span>
+<br>&nbsp;<span class="sectionToc">19.2 <a 
+href="unitsse68.htm#x92-75400019.2" name="QQ2-92-760">Procedures and functions</a></span>
+<br><span class="chapterToc">20 <a 
+href="unitsch20.htm#x93-75600020" name="QQ2-93-762">The SOCKETS unit.</a></span>
+<br>&nbsp;<span class="sectionToc">20.1 <a 
+href="unitsse69.htm#x94-75700020.1" name="QQ2-94-763">Types, Constants and variables : </a></span>
+<br>&nbsp;<span class="sectionToc">20.2 <a 
+href="unitsse70.htm#x95-75800020.2" name="QQ2-95-764">Functions and Procedures</a></span>
+<br><span class="chapterToc">21 <a 
+href="unitsch21.htm#x96-78200021" name="QQ2-96-788">The STRINGS unit.</a></span>
+<br>&nbsp;<span class="sectionToc">21.1 <a 
+href="unitsse71.htm#x97-78300021.1" name="QQ2-97-789">Functions and procedures.</a></span>
+<br><span class="chapterToc">22 <a 
+href="unitsch22.htm#x98-80600022" name="QQ2-98-812">The SYSUTILS unit.</a></span>
+<br>&nbsp;<span class="sectionToc">22.1 <a 
+href="unitsse72.htm#x99-80700022.1" name="QQ2-99-813">Constants and types</a></span>
+<br>&nbsp;<span class="sectionToc">22.2 <a 
+href="unitsse73.htm#x100-80800022.2" name="QQ2-100-814">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">22.3 <a 
+href="unitsse74.htm#x101-81400022.3" name="QQ2-101-820">Miscellaneous conversion routines</a></span>
+<br>&nbsp;<span class="sectionToc">22.4 <a 
+href="unitsse75.htm#x102-81500022.4" name="QQ2-102-821">Date and time functions</a></span>
+<br>&nbsp;<span class="sectionToc">22.5 <a 
+href="unitsse76.htm#x103-84400022.5" name="QQ2-103-850">Disk functions</a></span>
+<br>&nbsp;<span class="sectionToc">22.6 <a 
+href="unitsse77.htm#x104-85200022.6" name="QQ2-104-858">File handling functions</a></span>
+<br>&nbsp;<span class="sectionToc">22.7 <a 
+href="unitsse78.htm#x105-88400022.7" name="QQ2-105-890">PChar functions</a></span>
+<br>&nbsp;<span class="sectionToc">22.8 <a 
+href="unitsse79.htm#x106-89200022.8" name="QQ2-106-898">String handling functions</a></span>
+<br><span class="chapterToc">23 <a 
+href="unitsch23.htm#x107-94200023" name="QQ2-107-948">The TYPINFO unit</a></span>
+<br>&nbsp;<span class="sectionToc">23.1 <a 
+href="unitsse80.htm#x108-94300023.1" name="QQ2-108-949">Constants, Types and variables</a></span>
+<br>&nbsp;<span class="sectionToc">23.2 <a 
+href="unitsse81.htm#x109-94600023.2" name="QQ2-109-952">Function list by category</a></span>
+<br>&nbsp;<span class="sectionToc">23.3 <a 
+href="unitsse82.htm#x110-95000023.3" name="QQ2-110-956">Functions and Procedures</a></span>
+<br><span class="chapterToc">24 <a 
+href="unitsch24.htm#x111-98500024" name="QQ2-111-991">The VIDEO unit</a></span>
+<br>&nbsp;<span class="sectionToc">24.1 <a 
+href="unitsse83.htm#x112-98600024.1" name="QQ2-112-992">Constants, Type and variables </a></span>
+<br>&nbsp;<span class="sectionToc">24.2 <a 
+href="unitsse84.htm#x113-99000024.2" name="QQ2-113-996">Functions and Procedures</a></span>
+<br>&nbsp;<span class="sectionToc">24.3 <a 
+href="unitsse85.htm#x114-100900024.3" name="QQ2-114-1015">Writing a custom video driver</a></span>
+                                                                            
+
+                                                                            
+</div>
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+ 
+</body></html> 
+
+                                                                            
+
+

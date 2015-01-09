@@ -1,0 +1,74 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.2 Class instantiation</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse25.htm" >next</a>] [<a 
+href="refse23.htm" >prev</a>] [<a 
+href="refse23.htm#tailrefse23.htm" >prev-tail</a>] [<a 
+href="#tailrefse24.htm">tail</a>] [<a 
+href="refch5.htm#refse24.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.2</span> <a 
+href="ref.htm#QQ2-52-64" name="x52-580005.2">Class instantiation</a></h3>
+<!--l. 1923--><p class="noindent">Classes must be created using their constructor. Remember that a class is a pointer to an object,
+so when a variable of some class is declared, the compiler just allocates a pointer, not the
+entire object. The constructor of a class returns a pointer to an initialized instance
+of the object. So, to initialize an instance of some class, one would do the following
+:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;ClassVar&nbsp;:=&nbsp;ClassType.ConstructorName;
+</pre>
+</td></tr></table>The extended syntax of <span 
+class="cmtt-10">new </span>and <span 
+class="cmtt-10">dispose </span>can be used to instantiate and destroy class
+instances. That construct is reserved for use with objects only. Calling the constructor will
+provoke a call to <span 
+class="cmtt-10">getmem</span>, to allocate enough space to hold the class instance data. After
+that, the constuctor&#8217;s code is executed. The constructor has a pointer to it&#8217;s data, in
+<span 
+class="cmtt-10">self</span>.
+<!--l. 1939--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>
+     <ul class="itemize1">
+     <li class="itemize">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$PackRecords </span><span 
+class="cmsy-10">} </span>directive also affects classes. i.e. the alignment in memory of
+     the different fields depends on the value of the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$PackRecords </span><span 
+class="cmsy-10">} </span>directive.
+     </li>
+     <li class="itemize">Just as for objects and records, a packed class can be declared. This has the same effect
+     as on an object, or record, namely that the elements are aligned on 1-byte boundaries.
+     i.e. as close as possible.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">SizeOf(class) </span>will return 4, since a class is but a pointer to an object. To get the size
+     of the class instance data, use the <span 
+class="cmtt-10">TObject.InstanceSize </span>method.</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse25.htm" >next</a>] [<a 
+href="refse23.htm" >prev</a>] [<a 
+href="refse23.htm#tailrefse23.htm" >prev-tail</a>] [<a 
+href="refse24.htm" >front</a>] [<a 
+href="refch5.htm#refse24.htm" >up</a>] </p></div><a 
+  name="tailrefse24.htm"></a>  
+</body></html> 

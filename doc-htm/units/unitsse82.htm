@@ -1,0 +1,3466 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>23.3 Functions and Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse81.htm" >prev</a>] [<a 
+href="unitsse81.htm#tailunitsse81.htm" >prev-tail</a>] [<a 
+href="#tailunitsse82.htm">tail</a>] [<a 
+href="unitsch23.htm#unitsse82.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">23.3</span> <a 
+href="units.htm#QQ2-110-956" name="x110-95000023.3">Functions and Procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-957" name="x110-95100023.3">FindPropInfo</a></h4><a 
+  name="dx110-951001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function FindPropInfo(AClass:TClass;const PropName: string): PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function FindPropInfo(Instance: TObject; const PropName: string): PPropInfo;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">FindPropInfo </span>examines the published property information of a class and returns a pointer to
+the property information for property <span 
+class="cmtt-10">PropName</span>. The class to be examined can be specified in one
+of two ways:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">AClass</span></dt><dd 
+class="description">a class pointer.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Instance</span></dt><dd 
+class="description">an instance of the class to be investigated.</dd></dl>
+<!--l. 297--><p class="noindent">If the property does not exist, a <span 
+class="cmtt-10">EPropertyError </span>exception will be raised. The <span 
+class="cmss-10">GetPropInfo </span>(<a 
+href="#x110-96100023.3">844<!--tex4ht:ref: se:TBufStream--></a>)
+function has the same function as the <span 
+class="cmtt-10">FindPropInfo </span>function, but returns <span 
+class="cmtt-10">Nil </span>if the property does
+not exist.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError</span>
+exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPropInfo </span>(<a 
+href="#x110-96100023.3">844<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetPropList </span>(<a 
+href="#x110-96300023.3">846<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetPropInfos </span>(<a 
+href="#x110-96200023.3">845<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 308--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 308--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">FindPropInfo</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo,sysutils;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PT</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeData;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropList;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">prI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=FindPropInfo(O,'BooleanField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('FindPropInfo(Instance,BooleanField)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PI^.Name);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=FindPropInfo(O.ClassType,'ByteField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('FindPropInfo(Class,ByteField)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PI^.Name);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;&nbsp;<span 
+class="cmtt-10">('FindPropInfo(Class,NonExistingProp)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Try</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PI:=FindPropInfo(O,'NonExistingProp');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">except</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">On</span>&nbsp;<span 
+class="cmtt-10">E:</span>&nbsp;<span 
+class="cmtt-10">Exception</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Caught</span>&nbsp;<span 
+class="cmtt-10">exception</span>&nbsp;<span 
+class="cmtt-10">&#34;',E.ClassName,'&#34;</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">message</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',E.Message);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-958" name="x110-95200023.3">GetEnumName</a></h4><a 
+  name="dx110-952001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetEnumName(TypeInfo : PTypeInfo;Value : Integer) : string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetEnumName </span>scans the type information for the enumeration type described by <span 
+class="cmtt-10">TypeInfo</span>
+and returns the name of the enumeration constant for the element with ordinal value equal
+to <span 
+class="cmtt-10">Value</span>.
+<!--l. 318--><p class="noindent">If <span 
+class="cmtt-10">Value </span>is out of range, the first element of the enumeration type is returned. The result is
+lowercased, but this may change in the future.
+<!--l. 321--><p class="noindent">This can be used in combination with <span 
+class="cmtt-10">GetOrdProp </span>to stream a property of an enumerated
+type.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No check is done to determine whether <span 
+class="cmtt-10">TypeInfo </span>really points to the type information for
+an enumerated type.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumValue </span>(<a 
+href="#x110-95400023.3">837<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 330--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 330--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example9;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetEnumName,</span>&nbsp;<span 
+class="cmtt-10">GetEnumValue</span>&nbsp;<span 
+class="cmtt-10">functions</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TI:=GetPropInfo(O,'MyEnumField')^.PropType;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('GetEnumName</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumName(TI,Ord(O.MyEnumField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('GetEnumValue(mefirst)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumName(TI,GetEnumValue(TI,'mefirst')));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-959" name="x110-95300023.3">GetEnumProp</a></h4><a 
+  name="dx110-953001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetEnumProp(Instance: TObject;const PropInfo: PPropInfo): string;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetEnumProp(Instance: TObject;const PropName: string): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetEnumProp </span>returns the value of an property of an enumerated type and returns the name
+of the enumerated value for the objetc <span 
+class="cmtt-10">Instance</span>. The property whose value must be returned
+can be specified by its property info in <span 
+class="cmtt-10">PropInfo </span>or by its name in <span 
+class="cmtt-10">PropName</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No check is done to determine whether <span 
+class="cmtt-10">PropInfo </span>really points to the property information
+for an enumerated type. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an
+<span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetEnumProp </span>(<a 
+href="#x110-97300023.3">854<!--tex4ht:ref: se:TBufStream--></a>) <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetMethodProp</span>
+(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 352--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 352--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetEnumProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'MyEnumField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TI:=PI^.PropType;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Enum</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumName(TI,Ord(O.MyEnumField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumProp(O,'MyEnumField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumProp(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetEnumProp(O,'MyEnumField','meFirst');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,meFirst)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumName(TI,Ord(O.MyEnumField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetEnumProp(O,PI,'meSecond');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,meSecond)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetEnumName(TI,Ord(O.MyEnumField)));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-960" name="x110-95400023.3">GetEnumValue</a></h4><a 
+  name="dx110-954001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetEnumValue(TypeInfo : PTypeInfo;const Name : string) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetEnumValue </span>scans the type information for the enumeration type described by <span 
+class="cmtt-10">TypeInfor</span>
+and returns the ordinal value for the element in the enumerated type that has identifier <span 
+class="cmtt-10">Name</span>.
+The identifier is searched in a case-insensitive manner.
+<!--l. 363--><p class="noindent">This can be used to set the value of enumerated properties from a stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If <span 
+class="cmtt-10">Name </span>is not found in the list of enumerated values, then -1 is returned. No check is done
+whether <span 
+class="cmtt-10">TypeInfo </span>points to the type information for an enumerated type.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetEnumName </span>(<a 
+href="#x110-95200023.3">835<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 372--><p class="noindent">For an example, see <span 
+class="cmss-10">GetEnumName </span>(<a 
+href="#x110-95200023.3">835<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-961" name="x110-95500023.3">GetFloatProp</a></h4><a 
+  name="dx110-955001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetFloatProp(Instance : TObject;PropInfo : PPropInfo) : Extended;</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetFloatProp(Instance: TObject; const PropName: string; Value:</span>
+<span 
+class="cmtt-10">Extended);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetFloatProp </span>returns the value of the float property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">Propname </span>for the object <span 
+class="cmtt-10">Instance</span>. All float types are converted to extended.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+float property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFloatProp </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetMethodProp</span>
+(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 394--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex4.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 394--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetFloatProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Real</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'RealField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.RealField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetFloatProp(O,'RealField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetFloatProp(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetFloatProp(O,'RealField',system.Pi);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,pi)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.RealField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetFloatProp(O,PI,exp(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,e)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.RealField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Extended</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'ExtendedField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.ExtendedField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetFloatProp(O,'ExtendedField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetFloatProp(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetFloatProp(O,'ExtendedField',system.Pi);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,pi)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.ExtendedField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetFloatProp(O,PI,exp(1));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,e)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.ExtendedField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-962" name="x110-95600023.3">GetInt64Prop</a></h4><a 
+  name="dx110-956001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetInt64Prop(Instance: TObject; PropInfo: PPropInfo): Int64;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetInt64Prop(Instance: TObject; const PropName: string): Int64;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmti-10">Publishing of Int64 properties is not yet supported by Free Pascal. This function is provided</span>
+<span 
+class="cmti-10">for Delphi compatibility only at the moment.</span>
+<!--l. 404--><p class="noindent"><span 
+class="cmtt-10">GetInt64Prop </span>returns the value of the property of type <span 
+class="cmtt-10">Int64 </span>that is described by <span 
+class="cmtt-10">PropInfo</span>
+or with name <span 
+class="cmtt-10">Propname </span>for the object <span 
+class="cmtt-10">Instance</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+<span 
+class="cmtt-10">Int64 </span>property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+                                                                            
+
+                                                                            
+an <span 
+class="cmtt-10">EPropertyError </span>exception
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetInt64Prop </span>(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetMethodProp</span>
+(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 419--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 419--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetInt64Prop</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Int64</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'Int64Field');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.Int64Field);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetInt64Prop(O,'Int64Field'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetInt64Prop(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetInt64Prop(O,'Int64Field',12345);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,12345)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.Int64Field);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetInt64Prop(O,PI,54321);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,54321)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.Int64Field);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-963" name="x110-95700023.3">GetMethodProp</a></h4><a 
+  name="dx110-957001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMethodProp(Instance : TObject;PropInfo : PPropInfo) : TMethod;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetMethodProp(Instance: TObject; const PropName: string): TMethod;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMethodProp </span>returns the method the property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">Propname </span>for object <span 
+class="cmtt-10">Instance</span>. The return type <span 
+class="cmtt-10">TMethod </span>is defined in the <span 
+class="cmss-10">SysUtils </span>unit
+as:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TMethod&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;Code,&nbsp;Data:&nbsp;Pointer;
+&nbsp;end;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Data </span>points to the instance of the class with the method <span 
+class="cmtt-10">Code</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid method
+property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an
+<span 
+class="cmtt-10">EPropertyError </span>exception
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop</span>
+(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 447--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 447--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetMethodProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo,sysutils;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TNotifyObject</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">Class(TObject)</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Notification1(Sender</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TObject);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Notification2(Sender</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TObject);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TNotifyObject.Notification1(Sender</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TObject);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Received</span>&nbsp;<span 
+class="cmtt-10">notification</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">object</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">class:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Sender.ClassName);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">TNotifyObject.Notification2(Sender</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TObject);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Received</span>&nbsp;<span 
+class="cmtt-10">notification</span>&nbsp;<span 
+class="cmtt-10">2</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">object</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">class:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(Sender.ClassName);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TNotifyObject;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMethod;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintMethod</span>&nbsp;<span 
+class="cmtt-10">(Const</span>&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMethod);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(M.Data=Pointer(NO))</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(M.Code=Pointer(@TNotifyObject.Notification1))</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Notification1')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(M.Code=Pointer(@TNotifyObject.Notification2))</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Notification2')</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Unknown</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">adress</span>&nbsp;<span 
+class="cmtt-10">(data:');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(hexStr(Longint(M.data),8));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(',code:',hexstr(Longint(M.Code),8),')');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO:=TNotifyObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.NotifyEvent:=@NO.Notification1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'NotifyEvent');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Method</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Notifying</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Notify;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=GetMethodProp(O,'NotifyEvent');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintMethod(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Notifying</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Notify;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=GetMethodProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintMethod(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M.Data:=No;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M.Code:=Pointer(@NO.Notification2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetMethodProp(O,'NotifyEvent',M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(name,Notification2)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=GetMethodProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintMethod(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Notifying</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Notify;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,Notification1)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M.Data:=No;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M.Code:=Pointer(@NO.Notification1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetMethodProp(O,PI,M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M:=GetMethodProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PrintMethod(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Notifying</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Notify;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-964" name="x110-95800023.3">GetObjectProp</a></h4><a 
+  name="dx110-958001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetObjectProp(Instance: TObject; const PropName: string): TObject;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetObjectProp(Instance: TObject; const PropName: string;</span>
+<span 
+class="cmtt-10">MinClass:TClass): TObject;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetObjectProp(Instance: TObject; PropInfo: PPropInfo; MinClass:</span>
+<span 
+class="cmtt-10">TClass): TObject;</span>
+<br class="newline">
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetObjectProp </span>returns the object which the property descroibed by <span 
+class="cmtt-10">PropInfo </span>with name
+<span 
+class="cmtt-10">Propname </span>points to for object <span 
+class="cmtt-10">Instance</span>.
+<!--l. 459--><p class="noindent">If <span 
+class="cmtt-10">MinClass </span>is specified, then if the object is not descendent of class <span 
+class="cmtt-10">MinClass</span>, then <span 
+class="cmtt-10">Nil </span>is
+returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+method property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result
+in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop</span>
+(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 473--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 473--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetObjectProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO1,NO2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TNamedObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO1:=TNamedObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO1.ObjectName:='First</span>&nbsp;<span 
+class="cmtt-10">named</span>&nbsp;<span 
+class="cmtt-10">object';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO2:=TNamedObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NO2.ObjectName:='Second</span>&nbsp;<span 
+class="cmtt-10">named</span>&nbsp;<span 
+class="cmtt-10">object';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.ObjField:=NO1;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Object</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'ObjField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Property</span>&nbsp;<span 
+class="cmtt-10">class</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(GetObjectPropClass(O,'ObjField').ClassName);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln((O.ObjField</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">TNamedObject).ObjectName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln((GetObjectProp(O,'ObjField')</span>&nbsp;<span 
+class="cmtt-10">As</span>&nbsp;<span 
+class="cmtt-10">TNamedObject).ObjectName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln((GetObjectProp(O,PI,TObject)</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">TNamedObject).ObjectName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetObjectProp(O,'ObjField',NO2);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(name,NO2)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln((O.ObjField</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">TNamedObject).ObjectName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetObjectProp(O,PI,NO1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,NO1)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln((O.ObjField</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">TNamedObject).ObjectName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-965" name="x110-95900023.3">GetObjectPropClass</a></h4><a 
+  name="dx110-959001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetObjectPropClass(Instance: TObject; const PropName: string):</span>
+<span 
+class="cmtt-10">TClass;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetObjectPropClass </span>returns the declared class of the property with name <span 
+class="cmtt-10">PropName</span>. This
+may not be the actual class of the property value.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil. Specifying an invalid property name in
+<span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop</span>
+(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 490--><p class="noindent">For an example, see <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-966" name="x110-96000023.3">GetOrdProp</a></h4><a 
+  name="dx110-960001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetOrdProp(Instance : TObject;PropInfo : PPropInfo) : Longint;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetOrdProp(Instance: TObject;const PropName: string): Longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetOrdProp </span>returns the value of the ordinal property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">PropName </span>for the object <span 
+class="cmtt-10">Instance</span>. The value is returned as a longint, which should be
+typecasted to the needed type.
+<!--l. 502--><p class="noindent">Ordinal properties that can be retrieved include:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Integers and subranges of integers</span></dt><dd 
+class="description">The value of the integer will be returned.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Enumerated types and subranges of enumerated types</span></dt><dd 
+class="description">The   ordinal   value   of   the
+    enumerated type will be returned.
+                                                                            
+
+                                                                            
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Sets</span></dt><dd 
+class="description">If the base type of the set has less than 31 possible values. If a bit is set in the return
+    value, then the corresponding element of the base ordinal class of the set type must be
+    included in the set.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid ordinal
+property of <span 
+class="cmtt-10">Instance </span>Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an
+<span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetMethodProp </span>(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>),
+<span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 523--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 523--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetOrdProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Boolean</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.BooleanField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Ord(Value)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Ord(O.BooleanField));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetOrdProp(O,'BooleanField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'BooleanField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetOrdProp(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,'BooleanField',Ord(False));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,false)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.BooleanField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,PI,Ord(True));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,true)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.BooleanField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-967" name="x110-96100023.3">GetPropInfo</a></h4><a 
+  name="dx110-961001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPropInfo(AClass: TClass; const PropName: string; AKinds:</span>
+<span 
+class="cmtt-10">TTypeKinds) : PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropInfo(AClass: TClass; const PropName: string): PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropInfo(Instance: TObject; const PropName: string): PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropInfo(Instance: TObject; const PropName: string; AKinds:</span>
+                                                                            
+
+                                                                            
+<span 
+class="cmtt-10">TTypeKinds) : PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropInfo(TypeInfo: PTypeInfo;const PropName: string) :</span>
+<span 
+class="cmtt-10">PPropInfo;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropInfo(TypeInfo: PTypeInfo;const PropName: string; AKinds :</span>
+<span 
+class="cmtt-10">TTypeKinds) : PPropInfo;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPropInfo </span>returns a pointer to the <span 
+class="cmtt-10">TPropInfo </span>record for a the <span 
+class="cmtt-10">PropName </span>property of a class.
+The class to examine can be specified in one of three ways:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Instance</span></dt><dd 
+class="description">An instance of the class.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">AClass</span></dt><dd 
+class="description">A class pointer to the class.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">TypeInfo</span></dt><dd 
+class="description">A pointer to the type information of the class.</dd></dl>
+<!--l. 542--><p class="noindent">In each of these three ways, if <span 
+class="cmtt-10">AKinds </span>is specified, if the property has <span 
+class="cmtt-10">TypeKind </span>which is not
+included in <span 
+class="cmtt-10">Akinds</span>, <span 
+class="cmtt-10">Nil </span>will be returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the property <span 
+class="cmtt-10">PropName </span>does not exist, <span 
+class="cmtt-10">Nil </span>is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPropInfos </span>(<a 
+href="#x110-96200023.3">845<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetPropList </span>(<a 
+href="#x110-96300023.3">846<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 551--><p class="noindent">For an example, see most of the other functions.
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-968" name="x110-96200023.3">GetPropInfos</a></h4><a 
+  name="dx110-962001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetPropInfos(TypeInfo: PTypeInfo;PropList: PPropList);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPropInfos </span>stores pointers to the property information of all published properties of a
+class with class info <span 
+class="cmtt-10">TypeInfo </span>in the list pointed to by <span 
+class="cmtt-10">Proplist</span>. The <span 
+class="cmtt-10">PropList </span>pointer
+must point to a memory location that contains enough space to hold all properties of the
+class and its parent classes.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to see whether <span 
+class="cmtt-10">PropList </span>points to a memory area that is big enough to
+hold all pointers.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPropInfo </span>(<a 
+href="#x110-96100023.3">844<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetPropList </span>(<a 
+href="#x110-96300023.3">846<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 568--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 568--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example12;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetPropInfos</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PT</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeData;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropList;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">prI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=O.ClassInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PT:=GetTypeData(PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Property</span>&nbsp;<span 
+class="cmtt-10">Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PT^.PropCount);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(PP,PT^.PropCount*SizeOf(Pointer));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetPropInfos(PI,PP);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">PT^.PropCount-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">PP^[i]^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Property</span>&nbsp;<span 
+class="cmtt-10">',i+1:3,':</span>&nbsp;<span 
+class="cmtt-10">',name:30);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln('</span>&nbsp;&nbsp;<span 
+class="cmtt-10">Type:</span>&nbsp;<span 
+class="cmtt-10">',TypeNames[typinfo.PropType(O,Name)]);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FreeMem(PP);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-969" name="x110-96300023.3">GetPropList</a></h4><a 
+  name="dx110-963001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPropList(TypeInfo : PTypeInfo; TypeKinds : TTypeKinds; PropList</span>
+<span 
+class="cmtt-10">: PPropList) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPropList </span>stores pointers to property information of the class with class info <span 
+class="cmtt-10">TypeInfo</span>
+for properties of kind <span 
+class="cmtt-10">TypeKinds </span>in the list pointed to by <span 
+class="cmtt-10">Proplist</span>. <span 
+class="cmtt-10">PropList </span>must contain
+enough space to hold all properties.
+<!--l. 580--><p class="noindent">The function returns the number of pointers that matched the criteria and were stored in
+<span 
+class="cmtt-10">PropList</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to see whether <span 
+class="cmtt-10">PropList </span>points to a memory area that is big enough to
+hold all pointers.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPropInfos </span>(<a 
+href="#x110-96200023.3">845<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetPropInfo </span>(<a 
+href="#x110-96100023.3">844<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 589--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex13.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 589--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example13;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetPropList</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PT</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeData;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PTypeInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PP</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropList;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">prI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=O.ClassInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PT:=GetTypeData(PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Total</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',PT^.PropCount);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(PP,PT^.PropCount*SizeOf(Pointer));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">J:=GetPropList(PI,OrdinalTypes,PP);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Ordinal</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',J);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">J-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">PP^[i]^</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write('Property</span>&nbsp;<span 
+class="cmtt-10">',i+1:3,':</span>&nbsp;<span 
+class="cmtt-10">',name:30);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln('</span>&nbsp;&nbsp;<span 
+class="cmtt-10">Type:</span>&nbsp;<span 
+class="cmtt-10">',TypeNames[typinfo.PropType(O,Name)]);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">FreeMem(PP);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+<br>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-970" name="x110-96400023.3">GetPropValue</a></h4><a 
+  name="dx110-964001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPropValue(Instance: TObject; const PropName: string): Variant;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetPropValue(Instance: TObject; const PropName: string;</span>
+<span 
+class="cmtt-10">PreferStrings: Boolean): Variant;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Due to missing <span 
+class="cmtt-10">Variant </span>support, <span 
+class="cmtt-10">GetPropValue </span>is not yet implemented. The declaration
+is provided for compatibility with Delphi.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+                                                                            
+
+                                                                            
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-971" name="x110-96500023.3">GetSetProp</a></h4><a 
+  name="dx110-965001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetSetProp(Instance: TObject; const PropInfo: PPropInfo; Brackets:</span>
+<span 
+class="cmtt-10">Boolean): string;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetSetProp(Instance: TObject; const PropName: string): string;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetSetProp(Instance: TObject; const PropName: string; Brackets:</span>
+<span 
+class="cmtt-10">Boolean): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetSetProp </span>returns the contents of a set property as a string. The property to be returned
+can be specified by it&#8217;s name in <span 
+class="cmtt-10">PropName </span>or by its property information in <span 
+class="cmtt-10">PropInfo</span>.
+<!--l. 613--><p class="noindent">The  returned  set  is  a  string  representation  of  the  elements  in  the  set  as  returned  by
+<span 
+class="cmss-10">SetToString </span>(<a 
+href="#x110-98200023.3">859<!--tex4ht:ref: se:TBufStream--></a>). The <span 
+class="cmtt-10">Brackets </span>option can be used to enclose the string representation in
+square brackets.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+ordinal property of <span 
+class="cmtt-10">Instance </span>Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result
+in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetSetProp </span>(<a 
+href="#x110-98000023.3">858<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetMethodProp</span>
+(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 626--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 626--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example7;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetSetProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">SetAsString</span>&nbsp;<span 
+class="cmtt-10">(ASet</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyEnums)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TmyEnum;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">result:='';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">i:=mefirst</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">methird</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">ASet</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Result&lt;&gt;'')</span>&nbsp;<span 
+class="cmtt-10">then</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Result:=Result+',';</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Result:=Result+MyEnumNames[i];</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyEnums;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.SetField:=[mefirst,meSecond,meThird];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SetAsString(O.SetField));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Ord(Value)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Longint(O.SetField));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetSetProp(O,'SetField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'SetField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetSetProp(O,PI,false));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=[meFirst,meThird];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,'SetField',Integer(S));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(name,[mefirst,methird])</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(SetAsString(O.SetField));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=[meSecond];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,PI,Integer(S));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,[meSecond])</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(SetAsString(O.SetField));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-972" name="x110-96600023.3">GetStrProp</a></h4><a 
+  name="dx110-966001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetStrProp(Instance : TObject; PropInfo : PPropInfo) : Ansistring;</span>
+<br class="newline"><span 
+class="cmtt-10">Function GetStrProp(Instance: TObject; const PropName: string): string;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetStrProp </span>returns the value of the string property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">PropName </span>for object <span 
+class="cmtt-10">Instance</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+string property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">GetMethodProp</span>
+(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 647--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 647--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example3;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GetStrProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'AnsiStringField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('String</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.AnsiStringField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(name)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetStrProp(O,'AnsiStringField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Get</span>&nbsp;<span 
+class="cmtt-10">(propinfo)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',GetStrProp(O,PI));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetStrProp(O,'AnsiStringField','First');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(name,''First'')</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.AnsiStringField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetStrProp(O,PI,'Second');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">(propinfo,''Second'')</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',O.AnsiStringField);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-973" name="x110-96700023.3">GetTypeData</a></h4><a 
+  name="dx110-967001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetTypeData(TypeInfo : PTypeInfo) : PTypeData;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetTypeData </span>returns a pointer to the <span 
+class="cmtt-10">TTypeData </span>record that follows after the <span 
+class="cmtt-10">TTypeInfo</span>
+record pointed to by <span 
+class="cmtt-10">TypeInfo</span>. It essentially skips the <span 
+class="cmtt-10">Kind </span>and <span 
+class="cmtt-10">Name </span>fields in the <span 
+class="cmtt-10">TTypeInfo</span>
+record.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-974" name="x110-96800023.3">GetVariantProp</a></h4><a 
+  name="dx110-968001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetVariantProp(Instance : TObject;PropInfo : PPropInfo): Variant;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Due to mising Variant support, the <span 
+class="cmtt-10">GetVariantProp </span>function is not yet implemented.
+Provided for Delphi compatibility only.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetVariantProp </span>(<a 
+href="#x110-98300023.3">860<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-975" name="x110-96900023.3">IsPublishedProp</a></h4><a 
+  name="dx110-969001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function IsPublishedProp(AClass: TClass; const PropName: string): Boolean;</span>
+<br class="newline"><span 
+class="cmtt-10">Function IsPublishedProp(Instance: TObject; const PropName: string):</span>
+<span 
+class="cmtt-10">Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IsPublishedProp </span>returns true if a class has a published property with name <span 
+class="cmtt-10">PropName</span>. The class
+can be specfied in one of two ways:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">AClass</span></dt><dd 
+class="description">A class pointer to the class.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Instance</span></dt><dd 
+class="description">An instance of the class.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to ensure <span 
+class="cmtt-10">Instance </span>or <span 
+class="cmtt-10">AClass </span>are valid pointers. Specifying an invalid
+property name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IsStoredProp </span>(<a 
+href="#x110-97000023.3">852<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">PropIsType </span>(<a 
+href="#x110-97100023.3">853<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 692--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex10.pp</span><HR/><div class="listinginput">
+<!--l. 692--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example10;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">IsPublishedProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Property</span>&nbsp;<span 
+class="cmtt-10">tests</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsPublishedProp(O,BooleanField)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsPublishedProp(O,'BooleanField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsPublishedProp(Class,BooleanField)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsPublishedProp(O.ClassType,'BooleanField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsPublishedProp(O,SomeField)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsPublishedProp(O,'SomeField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsPublishedProp(Class,SomeField)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsPublishedProp(O.ClassType,'SomeField'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+                                                                            
+
+                                                                            
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-976" name="x110-97000023.3">IsStoredProp</a></h4><a 
+  name="dx110-970001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function IsStoredProp(Instance : TObject;PropInfo : PPropInfo) : Boolean;</span>
+<br class="newline"><span 
+class="cmtt-10">Function IsStoredProp(Instance: TObject; const PropName: string): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">IsStoredProp </span>returns <span 
+class="cmtt-10">True </span>if the <span 
+class="cmtt-10">Stored </span>modifier evaluates to <span 
+class="cmtt-10">True </span>for the property
+described  by  <span 
+class="cmtt-10">PropInfo  </span>or  with  name  <span 
+class="cmtt-10">PropName  </span>for  object  <span 
+class="cmtt-10">Instance</span>.  It  returns  <span 
+class="cmtt-10">False</span>
+otherwise. If the function returns <span 
+class="cmtt-10">True</span>, this indicates that the property should be written
+when streaming the object <span 
+class="cmtt-10">Instance</span>.
+<!--l. 706--><p class="noindent">If there was no <span 
+class="cmtt-10">stored </span>modifier in the declaration of the property, <span 
+class="cmtt-10">True </span>will be returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an
+<span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IsPublishedProp </span>(<a 
+href="#x110-96900023.3">851<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">PropIsType </span>(<a 
+href="#x110-97100023.3">853<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 717--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex11.pp</span><HR/><div class="listinginput">
+<!--l. 717--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example11;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">IsStoredProp</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Stored</span>&nbsp;<span 
+class="cmtt-10">tests</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsStoredProp(O,StoredIntegerConstFalse)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsStoredProp(O,'StoredIntegerConstFalse'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsStoredProp(O,StoredIntegerConstTrue)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsStoredProp(O,'StoredIntegerConstTrue'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsStoredProp(O,StoredIntegerMethod)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsStoredProp(O,'StoredIntegerMethod'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('IsStoredProp(O,StoredIntegerVirtualMethod)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(IsStoredProp(O,'StoredIntegerVirtualMethod'));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-977" name="x110-97100023.3">PropIsType</a></h4><a 
+  name="dx110-971001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function PropIsType(AClass: TClass; const PropName: string; TypeKind:</span>
+<span 
+class="cmtt-10">TTypeKind): Boolean;</span>
+<br class="newline"><span 
+class="cmtt-10">Function PropIsType(Instance: TObject; const PropName: string; TypeKind:</span>
+<span 
+class="cmtt-10">TTypeKind): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PropIsType </span>returns <span 
+class="cmtt-10">True </span>if the property with name <span 
+class="cmtt-10">PropName </span>has type <span 
+class="cmtt-10">TypeKind</span>.
+It returns <span 
+class="cmtt-10">False </span>otherwise. The class to be examined can be specified in one of two
+ways:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">AClass</span></dt><dd 
+class="description">A class pointer.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Instance</span></dt><dd 
+class="description">An instance of the class.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to ensure <span 
+class="cmtt-10">Instance </span>or <span 
+class="cmtt-10">AClass </span>are valid pointers.Specifying an invalid property
+name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IsPublishedProp </span>(<a 
+href="#x110-96900023.3">851<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">IsStoredProp </span>(<a 
+href="#x110-97000023.3">852<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">PropType </span>(<a 
+href="#x110-97200023.3">854<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 741--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex16.pp</span><HR/><div class="listinginput">
+<!--l. 741--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example16;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PropIsType</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Property</span>&nbsp;<span 
+class="cmtt-10">tests</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropIsType(O,BooleanField,tkBool)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(PropIsType(O,'BooleanField',tkBool));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropIsType(Class,BooleanField,tkBool)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(PropIsType(O.ClassType,'BooleanField',tkBool));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropIsType(O,ByteField,tkString)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(PropisType(O,'ByteField',tkString));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropIsType(Class,ByteField,tkString)</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(PropIsType(O.ClassType,'ByteField',tkString));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-978" name="x110-97200023.3">PropType</a></h4><a 
+  name="dx110-972001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function PropType(AClass: TClass; const PropName: string): TTypeKind;</span>
+<br class="newline"><span 
+class="cmtt-10">Function PropType(Instance: TObject; const PropName: string): TTypeKind;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Proptype </span>returns the type of the property <span 
+class="cmtt-10">PropName </span>for a class. The class to be examined can be
+specified in one of 2 ways:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">AClass</span></dt><dd 
+class="description">A class pointer.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Instance</span></dt><dd 
+class="description">An instance of the class.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to ensure <span 
+class="cmtt-10">Instance </span>or <span 
+class="cmtt-10">AClass </span>are valid pointers. Specifying an invalid
+property name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">IsPublishedProp </span>(<a 
+href="#x110-96900023.3">851<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">IsStoredProp </span>(<a 
+href="#x110-97000023.3">852<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">PropIsType </span>(<a 
+href="#x110-97100023.3">853<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 762--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex17.pp</span><HR/><div class="listinginput">
+<!--l. 762--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example17;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">PropType</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Property</span>&nbsp;<span 
+class="cmtt-10">tests</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropType(O,BooleanField)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(TypeNames[PropType(O,'BooleanField')]);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropType(Class,BooleanField)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(TypeNames[PropType(O.ClassType,'BooleanField')]);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropType(O,ByteField)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(TypeNames[PropType(O,'ByteField')]);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('PropType(Class,ByteField)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(TypeNames[PropType(O.ClassType,'ByteField')]);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-979" name="x110-97300023.3">SetEnumProp</a></h4><a 
+  name="dx110-973001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetEnumProp(Instance: TObject; const PropInfo: PPropInfo; const</span>
+<span 
+class="cmtt-10">Value: string);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetEnumProp(Instance: TObject; const PropName: string; const</span>
+<span 
+class="cmtt-10">Value: string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetEnumProp </span>sets the property described by <span 
+class="cmtt-10">PropInfo </span>or with name <span 
+class="cmtt-10">PropName </span>to <span 
+class="cmtt-10">Value</span>.
+<span 
+class="cmtt-10">Value </span>must be a string with the name of the enumerate value, i.e. it can be used as an
+argument to <span 
+class="cmss-10">GetEnumValue </span>(<a 
+href="#x110-95400023.3">837<!--tex4ht:ref: se:TBufStream--></a>).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checks are done to ensure <span 
+class="cmtt-10">Instance </span>or <span 
+class="cmtt-10">PropInfo </span>are valid pointers. Specifying an invalid
+property name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetEnumProp     </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>),     <span 
+class="cmss-10">SetStrProp     </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>),     <span 
+class="cmss-10">SetFloatProp     </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>),     <span 
+class="cmss-10">SetInt64Prop</span>
+(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>).</dd></dl>
+<!--l. 784--><p class="noindent">For an example, see <span 
+class="cmss-10">GetEnumProp </span>(<a 
+href="#x110-95300023.3">836<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-980" name="x110-97400023.3">SetFloatProp</a></h4><a 
+  name="dx110-974001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetFloatProp(Instance : TObject; PropInfo : PPropInfo; Value :</span>
+<span 
+class="cmtt-10">Extended);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetFloatProp(Instance: TObject; const PropName: string; Value:</span>
+<span 
+class="cmtt-10">Extended);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetFloatProp </span>assigns <span 
+class="cmtt-10">Value </span>to the property described by <span 
+class="cmtt-10">PropInfo </span>or with name <span 
+class="cmtt-10">Propname</span>
+for the object <span 
+class="cmtt-10">Instance</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+float property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetInt64Prop </span>(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">SetMethodProp</span>
+(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 807--><p class="noindent">For an example, see <span 
+class="cmss-10">GetFloatProp </span>(<a 
+href="#x110-95500023.3">837<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-981" name="x110-97500023.3">SetInt64Prop</a></h4><a 
+  name="dx110-975001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetInt64Prop(Instance: TObject; PropInfo: PPropInfo; const Value:</span>
+<span 
+class="cmtt-10">Int64);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetInt64Prop(Instance: TObject; const PropName: string; const</span>
+<span 
+class="cmtt-10">Value: Int64);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetInt64Prop </span>assigns <span 
+class="cmtt-10">Value </span>to the property of type <span 
+class="cmtt-10">Int64 </span>that is described by <span 
+class="cmtt-10">PropInfo</span>
+or with name <span 
+class="cmtt-10">Propname </span>for the object <span 
+class="cmtt-10">Instance</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+<span 
+class="cmtt-10">Int64 </span>property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetMethodProp </span>(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetFloatProp</span>
+(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 828--><p class="noindent">For an example, see <span 
+class="cmss-10">GetInt64Prop </span>(<a 
+href="#x110-95600023.3">838<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-982" name="x110-97600023.3">SetMethodProp</a></h4><a 
+  name="dx110-976001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetMethodProp(Instance : TObject;PropInfo : PPropInfo; const</span>
+<span 
+class="cmtt-10">Value : TMethod);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetMethodProp(Instance: TObject; const PropName: string; const</span>
+<span 
+class="cmtt-10">Value: TMethod);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetMethodProp </span>assigns <span 
+class="cmtt-10">Value </span>to the method the property described by <span 
+class="cmtt-10">PropInfo </span>or with
+name <span 
+class="cmtt-10">Propname </span>for object <span 
+class="cmtt-10">Instance</span>.
+<!--l. 840--><p class="noindent">The type <span 
+class="cmtt-10">TMethod </span>of the <span 
+class="cmtt-10">Value </span>parameter is defined in the <span 
+class="cmss-10">SysUtils </span>unit as:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TMethod&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;Code,&nbsp;Data:&nbsp;Pointer;
+&nbsp;end;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">Data </span>should point to the instance of the class with the method <span 
+class="cmtt-10">Code</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid method
+property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in an
+<span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMethodProp </span>(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetFloatProp </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetInt64Prop</span>
+(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 859--><p class="noindent">For an example, see <span 
+class="cmss-10">GetMethodProp </span>(<a 
+href="#x110-95700023.3">839<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-983" name="x110-97700023.3">SetObjectProp</a></h4><a 
+  name="dx110-977001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetObjectProp(Instance: TObject; PropInfo: PPropInfo; Value:</span>
+<span 
+class="cmtt-10">TObject);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetObjectProp(Instance: TObject; const PropName: string; Value:</span>
+<span 
+class="cmtt-10">TObject);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetObjectProp </span>assigns <span 
+class="cmtt-10">Value </span>to the the object property described by <span 
+class="cmtt-10">PropInfo </span>or with
+name <span 
+class="cmtt-10">Propname </span>for the object <span 
+class="cmtt-10">Instance</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+method property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result
+in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetFloatProp </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetInt64Prop</span>
+(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 881--><p class="noindent">For an example, see <span 
+class="cmss-10">GetObjectProp </span>(<a 
+href="#x110-95800023.3">842<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-984" name="x110-97800023.3">SetOrdProp</a></h4><a 
+  name="dx110-978001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetOrdProp(Instance : TObject; PropInfo : PPropInfo; Value :</span>
+<span 
+class="cmtt-10">Longint);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetOrdProp(Instance: TObject; const PropName: string; Value:</span>
+<span 
+class="cmtt-10">Longint);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetOrdProp </span>assigns <span 
+class="cmtt-10">Value </span>to the the ordinal property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">Propname </span>for the object <span 
+class="cmtt-10">Instance</span>.
+                                                                            
+
+                                                                            
+<!--l. 893--><p class="noindent">Ordinal properties that can be set include:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Integers and subranges of integers</span></dt><dd 
+class="description">The actual value of the integer must be passed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Enumerated types and subranges of enumerated types</span></dt><dd 
+class="description">The   ordinal   value   of   the
+    enumerated type must be passed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Subrange types</span></dt><dd 
+class="description">of integers or enumerated types. Here the ordinal value must be passed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">Sets</span></dt><dd 
+class="description">If the base type of the set has less than 31 possible values. For each possible value; the
+    corresponding bit of <span 
+class="cmtt-10">Value </span>must be set.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid ordinal
+property of <span 
+class="cmtt-10">Instance</span>. No range checking is performed. Specifying an invalid property name in
+<span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetStrProp </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetFloatProp </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetInt64Prop </span>(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">SetMethodProp</span>
+(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 916--><p class="noindent">For an example, see <span 
+class="cmss-10">GetOrdProp </span>(<a 
+href="#x110-96000023.3">843<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-985" name="x110-97900023.3">SetPropValue</a></h4><a 
+  name="dx110-979001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetPropValue(Instance: TObject; const PropName: string; const</span>
+<span 
+class="cmtt-10">Value: Variant);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Due to missing Variant support, this function is not yet implemented; it is provided for
+Delphi compatibility only.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-986" name="x110-98000023.3">SetSetProp</a></h4><a 
+  name="dx110-980001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetSetProp(Instance: TObject; const PropInfo: PPropInfo; const</span>
+<span 
+class="cmtt-10">Value: string);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetSetProp(Instance: TObject; const PropName: string; const Value:</span>
+<span 
+class="cmtt-10">string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetSetProp </span>sets the property specified by <span 
+class="cmtt-10">PropInfo </span>or <span 
+class="cmtt-10">PropName </span>for object <span 
+class="cmtt-10">Instance </span>to
+<span 
+class="cmtt-10">Value</span>. <span 
+class="cmtt-10">Value </span>is a string which contains a comma-separated list of values, each value being a
+string-representation of the enumerated value that should be included in the set. The value
+should be accepted by the <span 
+class="cmss-10">StringToSet </span>(<a 
+href="#x110-98400023.3">861<!--tex4ht:ref: se:TBufStream--></a>) function.
+<!--l. 943--><p class="noindent">The value can be formed using the <span 
+class="cmss-10">SetToString </span>(<a 
+href="#x110-98200023.3">859<!--tex4ht:ref: se:TBufStream--></a>) function.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+ordinal property of <span 
+class="cmtt-10">Instance</span>. No range checking is performed. Specifying an invalid property
+name in <span 
+class="cmtt-10">PropName </span>will result in an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetSetProp  </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>),  <span 
+class="cmss-10">SetOrdProp  </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>),  <span 
+class="cmss-10">SetStrProp  </span>(<a 
+href="#x110-98100023.3">859<!--tex4ht:ref: se:TBufStream--></a>),  <span 
+class="cmss-10">SetFloatProp  </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>),  <span 
+class="cmss-10">SetInt64Prop</span>
+(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">SetMethodProp </span>(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetToString </span>(<a 
+href="#x110-98200023.3">859<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StringToSet </span>(<a 
+href="#x110-98400023.3">861<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 956--><p class="noindent">For an example, see <span 
+class="cmss-10">GetSetProp </span>(<a 
+href="#x110-96500023.3">848<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-987" name="x110-98100023.3">SetStrProp</a></h4><a 
+  name="dx110-981001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure SetStrProp(Instance : TObject; PropInfo : PPropInfo; const Value</span>
+<span 
+class="cmtt-10">: Ansistring);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetStrProp(Instance: TObject; const PropName: string; const Value:</span>
+<span 
+class="cmtt-10">AnsiString);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetStrProp </span>assigns <span 
+class="cmtt-10">Value </span>to the string property described by <span 
+class="cmtt-10">PropInfo </span>or with name
+<span 
+class="cmtt-10">Propname </span>for object <span 
+class="cmtt-10">Instance</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done whether <span 
+class="cmtt-10">Instance </span>is non-nil, or whether <span 
+class="cmtt-10">PropInfo </span>describes a valid
+string property of <span 
+class="cmtt-10">Instance</span>. Specifying an invalid property name in <span 
+class="cmtt-10">PropName </span>will result in
+an <span 
+class="cmtt-10">EPropertyError </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetOrdProp </span>(<a 
+href="#x110-97800023.3">857<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetFloatProp </span>(<a 
+href="#x110-97400023.3">855<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetInt64Prop </span>(<a 
+href="#x110-97500023.3">855<!--tex4ht:ref: se:TBufStream--></a>),<span 
+class="cmss-10">SetMethodProp</span>
+(<a 
+href="#x110-97600023.3">856<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 978--><p class="noindent">For an example, see <span 
+class="cmss-10">GetStrProp </span>(<a 
+href="#x110-96600023.3">849<!--tex4ht:ref: se:TBufStream--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-988" name="x110-98200023.3">SetToString</a></h4><a 
+  name="dx110-982001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function SetToString(PropInfo: PPropInfo; Value: Integer) : String;</span>
+<br class="newline"><span 
+class="cmtt-10">function SetToString(PropInfo: PPropInfo; Value: Integer; Brackets: Boolean)</span>
+<span 
+class="cmtt-10">: String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetToString </span>takes an integer representation of a set (as received e.g. by <span 
+class="cmtt-10">GetOrdProp</span>) and
+turns it into a string representing the elements in the set, based on the type information
+found in the <span 
+class="cmtt-10">PropInfo </span>property information. By default, the string representation is not
+surrounded by square brackets. Setting the <span 
+class="cmtt-10">Brackets </span>parameter to <span 
+class="cmtt-10">True </span>will surround the
+string representation with brackets.
+<!--l. 994--><p class="noindent">The function returns the string representation of the set.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done to see whether <span 
+class="cmtt-10">PropInfo </span>points to valid property information.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetEnumName </span>(<a 
+href="#x110-95200023.3">835<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumValue </span>(<a 
+href="#x110-95400023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">StringToSet </span>(<a 
+href="#x110-98400023.3">861<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1002--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">typinfex/ex18.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 1002--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">example18;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">This</span>&nbsp;<span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">demonstrates</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">SetToString</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">{$mode</span>&nbsp;<span 
+class="cmtt-10">objfpc}</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">rttiobj,typinfo;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyTestObject;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PPropInfo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O:=TMyTestObject.Create;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PI:=GetPropInfo(O,'SetField');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.SetField:=[mefirst,meSecond,meThird];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=GetOrdProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Set</span>&nbsp;<span 
+class="cmtt-10">property</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">string</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SetToString(PI,I,False));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.SetField:=[mefirst,meSecond];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=GetOrdProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SetToString(PI,I,True));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=StringToSet(PI,'mefirst');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,PI,I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=GetOrdProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SetToString(PI,I,False));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=StringToSet(PI,'[mesecond,methird]');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetOrdProp(O,PI,I);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I:=GetOrdProp(O,PI);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Value</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',SetToString(PI,I,True));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">O.Free;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-989" name="x110-98300023.3">SetVariantProp</a></h4><a 
+  name="dx110-983001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetVariantProp(Instance : TObject; PropInfo : PPropInfo; Const</span>
+<span 
+class="cmtt-10">Value: Variant);</span>
+<br class="newline"><span 
+class="cmtt-10">Procedure SetVariantProp(Instance: TObject; const PropName: string; const</span>
+<span 
+class="cmtt-10">Value: Variant);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Due to missing Variant support, this function is not yet implemented. Provided for Delphi
+compatibility only.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-110-990" name="x110-98400023.3">StringToSet</a></h4><a 
+  name="dx110-984001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">function StringToSet(PropInfo: PPropInfo; const Value: string): Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">StringToSet </span>converts the string representation of a set in <span 
+class="cmtt-10">Value </span>to a integer representation
+of the set, using the property information found in <span 
+class="cmtt-10">PropInfo</span>. This property information
+should point to the property information of a set property. The function returns the integer
+representation of the set. (i.e, the set value, typecast to an integer)
+<!--l. 1030--><p class="noindent">The string representation can be surrounded with square brackets, and must consist of the
+names of the elements of the base type of the set. The base type of the set should be an
+enumerated type. The elements should be separated by commas, and may be surrounded by
+spaces. each of the names will be fed to the <span 
+class="cmss-10">GetEnumValue </span>(<a 
+href="#x110-95400023.3">837<!--tex4ht:ref: se:TBufStream--></a>) function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">No checking is done to see whether <span 
+class="cmtt-10">PropInfo </span>points to valid property information. If a
+wrong name is given for an enumerated value, then an <span 
+class="cmtt-10">EPropertyError </span>will be raised.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetEnumName </span>(<a 
+href="#x110-95200023.3">835<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">GetEnumValue </span>(<a 
+href="#x110-95400023.3">837<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">SetToString </span>(<a 
+href="#x110-98200023.3">859<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1043--><p class="noindent">For an example, see <span 
+class="cmss-10">SetToString </span>(<a 
+href="#x110-98200023.3">859<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse81.htm" >prev</a>] [<a 
+href="unitsse81.htm#tailunitsse81.htm" >prev-tail</a>] [<a 
+href="unitsse82.htm" >front</a>] [<a 
+href="unitsch23.htm#unitsse82.htm" >up</a>] </p></div><a 
+  name="tailunitsse82.htm"></a>   
+</body></html> 

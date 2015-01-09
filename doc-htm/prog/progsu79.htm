@@ -1,0 +1,101 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6.2.0 Mangled names for data blocks</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu80.htm" >next</a>] [<a 
+href="#tailprogsu79.htm">tail</a>] [<a 
+href="progse18.htm#progsu79.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-112-113" name="x112-1090006.2">Mangled names for data blocks</a></h4>
+<!--l. 2340--><p class="noindent">The rules for mangled names for variables and typed constants are as follows:
+     <ul class="itemize1">
+     <li class="itemize">All variable names are converted to upper case
+     </li>
+     <li class="itemize">Variables in the main program or private to a unit have an _ prepended to their names
+     </li>
+     <li class="itemize">Typed constants in the main program have an TC__ prepended to their names
+     </li>
+     <li class="itemize">Public variables in a unit have their unit name prepended to them : U_UNITNAME_
+     </li>
+     <li class="itemize">Public and private typed constants in a unit have their unit name prepended to them
+     :TC__UNITNAME$$</li></ul>
+<!--l. 2351--><p class="noindent">Currently, in Free Pascal v1.0, if you declare a variable in unit name <span 
+class="cmtt-10">tunit</span>, with the name _<span 
+class="cmtt-10">a</span>,
+and you declare the same variable with name <span 
+class="cmtt-10">a </span>in unit name <span 
+class="cmtt-10">tunit</span>_, you will get the
+same mangled name. This is a limitation of the compiler which will be fixed in release
+v1.1.
+<!--l. 2356--><p class="noindent">Examples
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;unit&nbsp;testvars;
+&nbsp;
+&nbsp;interface
+&nbsp;
+&nbsp;const
+&nbsp;&nbsp;publictypedconst&nbsp;:&nbsp;integer&nbsp;=&nbsp;0;
+&nbsp;var
+&nbsp;&nbsp;publicvar&nbsp;:&nbsp;integer;
+&nbsp;
+&nbsp;implementation
+&nbsp;const
+&nbsp;&nbsp;privatetypedconst&nbsp;:&nbsp;integer&nbsp;=&nbsp;1;
+&nbsp;var
+&nbsp;&nbsp;privatevar&nbsp;:&nbsp;integer;
+&nbsp;
+&nbsp;end.
+&nbsp;
+</pre>
+</td></tr></table>
+<!--l. 2379--><p class="noindent">Will give the following assembler output under GNU as :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;.file&nbsp;&#34;testvars.pas&#34;
+&nbsp;
+&nbsp;.text
+&nbsp;
+&nbsp;.data
+&nbsp;#&nbsp;[6]&nbsp;publictypedconst&nbsp;:&nbsp;integer&nbsp;=&nbsp;0;
+&nbsp;.globl TC__TESTVARS$$_PUBLICTYPEDCONST
+&nbsp;TC__TESTVARS$$_PUBLICTYPEDCONST:
+&nbsp;.short 0
+&nbsp;#&nbsp;[12]&nbsp;privatetypedconst&nbsp;:&nbsp;integer&nbsp;=&nbsp;1;
+&nbsp;TC__TESTVARS$$_PRIVATETYPEDCONST:
+&nbsp;.short 1
+&nbsp;
+&nbsp;.bss
+&nbsp;#&nbsp;[8]&nbsp;publicvar&nbsp;:&nbsp;integer;
+&nbsp;.comm U_TESTVARS_PUBLICVAR,2
+&nbsp;#&nbsp;[14]&nbsp;privatevar&nbsp;:&nbsp;integer;
+&nbsp;.lcomm _PRIVATEVAR,2
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu80.htm" >next</a>] [<a 
+href="progsu79.htm" >front</a>] [<a 
+href="progse18.htm#progsu79.htm" >up</a>] </p></div><a 
+  name="tailprogsu79.htm"></a>  
+</body></html> 

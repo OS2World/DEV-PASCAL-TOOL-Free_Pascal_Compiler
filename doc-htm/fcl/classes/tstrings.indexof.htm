@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings.IndexOf</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings.IndexOf</h1>
+<p>Find a string in the list and return its position.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/tstrings.htm">TStrings</a><span class="sym">.</span>IndexOf<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;<span class="kw">const </span>S<span class="sym">: </span>String</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">):</span>Integer<span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>IndexOf</var> searches the list for <var>S</var>. The search is case-insensitive. If a matching entry is found, its position is returned. if no matching string is found, <var>-1</var> is returned. </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td><ol><li>Only the first occurrence of the string is returned.</li>
+<li>The returned position is zero-based, i.e. 0 indicates the first string in the list.</li>
+</ol></td>
+</tr>
+</table>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.indexofobject.htm">TStrings.IndexOfObject</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Finds an object in the list and returns its index.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.indexofname.htm">TStrings.IndexOfName</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Finds the index of a name in the name-value pairs.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.strings.htm">TStrings.Strings</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Indexed access to teh strings in the list.</p></td>
+</tr>
+</table>
+</body>
+</html>

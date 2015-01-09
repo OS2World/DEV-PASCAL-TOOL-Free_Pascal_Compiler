@@ -1,0 +1,53 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.4.0 Block scope</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu55.htm" >next</a>] [<a 
+href="#tailrefsu54.htm">tail</a>] [<a 
+href="refse53.htm#refsu54.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-124-145" name="x124-13000010.4">Block scope</a></h4> The <span 
+class="cmti-10">scope </span>of a variable declared in the declaration part of a block, is valid from the
+point of declaration until the end of the block. If a block contains a second block, in which
+the identfier is redeclared, then inside this block, the second declaration will be valid.
+Upon leaving the inner block, the first declaration is valid again. Consider the following
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;Demo;
+&nbsp;Var&nbsp;X&nbsp;:&nbsp;Real;
+&nbsp;{&nbsp;X&nbsp;is&nbsp;real&nbsp;variable&nbsp;}
+&nbsp;Procedure&nbsp;NewDeclaration
+&nbsp;Var&nbsp;X&nbsp;:&nbsp;Integer;&nbsp;&nbsp;{&nbsp;Redeclare&nbsp;X&nbsp;as&nbsp;integer}
+&nbsp;begin
+&nbsp;&nbsp;//&nbsp;X&nbsp;:=&nbsp;1.234;&nbsp;{would&nbsp;give&nbsp;an&nbsp;error&nbsp;when&nbsp;trying&nbsp;to&nbsp;compile}
+&nbsp;&nbsp;X&nbsp;:=&nbsp;10;&nbsp;{&nbsp;Correct&nbsp;assigment}
+&nbsp;end;
+&nbsp;{&nbsp;From&nbsp;here&nbsp;on,&nbsp;X&nbsp;is&nbsp;Real&nbsp;again}
+&nbsp;begin
+&nbsp;&nbsp;X&nbsp;:=&nbsp;2.468;
+&nbsp;end.
+</pre>
+</td></tr></table>In this example, inside the procedure, X denotes an integer variable. It has it&#8217;s own
+storage space, independent of the variable <span 
+class="cmtt-10">X </span>outside the procedure. <div class="crosslinks"><p class="noindent">[<a 
+href="refsu55.htm" >next</a>] [<a 
+href="refsu54.htm" >front</a>] [<a 
+href="refse53.htm#refsu54.htm" >up</a>] </p></div><a 
+  name="tailrefsu54.htm"></a>
+ 
+</body></html> 

@@ -1,0 +1,122 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.3.0 Set types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu16.htm" >next</a>] [<a 
+href="refsu14.htm" >prev</a>] [<a 
+href="refsu14.htm#tailrefsu14.htm" >prev-tail</a>] [<a 
+href="#tailrefsu15.htm">tail</a>] [<a 
+href="refse13.htm#refsu15.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-38-46" name="x38-410003.3">Set types</a></h4> Free Pascal supports the set types as in Turbo Pascal. The prototype of a set declaration
+is:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Set Types</span>
+     <BR/>
+     <img 
+src="ref43x.png" alt="-- set type set- of- ordinal type------------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 1261--><p class="noindent">Each of the elements of <span 
+class="cmtt-10">SetType </span>must be of type <span 
+class="cmtt-10">TargetType</span>. <span 
+class="cmtt-10">TargetType </span>can be any ordinal type
+with a range between <span 
+class="cmtt-10">0 </span>and <span 
+class="cmtt-10">255</span>. A set can contain maximally <span 
+class="cmtt-10">255 </span>elements. The following are
+valid set declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Junk&nbsp;=&nbsp;Set&nbsp;of&nbsp;Char;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Days&nbsp;=&nbsp;(Mon,&nbsp;Tue,&nbsp;Wed,&nbsp;Thu,&nbsp;Fri,&nbsp;Sat,&nbsp;Sun);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WorkDays&nbsp;:&nbsp;Set&nbsp;of&nbsp;days;
+</pre>
+</td></tr></table>Given this set declarations, the following assignment is legal:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;WorkDays&nbsp;:=&nbsp;[&nbsp;Mon,&nbsp;Tue,&nbsp;Wed,&nbsp;Thu,&nbsp;Fri];
+</pre>
+</td></tr></table>The operators and functions for manipulations of sets are listed in table (<a 
+href="#x38-410016">3.6<!--tex4ht:ref: tab:SetOps--></a>). <a 
+  name="x38-410016"></a><hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;3.6: </td><td  
+class="content">Set Manipulation operators</td></tr></table></div><!--tex4ht:label?: x38-410016-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-7-" ><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1"><col 
+id="TBL-7-2"></colgroup><tr  
+valign="baseline" id="TBL-7-1-"><td  align="left" nowrap="nowrap" id="TBL-7-1-1"  
+class="td11"> Operation      </td><td  align="right" nowrap="nowrap" id="TBL-7-1-2"  
+class="td11"> Operator</td>
+</tr><tr  
+valign="baseline" id="TBL-7-2-"><td  align="left" nowrap="nowrap" id="TBL-7-2-1"  
+class="td11">  Union          </td><td  align="right" nowrap="nowrap" id="TBL-7-2-2"  
+class="td11">           +</td>
+</tr><tr  
+valign="baseline" id="TBL-7-3-"><td  align="left" nowrap="nowrap" id="TBL-7-3-1"  
+class="td11"> Difference      </td><td  align="right" nowrap="nowrap" id="TBL-7-3-2"  
+class="td11">            -</td>
+</tr><tr  
+valign="baseline" id="TBL-7-4-"><td  align="left" nowrap="nowrap" id="TBL-7-4-1"  
+class="td11"> Intersection    </td><td  align="right" nowrap="nowrap" id="TBL-7-4-2"  
+class="td11">           *</td>
+</tr><tr  
+valign="baseline" id="TBL-7-5-"><td  align="left" nowrap="nowrap" id="TBL-7-5-1"  
+class="td11"> Add element   </td><td  align="right" nowrap="nowrap" id="TBL-7-5-2"  
+class="td11">  <span 
+class="cmtt-10">include</span></td>
+</tr><tr  
+valign="baseline" id="TBL-7-6-"><td  align="left" nowrap="nowrap" id="TBL-7-6-1"  
+class="td11"> Delete element</td><td  align="right" nowrap="nowrap" id="TBL-7-6-2"  
+class="td11">  <span 
+class="cmtt-10">exclude</span></td>
+</tr><tr  
+valign="baseline" id="TBL-7-7-"><td  align="left" nowrap="nowrap" id="TBL-7-7-1"  
+class="td11">                    </td>
+</tr><!--lr--></table>
+</div></div>
+</td></tr></table></div><hr class="endfloat">
+Two sets can be compared with the <span 
+class="cmtt-10">&lt;&gt; </span>and <span 
+class="cmtt-10">= </span>operators, but not (yet) with the <span 
+class="cmtt-10">&lt; </span>and <span 
+class="cmtt-10">&gt; </span>operators.
+The compiler stores small sets (less than 32 elements) in a Longint, if the type range allows it. This
+allows for faster processing and decreases program size. Otherwise, sets are stored in 32 bytes.
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu16.htm" >next</a>] [<a 
+href="refsu14.htm" >prev</a>] [<a 
+href="refsu14.htm#tailrefsu14.htm" >prev-tail</a>] [<a 
+href="refsu15.htm" >front</a>] [<a 
+href="refse13.htm#refsu15.htm" >up</a>] </p></div><a 
+  name="tailrefsu15.htm"></a>  
+</body></html> 

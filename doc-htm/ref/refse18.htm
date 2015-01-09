@@ -1,0 +1,111 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.2 Fields</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse19.htm" >next</a>] [<a 
+href="refse17.htm" >prev</a>] [<a 
+href="refse17.htm#tailrefse17.htm" >prev-tail</a>] [<a 
+href="#tailrefse18.htm">tail</a>] [<a 
+href="refch4.htm#refse18.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.2</span> <a 
+href="ref.htm#QQ2-45-54" name="x45-480004.2">Fields</a></h3>
+<!--l. 1582--><p class="noindent">Object Fields are like record fields. They are accessed in the same way as a record field would be
+accessed : by using a qualified identifier. Given the following declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;TAnObject&nbsp;=&nbsp;Object
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AField&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;AMethod;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Var&nbsp;AnObject&nbsp;:&nbsp;TAnObject;
+</pre>
+</td></tr></table>then the following would be a valid assignment:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;AnObject.AField&nbsp;:=&nbsp;0;
+</pre>
+</td></tr></table>Inside methods, fields can be accessed using the short identifier:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;TAnObject.AMethod;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;AField&nbsp;:=&nbsp;0;
+&nbsp;&nbsp;&nbsp;...
+&nbsp;end;
+</pre>
+</td></tr></table>Or, one can use the <span 
+class="cmtt-10">self </span>identifier. The <span 
+class="cmtt-10">self </span>identifier refers to the current instance of the
+object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;TAnObject.AMethod;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;...
+&nbsp;&nbsp;&nbsp;Self.AField&nbsp;:=&nbsp;0;
+&nbsp;&nbsp;&nbsp;...
+&nbsp;end;
+</pre>
+</td></tr></table>One cannot access fields that are in a private section of an object from outside the objects&#8217;
+methods. If this is attempted anyway, the compiler will complain about an unknown identifier. It is
+also possible to use the <span 
+class="cmtt-10">with </span>statement with an object instance:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;With&nbsp;AnObject&nbsp;do
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;Afield&nbsp;:=&nbsp;12;
+&nbsp;&nbsp;&nbsp;AMethod;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>In this example, between the <span 
+class="cmtt-10">begin </span>and <span 
+class="cmtt-10">end</span>, it is as if <span 
+class="cmtt-10">AnObject </span>was prepended to the <span 
+class="cmtt-10">Afield </span>and
+<span 
+class="cmtt-10">Amethod </span>identifiers. More about this in section <a 
+href="refsu35.htm#x83-890007.2">7.2<!--tex4ht:ref: se:With--></a>, page <a 
+href="refsu35.htm#x83-890007.2">273<!--tex4ht:ref: se:With--></a>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse19.htm" >next</a>] [<a 
+href="refse17.htm" >prev</a>] [<a 
+href="refse17.htm#tailrefse17.htm" >prev-tail</a>] [<a 
+href="refse18.htm" >front</a>] [<a 
+href="refch4.htm#refse18.htm" >up</a>] </p></div><a 
+  name="tailrefse18.htm"></a>  
+</body></html> 

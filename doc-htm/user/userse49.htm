@@ -1,0 +1,71 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.4 Support for gprof, the gnu profiler</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse50.htm" >next</a>] [<a 
+href="userse48.htm" >prev</a>] [<a 
+href="userse48.htm#tailuserse48.htm" >prev-tail</a>] [<a 
+href="#tailuserse49.htm">tail</a>] [<a 
+href="userch10.htm#userse49.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.4</span> <a 
+href="user.htm#QQ2-69-207" name="x69-15600010.4">Support for <span 
+class="cmtt-10">gprof</span>, the <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small> </span>profiler</a></h3>
+<!--l. 2427--><p class="noindent">You can compile your programs with profiling support. for this, you just have to use the compiler
+switch <span 
+class="cmtt-10">-pg</span>. The compiler wil insert the necessary stuff for profiling.
+<!--l. 2431--><p class="noindent">When you have done this, you can run your program as you normally would run it.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;yourexe
+</pre>
+</td></tr></table>Where <span 
+class="cmss-10">yourexe </span>is the name of your executable.
+<!--l. 2438--><p class="noindent">When your program finishes a file called gmon.out is generated. Then you can start the profiler to
+see the output. You can better redirect the output to a file, becuase it could be quite a
+lot:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;gprof&nbsp;yourexe&nbsp;&gt;&nbsp;profile.log
+</pre>
+</td></tr></table>
+<!--l. 2445--><p class="noindent">Hint: you can use the -flat option to reduce the amount of output of gprof. It will then only output
+the information about the timings
+<!--l. 2448--><p class="noindent">For more information on the <span 
+class="cmcsc-10"><small 
+class="small-caps">G</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small> </span>profiler <span 
+class="cmtt-10">gprof</span>, see its manual.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse50.htm" >next</a>] [<a 
+href="userse48.htm" >prev</a>] [<a 
+href="userse48.htm#tailuserse48.htm" >prev-tail</a>] [<a 
+href="userse49.htm" >front</a>] [<a 
+href="userch10.htm#userse49.htm" >up</a>] </p></div><a 
+  name="tailuserse49.htm"></a>  
+</body></html> 

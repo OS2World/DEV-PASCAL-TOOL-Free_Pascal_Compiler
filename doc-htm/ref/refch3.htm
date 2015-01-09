@@ -1,0 +1,114 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3 Types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch4.htm" >next</a>] [<a 
+href="refch2.htm" >prev</a>] [<a 
+href="refch2.htm#tailrefch2.htm" >prev-tail</a>] [<a 
+href="#tailrefch3.htm">tail</a>] [<a 
+href="refpa1.htm#refch3.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;3</span><br><a 
+href="ref.htm#QQ2-24-23" name="x24-230003">Types</a></h2> All variables have a type. Free Pascal supports the same basic types as Turbo
+Pascal, with some extra types from Delphi. The programmer can declare his own types, which is in
+essence defining an identifier that can be used to denote this custom type when declaring variables
+further in the source code.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Type declaration</span>
+     <BR/>
+     <img 
+src="ref27x.png" alt="-- type declaration-identifier- = - type- ;------------------------------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 534--><p class="noindent">There are 7 major type classes :
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Types</span>
+     <BR/>
+     <img 
+src="ref28x.png" alt="-- type-----simple type ---------------------------------------------
+        |--string type---|
+        |structured type|
+        |-pointer type--|
+        |procedural type|
+        --type identifier--
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 536--><p class="noindent">The last class, <span 
+class="cmss-10">type identifier</span>, is just a means to give another name to a type. This presents a way
+to make types platform independent, by only using these types, and then defining these types for
+each platform individually. The programmer that uses these units doesn&#8217;t have to worry about type
+size and so on. It also allows to use shortcut names for fully qualified type names. e.g. define
+<span 
+class="cmtt-10">system.longint </span>as <span 
+class="cmtt-10">Olongint </span>and then redefine <span 
+class="cmtt-10">longint</span>.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">3.1 <a 
+href="refse11.htm#x25-240003.1" name="QQ2-25-24">Base types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu5.htm#x26-250003.1" name="QQ2-26-25">Ordinal types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu6.htm#x27-300003.1" name="QQ2-27-33">Real types</a></span>
+<br>&nbsp;<span class="sectionToc">3.2 <a 
+href="refse12.htm#x28-310003.2" name="QQ2-28-35">Character types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu7.htm#x29-320003.2" name="QQ2-29-36">Char</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu8.htm#x30-330003.2" name="QQ2-30-37">Strings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu9.htm#x31-340003.2" name="QQ2-31-38">Short strings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu10.htm#x32-350003.2" name="QQ2-32-39">Ansistrings</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu11.htm#x33-360003.2" name="QQ2-33-40">Constant strings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu12.htm#x34-370003.2" name="QQ2-34-41">PChar - Null terminated strings</a></span>
+<br>&nbsp;<span class="sectionToc">3.3 <a 
+href="refse13.htm#x35-380003.3" name="QQ2-35-43">Structured Types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu13.htm#x36-390003.3" name="QQ2-36-44">Arrays</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu14.htm#x37-400003.3" name="QQ2-37-45">Record types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu15.htm#x38-410003.3" name="QQ2-38-46">Set types</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="refsu16.htm#x39-420003.3" name="QQ2-39-48">File types</a></span>
+<br>&nbsp;<span class="sectionToc">3.4 <a 
+href="refse14.htm#x40-430003.4" name="QQ2-40-49">Pointers</a></span>
+<br>&nbsp;<span class="sectionToc">3.5 <a 
+href="refse15.htm#x41-440003.5" name="QQ2-41-50">Forward type declarations</a></span>
+<br>&nbsp;<span class="sectionToc">3.6 <a 
+href="refse16.htm#x42-450003.6" name="QQ2-42-51">Procedural types</a></span>
+</div>
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refch4.htm" >next</a>] [<a 
+href="refch2.htm" >prev</a>] [<a 
+href="refch2.htm#tailrefch2.htm" >prev-tail</a>] [<a 
+href="refch3.htm" >front</a>] [<a 
+href="refpa1.htm#refch3.htm" >up</a>] </p></div><a 
+  name="tailrefch3.htm"></a>  
+</body></html> 

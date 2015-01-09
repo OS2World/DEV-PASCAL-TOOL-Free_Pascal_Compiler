@@ -1,0 +1,230 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>I The Pascal language</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refpa2.htm" >next</a>] [<a 
+href="refli2.htm" >prev</a>] [<a 
+href="refli2.htm#tailrefli2.htm" >prev-tail</a>] [<a 
+href="#tailrefpa1.htm">tail</a>] [<a 
+href="ref.htm#refpa1.htm" >up</a>] </p></div>
+<h1 class="partHead"><span class="titlemark">Part&nbsp;I<br></span><a 
+href="ref.htm#QQ2-7-6" name="x7-6000I">The Pascal language</a></h1>
+                                                                            
+
+                                                                            
+<div class="chapterTOCS">
+<br><span class="chapterToc">1 <a 
+href="refch1.htm#x8-70001" name="QQ2-8-7">Pascal Tokens</a></span>
+<br>&nbsp;<span class="sectionToc">1.1 <a 
+href="refse1.htm#x9-80001.1" name="QQ2-9-8">Symbols</a></span>
+<br>&nbsp;<span class="sectionToc">1.2 <a 
+href="refse2.htm#x10-90001.2" name="QQ2-10-9">Comments</a></span>
+<br>&nbsp;<span class="sectionToc">1.3 <a 
+href="refse3.htm#x11-100001.3" name="QQ2-11-10">Reserved words</a></span>
+<br>&nbsp;<span class="sectionToc">1.4 <a 
+href="refse4.htm#x16-150001.4" name="QQ2-16-15">Identifiers</a></span>
+<br>&nbsp;<span class="sectionToc">1.5 <a 
+href="refse5.htm#x17-160001.5" name="QQ2-17-16">Numbers</a></span>
+<br>&nbsp;<span class="sectionToc">1.6 <a 
+href="refse6.htm#x18-170001.6" name="QQ2-18-17">Labels</a></span>
+<br>&nbsp;<span class="sectionToc">1.7 <a 
+href="refse7.htm#x19-180001.7" name="QQ2-19-18">Character strings</a></span>
+<br><span class="chapterToc">2 <a 
+href="refch2.htm#x20-190002" name="QQ2-20-19">Constants</a></span>
+<br>&nbsp;<span class="sectionToc">2.1 <a 
+href="refse8.htm#x21-200002.1" name="QQ2-21-20">Ordinary constants</a></span>
+<br>&nbsp;<span class="sectionToc">2.2 <a 
+href="refse9.htm#x22-210002.2" name="QQ2-22-21">Typed constants</a></span>
+<br>&nbsp;<span class="sectionToc">2.3 <a 
+href="refse10.htm#x23-220002.3" name="QQ2-23-22">Resource strings</a></span>
+<br><span class="chapterToc">3 <a 
+href="refch3.htm#x24-230003" name="QQ2-24-23">Types</a></span>
+<br>&nbsp;<span class="sectionToc">3.1 <a 
+href="refse11.htm#x25-240003.1" name="QQ2-25-24">Base types</a></span>
+<br>&nbsp;<span class="sectionToc">3.2 <a 
+href="refse12.htm#x28-310003.2" name="QQ2-28-35">Character types</a></span>
+<br>&nbsp;<span class="sectionToc">3.3 <a 
+href="refse13.htm#x35-380003.3" name="QQ2-35-43">Structured Types</a></span>
+<br>&nbsp;<span class="sectionToc">3.4 <a 
+href="refse14.htm#x40-430003.4" name="QQ2-40-49">Pointers</a></span>
+<br>&nbsp;<span class="sectionToc">3.5 <a 
+href="refse15.htm#x41-440003.5" name="QQ2-41-50">Forward type declarations</a></span>
+<br>&nbsp;<span class="sectionToc">3.6 <a 
+href="refse16.htm#x42-450003.6" name="QQ2-42-51">Procedural types</a></span>
+<br><span class="chapterToc">4 <a 
+href="refch4.htm#x43-460004" name="QQ2-43-52">Objects</a></span>
+<br>&nbsp;<span class="sectionToc">4.1 <a 
+href="refse17.htm#x44-470004.1" name="QQ2-44-53">Declaration</a></span>
+<br>&nbsp;<span class="sectionToc">4.2 <a 
+href="refse18.htm#x45-480004.2" name="QQ2-45-54">Fields</a></span>
+<br>&nbsp;<span class="sectionToc">4.3 <a 
+href="refse19.htm#x46-490004.3" name="QQ2-46-55">Constructors and destructors </a></span>
+<br>&nbsp;<span class="sectionToc">4.4 <a 
+href="refse20.htm#x47-500004.4" name="QQ2-47-56">Methods</a></span>
+<br>&nbsp;<span class="sectionToc">4.5 <a 
+href="refse21.htm#x48-510004.5" name="QQ2-48-57">Method invocation</a></span>
+<br>&nbsp;<span class="sectionToc">4.6 <a 
+href="refse22.htm#x49-550004.6" name="QQ2-49-61">Visibility</a></span>
+<br><span class="chapterToc">5 <a 
+href="refch5.htm#x50-560005" name="QQ2-50-62">Classes</a></span>
+<br>&nbsp;<span class="sectionToc">5.1 <a 
+href="refse23.htm#x51-570005.1" name="QQ2-51-63">Class definitions</a></span>
+<br>&nbsp;<span class="sectionToc">5.2 <a 
+href="refse24.htm#x52-580005.2" name="QQ2-52-64">Class instantiation</a></span>
+<br>&nbsp;<span class="sectionToc">5.3 <a 
+href="refse25.htm#x53-590005.3" name="QQ2-53-65">Methods</a></span>
+<br>&nbsp;<span class="sectionToc">5.4 <a 
+href="refse26.htm#x57-630005.4" name="QQ2-57-69">Properties</a></span>
+<br><span class="chapterToc">6 <a 
+href="refch6.htm#x58-640006" name="QQ2-58-70">Expressions</a></span>
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="refse27.htm#x59-650006.1" name="QQ2-59-72">Expression syntax</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="refse28.htm#x60-660006.2" name="QQ2-60-73">Function calls</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="refse29.htm#x61-670006.3" name="QQ2-61-74">Set constructors</a></span>
+<br>&nbsp;<span class="sectionToc">6.4 <a 
+href="refse30.htm#x62-680006.4" name="QQ2-62-75">Value typecasts</a></span>
+<br>&nbsp;<span class="sectionToc">6.5 <a 
+href="refse31.htm#x63-690006.5" name="QQ2-63-76">The @ operator</a></span>
+<br>&nbsp;<span class="sectionToc">6.6 <a 
+href="refse32.htm#x64-700006.6" name="QQ2-64-77">Operators</a></span>
+<br><span class="chapterToc">7 <a 
+href="refch7.htm#x71-770007" name="QQ2-71-90">Statements</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;<span class="sectionToc">7.1 <a 
+href="refse33.htm#x72-780007.1" name="QQ2-72-91">Simple statements</a></span>
+<br>&nbsp;<span class="sectionToc">7.2 <a 
+href="refse34.htm#x76-820007.2" name="QQ2-76-96">Structured statements</a></span>
+<br>&nbsp;<span class="sectionToc">7.3 <a 
+href="refse35.htm#x85-910007.3" name="QQ2-85-105">Assembler statements</a></span>
+<br><span class="chapterToc">8 <a 
+href="refch8.htm#x86-920008" name="QQ2-86-106">Using functions and procedures</a></span>
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="refse36.htm#x87-930008.1" name="QQ2-87-107">Procedure declaration</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="refse37.htm#x88-940008.2" name="QQ2-88-108">Function declaration</a></span>
+<br>&nbsp;<span class="sectionToc">8.3 <a 
+href="refse38.htm#x89-950008.3" name="QQ2-89-109">Parameter lists</a></span>
+<br>&nbsp;<span class="sectionToc">8.4 <a 
+href="refse39.htm#x95-1010008.4" name="QQ2-95-115">Function overloading</a></span>
+<br>&nbsp;<span class="sectionToc">8.5 <a 
+href="refse40.htm#x96-1020008.5" name="QQ2-96-116">Forward defined functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.6 <a 
+href="refse41.htm#x97-1030008.6" name="QQ2-97-117">External functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.7 <a 
+href="refse42.htm#x98-1040008.7" name="QQ2-98-118">Assembler functions</a></span>
+<br>&nbsp;<span class="sectionToc">8.8 <a 
+href="refse43.htm#x99-1050008.8" name="QQ2-99-119">Modifiers</a></span>
+<br>&nbsp;<span class="sectionToc">8.9 <a 
+href="refse44.htm#x112-1180008.9" name="QQ2-112-132">Unsupported Turbo Pascal modifiers</a></span>
+<br><span class="chapterToc">9 <a 
+href="refch9.htm#x113-1190009" name="QQ2-113-134">Operator overloading</a></span>
+<br>&nbsp;<span class="sectionToc">9.1 <a 
+href="refse45.htm#x114-1200009.1" name="QQ2-114-135">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">9.2 <a 
+href="refse46.htm#x115-1210009.2" name="QQ2-115-136">Operator declarations</a></span>
+<br>&nbsp;<span class="sectionToc">9.3 <a 
+href="refse47.htm#x116-1220009.3" name="QQ2-116-137">Assignment operators</a></span>
+<br>&nbsp;<span class="sectionToc">9.4 <a 
+href="refse48.htm#x117-1230009.4" name="QQ2-117-138">Arithmetic operators</a></span>
+<br>&nbsp;<span class="sectionToc">9.5 <a 
+href="refse49.htm#x118-1240009.5" name="QQ2-118-139">Comparision operator</a></span>
+<br><span class="chapterToc">10 <a 
+href="refch10.htm#x119-12500010" name="QQ2-119-140">Programs, units, blocks</a></span>
+<br>&nbsp;<span class="sectionToc">10.1 <a 
+href="refse50.htm#x120-12600010.1" name="QQ2-120-141">Programs</a></span>
+<br>&nbsp;<span class="sectionToc">10.2 <a 
+href="refse51.htm#x121-12700010.2" name="QQ2-121-142">Units</a></span>
+<br>&nbsp;<span class="sectionToc">10.3 <a 
+href="refse52.htm#x122-12800010.3" name="QQ2-122-143">Blocks</a></span>
+<br>&nbsp;<span class="sectionToc">10.4 <a 
+href="refse53.htm#x123-12900010.4" name="QQ2-123-144">Scope</a></span>
+<br>&nbsp;<span class="sectionToc">10.5 <a 
+href="refse54.htm#x128-13400010.5" name="QQ2-128-149">Libraries</a></span>
+<br><span class="chapterToc">11 <a 
+href="refch11.htm#x129-13500011" name="QQ2-129-150">Exceptions</a></span>
+<br>&nbsp;<span class="sectionToc">11.1 <a 
+href="refse55.htm#x130-13600011.1" name="QQ2-130-151">The raise statement</a></span>
+<br>&nbsp;<span class="sectionToc">11.2 <a 
+href="refse56.htm#x131-13700011.2" name="QQ2-131-152">The try...except statement</a></span>
+<br>&nbsp;<span class="sectionToc">11.3 <a 
+href="refse57.htm#x132-13800011.3" name="QQ2-132-153">The try...finally statement</a></span>
+<br>&nbsp;<span class="sectionToc">11.4 <a 
+href="refse58.htm#x133-13900011.4" name="QQ2-133-154">Exception handling nesting</a></span>
+<br>&nbsp;<span class="sectionToc">11.5 <a 
+href="refse59.htm#x134-14000011.5" name="QQ2-134-155">Exception classes</a></span>
+<br><span class="chapterToc">12 <a 
+href="refch12.htm#x135-14100012" name="QQ2-135-156">Using assembler</a></span>
+<br>&nbsp;<span class="sectionToc">12.1 <a 
+href="refse60.htm#x136-14200012.1" name="QQ2-136-157">Assembler statements </a></span>
+<br>&nbsp;<span class="sectionToc">12.2 <a 
+href="refse61.htm#x137-14300012.2" name="QQ2-137-158">Assembler procedures and functions</a></span>
+</div>
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refpa2.htm" >next</a>] [<a 
+href="refli2.htm" >prev</a>] [<a 
+href="refli2.htm#tailrefli2.htm" >prev-tail</a>] [<a 
+href="refpa1.htm" >front</a>] [<a 
+href="ref.htm#refpa1.htm" >up</a>] </p></div><a 
+  name="tailrefpa1.htm"></a>  
+</body></html> 

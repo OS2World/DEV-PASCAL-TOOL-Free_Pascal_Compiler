@@ -1,0 +1,62 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2 Constants, types and variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse8.htm" >next</a>] [<a 
+href="unitsse6.htm" >prev</a>] [<a 
+href="unitsse6.htm#tailunitsse6.htm" >prev-tail</a>] [<a 
+href="#tailunitsse7.htm">tail</a>] [<a 
+href="unitsch3.htm#unitsse7.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.2</span> <a 
+href="units.htm#QQ2-15-84" name="x15-820003.2">Constants, types and variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-15-85" name="x15-830003.2">Constants</a></h4> The following constant is the magic number, found in the header of a DXE
+file.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;DXE_MAGIC&nbsp;&nbsp;=&nbsp;$31455844;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-15-86" name="x15-840003.2">Types</a></h4> The following record describes the header of a DXE file. It is used to determine the magic
+number of the DXE file and number of relocations that must be done when the object file i sloaded
+in memory.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;dxe_header&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;magic,
+&nbsp;&nbsp;&nbsp;&nbsp;symbol_offset,
+&nbsp;&nbsp;&nbsp;&nbsp;element_size,
+&nbsp;&nbsp;&nbsp;&nbsp;nrelocs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;end;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse8.htm" >next</a>] [<a 
+href="unitsse6.htm" >prev</a>] [<a 
+href="unitsse6.htm#tailunitsse6.htm" >prev-tail</a>] [<a 
+href="unitsse7.htm" >front</a>] [<a 
+href="unitsch3.htm#unitsse7.htm" >up</a>] </p></div><a 
+  name="tailunitsse7.htm"></a>   
+</body></html> 

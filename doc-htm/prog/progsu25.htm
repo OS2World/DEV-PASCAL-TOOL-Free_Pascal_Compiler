@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $L or $LINK : Link object file</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu26.htm" >next</a>] [<a 
+href="progsu24.htm" >prev</a>] [<a 
+href="progsu24.htm#tailprogsu24.htm" >prev-tail</a>] [<a 
+href="#tailprogsu25.htm">tail</a>] [<a 
+href="progse2.htm#progsu25.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-32-30" name="x32-300001.1"><span 
+class="cmtt-10">$L </span>or <span 
+class="cmtt-10">$LINK </span>: Link object file</a></h4>
+<!--l. 543--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$L filename</span><span 
+class="cmsy-10">} </span>or <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$LINK filename</span><span 
+class="cmsy-10">} </span>directive tells the compiler that the file <span 
+class="cmss-10">filename </span>should
+be linked to the program. This cannot be used for libraries, see section section <a 
+href="progsu26.htm#x33-310001.1">1.1<!--tex4ht:ref: se:linklib--></a>, page <a 
+href="progsu26.htm#x33-310001.1">71<!--tex4ht:ref: se:linklib--></a> for
+that.
+<!--l. 548--><p class="noindent">The compiler will look for this file in the following way:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x32-30002x1"></a>It will look in the path specified in the object file name.
+     </li>
+     <li class="enumerate"><a 
+  name="x32-30004x2"></a>It will look in the directory where the current source file is.
+     </li>
+     <li class="enumerate"><a 
+  name="x32-30006x3"></a>it will look in all directories specified in the object file search path.</li></ol>
+<!--l. 555--><p class="noindent">Directories can be added to the object file search path with the <span 
+class="cmtt-10">-Fo </span>option.
+<!--l. 558--><p class="noindent">On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>systems and on operating systems with case-sensitive filesystems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>
+systems), the name is case sensitive, and must be typed exactly as it appears on your
+system.
+<!--l. 562--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>Take care that the object file you&#8217;re linking is in a format the linker understands. Which format
+this is, depends on the platform you&#8217;re on. Typing <span 
+class="cmtt-10">ld </span>or <span 
+class="cmtt-10">ld --help </span>on the command line gives a
+list of formats <span 
+class="cmtt-10">ld </span>knows about.
+Other files and options can be passed to the linker using the <span 
+class="cmtt-10">-k </span>command-line option. More than
+one of these options can be used, and they will be passed to the linker, in the order that they were
+specified on the command line, just before the names of the object files that must be
+linked.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu26.htm" >next</a>] [<a 
+href="progsu24.htm" >prev</a>] [<a 
+href="progsu24.htm#tailprogsu24.htm" >prev-tail</a>] [<a 
+href="progsu25.htm" >front</a>] [<a 
+href="progse2.htm#progsu25.htm" >up</a>] </p></div><a 
+  name="tailprogsu25.htm"></a>  
+</body></html> 

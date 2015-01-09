@@ -1,0 +1,172 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 The With statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu36.htm" >next</a>] [<a 
+href="refsu34.htm" >prev</a>] [<a 
+href="refsu34.htm#tailrefsu34.htm" >prev-tail</a>] [<a 
+href="#tailrefsu35.htm">tail</a>] [<a 
+href="refse34.htm#refsu35.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-83-103" name="x83-890007.2">The <span 
+class="cmtt-10">With </span>statement</a></h4> The <span 
+class="cmtt-10">with </span>statement serves to access the elements of a record or object or
+class, without having to specify the name of the each time. The syntax for a <span 
+class="cmtt-10">with </span>statement
+is
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">With statement</span>
+     <BR/>
+     <img 
+src="ref105x.png" alt="-- with statement-|variable reference--do -statement--------------------
+                -------,---------
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2990--><p class="noindent">The variable reference must be a variable of a record, object or class type. In the <span 
+class="cmtt-10">with </span>statement,
+any variable reference, or method reference is checked to see if it is a field or method of the record
+or object or class. If so, then that field is accessed, or that method is called. Given the
+declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;Passenger&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;:&nbsp;String[30];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flight&nbsp;:&nbsp;String[10];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Var&nbsp;TheCustomer&nbsp;:&nbsp;Passenger;
+</pre>
+</td></tr></table>The following statements are completely equivalent:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TheCustomer.Name&nbsp;:=&nbsp;'Michael';
+&nbsp;TheCustomer.Flight&nbsp;:=&nbsp;'PS901';
+</pre>
+</td></tr></table>and
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;With&nbsp;TheCustomer&nbsp;do
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;Name&nbsp;:=&nbsp;'Michael';
+&nbsp;&nbsp;&nbsp;Flight&nbsp;:=&nbsp;'PS901';
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The statement
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;With&nbsp;A,B,C,D&nbsp;do&nbsp;Statement;
+</pre>
+</td></tr></table>is equivalent to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;With&nbsp;A&nbsp;do
+&nbsp;&nbsp;With&nbsp;B&nbsp;do
+&nbsp;&nbsp;&nbsp;With&nbsp;C&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;With&nbsp;D&nbsp;do&nbsp;Statement;
+</pre>
+</td></tr></table>This also is a clear example of the fact that the variables are tried <span 
+class="cmti-10">last to first</span>, i.e., when the
+compiler encounters a variable reference, it will first check if it is a field or method of the last
+variable. If not, then it will check the last-but-one, and so on. The following example shows
+this;
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;testw;
+&nbsp;Type&nbsp;AR&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X,Y&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PAR&nbsp;=&nbsp;Record;
+&nbsp;
+&nbsp;Var&nbsp;S,T&nbsp;:&nbsp;Ar;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;S.X&nbsp;:=&nbsp;1;S.Y&nbsp;:=&nbsp;1;
+&nbsp;&nbsp;&nbsp;T.X&nbsp;:=&nbsp;2;T.Y&nbsp;:=&nbsp;2;
+&nbsp;&nbsp;&nbsp;With&nbsp;S,T&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WriteLn&nbsp;(X,'&nbsp;',Y);
+&nbsp;end.
+</pre>
+</td></tr></table>The output of this program is
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;2&nbsp;2
+</pre>
+</td></tr></table>Showing thus that the <span 
+class="cmtt-10">X,Y </span>in the <span 
+class="cmtt-10">WriteLn </span>statement match the <span 
+class="cmtt-10">T </span>record variable.
+<!--l. 3053--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> When using a <span 
+class="cmtt-10">With </span>statement with a pointer, or a class, it is not permitted to change the pointer
+or the class in the <span 
+class="cmtt-10">With </span>block. With the definitions of the previous example, the following
+illustrates what it is about:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;
+&nbsp;Var&nbsp;p&nbsp;:&nbsp;PAR;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;With&nbsp;P^&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Do&nbsp;some&nbsp;operations
+&nbsp;&nbsp;&nbsp;&nbsp;P:=OtherP;
+&nbsp;&nbsp;&nbsp;&nbsp;X:=0.0;&nbsp;&nbsp;//&nbsp;Wrong&nbsp;X&nbsp;will&nbsp;be&nbsp;used&nbsp;!!
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>The reason the pointer cannot be changed is that the address is stored by the compiler in a
+temporary register. Changing the pointer won&#8217;t change the temporary address. The same is true
+for classes.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu36.htm" >next</a>] [<a 
+href="refsu34.htm" >prev</a>] [<a 
+href="refsu34.htm#tailrefsu34.htm" >prev-tail</a>] [<a 
+href="refsu35.htm" >front</a>] [<a 
+href="refse34.htm#refsu35.htm" >up</a>] </p></div><a 
+  name="tailrefsu35.htm"></a>  
+</body></html> 

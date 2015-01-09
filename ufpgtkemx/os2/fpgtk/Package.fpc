@@ -1,0 +1,6 @@
+[package]
+name=fpgtk
+version=1.0.8
+[require]
+packages=rtl fcl gtk
+packages_os2_i386=netdb libasync opengl

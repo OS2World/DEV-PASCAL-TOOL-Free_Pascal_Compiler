@@ -1,0 +1,334 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.9 TMemoryStream</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse56.htm" >next</a>] [<a 
+href="unitsse54.htm" >prev</a>] [<a 
+href="unitsse54.htm#tailunitsse54.htm" >prev-tail</a>] [<a 
+href="#tailunitsse55.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse55.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.9</span> <a 
+href="units.htm#QQ2-77-676" name="x77-67000017.9">TMemoryStream</a></h3>
+<!--l. 1183--><p class="noindent">The <span 
+class="cmtt-10">TMemoryStream </span>object implements a stream that stores it&#8217;s data in memory. The data is
+stored on the heap, with the possibility to specify the maximum amout of data, and the the size of
+the memory blocks being used.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TMemoryStream&nbsp;=&nbsp;OBJECT&nbsp;(TStream)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BlkCount:&nbsp;Sw_Word;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Number&nbsp;of&nbsp;segments&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BlkSize&nbsp;:&nbsp;Word;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Memory&nbsp;block&nbsp;size&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemSize&nbsp;:&nbsp;LongInt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Memory&nbsp;alloc&nbsp;size&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BlkList&nbsp;:&nbsp;PPointerArray;&nbsp;{&nbsp;Memory&nbsp;block&nbsp;list&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONSTRUCTOR&nbsp;Init&nbsp;(ALimit:&nbsp;Longint;&nbsp;ABlockSize:&nbsp;Word);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DESTRUCTOR&nbsp;Done;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Truncate;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Read&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Write&nbsp;(Var&nbsp;Buf;&nbsp;Count:&nbsp;Sw_Word);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PMemoryStream&nbsp;=&nbsp;^TMemoryStream;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-77-677" name="x77-67100017.9">TMemoryStream.Init</a></h4><a 
+  name="dx77-671001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TMemoryStream.Init (ALimit: Longint; ABlockSize: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Init </span>instantiates a new  <span 
+class="cmtt-10">TMemoryStream </span>object. The memorystreamobject will initially
+allocate at least <span 
+class="cmtt-10">ALimit </span>bytes memory, divided into memory blocks of size <span 
+class="cmtt-10">ABlockSize</span>. The
+number of blocks needed to get to <span 
+class="cmtt-10">ALimit </span>bytes is rounded up.
+<!--l. 1212--><p class="noindent">By default, the number of blocks is 1, and the size of a block is 8192. This is selected if you
+specify 0 as the blocksize.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the stream cannot allocate the initial memory needed for the memory blocks, then the
+stream&#8217;s status is set to <span 
+class="cmtt-10">stInitError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Done </span>(<a 
+href="#x77-67200017.9">589<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1221--><p class="noindent">For an example, see e.g <span 
+class="cmss-10">TStream.CopyFrom </span>(<a 
+href="unitsse52.htm#x74-65000017.6">574<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-77-678" name="x77-67200017.9">TMemoryStream.Done</a></h4><a 
+  name="dx77-672001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TMemoryStream.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Done </span>releases the memory blocks used by the stream, and then cleans up the memory used
+by the stream object itself.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Init </span>(<a 
+href="#x77-67100017.9">589<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 1235--><p class="noindent">For an example, see e.g <span 
+class="cmss-10">TStream.CopyFrom </span>(<a 
+href="unitsse52.htm#x74-65000017.6">574<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-77-679" name="x77-67300017.9">TMemoryStream.Truncate</a></h4><a 
+  name="dx77-673001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TMemoryStream.Truncate; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Truncate </span>sets the size of the memory stream equal to the current position. It de-allocates
+any memory-blocks that are no longer needed, so that the new size of the stream is the
+current position in the stream, rounded up to the first multiple of the stream blocksize.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs during memory de-allocation, the stream&#8217;s status is set to <span 
+class="cmtt-10">stError</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Truncate </span>(<a 
+href="unitsse52.htm#x74-64200017.6">571<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1252--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex20.pp</span><HR/><div class="listinginput">
+<!--l. 1252--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex20;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TMemoryStream.Truncate</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">L</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PString;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PMemoryStream;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I,InitMem</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">initMem:=Memavail;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">L:='Some</span>&nbsp;<span 
+class="cmtt-10">constant</span>&nbsp;<span 
+class="cmtt-10">string';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Buffer</span>&nbsp;<span 
+class="cmtt-10">size</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:=New(PMemoryStream,Init(1000,100));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Free</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Writing</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">times</span>&nbsp;<span 
+class="cmtt-10">&#34;',L,'&#34;</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">stream.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S^.WriteStr(@L);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Finished.</span>&nbsp;<span 
+class="cmtt-10">Free</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Seek(100);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S^.Truncate;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Truncated</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">byte</span>&nbsp;<span 
+class="cmtt-10">100.</span>&nbsp;<span 
+class="cmtt-10">Free</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Memavail);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose</span>&nbsp;<span 
+class="cmtt-10">(S,Done);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Finished.</span>&nbsp;<span 
+class="cmtt-10">Lost</span>&nbsp;<span 
+class="cmtt-10">',InitMem-Memavail,'</span>&nbsp;<span 
+class="cmtt-10">Bytes.');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-77-680" name="x77-67400017.9">TMemoryStream.Read</a></h4><a 
+  name="dx77-674001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Read (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Read </span>reads <span 
+class="cmtt-10">Count </span>bytes from the stream to <span 
+class="cmtt-10">Buf</span>. It updates the position of the stream.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If there is not enough data available, no data is read, and the stream&#8217;s status is set to
+<span 
+class="cmtt-10">stReadError</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TStream.Read</span>, <span 
+class="cmss-10">Write </span>(<a 
+href="#x77-67500017.9">591<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1268--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-77-681" name="x77-67500017.9">TMemoryStream.Write</a></h4><a 
+  name="dx77-675001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Write (Var Buf; Count: Sw</span>_<span 
+class="cmtt-10">Word); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Write </span>copies <span 
+class="cmtt-10">Count </span>bytes from <span 
+class="cmtt-10">Buf </span>to the stream. It updates the position of the stream.
+<!--l. 1277--><p class="noindent">If not enough memory is available to hold the extra <span 
+class="cmtt-10">Count </span>bytes, then the stream will try to
+expand, by allocating as much blocks with size <span 
+class="cmtt-10">BlkSize </span>(as specified in the constuctor call
+<span 
+class="cmss-10">Init </span>(<a 
+href="#x77-67100017.9">589<!--tex4ht:ref: se:TBufStream--></a>)) as needed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the stream cannot allocate more memory, then the status is set to <span 
+class="cmtt-10">stWriteError</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStream.Write </span>(<a 
+href="unitsse52.htm#x74-64900017.6">574<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">Read </span>(<a 
+href="#x77-67400017.9">590<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<!--l. 1288--><p class="noindent">For an example, see <span 
+class="cmss-10">TStream.Read </span>(<a 
+href="unitsse52.htm#x74-64800017.6">573<!--tex4ht:ref: se:TBufStream--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse56.htm" >next</a>] [<a 
+href="unitsse54.htm" >prev</a>] [<a 
+href="unitsse54.htm#tailunitsse54.htm" >prev-tail</a>] [<a 
+href="unitsse55.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse55.htm" >up</a>] </p></div><a 
+  name="tailunitsse55.htm"></a>   
+</body></html> 

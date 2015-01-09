@@ -1,0 +1,296 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.1 Getting your data</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse54.htm" >next</a>] [<a 
+href="#tailuserse53.htm">tail</a>] [<a 
+href="userch11.htm#userse53.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.1</span> <a 
+href="user.htm#QQ2-75-212" name="x75-16100011.1">Getting your data</a></h3>
+<!--l. 2595--><p class="noindent">Your CGI program must react on data the user has filled in on the form which your
+web-server gave him. The Web server takes the response on the form, and feeds it to the CGI
+                                                                            
+
+                                                                            
+script.
+<!--l. 2599--><p class="noindent">There are essentially two ways of feeding the data to the CGI script. We will discuss
+both.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-75-213" name="x75-16200011.1">Data coming through standard input.</a></h4> The first method of getting your data is through standard
+input. This method is invoked when the form uses a form submission method of <span 
+class="cmtt-10">POST</span>. The web
+browser sets three environment variables <span 
+class="cmtt-10">REQUEST</span>_<span 
+class="cmtt-10">METHOD</span>, <span 
+class="cmtt-10">CONTENT</span>_<span 
+class="cmtt-10">TYPE </span>and <span 
+class="cmtt-10">CONTENT</span>_<span 
+class="cmtt-10">LENGTH</span>. It
+feeds then the results of the different fields through standard input to the CGI script. All the
+Pascal program has to do is :
+     <ul class="itemize1">
+     <li class="itemize">Check the value of the <span 
+class="cmtt-10">REQUEST</span>_<span 
+class="cmtt-10">METHOD </span>environment variable. The <span 
+class="cmtt-10">getenv </span>function
+     will retrieve this value this for you.
+     </li>
+     <li class="itemize">Check the value of the <span 
+class="cmtt-10">CONTENT</span>_<span 
+class="cmtt-10">TYPE </span>environment variable.
+     </li>
+     <li class="itemize">Read <span 
+class="cmtt-10">CONTENT</span>_<span 
+class="cmtt-10">LENGTH </span>characters from standard input. <span 
+class="cmtt-10">read (c) </span>with <span 
+class="cmtt-10">c </span>of type <span 
+class="cmtt-10">char</span>
+     will take care of that.</li></ul>
+<!--l. 2620--><p class="noindent">if you know that the request method will always be <span 
+class="cmtt-10">POST</span>, and the <span 
+class="cmtt-10">CONTENT</span>_<span 
+class="cmtt-10">TYPE </span>will be correct,
+then you can skip the first two steps. The third step can be done easier: read characters until you
+reach the end-of-file marker of standard input.
+<!--l. 2625--><p class="noindent">The following example shows how this can be achieved:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;cgi_post;
+&nbsp;
+&nbsp;uses&nbsp;dos;
+&nbsp;
+&nbsp;const&nbsp;max_data&nbsp;=&nbsp;1000;
+&nbsp;
+&nbsp;type&nbsp;datarec&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;name,value&nbsp;:&nbsp;string;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;var&nbsp;data&nbsp;:&nbsp;array[1..max_data]&nbsp;of&nbsp;datarec;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i,nrdata&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;&nbsp;:&nbsp;char;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;literal,aname&nbsp;:&nbsp;boolean;
+&nbsp;
+&nbsp;begin
+&nbsp;writeln&nbsp;('Content-type:&nbsp;text/html');
+&nbsp;writeln;
+&nbsp;if&nbsp;getenv('REQUEST_METHOD')&lt;&gt;'POST'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;writeln&nbsp;('This&nbsp;script&nbsp;should&nbsp;be&nbsp;referenced&nbsp;with&nbsp;a&nbsp;METHOD&nbsp;of&nbsp;POST');
+&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;('If&nbsp;you&nbsp;don''t&nbsp;understand&nbsp;this,&nbsp;see&nbsp;this&nbsp;');
+&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;('&lt;&nbsp;A&nbsp;HREF=&#34;http://www.ncsa.uiuc.edu/SDG/Softare/Mosaic');
+&nbsp;&nbsp;&nbsp;&nbsp;writeln&nbsp;('/Docs/fill-out-forms/overview.htm&#34;&gt;forms&nbsp;overview&lt;/A&gt;.');
+&nbsp;&nbsp;&nbsp;&nbsp;halt(1);
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;if&nbsp;getenv('CONTENT_TYPE')&lt;&gt;'application/x-www-form-urlencoded'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;writeln&nbsp;('This&nbsp;script&nbsp;can&nbsp;only&nbsp;be&nbsp;used&nbsp;to&nbsp;decode&nbsp;form&nbsp;results');
+&nbsp;&nbsp;&nbsp;&nbsp;halt(1)
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;nrdata:=1;
+&nbsp;aname:=true;
+&nbsp;while&nbsp;not&nbsp;eof(input)&nbsp;do
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;literal:=false;
+&nbsp;&nbsp;&nbsp;read(c);
+&nbsp;&nbsp;&nbsp;if&nbsp;c='\'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;literal:=true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;read(c);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;if&nbsp;literal&nbsp;or&nbsp;((c&lt;&gt;'=')&nbsp;and&nbsp;(c&lt;&gt;'&amp;'))&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;data[nrdata]&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;aname&nbsp;then&nbsp;name:=name+c&nbsp;else&nbsp;value:=value+c
+&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;c='&amp;'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inc&nbsp;(nrdata);
+                                                                            
+
+                                                                            
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aname:=true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aname:=false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;writeln&nbsp;('&lt;H1&gt;Form&nbsp;Results&nbsp;:&lt;/H1&gt;');
+&nbsp;writeln&nbsp;('You&nbsp;submitted&nbsp;the&nbsp;following&nbsp;name/value&nbsp;pairs&nbsp;:');
+&nbsp;writeln&nbsp;('&lt;UL&gt;');
+&nbsp;for&nbsp;i:=1&nbsp;to&nbsp;nrdata&nbsp;do&nbsp;writeln&nbsp;('&lt;LI&gt;&nbsp;',data[i].name,'&nbsp;=&nbsp;',data[i].value);
+&nbsp;writeln&nbsp;('&lt;/UL&gt;');
+&nbsp;end.
+</pre>
+</td></tr></table>While this program isn&#8217;t shorter than the C program provided as an example at
+NCSA, it doesn&#8217;t need any other units. everythig is done using standard Pascal
+procedures<a 
+href="user76.htm" name="user76.htm" ><sup>2</sup></a>.
+<!--l. 2697--><p class="noindent">Note that this program has a limitation: the length of names and values is limited to 255
+characters. This is due to the fact that strings in Pascal have a maximal length of 255. It
+is of course easy to redefine the <span 
+class="cmtt-10">datarec </span>record in such a way that longer values are
+allowed. In case you have to read the contents of a <span 
+class="cmtt-10">TEXTAREA </span>form element, this may be
+needed.
+<h4 class="subsectionHead"><a 
+href="userli1.htm#QQ2-75-214" name="x75-16300011.1">Data passed through an environment variable</a></h4> If your form uses the <span 
+class="cmtt-10">GET </span>method of passing its data,
+the CGI script needs to read the <span 
+class="cmtt-10">QUERY</span>_<span 
+class="cmtt-10">STRING </span>environment variable to get its data. Since this
+variable can, and probably will, be more than 255 characters long, you will not be able to use
+normal string methods, present in pascal. Free Pascal implements the <span 
+class="cmtt-10">pchar </span>type, which is a
+pointer to a null-terminated array of characters. And, fortunately, Free Pascal has a <a 
+href="file:../strings/strings.htm" >strings</a>&nbsp;unit,
+which eases the use of the <span 
+class="cmtt-10">pchar </span>type.
+<!--l. 2718--><p class="noindent">The following example illustrates what to do in case of a method of <span 
+class="cmtt-10">GET</span>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;cgi_get;
+&nbsp;
+&nbsp;uses&nbsp;strings,linux;
+&nbsp;
+&nbsp;const&nbsp;max_data&nbsp;=&nbsp;1000;
+&nbsp;
+&nbsp;type&nbsp;datarec&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;name,value&nbsp;:&nbsp;string;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;
+&nbsp;var&nbsp;data&nbsp;:&nbsp;array[1..max_data]&nbsp;of&nbsp;datarec;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i,nrdata&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;&nbsp;:&nbsp;PChar;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;literal,aname&nbsp;:&nbsp;boolean;
+&nbsp;
+&nbsp;begin
+&nbsp;Writeln&nbsp;('Content-type:&nbsp;text/html');
+&nbsp;Writeln;
+&nbsp;if&nbsp;StrComp(GetEnv('REQUEST_METHOD'),'POST')&lt;&gt;0&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('This&nbsp;script&nbsp;should&nbsp;be&nbsp;referenced&nbsp;with&nbsp;a&nbsp;METHOD&nbsp;of&nbsp;GET');
+&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;('If&nbsp;you&nbsp;don''t&nbsp;understand&nbsp;this,&nbsp;see&nbsp;this&nbsp;');
+&nbsp;&nbsp;&nbsp;&nbsp;write&nbsp;('&lt;&nbsp;A&nbsp;HREF=&#34;http://www.ncsa.uiuc.edu/SDG/Softare/Mosaic');
+&nbsp;&nbsp;&nbsp;&nbsp;Writeln&nbsp;('/Docs/fill-out-forms/overview.htm&#34;&gt;forms&nbsp;overview&lt;/A&gt;.');
+&nbsp;&nbsp;&nbsp;&nbsp;halt(1);
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;p:=GetEnv('QUERY_STRING');
+&nbsp;nrdata:=1;
+&nbsp;aname:=true;
+&nbsp;while&nbsp;p^&lt;&gt;#0&nbsp;&nbsp;do
+&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;literal:=false;
+&nbsp;&nbsp;&nbsp;if&nbsp;p^='\'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;literal:=true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inc(longint(p));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;if&nbsp;((p^&lt;&gt;'=')&nbsp;and&nbsp;(p^&lt;&gt;'&amp;'))&nbsp;or&nbsp;literal&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;data[nrdata]&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;aname&nbsp;then&nbsp;name:=name+p^&nbsp;else&nbsp;value:=value+p^
+&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;p^='&amp;'&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inc&nbsp;(nrdata);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aname:=true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aname:=false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+                                                                            
+
+                                                                            
+&nbsp;&nbsp;&nbsp;inc(longint(p));
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;Writeln&nbsp;('&lt;H1&gt;Form&nbsp;Results&nbsp;:&lt;/H1&gt;');
+&nbsp;Writeln&nbsp;('You&nbsp;submitted&nbsp;the&nbsp;following&nbsp;name/value&nbsp;pairs&nbsp;:');
+&nbsp;Writeln&nbsp;('&lt;UL&gt;');
+&nbsp;for&nbsp;i:=1&nbsp;to&nbsp;nrdata&nbsp;do&nbsp;writeln&nbsp;('&lt;LI&gt;&nbsp;',data[i].name,'&nbsp;=&nbsp;',data[i].value);
+&nbsp;Writeln&nbsp;('&lt;/UL&gt;');
+&nbsp;end.
+</pre>
+</td></tr></table>Although it may not be written in the most elegant way, this program does the same thing as the
+previous one. It also suffers from the same drawback, namely the limited length of the <span 
+class="cmtt-10">value </span>field
+of the <span 
+class="cmtt-10">datarec</span>.
+<!--l. 2783--><p class="noindent">This drawback can be remedied by redefining <span 
+class="cmtt-10">datarec </span>as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type&nbsp;datarec&nbsp;=&nbsp;record;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name,value&nbsp;:&nbsp;pchar;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>and assigning at run time enough space to keep the contents of the value field. This can be done
+with a
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;getmem&nbsp;(data[nrdata].value,needed_number_of_bytes);
+</pre>
+</td></tr></table>call. After that you can do a
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;strlcopy&nbsp;(data[nrdata].value,p,needed_number_of_bytes);
+</pre>
+</td></tr></table>to copy the data into place.
+<!--l. 2800--><p class="noindent">You may have noticed the following unorthodox call :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;inc(longint(p));
+</pre>
+</td></tr></table>Free Pascal doesn&#8217;t give you pointer arithmetic as in C. However, <span 
+class="cmtt-10">longints </span>and <span 
+class="cmtt-10">pointers </span>have the
+same length (namely 4 bytes). Doing a type-cast to a <span 
+class="cmtt-10">longint </span>allows you to do arithmetic on the
+<span 
+class="cmtt-10">pointer</span>.
+<!--l. 2808--><p class="noindent">Note however, that this is a non-portable call. This may work on the I386 processor, but not on a
+ALPHA processor (where a pointer is 8 bytes long). This will be remedied in future releases of Free
+Pascal.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse54.htm" >next</a>] [<a 
+href="userse53.htm" >front</a>] [<a 
+href="userch11.htm#userse53.htm" >up</a>] </p></div><a 
+  name="tailuserse53.htm"></a>   
+</body></html> 

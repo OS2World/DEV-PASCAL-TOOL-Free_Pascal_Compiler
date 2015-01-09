@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TCustomMemoryStream.Memory</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TCustomMemoryStream.Memory</h1>
+<p>Pointer to the data kept in the memory stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">property </span><a href="../classes/tcustommemorystream.htm">TCustomMemoryStream</a><span class="sym">.</span>Memory<span class="sym">: </span>Pointer<br>&nbsp;&nbsp;<span class="kw">read </span>FMemory<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Memory</var> points to the memory area where stream keeps it's data. The property is read-only, so the pointer cannot be set this way. </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td>Do not write to the memory pointed to by <var>Memory</var>, since the memory content may be read-only, and thus writing to it may cause errors. </td>
+</tr>
+</table>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstream.size.htm">TStream.Size</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">The current size of the stream.</p></td>
+</tr>
+</table>
+</body>
+</html>

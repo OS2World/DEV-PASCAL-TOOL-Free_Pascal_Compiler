@@ -1,0 +1,30 @@
+#
+#   Makefile.fpc for FPC demo package
+#
+
+[package]
+name=demo
+version=1.0.6
+
+[target]
+dirs=text graph
+dirs_go32v2=modex
+dirs_win32=win32
+dirs_linux=linux
+dirs_os2=os2
+
+[install]
+fpcpackage=y
+
+[rules]
+#################################
+# Demo installation for linux
+#
+
+.PHONY: installexamples demozip
+
+installexamples:
+        $(MKDIR) $(INSTALL_SOURCEDIR)
+        $(COPYTREE) * $(INSTALL_SOURCEDIR)
+
+demozip: zipsourceinstall

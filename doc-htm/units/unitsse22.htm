@@ -1,0 +1,2386 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.4 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse23.htm" >next</a>] [<a 
+href="unitsse21.htm" >prev</a>] [<a 
+href="unitsse21.htm#tailunitsse21.htm" >prev-tail</a>] [<a 
+href="#tailunitsse22.htm">tail</a>] [<a 
+href="unitsch8.htm#unitsse22.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.4</span> <a 
+href="units.htm#QQ2-35-219" name="x35-2160008.4">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-220" name="x35-2170008.4">Arc</a></h4><a 
+  name="dx35-217001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Arc (X,Y : Integer; start,stop, radius : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Arc </span>draws part of a circle with center at <span 
+class="cmtt-10">(X,Y)</span>, radius <span 
+class="cmtt-10">radius</span>, starting from angle <span 
+class="cmtt-10">start</span>,
+stopping at angle <span 
+class="cmtt-10">stop</span>. These angles are measured counterclockwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Circle </span>(<a 
+href="#x35-2200008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">Ellipse </span>(<a 
+href="#x35-2260008.4">206<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">GetArcCoords </span>(<a 
+href="#x35-2300008.4">207<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">PieSlice </span>(<a 
+href="#x35-2680008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Sector </span>(<a 
+href="#x35-2750008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-221" name="x35-2180008.4">Bar</a></h4><a 
+  name="dx35-218001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Bar (X1,Y1,X2,Y2 : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Draws a rectangle with corners at <span 
+class="cmtt-10">(X1,Y1) </span>and <span 
+class="cmtt-10">(X2,Y2) </span>and fills it with the current color
+and fill-style.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bar3D </span>(<a 
+href="#x35-2190008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Rectangle </span>(<a 
+href="#x35-2710008.4">219<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-222" name="x35-2190008.4">Bar3D</a></h4><a 
+  name="dx35-219001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Bar3D (X1,Y1,X2,Y2 : Integer; depth : Word; Top : Boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Draws a 3-dimensional Bar with corners at <span 
+class="cmtt-10">(X1,Y1) </span>and <span 
+class="cmtt-10">(X2,Y2) </span>and fills it with the
+current color and fill-style. <span 
+class="cmtt-10">Depth </span>specifies the number of pixels used to show the depth of
+the bar. If <span 
+class="cmtt-10">Top </span>is true; then a 3-dimensional top is drawn.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bar </span>(<a 
+href="#x35-2180008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Rectangle </span>(<a 
+href="#x35-2710008.4">219<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-223" name="x35-2200008.4">Circle</a></h4><a 
+  name="dx35-220001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Circle (X,Y : Integer; Radius : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Circle </span>draws part of a circle with center at <span 
+class="cmtt-10">(X,Y)</span>, radius <span 
+class="cmtt-10">radius</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Ellipse </span>(<a 
+href="#x35-2260008.4">206<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">GetArcCoords </span>(<a 
+href="#x35-2300008.4">207<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">PieSlice </span>(<a 
+href="#x35-2680008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Sector </span>(<a 
+href="#x35-2750008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-224" name="x35-2210008.4">ClearDevice</a></h4><a 
+  name="dx35-221001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ClearDevice ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Clears the graphical screen (with the current background color), and sets the pointer at
+<span 
+class="cmtt-10">(0,0)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ClearViewPort </span>(<a 
+href="#x35-2220008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-225" name="x35-2220008.4">ClearViewPort</a></h4><a 
+  name="dx35-222001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ClearViewPort ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Clears the current viewport. The current background color is used as filling color. The
+pointer is set at <span 
+class="cmtt-10">(0,0)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ClearDevice </span>(<a 
+href="#x35-2210008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetViewPort </span>(<a 
+href="#x35-2910008.4">227<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-226" name="x35-2230008.4">CloseGraph</a></h4><a 
+  name="dx35-223001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure CloseGraph ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Closes the graphical system, and restores the screen modus which was active before the
+graphical modus was activated.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-227" name="x35-2240008.4">DetectGraph</a></h4><a 
+  name="dx35-224001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DetectGraph (Var Driver, Modus : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Checks the hardware in the PC and determines the driver and screen-modus to be used.
+These are returned in <span 
+class="cmtt-10">Driver </span>and <span 
+class="cmtt-10">Modus</span>, and can be fed to <span 
+class="cmtt-10">InitGraph</span>. See the <span 
+class="cmtt-10">InitGraph</span>
+for a list of drivers and modi.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-228" name="x35-2250008.4">DrawPoly</a></h4><a 
+  name="dx35-225001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DrawPoly (NumberOfPoints : Word; Var PolyPoints;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 397--><p class="noindent">Draws a polygone with <span 
+class="cmtt-10">NumberOfPoints </span>corner points, using the current color and line-style.
+PolyPoints is an array of type <span 
+class="cmtt-10">PointType</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bar </span>(<a 
+href="#x35-2180008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), seepBar3D, <span 
+class="cmss-10">Rectangle </span>(<a 
+href="#x35-2710008.4">219<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-229" name="x35-2260008.4">Ellipse</a></h4><a 
+  name="dx35-226001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Ellipse (X,Y : Integer; Start,Stop,XRadius,YRadius : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Ellipse </span>draws part of an ellipse with center at <span 
+class="cmtt-10">(X,Y)</span>. <span 
+class="cmtt-10">XRadius </span>and <span 
+class="cmtt-10">Yradius </span>are the
+horizontal and vertical radii of the ellipse. <span 
+class="cmtt-10">Start </span>and <span 
+class="cmtt-10">Stop </span>are the starting and stopping
+angles of the part of the ellipse. They are measured counterclockwise from the X-axis (3
+o&#8217;clock is equal to 0 degrees). Only positive angles can be specified.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">Circle </span>(<a 
+href="#x35-2200008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">FillEllipse </span>(<a 
+href="#x35-2270008.4">206<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-230" name="x35-2270008.4">FillEllipse</a></h4><a 
+  name="dx35-227001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FillEllipse (X,Y : Integer; Xradius,YRadius: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Ellipse </span>draws an ellipse with center at <span 
+class="cmtt-10">(X,Y)</span>. <span 
+class="cmtt-10">XRadius </span>and <span 
+class="cmtt-10">Yradius </span>are the horizontal
+and vertical radii of the ellipse. The ellipse is filled with the current color and fill-style.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>) <span 
+class="cmss-10">Circle </span>(<a 
+href="#x35-2200008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">GetArcCoords </span>(<a 
+href="#x35-2300008.4">207<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">PieSlice </span>(<a 
+href="#x35-2680008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Sector </span>(<a 
+href="#x35-2750008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-231" name="x35-2280008.4">FillPoly</a></h4><a 
+  name="dx35-228001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FillPoly (NumberOfPoints : Word; Var PolyPoints);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 443--><p class="noindent">Draws a polygone with <span 
+class="cmtt-10">NumberOfPoints </span>corner points and fills it using the current color and
+line-style. PolyPoints is an array of type <span 
+class="cmtt-10">PointType</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bar </span>(<a 
+href="#x35-2180008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), seepBar3D, <span 
+class="cmss-10">Rectangle </span>(<a 
+href="#x35-2710008.4">219<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-232" name="x35-2290008.4">FloodFill</a></h4><a 
+  name="dx35-229001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure FloodFill (X,Y : Integer; BorderColor : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 459--><p class="noindent">Fills the area containing the point <span 
+class="cmtt-10">(X,Y)</span>, bounded by the color <span 
+class="cmtt-10">BorderColor</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetColor </span>(<a 
+href="#x35-2800008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-233" name="x35-2300008.4">GetArcCoords</a></h4><a 
+  name="dx35-230001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetArcCoords (Var ArcCoords : ArcCoordsType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetArcCoords </span>returns the coordinates of the latest <span 
+class="cmtt-10">Arc </span>or <span 
+class="cmtt-10">Ellipse </span>call.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Ellipse </span>(<a 
+href="#x35-2260008.4">206<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-234" name="x35-2310008.4">GetAspectRatio</a></h4><a 
+  name="dx35-231001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetAspectRatio (Var Xasp,Yasp : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetAspectRatio </span>determines the effective resolution of the screen. The aspect ration can
+the be calculated as <span 
+class="cmtt-10">Xasp/Yasp</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetAspectRatio </span>(<a 
+href="#x35-2780008.4">221<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-235" name="x35-2320008.4">GetBkColor</a></h4><a 
+  name="dx35-232001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetBkColor : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetBkColor </span>returns the current background color (the palette entry).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetColor </span>(<a 
+href="#x35-2330008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-236" name="x35-2330008.4">GetColor</a></h4><a 
+  name="dx35-233001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetColor : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetColor </span>returns the current drawing color (the palette entry).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetColor </span>(<a 
+href="#x35-2330008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-237" name="x35-2340008.4">GetDefaultPalette</a></h4><a 
+  name="dx35-234001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetDefaultPalette (Var Palette : PaletteType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Returns the current palette in <span 
+class="cmtt-10">Palette</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetColor </span>(<a 
+href="#x35-2330008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">GetBkColor </span>(<a 
+href="#x35-2320008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-238" name="x35-2350008.4">GetDriverName</a></h4><a 
+  name="dx35-235001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetDriverName : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetDriverName </span>returns a string containing the name of the current driver.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetModeName </span>(<a 
+href="#x35-2450008.4">211<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-239" name="x35-2360008.4">GetFillPattern</a></h4><a 
+  name="dx35-236001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetFillPattern (Var FillPattern : FillPatternType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetFillPattern </span>returns an array with the current fill-pattern in <span 
+class="cmtt-10">FillPattern</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFillPattern </span>(<a 
+href="#x35-2810008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-240" name="x35-2370008.4">GetFillSettings</a></h4><a 
+  name="dx35-237001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetFillSettings (Var FillInfo : FillSettingsType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetFillSettings </span>returns the current fill-settings in <span 
+class="cmtt-10">FillInfo</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFillPattern </span>(<a 
+href="#x35-2810008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-241" name="x35-2380008.4">GetGraphMode</a></h4><a 
+  name="dx35-238001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetGraphMode : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetGraphMode </span>returns the current graphical modus
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-242" name="x35-2390008.4">GetImage</a></h4><a 
+  name="dx35-239001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetImage (X1,Y1,X2,Y2 : Integer, Var Bitmap;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetImage </span>Places a copy of the screen area <span 
+class="cmtt-10">(X1,Y1) </span>to <span 
+class="cmtt-10">X2,Y2 </span>in <span 
+class="cmtt-10">BitMap</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">Bitmap must have enough room to contain the image.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ImageSize </span>(<a 
+href="#x35-2570008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">PutImage </span>(<a 
+href="#x35-2690008.4">219<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-243" name="x35-2400008.4">GetLineSettings</a></h4><a 
+  name="dx35-240001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetLineSettings (Var LineInfo : LineSettingsType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetLineSettings </span>returns the current Line settings in <span 
+class="cmtt-10">LineInfo</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetLineStyle </span>(<a 
+href="#x35-2850008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-244" name="x35-2410008.4">GetMaxColor</a></h4><a 
+  name="dx35-241001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMaxColor : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMaxColor </span>returns the maximum color-number which can be set with <span 
+class="cmtt-10">SetColor</span>. Contrary
+to Turbo Pascal, this color isn&#8217;t always guaranteed to be white (for instance in 256+ color
+modes).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetColor </span>(<a 
+href="#x35-2800008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">GetPaletteSize </span>(<a 
+href="#x35-2480008.4">212<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-245" name="x35-2420008.4">GetMaxMode</a></h4><a 
+  name="dx35-242001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMaxMode : Word;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMaxMode </span>returns the highest modus for the current driver.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-246" name="x35-2430008.4">GetMaxX</a></h4><a 
+  name="dx35-243001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMaxX : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMaxX </span>returns the maximum horizontal screen length
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMaxY </span>(<a 
+href="#x35-2440008.4">211<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-247" name="x35-2440008.4">GetMaxY</a></h4><a 
+  name="dx35-244001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetMaxY : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetMaxY </span>returns the maximum number of screen lines
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetMaxY </span>(<a 
+href="#x35-2440008.4">211<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-248" name="x35-2450008.4">GetModeName</a></h4><a 
+  name="dx35-245001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetModeName (Var modus : Integer) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 669--><p class="noindent">Returns a string with the name of modus <span 
+class="cmtt-10">Modus</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetDriverName </span>(<a 
+href="#x35-2350008.4">209<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-249" name="x35-2460008.4">GetModeRange</a></h4><a 
+  name="dx35-246001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetModeRange (Driver : Integer;</span>
+<br class="newline"><span 
+class="cmtt-10">LoModus, HiModus: Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetModeRange </span>returns the Lowest and Highest modus of the currently installed driver. If
+no modes are supported for this driver, HiModus will be -1.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-250" name="x35-2470008.4">GetPalette</a></h4><a 
+  name="dx35-247001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetPalette (Var Palette : PaletteType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPalette </span>returns in <span 
+class="cmtt-10">Palette </span>the current palette.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPaletteSize </span>(<a 
+href="#x35-2480008.4">212<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetPalette </span>(<a 
+href="#x35-2860008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-251" name="x35-2480008.4">GetPaletteSize</a></h4><a 
+  name="dx35-248001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPaletteSize : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPaletteSize </span>returns the maximum number of entries in the current palette.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPalette </span>(<a 
+href="#x35-2470008.4">212<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetPalette </span>(<a 
+href="#x35-2860008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-252" name="x35-2490008.4">GetPixel</a></h4><a 
+  name="dx35-249001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetPixel (X,Y : Integer) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetPixel </span>returns the color of the point at <span 
+class="cmtt-10">(X,Y)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+                                                                            
+
+                                                                            
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-253" name="x35-2500008.4">GetTextSettings</a></h4><a 
+  name="dx35-250001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetTextSettings (Var TextInfo : TextSettingsType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetTextSettings </span>returns the current text style settings : The font, direction, size and
+placement as set with <span 
+class="cmtt-10">SetTextStyle </span>and <span 
+class="cmtt-10">SetTextJustify</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetTextStyle </span>(<a 
+href="#x35-2890008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetTextJustify </span>(<a 
+href="#x35-2880008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-254" name="x35-2510008.4">GetViewSettings</a></h4><a 
+  name="dx35-251001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GetViewSettings (Var ViewPort : ViewPortType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetViewSettings </span>returns the current viewport and clipping settings in <span 
+class="cmtt-10">ViewPort</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetViewPort </span>(<a 
+href="#x35-2910008.4">227<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-255" name="x35-2520008.4">GetX</a></h4><a 
+  name="dx35-252001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetX : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetX </span>returns the X-coordinate of the current position of the graphical pointer
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetY </span>(<a 
+href="#x35-2530008.4">213<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-256" name="x35-2530008.4">GetY</a></h4><a 
+  name="dx35-253001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GetY : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GetY </span>returns the Y-coordinate of the current position of the graphical pointer
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetX </span>(<a 
+href="#x35-2520008.4">213<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-257" name="x35-2540008.4">GraphDefaults</a></h4><a 
+  name="dx35-254001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GraphDefaults ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GraphDefaults </span>resets all settings for viewport, palette, foreground and background pattern,
+line-style and pattern, filling style, filling color and pattern, font, text-placement and text
+size.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetViewPort </span>(<a 
+href="#x35-2910008.4">227<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetFillStyle </span>(<a 
+href="#x35-2820008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetColor </span>(<a 
+href="#x35-2800008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetLineStyle </span>(<a 
+href="#x35-2850008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-258" name="x35-2550008.4">GraphErrorMsg</a></h4><a 
+  name="dx35-255001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GraphErrorMsg (ErrorCode : Integer) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GraphErrorMsg </span>returns a string describing the error <span 
+class="cmtt-10">Errorcode</span>. This string can be used to
+let the user know what went wrong.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GraphResult </span>(<a 
+href="#x35-2560008.4">214<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-259" name="x35-2560008.4">GraphResult</a></h4><a 
+  name="dx35-256001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function GraphResult : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">GraphResult </span>returns an error-code for the last graphical operation. If the returned value
+is zero, all went well. A value different from zero means an error has occurred. besides all
+operations which draw something on the screen, the following procedures also can produce
+a <span 
+class="cmtt-10">GraphResult </span>different from zero:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmss-10">InstallUserFont </span>(<a 
+href="#x35-2600008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetLineStyle </span>(<a 
+href="#x35-2850008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetWriteMode </span>(<a 
+href="#x35-2930008.4">228<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetFillStyle </span>(<a 
+href="#x35-2820008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+                                                                            
+
+                                                                            
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetTextJustify </span>(<a 
+href="#x35-2880008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetGraphMode </span>(<a 
+href="#x35-2840008.4">223<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    </li>
+    <li class="itemize"><span 
+class="cmss-10">SetTextStyle </span>(<a 
+href="#x35-2890008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>)</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GraphErrorMsg </span>(<a 
+href="#x35-2550008.4">214<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-260" name="x35-2570008.4">ImageSize</a></h4><a 
+  name="dx35-257001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ImageSize (X1,Y1,X2,Y2 : Integer) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ImageSize </span>returns the number of bytes needed to store the image in the rectangle defined
+by <span 
+class="cmtt-10">(X1,Y1) </span>and <span 
+class="cmtt-10">(X2,Y2)</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetImage </span>(<a 
+href="#x35-2390008.4">210<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-261" name="x35-2580008.4">InitGraph</a></h4><a 
+  name="dx35-258001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure InitGraph (var GraphDriver,GraphModus : integer;</span>
+<br class="newline"><span 
+class="cmtt-10">const PathToDriver : string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 861--><p class="noindent"><span 
+class="cmtt-10">InitGraph </span>initializes the <span 
+class="cmtt-10">graph </span>package. <span 
+class="cmtt-10">GraphDriver </span>has two valid values: <span 
+class="cmtt-10">GraphDriver=0</span>
+which performs an auto detect and initializes the highest possible mode with the most colors.
+1024x768x64K is the highest possible resolution supported by the driver, if you need a higher
+resolution, you must edit <span 
+class="cmss-10">MODES.PPI</span>. If you need another mode, then set <span 
+class="cmtt-10">GraphDriver</span>
+to a value different from zero and <span 
+class="cmtt-10">graphmode </span>to the mode you wish (VESA modes where
+640x480x256 is <span 
+class="cmtt-10">101h </span>etc.). <span 
+class="cmtt-10">PathToDriver </span>is only needed, if you use the BGI fonts from
+Borland.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">Introduction, (page <a 
+href="unitsse19.htm#x32-2040008.1">190<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">DetectGraph </span>(<a 
+href="#x35-2240008.4">206<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">CloseGraph </span>(<a 
+href="#x35-2230008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">GraphResult </span>(<a 
+href="#x35-2560008.4">214<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 878--><p class="noindent">Example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;gd,gm&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;PathToDriver&nbsp;:&nbsp;string;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;gd:=detect;&nbsp;{&nbsp;highest&nbsp;possible&nbsp;resolution&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;gm:=0;&nbsp;{&nbsp;not&nbsp;needed,&nbsp;auto&nbsp;detection&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;PathToDriver:='C:\PP\BGI';&nbsp;{&nbsp;path&nbsp;to&nbsp;BGI&nbsp;fonts,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drivers&nbsp;aren't&nbsp;needed&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;InitGraph(gd,gm,PathToDriver);
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;GraphResult&lt;&gt;grok&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;halt;&nbsp;.....&nbsp;{&nbsp;whatever&nbsp;you&nbsp;need&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;CloseGraph;&nbsp;{&nbsp;restores&nbsp;the&nbsp;old&nbsp;graphics&nbsp;mode&nbsp;}
+&nbsp;end.
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-262" name="x35-2590008.4">InstallUserDriver</a></h4><a 
+  name="dx35-259001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function InstallUserDriver (DriverPath : String;</span>
+<br class="newline"><span 
+class="cmtt-10">AutoDetectPtr: Pointer) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">InstallUserDriver </span>adds the device-driver <span 
+class="cmtt-10">DriverPath </span>to the list of .BGI  drivers.
+<span 
+class="cmtt-10">AutoDetectPtr </span>is a pointer to a possible auto-detect function.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">InstallUserFont </span>(<a 
+href="#x35-2600008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-263" name="x35-2600008.4">InstallUserFont</a></h4><a 
+  name="dx35-260001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function InstallUserFont (FontPath : String) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">InstallUserFont </span>adds the font in <span 
+class="cmtt-10">FontPath </span>to the list of fonts of the .BGI system.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">InstallUserDriver </span>(<a 
+href="#x35-2590008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-264" name="x35-2610008.4">Line</a></h4><a 
+  name="dx35-261001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Line (X1,Y1,X2,Y2 : Integer);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Line </span>draws a line starting from <span 
+class="cmtt-10">(X1,Y1 </span>to <span 
+class="cmtt-10">(X2,Y2)</span>, in the current line style and color. The
+current position is put to <span 
+class="cmtt-10">(X2,Y2)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LineRel </span>(<a 
+href="#x35-2620008.4">217<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">LineTo </span>(<a 
+href="#x35-2630008.4">217<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-265" name="x35-2620008.4">LineRel</a></h4><a 
+  name="dx35-262001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure LineRel (DX,DY : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">LineRel </span>draws a line starting from the current pointer position to the point<span 
+class="cmtt-10">(DX,DY</span>, <span 
+class="cmbx-10">relative</span>
+to the current position, in the current line style and color. The Current Position is set to the
+endpoint of the line.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Line </span>(<a 
+href="#x35-2610008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">LineTo </span>(<a 
+href="#x35-2630008.4">217<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-266" name="x35-2630008.4">LineTo</a></h4><a 
+  name="dx35-263001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure LineTo (DX,DY : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">LineTo </span>draws a line starting from the current pointer position to the point<span 
+class="cmtt-10">(DX,DY</span>, <span 
+class="cmbx-10">relative</span>
+to the current position, in the current line style and color. The Current position is set to the
+end of the line.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">LineRel </span>(<a 
+href="#x35-2620008.4">217<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">Line </span>(<a 
+href="#x35-2610008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-267" name="x35-2640008.4">MoveRel</a></h4><a 
+  name="dx35-264001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure MoveRel (DX,DY : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MoveRel </span>moves the pointer to the point <span 
+class="cmtt-10">(DX,DY)</span>, relative to the current pointer position
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">MoveTo </span>(<a 
+href="#x35-2650008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-268" name="x35-2650008.4">MoveTo</a></h4><a 
+  name="dx35-265001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure MoveTo (X,Y : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MoveTo </span>moves the pointer to the point <span 
+class="cmtt-10">(X,Y)</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">MoveRel </span>(<a 
+href="#x35-2640008.4">217<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-269" name="x35-2660008.4">OutText</a></h4><a 
+  name="dx35-266001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure OutText (Const TextString : String);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">OutText </span>puts <span 
+class="cmtt-10">TextString </span>on the screen, at the current pointer position, using the current
+font and text settings. The current position is moved to the end of the text.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">OutTextXY </span>(<a 
+href="#x35-2670008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-270" name="x35-2670008.4">OutTextXY</a></h4><a 
+  name="dx35-267001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure OutTextXY (X,Y : Integer; Const TextString : String);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">OutText </span>puts <span 
+class="cmtt-10">TextString </span>on the screen, at position <span 
+class="cmtt-10">(X,Y)</span>, using the current font and text
+settings. The current position is moved to the end of the text.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">OutText </span>(<a 
+href="#x35-2660008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-271" name="x35-2680008.4">PieSlice</a></h4><a 
+  name="dx35-268001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure PieSlice (X,Y : Integer;</span>
+<br class="newline"><span 
+class="cmtt-10">Start,Stop,Radius : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PieSlice </span>draws and fills a sector of a circle with center <span 
+class="cmtt-10">(X,Y) </span>and radius <span 
+class="cmtt-10">Radius</span>, starting
+at angle <span 
+class="cmtt-10">Start </span>and ending at angle <span 
+class="cmtt-10">Stop</span>.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Circle </span>(<a 
+href="#x35-2200008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Sector </span>(<a 
+href="#x35-2750008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-272" name="x35-2690008.4">PutImage</a></h4><a 
+  name="dx35-269001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure PutImage (X1,Y1 : Integer; Var Bitmap; How : word) ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">PutImage </span>Places the bitmap in <span 
+class="cmtt-10">Bitmap </span>on the screen at <span 
+class="cmtt-10">(X1,Y1)</span>. <span 
+class="cmtt-10">How </span>determines how the
+bitmap will be placed on the screen. Possible values are :
+    <ul class="itemize1">
+    <li class="itemize">CopyPut
+    </li>
+    <li class="itemize">XORPut
+    </li>
+    <li class="itemize">ORPut
+    </li>
+    <li class="itemize">AndPut
+    </li>
+    <li class="itemize">NotPut</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ImageSize </span>(<a 
+href="#x35-2570008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">GetImage </span>(<a 
+href="#x35-2390008.4">210<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-273" name="x35-2700008.4">PutPixel</a></h4><a 
+  name="dx35-270001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure PutPixel (X,Y : Integer; Color : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Puts a point at <span 
+class="cmtt-10">(X,Y) </span>using color <span 
+class="cmtt-10">Color</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPixel </span>(<a 
+href="#x35-2490008.4">212<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-274" name="x35-2710008.4">Rectangle</a></h4><a 
+  name="dx35-271001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Rectangle (X1,Y1,X2,Y2 : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Draws a rectangle with corners at <span 
+class="cmtt-10">(X1,Y1) </span>and <span 
+class="cmtt-10">(X2,Y2)</span>, using the current color and style.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Bar </span>(<a 
+href="#x35-2180008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Bar3D </span>(<a 
+href="#x35-2190008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-275" name="x35-2720008.4">RegisterBGIDriver</a></h4><a 
+  name="dx35-272001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function RegisterBGIDriver (Driver : Pointer) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Registers a user-defined BGI driver
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InstallUserDriver </span>(<a 
+href="#x35-2590008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">RegisterBGIFont </span>(<a 
+href="#x35-2730008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-276" name="x35-2730008.4">RegisterBGIFont</a></h4><a 
+  name="dx35-273001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function RegisterBGIFont (Font : Pointer) : Integer;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Registers a user-defined BGI driver
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InstallUserFont </span>(<a 
+href="#x35-2600008.4">216<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">RegisterBGIDriver </span>(<a 
+href="#x35-2720008.4">220<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-277" name="x35-2740008.4">RestoreCRTMode</a></h4><a 
+  name="dx35-274001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure RestoreCRTMode ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Restores the screen modus which was active before the graphical modus was started.
+<!--l. 1119--><p class="noindent">To get back to the graph mode you were last in, you can use <span 
+class="cmtt-10">SetGraphMode(GetGraphMode)</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-278" name="x35-2750008.4">Sector</a></h4><a 
+  name="dx35-275001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Sector (X,Y : Integer;</span>
+<br class="newline"><span 
+class="cmtt-10">Start,Stop,XRadius,YRadius : Word);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Sector </span>draws and fills a sector of an ellipse with center <span 
+class="cmtt-10">(X,Y) </span>and radii <span 
+class="cmtt-10">XRadius </span>and
+<span 
+class="cmtt-10">YRadius</span>, starting at angle <span 
+class="cmtt-10">Start </span>and ending at angle <span 
+class="cmtt-10">Stop</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Arc </span>(<a 
+href="#x35-2170008.4">204<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">Circle </span>(<a 
+href="#x35-2200008.4">205<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">PieSlice </span>(<a 
+href="#x35-2680008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-279" name="x35-2760008.4">SetActivePage</a></h4><a 
+  name="dx35-276001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetActivePage (Page : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets <span 
+class="cmtt-10">Page </span>as the active page for all graphical output.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-280" name="x35-2770008.4">SetAllPallette</a></h4><a 
+  name="dx35-277001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetAllPallette (Var Palette);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the current palette to <span 
+class="cmtt-10">Palette</span>. <span 
+class="cmtt-10">Palette </span>is an untyped variable, usually pointing to a
+record of type <span 
+class="cmtt-10">PaletteType</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetPalette </span>(<a 
+href="#x35-2470008.4">212<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-281" name="x35-2780008.4">SetAspectRatio</a></h4><a 
+  name="dx35-278001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetAspectRatio (Xasp,Yasp : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the aspect ratio of the current screen to <span 
+class="cmtt-10">Xasp/Yasp</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">GetAspectRatio </span>(<a 
+href="#x35-2310008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-282" name="x35-2790008.4">SetBkColor</a></h4><a 
+  name="dx35-279001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetBkColor (Color : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the background color to <span 
+class="cmtt-10">Color</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetBkColor </span>(<a 
+href="#x35-2320008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetColor </span>(<a 
+href="#x35-2800008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-283" name="x35-2800008.4">SetColor</a></h4><a 
+  name="dx35-280001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetColor (Color : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the foreground color to <span 
+class="cmtt-10">Color</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetColor </span>(<a 
+href="#x35-2330008.4">208<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetBkColor </span>(<a 
+href="#x35-2790008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-284" name="x35-2810008.4">SetFillPattern</a></h4><a 
+  name="dx35-281001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetFillPattern (FillPattern : FillPatternType,</span>
+<br class="newline"><span 
+class="cmtt-10">Color : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetFillPattern </span>sets the current fill-pattern to <span 
+class="cmtt-10">FillPattern</span>, and the filling color to <span 
+class="cmtt-10">Color</span>
+The pattern is an 8x8 raster, corresponding to the 64 bits in <span 
+class="cmtt-10">FillPattern</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetFillPattern </span>(<a 
+href="#x35-2360008.4">209<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetFillStyle </span>(<a 
+href="#x35-2820008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-285" name="x35-2820008.4">SetFillStyle</a></h4><a 
+  name="dx35-282001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetFillStyle (Pattern,Color : word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetFillStyle </span>sets the filling pattern and color to one of the predefined filling patterns.
+<span 
+class="cmtt-10">Pattern </span>can be one of the following predefined constants :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">EmptyFill  </span>Uses backgroundcolor.
+                                                                            
+
+                                                                            
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">SolidFill  </span>Uses filling color
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">LineFill  </span>Fills with horizontal lines.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">ltSlashFill </span>Fills with lines from left-under to top-right.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">SlashFill  </span>Idem as previous, thick lines.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">BkSlashFill </span>Fills with thick lines from left-Top to bottom-right.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">LtBkSlashFill </span>Idem as previous, normal lines.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">HatchFill </span>Fills with a hatch-like pattern.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">XHatchFill </span>Fills with a hatch pattern, rotated 45 degrees.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">InterLeaveFill</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">WideDotFill </span>Fills with dots, wide spacing.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">CloseDotFill </span>Fills with dots, narrow spacing.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">UserFill </span>Fills with a user-defined pattern.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetFillPattern </span>(<a 
+href="#x35-2810008.4">222<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-286" name="x35-2830008.4">SetGraphBufSize</a></h4><a 
+  name="dx35-283001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetGraphBufSize (BufSize : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetGraphBufSize </span>is a dummy function which does not do anything; it is no longer needed.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-287" name="x35-2840008.4">SetGraphMode</a></h4><a 
+  name="dx35-284001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetGraphMode (Mode : Integer);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetGraphMode </span>sets the graphical mode and clears the screen.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">InitGraph </span>(<a 
+href="#x35-2580008.4">215<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-288" name="x35-2850008.4">SetLineStyle</a></h4><a 
+  name="dx35-285001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetLineStyle (LineStyle,Pattern,Width : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetLineStyle </span>sets the drawing style for lines. You can specify a <span 
+class="cmtt-10">LineStyle </span>which is one
+of the following pre-defined constants:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">Solidln=0; </span>draws a solid line.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Dottedln=1; </span>Draws a dotted line.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Centerln=2; </span>draws a non-broken centered line.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">Dashedln=3; </span>draws a dashed line.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">UserBitln=4; </span>Draws a User-defined bit pattern.</li></ul>
+<!--l. 1295--><p class="noindent">If <span 
+class="cmtt-10">UserBitln </span>is specified then <span 
+class="cmtt-10">Pattern </span>contains the bit pattern. In all another cases, <span 
+class="cmtt-10">Pattern </span>is
+ignored. The parameter <span 
+class="cmtt-10">Width </span>indicates how thick the line should be. You can specify one of the
+following pre-defined constants:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">NormWidth=1</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">ThickWidth=3</span></li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetLineSettings </span>(<a 
+href="#x35-2400008.4">210<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-289" name="x35-2860008.4">SetPalette</a></h4><a 
+  name="dx35-286001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetPalette (ColorNr : Word; NewColor : ShortInt);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetPalette </span>changes the <span 
+class="cmtt-10">ColorNr</span>-th entry in the palette to <span 
+class="cmtt-10">NewColor</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetAllPallette </span>(<a 
+href="#x35-2770008.4">221<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetRGBPalette </span>(<a 
+href="#x35-2870008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-290" name="x35-2870008.4">SetRGBPalette</a></h4><a 
+  name="dx35-287001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetRGBPalette (ColorNr,Red,Green,Blue : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetRGBPalette </span>sets the <span 
+class="cmtt-10">ColorNr</span>-th entry in the palette to the color with RGB-values <span 
+class="cmtt-10">Red,</span>
+<span 
+class="cmtt-10">Green Blue</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetAllPallette </span>(<a 
+href="#x35-2770008.4">221<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">SetPalette </span>(<a 
+href="#x35-2860008.4">224<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-291" name="x35-2880008.4">SetTextJustify</a></h4><a 
+  name="dx35-288001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetTextJustify (Horizontal,Vertical : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetTextJustify </span>controls the placement of new text, relative to the (graphical) cursor
+position.  <span 
+class="cmtt-10">Horizontal  </span>controls  horizontal  placement,  and  can  be  one  of  the  following
+pre-defined constants:
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">LeftText=0; </span>Text is set left of the pointer.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">CenterText=1; </span>Text is set centered horizontally on the pointer.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">RightText=2; </span>Text is set to the right of the pointer.</li></ul>
+<!--l. 1352--><p class="noindent"><span 
+class="cmtt-10">Vertical </span>controls the vertical placement of the text, relative to the (graphical) cursor position. Its
+value can be one of the following pre-defined constants :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">BottomText=0; </span>Text is placed under the pointer.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">CenterText=1; </span>Text is placed centered vertically on the pointer.
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">TopText=2;</span>Text is placed above the pointer.</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">OutText </span>(<a 
+href="#x35-2660008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">OutTextXY </span>(<a 
+href="#x35-2670008.4">218<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-292" name="x35-2890008.4">SetTextStyle</a></h4><a 
+  name="dx35-289001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetTextStyle (Font,Direction,Magnitude : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetTextStyle </span>controls the style of text to be put on the screen. pre-defined constants for
+<span 
+class="cmtt-10">Font </span>are:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;DefaultFont&nbsp;&nbsp;&nbsp;=&nbsp;0;
+&nbsp;TriplexFont&nbsp;&nbsp;&nbsp;=&nbsp;1;
+&nbsp;SmallFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2;
+&nbsp;SansSerifFont&nbsp;=&nbsp;3;
+&nbsp;GothicFont&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;4;
+&nbsp;ScriptFont&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;5;
+&nbsp;SimpleFont&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;6;
+&nbsp;TSCRFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;7;
+&nbsp;LCOMFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8;
+&nbsp;EuroFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;9;
+&nbsp;BoldFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;10;
+</pre>
+</td></tr></table>Pre-defined constants for <span 
+class="cmtt-10">Direction </span>are :
+    <ul class="itemize1">
+    <li class="itemize"><span 
+class="cmtt-10">HorizDir=0;</span>
+    </li>
+    <li class="itemize"><span 
+class="cmtt-10">VertDir=1;</span></li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetTextSettings </span>(<a 
+href="#x35-2500008.4">213<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-293" name="x35-2900008.4">SetUserCharSize</a></h4><a 
+  name="dx35-290001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetUserCharSize (Xasp1,Xasp2,Yasp1,Yasp2 : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the width and height of vector-fonts. The horizontal size is given by <span 
+class="cmtt-10">Xasp1/Xasp2</span>, and
+the vertical size by <span 
+class="cmtt-10">Yasp1/Yasp2</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetTextStyle </span>(<a 
+href="#x35-2890008.4">225<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-294" name="x35-2910008.4">SetViewPort</a></h4><a 
+  name="dx35-291001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetViewPort (X1,Y1,X2,Y2 : Integer; Clip : Boolean);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sets the current graphical viewport (window) to the rectangle defined by the top-left corner
+<span 
+class="cmtt-10">(X1,Y1) </span>and the bottom-right corner <span 
+class="cmtt-10">(X2,Y2)</span>. If <span 
+class="cmtt-10">Clip </span>is true, anything drawn outside the
+viewport (window) will be clipped (i.e. not drawn). Coordinates specified after this call are
+relative to the top-left corner of the viewport.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GetViewSettings </span>(<a 
+href="#x35-2510008.4">213<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-295" name="x35-2920008.4">SetVisualPage</a></h4><a 
+  name="dx35-292001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetVisualPage (Page : Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetVisualPage </span>sets the video page to page number <span 
+class="cmtt-10">Page</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetActivePage </span>(<a 
+href="#x35-2760008.4">221<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-296" name="x35-2930008.4">SetWriteMode</a></h4><a 
+  name="dx35-293001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetWriteMode (Mode : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetWriteMode </span>controls the drawing of lines on the screen. It controls the binary operation
+used when drawing lines on the screen. <span 
+class="cmtt-10">Mode </span>can be one of the following pre-defined constants:
+    <ul class="itemize1">
+    <li class="itemize">CopyPut=0;
+    </li>
+    <li class="itemize">XORPut=1;</li></ul>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list">
+</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-297" name="x35-2940008.4">TextHeight</a></h4><a 
+  name="dx35-294001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TextHeight (S : String) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TextHeight </span>returns the height (in pixels) of the string <span 
+class="cmtt-10">S </span>in the current font and text-size.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextWidth </span>(<a 
+href="#x35-2950008.4">229<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-35-298" name="x35-2950008.4">TextWidth</a></h4><a 
+  name="dx35-295001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TextWidth (S : String) : Word;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TextHeight </span>returns the width (in pixels) of the string <span 
+class="cmtt-10">S </span>in the current font and text-size.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextHeight </span>(<a 
+href="#x35-2940008.4">228<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse23.htm" >next</a>] [<a 
+href="unitsse21.htm" >prev</a>] [<a 
+href="unitsse21.htm#tailunitsse21.htm" >prev-tail</a>] [<a 
+href="unitsse22.htm" >front</a>] [<a 
+href="unitsch8.htm#unitsse22.htm" >up</a>] </p></div><a 
+  name="tailunitsse22.htm"></a>   
+</body></html> 

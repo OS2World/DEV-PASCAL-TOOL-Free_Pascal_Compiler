@@ -1,0 +1,73 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>F.2 Before starting</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse75.htm" >next</a>] [<a 
+href="progse73.htm" >prev</a>] [<a 
+href="progse73.htm#tailprogse73.htm" >prev-tail</a>] [<a 
+href="#tailprogse74.htm">tail</a>] [<a 
+href="progap6.htm#progse74.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">F.2</span> <a 
+href="prog.htm#QQ2-261-289" name="x261-262000F.2">Before starting</a></h3>
+<!--l. 6468--><p class="noindent">To compile the compiler easily, it is best to keep the following directory structure (a base directory
+of <span 
+class="cmss-10">/pp/src </span>is supposed, but that may be different):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;/pp/src/Makefile
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/makefile.fpc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/rtl/linux
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/inc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/i386
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/compiler
+</pre>
+</td></tr></table>When the makefiles should be used, the above directory tree must be used.
+<!--l. 6482--><p class="noindent">The compiler and rtl source are zipped in such a way that when both are unzipped in the same
+directory (<span 
+class="cmss-10">/pp/src </span>in the above) the above directory tree results.
+<!--l. 6486--><p class="noindent">There are 2 ways to start compiling the compiler and RTL. Both ways must be used, depending on
+the situation. Usually, the RTL must be compiled first, before compiling the compiler, after which
+the compiler is compiled using the current compiler. In some special cases the compiler must be
+compiled first, with a previously compiled RTL.
+<!--l. 6492--><p class="noindent">How to decide which should be compiled first? In general, the answer is that the RTL should be
+compiled first. There are 2 exceptions to this rule:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x261-262002x1"></a>The first case is when some of the internal routines in the RTL have changed, or if new
+     internal routines appeared. Since the OLD compiler doesn&#8217;t know about these changed
+     internal routines, it will emit function calls that are based on the old compiled RTL,
+     and hence are not correct. Either the result will not link, or the binary will give errors.
+     </li>
+     <li class="enumerate"><a 
+  name="x261-262004x2"></a>The second case is when something is added to the RTL that the compiler needs to
+     know about (a new default assembler mechanism, for example).</li></ol>
+<!--l. 6504--><p class="noindent">How to know if one of these things has occurred? There is no way to know, except by mailing the
+Free Pascal team. When the compiler cannot be recompiled when first compiling the RTL, then try
+the other way.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse75.htm" >next</a>] [<a 
+href="progse73.htm" >prev</a>] [<a 
+href="progse73.htm#tailprogse73.htm" >prev-tail</a>] [<a 
+href="progse74.htm" >front</a>] [<a 
+href="progap6.htm#progse74.htm" >up</a>] </p></div><a 
+  name="tailprogse74.htm"></a>  
+</body></html> 

@@ -1,0 +1,806 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.4 TRect</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse51.htm" >next</a>] [<a 
+href="unitsse49.htm" >prev</a>] [<a 
+href="unitsse49.htm#tailunitsse49.htm" >prev-tail</a>] [<a 
+href="#tailunitsse50.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse50.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.4</span> <a 
+href="units.htm#QQ2-72-624" name="x72-61800017.4">TRect</a></h3>
+<!--l. 271--><p class="noindent">The <span 
+class="cmtt-10">TRect </span>object is declared as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;TRect&nbsp;=&nbsp;OBJECT
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A,&nbsp;B:&nbsp;TPoint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;Empty:&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;Equals&nbsp;(R:&nbsp;TRect):&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FUNCTION&nbsp;Contains&nbsp;(P:&nbsp;TPoint):&nbsp;Boolean;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Copy&nbsp;(R:&nbsp;TRect);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Union&nbsp;(R:&nbsp;TRect);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Intersect&nbsp;(R:&nbsp;TRect);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Move&nbsp;(ADX,&nbsp;ADY:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Grow&nbsp;(ADX,&nbsp;ADY:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROCEDURE&nbsp;Assign&nbsp;(XA,&nbsp;YA,&nbsp;XB,&nbsp;YB:&nbsp;Sw_Integer);
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-625" name="x72-61900017.4">TRect.Empty</a></h4><a 
+  name="dx72-619001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TRect.Empty: Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Empty </span>returns <span 
+class="cmtt-10">True </span>if the rectangle defined by the corner points <span 
+class="cmtt-10">A</span>, <span 
+class="cmtt-10">B </span>has zero or negative
+surface.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TRect.Equals </span>(<a 
+href="#x72-62000017.4">556<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">TRect.Contains </span>(<a 
+href="#x72-62100017.4">556<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 299--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 299--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Empty</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TPoint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">ARect.A</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=10;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=10;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">ARect.B</span>&nbsp;<span 
+class="cmtt-10">do</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=20;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=20;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Offset</span>&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">(5,5)</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">BRect.A</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=15;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=15;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">BRect.B</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=25;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=25;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Point</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">X:=15;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Y:=15;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('A</span>&nbsp;<span 
+class="cmtt-10">empty</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ARect.Empty);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('B</span>&nbsp;<span 
+class="cmtt-10">empty</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',BRect.Empty);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('A</span>&nbsp;<span 
+class="cmtt-10">Equals</span>&nbsp;<span 
+class="cmtt-10">B</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ARect.Equals(BRect));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('A</span>&nbsp;<span 
+class="cmtt-10">Contains</span>&nbsp;<span 
+class="cmtt-10">(15,15)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ARect.Contains(P));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-626" name="x72-62000017.4">TRect.Equals</a></h4><a 
+  name="dx72-620001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TRect.Equals (R: TRect): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Equals </span>returns <span 
+class="cmtt-10">True </span>if the rectangle has the same corner points <span 
+class="cmtt-10">A,B </span>as the rectangle R,
+and <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Empty </span>(<a 
+href="#x72-61900017.4">555<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Contains </span>(<a 
+href="#x72-62100017.4">556<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 314--><p class="noindent">For an example, see <span 
+class="cmss-10">TRect.Empty </span>(<a 
+href="#x72-61900017.4">555<!--tex4ht:ref: se:TRect--></a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-627" name="x72-62100017.4">TRect.Contains</a></h4><a 
+  name="dx72-621001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TRect.Contains (P: TPoint): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Contains </span>returns <span 
+class="cmtt-10">True </span>if the point <span 
+class="cmtt-10">P </span>is contained in the rectangle (including borders),
+<span 
+class="cmtt-10">False </span>otherwise.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Intersect </span>(<a 
+href="#x72-62400017.4">558<!--tex4ht:ref: se:TRect--></a>), <span 
+class="cmss-10">Equals </span>(<a 
+href="#x72-62000017.4">556<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-628" name="x72-62200017.4">TRect.Copy</a></h4><a 
+  name="dx72-622001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TRect.Copy (R: TRect);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Assigns the rectangle R to the object. After the call to <span 
+class="cmtt-10">Copy</span>, the rectangle R has been
+copied to the object that invoked <span 
+class="cmtt-10">Copy</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Assign </span>(<a 
+href="#x72-62700017.4">560<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 340--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 340--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Copy</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect,CRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Assign(10,10,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(15,15,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CRect.Copy(ARect);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Equals(CRect)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">equals</span>&nbsp;<span 
+class="cmtt-10">CRect')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">equal</span>&nbsp;<span 
+class="cmtt-10">CRect</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-629" name="x72-62300017.4">TRect.Union</a></h4><a 
+  name="dx72-623001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TRect.Union (R: TRect);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Union </span>enlarges the current rectangle so that it becomes the union of the current rectangle
+with the rectangle <span 
+class="cmtt-10">R</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Intersect </span>(<a 
+href="#x72-62400017.4">558<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 354--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 354--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex3;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Union</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect,CRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Assign(10,10,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(15,15,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">CRect</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">union</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">ARect</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">BRect</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CRect.Assign(10,10,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Calculate</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">explicitly}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Union(BRect);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Equals(CRect)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">equals</span>&nbsp;<span 
+class="cmtt-10">CRect')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">equal</span>&nbsp;<span 
+class="cmtt-10">CRect</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-630" name="x72-62400017.4">TRect.Intersect</a></h4><a 
+  name="dx72-624001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TRect.Intersect (R: TRect);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Intersect </span>makes the intersection of the current rectangle with <span 
+class="cmtt-10">R</span>. If the intersection is
+empty, then the rectangle is set to the empty rectangle at coordinate (0,0).
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Union </span>(<a 
+href="#x72-62300017.4">557<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 369--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex4.pp</span><HR/><div class="listinginput">
+<!--l. 369--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex4;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Intersect</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect,CRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Assign(10,10,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(15,15,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">CRect</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">intersection</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">ARect</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">BRect</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CRect.Assign(15,15,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Calculate</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">explicitly}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Intersect(BRect);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Equals(CRect)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">equals</span>&nbsp;<span 
+class="cmtt-10">CRect')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">equal</span>&nbsp;<span 
+class="cmtt-10">CRect</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(25,25,30,30);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Arect.Intersect(BRect);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Empty</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">empty');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-631" name="x72-62500017.4">TRect.Move</a></h4><a 
+  name="dx72-625001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TRect.Move (ADX, ADY: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Move </span>moves the current rectangle along a vector with components <span 
+class="cmtt-10">(ADX,ADY)</span>. It adds <span 
+class="cmtt-10">ADX</span>
+to the X-coordinate of both corner points, and <span 
+class="cmtt-10">ADY </span>to both end points.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Grow </span>(<a 
+href="#x72-62600017.4">560<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 384--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 384--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Move</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Assign(10,10,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Move(5,5);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Brect</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">where</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">ARect</span>&nbsp;<span 
+class="cmtt-10">is.</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(15,15,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Equals(BRect)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">equals</span>&nbsp;<span 
+class="cmtt-10">BRect')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">equal</span>&nbsp;<span 
+class="cmtt-10">BRect</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-632" name="x72-62600017.4">TRect.Grow</a></h4><a 
+  name="dx72-626001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TRect.Grow (ADX, ADY: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Grow </span>expands the rectangle with an amount <span 
+class="cmtt-10">ADX </span>in the <span 
+class="cmtt-10">X </span>direction (both on the left and
+right side of the rectangle, thus adding a length 2*ADX to the width of the rectangle), and
+an amount <span 
+class="cmtt-10">ADY </span>in the <span 
+class="cmtt-10">Y </span>direction (both on the top and the bottom side of the rectangle,
+adding a length 2*ADY to the height of the rectangle.
+<!--l. 396--><p class="noindent"><span 
+class="cmtt-10">ADX </span>and <span 
+class="cmtt-10">ADY </span>can be negative. If the resulting rectangle is empty, it is set to the empty
+rectangle at <span 
+class="cmtt-10">(0,0)</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Move </span>(<a 
+href="#x72-62500017.4">559<!--tex4ht:ref: se:TRect--></a>).</dd></dl>
+<!--l. 405--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 405--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex6;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">TRect.Grow</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">objects;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">ARect,BRect</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TRect;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Assign(10,10,20,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ARect.Grow(5,5);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Brect</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">where</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">ARect</span>&nbsp;<span 
+class="cmtt-10">is.</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">BRect.Assign(5,5,25,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ARect.Equals(BRect)</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">equals</span>&nbsp;<span 
+class="cmtt-10">BRect')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('ARect</span>&nbsp;<span 
+class="cmtt-10">does</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">equal</span>&nbsp;<span 
+class="cmtt-10">BRect</span>&nbsp;<span 
+class="cmtt-10">!');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-72-633" name="x72-62700017.4">TRect.Assign</a></h4><a 
+  name="dx72-627001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Trect.Assign (XA, YA, XB, YB: Sw</span>_<span 
+class="cmtt-10">Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Assign </span>sets the corner points of the rectangle to <span 
+class="cmtt-10">(XA,YA) </span>and <span 
+class="cmtt-10">(Xb,Yb)</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Copy </span>(<a 
+href="#x72-62200017.4">557<!--tex4ht:ref: se:TRect--></a>)</dd></dl>
+<!--l. 419--><p class="noindent">For an example, see <span 
+class="cmss-10">TRect.Copy </span>(<a 
+href="#x72-62200017.4">557<!--tex4ht:ref: se:TRect--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse51.htm" >next</a>] [<a 
+href="unitsse49.htm" >prev</a>] [<a 
+href="unitsse49.htm#tailunitsse49.htm" >prev-tail</a>] [<a 
+href="unitsse50.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse50.htm" >up</a>] </p></div><a 
+  name="tailunitsse50.htm"></a>   
+</body></html> 

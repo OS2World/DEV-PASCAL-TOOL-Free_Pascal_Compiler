@@ -1,0 +1,185 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Read</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu153.htm" >next</a>] [<a 
+href="refsu151.htm" >prev</a>] [<a 
+href="refsu151.htm#tailrefsu151.htm" >prev-tail</a>] [<a 
+href="#tailrefsu152.htm">tail</a>] [<a 
+href="refse64.htm#refsu152.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-237-258" name="x237-24300013.3">Read</a></h4><a 
+  name="dx237-243001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Read ([Var F : Any file type], V1 [, V2, ... , Vn]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Read </span>reads one or more values from a file <span 
+class="cmtt-10">F</span>, and stores the result in <span 
+class="cmtt-10">V1</span>, <span 
+class="cmtt-10">V2</span>, etc.; If no file <span 
+class="cmtt-10">F</span>
+is specified, then standard input is read. If <span 
+class="cmtt-10">F </span>is of type <span 
+class="cmtt-10">Text</span>, then the variables <span 
+class="cmtt-10">V1, V2 </span>etc.
+must be of type <span 
+class="cmtt-10">Char</span>, <span 
+class="cmtt-10">Integer</span>, <span 
+class="cmtt-10">Real</span>, <span 
+class="cmtt-10">String </span>or <span 
+class="cmtt-10">PChar</span>. If <span 
+class="cmtt-10">F </span>is a typed file, then each of the
+variables must be of the type specified in the declaration of <span 
+class="cmtt-10">F</span>. Untyped files are not allowed
+as an argument.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If no data is available, a run-time error is generated. This behavior can be controlled with
+the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$i</span><span 
+class="cmsy-10">} </span>compiler switch.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Readln </span>(<a 
+href="refsu153.htm#x238-24400013.3">553<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Blockread </span>(<a 
+href="refsu75.htm#x160-16600013.3">458<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Write </span>(<a 
+href="refsu185.htm#x270-27600013.3">589<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Blockwrite </span>(<a 
+href="refsu76.htm#x161-16700013.3">460<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 6680--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex50.pp</span><HR/><div class="listinginput">
+<!--l. 6680--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example50;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Read(Ln)</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Char;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">File</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign</span>&nbsp;<span 
+class="cmtt-10">(F,'ex50.pp');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Reset</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:='A';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('The</span>&nbsp;<span 
+class="cmtt-10">characters</span>&nbsp;<span 
+class="cmtt-10">before</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">first</span>&nbsp;<span 
+class="cmtt-10">space</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">ex50.pp</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">While</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Eof(f)</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">(C&lt;&gt;'</span>&nbsp;<span 
+class="cmtt-10">')</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Read</span>&nbsp;<span 
+class="cmtt-10">(F,C);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write</span>&nbsp;<span 
+class="cmtt-10">(C);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Close</span>&nbsp;<span 
+class="cmtt-10">(F);</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Type</span>&nbsp;<span 
+class="cmtt-10">some</span>&nbsp;<span 
+class="cmtt-10">words.</span>&nbsp;<span 
+class="cmtt-10">An</span>&nbsp;<span 
+class="cmtt-10">empty</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">ends</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">program.');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Readln</span>&nbsp;<span 
+class="cmtt-10">(S);</span>
+<br>   &nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">S='';</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu153.htm" >next</a>] [<a 
+href="refsu151.htm" >prev</a>] [<a 
+href="refsu151.htm#tailrefsu151.htm" >prev-tail</a>] [<a 
+href="refsu152.htm" >front</a>] [<a 
+href="refse64.htm#refsu152.htm" >up</a>] </p></div><a 
+  name="tailrefsu152.htm"></a>  
+</body></html> 

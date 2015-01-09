@@ -1,0 +1,54 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14.1 Types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse66.htm" >next</a>] [<a 
+href="#tailrefse65.htm">tail</a>] [<a 
+href="refch14.htm#refse65.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">14.1</span> <a 
+href="ref.htm#QQ2-273-294" name="x273-27900014.1">Types</a></h3>
+<!--l. 7348--><p class="noindent">The <span 
+class="cmss-10">objpas </span>unit redefines two integer types, for compatibity with Delphi:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;type
+&nbsp;&nbsp;&nbsp;smallint&nbsp;=&nbsp;system.integer;
+&nbsp;&nbsp;&nbsp;integer&nbsp;&nbsp;=&nbsp;system.longint;
+</pre>
+</td></tr></table>The resource string tables can be managed with a callback function which the user must provide:
+<span 
+class="cmtt-10">TResourceIterator</span>.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;TResourceIterator&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;(Name,Value&nbsp;:&nbsp;AnsiString;Hash&nbsp;:&nbsp;Longint):AnsiString;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse66.htm" >next</a>] [<a 
+href="refse65.htm" >front</a>] [<a 
+href="refch14.htm#refse65.htm" >up</a>] </p></div><a 
+  name="tailrefse65.htm"></a>  
+</body></html> 

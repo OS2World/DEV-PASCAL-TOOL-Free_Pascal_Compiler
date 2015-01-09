@@ -1,0 +1,101 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>20 The SOCKETS unit.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch21.htm" >next</a>] [<a 
+href="unitsch19.htm" >prev</a>] [<a 
+href="unitsch19.htm#tailunitsch19.htm" >prev-tail</a>] [<a 
+href="#tailunitsch20.htm">tail</a>] [<a 
+href="units.htm#unitsch20.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;20</span><br><a 
+href="units.htm#QQ2-93-762" name="x93-75600020">The SOCKETS unit.</a></h2>
+<!--l. 25--><p class="noindent">This chapter describes the SOCKETS unit for Free Pascal. it was written for <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>by Micha&euml;l
+Van Canneyt, and ported to <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>by Florian Kl&auml;mpfl. The chapter is divided in 2
+sections:
+     <ul class="itemize1">
+     <li class="itemize">The first section lists types, constants and variables from the interface part of the unit.
+     </li>
+     <li class="itemize">The second section describes the functions defined in the unit.</li></ul>
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">20.1 <a 
+href="unitsse69.htm#x94-75700020.1" name="QQ2-94-763">Types, Constants and variables : </a></span>
+<br>&nbsp;<span class="sectionToc">20.2 <a 
+href="unitsse70.htm#x95-75800020.2" name="QQ2-95-764">Functions and Procedures</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-75900020.2" name="QQ2-95-765">Accept</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76000020.2" name="QQ2-95-766">Accept</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76100020.2" name="QQ2-95-767">Accept</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76200020.2" name="QQ2-95-768">Accept</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76300020.2" name="QQ2-95-769">Bind</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76400020.2" name="QQ2-95-770">Bind</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76500020.2" name="QQ2-95-771">Connect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76600020.2" name="QQ2-95-772">Connect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76700020.2" name="QQ2-95-773">Connect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76800020.2" name="QQ2-95-774">Connect</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-76900020.2" name="QQ2-95-775">GetPeerName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77000020.2" name="QQ2-95-776">GetSocketName</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77100020.2" name="QQ2-95-777">GetSocketOptions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77200020.2" name="QQ2-95-778">Listen</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77300020.2" name="QQ2-95-779">Recv</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77400020.2" name="QQ2-95-780">Send</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77500020.2" name="QQ2-95-781">SetSocketOptions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77600020.2" name="QQ2-95-782">Shutdown</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77700020.2" name="QQ2-95-783">Sock2File</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77800020.2" name="QQ2-95-784">Sock2Text</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-77900020.2" name="QQ2-95-785">Socket</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-78000020.2" name="QQ2-95-786">SocketPair</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="unitsse70.htm#x95-78100020.2" name="QQ2-95-787">Str2UnixSockAddr</a></span>
+</div>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsch21.htm" >next</a>] [<a 
+href="unitsch19.htm" >prev</a>] [<a 
+href="unitsch19.htm#tailunitsch19.htm" >prev-tail</a>] [<a 
+href="unitsch20.htm" >front</a>] [<a 
+href="units.htm#unitsch20.htm" >up</a>] </p></div><a 
+  name="tailunitsch20.htm"></a>  
+</body></html> 

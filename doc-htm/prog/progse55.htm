@@ -1,0 +1,253 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A.3 The Header</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse56.htm" >next</a>] [<a 
+href="progse54.htm" >prev</a>] [<a 
+href="progse54.htm#tailprogse54.htm" >prev-tail</a>] [<a 
+href="#tailprogse55.htm">tail</a>] [<a 
+href="progap1.htm#progse55.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">A.3</span> <a 
+href="prog.htm#QQ2-213-236" name="x213-214000A.3">The Header</a></h3>
+<!--l. 5301--><p class="noindent">The header consists of a record (<span 
+class="cmtt-10">tppuheader</span>) containing several pieces of information for
+recompilation. This is shown in table (<a 
+href="#x213-2140011">A.1<!--tex4ht:ref: tab:PPUHeader--></a>). The header is always stored in little-endian
+format.
+                                                                            
+
+                                                                            
+<a 
+  name="x213-2140011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;A.1: </td><td  
+class="content">PPU Header</td></tr></table></div><!--tex4ht:label?: x213-2140011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-21-" ><colgroup id="TBL-21-1g"><col 
+id="TBL-21-1"></colgroup><colgroup id="TBL-21-2g"><col 
+id="TBL-21-2"></colgroup><colgroup id="TBL-21-3g"><col 
+id="TBL-21-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-21-1-"><td  align="left" nowrap="nowrap" id="TBL-21-1-1"  
+class="td11"> offset</td><td  align="center" nowrap="nowrap" id="TBL-21-1-2"  
+class="td11"> size (bytes)</td><td  align="left" nowrap="nowrap" id="TBL-21-1-3"  
+class="td11"> description                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-21-2-"><td  align="left" nowrap="nowrap" id="TBL-21-2-1"  
+class="td11"> 00h  </td><td  align="center" nowrap="nowrap" id="TBL-21-2-2"  
+class="td11">        3       </td><td  align="left" nowrap="nowrap" id="TBL-21-2-3"  
+class="td11"> Magic : &#8217;PPU&#8217; in ASCII                                                </td>
+</tr><tr  
+valign="baseline" id="TBL-21-3-"><td  align="left" nowrap="nowrap" id="TBL-21-3-1"  
+class="td11"> 03h  </td><td  align="center" nowrap="nowrap" id="TBL-21-3-2"  
+class="td11">        3       </td><td  align="left" nowrap="nowrap" id="TBL-21-3-3"  
+class="td11"> PPU File format version (e.g : &#8217;021&#8217; in ASCII)                   </td>
+</tr><tr  
+valign="baseline" id="TBL-21-4-"><td  align="left" nowrap="nowrap" id="TBL-21-4-1"  
+class="td11"> 06h  </td><td  align="center" nowrap="nowrap" id="TBL-21-4-2"  
+class="td11">        2       </td><td  align="left" nowrap="nowrap" id="TBL-21-4-3"  
+class="td11"> Compiler version used to compile this module (major,minor)</td>
+</tr><tr  
+valign="baseline" id="TBL-21-5-"><td  align="left" nowrap="nowrap" id="TBL-21-5-1"  
+class="td11"> 08h  </td><td  align="center" nowrap="nowrap" id="TBL-21-5-2"  
+class="td11">        2       </td><td  align="left" nowrap="nowrap" id="TBL-21-5-3"  
+class="td11"> Code module target processor                                        </td>
+</tr><tr  
+valign="baseline" id="TBL-21-6-"><td  align="left" nowrap="nowrap" id="TBL-21-6-1"  
+class="td11"> 0Ah  </td><td  align="center" nowrap="nowrap" id="TBL-21-6-2"  
+class="td11">        2       </td><td  align="left" nowrap="nowrap" id="TBL-21-6-3"  
+class="td11"> Code module target operating system                              </td>
+</tr><tr  
+valign="baseline" id="TBL-21-7-"><td  align="left" nowrap="nowrap" id="TBL-21-7-1"  
+class="td11"> 0Ch  </td><td  align="center" nowrap="nowrap" id="TBL-21-7-2"  
+class="td11">        4       </td><td  align="left" nowrap="nowrap" id="TBL-21-7-3"  
+class="td11"> Flags for PPU file                                                        </td>
+</tr><tr  
+valign="baseline" id="TBL-21-8-"><td  align="left" nowrap="nowrap" id="TBL-21-8-1"  
+class="td11"> 10h  </td><td  align="center" nowrap="nowrap" id="TBL-21-8-2"  
+class="td11">        4       </td><td  align="left" nowrap="nowrap" id="TBL-21-8-3"  
+class="td11"> Size of PPU file (without header)                                    </td>
+</tr><tr  
+valign="baseline" id="TBL-21-9-"><td  align="left" nowrap="nowrap" id="TBL-21-9-1"  
+class="td11"> 14h  </td><td  align="center" nowrap="nowrap" id="TBL-21-9-2"  
+class="td11">        4       </td><td  align="left" nowrap="nowrap" id="TBL-21-9-3"  
+class="td11"> CRC-32 of the entire PPU file                                        </td>
+</tr><tr  
+valign="baseline" id="TBL-21-10-"><td  align="left" nowrap="nowrap" id="TBL-21-10-1"  
+class="td11"> 18h  </td><td  align="center" nowrap="nowrap" id="TBL-21-10-2"  
+class="td11">        4       </td><td  align="left" nowrap="nowrap" id="TBL-21-10-3"  
+class="td11"> CRC-32 of partial data of PPU file (public data mostly)      </td>
+</tr><tr  
+valign="baseline" id="TBL-21-11-"><td  align="left" nowrap="nowrap" id="TBL-21-11-1"  
+class="td11"> 1Ch  </td><td  align="center" nowrap="nowrap" id="TBL-21-11-2"  
+class="td11">        8       </td><td  align="left" nowrap="nowrap" id="TBL-21-11-3"  
+class="td11"> Reserved                                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-21-12-"><td  align="left" nowrap="nowrap" id="TBL-21-12-1"  
+class="td11">        </td>
+</tr><!--|l|c|l|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The header is already read by the <span 
+class="cmtt-10">ppufile.openfile </span>command. You can access all fields using
+<span 
+class="cmtt-10">ppufile.header </span>which holds the current header record.
+                                                                            
+
+                                                                            
+<a 
+  name="x213-2140022"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;A.2: </td><td  
+class="content">PPU CPU Field values</td></tr></table></div><!--tex4ht:label?: x213-2140022-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-22-" ><colgroup id="TBL-22-1g"><col 
+id="TBL-22-1"><col 
+id="TBL-22-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-22-1-"><td  align="left" nowrap="nowrap" id="TBL-22-1-1"  
+class="td11"> value</td><td  align="left" nowrap="nowrap" id="TBL-22-1-2"  
+class="td11"> description                         </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-22-2-"><td  align="left" nowrap="nowrap" id="TBL-22-2-1"  
+class="td11"> 0     </td><td  align="left" nowrap="nowrap" id="TBL-22-2-2"  
+class="td11"> unknown                            </td>
+</tr><tr  
+valign="baseline" id="TBL-22-3-"><td  align="left" nowrap="nowrap" id="TBL-22-3-1"  
+class="td11"> 1     </td><td  align="left" nowrap="nowrap" id="TBL-22-3-2"  
+class="td11"> Intel 80x86 or compatible      </td>
+</tr><tr  
+valign="baseline" id="TBL-22-4-"><td  align="left" nowrap="nowrap" id="TBL-22-4-1"  
+class="td11"> 2     </td><td  align="left" nowrap="nowrap" id="TBL-22-4-2"  
+class="td11"> Motorola 680x0 or compatible</td>
+</tr><tr  
+valign="baseline" id="TBL-22-5-"><td  align="left" nowrap="nowrap" id="TBL-22-5-1"  
+class="td11"> 3     </td><td  align="left" nowrap="nowrap" id="TBL-22-5-2"  
+class="td11"> Alpha AXP or compatible     </td>
+</tr><tr  
+valign="baseline" id="TBL-22-6-"><td  align="left" nowrap="nowrap" id="TBL-22-6-1"  
+class="td11"> 4     </td><td  align="left" nowrap="nowrap" id="TBL-22-6-2"  
+class="td11"> PowerPC or compatible        </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-22-7-"><td  align="left" nowrap="nowrap" id="TBL-22-7-1"  
+class="td11">        </td>
+</tr><!--|ll|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+Some of the possible flags in the header, are described in table (<a 
+href="#x213-2140033">A.3<!--tex4ht:ref: tab:PPUHeaderFlags--></a>). Not all the flags are
+described, for more information, read the source code of <span 
+class="cmss-10">ppu.pas</span>.
+                                                                            
+
+                                                                            
+<a 
+  name="x213-2140033"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;A.3: </td><td  
+class="content">PPU Header Flag values</td></tr></table></div><!--tex4ht:label?: x213-2140033-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-23-" ><colgroup id="TBL-23-1g"><col 
+id="TBL-23-1"><col 
+id="TBL-23-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-23-1-"><td  align="left" nowrap="nowrap" id="TBL-23-1-1"  
+class="td11"> Symbolic bit flag name</td><td  align="left" nowrap="nowrap" id="TBL-23-1-2"  
+class="td11"> Description                                                                     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-23-2-"><td  align="left" nowrap="nowrap" id="TBL-23-2-1"  
+class="td11"> uf_init                      </td><td  align="left" nowrap="nowrap" id="TBL-23-2-2"  
+class="td11"> Module has an initialization (either Delphi or TP style) section.</td>
+</tr><tr  
+valign="baseline" id="TBL-23-3-"><td  align="left" nowrap="nowrap" id="TBL-23-3-1"  
+class="td11"> uf_finalize                 </td><td  align="left" nowrap="nowrap" id="TBL-23-3-2"  
+class="td11"> Module has a finalization section.                                        </td>
+</tr><tr  
+valign="baseline" id="TBL-23-4-"><td  align="left" nowrap="nowrap" id="TBL-23-4-1"  
+class="td11"> uf_big_endian             </td><td  align="left" nowrap="nowrap" id="TBL-23-4-2"  
+class="td11"> All the data stored in the chunks is in big-endian format.         </td>
+</tr><tr  
+valign="baseline" id="TBL-23-5-"><td  align="left" nowrap="nowrap" id="TBL-23-5-1"  
+class="td11"> uf_has_browser           </td><td  align="left" nowrap="nowrap" id="TBL-23-5-2"  
+class="td11"> Unit contains symbol browser information.                            </td>
+</tr><tr  
+valign="baseline" id="TBL-23-6-"><td  align="left" nowrap="nowrap" id="TBL-23-6-1"  
+class="td11"> uf_smart_linked          </td><td  align="left" nowrap="nowrap" id="TBL-23-6-2"  
+class="td11"> The code module has been smartlinked.                                </td>
+</tr><tr  
+valign="baseline" id="TBL-23-7-"><td  align="left" nowrap="nowrap" id="TBL-23-7-1"  
+class="td11"> uf_static_linked          </td><td  align="left" nowrap="nowrap" id="TBL-23-7-2"  
+class="td11"> The code is statically linked.                                              </td>
+</tr><tr  
+valign="baseline" id="TBL-23-8-"><td  align="left" nowrap="nowrap" id="TBL-23-8-1"  
+class="td11"> uf_has_resources         </td><td  align="left" nowrap="nowrap" id="TBL-23-8-2"  
+class="td11"> Unit has resource section.                                                  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-23-9-"><td  align="left" nowrap="nowrap" id="TBL-23-9-1"  
+class="td11">                               </td>
+</tr><!--|ll|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse56.htm" >next</a>] [<a 
+href="progse54.htm" >prev</a>] [<a 
+href="progse54.htm#tailprogse54.htm" >prev-tail</a>] [<a 
+href="progse55.htm" >front</a>] [<a 
+href="progap1.htm#progse55.htm" >up</a>] </p></div><a 
+  name="tailprogse55.htm"></a>  
+</body></html> 

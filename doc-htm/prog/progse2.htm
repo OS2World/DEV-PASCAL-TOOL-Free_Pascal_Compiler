@@ -1,0 +1,188 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1 Local directives</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse3.htm" >next</a>] [<a 
+href="#tailprogse2.htm">tail</a>] [<a 
+href="progch1.htm#progse2.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.1</span> <a 
+href="prog.htm#QQ2-7-5" name="x7-50001.1">Local directives</a></h3>
+<!--l. 106--><p class="noindent">Local directives can occur more than once in a unit or program, If they have a command-line
+counterpart, the command-line argument is restored as the default for each compiled file. The local
+directives influence the compiler&#8217;s behaviour from the moment they&#8217;re encountered until the
+moment another switch annihilates their behaviour, or the end of the current unit or program is
+reached.
+<div class="subsectionTOCS">
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu1.htm#x8-60001.1" name="QQ2-8-6">$A or $ALIGN : Align Data</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu2.htm#x9-70001.1" name="QQ2-9-7">$ASMMODE : Assembler mode (Intel 80x86 only)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu3.htm#x10-80001.1" name="QQ2-10-8">$B or $BOOLEVAL : Complete boolean evaluation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu4.htm#x11-90001.1" name="QQ2-11-9">$C or $ASSERTIONS : Assertion support</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu5.htm#x12-100001.1" name="QQ2-12-10">$DEFINE : Define a symbol</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu6.htm#x13-110001.1" name="QQ2-13-11">$ELSE : Switch conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu7.htm#x14-120001.1" name="QQ2-14-12">$ENDIF : End conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu8.htm#x15-130001.1" name="QQ2-15-13">$ERROR : Generate error message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu9.htm#x16-140001.1" name="QQ2-16-14">$F : Far or near functions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu10.htm#x17-150001.1" name="QQ2-17-15">$FATAL : Generate fatal error message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu11.htm#x18-160001.1" name="QQ2-18-16">$GOTO : Support Goto and Label</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu12.htm#x19-170001.1" name="QQ2-19-17">$H or $LONGSTRINGS : Use AnsiStrings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu13.htm#x20-180001.1" name="QQ2-20-18">$HINT : Generate hint message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu14.htm#x21-190001.1" name="QQ2-21-19">$HINTS : Emit hints</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu15.htm#x22-200001.1" name="QQ2-22-20">$IF : Start conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu16.htm#x23-210001.1" name="QQ2-23-21">$IFDEF Name : Start conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu17.htm#x24-220001.1" name="QQ2-24-22">$IFNDEF : Start conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu18.htm#x25-230001.1" name="QQ2-25-23">$IFOPT : Start conditional compilation</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu19.htm#x26-240001.1" name="QQ2-26-24">$INFO : Generate info message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu20.htm#x27-250001.1" name="QQ2-27-25">$INLINE : Allow inline code.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu21.htm#x28-260001.1" name="QQ2-28-26">$I or $IOCHECKS : Input/Output checking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu22.htm#x29-270001.1" name="QQ2-29-27">$I or $INCLUDE : Include file </a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu23.htm#x30-280001.1" name="QQ2-30-28">$I or $INCLUDE : Include compiler info</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu24.htm#x31-290001.1" name="QQ2-31-29">$I386__ XXX : Specify assembler format (Intel 80x86 only)</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu25.htm#x32-300001.1" name="QQ2-32-30">$L or $LINK : Link object file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu26.htm#x33-310001.1" name="QQ2-33-31">$LINKLIB : Link to a library</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu27.htm#x34-320001.1" name="QQ2-34-32">$M or $TYPEINFO : Generate type info</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu28.htm#x35-330001.1" name="QQ2-35-33">$MACRO : Allow use of macros.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu29.htm#x36-340001.1" name="QQ2-36-34">$MAXFPUREGISTERS : Maximum number of FPU registers for variables
+(Intel 80x86 only)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu30.htm#x37-350001.1" name="QQ2-37-35">$MESSAGE : Generate info message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu31.htm#x38-360001.1" name="QQ2-38-36">$MMX : Intel MMX support (Intel 80x86 only)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu32.htm#x39-370001.1" name="QQ2-39-37">$NOTE : Generate note message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu33.htm#x40-380001.1" name="QQ2-40-38">$NOTES : Emit notes</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu34.htm#x41-390001.1" name="QQ2-41-39">$OUTPUT__ FORMAT : Specify the output format</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu35.htm#x42-400001.1" name="QQ2-42-41">$P or $OPENSTRINGS : Use open strings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu36.htm#x43-410001.1" name="QQ2-43-42">$PACKENUM : Minimum enumeration type size</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu37.htm#x44-420001.1" name="QQ2-44-43">$PACKRECORDS : Alignment of record elements</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu38.htm#x45-430001.1" name="QQ2-45-44">$Q $OVERFLOWCHECKS: Overflow checking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu39.htm#x46-440001.1" name="QQ2-46-45">$R or $RANGECHECKS : Range checking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu40.htm#x47-450001.1" name="QQ2-47-46">$SATURATION : Saturation operations (Intel 80x86 only)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu41.htm#x48-460001.1" name="QQ2-48-47">$SMARTLINK : Use smartlinking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu42.htm#x49-470001.1" name="QQ2-49-48">$STATIC : Allow use of Static keyword.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu43.htm#x50-480001.1" name="QQ2-50-49">$STOP : Generate fatal error message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu44.htm#x51-490001.1" name="QQ2-51-50">$T or $TYPEDADDRESS : Typed address operator (@)</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu45.htm#x52-500001.1" name="QQ2-52-51">$UNDEF : Undefine a symbol</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu46.htm#x53-510001.1" name="QQ2-53-52">$V or $VARSTRINGCHECKS : Var-string checking</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu47.htm#x54-520001.1" name="QQ2-54-53">$WAIT : Wait for enter key press</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu48.htm#x55-530001.1" name="QQ2-55-54">$WARNING : Generate warning message</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu49.htm#x56-540001.1" name="QQ2-56-55">$WARNINGS : Emit warnings</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu50.htm#x57-550001.1" name="QQ2-57-56">$X or $EXTENDEDSYNTAX : Extended syntax</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse3.htm" >next</a>] [<a 
+href="progse2.htm" >front</a>] [<a 
+href="progch1.htm#progse2.htm" >up</a>] </p></div><a 
+  name="tailprogse2.htm"></a>  
+</body></html> 

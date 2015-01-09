@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.2 Comments</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse3.htm" >next</a>] [<a 
+href="refse1.htm" >prev</a>] [<a 
+href="refse1.htm#tailrefse1.htm" >prev-tail</a>] [<a 
+href="#tailrefse2.htm">tail</a>] [<a 
+href="refch1.htm#refse2.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.2</span> <a 
+href="ref.htm#QQ2-10-9" name="x10-90001.2">Comments</a></h3>
+<!--l. 170--><p class="noindent">Free Pascal supports the use of nested comments. The following constructs are valid
+comments:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;(*&nbsp;This&nbsp;is&nbsp;an&nbsp;old&nbsp;style&nbsp;comment&nbsp;*)
+&nbsp;{&nbsp;&nbsp;This&nbsp;is&nbsp;a&nbsp;Turbo&nbsp;Pascal&nbsp;comment&nbsp;}
+&nbsp;//&nbsp;This&nbsp;is&nbsp;a&nbsp;Delphi&nbsp;comment.&nbsp;All&nbsp;is&nbsp;ignored&nbsp;till&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;line.
+</pre>
+</td></tr></table>The following are valid ways of nesting comments:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{&nbsp;Comment&nbsp;1&nbsp;(*&nbsp;comment&nbsp;2&nbsp;*)&nbsp;}
+&nbsp;(*&nbsp;Comment&nbsp;1&nbsp;{&nbsp;comment&nbsp;2&nbsp;}&nbsp;*)
+&nbsp;{&nbsp;comment&nbsp;1&nbsp;//&nbsp;Comment&nbsp;2&nbsp;}
+&nbsp;(*&nbsp;comment&nbsp;1&nbsp;//&nbsp;Comment&nbsp;2&nbsp;*)
+&nbsp;//&nbsp;comment&nbsp;1&nbsp;(*&nbsp;comment&nbsp;2&nbsp;*)
+&nbsp;//&nbsp;comment&nbsp;1&nbsp;{&nbsp;comment&nbsp;2&nbsp;}
+</pre>
+</td></tr></table>The last two comments <span 
+class="cmti-10">must </span>be on one line. The following two will give errors:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;//&nbsp;Valid&nbsp;comment&nbsp;{&nbsp;No&nbsp;longer&nbsp;valid&nbsp;comment&nbsp;!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+</pre>
+</td></tr></table>and
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;//&nbsp;Valid&nbsp;comment&nbsp;(*&nbsp;No&nbsp;longer&nbsp;valid&nbsp;comment&nbsp;!!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*)
+</pre>
+</td></tr></table>The compiler will react with a &#8217;invalid character&#8217; error when it encounters such constructs,
+regardless of the <span 
+class="cmtt-10">-So </span>switch.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse3.htm" >next</a>] [<a 
+href="refse1.htm" >prev</a>] [<a 
+href="refse1.htm#tailrefse1.htm" >prev-tail</a>] [<a 
+href="refse2.htm" >front</a>] [<a 
+href="refch1.htm#refse2.htm" >up</a>] </p></div><a 
+  name="tailrefse2.htm"></a>  
+</body></html> 

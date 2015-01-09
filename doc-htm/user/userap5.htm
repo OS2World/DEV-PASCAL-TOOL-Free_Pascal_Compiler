@@ -1,0 +1,127 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E The Floating Point Coprocessor emulator</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap6.htm" >next</a>] [<a 
+href="userap4.htm" >prev</a>] [<a 
+href="userap4.htm#tailuserap4.htm" >prev-tail</a>] [<a 
+href="#tailuserap5.htm">tail</a>] [<a 
+href="user.htm#userap5.htm" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">Appendix&nbsp;E</span><br><a 
+href="user.htm#QQ2-93-234" name="x93-183000E">The Floating Point Coprocessor emulator</a></h2>
+<!--l. 3483--><p class="noindent">In this appendix we note some caveats when using the floating point emulator on GO32V2
+systems. Under GO32V1 systems, all is as described in the installation section.
+<!--l. 3487--><p class="noindent"><span 
+class="cmti-10">Q: I don&#8217;t have an 80387. How do I compile and run floating point programs under</span>
+<span 
+class="cmti-10">GO32V2?</span>
+<!--l. 3490--><p class="noindent"><span 
+class="cmti-10">Q: What shall I install on a target machine which lacks hardware floating-point support?</span>
+<!--l. 3494--><p class="noindent"><span 
+class="cmti-10">A : </span>Programs which use floating point computations and could be run on machines
+without an 80387 should be allowed to dynamically load the <span 
+class="cmss-10">emu387.dxe </span>file at run-time
+if needed. To do this you must link the <span 
+class="cmtt-10">emu387 </span>unit to your exectuable program, for
+example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program&nbsp;MyFloat;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uses&nbsp;emu387;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r:&nbsp;real;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r:=1.0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WriteLn(r);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.
+</pre>
+</td></tr></table>
+<!--l. 3514--><p class="noindent"><span 
+class="cmtt-10">Emu387 </span>takes care of loading the dynamic emulation point library.
+<!--l. 3516--><p class="noindent">You should always add emulation when you distribute floating-point programs.
+<!--l. 3519--><p class="noindent">A few users reported that the emulation won&#8217;t work for them unless they explicitly tell <span 
+class="cmtt-10">DJGPP </span>there
+is no <span 
+class="cmtt-10">x87 </span>hardware, like this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;387=N
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;emu387=c:/djgpp/bin/emu387.dxe
+</pre>
+</td></tr></table>
+<!--l. 3527--><p class="noindent">There is an alternative FP emulator called WMEMU. It mimics a real coprocessor more
+closely.
+<!--l. 3530--><p class="noindent"><span 
+class="cmti-10">WARNING: </span>We strongly suggest that you use WMEMU as FPU emulator, since <span 
+class="cmss-10">emu387.dxe</span>
+does not emulate all the instructions which are used by the Run-Time Libary such as
+<span 
+class="cmtt-10">FWAIT</span>.
+<!--l. 3535--><p class="noindent"><span 
+class="cmti-10">Q: I have an 80387 emulator installed in my AUTOEXEC.BAT, but DJGPP-compiled floating</span>
+<span 
+class="cmti-10">point programs still doesn&#8217;t work. Why?</span>
+<!--l. 3540--><p class="noindent"><span 
+class="cmti-10">A : </span>DJGPP switches the CPU to protected mode, and the information needed to emulate the
+80387 is different. Not to mention that the exceptions never get to the real-mode handler. You
+must use emulators which are designed for DJGPP. Apart of emu387 and WMEMU, the only other
+emulator known to work with DJGPP is Q87 from QuickWare. Q87 is shareware and is available
+from the QuickWare Web site.
+<!--l. 3548--><p class="noindent"><span 
+class="cmti-10">Q: I run DJGPP in an </span><span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span><span 
+class="cmti-10">DOS box, and I&#8217;m told that </span><span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span><span 
+class="cmti-10">will install its own emulator library</span>
+<span 
+class="cmti-10">if the CPU has no FPU, and will transparently execute FPU instructions. So why won&#8217;t DJGPP</span>
+<span 
+class="cmti-10">run floating-point code under </span><span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span><span 
+class="cmti-10">on my machine?</span>
+<!--l. 3554--><p class="noindent"><span 
+class="cmti-10">A </span>: <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>installs an emulator for native <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>images, but does not provide FPU emulation for
+DOS sessions.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userap6.htm" >next</a>] [<a 
+href="userap4.htm" >prev</a>] [<a 
+href="userap4.htm#tailuserap4.htm" >prev-tail</a>] [<a 
+href="userap5.htm" >front</a>] [<a 
+href="user.htm#userap5.htm" >up</a>] </p></div><a 
+  name="tailuserap5.htm"></a>  
+</body></html> 

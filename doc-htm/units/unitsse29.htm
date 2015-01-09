@@ -1,0 +1,2313 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.2 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse28.htm" >prev</a>] [<a 
+href="unitsse28.htm#tailunitsse28.htm" >prev-tail</a>] [<a 
+href="#tailunitsse29.htm">tail</a>] [<a 
+href="unitsch10.htm#unitsse29.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.2</span> <a 
+href="units.htm#QQ2-44-317" name="x44-31400010.2">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-318" name="x44-31500010.2">ftok</a></h4><a 
+  name="dx44-315001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ftok (Path : String; ID : char) : TKey;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ftok </span>returns a key that can be used in a <span 
+class="cmss-10">semget </span>(<a 
+href="#x44-32000010.2">270<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">shmget </span>(<a 
+href="#x44-32300010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>) or <span 
+class="cmss-10">msgget </span>(<a 
+href="#x44-31600010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>) call to
+access a new or existing IPC resource.
+<!--l. 296--><p class="noindent"><span 
+class="cmtt-10">Path </span>is the name of a file in the file system, <span 
+class="cmtt-10">ID </span>is a character of your choice. The ftok call
+does the same as it&#8217;s C couterpart, so a pascal program and a C program will access the
+same resource if they use the same <span 
+class="cmtt-10">Path </span>and <span 
+class="cmtt-10">ID</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">ftok </span>returns -1 if the file in <span 
+class="cmtt-10">Path </span>doesn&#8217;t exist.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">semget </span>(<a 
+href="#x44-32000010.2">270<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">shmget </span>(<a 
+href="#x44-32300010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">msgget </span>(<a 
+href="#x44-31600010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 306--><p class="noindent">For an example, see <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">semctl </span>(<a 
+href="#x44-32200010.2">272<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmctl </span>(<a 
+href="#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-319" name="x44-31600010.2">msgget</a></h4><a 
+  name="dx44-316001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function msgget(key: TKey; msgflg:longint):longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">msgget </span>returns the ID of the message queue described by <span 
+class="cmtt-10">key</span>. Depending on the flags in
+<span 
+class="cmtt-10">msgflg</span>, a new queue is created.
+<!--l. 315--><p class="noindent"><span 
+class="cmtt-10">msgflg </span>can have one or more of the following values (combined by ORs):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">CREAT</span></dt><dd 
+class="description">The queue is created if it doesn&#8217;t already exist.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">EXCL</span></dt><dd 
+class="description">If used in combination with <span 
+class="cmtt-10">IPC</span>_<span 
+class="cmtt-10">CREAT</span>, causes the call to fail if the queue
+    already exists. It cannot be used by itself.</dd></dl>
+<!--l. 321--><p class="noindent">Optionally, the flags can be <span 
+class="cmtt-10">OR</span>ed with a permission mode, which is the same mode that can be
+used in the file system.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, -1 is returned, and <span 
+class="cmtt-10">IPCError </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ftok </span>(<a 
+href="#x44-31500010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">msgsnd </span>(<a 
+href="#x44-31700010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgrcv </span>(<a 
+href="#x44-31800010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmtt-10">semget </span>(2) </dd></dl>
+<!--l. 329--><p class="noindent">For an example, see <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-320" name="x44-31700010.2">msgsnd</a></h4><a 
+  name="dx44-317001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function msgsnd(msqid:longint; msgp: PMSGBuf; msgsz: longint;</span>
+<span 
+class="cmtt-10">msgflg:longint): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">msgsend </span>sends a message to a message queue with ID <span 
+class="cmtt-10">msqid</span>. <span 
+class="cmtt-10">msgp </span>is a pointer to a message
+buffer, that should be based on the <span 
+class="cmtt-10">TMsgBuf </span>type. <span 
+class="cmtt-10">msgsiz </span>is the size of the message (NOT
+of the message buffer record !)
+<!--l. 340--><p class="noindent">The <span 
+class="cmtt-10">msgflg </span>can have a combination of the following values (ORed together):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">No special meaning. The message will be written to the queue. If the queue is full, then the
+    process is blocked.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">NOWAIT</span></dt><dd 
+class="description">If  the  queue  is  full,  then  no  message  is  written,  and  the  call  returns
+    immediatly.</dd></dl>
+<!--l. 349--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the message was sent successfully, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error, the call returns <span 
+class="cmtt-10">False</span>, and <span 
+class="cmtt-10">IPCerror </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">msgget </span>(<a 
+href="#x44-31600010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgrcv </span>(<a 
+href="#x44-31800010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>), seefmsgctl</dd></dl>
+<!--l. 357--><p class="noindent">For an example, see <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-321" name="x44-31800010.2">msgrcv</a></h4><a 
+  name="dx44-318001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function msgrcv(msqid:longint; msgp: PMSGBuf; msgsz: longint;</span>
+<span 
+class="cmtt-10">msgtyp:longint; msgflg:longint): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">msgrcv </span>retrieves a message of type <span 
+class="cmtt-10">msgtyp </span>from the message queue with ID <span 
+class="cmtt-10">msqid</span>. <span 
+class="cmtt-10">msgtyp</span>
+corresponds to the <span 
+class="cmtt-10">mtype </span>field of the <span 
+class="cmtt-10">TMSGbuf </span>record. The message is stored in the <span 
+class="cmtt-10">MSGbuf</span>
+structure pointed to by <span 
+class="cmtt-10">msgp</span>.
+<!--l. 368--><p class="noindent">The <span 
+class="cmtt-10">msgflg </span>parameter can be used to control the behaviour of the <span 
+class="cmtt-10">msgrcv </span>call. It consists of an
+ORed combination of the following flags:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">0</span></dt><dd 
+class="description">No special meaning.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">NOWAIT</span></dt><dd 
+class="description">if no messages are available, then the call returns immediatly, with the
+    <span 
+class="cmtt-10">ENOMSG </span>error.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">MSG</span>__<span 
+class="cmbx-10">NOERROR</span></dt><dd 
+class="description">If the message size is wrong (too large), no error is generated, instead
+    the message is truncated. Normally, in such cases, the call returns an error (E2BIG)</dd></dl>
+<!--l. 380--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the message was received correctly, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error, <span 
+class="cmtt-10">False </span>is returned, and <span 
+class="cmtt-10">IPCerror </span>is set.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">msgget </span>(<a 
+href="#x44-31600010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgsnd </span>(<a 
+href="#x44-31700010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 388--><p class="noindent">For an example, see <span 
+class="cmss-10">msgctl </span>(<a 
+href="#x44-31900010.2">268<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-322" name="x44-31900010.2">msgctl</a></h4><a 
+  name="dx44-319001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function msgctl(msqid:longint; cmd: longint; buf: PMSQid</span>_<span 
+class="cmtt-10">ds): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">msgctl </span>performs various operations on the message queue with id <span 
+class="cmtt-10">ID</span>. Which operation is
+performed, depends on the <span 
+class="cmtt-10">cmd </span>parameter, which can have one of the following values:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">STAT</span></dt><dd 
+class="description">In this case, the <span 
+class="cmtt-10">msgctl </span>call fills the <span 
+class="cmtt-10">TMSQid</span>_<span 
+class="cmtt-10">ds </span>structure with information
+    about the message queue.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">SET</span></dt><dd 
+class="description">in this case, the <span 
+class="cmtt-10">msgctl </span>call sets the permissions of the queue as specified in the
+    <span 
+class="cmtt-10">ipc</span>_<span 
+class="cmtt-10">perm </span>record inside <span 
+class="cmtt-10">buf</span>.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">RMID</span></dt><dd 
+class="description">If this is specified, the message queue will be removed from the system.</dd></dl>
+<!--l. 406--><p class="noindent"><span 
+class="cmtt-10">buf </span>contains the data that are needed by the call. It can be <span 
+class="cmtt-10">Nil </span>in case the message queue should
+be removed.
+<!--l. 409--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if successfull, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, <span 
+class="cmtt-10">False </span>is returned, and <span 
+class="cmtt-10">IPCerror </span>is set accordingly.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">msgget </span>(<a 
+href="#x44-31600010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgsnd </span>(<a 
+href="#x44-31700010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">msgrcv </span>(<a 
+href="#x44-31800010.2">267<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 416--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">ipcex/msgtool.pp</span><HR/><div class="listinginput">
+<!--l. 416--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">program</span>&nbsp;<span 
+class="cmtt-10">msgtool;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">ipc;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PMyMsgBuf</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">^TMyMsgBuf;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TMyMsgBuf</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">record</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mtype</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">mtext</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string[255];</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">(Const</span>&nbsp;<span 
+class="cmtt-10">Msg</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(msg,'returned</span>&nbsp;<span 
+class="cmtt-10">an</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ipcerror);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SendMessage</span>&nbsp;<span 
+class="cmtt-10">(Id</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Buf</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyMsgBuf;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MType</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">MText</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Sending</span>&nbsp;<span 
+class="cmtt-10">message.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf.mtype:=mtype;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf.Mtext:=mtext;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">msgsnd(Id,PMsgBuf(@Buf),256,0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError('msgsnd');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">ReadMessage</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Buf</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyMsgBuf;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MType</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Reading</span>&nbsp;<span 
+class="cmtt-10">message.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf.MType:=MType;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">msgrcv(ID,PMSGBuf(@Buf),256,mtype,0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Type</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',buf.mtype,'</span>&nbsp;<span 
+class="cmtt-10">Text</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',buf.mtext)</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('msgrcv');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">RemoveQueue</span>&nbsp;<span 
+class="cmtt-10">(</span>&nbsp;<span 
+class="cmtt-10">ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">msgctl</span>&nbsp;<span 
+class="cmtt-10">(id,IPC_RMID,Nil)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Removed</span>&nbsp;<span 
+class="cmtt-10">Queue</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">id',Id);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">ChangeQueueMode</span>&nbsp;<span 
+class="cmtt-10">(ID,mode</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">QueueDS</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMSQid_ds;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">msgctl</span>&nbsp;<span 
+class="cmtt-10">(Id,IPC_STAT,@QueueDS)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('msgctl</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">stat');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Old</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',QueueDS.msg_perm.mode);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">QueueDS.msg_perm.mode:=Mode;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">msgctl</span>&nbsp;<span 
+class="cmtt-10">(ID,IPC_SET,@QueueDS)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('New</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',QueueDS.msg_perm.mode)</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('msgctl</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">IPC_SET');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Usage</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">msgtool</span>&nbsp;<span 
+class="cmtt-10">s(end)</span>&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">&lt;type&gt;</span>&nbsp;<span 
+class="cmtt-10">&lt;text&gt;</span>&nbsp;<span 
+class="cmtt-10">(max</span>&nbsp;<span 
+class="cmtt-10">255</span>&nbsp;<span 
+class="cmtt-10">characters)');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r(eceive)</span>&nbsp;<span 
+class="cmtt-10">&lt;type&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">d(elete)');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">m(ode)</span>&nbsp;<span 
+class="cmtt-10">&lt;decimal</span>&nbsp;<span 
+class="cmtt-10">mode&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">StrToInt</span>&nbsp;<span 
+class="cmtt-10">(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String):</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">val</span>&nbsp;<span 
+class="cmtt-10">(S,M,C);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">C&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">Then</span>&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('StrToInt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">'+S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrToInt:=M;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ID</span>&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Buf</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMyMsgBuf;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Paramcount&lt;1</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">Usage;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:=Ftok('.','M');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ID:=msgget(key,IPC_CREAT</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">438);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ID&lt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('MsgGet');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">upCase(Paramstr(1)[1])</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'S'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&lt;&gt;3</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">SendMessage</span>&nbsp;<span 
+class="cmtt-10">(id,Buf,StrToInt(Paramstr(2)),paramstr(3));</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'R'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ReadMessage</span>&nbsp;<span 
+class="cmtt-10">(id,buf,strtoint(Paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'D'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&lt;&gt;1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">RemoveQueue</span>&nbsp;<span 
+class="cmtt-10">(ID);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'M'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ChangeQueueMode</span>&nbsp;<span 
+class="cmtt-10">(id,strtoint(paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-323" name="x44-32000010.2">semget</a></h4><a 
+  name="dx44-320001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function semget(key:Tkey; nsems:longint; semflg:longint): longint;</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">msgget </span>returns the ID of the semaphore set described by <span 
+class="cmtt-10">key</span>. Depending on the flags in
+<span 
+class="cmtt-10">semflg</span>, a new queue is created.
+<!--l. 425--><p class="noindent"><span 
+class="cmtt-10">semflg </span>can have one or more of the following values (combined by ORs):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">CREAT</span></dt><dd 
+class="description">The queue is created if it doesn&#8217;t already exist.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">EXCL</span></dt><dd 
+class="description">If used in combination with <span 
+class="cmtt-10">IPC</span>_<span 
+class="cmtt-10">CREAT</span>, causes the call to fail if the set already
+    exists. It cannot be used by itself.</dd></dl>
+<!--l. 431--><p class="noindent">Optionally, the flags can be <span 
+class="cmtt-10">OR</span>ed with a permission mode, which is the same mode that can be
+used in the file system.
+<!--l. 434--><p class="noindent">if a new set of semaphores is created, then there will be <span 
+class="cmtt-10">nsems </span>semaphores in it.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, -1 is returned, and <span 
+class="cmtt-10">IPCError </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ftok </span>(<a 
+href="#x44-31500010.2">266<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">semop </span>(<a 
+href="#x44-32100010.2">271<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">semctl </span>(<a 
+href="#x44-32200010.2">272<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-324" name="x44-32100010.2">semop</a></h4><a 
+  name="dx44-321001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function semop(semid:longint; sops: pointer; nsops: cardinal): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">semop </span>performs a set of operations on a message queue. <span 
+class="cmtt-10">sops </span>points to an array of type
+<span 
+class="cmtt-10">TSEMbuf</span>. The array should contain <span 
+class="cmtt-10">nsops </span>elements.
+<!--l. 450--><p class="noindent">The fields of the <span 
+class="cmtt-10">TSEMbuf </span>structure
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TSEMbuf&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_num&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_op&nbsp;&nbsp;:&nbsp;integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sem_flg&nbsp;:&nbsp;integer;
+</pre>
+</td></tr></table>
+<!--l. 458--><p class="noindent">should be filled as follows:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">sem</span>__<span 
+class="cmbx-10">num</span></dt><dd 
+class="description">The  number  of  the  semaphore  in  the  set  on  which  the  operation  must  be
+    performed.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">sem</span>__<span 
+class="cmbx-10">op</span></dt><dd 
+class="description">The operation to be performed. The operation depends on the sign of <span 
+class="cmtt-10">sem</span>_<span 
+class="cmtt-10">op</span>
+        <ol type="1" class="enumerate1" 
+>
+        <li class="enumerate"><a 
+  name="x44-321003x1"></a>A positive number is simply added to the current value of the semaphore.
+        </li>
+        <li class="enumerate"><a 
+  name="x44-321005x2"></a>If 0 (zero) is specified, then the process is suspended until the specified semaphore
+        reaches zero.
+        </li>
+        <li class="enumerate"><a 
+  name="x44-321007x3"></a>If a negative number is specified, it is substracted from the current value of the
+        semaphore. If the value would become negative then the process is suspended until
+        the value becomes big enough, unless <span 
+class="cmtt-10">IPC</span>_<span 
+class="cmtt-10">NOWAIT </span>is specified in the <span 
+class="cmtt-10">sem</span>_<span 
+class="cmtt-10">flg</span>.</li></ol>
+    </dd><dt class="description">
+<span 
+class="cmbx-10">sem</span>__<span 
+class="cmbx-10">flg</span></dt><dd 
+class="description">Optional flags: if <span 
+class="cmtt-10">IPC</span>_<span 
+class="cmtt-10">NOWAIT </span>is specified, then the calling process will never be
+    suspended.</dd></dl>
+<!--l. 478--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the operations were successful, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">In case of error, <span 
+class="cmtt-10">False </span>is returned, and <span 
+class="cmtt-10">IPCerror </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">semget </span>(<a 
+href="#x44-32000010.2">270<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">semctl </span>(<a 
+href="#x44-32200010.2">272<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-325" name="x44-32200010.2">semctl</a></h4><a 
+  name="dx44-322001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function semctl(semid:longint; semnum:longint; cmd:longint; var arg:</span>
+<span 
+class="cmtt-10">tsemun): longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">semctl </span>performs various operations on the semaphore <span 
+class="cmtt-10">semnum </span>w ith semaphore set id <span 
+class="cmtt-10">ID</span>.
+<!--l. 493--><p class="noindent">The <span 
+class="cmtt-10">arg </span>parameter supplies the data needed for each call. This is a variant record that should be
+filled differently, according to the command:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TSEMun&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;longint&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;:&nbsp;(&nbsp;val&nbsp;:&nbsp;longint&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;:&nbsp;(&nbsp;buf&nbsp;:&nbsp;PSEMid_ds&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;:&nbsp;(&nbsp;arr&nbsp;:&nbsp;PWord&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;:&nbsp;(&nbsp;padbuf&nbsp;:&nbsp;PSeminfo&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;:&nbsp;(&nbsp;padpad&nbsp;:&nbsp;pointer&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>
+<!--l. 509--><p class="noindent">Which operation is performed, depends on the <span 
+class="cmtt-10">cmd </span>parameter, which can have one of the following
+values:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">STAT</span></dt><dd 
+class="description">In this case, the arg record should have it&#8217;s <span 
+class="cmtt-10">buf </span>field set to the address of a
+    <span 
+class="cmtt-10">TSEMid</span>_<span 
+class="cmtt-10">ds </span>record. The <span 
+class="cmtt-10">semctl </span>call fills this <span 
+class="cmtt-10">TSEMid</span>_<span 
+class="cmtt-10">ds </span>structure with information
+    about the semaphore set.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">SET</span></dt><dd 
+class="description">In this case, the <span 
+class="cmtt-10">arg </span>record should have it&#8217;s <span 
+class="cmtt-10">buf </span>field set to the address of a
+    <span 
+class="cmtt-10">TSEMid</span>_<span 
+class="cmtt-10">ds </span>record. The <span 
+class="cmtt-10">semctl </span>call sets the permissions of the queue as specified in
+    the <span 
+class="cmtt-10">ipc</span>_<span 
+class="cmtt-10">perm </span>record.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">RMID</span></dt><dd 
+class="description">If this is specified, the semaphore set is removed from from the system.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">GETALL</span></dt><dd 
+class="description">In this case, the <span 
+class="cmtt-10">arr </span>field of <span 
+class="cmtt-10">arg </span>should point to a memory area where the values of
+    the semaphores will be stored. The size of this memory area is <span 
+class="cmtt-10">SizeOf(Word)* Number</span>
+    <span 
+class="cmtt-10">of semaphores in the set</span>. This call will then fill the memory array with all the
+    values of the semaphores.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">GETNCNT</span></dt><dd 
+class="description">This will fill the <span 
+class="cmtt-10">val </span>field of the <span 
+class="cmtt-10">arg </span>union with the bumber of processes waiting
+    for resources.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">GETPID</span></dt><dd 
+class="description"><span 
+class="cmtt-10">semctl </span>returns the process ID of the process that performed the last <span 
+class="cmss-10">semop </span>(<a 
+href="#x44-32100010.2">271<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+    call.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">GETVAL</span></dt><dd 
+class="description"><span 
+class="cmtt-10">semctl </span>returns the value of the semaphore with number <span 
+class="cmtt-10">semnum</span>.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">GETZCNT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">semctl </span>returns the number of processes waiting for semaphores that reach value
+    zero.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SETALL</span></dt><dd 
+class="description">In  this  case,  the  <span 
+class="cmtt-10">arr  </span>field  of  <span 
+class="cmtt-10">arg  </span>should  point  to  a  memory  area  where  the
+    values  of  the  semaphores  will  be  retrieved  from.  The  size  of  this  memory  area  is
+    <span 
+class="cmtt-10">SizeOf(Word)* Number of semaphores in the set</span>. This call will then set the values
+    of the semaphores from the memory array.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SETVAL</span></dt><dd 
+class="description">This will set the value of semaphore <span 
+class="cmtt-10">semnum </span>to the value in the <span 
+class="cmtt-10">val </span>field of the
+    <span 
+class="cmtt-10">arg </span>parameter.</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 545--><p class="noindent">The function returns -1 on error.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">The function returns -1 on error, and <span 
+class="cmtt-10">IPCerror </span>is set accordingly.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">semget </span>(<a 
+href="#x44-32000010.2">270<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">semop </span>(<a 
+href="#x44-32100010.2">271<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 552--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">ipcex/semtool.pp</span><HR/><div class="listinginput">
+<!--l. 552--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">semtool;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrat</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">use</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">semaphores</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">ipc;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">MaxSemValue</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">5;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">(Const</span>&nbsp;<span 
+class="cmtt-10">Msg</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Error</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',msg,'</span>&nbsp;<span 
+class="cmtt-10">Code</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',IPCerror);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Halt(1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">getsemval</span>&nbsp;<span 
+class="cmtt-10">(ID,Member</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMun;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetSemVal:=SemCtl(id,member,GETVAL,S);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">DispVal</span>&nbsp;<span 
+class="cmtt-10">(ID,member</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Value</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">member</span>&nbsp;<span 
+class="cmtt-10">',member,'</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">',GetSemVal(ID,Member));</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">GetMemberCount</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">opts</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMun;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">semds</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMid_ds;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">opts.buf:=@semds;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">semctl(Id,0,IPC_STAT,opts)&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMemberCount:=semds.sem_nsems</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMemberCount:=-1;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">OpenSem</span>&nbsp;<span 
+class="cmtt-10">(Key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKey)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OpenSem:=semget(Key,0,438);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">OpenSem=-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('OpenSem');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">CreateSem</span>&nbsp;<span 
+class="cmtt-10">(Key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKey;</span>&nbsp;<span 
+class="cmtt-10">Members</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint)</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Count</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Semopts</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSemun;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">members&gt;semmsl</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Sorry,</span>&nbsp;<span 
+class="cmtt-10">maximum</span>&nbsp;<span 
+class="cmtt-10">number</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">semaphores</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">set</span>&nbsp;<span 
+class="cmtt-10">exceeded');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Trying</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">create</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">semaphore</span>&nbsp;<span 
+class="cmtt-10">set</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">',members,'</span>&nbsp;<span 
+class="cmtt-10">members.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">CreateSem:=semget(key,members,IPC_CREAT</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">IPC_Excl</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">438);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">CreateSem=-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">set</span>&nbsp;<span 
+class="cmtt-10">already</span>&nbsp;<span 
+class="cmtt-10">exists.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Semopts.val:=MaxSemValue;</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Initial</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">semaphores</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">Count:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">Members-1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">semctl(CreateSem,count,setval,semopts);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">lockSem</span>&nbsp;<span 
+class="cmtt-10">(ID,Member:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">lock</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMbuf;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">lock</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_num:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_op:=-1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_flg:=IPC_NOWAIT;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(member&lt;0)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(member&gt;GetMemberCount(ID)-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('semaphore</span>&nbsp;<span 
+class="cmtt-10">member</span>&nbsp;<span 
+class="cmtt-10">out</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">range');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">getsemval(ID,member)=0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">resources</span>&nbsp;<span 
+class="cmtt-10">exhausted</span>&nbsp;<span 
+class="cmtt-10">(no</span>&nbsp;<span 
+class="cmtt-10">lock)');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">lock.sem_num:=member;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Attempting</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">lock</span>&nbsp;<span 
+class="cmtt-10">member</span>&nbsp;<span 
+class="cmtt-10">',member,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">semaphore</span>&nbsp;<span 
+class="cmtt-10">',ID);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">semop(Id,@lock,1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Lock</span>&nbsp;<span 
+class="cmtt-10">failed')</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">resources</span>&nbsp;<span 
+class="cmtt-10">decremented</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">one');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dispval(ID,Member);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">UnlockSem</span>&nbsp;<span 
+class="cmtt-10">(ID,Member:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Unlock</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMbuf;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">Unlock</span>&nbsp;<span 
+class="cmtt-10">do</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_num:=0;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_op:=1;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">sem_flg:=IPC_NOWAIT;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">(member&lt;0)</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">(member&gt;GetMemberCount(ID)-1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('semaphore</span>&nbsp;<span 
+class="cmtt-10">member</span>&nbsp;<span 
+class="cmtt-10">out</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">range');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">getsemval(ID,member)=MaxSemValue</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">locked');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Unlock.sem_num:=member;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Attempting</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">unlock</span>&nbsp;<span 
+class="cmtt-10">member</span>&nbsp;<span 
+class="cmtt-10">',member,</span>&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">semaphore</span>&nbsp;<span 
+class="cmtt-10">',ID);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">semop(Id,@unlock,1)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Unlock</span>&nbsp;<span 
+class="cmtt-10">failed')</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">resources</span>&nbsp;<span 
+class="cmtt-10">incremented</span>&nbsp;<span 
+class="cmtt-10">by</span>&nbsp;<span 
+class="cmtt-10">one');</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">dispval(ID,Member);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">RemoveSem</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSemun;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">semctl(Id,0,IPC_RMID,s)&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">removed')</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Couldn''t</span>&nbsp;<span 
+class="cmtt-10">remove</span>&nbsp;<span 
+class="cmtt-10">semaphore');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">ChangeMode</span>&nbsp;<span 
+class="cmtt-10">(ID,Mode</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">rc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">opts</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMun;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">semds</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSEMid_ds;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">opts.buf:=@semds;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">semctl</span>&nbsp;<span 
+class="cmtt-10">(Id,0,IPC_STAT,opts)&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Couldn''t</span>&nbsp;<span 
+class="cmtt-10">stat</span>&nbsp;<span 
+class="cmtt-10">semaphore');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Old</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">were</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',semds.sem_perm.mode);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">semds.sem_perm.mode:=mode;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">semctl(id,0,IPC_SET,opts)&lt;&gt;-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Set</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">',mode)</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('Couldn''t</span>&nbsp;<span 
+class="cmtt-10">set</span>&nbsp;<span 
+class="cmtt-10">permissions');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">PrintSem</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I,cnt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">cnt:=getmembercount(ID);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Semaphore</span>&nbsp;<span 
+class="cmtt-10">',ID,'</span>&nbsp;<span 
+class="cmtt-10">has</span>&nbsp;<span 
+class="cmtt-10">',cnt,'</span>&nbsp;<span 
+class="cmtt-10">Members');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">cnt-1</span>&nbsp;<span 
+class="cmtt-10">Do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">DispVal(id,i);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">USage;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Usage</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">semtool</span>&nbsp;<span 
+class="cmtt-10">c(reate)</span>&nbsp;<span 
+class="cmtt-10">&lt;count&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">l(ock)</span>&nbsp;<span 
+class="cmtt-10">&lt;member&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">u(nlock)</span>&nbsp;<span 
+class="cmtt-10">&lt;member&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">d(elete)');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">m(ode)</span>&nbsp;<span 
+class="cmtt-10">&lt;mode&gt;');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">StrToInt</span>&nbsp;<span 
+class="cmtt-10">(S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String):</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">val</span>&nbsp;<span 
+class="cmtt-10">(S,M,C);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">C&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">Then</span>&nbsp;<span 
+class="cmtt-10">DoError</span>&nbsp;<span 
+class="cmtt-10">('StrToInt</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">'+S);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StrToInt:=M;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">Key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&lt;1</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">USage;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">key:=ftok('.','s');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">UpCase(Paramstr(1)[1])</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'C'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">paramcount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">CreateSem</span>&nbsp;<span 
+class="cmtt-10">(key,strtoint(paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'L'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">paramcount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID:=OpenSem</span>&nbsp;<span 
+class="cmtt-10">(key);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">LockSem</span>&nbsp;<span 
+class="cmtt-10">(ID,strtoint(paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'U'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">paramcount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID:=OpenSem</span>&nbsp;<span 
+class="cmtt-10">(key);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">UnLockSem</span>&nbsp;<span 
+class="cmtt-10">(ID,strtoint(paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'M'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">paramcount&lt;&gt;2</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID:=OpenSem</span>&nbsp;<span 
+class="cmtt-10">(key);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ChangeMode</span>&nbsp;<span 
+class="cmtt-10">(ID,strtoint(paramstr(2)));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'D'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Begin</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID:=OpenSem(Key);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">RemoveSem(Id);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'P'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ID:=OpenSem(Key);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">PrintSem(Id);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Usage</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-326" name="x44-32300010.2">shmget</a></h4><a 
+  name="dx44-323001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function shmget(key: Tkey; Size:longint; flag:longint):longint;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">shmget </span>returns the ID of a shared memory block, described by <span 
+class="cmtt-10">key</span>. Depending on the flags
+in <span 
+class="cmtt-10">flag</span>, a new memory block is created.
+<!--l. 561--><p class="noindent"><span 
+class="cmtt-10">flag </span>can have one or more of the following values (combined by ORs):
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">CREAT</span></dt><dd 
+class="description">The queue is created if it doesn&#8217;t already exist.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">EXCL</span></dt><dd 
+class="description">If used in combination with <span 
+class="cmtt-10">IPC</span>_<span 
+class="cmtt-10">CREAT</span>, causes the call to fail if the queue
+    already exists. It cannot be used by itself.</dd></dl>
+<!--l. 567--><p class="noindent">Optionally, the flags can be <span 
+class="cmtt-10">OR</span>ed with a permission mode, which is the same mode that can be
+used in the file system.
+<!--l. 570--><p class="noindent">if a new memory block is created, then it will have size <span 
+class="cmtt-10">Size </span>semaphores in it.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, -1 is returned, and <span 
+class="cmtt-10">IPCError </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-327" name="x44-32400010.2">shmat</a></h4><a 
+  name="dx44-324001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function shmat (shmid:longint; shmaddr:pchar; shmflg:longint):pchar;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">shmat </span>attaches a shared memory block with identified <span 
+class="cmtt-10">shmid </span>to the current process. The
+function returns a pointer to the shared memory block.
+<!--l. 585--><p class="noindent">If <span 
+class="cmtt-10">shmaddr </span>is <span 
+class="cmtt-10">Nil</span>, then the system chooses a free unmapped memory region, as high up in
+memory space as possible.
+<!--l. 588--><p class="noindent">If  <span 
+class="cmtt-10">shmaddr </span>is non-nil, and <span 
+class="cmtt-10">SHM</span>_<span 
+class="cmtt-10">RND </span>is in <span 
+class="cmtt-10">shmflg</span>, then the returned address is <span 
+class="cmtt-10">shmaddr</span>,
+rounded down to <span 
+class="cmtt-10">SHMLBA</span>. If <span 
+class="cmtt-10">SHM</span>_<span 
+class="cmtt-10">RND </span>is not specified, then <span 
+class="cmtt-10">shmaddr </span>must be a page-aligned
+address.
+                                                                            
+
+                                                                            
+<!--l. 593--><p class="noindent">The parameter <span 
+class="cmtt-10">shmflg </span>can be used to control the behaviour of the <span 
+class="cmtt-10">shmat </span>call. It consists of a
+ORed combination of the following costants:
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">SHM</span>__<span 
+class="cmbx-10">RND</span></dt><dd 
+class="description">The suggested address in <span 
+class="cmtt-10">shmaddr </span>is rounded down to <span 
+class="cmtt-10">SHMLBA</span>.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">SHM</span>__<span 
+class="cmbx-10">RDONLY</span></dt><dd 
+class="description">the  shared  memory  is  attached  for  read  access  only.  Otherwise  the
+    memory is attached for read-write. The process then needs read-write permissions to
+    access the shared memory.</dd></dl>
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, -1 is returned, and <span 
+class="cmtt-10">IPCerror </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">shmget </span>(<a 
+href="#x44-32300010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmdt </span>(<a 
+href="#x44-32500010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmctl </span>(<a 
+href="#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 609--><p class="noindent">For an example, see <span 
+class="cmss-10">shmctl </span>(<a 
+href="#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-328" name="x44-32500010.2">shmdt</a></h4><a 
+  name="dx44-325001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function shmdt (shmaddr:pchar):boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">shmdt </span>detaches the shared memory at address <span 
+class="cmtt-10">shmaddr</span>. This shared memory block is
+unavailable to the current process, until it is attached again by a call to <span 
+class="cmss-10">shmat </span>(<a 
+href="#x44-32400010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>).
+<!--l. 619--><p class="noindent">The function returns <span 
+class="cmtt-10">True </span>if the memory block was detached successfully, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">On error, False is returned, and IPCerror is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">shmget </span>(<a 
+href="#x44-32300010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmat </span>(<a 
+href="#x44-32400010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmctl </span>(<a 
+href="#x44-32600010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-44-329" name="x44-32600010.2">shmctl</a></h4><a 
+  name="dx44-326001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function shmctl(shmid:longint; cmd:longint; buf: pshmid</span>_<span 
+class="cmtt-10">ds): Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">shmctl </span>performs various operations on the shared memory block identified by identifier
+<span 
+class="cmtt-10">shmid</span>.
+<!--l. 634--><p class="noindent">The <span 
+class="cmtt-10">buf </span>parameter points to a <span 
+class="cmtt-10">TSHMid</span>_<span 
+class="cmtt-10">ds </span>record. The <span 
+class="cmtt-10">cmd </span>parameter is used to pass which
+operation is to be performed. It can have one of the following values :
+    <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">STAT</span></dt><dd 
+class="description"><span 
+class="cmtt-10">shmctl </span>fills the <span 
+class="cmtt-10">TSHMid</span>_<span 
+class="cmtt-10">ds </span>record that <span 
+class="cmtt-10">buf </span>points to with the available
+    information about the shared memory block.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">SET</span></dt><dd 
+class="description">applies the values in the <span 
+class="cmtt-10">ipc</span>_<span 
+class="cmtt-10">perm </span>record that <span 
+class="cmtt-10">buf </span>points to, to the shared
+    memory block.
+    </dd><dt class="description">
+<span 
+class="cmbx-10">IPC</span>__<span 
+class="cmbx-10">RMID</span></dt><dd 
+class="description">the shared memory block is destroyed (after all processes to which the block
+    is attached, have detached from it).</dd></dl>
+                                                                            
+
+                                                                            
+<!--l. 647--><p class="noindent">If successful, the function returns <span 
+class="cmtt-10">True</span>, <span 
+class="cmtt-10">False </span>otherwise.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, the function returns <span 
+class="cmtt-10">False</span>, and <span 
+class="cmtt-10">IPCerror </span>is set.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">shmget </span>(<a 
+href="#x44-32300010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmat </span>(<a 
+href="#x44-32400010.2">278<!--tex4ht:ref: tab:fmxxxconstants--></a>), <span 
+class="cmss-10">shmdt </span>(<a 
+href="#x44-32500010.2">279<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<!--l. 655--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">ipcex/shmtool.pp</span><HR/><div class="listinginput">
+<!--l. 655--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">shmtool;</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">ipc,strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">SegSize</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">100;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Tkey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">shmid,cntr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">segptr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">USage;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Usage</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">shmtool</span>&nbsp;<span 
+class="cmtt-10">w(rite)</span>&nbsp;<span 
+class="cmtt-10">text');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">r(ead)');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">d(elete)');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">m(ode</span>&nbsp;<span 
+class="cmtt-10">change)</span>&nbsp;<span 
+class="cmtt-10">mode');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Writeshm</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>&nbsp;<span 
+class="cmtt-10">ptr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pchar;</span>&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">string);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">strpcopy</span>&nbsp;<span 
+class="cmtt-10">(ptr,s);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">Readshm(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>&nbsp;<span 
+class="cmtt-10">ptr</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pchar);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Read</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',ptr);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">removeshm</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">shmctl</span>&nbsp;<span 
+class="cmtt-10">(ID,IPC_RMID,Nil);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Shared</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">marked</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">deletion');</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">CHangeMode</span>&nbsp;<span 
+class="cmtt-10">(ID</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>&nbsp;<span 
+class="cmtt-10">mode</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">m</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">word;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">code</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">data</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TSHMid_ds;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">val</span>&nbsp;<span 
+class="cmtt-10">(mode,m,code);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">code&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">shmctl</span>&nbsp;<span 
+class="cmtt-10">(shmid,IPC_STAT,@data)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Error</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">shmctl</span>&nbsp;<span 
+class="cmtt-10">:',ipcerror);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Old</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',data.shm_perm.mode);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">data.shm_perm.mode:=m;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">shmctl</span>&nbsp;<span 
+class="cmtt-10">(shmid,IPC_SET,@data)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('Error</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">shmctl</span>&nbsp;<span 
+class="cmtt-10">:',ipcerror);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">('New</span>&nbsp;<span 
+class="cmtt-10">permissions</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',data.shm_perm.mode);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">paramcount&lt;1</span>&nbsp;<span 
+class="cmtt-10">then</span>&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">ftok</span>&nbsp;<span 
+class="cmtt-10">('.','S');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">shmid</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">shmget(key,segsize,IPC_CREAT</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">IPC_EXCL</span>&nbsp;<span 
+class="cmtt-10">or</span>&nbsp;<span 
+class="cmtt-10">438);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">shmid=-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Shared</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">exists.</span>&nbsp;<span 
+class="cmtt-10">Opening</span>&nbsp;<span 
+class="cmtt-10">as</span>&nbsp;<span 
+class="cmtt-10">client');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">shmid</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">shmget(key,segsize,0);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">shmid</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('shmget</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Error</span>&nbsp;<span 
+class="cmtt-10">!',ipcerror);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Creating</span>&nbsp;<span 
+class="cmtt-10">new</span>&nbsp;<span 
+class="cmtt-10">shared</span>&nbsp;<span 
+class="cmtt-10">memory</span>&nbsp;<span 
+class="cmtt-10">segment.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">segptr:=shmat(shmid,nil,0);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">if</span>&nbsp;<span 
+class="cmtt-10">longint(segptr)=-1</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Shmat</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">error</span>&nbsp;<span 
+class="cmtt-10">!',ipcerror);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">halt(1);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">upcase(paramstr(1)[1])</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'W'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">writeshm</span>&nbsp;<span 
+class="cmtt-10">(shmid,segptr,paramstr(2));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'R'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">readshm</span>&nbsp;<span 
+class="cmtt-10">(shmid,segptr);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'D'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">removeshm(shmid);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'M'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">changemode</span>&nbsp;<span 
+class="cmtt-10">(shmid,paramstr(2));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">writeln</span>&nbsp;<span 
+class="cmtt-10">(paramstr(1));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">usage;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse28.htm" >prev</a>] [<a 
+href="unitsse28.htm#tailunitsse28.htm" >prev-tail</a>] [<a 
+href="unitsse29.htm" >front</a>] [<a 
+href="unitsch10.htm#unitsse29.htm" >up</a>] </p></div><a 
+  name="tailunitsse29.htm"></a>  
+</body></html> 

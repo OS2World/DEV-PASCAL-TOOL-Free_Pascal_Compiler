@@ -1,0 +1,153 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.1 fpdoc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocse7.htm" >next</a>] [<a 
+href="#tailfpdocse6.htm">tail</a>] [<a 
+href="fpdocch3.htm#fpdocse6.htm" >up</a>] </p></div>
+                                                                            
+
+                                                                            
+<h3 class="sectionHead"><span class="titlemark">3.1</span> <a 
+href="fpdoc.htm#QQ2-11-10" name="x11-100003.1">fpdoc</a></h3>
+<!--l. 198--><p class="noindent">Using <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>is quite simple. It takes some command-line options, and based on these options,
+creates documentation. The command-line options can be given as long or short options, as is
+common for most GNU programs.
+<!--l. 202--><p class="noindent">In principle, only 2 command-line options are needed:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">package</span> </dt><dd 
+class="description">This specifies the name of the package for which documentation must be created.
+     Exactly one package option can be specified.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">input</span> </dt><dd 
+class="description">The name of a unit file for which documentation should be generated. This can be
+     a simple filename, but can also contain some syntax options as they could be given to
+     the Free Pascal scanner. More than one <span 
+class="cmtt-10">input </span>option can be given, and documentation
+     will be generated for all specified input files.</dd></dl>
+<!--l. 214--><p class="noindent">Some examples:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--package=fcl&nbsp;--input=crt.pp
+</pre>
+</td></tr></table>This will scan the <span 
+class="cmss-10">crt.pp </span>file and generate documentation for it in a directory called
+<span 
+class="cmss-10">fcl</span>.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--package=fcl&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;classes.pp'
+</pre>
+</td></tr></table>This will scan the file <span 
+class="cmss-10">classes.pp</span>, with the <span 
+class="cmtt-10">DEBUG </span>symbol defined, the scanner will look for include
+files in the <span 
+class="cmss-10">../inc </span>directory, and <span 
+class="cmtt-10">OBJFPC</span>-mode syntax will be accepted.
+<!--l. 227--><p class="noindent">(for more information about these options, see the Free Pascal compiler user&#8217;s guide)
+<!--l. 230--><p class="noindent">With the above commands, a set of documentation files will be generated in HTML format (this is
+the standard). There will be no description of any of the identifiers found in the unit&#8217;s interface
+section, but all identifiers declarations will be present in the documentation.
+<!--l. 235--><p class="noindent">The actual documentation (i.e. the description of each of the identifiers) resides in a description
+file, which can be specified with the <span 
+class="cmtt-10">descr </span>option:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--package=fcl&nbsp;--descr=crt.xml&nbsp;--input=crt.pp
+</pre>
+</td></tr></table>This will scan the <span 
+class="cmss-10">crt.pp </span>file and generate documentation for it, using the descriptions
+found in the filecrt.xml file. The documentation will be written in a directory called
+<span 
+class="cmss-10">fcl</span>.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--package=fcl&nbsp;--descr=classes.xml&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;classes.pp'
+</pre>
+</td></tr></table>All options should be given on one line. This will scan the file <span 
+class="cmss-10">classes.pp</span>, with the <span 
+class="cmtt-10">DEBUG </span>symbol
+defined, the scanner will look for include files in the <span 
+class="cmss-10">../inc </span>directory, and <span 
+class="cmtt-10">OBJFPC</span>-mode syntax will
+be accepted.
+<!--l. 254--><p class="noindent">More than one input file or description file can be given:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--package=fcl&nbsp;--descr=classes.xml&nbsp;--descr=process.xml&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;classes.pp'&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;process.pp'
+</pre>
+</td></tr></table>Here, documentation will be generated for 2 units: <span 
+class="cmss-10">classes </span>and <span 
+class="cmtt-10">process</span>
+<!--l. 263--><p class="noindent">The format of the description file is discussed in the next chapter.
+<!--l. 265--><p class="noindent">Other formats can be generated, such as latex:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpdoc&nbsp;--format=latex&nbsp;--package=fcl&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--descr=classes.xml&nbsp;--descr=process.xml\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;classes.pp'&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--input='-I../inc&nbsp;-S2&nbsp;-DDebug&nbsp;process.pp'
+</pre>
+</td></tr></table>This will generate a LaTeX file called <span 
+class="cmss-10">fcl.tex</span>, which contains the documentation of the units <span 
+class="cmss-10">classes</span>
+and <span 
+class="cmtt-10">process</span>. The latex file contains no document preamble, it starts with a chapter command. It
+is meant to be included (using the LaTeX include command) in a latex document with a
+preamble.
+<!--l. 278--><p class="noindent">The output of <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>can be further customised by several command-line options, which will be
+explained in the next section.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocse7.htm" >next</a>] [<a 
+href="fpdocse6.htm" >front</a>] [<a 
+href="fpdocch3.htm#fpdocse6.htm" >up</a>] </p></div><a 
+  name="tailfpdocse6.htm"></a>  
+</body></html> 

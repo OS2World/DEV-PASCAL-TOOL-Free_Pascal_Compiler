@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TPersistent.DefineProperties</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TPersistent.DefineProperties</h1>
+<p>Declare non-published properties that need to be streamed.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">protected</span> <span class="kw">procedure</span> <a href="../classes/tpersistent.htm">TPersistent</a><span class="sym">.</span>DefineProperties<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Filer<span class="sym">: </span><a href="../classes/tfiler.htm">TFiler</a></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>DefineProperties</var> must be overridden by descendent classes to  indicate to the streaming system which non-published properties must  also be streamed. </p>
+<p>The streaming systems stores only published properties in the stream. Sometimes it is necessary to store additional data in the stream, data which is not published. This can be done by overriding the <var>DefineProperties</var> method. The <var>Filer</var> object is the class that is responsible for writing all properties to the stream.  </p>
+<p>To define new properties, two methods of the <a href="../classes/tfiler.htm">TFiler</a> class should be used: </p>
+<ol>
+<li><a href="../classes/tfiler.defineproperty.htm">DefineProperty</a>, to define a property which can be represented as text.</li>
+<li><a href="../classes/tfiler.definebinaryproperty.htm">DefineProperty</a>, to define a property which contains binary data.</li>
+</ol>
+<p>On order for the streaming to work correctly, a call to the inherited  <var>DefineProperties</var> is also needed, so ancestor objects also get the possibility to read or write their private data to the stream. Failure to call the inherited method will result in component properties not being streamed correctly. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../../classes/tfiler.htm">TFiler.DefineProperties</a></p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tfiler.htm">TFiler</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Class responsible for streaming of components.</p></td>
+</tr>
+</table>
+</body>
+</html>

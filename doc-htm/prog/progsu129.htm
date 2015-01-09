@@ -1,0 +1,162 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.2.0 Intel 80x86 specific</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu130.htm" >next</a>] [<a 
+href="#tailprogsu129.htm">tail</a>] [<a 
+href="progse39.htm#progsu129.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-191-214" name="x191-19400010.2">Intel 80x86 specific</a></h4>
+<!--l. 4632--><p class="noindent">Here follows a listing of the optimizing techniques used in the compiler:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x191-194002x1"></a>When optimizing for a specific Processor (<span 
+class="cmtt-10">-Op1, -Op2, -Op3</span>, the following is
+     done:
+         <ul class="itemize1">
+         <li class="itemize">In  <span 
+class="cmtt-10">case  </span>statements,  a  check  is  done  whether  a  jump  table  or  a  sequence  of
+         conditional jumps should be used for optimal performance.
+         </li>
+         <li class="itemize">Determines a number of strategies when doing peephole optimization, e.g.: <span 
+class="cmtt-10">movzbl</span>
+         <span 
+class="cmtt-10">(%ebp), %eax </span>will be changed into <span 
+class="cmtt-10">xorl %eax,%eax; movb (%ebp),%al  </span>for
+         Pentium and PentiumMMX.</li></ul>
+     </li>
+     <li class="enumerate"><a 
+  name="x191-194004x2"></a>When optimizing for speed (<span 
+class="cmtt-10">-OG</span>, the default) or size (<span 
+class="cmtt-10">-Og</span>), a choice is made between using
+     shorter instructions (for size) such as <span 
+class="cmtt-10">enter $4</span>, or longer instructions <span 
+class="cmtt-10">subl $4,%esp </span>for
+     speed. When smaller size is requested, data is aligned to minimal boundaries.
+     When speed is requested, data is aligned on most efficient boundaries as much as
+     possible.
+     </li>
+     <li class="enumerate"><a 
+  name="x191-194006x3"></a>Fast optimizations (<span 
+class="cmtt-10">-O1</span>): activate the peephole optimizer
+     </li>
+     <li class="enumerate"><a 
+  name="x191-194008x4"></a>Slower optimizations (<span 
+class="cmtt-10">-O2</span>): also activate the common subexpression elimination (formerly
+     called the &#8221;reloading optimizer&#8221;)
+     </li>
+     <li class="enumerate"><a 
+  name="x191-194010x5"></a>Uncertain optimizations (<span 
+class="cmtt-10">-Ou</span>): With this switch, the common subexpression elimination
+     algorithm can be forced into making uncertain optimizations.
+     <!--l. 4654--><p class="noindent">Although you can enable uncertain optimizations in most cases, for people who do not
+     understand the following technical explanation, it might be the safest to leave them
+                                                                            
+
+                                                                            
+     off.
+     <!--l. 4659--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>If uncertain optimizations are enabled, the CSE algortihm assumes that
+         <ul class="itemize1">
+         <li class="itemize">If  something  is  written  to  a  local/global  register  or  a  procedure/function
+         parameter, this value doesn&#8217;t overwrite the value to which a pointer points.
+         </li>
+         <li class="itemize">If something is written to memory pointed to by a pointer variable, this value
+         doesn&#8217;t overwrite the value of a local/global variable or a procedure/function
+         parameter.</li></ul>
+     The practical upshot of this is that you cannot use the uncertain optimizations if you both
+     write and read local or global variables directly and through pointers (this includes <span 
+class="cmtt-10">Var</span>
+     parameters, as those are pointers too).
+     <!--l. 4675--><p class="noindent">The following example will produce bad code when you switch on uncertain optimizations:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Var&nbsp;temp:&nbsp;Longint;
+     &nbsp;
+     &nbsp;Procedure&nbsp;Foo(Var&nbsp;Bar:&nbsp;Longint);
+     &nbsp;Begin
+     &nbsp;&nbsp;&nbsp;If&nbsp;(Bar&nbsp;=&nbsp;temp)
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Then
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inc(Bar);
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;(Bar&nbsp;&lt;&gt;&nbsp;temp)&nbsp;then&nbsp;Writeln('bug!')
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End
+     &nbsp;End;
+     &nbsp;
+     &nbsp;Begin
+     &nbsp;&nbsp;&nbsp;Foo(Temp);
+     &nbsp;End.
+</pre>
+     </td></tr></table>The reason it produces bad code is because you access the global variable <span 
+class="cmtt-10">Temp </span>both through
+     its name <span 
+class="cmtt-10">Temp </span>and through a pointer, in this case using the <span 
+class="cmtt-10">Bar </span>variable parameter, which is
+     nothing but a pointer to <span 
+class="cmtt-10">Temp </span>in the above code.
+     <!--l. 4699--><p class="noindent">On the other hand, you can use the uncertain optimizations if you access global/local
+     variables or parameters through pointers, and <span 
+class="cmti-10">only </span>access them through this
+     pointer<a 
+href="prog192.htm" name="prog192.htm" ><sup>1</sup></a>.
+     <!--l. 4705--><p class="noindent">For example:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;Type&nbsp;TMyRec&nbsp;=&nbsp;Record
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a,&nbsp;b:&nbsp;Longint;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PMyRec&nbsp;=&nbsp;^TMyRec;
+     &nbsp;
+     &nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TMyRecArray&nbsp;=&nbsp;Array&nbsp;[1..100000]&nbsp;of&nbsp;TMyRec;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PMyRecArray&nbsp;=&nbsp;^TMyRecArray;
+     &nbsp;
+     &nbsp;Var&nbsp;MyRecArrayPtr:&nbsp;PMyRecArray;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyRecPtr:&nbsp;PMyRec;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counter:&nbsp;Longint;
+     &nbsp;
+     &nbsp;Begin
+     &nbsp;&nbsp;&nbsp;New(MyRecArrayPtr);
+     &nbsp;&nbsp;&nbsp;For&nbsp;Counter&nbsp;:=&nbsp;1&nbsp;to&nbsp;100000&nbsp;Do
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Begin
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyRecPtr&nbsp;:=&nbsp;@MyRecArrayPtr^[Counter];
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyRecPtr^.a&nbsp;:=&nbsp;Counter;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyRecPtr^.b&nbsp;:=&nbsp;Counter&nbsp;div&nbsp;2;
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End;
+     &nbsp;End.
+</pre>
+     </td></tr></table>Will produce correct code, because the global variable <span 
+class="cmtt-10">MyRecArrayPtr </span>is not accessed
+     directly, but only through a pointer (<span 
+class="cmtt-10">MyRecPtr </span>in this case).
+     <!--l. 4734--><p class="noindent">In conclusion, one could say that you can use uncertain optimizations <span 
+class="cmti-10">only </span>when you know
+     what you&#8217;re doing.</li></ol>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu130.htm" >next</a>] [<a 
+href="progsu129.htm" >front</a>] [<a 
+href="progse39.htm#progsu129.htm" >up</a>] </p></div><a 
+  name="tailprogsu129.htm"></a>  
+</body></html> 

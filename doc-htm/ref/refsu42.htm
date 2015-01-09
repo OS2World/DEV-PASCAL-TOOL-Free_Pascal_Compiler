@@ -1,0 +1,84 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.8.0 alias</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu43.htm" >next</a>] [<a 
+href="#tailrefsu42.htm">tail</a>] [<a 
+href="refse43.htm#refsu42.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-100-120" name="x100-1060008.8">alias</a></h4> The <span 
+class="cmtt-10">alias </span>modifier allows the programmer to specify a different name for a procedure or
+function. This is mostly useful for referring to this procedure from assembly language constructs or
+from another object file. As an example, consider the following program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;Aliases;
+&nbsp;
+&nbsp;Procedure&nbsp;Printit;alias&nbsp;:&nbsp;'DOIT';
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('In&nbsp;Printit&nbsp;(alias&nbsp;:&nbsp;&#34;DOIT&#34;)');
+&nbsp;end;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;asm
+&nbsp;&nbsp;&nbsp;call&nbsp;DOIT
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;end.
+</pre>
+</td></tr></table>
+<!--l. 3555--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> the specified alias is inserted straight into the assembly code, thus it is case sensitive.
+The <span 
+class="cmtt-10">alias </span>modifier does not make the symbol public to other modules, unless the routine is also
+declared in the interface part of a unit, or the <span 
+class="cmtt-10">public </span>modifier is used to force it as public.
+Consider the following:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;
+&nbsp;unit&nbsp;testalias;
+&nbsp;
+&nbsp;interface
+&nbsp;
+&nbsp;procedure&nbsp;testroutine;
+&nbsp;
+&nbsp;implementation
+&nbsp;
+&nbsp;procedure&nbsp;testroutine;alias:'ARoutine';
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn('Hello&nbsp;world');
+&nbsp;end;
+&nbsp;
+&nbsp;end.
+</pre>
+</td></tr></table>
+<!--l. 3580--><p class="noindent">This will make the routine <span 
+class="cmtt-10">testroutine </span>available publicly to external object files uunder the label
+name <span 
+class="cmtt-10">ARoutine</span>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu43.htm" >next</a>] [<a 
+href="refsu42.htm" >front</a>] [<a 
+href="refse43.htm#refsu42.htm" >up</a>] </p></div><a 
+  name="tailrefsu42.htm"></a>  
+</body></html> 

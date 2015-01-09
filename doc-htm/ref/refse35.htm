@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.3 Assembler statements</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse34.htm" >prev</a>] [<a 
+href="refse34.htm#tailrefse34.htm" >prev-tail</a>] [<a 
+href="#tailrefse35.htm">tail</a>] [<a 
+href="refch7.htm#refse35.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.3</span> <a 
+href="ref.htm#QQ2-85-105" name="x85-910007.3">Assembler statements</a></h3>
+<!--l. 3084--><p class="noindent">An assembler statement allows to insert assembler code right in the pascal code.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Assembler statements</span>
+     <BR/>
+     <img 
+src="ref106x.png" alt="-- asm statement- asm - assembler code end--|-------------------------
+                                       -registerlist--
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref107x.png" alt="-- registerlist -[---stringconstant---]----------------------------------
+               ------,-------|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 3087--><p class="noindent">More information about assembler blocks can be found in the <a 
+href="file:../prog/prog.htm" >Programmers guide</a>. The register list
+is used to indicate the registers that are modified by an assembler statement in the assembler
+block. The compiler stores certain results in the registers. If the registers are modified in an
+assembler statement, the compiler should, sometimes, be told about it. The registers are denoted
+with their Intel names for the I386 processor, i.e., <span 
+class="cmtt-10">'EAX'</span>, <span 
+class="cmtt-10">'ESI' </span>etc... As an example, consider the
+following assembler code:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;asm
+&nbsp;&nbsp;&nbsp;Movl&nbsp;$1,%ebx
+&nbsp;&nbsp;&nbsp;Movl&nbsp;$0,%eax
+&nbsp;&nbsp;&nbsp;addl&nbsp;%eax,%ebx
+&nbsp;end;&nbsp;['EAX','EBX'];
+</pre>
+</td></tr></table>This will tell the compiler that it should save and restore the contents of the <span 
+class="cmtt-10">EAX </span>and <span 
+class="cmtt-10">EBX </span>registers
+when it encounters this asm statement.
+<!--l. 3104--><p class="noindent">Free Pascal supports various styles of assembler syntax. By default, <span 
+class="cmtt-10">AT&amp;T </span>syntax is assumed for the
+80386 and compatibles platform. The default assembler style can be changed with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$asmmode</span>
+<span 
+class="cmtt-10">xxx</span><span 
+class="cmsy-10">} </span>switch in the code, or the <span 
+class="cmtt-10">-R </span>command-line option. More about this can be found in the
+<a 
+href="file:../prog/prog.htm" >Programmers guide</a>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse34.htm" >prev</a>] [<a 
+href="refse34.htm#tailrefse34.htm" >prev-tail</a>] [<a 
+href="refse35.htm" >front</a>] [<a 
+href="refch7.htm#refse35.htm" >up</a>] </p></div><a 
+  name="tailrefse35.htm"></a>  
+</body></html> 

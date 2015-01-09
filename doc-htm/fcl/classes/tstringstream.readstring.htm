@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStringStream.ReadString</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStringStream.ReadString</h1>
+<p>Reads a string of length <var>Count</var></p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">function</span> <a href="../classes/tstringstream.htm">TStringStream</a><span class="sym">.</span>ReadString<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Count<span class="sym">: </span>LongInt</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">):</span>String<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>ReadString</var> reads <var>Count</var> bytes from the stream and returns the read bytes as a string. If less than <var>Count</var> bytes  were available, the string has as many characters as bytes could be read. </p>
+<p>The <var>ReadString</var> method is a wrapper around the <a href="../classes/tstringstream.read.htm">Read</a> method. It does not do the same stringas the <a href="../classes/tstream.readansistring.htm">TStream.ReadAnsiString</a> method, which first reads a length integer to determine the length of the string to be read. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstringstream.read.htm">TStringStream.Read</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Reads from the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.readansistring.htm">TStream.ReadAnsiString</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read an ansistring from the stream and return its value.</p></td>
+</tr>
+</table>
+</body>
+</html>

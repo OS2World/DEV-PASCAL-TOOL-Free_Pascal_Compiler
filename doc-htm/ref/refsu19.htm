@@ -1,0 +1,172 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.3.0 Message methods</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu18.htm" >prev</a>] [<a 
+href="refsu18.htm#tailrefsu18.htm" >prev-tail</a>] [<a 
+href="#tailrefsu19.htm">tail</a>] [<a 
+href="refse25.htm#refsu19.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-56-68" name="x56-620005.3">Message methods</a></h4> New in classes are <span 
+class="cmtt-10">message </span>methods. Pointers to message methods are stored in
+a special table, together with the integer or string cnstant that they were declared with. They are
+primarily intended to ease programming of callback functions in several <span 
+class="cmtt-10">GUI </span>toolkits, such as
+<span 
+class="cmtt-10">Win32 </span>or <span 
+class="cmtt-10">GTK</span>. In difference with Delphi, Free Pascal also accepts strings as message
+identifiers.
+<!--l. 2010--><p class="noindent">Message methods that are declared with an integer constant can take only one var argument
+(typed or not):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;Procedure&nbsp;TMyObject.MyHandler(Var&nbsp;Msg);&nbsp;Message&nbsp;1;
+</pre>
+</td></tr></table>The method implementation of a message function is no different from an ordinary method. It is
+also possible to call a message method directly, but this should not be done. Instead, the
+<span 
+class="cmtt-10">TObject.Dispatch </span>method should be used.
+<!--l. 2020--><p class="noindent">The <span 
+class="cmtt-10">TOBject.Dispatch </span>method can be used to call a <span 
+class="cmtt-10">message </span>handler. It is declared in the <span 
+class="cmss-10">system</span>
+unit and will accept a var parameter which must have at the first position a cardinal with the
+message ID that should be called. For example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TMsg&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSGID&nbsp;:&nbsp;Cardinal
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;:&nbsp;Pointer;
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;Msg&nbsp;:&nbsp;TMSg;
+&nbsp;
+&nbsp;MyObject.Dispatch&nbsp;(Msg);
+</pre>
+</td></tr></table>In this example, the <span 
+class="cmtt-10">Dispatch </span>method will look at the object and all it&#8217;s ancestors (starting at
+the object, and searching up the class tree), to see if a message method with message
+<span 
+class="cmtt-10">MSGID </span>has been declared. If such a method is found, it is called, and passed the <span 
+class="cmtt-10">Msg</span>
+parameter.
+<!--l. 2040--><p class="noindent">If no such method is found, <span 
+class="cmtt-10">DefaultHandler </span>is called. <span 
+class="cmtt-10">DefaultHandler </span>is a virtual method of
+<span 
+class="cmtt-10">TObject </span>that doesn&#8217;t do anything, but which can be overridden to provide any processing that
+might be needed. <span 
+class="cmtt-10">DefaultHandler </span>is declared as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;defaulthandler(var&nbsp;message);virtual;
+</pre>
+</td></tr></table>
+<!--l. 2048--><p class="noindent">In addition to the message method with a <span 
+class="cmtt-10">Integer </span>identifier, Free Pascal also supports a message
+method with a string identifier:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;Procedure&nbsp;TMyObject.MyStrHandler(Var&nbsp;Msg);&nbsp;Message&nbsp;'OnClick';
+</pre>
+</td></tr></table>
+<!--l. 2054--><p class="noindent">The working of the string message handler is the same as the ordinary integer message
+handler:
+<!--l. 2057--><p class="noindent">The <span 
+class="cmtt-10">TOBject.DispatchStr </span>method can be used to call a <span 
+class="cmtt-10">message </span>handler. It is declared in the
+system unit and will accept one parameter which must have at the first position a string with the
+message ID that should be called. For example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TMsg&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MsgStr&nbsp;:&nbsp;String[10];&nbsp;//&nbsp;Arbitrary&nbsp;length&nbsp;up&nbsp;to&nbsp;255&nbsp;characters.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;:&nbsp;Pointer;
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;Msg&nbsp;:&nbsp;TMSg;
+&nbsp;
+&nbsp;MyObject.DispatchStr&nbsp;(Msg);
+</pre>
+</td></tr></table>In this example, the <span 
+class="cmtt-10">DispatchStr </span>method will look at the object and all it&#8217;s ancestors (starting at
+the object, and searching up the class tree), to see if a message method with message
+<span 
+class="cmtt-10">MsgStr </span>has been declared. If such a method is found, it is called, and passed the <span 
+class="cmtt-10">Msg</span>
+parameter.
+<!--l. 2077--><p class="noindent">If no such method is found, <span 
+class="cmtt-10">DefaultHandlerStr </span>is called. <span 
+class="cmtt-10">DefaultHandlerStr </span>is a virtual method
+of <span 
+class="cmtt-10">TObject </span>that doesn&#8217;t do anything, but which can be overridden to provide any processing that
+might be needed. <span 
+class="cmtt-10">DefaultHandlerStr </span>is declared as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;&nbsp;procedure&nbsp;DefaultHandlerStr(var&nbsp;message);virtual;
+</pre>
+</td></tr></table>
+<!--l. 2085--><p class="noindent">In addition to this mechanism, a string message method accepts a <span 
+class="cmtt-10">self </span>parameter:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TMyObject.StrMsgHandler(Data&nbsp;:&nbsp;Pointer;&nbsp;Self&nbsp;:&nbsp;TMyObject);Message&nbsp;'OnClick';
+</pre>
+</td></tr></table>When encountering such a method, the compiler will generate code that loads the <span 
+class="cmtt-10">Self </span>parameter
+into the object instance pointer. The result of this is that it is possible to pass <span 
+class="cmtt-10">Self </span>as a parameter
+to such a method.
+<!--l. 2095--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The type of the <span 
+class="cmtt-10">Self </span>parameter must be of the same class as the class the method is defined
+in.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu18.htm" >prev</a>] [<a 
+href="refsu18.htm#tailrefsu18.htm" >prev-tail</a>] [<a 
+href="refsu19.htm" >front</a>] [<a 
+href="refse25.htm#refsu19.htm" >up</a>] </p></div><a 
+  name="tailrefsu19.htm"></a>  
+</body></html> 

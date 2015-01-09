@@ -1,0 +1,146 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.17 TStringList</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse64.htm" >next</a>] [<a 
+href="unitsse62.htm" >prev</a>] [<a 
+href="unitsse62.htm#tailunitsse62.htm" >prev-tail</a>] [<a 
+href="#tailunitsse63.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse63.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.17</span> <a 
+href="units.htm#QQ2-85-744" name="x85-73800017.17">TStringList</a></h3>
+<!--l. 2392--><p class="noindent">A <span 
+class="cmtt-10">TStringList </span>object can be used to read a collection of strings stored in a stream. If you register
+this object with the <span 
+class="cmss-10">RegisterType </span>(<a 
+href="unitsse49.htm#x71-61500017.3">549<!--tex4ht:ref: se:TBufStream--></a>) function, you cannot register the <span 
+class="cmtt-10">TStrListMaker</span>
+object.
+<!--l. 2396--><p class="noindent">This is the public declaration of the <span 
+class="cmtt-10">TStringList </span>object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TStrIndexRec&nbsp;=&nbsp;Packed&nbsp;RECORD
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Key,&nbsp;Count,&nbsp;Offset:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;TStrIndex&nbsp;=&nbsp;Array&nbsp;[0..9999]&nbsp;Of&nbsp;TStrIndexRec;
+&nbsp;&nbsp;&nbsp;&nbsp;PStrIndex&nbsp;=&nbsp;^TStrIndex;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;TStringList&nbsp;=&nbsp;OBJECT&nbsp;(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor&nbsp;Load&nbsp;(Var&nbsp;S:&nbsp;TStream);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Destructor&nbsp;Done;&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Get&nbsp;(Key:&nbsp;Sw_Word):&nbsp;String;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PStringList&nbsp;=&nbsp;^TStringList;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-85-745" name="x85-73900017.17">TStringList.Load</a></h4><a 
+  name="dx85-739001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Constructor TstringList.Load (Var S: TStream);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The <span 
+class="cmtt-10">Load </span>constructor reads the <span 
+class="cmtt-10">TStringList </span>object from the stream <span 
+class="cmtt-10">S</span>. It also reads the
+descriptions of the strings from the stream. The string descriptions are stored as an array
+of <span 
+class="cmtt-10">TstrIndexrec </span>records, where each record describes a string on the stream. These records
+are kept in memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If an error occurs, a stream error is triggered.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Done </span>(<a 
+href="#x85-74000017.17">640<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-85-746" name="x85-74000017.17">TStringList.Done</a></h4><a 
+  name="dx85-740001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Destructor TstringList.Done; Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The <span 
+class="cmtt-10">Done </span>destructor frees the memory occupied by the string descriptions, and destroys
+the object.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Load </span>(<a 
+href="#x85-73900017.17">640<!--tex4ht:ref: se:TBufStream--></a>), <span 
+class="cmss-10">TObject.Done </span>(<a 
+href="unitsse51.htm#x73-63100017.5">564<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-85-747" name="x85-74100017.17">TStringList.Get</a></h4><a 
+  name="dx85-741001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function TStringList.Get (Key: Sw</span>_<span 
+class="cmtt-10">Word): String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Get </span>reads the string with key <span 
+class="cmtt-10">Key </span>from the list of strings on the stream, and returns this
+string. If there is no string with such a key, an empty string is returned.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If no string with key <span 
+class="cmtt-10">Key </span>is found, an empty string is returned. A stream error may result
+if the stream doesn&#8217;t contain the needed strings.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TStrListMaker.Put </span>(<a 
+href="unitsse64.htm#x86-74500017.18">642<!--tex4ht:ref: se:TBufStream--></a>)</dd></dl>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse64.htm" >next</a>] [<a 
+href="unitsse62.htm" >prev</a>] [<a 
+href="unitsse62.htm#tailunitsse62.htm" >prev-tail</a>] [<a 
+href="unitsse63.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse63.htm" >up</a>] </p></div><a 
+  name="tailunitsse63.htm"></a>   
+</body></html> 

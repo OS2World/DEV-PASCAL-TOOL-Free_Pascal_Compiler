@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Assert</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu72.htm" >next</a>] [<a 
+href="refsu70.htm" >prev</a>] [<a 
+href="refsu70.htm#tailrefsu70.htm" >prev-tail</a>] [<a 
+href="#tailrefsu71.htm">tail</a>] [<a 
+href="refse64.htm#refsu71.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-156-177" name="x156-16200013.3">Assert</a></h4><a 
+  name="dx156-162001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Assert(expr : Boolean [; const msg: string]);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">With assertions on, <span 
+class="cmtt-10">Assert </span>tests if <span 
+class="cmtt-10">expr </span>is false, and if so, aborts the application with a
+Runtime error 227 and an optional error message in <span 
+class="cmtt-10">msg</span>. If <span 
+class="cmtt-10">expr </span>is true, program execution
+continues normally.
+<!--l. 5176--><p class="noindent">If assertions are not enabled at compile time, this routine does nothing, and no code is
+generated for the <span 
+class="cmtt-10">Assert </span>call.
+<!--l. 5179--><p class="noindent">Enabling and disabling assertions at compile time is done via the <span 
+class="cmtt-10">$C </span>or <span 
+class="cmtt-10">$ASSERTIONS </span>compiler
+switches. These are global switches.
+<!--l. 5183--><p class="noindent">The  default  behavior  of  the  assert  call  can  be  changed  by  setting  a  new  handler
+in  the  <span 
+class="cmtt-10">AssertErrorProc  </span>variable.  Sysutils  overrides  the  default  handler  to  raise  a
+<span 
+class="cmtt-10">EAssertionFailed </span>exception.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Halt </span>(<a 
+href="refsu112.htm#x197-20300013.3">508<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Runerror </span>(<a 
+href="refsu161.htm#x246-25200013.3">562<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu72.htm" >next</a>] [<a 
+href="refsu70.htm" >prev</a>] [<a 
+href="refsu70.htm#tailrefsu70.htm" >prev-tail</a>] [<a 
+href="refsu71.htm" >front</a>] [<a 
+href="refse64.htm#refsu71.htm" >up</a>] </p></div><a 
+  name="tailrefsu71.htm"></a>  
+</body></html> 

@@ -1,0 +1,298 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.4 Properties</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse25.htm" >prev</a>] [<a 
+href="refse25.htm#tailrefse25.htm" >prev-tail</a>] [<a 
+href="#tailrefse26.htm">tail</a>] [<a 
+href="refch5.htm#refse26.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.4</span> <a 
+href="ref.htm#QQ2-57-69" name="x57-630005.4">Properties</a></h3>
+<!--l. 2103--><p class="noindent">Classes can contain properties as part of their fields list. A property acts like a normal field, i.e. its
+value can be retrieved or set, but it allows to redirect the access of the field through
+functions and procedures. They provide a means to associate an action with an assignment
+of or a reading from a class &#8217;field&#8217;. This allows for e.g. checking that a value is valid
+when assigning, or, when reading, it allows to construct the value on the fly. Moreover,
+properties can be read-only or write only. The prototype declaration of a property is as
+follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Properties</span>
+     <BR/>
+     <img 
+src="ref67x.png" alt="-- property definition-property- identifier--|----------------
+                                    -property interface-
+---property specifiers------------------------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref68x.png" alt="-- property interface-|--------------------:- type identifier -
+                  -property parameter list--
+--|--------------------------------------------------------------
+  - index- integerconstant --
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref69x.png" alt="-- property parameter list-[|-parameter declaration--]-------------------
+                        |--------;---------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref70x.png" alt="--              -------------------------------|----------------
+   property specifiers -           -| -          --||-            -|
+                   read specifier    write specifier    default specifier
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref71x.png" alt="-- read specifier-read field or method ---------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref72x.png" alt="-- write specifier- write- field or method --------------------------------
+     " ><BR/>
+     <BR/>
+                                                                            
+
+                                                                            
+     <img 
+src="ref73x.png" alt="-- default specifier|-default -----------------------------------------
+                |        - constant--||
+                |-----nodefault------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref74x.png" alt="--            ----           ------------------------------------
+   field or method-mfieetlhdo idde indtenifiteifirer-|
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 2112--><p class="noindent">A <span 
+class="cmtt-10">read specifier </span>is either the name of a field that contains the property, or the name of a
+method function that has the same return type as the property type. In the case of a simple type,
+this function must not accept an argument. A <span 
+class="cmtt-10">read specifier </span>is optional, making the property
+write-only. A <span 
+class="cmtt-10">write specifier </span>is optional: If there is no <span 
+class="cmtt-10">write specifier</span>, the property is
+read-only. A write specifier is either the name of a field, or the name of a method procedure that
+accepts as a sole argument a variable of the same type as the property. The section
+(<span 
+class="cmtt-10">private</span>, <span 
+class="cmtt-10">published</span>) in which the specified function or procedure resides is irrelevant.
+Usually, however, this will be a protected or private method. Example: Given the following
+declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;MyClass&nbsp;=&nbsp;Class
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field1&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field2&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field3&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;&nbsp;Sety&nbsp;(value&nbsp;:&nbsp;Longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Gety&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;Getz&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;X&nbsp;:&nbsp;Longint&nbsp;Read&nbsp;Field1&nbsp;write&nbsp;Field2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;Y&nbsp;:&nbsp;Longint&nbsp;Read&nbsp;GetY&nbsp;Write&nbsp;Sety;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;Z&nbsp;:&nbsp;Longint&nbsp;Read&nbsp;GetZ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Var&nbsp;MyClass&nbsp;:&nbsp;TMyClass;
+</pre>
+</td></tr></table>The following are valid statements:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;WriteLn&nbsp;('X&nbsp;:&nbsp;',MyClass.X);
+&nbsp;WriteLn&nbsp;('Y&nbsp;:&nbsp;',MyClass.Y);
+&nbsp;WriteLn&nbsp;('Z&nbsp;:&nbsp;',MyClass.Z);
+&nbsp;MyClass.X&nbsp;:=&nbsp;0;
+&nbsp;MyClass.Y&nbsp;:=&nbsp;0;
+</pre>
+</td></tr></table>But the following would generate an error:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;MyClass.Z&nbsp;:=&nbsp;0;
+</pre>
+</td></tr></table>because Z is a read-only property. What happens in the above statements is that when a value
+needs to be read, the compiler inserts a call to the various <span 
+class="cmtt-10">getNNN </span>methods of the object, and the
+result of this call is used. When an assignment is made, the compiler passes the value
+that must be assigned as a paramater to the various <span 
+class="cmtt-10">setNNN </span>methods. Because of this
+mechanism, properties cannot be passed as var arguments to a function or procedure,
+since there is no known address of the property (at least, not always). If the property
+definition contains an index, then the read and write specifiers must be a function and a
+procedure. Moreover, these functions require an additional parameter : An integer parameter.
+This allows to read or write several properties with the same function. For this, the
+properties must have the same type. The following is an example of a property with an
+index:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$mode&nbsp;objfpc}
+&nbsp;Type&nbsp;TPoint&nbsp;=&nbsp;Class(TObject)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FX,FY&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetCoord&nbsp;(Index&nbsp;:&nbsp;Integer):&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;SetCoord&nbsp;(Index&nbsp;:&nbsp;Integer;&nbsp;Value&nbsp;:&nbsp;longint);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;X&nbsp;:&nbsp;Longint&nbsp;index&nbsp;1&nbsp;read&nbsp;GetCoord&nbsp;Write&nbsp;SetCoord;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;Y&nbsp;:&nbsp;Longint&nbsp;index&nbsp;2&nbsp;read&nbsp;GetCoord&nbsp;Write&nbsp;SetCoord;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;Coords[Index&nbsp;:&nbsp;Integer]:Longint&nbsp;Read&nbsp;GetCoord;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Procedure&nbsp;TPoint.SetCoord&nbsp;(Index&nbsp;:&nbsp;Integer;&nbsp;Value&nbsp;:&nbsp;Longint);
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Case&nbsp;Index&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;:&nbsp;FX&nbsp;:=&nbsp;Value;
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;:&nbsp;FY&nbsp;:=&nbsp;Value;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;end;
+&nbsp;Function&nbsp;TPoint.GetCoord&nbsp;(INdex&nbsp;:&nbsp;Integer)&nbsp;:&nbsp;Longint;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Case&nbsp;Index&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;:&nbsp;Result&nbsp;:=&nbsp;FX;
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;:&nbsp;Result&nbsp;:=&nbsp;FY;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;end;
+&nbsp;Var&nbsp;P&nbsp;:&nbsp;TPoint;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;P&nbsp;:=&nbsp;TPoint.create;
+&nbsp;&nbsp;&nbsp;P.X&nbsp;:=&nbsp;2;
+&nbsp;&nbsp;&nbsp;P.Y&nbsp;:=&nbsp;3;
+&nbsp;&nbsp;&nbsp;With&nbsp;P&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('X=',X,'&nbsp;Y=',Y);
+&nbsp;end.
+</pre>
+</td></tr></table>When the compiler encounters an assignment to <span 
+class="cmtt-10">X</span>, then <span 
+class="cmtt-10">SetCoord </span>is called with as first parameter
+the index (1 in the above case) and with as a second parameter the value to be set. Conversely,
+when reading the value of <span 
+class="cmtt-10">X</span>, the compiler calls <span 
+class="cmtt-10">GetCoord </span>and passes it index 1. Indexes can only be
+integer values. Array propertie also exist. These are properties that accept an index, just as an
+array does. Only now the index doesn&#8217;t have to be an ordinal type, but can be any
+type.
+<!--l. 2215--><p class="noindent">A <span 
+class="cmtt-10">read specifier </span>for an array property is the name method function that has the same return
+type as the property type. The function must accept as a sole arguent a variable of the
+same type as the index type. For an array property, one cannot specify fields as <span 
+class="cmtt-10">read</span>
+<span 
+class="cmtt-10">specifiers</span>.
+<!--l. 2221--><p class="noindent">A <span 
+class="cmtt-10">write specifier </span>for an array property is the name of a method procedure that accepts two
+arguments: The first argument has the same type as the index, and the second argument is a
+parameter of the same type as the property type. As an example, see the following
+declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;TIntList&nbsp;=&nbsp;Class
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetInt&nbsp;(I&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function&nbsp;GetAsString&nbsp;(A&nbsp;:&nbsp;String)&nbsp;:&nbsp;String;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;SetInt&nbsp;(I&nbsp;:&nbsp;Longint;&nbsp;Value&nbsp;:&nbsp;Longint;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;SetAsString&nbsp;(A&nbsp;:&nbsp;String;&nbsp;Value&nbsp;:&nbsp;String);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;Items&nbsp;[i&nbsp;:&nbsp;Longint]&nbsp;:&nbsp;Longint&nbsp;Read&nbsp;GetInt
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write&nbsp;SetInt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;StrItems&nbsp;[S&nbsp;:&nbsp;String]&nbsp;:&nbsp;String&nbsp;Read&nbsp;GetAsString
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write&nbsp;SetAsstring;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Var&nbsp;AIntList&nbsp;:&nbsp;TIntList;
+</pre>
+</td></tr></table>Then the following statements would be valid:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;AIntList.Items[26]&nbsp;:=&nbsp;1;
+&nbsp;AIntList.StrItems['twenty-five']&nbsp;:=&nbsp;'zero';
+&nbsp;WriteLn&nbsp;('Item&nbsp;26&nbsp;:&nbsp;',AIntList.Items[26]);
+&nbsp;WriteLn&nbsp;('Item&nbsp;25&nbsp;:&nbsp;',AIntList.StrItems['twenty-five']);
+</pre>
+</td></tr></table>While the following statements would generate errors:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;AIntList.Items['twenty-five']&nbsp;:=&nbsp;1;
+&nbsp;AIntList.StrItems[26]&nbsp;:=&nbsp;'zero';
+</pre>
+</td></tr></table>Because the index types are wrong. Array properties can be declared as <span 
+class="cmtt-10">default </span>properties.
+This means that it is not necessary to specify the property name when assigning or
+reading it. If, in the previous example, the definition of the items property would have
+been
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;Property&nbsp;Items[i&nbsp;:&nbsp;Longint]:&nbsp;Longint&nbsp;Read&nbsp;GetInt
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write&nbsp;SetInt;&nbsp;Default;
+</pre>
+</td></tr></table>Then the assignment
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;AIntList.Items[26]&nbsp;:=&nbsp;1;
+</pre>
+</td></tr></table>Would be equivalent to the following abbreviation.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;AIntList[26]&nbsp;:=&nbsp;1;
+</pre>
+</td></tr></table>Only one default property per class is allowed, and descendent classes cannot redeclare the default
+property.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse25.htm" >prev</a>] [<a 
+href="refse25.htm#tailrefse25.htm" >prev-tail</a>] [<a 
+href="refse26.htm" >front</a>] [<a 
+href="refch5.htm#refse26.htm" >up</a>] </p></div><a 
+  name="tailrefse26.htm"></a>  
+</body></html> 

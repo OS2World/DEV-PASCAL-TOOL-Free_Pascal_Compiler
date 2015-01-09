@@ -1,0 +1,85 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.5 Libraries</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse53.htm" >prev</a>] [<a 
+href="refse53.htm#tailrefse53.htm" >prev-tail</a>] [<a 
+href="#tailrefse54.htm">tail</a>] [<a 
+href="refch10.htm#refse54.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.5</span> <a 
+href="ref.htm#QQ2-128-149" name="x128-13400010.5">Libraries</a></h3>
+<!--l. 4265--><p class="noindent">Free Pascal supports making of dynamic libraries (DLLs under Win32 and <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>) trough the use of
+the <span 
+class="cmtt-10">Library </span>keyword.
+<!--l. 4268--><p class="noindent">A Library is just like a unit or a program:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Libraries</span>
+     <BR/>
+     <img 
+src="ref147x.png" alt="-- library -library header-;--------------block- .---------------------
+                        -uses clause|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref148x.png" alt="--           -      -        ------------------------------------
+   library header  library  identifier
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4271--><p class="noindent">By default, functions and procedures that are declared and implemented in library are not
+available to a programmer that wishes to use this library.
+<!--l. 4274--><p class="noindent">In order to make functions or procedures available from the library, they must be exported in an
+export clause:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Exports clause</span>
+     <BR/>
+     <img 
+src="ref149x.png" alt="-- exports clause exports- exports list- ;-------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref150x.png" alt="--         ---          -----------------------------------------
+   exports list -exports entry-|
+                   ,
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref151x.png" alt=" exports entry- identifier -|----------------------|---------------------
+----------------------index--integer constant---name---string constant-
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4279--><p class="noindent">Under Win32, an index clause can be added to an exports entry. an index entry must be a positive
+                                                                            
+
+                                                                            
+number larger or equal than 1.
+<!--l. 4282--><p class="noindent">Optionally, an exports entry can have a name specifier. If present, the name specifier gives the
+exact name (case sensitive) of the function in the library.
+<!--l. 4286--><p class="noindent">If neither of these constructs is present, the functions or procedures are exported with the exact
+names as specified in the exports clause.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse53.htm" >prev</a>] [<a 
+href="refse53.htm#tailrefse53.htm" >prev-tail</a>] [<a 
+href="refse54.htm" >front</a>] [<a 
+href="refch10.htm#refse54.htm" >up</a>] </p></div><a 
+  name="tailrefse54.htm"></a>  
+</body></html> 

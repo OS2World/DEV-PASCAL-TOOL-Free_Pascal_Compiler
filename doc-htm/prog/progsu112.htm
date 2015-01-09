@@ -1,0 +1,102 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.4.0 The HeapError variable</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu113.htm" >next</a>] [<a 
+href="progsu111.htm" >prev</a>] [<a 
+href="progsu111.htm#tailprogsu111.htm" >prev-tail</a>] [<a 
+href="#tailprogsu112.htm">tail</a>] [<a 
+href="progse31.htm#progsu112.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-162-185" name="x162-1670008.4">The HeapError variable</a></h4>
+<!--l. 3921--><p class="noindent">The heap error permits developpers to install a heap error hook which is called each time an
+allocation cannot be completed by the default heap manager. <span 
+class="cmtt-10">HeapError </span>is a pointer that points to
+a function with the following prototype:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;function&nbsp;HeapFunc(size&nbsp;:&nbsp;longint):&nbsp;integer;
+</pre>
+</td></tr></table>
+<!--l. 3930--><p class="noindent">The <span 
+class="cmtt-10">size </span>parameter indicates the size of the block which could not be allocated. Depending on the
+success, the error handler routine should return a value which indicates what the default heap
+manager should do thereafter (cf. table (<a 
+href="#x162-1670019">8.9<!--tex4ht:ref: tab:Heaperrorresult--></a>)).
+                                                                            
+
+                                                                            
+<a 
+  name="x162-1670019"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.9: </td><td  
+class="content">Heap error result</td></tr></table></div><!--tex4ht:label?: x162-1670019-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-18-" ><colgroup id="TBL-18-1g"><col 
+id="TBL-18-1"></colgroup><colgroup id="TBL-18-2g"><col 
+id="TBL-18-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-18-1-"><td  align="center" nowrap="nowrap" id="TBL-18-1-1"  
+class="td11"> Value returned</td><td  align="left" nowrap="nowrap" id="TBL-18-1-2"  
+class="td11"> Memory manager action                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-18-2-"><td  align="center" nowrap="nowrap" id="TBL-18-2-1"  
+class="td11">          0         </td><td  align="left" nowrap="nowrap" id="TBL-18-2-2"  
+class="td11"> Generates a runtime error 203                  </td>
+</tr><tr  
+valign="baseline" id="TBL-18-3-"><td  align="center" nowrap="nowrap" id="TBL-18-3-1"  
+class="td11">          1         </td><td  align="left" nowrap="nowrap" id="TBL-18-3-2"  
+class="td11"> <span 
+class="cmtt-10">GetMem</span>,<span 
+class="cmtt-10">ReallocMem </span>and <span 
+class="cmtt-10">New </span>returns <span 
+class="cmtt-10">nil   </span></td>
+</tr><tr  
+valign="baseline" id="TBL-18-4-"><td  align="center" nowrap="nowrap" id="TBL-18-4-1"  
+class="td11">          2         </td><td  align="left" nowrap="nowrap" id="TBL-18-4-2"  
+class="td11"> Try allocating the memory block once again</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-18-5-"><td  align="center" nowrap="nowrap" id="TBL-18-5-1"  
+class="td11">                     </td>
+</tr><!--|c|l|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu113.htm" >next</a>] [<a 
+href="progsu111.htm" >prev</a>] [<a 
+href="progsu111.htm#tailprogsu111.htm" >prev-tail</a>] [<a 
+href="progsu112.htm" >front</a>] [<a 
+href="progse31.htm#progsu112.htm" >up</a>] </p></div><a 
+  name="tailprogsu112.htm"></a>  
+</body></html> 

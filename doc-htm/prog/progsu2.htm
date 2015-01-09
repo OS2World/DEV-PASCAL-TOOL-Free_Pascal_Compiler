@@ -1,0 +1,59 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $ASMMODE : Assembler mode (Intel 80x86 only)</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu3.htm" >next</a>] [<a 
+href="progsu1.htm" >prev</a>] [<a 
+href="progsu1.htm#tailprogsu1.htm" >prev-tail</a>] [<a 
+href="#tailprogsu2.htm">tail</a>] [<a 
+href="progse2.htm#progsu2.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-9-7" name="x9-70001.1"><span 
+class="cmtt-10">$ASMMODE </span>: Assembler mode (Intel 80x86 only)</a></h4>
+<!--l. 121--><p class="noindent">The <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$ASMMODE XXX</span><span 
+class="cmsy-10">} </span>directive informs the compiler what kind of assembler it can expect in an <span 
+class="cmtt-10">asm</span>
+block. The <span 
+class="cmtt-10">XXX </span>should be replaced by one of the following:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">att</span>&nbsp; </dt><dd 
+class="description">Indicates that <span 
+class="cmtt-10">asm </span>blocks contain AT&amp;T syntax assembler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">intel</span>&nbsp; </dt><dd 
+class="description">Indicates that <span 
+class="cmtt-10">asm </span>blocks contain Intel syntax assembler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">direct</span>&nbsp; </dt><dd 
+class="description">Tells the compiler that asm blocks should be copied directly to the assembler file.</dd></dl>
+<!--l. 131--><p class="noindent">These switches are local, and retain their value to the end of the unit that is compiled, unless they
+are replaced by another directive of the same type. The command-line switch that corresponds to
+this switch is <span 
+class="cmtt-10">-R</span>.
+<!--l. 135--><p class="noindent">The default assembler reader is the AT&amp;T reader.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu3.htm" >next</a>] [<a 
+href="progsu1.htm" >prev</a>] [<a 
+href="progsu1.htm#tailprogsu1.htm" >prev-tail</a>] [<a 
+href="progsu2.htm" >front</a>] [<a 
+href="progse2.htm#progsu2.htm" >up</a>] </p></div><a 
+  name="tailprogsu2.htm"></a>  
+</body></html> 

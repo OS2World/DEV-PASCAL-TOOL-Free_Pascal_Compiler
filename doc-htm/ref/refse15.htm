@@ -1,0 +1,84 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.5 Forward type declarations</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse16.htm" >next</a>] [<a 
+href="refse14.htm" >prev</a>] [<a 
+href="refse14.htm#tailrefse14.htm" >prev-tail</a>] [<a 
+href="#tailrefse15.htm">tail</a>] [<a 
+href="refch3.htm#refse15.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.5</span> <a 
+href="ref.htm#QQ2-41-50" name="x41-440003.5">Forward type declarations</a></h3>
+<!--l. 1412--><p class="noindent">Programs often need to maintain a linked list of records. Each record then contains a pointer to the
+next record (and possibly to the previous record as well). For type safety, it is best
+to define this pointer as a typed pointer, so the next record can be allocated on the
+heap using the <span 
+class="cmtt-10">New </span>call. In order to do so, the record should be defined something like
+this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;TListItem&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;:&nbsp;^TListItem;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>When trying to compile this, the compiler will complain that the <span 
+class="cmtt-10">TListItem </span>type is not yet defined
+when it encounters the <span 
+class="cmtt-10">Next </span>declaration: This is correct, as the definition is still being
+parsed.
+<!--l. 1428--><p class="noindent">To be able to have the <span 
+class="cmtt-10">Next </span>element as a typed pointer, a &#8217;Forward type declaration&#8217; must be
+introduced:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;PListItem&nbsp;=&nbsp;^TListItem;
+&nbsp;&nbsp;&nbsp;TListItem&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;:&nbsp;PTListItem;
+&nbsp;&nbsp;&nbsp;end;
+</pre>
+</td></tr></table>When the compiler encounters a typed pointer declaration where the referenced type is not yet
+known, it postpones resolving the reference later on: The pointer definition is a &#8217;Forward type
+declaration&#8217;. The referenced type should be introduced later in the same <span 
+class="cmtt-10">Type </span>block. No other
+block may come between the definition of the pointer type and the referenced type. Indeed, even
+the word <span 
+class="cmtt-10">Type </span>itself may not re-appear: in effect it would start a new type-block, causing the
+compiler to resolve all pending declarations in the current block. In most cases, the definition of
+the referenced type will follow immediatly after the definition of the pointer type, as shown in the
+above listing. The forward defined type can be used in any type definition following its
+declaration.
+<!--l. 1450--><p class="noindent">Note that a forward type declaration is only possible with pointer types and classes, not with other
+types.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse16.htm" >next</a>] [<a 
+href="refse14.htm" >prev</a>] [<a 
+href="refse14.htm#tailrefse14.htm" >prev-tail</a>] [<a 
+href="refse15.htm" >front</a>] [<a 
+href="refch3.htm#refse15.htm" >up</a>] </p></div><a 
+  name="tailrefse15.htm"></a>  
+</body></html> 

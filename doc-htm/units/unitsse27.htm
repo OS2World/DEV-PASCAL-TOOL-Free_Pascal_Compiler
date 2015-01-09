@@ -1,0 +1,338 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.4 Functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse26.htm" >prev</a>] [<a 
+href="unitsse26.htm#tailunitsse26.htm" >prev-tail</a>] [<a 
+href="#tailunitsse27.htm">tail</a>] [<a 
+href="unitsch9.htm#unitsse27.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.4</span> <a 
+href="units.htm#QQ2-41-307" name="x41-3040009.4">Functions and procedures</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-41-308" name="x41-3050009.4">DumpHeap</a></h4><a 
+  name="dx41-305001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure DumpHeap;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">DumpHeap </span>dumps to standard output a summary of memory usage. It is called automatically
+by the heaptrc unit when your program exits (by instaling an exit procedure), but it can be
+called at any time
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">MarkHeap </span>(<a 
+href="#x41-3060009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-41-309" name="x41-3060009.4">MarkHeap</a></h4><a 
+  name="dx41-306001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure MarkHeap;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">MarkHeap </span>marks all memory blocks with a special signature. You can use this if you think
+that you corruped the memory.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DumpHeap </span>(<a 
+href="#x41-3050009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-41-310" name="x41-3070009.4">SetExtraInfo</a></h4><a 
+  name="dx41-307001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure SetExtraInfo( size : longint;func : FillExtraInfoType);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">You can use <span 
+class="cmtt-10">SetExtraInfo </span>to store extra info in the blocks that the heaptrc unit reserves
+when tracing getmem calls. <span 
+class="cmtt-10">Size </span>indicates the size (in bytes) that the trace mechanism
+should reserve for your extra information. For each call to <span 
+class="cmtt-10">getmem</span>, <span 
+class="cmtt-10">func </span>will be called, and
+passed a pointer to the memory reserved.
+<!--l. 179--><p class="noindent">When dumping the memory summary, the extra info is shown as Longint values.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">You can only call <span 
+class="cmtt-10">SetExtraInfo </span>if no memroy has been allocated yet. If memory was already
+allocated prior to the call to <span 
+class="cmtt-10">SetExtraInfo</span>, then an error will be displayed on standard error
+output, and a <span 
+class="cmss-10">DumpHeap </span>(<a 
+href="#x41-3050009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>) is executed.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DumpHeap </span>(<a 
+href="#x41-3050009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>),<span 
+class="cmss-10">SetHeapTraceOutput </span>(<a 
+href="#x41-3080009.4">242<!--tex4ht:ref: tab:fmxxxconstants--></a>)
+</dd></dl>
+<!--l. 191--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">heapex/setinfo.pp</span><HR/><div class="listinginput">
+<!--l. 191--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">heapex;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">used</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">usage</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">heaptrc</span>&nbsp;<span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">heaptrc;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">P1</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">^Longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P2</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Marker</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetMarker</span>&nbsp;<span 
+class="cmtt-10">(P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">pointer);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Type</span>&nbsp;<span 
+class="cmtt-10">PLongint</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">^Longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">PLongint(P)^:=Marker;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;&nbsp;<span 
+class="cmtt-10">Part1;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Blocks</span>&nbsp;<span 
+class="cmtt-10">allocated</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">marked</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">$FFAAFFAA</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">-5570646</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Marker</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$FFAAFFAA;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(I</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">2)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">0</span>&nbsp;<span 
+class="cmtt-10">Then</span>&nbsp;<span 
+class="cmtt-10">FreeMem(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem(P2,128);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;&nbsp;<span 
+class="cmtt-10">Part2;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">//</span>&nbsp;<span 
+class="cmtt-10">Blocks</span>&nbsp;<span 
+class="cmtt-10">allocated</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">marked</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">$FAFAFAFA</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">-84215046</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Marker</span>&nbsp;<span 
+class="cmtt-10">:=</span>&nbsp;<span 
+class="cmtt-10">$FAFAFAFA;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">New(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(P1);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">GetMem</span>&nbsp;<span 
+class="cmtt-10">(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(I</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">2)</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">0</span>&nbsp;<span 
+class="cmtt-10">Then</span>&nbsp;<span 
+class="cmtt-10">FreeMem(P2,128);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMem(P2,128);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;<span 
+class="cmtt-10">SetExtraInfo(SizeOf(Marker),@SetMarker);</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Part</span>&nbsp;<span 
+class="cmtt-10">1');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">part1;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">Writeln('Part</span>&nbsp;<span 
+class="cmtt-10">2');</span>
+<br>   &nbsp;<span 
+class="cmtt-10">part2;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-41-311" name="x41-3080009.4">SetHeapTraceOutput</a></h4><a 
+  name="dx41-308001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure SetHeapTraceOutput(const name : string);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">SetHeapTraceOutput </span>sets the filename into which heap trace info will be written. By default
+information is written to standard output, this function allows you to redirect the information
+to a file with full filename <span 
+class="cmtt-10">name</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If the file cannot be written to, errors will occur when writing the trace.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">SetExtraInfo </span>(<a 
+href="#x41-3070009.4">240<!--tex4ht:ref: tab:fmxxxconstants--></a>)</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse26.htm" >prev</a>] [<a 
+href="unitsse26.htm#tailunitsse26.htm" >prev-tail</a>] [<a 
+href="unitsse27.htm" >front</a>] [<a 
+href="unitsch9.htm#unitsse27.htm" >up</a>] </p></div><a 
+  name="tailunitsse27.htm"></a>   
+</body></html> 

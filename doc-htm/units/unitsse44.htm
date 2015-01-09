@@ -1,0 +1,338 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>15.3 Writing a custom mouse driver</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse43.htm" >prev</a>] [<a 
+href="unitsse43.htm#tailunitsse43.htm" >prev-tail</a>] [<a 
+href="#tailunitsse44.htm">tail</a>] [<a 
+href="unitsch15.htm#unitsse44.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">15.3</span> <a 
+href="units.htm#QQ2-64-592" name="x64-58600015.3">Writing a custom mouse driver</a></h3>
+<!--l. 346--><p class="noindent">The <span 
+class="cmss-10">mouse </span>has support for adding a custom mouse driver. This can be used to add support
+for mouses not supported by the standard Free Pascal driver, but also to enhance an
+existing driver for instance to log mouse events or to implement a record and playback
+function.
+<!--l. 351--><p class="noindent">The following unit shows how a mouse driver can be enhanced by adding some logging capabilities
+to the driver.
+<!--l. 353--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">mouseex/logmouse.pp</span><HR/><div class="listinginput">
+<!--l. 353--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">unit</span>&nbsp;<span 
+class="cmtt-10">logmouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">interface</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartMouseLogging;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopMouseLogging;</span>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;&nbsp;<span 
+class="cmtt-10">IsMouseLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetMouseLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>
+<br>   <span 
+class="cmtt-10">implementation</span>
+<br>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">sysutils,Mouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewMouseDriver,</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldMouseDriver</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMouseDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active,Logging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">MouseLog</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">TimeStamp</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TimeStamp:=FormatDateTime('hh:nn:ss',Time());</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StartMouseLogging;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(MouseLog,'Start</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">events</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">StopMouseLogging;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(MouseLog,'Stop</span>&nbsp;<span 
+class="cmtt-10">logging</span>&nbsp;<span 
+class="cmtt-10">mouse</span>&nbsp;<span 
+class="cmtt-10">events</span>&nbsp;<span 
+class="cmtt-10">at:</span>&nbsp;<span 
+class="cmtt-10">',TimeStamp);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Function</span>&nbsp;<span 
+class="cmtt-10">IsMouseLogging</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Boolean;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">IsMouseLogging:=Logging;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogGetMouseEvent(Var</span>&nbsp;<span 
+class="cmtt-10">Event</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMouseEvent);</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">TMouseEvent;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldMouseDriver.GetMouseEvent(M);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Logging</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,TimeStamp,':</span>&nbsp;<span 
+class="cmtt-10">Mouse</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">With</span>&nbsp;<span 
+class="cmtt-10">M</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Case</span>&nbsp;<span 
+class="cmtt-10">Action</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseActionDown</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'down');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseActionUp</span>&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'up');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">MouseActionMove</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'move');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'</span>&nbsp;<span 
+class="cmtt-10">event</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">',X,',',Y);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Buttons&lt;&gt;0)</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">buttons:</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">MouseLeftbutton)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'Left</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">MouseRightbutton)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'Right</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">(Buttons</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">MouseMiddlebutton)&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(MouseLog,'Middle</span>&nbsp;<span 
+class="cmtt-10">');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln(MouseLog);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogInitMouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldMouseDriver.InitDriver();</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Assign(MouseLog,logFileName);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite(MouseLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=True;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StartMouseLogging;</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">LogDoneMouse;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">StopMouseLogging;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(MouseLog);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Active:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldMouseDriver.DoneDriver();</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">SetMouseLogFileName(FileName</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String);</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Not</span>&nbsp;<span 
+class="cmtt-10">Active</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:=FileName;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Initialization</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GetMouseDriver(OldMouseDriver);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewMouseDriver:=OldMouseDriver;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewMouseDriver.GetMouseEvent:=@LogGetMouseEvent;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewMouseDriver.InitDriver:=@LogInitMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NewMouseDriver.DoneDriver:=@LogDoneMouse;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LogFileName:='Mouse.log';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Logging:=False;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">SetMouseDriver(NewMouseDriver);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/> <div class="crosslinks"><p class="noindent">[<a 
+href="unitsse43.htm" >prev</a>] [<a 
+href="unitsse43.htm#tailunitsse43.htm" >prev-tail</a>] [<a 
+href="unitsse44.htm" >front</a>] [<a 
+href="unitsch15.htm#unitsse44.htm" >up</a>] </p></div><a 
+  name="tailunitsse44.htm"></a>  
+</body></html> 

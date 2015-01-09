@@ -1,0 +1,143 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.5 Testing the compiler</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse7.htm" >prev</a>] [<a 
+href="userse7.htm#tailuserse7.htm" >prev-tail</a>] [<a 
+href="#tailuserse8.htm">tail</a>] [<a 
+href="userch2.htm#userse8.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.5</span> <a 
+href="user.htm#QQ2-12-24" name="x12-220002.5">Testing the compiler</a></h3>
+<!--l. 384--><p class="noindent">After the installation is completed and the optional environment variables are set as described
+above, your first program can be compiled.
+<!--l. 387--><p class="noindent">Included in the Free Pascal distribution are some demonstration programs, showing what the
+compiler can do. You can test if the compiler functions correctly by trying to compile these
+programs.
+<!--l. 392--><p class="noindent">The compiler is called
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmss-10">fpc.exe </span>under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>.
+     </li>
+     <li class="itemize"><span 
+class="cmss-10">fpc </span>under most other operating systems.</li></ul>
+<!--l. 397--><p class="noindent">To compile a program (e.g <span class="obeylines-h"><span 
+class="cmtt-10">demo\hello.pp</span></span>) simply type :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;fpc&nbsp;hello
+</pre>
+</td></tr></table>at the command prompt. If you don&#8217;t have a configuration file, then you may need to tell the
+compiler where it can find the units, for instance as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;-Fuc:\pp\units\go32v2\rtl&nbsp;hello
+</pre>
+</td></tr></table>under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, and under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>you could type
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;fpc&nbsp;-Fu/usr/lib/fpc/NNN/units/linux/rtl&nbsp;hello
+</pre>
+</td></tr></table>(replace <span 
+class="cmtt-10">NNN </span>with the version number of Free Pascal that you are using). This is, of course,
+assuming that you installed under <span class="obeylines-h"><span 
+class="cmtt-10">C:\PP</span></span> or <span 
+class="cmss-10">/usr/lib/fpc/NNN</span>, respectively.
+<!--l. 415--><p class="noindent">If you got no error messages, the compiler has generated an executable called <span 
+class="cmss-10">hello.exe </span>under
+<span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2 </span>or <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, or <span 
+class="cmss-10">hello </span>(no extension) under <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>and most other operating
+systems.
+<!--l. 419--><p class="noindent">To execute the program, simply type :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;hello
+</pre>
+</td></tr></table>If all went well, you should see the following friendly greeting:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Hello&nbsp;world
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse7.htm" >prev</a>] [<a 
+href="userse7.htm#tailuserse7.htm" >prev-tail</a>] [<a 
+href="userse8.htm" >front</a>] [<a 
+href="userch2.htm#userse8.htm" >up</a>] </p></div><a 
+  name="tailuserse8.htm"></a>  
+</body></html> 

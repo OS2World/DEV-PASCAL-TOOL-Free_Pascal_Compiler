@@ -1,0 +1,67 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.5 Caveat</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse36.htm" >prev</a>] [<a 
+href="progse36.htm#tailprogse36.htm" >prev-tail</a>] [<a 
+href="#tailprogse37.htm">tail</a>] [<a 
+href="progch9.htm#progse37.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.5</span> <a 
+href="prog.htm#QQ2-174-197" name="x174-1770009.5">Caveat</a></h3>
+<!--l. 4465--><p class="noindent">In principle it is possible to translate all resource strings at any time in a running program.
+However, this change is not communicated to other strings; its change is noticed only when a
+constant string is being used.
+<!--l. 4469--><p class="noindent">Consider the following example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;help&nbsp;=&nbsp;'With&nbsp;a&nbsp;little&nbsp;help&nbsp;of&nbsp;a&nbsp;programmer.';
+&nbsp;
+&nbsp;Var
+&nbsp;&nbsp;&nbsp;A&nbsp;:&nbsp;AnsiString;
+&nbsp;
+&nbsp;
+&nbsp;begin
+&nbsp;
+&nbsp;&nbsp;&nbsp;{&nbsp;lots&nbsp;of&nbsp;code&nbsp;}
+&nbsp;
+&nbsp;&nbsp;&nbsp;A:=Help;
+&nbsp;
+&nbsp;&nbsp;&nbsp;{&nbsp;Again&nbsp;some&nbsp;code}
+&nbsp;
+&nbsp;&nbsp;&nbsp;TranslateStrings;
+&nbsp;
+&nbsp;&nbsp;&nbsp;{&nbsp;More&nbsp;code&nbsp;}
+</pre>
+</td></tr></table>After the call to <span 
+class="cmtt-10">TranslateStrings</span>, the value of <span 
+class="cmtt-10">A </span>will remain unchanged. This means that the
+assignment <span 
+class="cmtt-10">A:=Help </span>must be executed again in order for the change to become visible. This is
+important, especially for GUI programs which have e.g. a menu. In order for the change in resource
+strings to become visible, the new values must be reloaded by program code into the menus
+. . .
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse36.htm" >prev</a>] [<a 
+href="progse36.htm#tailprogse36.htm" >prev-tail</a>] [<a 
+href="progse37.htm" >front</a>] [<a 
+href="progch9.htm#progse37.htm" >up</a>] </p></div><a 
+  name="tailprogse37.htm"></a>  
+</body></html> 

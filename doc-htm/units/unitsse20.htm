@@ -1,0 +1,66 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2 Constants, Types and Variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse21.htm" >next</a>] [<a 
+href="unitsse19.htm" >prev</a>] [<a 
+href="unitsse19.htm#tailunitsse19.htm" >prev-tail</a>] [<a 
+href="#tailunitsse20.htm">tail</a>] [<a 
+href="unitsch8.htm#unitsse20.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.2</span> <a 
+href="units.htm#QQ2-33-210" name="x33-2070008.2">Constants, Types and Variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-33-211" name="x33-2080008.2">Types</a></h4>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ArcCoordsType&nbsp;=&nbsp;record
+&nbsp;&nbsp;X,Y,Xstart,Ystart,Xend,Yend&nbsp;:&nbsp;Integer;
+&nbsp;end;
+&nbsp;FillPatternType&nbsp;=&nbsp;Array&nbsp;[1..8]&nbsp;of&nbsp;Byte;
+&nbsp;FillSettingsType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;Pattern,Color&nbsp;:&nbsp;Word
+&nbsp;end;
+&nbsp;LineSettingsType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;LineStyle,Pattern,&nbsp;Width&nbsp;:&nbsp;Word;
+&nbsp;end;
+&nbsp;PaletteType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;Size&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;Colors&nbsp;:&nbsp;array[0..MAxColor]&nbsp;of&nbsp;shortint;
+&nbsp;end;
+&nbsp;PointType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;X,Y&nbsp;:&nbsp;Integer;
+&nbsp;end;
+&nbsp;TextSettingsType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;Font,Direction,&nbsp;CharSize,&nbsp;Horiz,&nbsp;Vert&nbsp;:&nbsp;Word
+&nbsp;end;
+&nbsp;ViewPortType&nbsp;=&nbsp;Record
+&nbsp;&nbsp;&nbsp;X1,Y1,X2,Y2&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;Clip&nbsp;:&nbsp;Boolean
+&nbsp;end;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse21.htm" >next</a>] [<a 
+href="unitsse19.htm" >prev</a>] [<a 
+href="unitsse19.htm#tailunitsse19.htm" >prev-tail</a>] [<a 
+href="unitsse20.htm" >front</a>] [<a 
+href="unitsch8.htm#unitsse20.htm" >up</a>] </p></div><a 
+  name="tailunitsse20.htm"></a>   
+</body></html> 

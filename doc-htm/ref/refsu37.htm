@@ -1,0 +1,56 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.3.0 Value parameters</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu38.htm" >next</a>] [<a 
+href="#tailrefsu37.htm">tail</a>] [<a 
+href="refse38.htm#refsu37.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-90-110" name="x90-960008.3">Value parameters</a></h4> Value parameters are declared as follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+                                                                            
+
+                                                                            
+     <span 
+class="cmbx-10">Value parameters</span>
+     <BR/>
+     <img 
+src="ref116x.png" alt="--             -          -  --------------            ----------
+   value parameter identifier list : -array- of-| parameter type
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 3169--><p class="noindent">When parameters are declared as value parameters, the procedure gets <span 
+class="cmti-10">a copy </span>of the parameters
+that the calling block passes. Any modifications to these parameters are purely local to the
+procedure&#8217;s block, and do not propagate back to the calling block. A block that wishes to call a
+procedure with value parameters must pass assignment compatible parameters to the procedure.
+This means that the types should not match exactly, but can be converted (conversion code is
+inserted by the compiler itself)
+<!--l. 3178--><p class="noindent">Care must be taken when using value parameters: Value parameters makes heavy use of the stack,
+especially when using large parameters. The total size of all parameters in the formal
+parameter list should be below 32K for portability&#8217;s sake (the Intel version limits this to
+64K).
+<!--l. 3183--><p class="noindent">Open arrays can be passed as value parameters. See section <a 
+href="refsu40.htm#x93-990008.3">8.3<!--tex4ht:ref: se:openarray--></a>, page <a 
+href="refsu40.htm#x93-990008.3">296<!--tex4ht:ref: se:openarray--></a> for more information on
+using open arrays.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu38.htm" >next</a>] [<a 
+href="refsu37.htm" >front</a>] [<a 
+href="refse38.htm#refsu37.htm" >up</a>] </p></div><a 
+  name="tailrefsu37.htm"></a>  
+</body></html> 

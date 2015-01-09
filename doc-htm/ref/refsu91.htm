@@ -1,0 +1,107 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Delete</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu92.htm" >next</a>] [<a 
+href="refsu90.htm" >prev</a>] [<a 
+href="refsu90.htm#tailrefsu90.htm" >prev-tail</a>] [<a 
+href="#tailrefsu91.htm">tail</a>] [<a 
+href="refse64.htm#refsu91.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-176-197" name="x176-18200013.3">Delete</a></h4><a 
+  name="dx176-182001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Delete (var S : string;Index : Integer;Count : Integer);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Delete </span>removes <span 
+class="cmtt-10">Count </span>characters from string <span 
+class="cmtt-10">S</span>, starting at position <span 
+class="cmtt-10">Index</span>. All characters
+after the delected characters are shifted <span 
+class="cmtt-10">Count </span>positions to the left, and the length of the
+string is adjusted.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Copy </span>(<a 
+href="refsu87.htm#x172-17800013.3">477<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">Pos </span>(<a 
+href="refsu146.htm#x231-23700013.3">546<!--tex4ht:ref: se:exceptclasses--></a>),<span 
+class="cmss-10">Insert </span>(<a 
+href="refsu122.htm#x207-21300013.3">521<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5593--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 5593--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example15;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Delete</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">S:='This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">easy</span>&nbsp;<span 
+class="cmtt-10">!';</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Delete</span>&nbsp;<span 
+class="cmtt-10">(S,9,4);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">S:='This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">easy</span>&nbsp;<span 
+class="cmtt-10">!'</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu92.htm" >next</a>] [<a 
+href="refsu90.htm" >prev</a>] [<a 
+href="refsu90.htm#tailrefsu90.htm" >prev-tail</a>] [<a 
+href="refsu91.htm" >front</a>] [<a 
+href="refse64.htm#refsu91.htm" >up</a>] </p></div><a 
+  name="tailrefsu91.htm"></a>  
+</body></html> 

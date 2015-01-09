@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings.CommaText</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings.CommaText</h1>
+<p>Contents of the list as a comma-separated string.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">property </span><a href="../classes/tstrings.htm">TStrings</a><span class="sym">.</span>CommaText<span class="sym">: </span>String<br>&nbsp;&nbsp;<span class="kw">read </span>GetCommaText<br>&nbsp;&nbsp;<span class="kw">write </span>SetCommaText<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>CommaText</var> represents the stringlist as a single string, consisting of a comma-separated concatenation of the strings in the list.  If one of the strings contains spaces, comma's or quotes it will be enclosed by  double quotes. Any double quotes in a string will be doubled. For instance the following strings: </p>
+<pre>Comma,string
+Quote"string
+Space string
+NormalSttring
+</pre>
+<p>is converted to </p>
+<pre><font color="red">"</font>Comma<span class="sym">,</span>string<font color="red">"</font><span class="sym">,</span><font color="red">"</font>Quote<font color="red">"</font><font color="red">"</font>String<font color="red">"</font><span class="sym">,</span><font color="red">"</font>Space string<font color="red">"</font><span class="sym">,</span>NormalString
+</pre>
+<p>Conversely, when setting the <var>CommaText</var> property, the text will be parsed according to the rules outlined above, and the strings will be set accordingly. Note that spaces will in this context be regarded as string separators, unless the string as a whole is contained in double quotes. Spaces that occur next to a delimiter will be ignored. The following string: </p>
+<pre>"Comma,string" , "Quote""String",Space string,, NormalString
+</pre>
+<p>Will be converted to </p>
+<pre>Comma,String
+Quote"String
+Space
+String
+
+NormalString
+</pre>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.text.htm">TStrings.Text</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Contents of the list as one big string.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.settext.htm">TStrings.SetText</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Set the contents of the list from a PChar.</p></td>
+</tr>
+</table>
+</body>
+</html>

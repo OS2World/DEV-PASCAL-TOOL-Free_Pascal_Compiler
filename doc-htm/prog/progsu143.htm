@@ -1,0 +1,231 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.7.0 Directory variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu144.htm" >next</a>] [<a 
+href="#tailprogsu143.htm">tail</a>] [<a 
+href="progse71.htm#progsu143.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-246-274" name="x246-247000E.7">Directory variables</a></h4>
+<!--l. 6162--><p class="noindent">The following compiler directories are defined by the makefile:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">BASEDIR</span> </dt><dd 
+class="description">is set to the current directory if the <span 
+class="cmss-10">pwd </span>command is available. If not, it is set
+     to &#8217;.&#8217;.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">INCDIR</span> </dt><dd 
+class="description">is a space-separated list of library paths. Each directory in the list
+     is prepended with <span 
+class="cmtt-10">-Fl </span>and added to the compiler options. Set by the <span 
+class="cmtt-10">incdir </span>keyword
+     in the <span 
+class="cmtt-10">Compiler </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">LIBDIR</span> </dt><dd 
+class="description">is a space-separated list of library paths. Each directory in the list
+                                                                            
+
+                                                                            
+     is prepended with <span 
+class="cmtt-10">-Fl </span>and added to the compiler options. Set by the <span 
+class="cmtt-10">libdir </span>keyword
+     in the <span 
+class="cmtt-10">Compiler </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">OBJDIR</span> </dt><dd 
+class="description">is  a  list  of  object  file  directories,  separated  by  spaces.  Each
+     directory in the list is prepended with <span 
+class="cmtt-10">-Fo </span>and added to the compiler options. Set by
+     the <span 
+class="cmtt-10">objdir </span>keyword in the <span 
+class="cmtt-10">Compiler </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">TARGETDIR</span> </dt><dd 
+class="description">This  directory  is  added  as  the  output  directory  of  the
+     compiler, where all units and executables are written, i.e. it gets <span 
+class="cmtt-10">-FE </span>prepended. It is
+     set by the <span 
+class="cmtt-10">targtdir </span>keyword in the <span 
+class="cmtt-10">Compiler </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">TARGETUNITDIR</span> </dt><dd 
+class="description">If set, this directory is added as the output directory
+     of the compiler, where all units and executables are written, i.e. it gets <span 
+class="cmtt-10">-FU </span>prepended.It
+     is set by the <span 
+class="cmtt-10">targtdir </span>keyword in the <span 
+class="cmtt-10">Dirs </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">COMPILER</span>_<span 
+class="cmbx-10">UNITDIR</span> </dt><dd 
+class="description">is a list of unit directories, separated by spaces. Each directory
+     in the list is prepended with <span 
+class="cmtt-10">-Fu </span>and is added to the compiler options. Set by the
+     <span 
+class="cmtt-10">unitdir </span>keyword in the <span 
+class="cmtt-10">Compiler </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GCCLIBDIR</span> </dt><dd 
+class="description">(<span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>only) is set to the directory where <span 
+class="cmss-10">libgcc.a </span>is. If <span 
+class="cmtt-10">needgcclib </span>is set
+     to <span 
+class="cmtt-10">True </span>in the <span 
+class="cmtt-10">Libs </span>section, then this directory is added to the compiler commandline
+     with <span 
+class="cmtt-10">-Fl</span>.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">OTHERLIBDIR</span> </dt><dd 
+class="description">is a space-separated list of library paths. Each directory in the list is
+     prepended with <span 
+class="cmtt-10">-Fl </span>and added to the compiler options. If it is not defined on linux,
+     then the contents of the <span 
+class="cmss-10">/etc/ld.so.conf </span>file is added.</dd></dl>
+<!--l. 6206--><p class="noindent">The following directories are used for installs:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">BASEDIR</span> </dt><dd 
+class="description">is the base for all directories where units are installed. By default,
+     On <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, this is set to <span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">PREFIX)/lib/fpc/$(RELEASEVER)</span>.
+     <br class="newline">On other systems, it is set to <span 
+class="cmtt-10">$(PREFIXINSTALLDIR)</span>. You can also set it with the
+     <span 
+class="cmtt-10">basedir </span>variable in the <span 
+class="cmtt-10">Install </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">BINDIR</span> </dt><dd 
+class="description">is set to <span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">BASEDIR)</span>/<span 
+class="cmtt-10">bin </span>on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, and
+     <br class="newline"><span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">BASEDIR)</span>/<span 
+class="cmtt-10">bin</span>/<span 
+class="cmtt-10">$(OS</span>_<span 
+class="cmtt-10">TARGET) </span>on other systems. This is the place where
+     binaries are installed.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">DATADIR</span> </dt><dd 
+class="description">The directory where data files are installed. Set by the <span 
+class="cmtt-10">Data </span>key
+     in the <span 
+class="cmtt-10">Install </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">LIBDIR</span> </dt><dd 
+class="description">is set to <span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">PREFIX)</span>/lib on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>,
+     <br class="newline">and <span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">UNITDIR) </span>on other systems.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">PREFIX</span> </dt><dd 
+class="description">is set to <span 
+class="cmss-10">/usr/local </span>on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, <span 
+class="cmss-10">/pp </span>on <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>or <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> NT</span>. Set by
+     the <span 
+class="cmtt-10">prefix </span>keyword in the <span 
+class="cmtt-10">Install </span>section.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">INSTALL</span>_<span 
+class="cmbx-10">UNITDIR</span> </dt><dd 
+class="description">is where units will be installed. This is set to
+     <br class="newline"><span 
+class="cmtt-10">$(INSTALL</span>_<span 
+class="cmtt-10">BASEDIR)</span>/units/<span 
+class="cmtt-10">$(OS</span>_<span 
+class="cmtt-10">TARGET)</span>.  If  the  units  are  compiled  as  a  package,
+     <span 
+class="cmtt-10">$(PACKAGE</span>_<span 
+class="cmtt-10">NAME) </span>is added to the directory.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu144.htm" >next</a>] [<a 
+href="progsu143.htm" >front</a>] [<a 
+href="progse71.htm#progsu143.htm" >up</a>] </p></div><a 
+  name="tailprogsu143.htm"></a>  
+</body></html> 

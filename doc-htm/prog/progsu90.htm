@@ -1,0 +1,278 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.1.0 Declaring the external object code</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu89.htm" >prev</a>] [<a 
+href="progsu89.htm#tailprogsu89.htm" >prev-tail</a>] [<a 
+href="#tailprogsu90.htm">tail</a>] [<a 
+href="progse25.htm#progsu90.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-131-136" name="x131-1280007.1">Declaring the external object code</a></h4>
+<h5 class="subsubsectionHead"><a 
+href="progse25.htm#QQ2-131-137" name="x131-1290007.1">Linking to an object file</a></h5>
+<!--l. 3028--><p class="noindent">Having declared the external function or variable that resides in an object file, you can use it as if
+it was defined in your own program or unit. To produce an executable, you must still link the
+object file in. This can be done with the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$L file.o</span><span 
+class="cmsy-10">} </span>directive.
+<!--l. 3033--><p class="noindent">This will cause the linker to link in the object file <span 
+class="cmss-10">file.o</span>. On most systems, this filename is case
+sensitive. The object file is first searched in the current directory, and then the directories specified
+by the <span 
+class="cmtt-10">-Fo </span>command line.
+<!--l. 3038--><p class="noindent">You cannot specify libraries in this way, it is for object files only.
+<!--l. 3040--><p class="noindent">Here we present an example. Consider that you have some assembly routine which uses the C
+calling convention that calculates the nth Fibonacci number:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;.text
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.align&nbsp;4
+&nbsp;.globl&nbsp;Fibonacci
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.type&nbsp;Fibonacci,@function
+&nbsp;Fibonacci:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pushl&nbsp;%ebp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%esp,%ebp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;8(%ebp),%edx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xorl&nbsp;%ecx,%ecx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xorl&nbsp;%eax,%eax
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;$1,%ebx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;incl&nbsp;%edx
+&nbsp;loop:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decl&nbsp;%edx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;je&nbsp;endloop
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%ecx,%eax
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addl&nbsp;%ebx,%eax
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%ebx,%ecx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%eax,%ebx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jmp&nbsp;loop
+&nbsp;endloop:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movl&nbsp;%ebp,%esp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;popl&nbsp;%ebp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret
+</pre>
+</td></tr></table>Then you can call this function with the following Pascal Program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Program&nbsp;FibonacciDemo;
+&nbsp;
+&nbsp;var&nbsp;i&nbsp;:&nbsp;longint;
+&nbsp;
+&nbsp;Function&nbsp;Fibonacci&nbsp;(L&nbsp;:&nbsp;longint):longint;cdecl;external;
+&nbsp;
+&nbsp;{$L&nbsp;fib.o}
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;For&nbsp;I:=1&nbsp;to&nbsp;40&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeln&nbsp;('Fib(',i,')&nbsp;:&nbsp;',Fibonacci&nbsp;(i));
+&nbsp;end.
+</pre>
+</td></tr></table>With just two commands, this can be made into a program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;as&nbsp;-o&nbsp;fib.o&nbsp;fib.s
+&nbsp;ppc386&nbsp;fibo.pp
+</pre>
+</td></tr></table>This example supposes that you have your assembler routine in <span 
+class="cmss-10">fib.s</span>, and your Pascal program in
+<span 
+class="cmss-10">fibo.pp</span>.
+<h5 class="subsubsectionHead"><a 
+href="progse25.htm#QQ2-131-138" name="x131-1300007.1">Linking to a library</a></h5>
+<!--l. 3096--><p class="noindent">To link your program to a library, the procedure depends on how you declared the external
+procedure.
+<!--l. 3099--><p class="noindent">In case you used the following syntax to declare your procedure:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external&nbsp;'Name';
+</pre>
+</td></tr></table>You don&#8217;t need to take additional steps to link your file in, the compiler will do all that is needed
+for you. On <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>it will link to <span 
+class="cmss-10">name.dll</span>, on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and most <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small></span>&#8217;es your program will be
+linked to library <span 
+class="cmss-10">libname</span>, which can be a static or dynamic library.
+<!--l. 3108--><p class="noindent">In case you used
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Procedure&nbsp;ProcName&nbsp;(Args&nbsp;:&nbsp;TPRocArgs);&nbsp;external;
+</pre>
+</td></tr></table>You still need to explicity link to the library. This can be done in 2 ways:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x131-130002x1"></a>You can tell the compiler in the source file what library to link to using the <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$LinkLib</span>
+     <span 
+class="cmtt-10">'Name'</span><span 
+class="cmsy-10">} </span>directive:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;{$LinkLib&nbsp;'gpm'}
+</pre>
+     </td></tr></table>This will link to the <span 
+class="cmss-10">gpm </span>library. On <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems (such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>), you must not specify the
+     extension or &#8217;lib&#8217; prefix of the library. The compiler takes care of that. On other systems
+     (such as <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, you need to specify the full name.
+     </li>
+     <li class="enumerate"><a 
+  name="x131-130004x2"></a>You can also tell the compiler on the command-line to link in a library: The <span 
+class="cmtt-10">-k </span>option can be
+     used for that. For example
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;ppc386&nbsp;-k'-lgpm'&nbsp;myprog.pp
+</pre>
+     </td></tr></table>Is equivalent to the above method, and tells the linker to link to the <span 
+class="cmss-10">gpm </span>library.</li></ol>
+<!--l. 3132--><p class="noindent">As an example; consider the following program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;printlength;
+&nbsp;
+&nbsp;{$linklib&nbsp;c}&nbsp;{&nbsp;Case&nbsp;sensitive&nbsp;}
+&nbsp;
+&nbsp;{&nbsp;Declaration&nbsp;for&nbsp;the&nbsp;standard&nbsp;C&nbsp;function&nbsp;strlen&nbsp;}
+&nbsp;Function&nbsp;strlen&nbsp;(P&nbsp;:&nbsp;pchar)&nbsp;:&nbsp;longint;&nbsp;cdecl;external;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;Writeln&nbsp;(strlen('Programming&nbsp;is&nbsp;easy&nbsp;!'));
+&nbsp;end.
+</pre>
+</td></tr></table>This program can be compiled with:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;&nbsp;prlen.pp
+</pre>
+</td></tr></table>Supposing, of course, that the program source resides in <span 
+class="cmss-10">prlen.pp</span>.
+<!--l. 3151--><p class="noindent">To use functions in C that have a variable number of arguments, you must compile your unit or
+program in <span 
+class="cmtt-10">objfpc </span>mode or <span 
+class="cmtt-10">Delphi </span>mode, and use the <span 
+class="cmtt-10">Array of const </span>argument, as in the
+following example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;testaocc;
+&nbsp;
+&nbsp;{$mode&nbsp;objfpc}
+&nbsp;
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;P&nbsp;:&nbsp;Pchar
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'example';
+&nbsp;&nbsp;&nbsp;F&nbsp;:&nbsp;Pchar
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'This&nbsp;%s&nbsp;uses&nbsp;printf&nbsp;to&nbsp;print&nbsp;numbers&nbsp;(%d)&nbsp;and&nbsp;strings.'#10;
+&nbsp;
+&nbsp;procedure&nbsp;printf(fm:&nbsp;pchar;args:&nbsp;array&nbsp;of&nbsp;const);cdecl;external&nbsp;'c';
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;printf(F,[P,123]);
+&nbsp;end.
+</pre>
+</td></tr></table>The output of this program looks like this:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;This&nbsp;example&nbsp;uses&nbsp;printf&nbsp;to&nbsp;print&nbsp;numbers&nbsp;(123)&nbsp;and&nbsp;strings.
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu89.htm" >prev</a>] [<a 
+href="progsu89.htm#tailprogsu89.htm" >prev-tail</a>] [<a 
+href="progsu90.htm" >front</a>] [<a 
+href="progse25.htm#progsu90.htm" >up</a>] </p></div><a 
+  name="tailprogsu90.htm"></a>   
+</body></html> 

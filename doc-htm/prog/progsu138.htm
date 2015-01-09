@@ -1,0 +1,80 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.4.0 Requires</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu139.htm" >next</a>] [<a 
+href="progsu137.htm" >prev</a>] [<a 
+href="progsu137.htm#tailprogsu137.htm" >prev-tail</a>] [<a 
+href="#tailprogsu138.htm">tail</a>] [<a 
+href="progse68.htm#progsu138.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-238-266" name="x238-239000E.4">Requires</a></h4> This section is used to indicate dependency on external packages (i.e units) or tools. The
+following keywords can be used:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">fpcmake</span> </dt><dd 
+class="description">Minimal version of fpcmake that this <span 
+class="cmss-10">makefile.fpc </span>needs.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">packages</span> </dt><dd 
+class="description">Other packages that should be compiled before this package can be compiled.
+     Note that this will also add all packages these packages depend on to the dependencies
+     of this package. By default, the Free Pascal Run-Time Library is added to this list.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">libc</span> </dt><dd 
+class="description">a boolean value that indicates whether this package needs the C library.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">nortl</span> </dt><dd 
+class="description">a boolean that prevents the addition of the Free Pascal Run-Time Library to the
+     required packages.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">unitdir</span> </dt><dd 
+class="description">These directories will be added to the units search path of the compiler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">packagedir</span> </dt><dd 
+class="description">List of package directories. The packages in these directories will be made as
+     well before making the current package.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">tools</span> </dt><dd 
+class="description">A list of executables of extra tools that are required. The full path to these tools will be
+     defined in the makefile as a variable with the same name as the tool name, only in uppercase.
+     For example, the following definition:
+                                                                            
+
+                                                                            
+     <table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+     &nbsp;tools=upx
+</pre>
+     </td></tr></table>will lead to the definition of a variable with the name <span 
+class="cmtt-10">UPX </span>which will contain the full path to
+     the <span 
+class="cmss-10">upx </span>executable.</dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu139.htm" >next</a>] [<a 
+href="progsu137.htm" >prev</a>] [<a 
+href="progsu137.htm#tailprogsu137.htm" >prev-tail</a>] [<a 
+href="progsu138.htm" >front</a>] [<a 
+href="progse68.htm#progsu138.htm" >up</a>] </p></div><a 
+  name="tailprogsu138.htm"></a>  
+</body></html> 

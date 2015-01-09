@@ -1,0 +1,128 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.6 External functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse42.htm" >next</a>] [<a 
+href="refse40.htm" >prev</a>] [<a 
+href="refse40.htm#tailrefse40.htm" >prev-tail</a>] [<a 
+href="#tailrefse41.htm">tail</a>] [<a 
+href="refch8.htm#refse41.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.6</span> <a 
+href="ref.htm#QQ2-97-117" name="x97-1030008.6">External functions</a></h3>
+<!--l. 3461--><p class="noindent">The <span 
+class="cmtt-10">external </span>modifier can be used to declare a function that resides in an external object file. It
+allows to use the function in some code, and at linking time, the object file containing the
+implementation of the function or procedure must be linked in.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">External directive</span>
+     <BR/>
+     <img 
+src="ref119x.png" alt="--external directive external-|---------------------------------------
+                         -string constant-|----------------------
+                                        |name - string constant-|
+                                        -index -integer constant-
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 3466--><p class="noindent">It replaces, in effect, the function or procedure code block. As an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;program&nbsp;CmodDemo;
+&nbsp;{$Linklib&nbsp;c}
+&nbsp;Const&nbsp;P&nbsp;:&nbsp;PChar&nbsp;=&nbsp;'This&nbsp;is&nbsp;fun&nbsp;!';
+&nbsp;Function&nbsp;strlen&nbsp;(P&nbsp;:&nbsp;PChar)&nbsp;:&nbsp;Longint;&nbsp;cdecl;&nbsp;external;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;WriteLn&nbsp;('Length&nbsp;of&nbsp;(',p,')&nbsp;:&nbsp;',strlen(p))
+&nbsp;end.
+</pre>
+</td></tr></table>
+<!--l. 3477--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The parameters in our declaration of the <span 
+class="cmtt-10">external </span>function should match exactly the ones in the
+declaration in the object file.
+If the <span 
+class="cmtt-10">external </span>modifier is followed by a string constant:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;external&nbsp;'lname';
+</pre>
+</td></tr></table>Then this tells the compiler that the function resides in library &#8217;lname&#8217;. The compiler will then
+automatically link this library to the program.
+<!--l. 3489--><p class="noindent">The name that the function has in the library can also be specified:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;external&nbsp;'lname'&nbsp;name&nbsp;'Fname';
+</pre>
+</td></tr></table>This tells the compiler that the function resides in library &#8217;lname&#8217;, but with name &#8217;Fname&#8217;.The
+compiler will then automatically link this library to the program, and use the correct name for the
+function. Under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>, the following form can also be used:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;external&nbsp;'lname'&nbsp;Index&nbsp;Ind;
+</pre>
+</td></tr></table>This tells the compiler that the function resides in library &#8217;lname&#8217;, but with index <span 
+class="cmtt-10">Ind</span>. The
+compiler will then automatically link this library to the program, and use the correct index for the
+function.
+<!--l. 3505--><p class="noindent">Finally, the external directive can be used to specify the external name of the function
+:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$L&nbsp;myfunc.o}
+&nbsp;external&nbsp;name&nbsp;'Fname';
+</pre>
+</td></tr></table>This tells the compiler that the function has the name &#8217;Fname&#8217;. The correct library or object file
+(in this case myfunc.o) must still be linked. so that the function &#8217;Fname&#8217; is included in the linking
+stage.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse42.htm" >next</a>] [<a 
+href="refse40.htm" >prev</a>] [<a 
+href="refse40.htm#tailrefse40.htm" >prev-tail</a>] [<a 
+href="refse41.htm" >front</a>] [<a 
+href="refch8.htm#refse41.htm" >up</a>] </p></div><a 
+  name="tailrefse41.htm"></a>  
+</body></html> 

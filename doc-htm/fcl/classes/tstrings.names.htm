@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings.Names</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings.Names</h1>
+<p>Name parts of the name-value pairs in the list.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">property </span><a href="../classes/tstrings.htm">TStrings</a><span class="sym">.</span>Names<span class="sym">: </span>String<br>&nbsp;&nbsp;<span class="kw">read </span>GetName<span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Names</var> provides indexed access to the names of teh name-value pairs in the list. It returns the name part of the <var>Index</var>-th string in the list. </p>
+<table width="100%" border="0" CellSpacing="0" class="remark">
+<tr>
+<td valign="top" class="pre"><b>Remark:   </b></td>
+<td>The index is not an index based on the number of name-value pairs in the list. It is the name part of the name-value pair a string <var>Index</var> in the list. If the string at position <var>Index</var> is not a name-value pair (i.e. does not contain the equal sign (=)), then an empty name is returned. </td>
+</tr>
+</table>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.values.htm">TStrings.Values</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Value parts of the name-value pairs in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.indexofname.htm">TStrings.IndexOfName</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Finds the index of a name in the name-value pairs.</p></td>
+</tr>
+</table>
+</body>
+</html>

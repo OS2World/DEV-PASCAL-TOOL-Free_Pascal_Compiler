@@ -1,0 +1,92 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6 Code issues</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch7.htm" >next</a>] [<a 
+href="progch5.htm" >prev</a>] [<a 
+href="progch5.htm#tailprogch5.htm" >prev-tail</a>] [<a 
+href="#tailprogch6.htm">tail</a>] [<a 
+href="prog.htm#progch6.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;6</span><br><a 
+href="prog.htm#QQ2-98-98" name="x98-960006">Code issues</a></h2>
+<!--l. 2230--><p class="noindent">This chapter gives detailed information on the generated code by Free Pascal. It can be
+useful to write external object files which will be linked to Free Pascal created code
+blocks.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="progse17.htm#x99-970006.1" name="QQ2-99-99">Register Conventions</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu71.htm#x100-980006.1" name="QQ2-100-100">accumulator register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu72.htm#x101-990006.1" name="QQ2-101-101">accumulator 64-bit register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu73.htm#x102-1000006.1" name="QQ2-102-102">float result register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu74.htm#x103-1010006.1" name="QQ2-103-103">self register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu75.htm#x104-1020006.1" name="QQ2-104-104">frame pointer register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu76.htm#x106-1030006.1" name="QQ2-106-105">stack pointer register</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu77.htm#x107-1040006.1" name="QQ2-107-106">scratch registers</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu78.htm#x108-1050006.1" name="QQ2-108-107">Processor mapping of registers</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="progse18.htm#x110-1080006.2" name="QQ2-110-112">Name mangling</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu79.htm#x112-1090006.2" name="QQ2-112-113">Mangled names for data blocks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu80.htm#x113-1100006.2" name="QQ2-113-114">Mangled names for code blocks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu81.htm#x114-1110006.2" name="QQ2-114-115">Modifying the mangled names</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="progse19.htm#x115-1120006.3" name="QQ2-115-116">Calling mechanism</a></span>
+<br>&nbsp;<span class="sectionToc">6.4 <a 
+href="progse20.htm#x116-1130006.4" name="QQ2-116-118">Nested procedure and functions</a></span>
+<br>&nbsp;<span class="sectionToc">6.5 <a 
+href="progse21.htm#x117-1140006.5" name="QQ2-117-120">Constructor and Destructor calls</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu82.htm#x118-1150006.5" name="QQ2-118-121">objects</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu83.htm#x119-1160006.5" name="QQ2-119-122">classes</a></span>
+<br>&nbsp;<span class="sectionToc">6.6 <a 
+href="progse22.htm#x120-1170006.6" name="QQ2-120-123">Entry and exit code</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu84.htm#x121-1180006.6" name="QQ2-121-124">Intel 80x86 standard routine prologue / epilogue</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu85.htm#x122-1190006.6" name="QQ2-122-125">Motorola 680x0 standard routine prologue / epilogue</a></span>
+<br>&nbsp;<span class="sectionToc">6.7 <a 
+href="progse23.htm#x123-1200006.7" name="QQ2-123-126">Parameter passing</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="progsu86.htm#x124-1210006.7" name="QQ2-124-128">Parameter alignment</a></span>
+<br>&nbsp;<span class="sectionToc">6.8 <a 
+href="progse24.htm#x125-1220006.8" name="QQ2-125-129">Processor limitations</a></span>
+</div>
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progch7.htm" >next</a>] [<a 
+href="progch5.htm" >prev</a>] [<a 
+href="progch5.htm#tailprogch5.htm" >prev-tail</a>] [<a 
+href="progch6.htm" >front</a>] [<a 
+href="prog.htm#progch6.htm" >up</a>] </p></div><a 
+  name="tailprogch6.htm"></a>  
+</body></html> 

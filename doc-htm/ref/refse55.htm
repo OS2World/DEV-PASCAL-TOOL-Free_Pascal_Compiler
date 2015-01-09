@@ -1,0 +1,81 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.1 The raise statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse56.htm" >next</a>] [<a 
+href="#tailrefse55.htm">tail</a>] [<a 
+href="refch11.htm#refse55.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.1</span> <a 
+href="ref.htm#QQ2-130-151" name="x130-13600011.1">The raise statement</a></h3>
+<!--l. 4317--><p class="noindent">The <span 
+class="cmtt-10">raise </span>statement is as follows:
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Raise statement</span>
+     <BR/>
+     <img 
+src="ref152x.png" alt="-- raise statement---------------------------------------------------
+                 exception instance  -  -               -|
+                                  at  address expression
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4319--><p class="noindent">This statement will raise an exception. If it is specified, the exception instance must be an
+initialized instance of a class, which is the raise type. The address exception is optional. If itis not
+specified, the compiler will provide the address by itself. If the exception instance is omitted, then
+the current exception is re-raised. This construct can only be used in an exception handling block
+(see further).
+<!--l. 4327--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> Control <span 
+class="cmti-10">never </span>returns after an exception block. The control is transferred to the first
+                                                                            
+
+                                                                            
+<span 
+class="cmtt-10">try...finally </span>or <span 
+class="cmtt-10">try...except </span>statement that is encountered when unwinding the stack. If no
+such statement is found, the Free Pascal Run-Time Library will generate a run-time error 217 (see
+also section <a 
+href="refse59.htm#x134-14000011.5">11.5<!--tex4ht:ref: se:exceptclasses--></a>, page <a 
+href="refse59.htm#x134-14000011.5">393<!--tex4ht:ref: se:exceptclasses--></a>).
+As an example: The following division checks whether the denominator is zero, and if so, raises an
+exception of type <span 
+class="cmtt-10">EDivException</span>
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type&nbsp;EDivException&nbsp;=&nbsp;Class(Exception);
+&nbsp;Function&nbsp;DoDiv&nbsp;(X,Y&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Integer;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;If&nbsp;Y=0&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Raise&nbsp;EDivException.Create&nbsp;('Division&nbsp;by&nbsp;Zero&nbsp;would&nbsp;occur');
+&nbsp;&nbsp;&nbsp;Result&nbsp;:=&nbsp;X&nbsp;Div&nbsp;Y;
+&nbsp;end;
+</pre>
+</td></tr></table>The class <span 
+class="cmtt-10">Exception </span>is defined in the <span 
+class="cmss-10">Sysutils </span>unit of the rtl. (section <a 
+href="refse59.htm#x134-14000011.5">11.5<!--tex4ht:ref: se:exceptclasses--></a>, page <a 
+href="refse59.htm#x134-14000011.5">393<!--tex4ht:ref: se:exceptclasses--></a>)
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse56.htm" >next</a>] [<a 
+href="refse55.htm" >front</a>] [<a 
+href="refch11.htm#refse55.htm" >up</a>] </p></div><a 
+  name="tailrefse55.htm"></a>  
+</body></html> 

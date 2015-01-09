@@ -1,0 +1,80 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.2.0 Element name conventions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu28.htm" >next</a>] [<a 
+href="#tailfpdocsu27.htm">tail</a>] [<a 
+href="fpdocse11.htm#fpdocsu27.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="fpdoc.htm#QQ2-44-43" name="x44-430004.2">Element name conventions</a></h4> As mentioned in the previous section, the <span 
+class="cmtt-10">element </span>tag&#8217;s <span 
+class="cmti-10">name</span>
+attribute is hierarchical. All levels in the hierarchy are denoted by a dot (.) in the name
+attribute.
+<!--l. 780--><p class="noindent">As shown in the previous example, for an enumerated type, the various enumeration constants can
+be documented by specifying their name as <span 
+class="cmtt-10">enumname.constname</span>. For example, given the
+type
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;MyEnum&nbsp;=&nbsp;(meOne,meTwo,meThree);
+</pre>
+</td></tr></table>The various enumeration values can be documented using the element names <span 
+class="cmtt-10">MyEnum.meOne</span>,
+<span 
+class="cmtt-10">MyEnum.meTwo </span>and <span 
+class="cmtt-10">MyEnum.meThree</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;element&nbsp;name=&#34;myenum.meOne&#34;&gt;
+&nbsp;&lt;/element&gt;
+&nbsp;&lt;element&nbsp;name=&#34;myenum.meTwo&#34;&gt;
+&nbsp;&lt;/element&gt;
+&nbsp;&lt;element&nbsp;name=&#34;myenum.meThree&#34;&gt;
+&nbsp;&lt;/element&gt;
+</pre>
+</td></tr></table>Note that the casing of the name attribute need not be the same as the casing of the
+declaration.
+<!--l. 800--><p class="noindent">This hierarchical structure can be used for all non-simple types:
+     <ul class="itemize1">
+     <li class="itemize">Enumeration type values.
+     </li>
+     <li class="itemize">Fields in records, objects, classes. For nested record definitions, multiple levels are
+     possible in the name.
+     </li>
+     <li class="itemize">Methods of classes and objects.
+     </li>
+     <li class="itemize">Properties of classes.
+     </li>
+     <li class="itemize">Function and procedure arguments.
+     </li>
+     <li class="itemize">Function results. The name is always the function name followed by <span 
+class="cmtt-10">Result</span>.</li></ul>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu28.htm" >next</a>] [<a 
+href="fpdocsu27.htm" >front</a>] [<a 
+href="fpdocse11.htm#fpdocsu27.htm" >up</a>] </p></div><a 
+  name="tailfpdocsu27.htm"></a>  
+</body></html> 

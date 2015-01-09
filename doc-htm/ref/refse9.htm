@@ -1,0 +1,113 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.2 Typed constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse10.htm" >next</a>] [<a 
+href="refse8.htm" >prev</a>] [<a 
+href="refse8.htm#tailrefse8.htm" >prev-tail</a>] [<a 
+href="#tailrefse9.htm">tail</a>] [<a 
+href="refch2.htm#refse9.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.2</span> <a 
+href="ref.htm#QQ2-22-21" name="x22-210002.2">Typed constants</a></h3>
+<!--l. 446--><p class="noindent">Typed constants serve to provide a program with initialised variables. Contrary to ordinary
+constants, they may be assigned to at run-time. The difference with normal variables is that their
+value is initialised when the program starts, whereas normal variables must be initialised
+explicitly.
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Typed constant declaration</span>
+     <BR/>
+     <img 
+src="ref25x.png" alt="-- typed constant declaration|identifier- :- type- = - typed constant ;----
+                        -------------------------------------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref26x.png" alt="-- typed constant------constant-------------------------------------
+                --address constant-|
+                ---array constant--|
+                |-record constant---|
+                -procedural constant-
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 452--><p class="noindent">Given the declaration:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;S&nbsp;:&nbsp;String&nbsp;=&nbsp;'This&nbsp;is&nbsp;a&nbsp;typed&nbsp;constant&nbsp;string';
+</pre>
+</td></tr></table>The following is a valid assignment:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;S&nbsp;:=&nbsp;'Result&nbsp;:&nbsp;'+Func;
+</pre>
+</td></tr></table>Where <span 
+class="cmtt-10">Func </span>is a function that returns a <span 
+class="cmtt-10">String</span>. Typed constants are often used to initialize arrays
+and records. For arrays, the initial elements must be specified, surrounded by round brackets, and
+separated by commas. The number of elements must be exactly the same as the number of
+elements in the declaration of the type. As an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;tt&nbsp;:&nbsp;array&nbsp;[1..3]&nbsp;of&nbsp;string[20]&nbsp;=&nbsp;('ikke',&nbsp;'gij',&nbsp;'hij');
+&nbsp;&nbsp;&nbsp;ti&nbsp;:&nbsp;array&nbsp;[1..3]&nbsp;of&nbsp;Longint&nbsp;=&nbsp;(1,2,3);
+</pre>
+</td></tr></table>For constant records, each element of the record should be specified, in the form <span 
+class="cmtt-10">Field : Value</span>,
+separated by commas, and surrounded by round brackets. As an example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;Point&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X,Y&nbsp;:&nbsp;Real
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;Origin&nbsp;:&nbsp;Point&nbsp;=&nbsp;(X:0.0;&nbsp;Y:0.0);
+</pre>
+</td></tr></table>The order of the fields in a constant record needs to be the same as in the type declaration,
+otherwise a compile-time error will occur.
+<!--l. 487--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> It should be stressed that typed constants are initialized at program start. This is also true for
+<span 
+class="cmti-10">local </span>typed constants. Local typed constants are also initialized at program start. If their value was
+changed during previous invocations of the function, they will retain their changed value, i.e. they
+are not initialized each time the function is invoked.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse10.htm" >next</a>] [<a 
+href="refse8.htm" >prev</a>] [<a 
+href="refse8.htm#tailrefse8.htm" >prev-tail</a>] [<a 
+href="refse9.htm" >front</a>] [<a 
+href="refch2.htm#refse9.htm" >up</a>] </p></div><a 
+  name="tailrefse9.htm"></a>  
+</body></html> 

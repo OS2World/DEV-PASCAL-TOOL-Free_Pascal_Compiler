@@ -1,0 +1,217 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>6 The IDE</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userch7.htm" >next</a>] [<a 
+href="userch5.htm" >prev</a>] [<a 
+href="userch5.htm#tailuserch5.htm" >prev-tail</a>] [<a 
+href="#tailuserch6.htm">tail</a>] [<a 
+href="user.htm#userch6.htm" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&nbsp;6</span><br><a 
+href="user.htm#QQ2-27-61" name="x27-590006">The IDE</a></h2>
+<!--l. 26--><p class="noindent">The IDE (<span 
+class="cmbx-10">I</span>ntegrated <span 
+class="cmbx-10">D</span>evelopment <span 
+class="cmbx-10">E</span>nvironment) provides a comfortable user interface to the
+compiler. It contains an editor with syntax highlighting, a debugger, symbol browser etc. The IDE
+is a text-mode application which has the same look and feel on all supported operating systems. It
+is modelled after the IDE of Turbo Pascal, so many people should feel comfortable using
+it.
+<!--l. 33--><p class="noindent">Currently, the IDE is available for <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>, <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+<div class="sectionTOCS">
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="userse20.htm#x28-600006.1" name="QQ2-28-62">First steps with the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-610006.1" name="QQ2-28-63">Starting the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-620006.1" name="QQ2-28-64">IDE Command line options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-630006.1" name="QQ2-28-65">The IDE screen</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="userse21.htm#x30-640006.2" name="QQ2-30-67">Navigating in the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-650006.2" name="QQ2-30-68">Using the keyboard</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-660006.2" name="QQ2-30-69">Using the mouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-670006.2" name="QQ2-30-70">Navigating in dialogs</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="userse22.htm#x32-680006.3" name="QQ2-32-71">Windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-690006.3" name="QQ2-32-72">Window basics</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-700006.3" name="QQ2-32-74">Sizing and moving windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-710006.3" name="QQ2-32-75">Working with multiple windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-720006.3" name="QQ2-32-76">Dialog windows</a></span>
+<br>&nbsp;<span class="sectionToc">6.4 <a 
+href="userse23.htm#x33-730006.4" name="QQ2-33-78">The Menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-740006.4" name="QQ2-33-79">Accessing the menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-750006.4" name="QQ2-33-80">The File menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-760006.4" name="QQ2-33-81">The Edit menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-770006.4" name="QQ2-33-82">The Search menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-780006.4" name="QQ2-33-83">The Run menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-790006.4" name="QQ2-33-84">The Compile menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-800006.4" name="QQ2-33-85">The Debug menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-810006.4" name="QQ2-33-86">The Tools menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-820006.4" name="QQ2-33-87">The Options menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-830006.4" name="QQ2-33-88">The Window menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-840006.4" name="QQ2-33-89">The Help menu</a></span>
+<br>&nbsp;<span class="sectionToc">6.5 <a 
+href="userse24.htm#x34-850006.5" name="QQ2-34-90">Editing text</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-860006.5" name="QQ2-34-91">Insert modes</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-870006.5" name="QQ2-34-92">Blocks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-880006.5" name="QQ2-34-93">Setting bookmarks</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-890006.5" name="QQ2-34-94">Jumping to a source line</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-900006.5" name="QQ2-34-96">Syntax highlighting</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-910006.5" name="QQ2-34-97">Code Completion</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-920006.5" name="QQ2-34-99">Code Templates</a></span>
+<br>&nbsp;<span class="sectionToc">6.6 <a 
+href="userse25.htm#x35-930006.6" name="QQ2-35-101">Searching and replacing</a></span>
+<br>&nbsp;<span class="sectionToc">6.7 <a 
+href="userse26.htm#x36-940006.7" name="QQ2-36-104">The symbol browser</a></span>
+<br>&nbsp;<span class="sectionToc">6.8 <a 
+href="userse27.htm#x37-950006.8" name="QQ2-37-106">Running programs</a></span>
+<br>&nbsp;<span class="sectionToc">6.9 <a 
+href="userse28.htm#x38-960006.9" name="QQ2-38-108">Debugging programs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-970006.9" name="QQ2-38-109">Using breakpoints</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-980006.9" name="QQ2-38-112">Using watches</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-990006.9" name="QQ2-38-115">The call stack</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-1000006.9" name="QQ2-38-117">The GDB window</a></span>
+<br>&nbsp;<span class="sectionToc">6.10 <a 
+href="userse29.htm#x40-1010006.10" name="QQ2-40-119">Using Tools</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1020006.10" name="QQ2-40-120">The messages window</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1030006.10" name="QQ2-40-122">Grep</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1040006.10" name="QQ2-40-123">The ASCII table</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1050006.10" name="QQ2-40-125">The calculator</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1060006.10" name="QQ2-40-130">Adding new tools</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1070006.10" name="QQ2-40-132">Meta parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1080006.10" name="QQ2-40-133">Building a command line dialog box</a></span>
+<br>&nbsp;<span class="sectionToc">6.11 <a 
+href="userse30.htm#x42-1090006.11" name="QQ2-42-134">Project management and compiler options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1100006.11" name="QQ2-42-135">The primary file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1110006.11" name="QQ2-42-136">The directory dialog</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1120006.11" name="QQ2-42-138">The target operating system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1130006.11" name="QQ2-42-140">Compiler options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1140006.11" name="QQ2-42-146">Linker options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1150006.11" name="QQ2-42-148">Memory sizes</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1160006.11" name="QQ2-42-150">Debug options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1170006.11" name="QQ2-42-152">The switches mode</a></span>
+<br>&nbsp;<span class="sectionToc">6.12 <a 
+href="userse31.htm#x43-1180006.12" name="QQ2-43-154">Customizing the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1190006.12" name="QQ2-43-155">Preferences</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1200006.12" name="QQ2-43-157">The desktop</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1210006.12" name="QQ2-43-159">The Editor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1220006.12" name="QQ2-43-161">Mouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1230006.12" name="QQ2-43-163">Colors</a></span>
+<br>&nbsp;<span class="sectionToc">6.13 <a 
+href="userse32.htm#x45-1240006.13" name="QQ2-45-165">The help system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1250006.13" name="QQ2-45-166">Navigating in the help system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1260006.13" name="QQ2-45-167">Working with help files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1270006.13" name="QQ2-45-169">The about dialog</a></span>
+<br>&nbsp;<span class="sectionToc">6.14 <a 
+href="userse33.htm#x47-1280006.14" name="QQ2-47-170">Keyboard shortcuts</a></span>
+                                                                            
+
+                                                                            
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userch7.htm" >next</a>] [<a 
+href="userch5.htm" >prev</a>] [<a 
+href="userch5.htm#tailuserch5.htm" >prev-tail</a>] [<a 
+href="userch6.htm" >front</a>] [<a 
+href="user.htm#userch6.htm" >up</a>] </p></div><a 
+  name="tailuserch6.htm"></a>  
+</body></html> 

@@ -1,0 +1,86 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>12.4 Inserting version information</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse51.htm" >next</a>] [<a 
+href="progse49.htm" >prev</a>] [<a 
+href="progse49.htm#tailprogse49.htm" >prev-tail</a>] [<a 
+href="#tailprogse50.htm">tail</a>] [<a 
+href="progch12.htm#progse50.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">12.4</span> <a 
+href="prog.htm#QQ2-207-229" name="x207-20800012.4">Inserting version information</a></h3>
+<!--l. 5123--><p class="noindent">The win32 API allows to store version information in your binaries. This information can be made
+visible with the <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>Explorer, by right-clicking on the executable or library, and
+selecting the &#8217;Properties&#8217; menu. In the tab &#8217;Version&#8217; the version information will be
+displayed.
+<!--l. 5129--><p class="noindent">Here is how to insert version information in your binary:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;1&nbsp;VERSIONINFO
+&nbsp;FILEVERSION&nbsp;4,&nbsp;0,&nbsp;3,&nbsp;17
+&nbsp;PRODUCTVERSION&nbsp;3,&nbsp;0,&nbsp;0,&nbsp;0
+&nbsp;FILEFLAGSMASK&nbsp;0
+&nbsp;FILEOS&nbsp;0x40000
+&nbsp;FILETYPE&nbsp;1
+&nbsp;{
+&nbsp;&nbsp;BLOCK&nbsp;&#34;StringFileInfo&#34;
+&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;BLOCK&nbsp;&#34;040904E4&#34;
+&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;CompanyName&#34;,&nbsp;&#34;Free&nbsp;Pascal&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;FileDescription&#34;,&nbsp;&#34;Free&nbsp;Pascal&nbsp;version&nbsp;information&nbsp;extractor&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;FileVersion&#34;,&nbsp;&#34;1.0&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;InternalName&#34;,&nbsp;&#34;Showver&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;LegalCopyright&#34;,&nbsp;&#34;GNU&nbsp;Public&nbsp;License&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;OriginalFilename&#34;,&nbsp;&#34;showver.pp&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;ProductName&#34;,&nbsp;&#34;Free&nbsp;Pascal&#34;
+&nbsp;&nbsp;&nbsp;&nbsp;VALUE&nbsp;&#34;ProductVersion&#34;,&nbsp;&#34;1.0&#34;
+&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;}
+&nbsp;}
+</pre>
+</td></tr></table>As you can see, you can insert various kinds of information in the version info block. The keyword
+<span 
+class="cmtt-10">VERSIONINFO </span>marks the beginning of the version information resource block. The keywords
+<span 
+class="cmtt-10">FILEVERSION</span>, <span 
+class="cmtt-10">PRODUCTVERSION </span>give the actual file version, while the block <span 
+class="cmtt-10">StringFileInfo </span>gives
+other information that is displayed in the explorer.
+<!--l. 5161--><p class="noindent">The Free Component Library comes with a unit (<span 
+class="cmss-10">fileinfo</span>) that allows to extract and view version
+information in a straightforward and easy manner; the demo program that comes with it (<span 
+class="cmss-10">showver</span>)
+shows version information for an arbitrary executable or DLL.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse51.htm" >next</a>] [<a 
+href="progse49.htm" >prev</a>] [<a 
+href="progse49.htm#tailprogse49.htm" >prev-tail</a>] [<a 
+href="progse50.htm" >front</a>] [<a 
+href="progch12.htm#progse50.htm" >up</a>] </p></div><a 
+  name="tailprogse50.htm"></a>  
+</body></html> 

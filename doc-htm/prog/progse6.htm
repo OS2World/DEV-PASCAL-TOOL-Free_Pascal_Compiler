@@ -1,0 +1,154 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>2.3 Macros</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse5.htm" >prev</a>] [<a 
+href="progse5.htm#tailprogse5.htm" >prev-tail</a>] [<a 
+href="#tailprogse6.htm">tail</a>] [<a 
+href="progch2.htm#progse6.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.3</span> <a 
+href="prog.htm#QQ2-81-81" name="x81-800002.3">Macros</a></h3>
+<!--l. 1608--><p class="noindent">Macros are very much like symbols in their syntax, the difference is that macros have a value
+whereas a symbol simply is defined or is not defined. If you want macro support, you need
+to specify the <span 
+class="cmtt-10">-Sm </span>command-line switch, otherwise your macro will be regarded as a
+symbol.
+<!--l. 1613--><p class="noindent">Defining a macro in your program is done in the same way as defining a symbol; in a <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$define</span><span 
+class="cmsy-10">} </span>preprocessor
+statement<a 
+href="prog82.htm" name="prog82.htm" ><sup>2</sup></a>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$define&nbsp;ident:=expr}
+</pre>
+</td></tr></table>If the compiler encounters <span 
+class="cmtt-10">ident </span>in the rest of the source file, it will be replaced immediately by
+<span 
+class="cmtt-10">expr</span>. This replacement works recursive, meaning that when the compiler expanded one of your
+macros, it will look at the resulting expression again to see if another replacement can
+be made. You need to be careful with this, because an infinite loop can occur in this
+manner.
+<!--l. 1627--><p class="noindent">Here are two examples which illustrate the use of macros:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$define&nbsp;sum:=a:=a+b;}
+&nbsp;...
+&nbsp;sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;will&nbsp;be&nbsp;expanded&nbsp;to&nbsp;'a:=a+b;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remark&nbsp;the&nbsp;absence&nbsp;of&nbsp;the&nbsp;semicolon}
+&nbsp;...
+&nbsp;{$define&nbsp;b:=100}
+&nbsp;sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Will&nbsp;be&nbsp;expanded&nbsp;recursively&nbsp;to&nbsp;a:=a+100;&nbsp;}
+&nbsp;...
+</pre>
+</td></tr></table>The previous example could go wrong:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$define&nbsp;sum:=a:=a+b;}
+&nbsp;...
+&nbsp;sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;will&nbsp;be&nbsp;expanded&nbsp;to&nbsp;'a:=a+b;'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remark&nbsp;the&nbsp;absence&nbsp;of&nbsp;the&nbsp;semicolon}
+&nbsp;...
+&nbsp;{$define&nbsp;b=sum}&nbsp;{&nbsp;DON'T&nbsp;do&nbsp;this&nbsp;!!!}
+&nbsp;sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;Will&nbsp;be&nbsp;infinitely&nbsp;recursively&nbsp;expanded&nbsp;\dots&nbsp;}
+&nbsp;...
+</pre>
+</td></tr></table>On my system, the last example results in a heap error, causing the compiler to exit with a
+run-time error 203.
+<!--l. 1652--><p class="noindent"><span 
+class="cmbx-10">Remark:</span>Macros defined in the interface part of a unit are not available outside that unit! They can just be
+used as a notational convenience, or in conditional compiles.
+By default the compiler predefines three macros, containing the version number, the release
+number and the patch number. They are listed in table (<a 
+href="#x81-800021">2.1<!--tex4ht:ref: tab:DefMacros--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x81-800021"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;2.1: </td><td  
+class="content">Predefined macros</td></tr></table></div><!--tex4ht:label?: x81-800021-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-3-" ><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"><col 
+id="TBL-3-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-3-1-"><td  align="left" nowrap="nowrap" id="TBL-3-1-1"  
+class="td11"> Symbol       </td><td  align="left" nowrap="nowrap" id="TBL-3-1-2"  
+class="td11"> Contains                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-3-2-"><td  align="left" nowrap="nowrap" id="TBL-3-2-1"  
+class="td11"> <span 
+class="cmtt-10">FPC</span>_<span 
+class="cmtt-10">VERSION</span></td><td  align="left" nowrap="nowrap" id="TBL-3-2-2"  
+class="td11"> The version number of the compiler.</td>
+</tr><tr  
+valign="baseline" id="TBL-3-3-"><td  align="left" nowrap="nowrap" id="TBL-3-3-1"  
+class="td11"> <span 
+class="cmtt-10">FPC</span>_<span 
+class="cmtt-10">RELEASE</span></td><td  align="left" nowrap="nowrap" id="TBL-3-3-2"  
+class="td11"> The release number of the compiler. </td>
+</tr><tr  
+valign="baseline" id="TBL-3-4-"><td  align="left" nowrap="nowrap" id="TBL-3-4-1"  
+class="td11"> <span 
+class="cmtt-10">FPC</span>_<span 
+class="cmtt-10">PATCH  </span></td><td  align="left" nowrap="nowrap" id="TBL-3-4-2"  
+class="td11"> The patch number of the compiler.  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-3-5-"><td  align="left" nowrap="nowrap" id="TBL-3-5-1"  
+class="td11">                  </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+<span 
+class="cmbx-10">Remark:</span>Don&#8217;t forget that macros support isn&#8217;t on by default. You need to compile with the <span 
+class="cmtt-10">-Sm</span>
+command-line switch.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse5.htm" >prev</a>] [<a 
+href="progse5.htm#tailprogse5.htm" >prev-tail</a>] [<a 
+href="progse6.htm" >front</a>] [<a 
+href="progch2.htm#progse6.htm" >up</a>] </p></div><a 
+  name="tailprogse6.htm"></a>  
+</body></html> 

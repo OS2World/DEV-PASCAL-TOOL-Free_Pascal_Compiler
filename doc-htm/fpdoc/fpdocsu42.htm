@@ -1,0 +1,96 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4.3.0 link : Cross-reference</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="fpdoc.tex"> 
+<meta name="date" content="2003-05-30 22:38:00"> 
+<link rel="stylesheet" type="text/css" href="fpdoc.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu43.htm" >next</a>] [<a 
+href="fpdocsu41.htm" >prev</a>] [<a 
+href="fpdocsu41.htm#tailfpdocsu41.htm" >prev-tail</a>] [<a 
+href="#tailfpdocsu42.htm">tail</a>] [<a 
+href="fpdocse12.htm#fpdocsu42.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="fpdoc.htm#QQ2-60-61" name="x60-590004.3"><span 
+class="cmbx-10">link </span>: Cross-reference</a></h4> The <span 
+class="cmbx-10">link </span>tag is used to insert a reference to an element inside some piece of
+text or inside the <span 
+class="cmbx-10">seealso </span>section. It is similar in functionality to the
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;A&nbsp;HREF=&#34;SomeAnchor&#34;&gt;some&nbsp;linked&nbsp;text&lt;/A&gt;
+</pre>
+</td></tr></table>construct in HTML.
+<!--l. 1186--><p class="noindent">The mandatory <span 
+class="cmti-10">id </span>attribute of the <span 
+class="cmbx-10">link </span>tag should have the name of an element tag in it. This
+name is not case sensitive. <span 
+class="cmcsc-10">FPD<small 
+class="small-caps">O</small><small 
+class="small-caps">C</small> </span>will issue a warning if it cannot find a matching name. It will
+look for matching names in the current file, and in all content files that have been specified with
+the <span 
+class="cmtt-10">import </span>command-line option.
+<!--l. 1192--><p class="noindent">The link tag can exist in 2 forms: one with separate closing tag, surrounding a piece of text,
+one without separate closing tag. If a piece of text is surrounded by the link tag, then
+the text will be converted to a hyperlink in the HTML documentation. If there is no
+surrounded text, then the value of the <span 
+class="cmti-10">id </span>attribute will be used as the text. This means
+that
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;link&nbsp;id=&#34;TStream&#34;&gt;TStream&lt;/link&gt;
+</pre>
+</td></tr></table>and
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&lt;link&nbsp;id=&#34;TStream&#34;/&gt;
+</pre>
+</td></tr></table>are completely equivalent.
+<!--l. 1207--><p class="noindent">Example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;The&nbsp;&lt;link&nbsp;id=&#34;TStringlist&#34;&gt;stringlist&lt;/link&gt;&nbsp;class&nbsp;is&nbsp;a&nbsp;descendent&nbsp;of&nbsp;the
+&nbsp;&lt;link&nbsp;id=&#34;TStrings&#34;/&gt;&nbsp;class.
+</pre>
+</td></tr></table>
+<!--l. 1213--><p class="noindent">See also: <span 
+class="cmbx-10">element </span>(<a 
+href="fpdocsu37.htm#x55-540004.3">112<!--tex4ht:ref: suse:input--></a>), the <span 
+class="cmtt-10">import </span>option (section <a 
+href="fpdocsu7.htm#x19-180003.2">3.2<!--tex4ht:ref: suse:import--></a>, page <a 
+href="fpdocsu7.htm#x19-180003.2">38<!--tex4ht:ref: suse:import--></a>).
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="fpdocsu43.htm" >next</a>] [<a 
+href="fpdocsu41.htm" >prev</a>] [<a 
+href="fpdocsu41.htm#tailfpdocsu41.htm" >prev-tail</a>] [<a 
+href="fpdocsu42.htm" >front</a>] [<a 
+href="fpdocse12.htm#fpdocsu42.htm" >up</a>] </p></div><a 
+  name="tailfpdocsu42.htm"></a>  
+</body></html> 

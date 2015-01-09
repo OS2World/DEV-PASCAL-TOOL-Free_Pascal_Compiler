@@ -1,0 +1,1661 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.2 Procedures and Functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse1.htm" >prev</a>] [<a 
+href="unitsse1.htm#tailunitsse1.htm" >prev-tail</a>] [<a 
+href="#tailunitsse2.htm">tail</a>] [<a 
+href="unitsch1.htm#unitsse2.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.2</span> <a 
+href="units.htm#QQ2-7-5" name="x7-50001.2">Procedures and Functions</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-6" name="x7-60001.2">AssignCrt</a></h4><a 
+  name="dx7-6001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure AssignCrt (Var F: Text);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">AssignCrt </span>Assigns a file F to the console. Everything written to the file F goes to the console
+instead. If the console contains a window, everything is written to the window instead.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<!--l. 146--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex1.pp</span><HR/><div class="listinginput">
+<!--l. 146--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example1;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">AssignCrt</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">F</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Text;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">AssignCrt(F);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Rewrite(F);</span>&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Don't</span>&nbsp;<span 
+class="cmtt-10">forget</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">open</span>&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">output!</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(F,'This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Assigned</span>&nbsp;<span 
+class="cmtt-10">File');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Close(F);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-7" name="x7-70001.2">CursorBig</a></h4><a 
+  name="dx7-7001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure CursorBig ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Makes the cursor a big rectangle. Not implemented on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">CursorOn </span>(<a 
+href="#x7-110001.2">45</a>), <span 
+class="cmss-10">CursorOff </span>(<a 
+href="#x7-100001.2">45</a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-8" name="x7-80001.2">ClrEol</a></h4><a 
+  name="dx7-8001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ClrEol ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">ClrEol clears the current line, starting from the cursor position, to the end of the window.
+The cursor doesn&#8217;t move
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">DelLine </span>(<a 
+href="#x7-130001.2">46</a>), <span 
+class="cmss-10">InsLine </span>(<a 
+href="#x7-160001.2">48</a>), <span 
+class="cmss-10">ClrScr </span>(<a 
+href="#x7-90001.2">44</a>)</dd></dl>
+<!--l. 172--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex9.pp</span><HR/><div class="listinginput">
+<!--l. 172--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example9;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">ClrEol</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">I,J</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">15</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">J:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">80</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">gotoxy(j,i);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Write(j</span>&nbsp;<span 
+class="cmtt-10">mod</span>&nbsp;<span 
+class="cmtt-10">10);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Window(5,5,75,12);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('This</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">cleared</span>&nbsp;<span 
+class="cmtt-10">from',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">here</span>&nbsp;<span 
+class="cmtt-10">till</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">right</span>&nbsp;<span 
+class="cmtt-10">of</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">window');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(27,WhereY);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrEol;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn;</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-9" name="x7-90001.2">ClrScr</a></h4><a 
+  name="dx7-9001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure ClrScr ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">ClrScr clears the current window (using the current colors), and sets the cursor in the top
+left corner of the current window.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<!--l. 187--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex8.pp</span><HR/><div class="listinginput">
+<!--l. 187--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example8;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">ClrScr</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">clear</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">screen');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Have</span>&nbsp;<span 
+class="cmtt-10">fun</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cleared</span>&nbsp;<span 
+class="cmtt-10">screen');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-10" name="x7-100001.2">CursorOff</a></h4><a 
+  name="dx7-10001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure CursorOff ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Switches the cursor off (i.e. the cursor is no longer visible). Not implemented on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">CursorOn </span>(<a 
+href="#x7-110001.2">45</a>), <span 
+class="cmss-10">CursorBig </span>(<a 
+href="#x7-70001.2">43</a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-11" name="x7-110001.2">CursorOn</a></h4><a 
+  name="dx7-11001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure CursorOn ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Switches the cursor on. Not implemented on <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">CursorBig </span>(<a 
+href="#x7-70001.2">43</a>), <span 
+class="cmss-10">CursorOff </span>(<a 
+href="#x7-100001.2">45</a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-12" name="x7-120001.2">Delay</a></h4><a 
+  name="dx7-12001"></a>
+                                                                            
+
+                                                                            
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Delay (DTime: Word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Delay waits a specified number of milliseconds. The number of specified seconds is an
+approximation, and may be off a lot, if system load is high.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Sound </span>(<a 
+href="#x7-220001.2">52</a>), <span 
+class="cmss-10">NoSound </span>(<a 
+href="#x7-200001.2">50</a>)</dd></dl>
+<!--l. 224--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex15.pp</span><HR/><div class="listinginput">
+<!--l. 224--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example15;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Delay</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Counting</span>&nbsp;<span 
+class="cmtt-10">Down');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">for</span>&nbsp;<span 
+class="cmtt-10">i:=10</span>&nbsp;<span 
+class="cmtt-10">downto</span>&nbsp;<span 
+class="cmtt-10">1</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn(i);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Delay(1000);</span>&nbsp;<span 
+class="cmtt-10">{Wait</span>&nbsp;<span 
+class="cmtt-10">one</span>&nbsp;<span 
+class="cmtt-10">second}</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('BOOM!!!');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-13" name="x7-130001.2">DelLine</a></h4><a 
+  name="dx7-13001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure DelLine ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">DelLine removes the current line. Lines following the current line are scrolled 1 line up, and
+an empty line is inserted at the bottom of the current window. The cursor doesn&#8217;t move.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ClrEol </span>(<a 
+href="#x7-80001.2">44</a>), <span 
+class="cmss-10">InsLine </span>(<a 
+href="#x7-160001.2">48</a>), <span 
+class="cmss-10">ClrScr </span>(<a 
+href="#x7-90001.2">44</a>)</dd></dl>
+<!--l. 239--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex11.pp</span><HR/><div class="listinginput">
+<!--l. 239--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+                                                                            
+
+                                                                            
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">InsLine</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">1');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">2');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">2');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">3');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Oops,</span>&nbsp;<span 
+class="cmtt-10">Line</span>&nbsp;<span 
+class="cmtt-10">2</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">listed</span>&nbsp;<span 
+class="cmtt-10">twice,',</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'</span>&nbsp;<span 
+class="cmtt-10">let''s</span>&nbsp;<span 
+class="cmtt-10">delete</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">line</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cursor</span>&nbsp;<span 
+class="cmtt-10">postion');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,3);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">DelLine;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,10);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-14" name="x7-140001.2">GotoXY</a></h4><a 
+  name="dx7-14001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure GotoXY (X: Byte; Y: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Positions the cursor at <span 
+class="cmtt-10">(X,Y)</span>, <span 
+class="cmtt-10">X </span>in horizontal, <span 
+class="cmtt-10">Y </span>in vertical direction relative to the origin
+of the current window. The origin is located at <span 
+class="cmtt-10">(1,1)</span>, the upper-left corner of the window.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">WhereX </span>(<a 
+href="#x7-260001.2">54</a>), <span 
+class="cmss-10">WhereY </span>(<a 
+href="#x7-270001.2">54</a>), <span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<!--l. 255--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex6.pp</span><HR/><div class="listinginput">
+<!--l. 255--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example6;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">GotoXY</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(10,10);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('10,10');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(70,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('70,20');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,22);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-15" name="x7-150001.2">HighVideo</a></h4><a 
+  name="dx7-15001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure HighVideo ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">HighVideo switches the output to highlighted text. (It sets the high intensity bit of the
+video attribute)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextColor </span>(<a 
+href="#x7-240001.2">53</a>), <span 
+class="cmss-10">TextBackground </span>(<a 
+href="#x7-230001.2">52</a>), <span 
+class="cmss-10">LowVideo </span>(<a 
+href="#x7-180001.2">50</a>), <span 
+class="cmss-10">NormVideo </span>(<a 
+href="#x7-190001.2">50</a>)</dd></dl>
+<!--l. 271--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex14.pp</span><HR/><div class="listinginput">
+<!--l. 271--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example14;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">LowVideo,</span>&nbsp;<span 
+class="cmtt-10">HighVideo,</span>&nbsp;<span 
+class="cmtt-10">NormVideo</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">LowVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">LowVideo');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">HighVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">HighVideo');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NormVideo;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">NormVideo');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-16" name="x7-160001.2">InsLine</a></h4><a 
+  name="dx7-16001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure InsLine ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">InsLine inserts an empty line at the current cursor position. Lines following the current
+line are scrolled 1 line down, causing the last line to disappear from the window. The cursor
+doesn&#8217;t move.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ClrEol </span>(<a 
+href="#x7-80001.2">44</a>), <span 
+class="cmss-10">DelLine </span>(<a 
+href="#x7-130001.2">46</a>), <span 
+class="cmss-10">ClrScr </span>(<a 
+href="#x7-90001.2">44</a>)</dd></dl>
+<!--l. 287--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex10.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 287--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example10;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">InsLine</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">1');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Line</span>&nbsp;<span 
+class="cmtt-10">3');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Oops,</span>&nbsp;<span 
+class="cmtt-10">forgot</span>&nbsp;<span 
+class="cmtt-10">Line</span>&nbsp;<span 
+class="cmtt-10">2,</span>&nbsp;<span 
+class="cmtt-10">let''s</span>&nbsp;<span 
+class="cmtt-10">insert</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">cursor</span>&nbsp;<span 
+class="cmtt-10">postion');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,3);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">InsLine;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Line</span>&nbsp;<span 
+class="cmtt-10">2');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">GotoXY(1,10);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-17" name="x7-170001.2">KeyPressed</a></h4><a 
+  name="dx7-17001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function KeyPressed : Boolean;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">The Keypressed function scans the keyboard buffer and sees if a key has been pressed. If
+this is the case, <span 
+class="cmtt-10">True </span>is returned. If not, <span 
+class="cmtt-10">False </span>is returned. The <span 
+class="cmtt-10">Shift, Alt, Ctrl </span>keys are
+not reported. The key is not removed from the buffer, and can hence still be read after the
+KeyPressed function has been called.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">ReadKey </span>(<a 
+href="#x7-210001.2">51</a>)</dd></dl>
+<!--l. 305--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex2.pp</span><HR/><div class="listinginput">
+<!--l. 305--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example2;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">KeyPressed</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Waiting</span>&nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">pressed');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">repeat</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">KeyPressed;</span>
+<br>   &nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">The</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">not</span>&nbsp;<span 
+class="cmtt-10">Read,</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">so</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">should</span>&nbsp;<span 
+class="cmtt-10">also</span>&nbsp;<span 
+class="cmtt-10">be</span>&nbsp;<span 
+class="cmtt-10">outputted</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">commandline}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-18" name="x7-180001.2">LowVideo</a></h4><a 
+  name="dx7-18001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure LowVideo ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">LowVideo switches the output to non-highlighted text. (It clears the high intensity bit of
+the video attribute)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextColor </span>(<a 
+href="#x7-240001.2">53</a>), <span 
+class="cmss-10">TextBackground </span>(<a 
+href="#x7-230001.2">52</a>), <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>), <span 
+class="cmss-10">NormVideo </span>(<a 
+href="#x7-190001.2">50</a>)</dd></dl>
+<!--l. 320--><p class="noindent">For an example, see <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-19" name="x7-190001.2">NormVideo</a></h4><a 
+  name="dx7-19001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure NormVideo ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">NormVideo switches the output to the defaults, read at startup. (The defaults are read
+from the cursor position at startup)
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextColor </span>(<a 
+href="#x7-240001.2">53</a>), <span 
+class="cmss-10">TextBackground </span>(<a 
+href="#x7-230001.2">52</a>), <span 
+class="cmss-10">LowVideo </span>(<a 
+href="#x7-180001.2">50</a>), <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>)</dd></dl>
+<!--l. 334--><p class="noindent">For an example, see <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>)
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-20" name="x7-200001.2">NoSound</a></h4><a 
+  name="dx7-20001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure NoSound ;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 340--><p class="noindent">Stops the speaker sound. This call is not supported on all operating systems.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Sound </span>(<a 
+href="#x7-220001.2">52</a>)</dd></dl>
+<!--l. 348--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex16.pp</span><HR/><div class="listinginput">
+                                                                            
+
+                                                                            
+<!--l. 348--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example16;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Sound</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">NoSound</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">i</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('You</span>&nbsp;<span 
+class="cmtt-10">will</span>&nbsp;<span 
+class="cmtt-10">hear</span>&nbsp;<span 
+class="cmtt-10">some</span>&nbsp;<span 
+class="cmtt-10">tones</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">your</span>&nbsp;<span 
+class="cmtt-10">speaker');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">while</span>&nbsp;<span 
+class="cmtt-10">(i&lt;15000)</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">inc(i,500);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Sound(i);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Delay(100);</span>
+<br>   &nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Quiet</span>&nbsp;<span 
+class="cmtt-10">now!');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">NoSound;</span>&nbsp;<span 
+class="cmtt-10">{Stop</span>&nbsp;<span 
+class="cmtt-10">noise}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-21" name="x7-210001.2">ReadKey</a></h4><a 
+  name="dx7-21001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function ReadKey : Char;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 355--><p class="noindent">The ReadKey function reads 1 key from the keyboard buffer, and returns this. If an extended
+or function key has been pressed, then the zero ASCII code is returned. You can then read the
+scan code of the key with a second ReadKey call. <span 
+class="cmbx-10">Remark. </span>Key mappings under Linux can
+cause the wrong key to be reported by ReadKey, so caution is needed when using ReadKey.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">KeyPressed </span>(<a 
+href="#x7-170001.2">49</a>)</dd></dl>
+<!--l. 369--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex3.pp</span><HR/><div class="listinginput">
+<!--l. 369--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example3;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">ReadKey</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ch</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">char;</span>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">writeln('Press</span>&nbsp;<span 
+class="cmtt-10">Left/Right,</span>&nbsp;<span 
+class="cmtt-10">Esc=Quit');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">repeat</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ch:=ReadKey;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">ch</span>&nbsp;<span 
+class="cmtt-10">of</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">#0</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">ch:=ReadKey;</span>&nbsp;<span 
+class="cmtt-10">{Read</span>&nbsp;<span 
+class="cmtt-10">ScanCode}</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">case</span>&nbsp;<span 
+class="cmtt-10">ch</span>&nbsp;<span 
+class="cmtt-10">of</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">#75</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">WriteLn('Left');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">#77</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">WriteLn('Right');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">#27</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">WriteLn('ESC');</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">until</span>&nbsp;<span 
+class="cmtt-10">ch=#27</span>&nbsp;<span 
+class="cmtt-10">{Esc}</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-22" name="x7-220001.2">Sound</a></h4><a 
+  name="dx7-22001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Sound (hz : word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Sounds the speaker at a frequency of <span 
+class="cmtt-10">hz</span>. Under <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small></span>, a system sound is played and
+the frequency parameter is ignored. On other operating systems, this routine may not be
+implemented.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">NoSound </span>(<a 
+href="#x7-200001.2">50</a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-23" name="x7-230001.2">TextBackground</a></h4><a 
+  name="dx7-23001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TextBackground (CL: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 390--><p class="noindent">TextBackground sets the background color to <span 
+class="cmtt-10">CL</span>. <span 
+class="cmtt-10">CL </span>can be one of the predefined color
+constants.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextColor </span>(<a 
+href="#x7-240001.2">53</a>), <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>), <span 
+class="cmss-10">LowVideo </span>(<a 
+href="#x7-180001.2">50</a>), <span 
+class="cmss-10">NormVideo </span>(<a 
+href="#x7-190001.2">50</a>)</dd></dl>
+<!--l. 400--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex13.pp</span><HR/><div class="listinginput">
+<!--l. 400--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example13;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TextBackground</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextColor(White);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">default</span>&nbsp;<span 
+class="cmtt-10">background</span>&nbsp;<span 
+class="cmtt-10">color');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextBackground(Green);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">Green</span>&nbsp;<span 
+class="cmtt-10">background');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextBackground(Brown);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">Brown</span>&nbsp;<span 
+class="cmtt-10">background');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextBackground(Black);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Back</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">black</span>&nbsp;<span 
+class="cmtt-10">background');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-24" name="x7-240001.2">TextColor</a></h4><a 
+  name="dx7-24001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TextColor (CL: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 407--><p class="noindent">TextColor sets the foreground color to <span 
+class="cmtt-10">CL</span>. <span 
+class="cmtt-10">CL </span>can be one of the predefined color constants.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">TextBackground </span>(<a 
+href="#x7-230001.2">52</a>), <span 
+class="cmss-10">HighVideo </span>(<a 
+href="#x7-150001.2">48</a>), <span 
+class="cmss-10">LowVideo </span>(<a 
+href="#x7-180001.2">50</a>), <span 
+class="cmss-10">NormVideo </span>(<a 
+href="#x7-190001.2">50</a>)</dd></dl>
+<!--l. 417--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex12.pp</span><HR/><div class="listinginput">
+<!--l. 417--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example12;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TextColor</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">default</span>&nbsp;<span 
+class="cmtt-10">color');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextColor(Red);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">Red');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextColor(White);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">White');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">TextColor(LightBlue);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('This</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">written</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">Light</span>&nbsp;<span 
+class="cmtt-10">Blue');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-25" name="x7-250001.2">TextMode</a></h4><a 
+  name="dx7-25001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">procedure TextMode(Mode: Integer);</span>
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">TextMode </span>sets the textmode of the screen (i.e. the number of lines and columns of the
+screen). The lower byte is use to set the VGA text mode.
+<!--l. 426--><p class="noindent">This procedure is only implemented on <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-26" name="x7-260001.2">WhereX</a></h4><a 
+  name="dx7-26001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function WhereX : Byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 438--><p class="noindent">WhereX returns the current X-coordinate of the cursor, relative to the current window. The
+origin is <span 
+class="cmtt-10">(1,1)</span>, in the upper-left corner of the window.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GotoXY </span>(<a 
+href="#x7-140001.2">47</a>), <span 
+class="cmss-10">WhereY </span>(<a 
+href="#x7-270001.2">54</a>), <span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<!--l. 448--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 448--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">WhereX</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">WhereY</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Cursor</span>&nbsp;<span 
+class="cmtt-10">postion:</span>&nbsp;<span 
+class="cmtt-10">X=',WhereX,'</span>&nbsp;<span 
+class="cmtt-10">Y=',WhereY);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-27" name="x7-270001.2">WhereY</a></h4><a 
+  name="dx7-27001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function WhereY : Byte;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">
+<!--l. 455--><p class="noindent">WhereY returns the current Y-coordinate of the cursor, relative to the current window. The
+origin is <span 
+class="cmtt-10">(1,1)</span>, in the upper-left corner of the window.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+                                                                            
+
+                                                                            
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GotoXY </span>(<a 
+href="#x7-140001.2">47</a>), <span 
+class="cmss-10">WhereX </span>(<a 
+href="#x7-260001.2">54</a>), <span 
+class="cmss-10">Window </span>(<a 
+href="#x7-280001.2">55</a>)</dd></dl>
+<!--l. 465--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex7.pp</span><HR/><div class="listinginput">
+<!--l. 465--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example7;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">WhereX</span>&nbsp;<span 
+class="cmtt-10">and</span>&nbsp;<span 
+class="cmtt-10">WhereY</span>&nbsp;<span 
+class="cmtt-10">functions.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Cursor</span>&nbsp;<span 
+class="cmtt-10">postion:</span>&nbsp;<span 
+class="cmtt-10">X=',WhereX,'</span>&nbsp;<span 
+class="cmtt-10">Y=',WhereY);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-7-28" name="x7-280001.2">Window</a></h4><a 
+  name="dx7-28001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Window (X1, Y1, X2, Y2: Byte);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list">Window creates a window on the screen, to which output will be sent. <span 
+class="cmtt-10">(X1,Y1) </span>are the
+coordinates of the upper left corner of the window, <span 
+class="cmtt-10">(X2,Y2) </span>are the coordinates of the bottom
+right corner of the window. These coordinates are relative to the entire screen, with the top
+left corner equal to <span 
+class="cmtt-10">(1,1) </span>Further coordinate operations, except for the next Window call,
+are relative to the window&#8217;s top left corner.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">GotoXY </span>(<a 
+href="#x7-140001.2">47</a>), <span 
+class="cmss-10">WhereX </span>(<a 
+href="#x7-260001.2">54</a>), <span 
+class="cmss-10">WhereY </span>(<a 
+href="#x7-270001.2">54</a>), <span 
+class="cmss-10">ClrScr </span>(<a 
+href="#x7-90001.2">44</a>)</dd></dl>
+<!--l. 486--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">crtex/ex5.pp</span><HR/><div class="listinginput">
+<!--l. 486--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example5;</span>
+<br>   <span 
+class="cmtt-10">uses</span>&nbsp;<span 
+class="cmtt-10">Crt;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Window</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('Creating</span>&nbsp;<span 
+class="cmtt-10">a</span>&nbsp;<span 
+class="cmtt-10">window</span>&nbsp;<span 
+class="cmtt-10">from</span>&nbsp;<span 
+class="cmtt-10">30,10</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">50,20');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Window(30,10,50,20);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">WriteLn('We</span>&nbsp;<span 
+class="cmtt-10">are</span>&nbsp;<span 
+class="cmtt-10">now</span>&nbsp;<span 
+class="cmtt-10">writing</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">small</span>&nbsp;<span 
+class="cmtt-10">window</span>&nbsp;<span 
+class="cmtt-10">we</span>&nbsp;<span 
+class="cmtt-10">just</span>&nbsp;<span 
+class="cmtt-10">created,</span>&nbsp;<span 
+class="cmtt-10">we</span>&nbsp;<span 
+class="cmtt-10">'+</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">'can''t</span>&nbsp;<span 
+class="cmtt-10">get</span>&nbsp;<span 
+class="cmtt-10">outside</span>&nbsp;<span 
+class="cmtt-10">it</span>&nbsp;<span 
+class="cmtt-10">when</span>&nbsp;<span 
+class="cmtt-10">writing</span>&nbsp;<span 
+class="cmtt-10">long</span>&nbsp;<span 
+class="cmtt-10">lines</span>&nbsp;<span 
+class="cmtt-10">like</span>&nbsp;<span 
+class="cmtt-10">this</span>&nbsp;<span 
+class="cmtt-10">one');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('Press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">clear</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">window');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ClrScr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Write('The</span>&nbsp;<span 
+class="cmtt-10">window</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">cleared,</span>&nbsp;<span 
+class="cmtt-10">press</span>&nbsp;<span 
+class="cmtt-10">any</span>&nbsp;<span 
+class="cmtt-10">key</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">restore</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">fullscreen');</span>
+                                                                            
+
+                                                                            
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ReadKey;</span>
+<br>   <span 
+class="cmtt-10">{Full</span>&nbsp;<span 
+class="cmtt-10">Screen</span>&nbsp;<span 
+class="cmtt-10">is</span>&nbsp;<span 
+class="cmtt-10">80x25}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Window(1,1,80,25);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Clrscr;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('Back</span>&nbsp;<span 
+class="cmtt-10">in</span>&nbsp;<span 
+class="cmtt-10">Full</span>&nbsp;<span 
+class="cmtt-10">Screen');</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse1.htm" >prev</a>] [<a 
+href="unitsse1.htm#tailunitsse1.htm" >prev-tail</a>] [<a 
+href="unitsse2.htm" >front</a>] [<a 
+href="unitsch1.htm#unitsse2.htm" >up</a>] </p></div><a 
+  name="tailunitsse2.htm"></a>   
+</body></html> 

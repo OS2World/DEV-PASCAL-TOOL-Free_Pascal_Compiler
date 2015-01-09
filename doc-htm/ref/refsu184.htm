@@ -1,0 +1,120 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 Val</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu185.htm" >next</a>] [<a 
+href="refsu183.htm" >prev</a>] [<a 
+href="refsu183.htm#tailrefsu183.htm" >prev-tail</a>] [<a 
+href="#tailrefsu184.htm">tail</a>] [<a 
+href="refse64.htm#refsu184.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-269-290" name="x269-27500013.3">Val</a></h4><a 
+  name="dx269-275001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure Val (const S : string;var V;var Code : word);</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Val </span>converts the value represented in the string <span 
+class="cmtt-10">S </span>to a numerical value, and stores this
+value in the variable <span 
+class="cmtt-10">V</span>, which can be of type <span 
+class="cmtt-10">Longint</span>, <span 
+class="cmtt-10">Real </span>and <span 
+class="cmtt-10">Byte</span>. If the conversion isn&#8217;t
+succesfull, then the parameter <span 
+class="cmtt-10">Code </span>contains the index of the character in <span 
+class="cmtt-10">S </span>which prevented
+the conversion. The string <span 
+class="cmtt-10">S </span>is allowed to contain spaces in the beginning.
+<!--l. 7260--><p class="noindent">The string <span 
+class="cmtt-10">S </span>can contain a number in decimal, hexadecimal, binary or octal format, as
+described in the language reference.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">If  the  conversion  doesn&#8217;t  succeed,  the  value  of  <span 
+class="cmtt-10">Code  </span>indicates  the  position  where  the
+conversion went wrong.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Str </span>(<a 
+href="refsu177.htm#x262-26800013.3">580<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 7270--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex74.pp</span><HR/><div class="listinginput">
+<!--l. 7270--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example74;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">Val</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I,</span>&nbsp;<span 
+class="cmtt-10">Code</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Integer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Val</span>&nbsp;<span 
+class="cmtt-10">(ParamStr</span>&nbsp;<span 
+class="cmtt-10">(1),I,Code);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">Code&lt;&gt;0</span>&nbsp;<span 
+class="cmtt-10">then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Error</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">position</span>&nbsp;<span 
+class="cmtt-10">',code,'</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',Paramstr(1)[Code])</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">else</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Value</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">',I);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu185.htm" >next</a>] [<a 
+href="refsu183.htm" >prev</a>] [<a 
+href="refsu183.htm#tailrefsu183.htm" >prev-tail</a>] [<a 
+href="refsu184.htm" >front</a>] [<a 
+href="refse64.htm#refsu184.htm" >up</a>] </p></div><a 
+  name="tailrefsu184.htm"></a>  
+</body></html> 

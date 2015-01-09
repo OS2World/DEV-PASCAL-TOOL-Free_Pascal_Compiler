@@ -1,0 +1,80 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2.0 Short strings</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu10.htm" >next</a>] [<a 
+href="refsu8.htm" >prev</a>] [<a 
+href="refsu8.htm#tailrefsu8.htm" >prev-tail</a>] [<a 
+href="#tailrefsu9.htm">tail</a>] [<a 
+href="refse12.htm#refsu9.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-31-38" name="x31-340003.2">Short strings</a></h4> A string declaration declares a short string in the following cases:
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x31-34002x1"></a>If  the  switch  is  off:  <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$H-</span><span 
+class="cmsy-10">}</span>,  the  string  declaration  will  always  be  a  short  string
+     declaration.
+     </li>
+     <li class="enumerate"><a 
+  name="x31-34004x2"></a>If the switch is on <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$H+</span><span 
+class="cmsy-10">}</span>, and there is a length specifier, the declaration is a short
+     string declaration.</li></ol>
+<!--l. 831--><p class="noindent">The predefined type <span 
+class="cmtt-10">ShortString </span>is defined as a string of length 255:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;ShortString&nbsp;=&nbsp;String[255];
+</pre>
+</td></tr></table>
+<!--l. 836--><p class="noindent">If the size of the string is not specified, <span 
+class="cmtt-10">255 </span>is taken as a default. The length of the
+string can be obtained with the <span 
+class="cmss-10">Length </span>(<a 
+href="refsu126.htm#x211-21700013.3">527<!--tex4ht:ref: tab:Reals--></a>) standard runtime routine. For example
+in
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$H-}
+&nbsp;
+&nbsp;Type
+&nbsp;&nbsp;&nbsp;&nbsp;NameString&nbsp;=&nbsp;String[10];
+&nbsp;&nbsp;&nbsp;&nbsp;StreetString&nbsp;=&nbsp;String;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">NameString </span>can contain a maximum of 10 characters. While <span 
+class="cmtt-10">StreetString </span>can contain up to 255
+characters.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu10.htm" >next</a>] [<a 
+href="refsu8.htm" >prev</a>] [<a 
+href="refsu8.htm#tailrefsu8.htm" >prev-tail</a>] [<a 
+href="refsu9.htm" >front</a>] [<a 
+href="refse12.htm#refsu9.htm" >up</a>] </p></div><a 
+  name="tailrefsu9.htm"></a>  
+</body></html> 

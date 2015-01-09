@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStrings.Delete</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStrings.Delete</h1>
+<p>Delete a string from the list.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tstrings.htm">TStrings</a><span class="sym">.</span>Delete<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;Index<span class="sym">: </span>Integer</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span><span class="kw"> virtual</span><span class="sym">;</span><span class="kw"> abstract</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>Delete</var> deletes the string at position <var>Index</var> from the list. The associated object is also removed from the list, but not destroyed. <var>Index</var> is zero-based, and should be in the range  <var>0</var> to <var>Count-1</var>. </p>
+<p>Since it is an abstract method, <var>TStrings</var> itself does not implement  <var>Delete</var>. Descendent classes such as <a href="../classes/tstringlist.htm">TStringList</a> implement this method. </p>
+<h2>Errors</h2>
+<p>If <var>Index</var> is not in the allowed range, an <a href="../classes/estringlisterror.htm">EStringListError</a> is raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.insert.htm">TStrings.Insert</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Insert a string in the list.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../../classes/tstrings.htm">TStrings.Items</a></p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstrings.clear.htm">TStrings.Clear</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Removes all strings and associated objects from the list.</p></td>
+</tr>
+</table>
+</body>
+</html>

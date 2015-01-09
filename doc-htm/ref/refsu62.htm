@@ -1,0 +1,203 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.2.0 Memory management</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu63.htm" >next</a>] [<a 
+href="refsu61.htm" >prev</a>] [<a 
+href="refsu61.htm#tailrefsu61.htm" >prev-tail</a>] [<a 
+href="#tailrefsu62.htm">tail</a>] [<a 
+href="refse63.htm#refsu62.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-146-167" name="x146-15200013.2">Memory management</a></h4> Functions concerning memory issues.
+<!--l. 4977--><p class="noindent">
+Name                                             Description                                              Page
+<br class="newline">____________________________________________________________________________
+                      <dl class="list1"><dt class="list">
+  <span 
+class="cmss-10">Addr</span>                </dt><dd 
+class="list">Return address of variable                                               <a 
+href="refsu68.htm#x153-15900013.3">451<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Assigned</span>             </dt><dd 
+class="list">Check if a pointer is valid                                                <a 
+href="refsu73.htm#x158-16400013.3">456<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">CompareByte</span>         </dt><dd 
+class="list">Compare 2 memory buffers byte per byte                           <a 
+href="refsu81.htm#x166-17200013.3">466<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">CompareChar</span>         </dt><dd 
+class="list">Compare 2 memory buffers byte per byte                           <a 
+href="refsu82.htm#x167-17300013.3">468<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">CompareDWord</span>       </dt><dd 
+class="list">Compare 2 memory buffers byte per byte                           <a 
+href="refsu83.htm#x168-17400013.3">470<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">CompareWord</span>         </dt><dd 
+class="list">Compare 2 memory buffers byte per byte                           <a 
+href="refsu84.htm#x169-17500013.3">472<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">CSeg</span>                </dt><dd 
+class="list">Return code segment                                                      <a 
+href="refsu89.htm#x174-18000013.3">479<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Dispose</span>              </dt><dd 
+class="list">Free dynamically allocated memory                                   <a 
+href="refsu92.htm#x177-18300013.3">482<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">DSeg</span>                </dt><dd 
+class="list">Return data segment                                                      <a 
+href="refsu93.htm#x178-18400013.3">484<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">FillByte</span>              </dt><dd 
+class="list">Fill memory region with 8-bit pattern                                <a 
+href="refsu102.htm#x187-19300013.3">497<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Fillchar</span>              </dt><dd 
+class="list">Fill memory region with certain character                          <a 
+href="refsu103.htm#x188-19400013.3">499<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">FillDWord</span>            </dt><dd 
+class="list">Fill memory region with 32-bit pattern                              <a 
+href="refsu104.htm#x189-19500013.3">500<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Fillword</span>              </dt><dd 
+class="list">Fill memory region with 16-bit pattern                              <a 
+href="refsu105.htm#x190-19600013.3">501<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Freemem</span>             </dt><dd 
+class="list">Release allocated memory                                               <a 
+href="refsu108.htm#x193-19900013.3">504<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Getmem</span>             </dt><dd 
+class="list">Allocate new memory                                                     <a 
+href="refsu110.htm#x195-20100013.3">506<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">GetMemoryManager</span>    </dt><dd 
+class="list">Return current memory manager                                      <a 
+href="refsu111.htm#x196-20200013.3">507<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">High</span>                </dt><dd 
+class="list">Return highest index of open array or enumerated               <a 
+href="refsu115.htm#x200-20600013.3">511<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">IsMemoryManagerSet</span>   </dt><dd 
+class="list">Is the memory manager set                                              <a 
+href="refsu123.htm#x208-21400013.3">522<!--tex4ht:ref: se:exceptclasses--></a>
+                                                                            
+
+                                                                            
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Low</span>                 </dt><dd 
+class="list">Return lowest index of open array or enumerated                 <a 
+href="refsu130.htm#x215-22100013.3">531<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Mark</span>                </dt><dd 
+class="list">Mark current memory position                                         <a 
+href="refsu132.htm#x217-22300013.3">533<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Maxavail</span>             </dt><dd 
+class="list">Return size of largest free memory block                            <a 
+href="refsu133.htm#x218-22400013.3">534<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Memavail</span>            </dt><dd 
+class="list">Return total available memory                                         <a 
+href="refsu134.htm#x219-22500013.3">535<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Move</span>                </dt><dd 
+class="list">Move data from one location in memory to another              <a 
+href="refsu136.htm#x221-22700013.3">536<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">MoveChar0</span>           </dt><dd 
+class="list">Move data till first zero character                                     <a 
+href="refsu137.htm#x222-22800013.3">538<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">New</span>                </dt><dd 
+class="list">Dynamically allocate memory for variable                          <a 
+href="refsu138.htm#x223-22900013.3">539<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Ofs</span>                 </dt><dd 
+class="list">Return offset of variable                                                  <a 
+href="refsu141.htm#x226-23200013.3">541<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Ptr</span>                 </dt><dd 
+class="list">Combine segment and offset to pointer                               <a 
+href="refsu149.htm#x234-24000013.3">549<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">ReAllocMem</span>          </dt><dd 
+class="list">Resize a memory block on the heap                                   <a 
+href="refsu197.htm#x285-29100014.2">608<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Release</span>              </dt><dd 
+class="list">Release memory above mark point                                    <a 
+href="refsu155.htm#x240-24600013.3">556<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Seg</span>                 </dt><dd 
+class="list">Return segment                                                             <a 
+href="refsu165.htm#x250-25600013.3">567<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">SetMemoryManager</span>    </dt><dd 
+class="list">Set a memory manager                                                   <a 
+href="refsu166.htm#x251-25700013.3">568<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">Sptr</span>                 </dt><dd 
+class="list">Return current stack pointer                                            <a 
+href="refsu173.htm#x258-26400013.3">576<!--tex4ht:ref: se:exceptclasses--></a>
+                      </dd><dt class="list">
+  <span 
+class="cmss-10">SSeg</span>                </dt><dd 
+class="list">Return stack segment register value                                   <a 
+href="refsu176.htm#x261-26700013.3">579<!--tex4ht:ref: se:exceptclasses--></a></dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu63.htm" >next</a>] [<a 
+href="refsu61.htm" >prev</a>] [<a 
+href="refsu61.htm#tailrefsu61.htm" >prev-tail</a>] [<a 
+href="refsu62.htm" >front</a>] [<a 
+href="refse63.htm#refsu62.htm" >up</a>] </p></div><a 
+  name="tailrefsu62.htm"></a>  
+</body></html> 

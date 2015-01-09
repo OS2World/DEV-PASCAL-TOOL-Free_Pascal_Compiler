@@ -1,0 +1,117 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.1 Introduction</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse44.htm" >next</a>] [<a 
+href="#tailprogse43.htm">tail</a>] [<a 
+href="progch11.htm#progse43.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.1</span> <a 
+href="prog.htm#QQ2-198-220" name="x198-20000011.1">Introduction</a></h3>
+<!--l. 4874--><p class="noindent">Free Pascal supports the creation of shared libraries on several operating systems. The following
+table (table (<a 
+href="#x198-2000011">11.1<!--tex4ht:ref: tab:DLLSupport--></a>)) indicates which operating systems support the creation of shared
+libraries.
+                                                                            
+
+                                                                            
+<a 
+  name="x198-2000011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;11.1: </td><td  
+class="content">Shared library support</td></tr></table></div><!--tex4ht:label?: x198-2000011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-20-" ><colgroup id="TBL-20-1g"><col 
+id="TBL-20-1"><col 
+id="TBL-20-2"><col 
+id="TBL-20-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-20-1-"><td  align="left" nowrap="nowrap" id="TBL-20-1-1"  
+class="td11"> Operating systems</td><td  align="left" nowrap="nowrap" id="TBL-20-1-2"  
+class="td11"> Library extension</td><td  align="left" nowrap="nowrap" id="TBL-20-1-3"  
+class="td11"> Library prefix</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-20-2-"><td  align="left" nowrap="nowrap" id="TBL-20-2-1"  
+class="td11"> linux                  </td><td  align="left" nowrap="nowrap" id="TBL-20-2-2"  
+class="td11"> .so                    </td><td  align="left" nowrap="nowrap" id="TBL-20-2-3"  
+class="td11"> lib               </td>
+</tr><tr  
+valign="baseline" id="TBL-20-3-"><td  align="left" nowrap="nowrap" id="TBL-20-3-1"  
+class="td11"> windows             </td><td  align="left" nowrap="nowrap" id="TBL-20-3-2"  
+class="td11"> .dll                   </td><td  align="left" nowrap="nowrap" id="TBL-20-3-3"  
+class="td11"> ¡none¿          </td>
+</tr><tr  
+valign="baseline" id="TBL-20-4-"><td  align="left" nowrap="nowrap" id="TBL-20-4-1"  
+class="td11"> BeOS                 </td><td  align="left" nowrap="nowrap" id="TBL-20-4-2"  
+class="td11"> .so                    </td><td  align="left" nowrap="nowrap" id="TBL-20-4-3"  
+class="td11"> lib               </td>
+</tr><tr  
+valign="baseline" id="TBL-20-5-"><td  align="left" nowrap="nowrap" id="TBL-20-5-1"  
+class="td11"> FreeBSD             </td><td  align="left" nowrap="nowrap" id="TBL-20-5-2"  
+class="td11"> .so                    </td><td  align="left" nowrap="nowrap" id="TBL-20-5-3"  
+class="td11"> lib               </td>
+</tr><tr  
+valign="baseline" id="TBL-20-6-"><td  align="left" nowrap="nowrap" id="TBL-20-6-1"  
+class="td11"> NetBSD              </td><td  align="left" nowrap="nowrap" id="TBL-20-6-2"  
+class="td11"> .so                    </td><td  align="left" nowrap="nowrap" id="TBL-20-6-3"  
+class="td11"> lib               </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-20-7-"><td  align="left" nowrap="nowrap" id="TBL-20-7-1"  
+class="td11">                         </td>
+</tr><!--lll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The library prefix column indicates how the names of the libraries are resolved and created. For
+example, under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, the library name will alwaus have the <span 
+class="cmtt-10">lib </span>prefix when it is created. So if
+you create a library called <span 
+class="cmss-10">mylib</span>, under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, this will result in the <span 
+class="cmss-10">libmylib.so</span>. Furthermore, when
+importing routines from shared libraries, it is not necessary to give the library prefix or the
+filename extension.
+<!--l. 4896--><p class="noindent">In the following sections we discuss how to create a library, and how to use these libraries in
+programs.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse44.htm" >next</a>] [<a 
+href="progse43.htm" >front</a>] [<a 
+href="progch11.htm#progse43.htm" >up</a>] </p></div><a 
+  name="tailprogse43.htm"></a>  
+</body></html> 

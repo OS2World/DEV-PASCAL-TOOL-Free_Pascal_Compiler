@@ -1,0 +1,68 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>3.2 Compiling a program</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse11.htm" >next</a>] [<a 
+href="userse9.htm" >prev</a>] [<a 
+href="userse9.htm#tailuserse9.htm" >prev-tail</a>] [<a 
+href="#tailuserse10.htm">tail</a>] [<a 
+href="userch3.htm#userse10.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.2</span> <a 
+href="user.htm#QQ2-15-33" name="x15-310003.2">Compiling a program</a></h3>
+<!--l. 653--><p class="noindent">Compiling a program is very simple. Assuming that you have a program source in the file <span 
+class="cmss-10">prog.pp</span>,
+you can compile this with the following command:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;fpc&nbsp;[options]&nbsp;prog.pp
+</pre>
+</td></tr></table>The square brackets <span 
+class="cmtt-10">[</span>&nbsp;<span 
+class="cmtt-10">] </span>indicate that what is between them is optional.
+<!--l. 660--><p class="noindent">If your program file has the <span 
+class="cmss-10">.pp </span>or <span 
+class="cmss-10">.pas </span>extension, you can omit this on the command line, e.g. in
+the previous example you could have typed:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;fpc&nbsp;[options]&nbsp;prog
+</pre>
+</td></tr></table>
+<!--l. 667--><p class="noindent">If all went well, the compiler will produce an executable file. You can execute it straight away, you
+don&#8217;t need to do anything else.
+<!--l. 670--><p class="noindent">You will notice that there is also another file in your directory, with extensions <span 
+class="cmss-10">.o</span>. This contains
+the object file for your program. If you compiled a program, you can delete the object file (<span 
+class="cmss-10">.o</span>), but
+not if you compiled a unit.
+<!--l. 675--><p class="noindent">Then the object file contains the code of the unit, and will be linked in any program that uses the
+unit you compiled, so you shouldn&#8217;t remove it.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse11.htm" >next</a>] [<a 
+href="userse9.htm" >prev</a>] [<a 
+href="userse9.htm#tailuserse9.htm" >prev-tail</a>] [<a 
+href="userse10.htm" >front</a>] [<a 
+href="userch3.htm#userse10.htm" >up</a>] </p></div><a 
+  name="tailuserse10.htm"></a>  
+</body></html> 

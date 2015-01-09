@@ -1,0 +1,161 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>9.3 Updating the string tables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse36.htm" >next</a>] [<a 
+href="progse34.htm" >prev</a>] [<a 
+href="progse34.htm#tailprogse34.htm" >prev-tail</a>] [<a 
+href="#tailprogse35.htm">tail</a>] [<a 
+href="progch9.htm#progse35.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">9.3</span> <a 
+href="prog.htm#QQ2-172-195" name="x172-1750009.3">Updating the string tables</a></h3>
+<!--l. 4345--><p class="noindent">Having compiled a program with resourcestrings is not enough to internationalize your program.
+At run-time, the program must initialize the string tables with the correct values for the anguage
+that the user selected. By default no such initialization is performed. All strings are initialized with
+their declared values.
+<!--l. 4351--><p class="noindent">The <span 
+class="cmss-10">objpas </span>unit provides the mechanism to correctly initialize the string tables. There is no need to
+include this unit in a <span 
+class="cmtt-10">uses </span>clause, since it is automatically loaded when a program or unit is
+compiled in <span 
+class="cmtt-10">Delphi </span>or <span 
+class="cmtt-10">objfpc </span>mode. Since this is required to use resource strings, the unit is
+always loaded when needed.
+<!--l. 4357--><p class="noindent">The resource strings are stored in tables, one per unit, and one for the program, if it contains a
+<span 
+class="cmtt-10">resourcestring </span>section as well. Each resourcestring is stored with it&#8217;s name, hash value, default
+value, and the current value, all as <span 
+class="cmtt-10">AnsiStrings</span>.
+<!--l. 4362--><p class="noindent">The objpas unit offers methods to retrieve the number of resourcestring tables, the number of
+strings per table, and the above information for each string. It also offers a method to set the
+current value of the strings.
+<!--l. 4366--><p class="noindent">Here are the declarations of all the functions:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Function&nbsp;ResourceStringTableCount&nbsp;:&nbsp;Longint;
+&nbsp;Function&nbsp;ResourceStringCount(TableIndex&nbsp;:&nbsp;longint)&nbsp;:&nbsp;longint;
+&nbsp;Function&nbsp;GetResourceStringName(TableIndex,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringIndex&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Ansistring;
+&nbsp;Function&nbsp;GetResourceStringHash(TableIndex,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringIndex&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;Longint;
+&nbsp;Function&nbsp;GetResourceStringDefaultValue(TableIndex,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringIndex&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;AnsiString;
+&nbsp;Function&nbsp;GetResourceStringCurrentValue(TableIndex,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringIndex&nbsp;:&nbsp;Longint)&nbsp;:&nbsp;AnsiString;
+&nbsp;Function&nbsp;SetResourceStringValue(TableIndex,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringIndex&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;:&nbsp;Ansistring)&nbsp;:&nbsp;Boolean;
+&nbsp;Procedure&nbsp;SetResourceStrings&nbsp;(SetFunction&nbsp;:&nbsp;&nbsp;TResourceIterator);
+</pre>
+</td></tr></table>Two other function exist, for convenience only:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Function&nbsp;Hash(S&nbsp;:&nbsp;AnsiString)&nbsp;:&nbsp;longint;
+&nbsp;Procedure&nbsp;ResetResourceTables;
+</pre>
+</td></tr></table>Here is a short explanation of what each function does. A more detailed explanation of the
+functions can be found in the <a 
+href="file:../ref/ref.htm" >Reference guide</a>.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">ResourceStringTableCount</span> </dt><dd 
+class="description">returns the number of resource string tables in the program.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ResourceStringCount</span> </dt><dd 
+class="description">returns the number of resource string entries in a given table (tables
+     are denoted by a zero-based index).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetResourceStringName</span> </dt><dd 
+class="description">returns the name of a resource string in a resource table. This
+     is the name of the unit, a dot (.) and the name of the string constant, all in lowercase.
+     The strings are denoted by index, also zero-based.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetResourceStringHash</span> </dt><dd 
+class="description">returns the hash value of a resource string, as calculated by the
+     compiler with the <span 
+class="cmtt-10">Hash </span>function.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetResourceStringDefaultValue</span> </dt><dd 
+class="description">returns the default value of a resource string, i.e. the
+     value that appears in the resource string declaration, and that is stored in the binary.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">GetResourceStringCurrentValue</span> </dt><dd 
+class="description">returns the current value of a resource string, i.e. the
+     value set by the initialization (the default value), or the value set by some previous
+     internationalization routine.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">SetResourceStringValue</span> </dt><dd 
+class="description">sets the current value of a resource string. This function must
+     be called to initialize all strings.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">SetResourceStrings</span> </dt><dd 
+class="description">giving this function a callback will cause the calback to be called for
+     all resource strings, one by one, and set the value of the string to the return value of
+     the callback.</dd></dl>
+<!--l. 4413--><p class="noindent">Two other functions exist, for convenience only:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Hash</span> </dt><dd 
+class="description">can be used to calculate the hash value of a string. The hash value stored in the tables
+     is the result of this function, applied on the default value. That value is calculated at
+     compile time by the compiler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ResetResourceTables</span> </dt><dd 
+class="description">will reset all the resource strings to their default values. It is called
+     by the initialization code of the objpas unit.</dd></dl>
+<!--l. 4422--><p class="noindent">Given some <span 
+class="cmtt-10">Translate </span>function, the following code would initialize all resource strings:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Var&nbsp;I,J&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;:&nbsp;AnsiString;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;&nbsp;For&nbsp;I:=0&nbsp;to&nbsp;ResourceStringTableCount-1&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;J:=0&nbsp;to&nbsp;ResourceStringCount(i)-1&nbsp;do
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S:=Translate(GetResourceStringDefaultValue(I,J));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetResourceStringValue(I,J,S);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;end;
+</pre>
+</td></tr></table>Other methods are of course possible, and the <span 
+class="cmtt-10">Translate </span>function can be implemented in a variety
+of ways. <div class="crosslinks"><p class="noindent">[<a 
+href="progse36.htm" >next</a>] [<a 
+href="progse34.htm" >prev</a>] [<a 
+href="progse34.htm#tailprogse34.htm" >prev-tail</a>] [<a 
+href="progse35.htm" >front</a>] [<a 
+href="progch9.htm#progse35.htm" >up</a>] </p></div><a 
+  name="tailprogse35.htm"></a>  
+</body></html> 

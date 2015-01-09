@@ -1,0 +1,171 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>17.14 TUnSortedStrCollection</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse61.htm" >next</a>] [<a 
+href="unitsse59.htm" >prev</a>] [<a 
+href="unitsse59.htm#tailunitsse59.htm" >prev-tail</a>] [<a 
+href="#tailunitsse60.htm">tail</a>] [<a 
+href="unitsch17.htm#unitsse60.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">17.14</span> <a 
+href="units.htm#QQ2-82-726" name="x82-72000017.14">TUnSortedStrCollection</a></h3>
+<!--l. 2106--><p class="noindent">The <span 
+class="cmtt-10">TUnSortedStrCollection </span>object manages an unsorted list of strings. To this end, it overrides
+the <span 
+class="cmss-10">TStringCollection.Insert </span>(<span 
+class="cmbx-10">??</span>) method to add strings at the end of the collection, rather than in
+the alphabetically correct position.
+<!--l. 2111--><p class="noindent">Take care, the <span 
+class="cmss-10">Search </span>(<a 
+href="unitsse57.htm#x79-70700017.11">615<!--tex4ht:ref: se:TBufStream--></a>) and <span 
+class="cmss-10">IndexOf </span>(<a 
+href="unitsse56.htm#x78-68100017.10">596<!--tex4ht:ref: se:TBufStream--></a>) methods will not work on an unsorted string
+collection.
+<!--l. 2115--><p class="noindent">Here is the full declaration of the TUnsortedStrCollection object:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TYPE
+&nbsp;&nbsp;&nbsp;&nbsp;TUnSortedStrCollection&nbsp;=&nbsp;OBJECT&nbsp;(TStringCollection)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Procedure&nbsp;Insert&nbsp;(Item:&nbsp;Pointer);&nbsp;Virtual;
+&nbsp;&nbsp;&nbsp;&nbsp;END;
+&nbsp;&nbsp;&nbsp;&nbsp;PUnSortedStrCollection&nbsp;=&nbsp;^TUnSortedStrCollection;
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-82-727" name="x82-72100017.14">TUnSortedStrCollection.Insert</a></h4><a 
+  name="dx82-721001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Procedure TUnSortedStrCollection.Insert (Item: Pointer); Virtual;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Insert </span>inserts a string at the end of the collection, instead of on it&#8217;s alphabetical place,
+resulting in an unsorted collection of strings.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"></dd></dl>
+<!--l. 2135--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">objectex/ex39.pp</span><HR/><div class="listinginput">
+<!--l. 2135--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">ex39;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">TUnsortedStrCollection.Insert</span>&nbsp;<span 
+class="cmtt-10">method</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Uses</span>&nbsp;<span 
+class="cmtt-10">Objects,Strings;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">C</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">PUnsortedStrCollection;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">String;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">P</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pchar;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Randomize;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">C:=New(PUnsortedStrCollection,Init(120,10));</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">('Inserting</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">records</span>&nbsp;<span 
+class="cmtt-10">at</span>&nbsp;<span 
+class="cmtt-10">random</span>&nbsp;<span 
+class="cmtt-10">places.');</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">100</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Str(Random(100),S);</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">S:='String</span>&nbsp;<span 
+class="cmtt-10">with</span>&nbsp;<span 
+class="cmtt-10">value</span>&nbsp;<span 
+class="cmtt-10">'+S;</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">C^.Insert(NewStr(S));</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">end;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=0</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">99</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(I:2,':</span>&nbsp;<span 
+class="cmtt-10">',PString(C^.At(i))^</span>&nbsp;<span 
+class="cmtt-10">);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Dispose(C,Done);</span>
+                                                                            
+
+                                                                            
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse61.htm" >next</a>] [<a 
+href="unitsse59.htm" >prev</a>] [<a 
+href="unitsse59.htm#tailunitsse59.htm" >prev-tail</a>] [<a 
+href="unitsse60.htm" >front</a>] [<a 
+href="unitsch17.htm#unitsse60.htm" >up</a>] </p></div><a 
+  name="tailunitsse60.htm"></a>   
+</body></html> 

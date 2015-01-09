@@ -1,0 +1,108 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.3.0 HexStr</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu114.htm" >next</a>] [<a 
+href="refsu112.htm" >prev</a>] [<a 
+href="refsu112.htm#tailrefsu112.htm" >prev-tail</a>] [<a 
+href="#tailrefsu113.htm">tail</a>] [<a 
+href="refse64.htm#refsu113.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-198-219" name="x198-20400013.3">HexStr</a></h4><a 
+  name="dx198-204001"></a>
+<dl class="list1"><dt class="list">
+<span 
+class="cmss-10">Declaration:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">Function HexStr (Value : longint; cnt : byte) : String; Function HexStr</span>
+<span 
+class="cmtt-10">(Value : int64; cnt : byte) : String;</span>
+</dd><dt class="list">
+<span 
+class="cmss-10">Description:</span> </dt><dd 
+class="list"><span 
+class="cmtt-10">HexStr </span>returns a string with the hexadecimal representation of  <span 
+class="cmtt-10">Value</span>. The string has
+exactly <span 
+class="cmtt-10">cnt </span>charaters. (i.e. only the <span 
+class="cmtt-10">cnt </span>rightmost nibbles are taken into account) To have
+a complete representation of a Longint-type value, 8 nibbles are needed, i.e. <span 
+class="cmtt-10">cnt=8</span>.
+</dd><dt class="list">
+<span 
+class="cmss-10">Errors:</span> </dt><dd 
+class="list">None.
+</dd><dt class="list">
+<span 
+class="cmss-10">See also:</span> </dt><dd 
+class="list"><span 
+class="cmss-10">Str </span>(<a 
+href="refsu177.htm#x262-26800013.3">580<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">Val </span>(<a 
+href="refsu184.htm#x269-27500013.3">588<!--tex4ht:ref: se:exceptclasses--></a>), <span 
+class="cmss-10">BinStr </span>(<a 
+href="refsu74.htm#x159-16500013.3">457<!--tex4ht:ref: se:exceptclasses--></a>)</dd></dl>
+<!--l. 5969--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex81.pp</span><HR/><div class="listinginput">
+<!--l. 5969--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">example81;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">HexStr</span>&nbsp;<span 
+class="cmtt-10">function</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Const</span>&nbsp;<span 
+class="cmtt-10">Value</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">45678;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>&nbsp;<span 
+class="cmtt-10">I</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">longint;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">For</span>&nbsp;<span 
+class="cmtt-10">I:=1</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">10</span>&nbsp;<span 
+class="cmtt-10">do</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Writeln</span>&nbsp;<span 
+class="cmtt-10">(HexStr(Value,I));</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu114.htm" >next</a>] [<a 
+href="refsu112.htm" >prev</a>] [<a 
+href="refsu112.htm#tailrefsu112.htm" >prev-tail</a>] [<a 
+href="refsu113.htm" >front</a>] [<a 
+href="refse64.htm#refsu113.htm" >up</a>] </p></div><a 
+  name="tailrefsu113.htm"></a>  
+</body></html> 

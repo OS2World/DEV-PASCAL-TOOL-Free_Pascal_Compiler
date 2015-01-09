@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso8859-1">
+<title>TStream.WriteAnsiString</title>
+<link rel="stylesheet" type="text/css" href="../fpdoc.css">
+</head>
+<body>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="bar">
+<tr>
+<td><b>[<a href="../classes/index.htm">Overview</a>][<a href="../classes/index-2.htm">Constants</a>][<a href="../classes/index-3.htm">Types</a>][<a href="../classes/index-4.htm">Classes</a>][<a href="../classes/index-5.htm">Procedures and functions</a>][<a href="../classes/index-6.htm">Variables</a>]</b></td>
+<td align="right"><span class="bartitle">Reference for unit 'Classes' (<a href="../index.htm">#fcl</a>)</span></td>
+</tr>
+</table>
+<h1>TStream.WriteAnsiString</h1>
+<p>Write an ansistring to the stream.</p>
+<h2>Declaration</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td><p><tt><nobr> <span class="kw">public</span> <span class="kw">procedure</span> <a href="../classes/tstream.htm">TStream</a><span class="sym">.</span>WriteAnsiString<span class="sym">(</span></nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr>&nbsp;&nbsp;S<span class="sym">: </span>String</nobr></tt></p></td>
+</tr>
+<tr>
+<td><p><tt><nobr><span class="sym">)</span><span class="sym">;</span></nobr></tt></p></td>
+</tr>
+</table>
+<h2>Description</h2>
+<p><var>WriteAnsiString</var> writes the AnsiString <var>S</var> (i.e. 4 bytes) to the stream. This is a utility function which simply calls the <a href="../classes/tstream.write.htm">Write</a> function.  The ansistring is written as a 4 byte length specifier, followed by the ansistring's content.  The ansistring can be read from the stream using the <a href="../classes/tstream.readansistring.htm">ReadAnsiString</a> function. </p>
+<h2>Errors</h2>
+<p>If an error occurs when attempting to write, an <a href="../classes/estreamerror.htm">EStreamError</a> exception will be raised. </p>
+<h2>See also</h2>
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top"><p><a href="../classes/tstream.write.htm">TStream.Write</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Writes data from the stream to the buffer and returns the number of bytes written.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.readansistring.htm">TStream.ReadAnsiString</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Read an ansistring from the stream and return its value.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.writebyte.htm">TStream.WriteByte</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write a byte to the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.writeword.htm">TStream.WriteWord</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write a word to the stream.</p></td>
+</tr>
+<tr>
+<td valign="top"><p><a href="../classes/tstream.writedword.htm">TStream.WriteDWord</a></p></td>
+<td><p>&nbsp;&nbsp;</p></td>
+<td><p class="cmt">Write a DWord to the stream.</p></td>
+</tr>
+</table>
+</body>
+</html>

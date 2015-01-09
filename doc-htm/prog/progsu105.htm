@@ -1,0 +1,156 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 object types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu106.htm" >next</a>] [<a 
+href="progsu104.htm" >prev</a>] [<a 
+href="progsu104.htm#tailprogsu104.htm" >prev-tail</a>] [<a 
+href="#tailprogsu105.htm">tail</a>] [<a 
+href="progse29.htm#progsu105.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-152-171" name="x152-1580008.2">object types</a></h4>
+<!--l. 3652--><p class="noindent">Objects are stored in memory just as ordinary records with an extra field: a pointer to the Virtual
+Method Table (VMT). This field is stored first, and all fields in the object are stored in the order
+they are declared (with possible alignment of field addresses, unless the object was declared as
+being <span 
+class="cmtt-10">packed</span>).
+<!--l. 3657--><p class="noindent">This field is initialized by the call to the object&#8217;s <span 
+class="cmtt-10">Constructor </span>method. If the <span 
+class="cmtt-10">new </span>operator was
+used to call the constructor, the data fields of the object will be stored in heap memory, otherwise
+they will directly be stored in the data section of the final executable.
+<!--l. 3662--><p class="noindent">If an object doesn&#8217;t have virtual methods, no pointer to a VMT is inserted.
+<!--l. 3664--><p class="noindent">The memory allocated looks as in table (<a 
+href="#x152-1580014">8.4<!--tex4ht:ref: tab:ObjMem--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x152-1580014"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.4: </td><td  
+class="content">Object memory layout (32-bit model)</td></tr></table></div><!--tex4ht:label?: x152-1580014-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-13-" ><colgroup id="TBL-13-1g"><col 
+id="TBL-13-1"><col 
+id="TBL-13-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-13-1-"><td  align="left" nowrap="nowrap" id="TBL-13-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-13-1-2"  
+class="td11"> What                                                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-13-2-"><td  align="left" nowrap="nowrap" id="TBL-13-2-1"  
+class="td11"> +0    </td><td  align="left" nowrap="nowrap" id="TBL-13-2-2"  
+class="td11"> Pointer to VMT (optional).                              </td>
+</tr><tr  
+valign="baseline" id="TBL-13-3-"><td  align="left" nowrap="nowrap" id="TBL-13-3-1"  
+class="td11"> +4    </td><td  align="left" nowrap="nowrap" id="TBL-13-3-2"  
+class="td11"> Data. All fields in the order they&#8217;ve been declared.</td>
+</tr><tr  
+valign="baseline" id="TBL-13-4-"><td  align="left" nowrap="nowrap" id="TBL-13-4-1"  
+class="td11"> . . .    </td><td  align="left" nowrap="nowrap" id="TBL-13-4-2"  
+class="td11">                                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-13-5-"><td  align="left" nowrap="nowrap" id="TBL-13-5-1"  
+class="td11">         </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+The Virtual Method Table (VMT) for each object type consists of 2 check fields (containing the
+size of the data), a pointer to the object&#8217;s ancestor&#8217;s VMT (<span 
+class="cmtt-10">Nil </span>if there is no ancestor), and then
+the pointers to all virtual methods. The VMT layout is illustrated in table (<a 
+href="#x152-1580025">8.5<!--tex4ht:ref: tab:ObjVMTMem--></a>). The VMT is
+constructed by the compiler.
+                                                                            
+
+                                                                            
+<a 
+  name="x152-1580025"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;8.5: </td><td  
+class="content">Object Virtual Method Table memory layout (32-bit model)</td></tr></table></div><!--tex4ht:label?: x152-1580025-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-14-" ><colgroup id="TBL-14-1g"><col 
+id="TBL-14-1"><col 
+id="TBL-14-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-14-1-"><td  align="left" nowrap="nowrap" id="TBL-14-1-1"  
+class="td11"> Offset</td><td  align="left" nowrap="nowrap" id="TBL-14-1-2"  
+class="td11"> What                                                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-14-2-"><td  align="left" nowrap="nowrap" id="TBL-14-2-1"  
+class="td11"> +0    </td><td  align="left" nowrap="nowrap" id="TBL-14-2-2"  
+class="td11"> Size of object type data                                                                          </td>
+</tr><tr  
+valign="baseline" id="TBL-14-3-"><td  align="left" nowrap="nowrap" id="TBL-14-3-1"  
+class="td11"> +4    </td><td  align="left" nowrap="nowrap" id="TBL-14-3-2"  
+class="td11"> Minus the size of object type data. Enables determining of valid VMT pointers.</td>
+</tr><tr  
+valign="baseline" id="TBL-14-4-"><td  align="left" nowrap="nowrap" id="TBL-14-4-1"  
+class="td11"> +8    </td><td  align="left" nowrap="nowrap" id="TBL-14-4-2"  
+class="td11"> Pointer to ancestor VMT, <span 
+class="cmtt-10">Nil </span>if no ancestor available.                                 </td>
+</tr><tr  
+valign="baseline" id="TBL-14-5-"><td  align="left" nowrap="nowrap" id="TBL-14-5-1"  
+class="td11"> +12  </td><td  align="left" nowrap="nowrap" id="TBL-14-5-2"  
+class="td11"> Pointers to the virtual methods.                                                               </td>
+</tr><tr  
+valign="baseline" id="TBL-14-6-"><td  align="left" nowrap="nowrap" id="TBL-14-6-1"  
+class="td11"> . . .    </td><td  align="left" nowrap="nowrap" id="TBL-14-6-2"  
+class="td11">                                                                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-14-7-"><td  align="left" nowrap="nowrap" id="TBL-14-7-1"  
+class="td11">         </td>
+</tr><!--ll--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu106.htm" >next</a>] [<a 
+href="progsu104.htm" >prev</a>] [<a 
+href="progsu104.htm#tailprogsu104.htm" >prev-tail</a>] [<a 
+href="progsu105.htm" >front</a>] [<a 
+href="progse29.htm#progsu105.htm" >up</a>] </p></div><a 
+  name="tailprogsu105.htm"></a>  
+</body></html> 

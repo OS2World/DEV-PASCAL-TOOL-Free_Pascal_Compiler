@@ -1,0 +1,121 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>11.2 The try...except statement</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse57.htm" >next</a>] [<a 
+href="refse55.htm" >prev</a>] [<a 
+href="refse55.htm#tailrefse55.htm" >prev-tail</a>] [<a 
+href="#tailrefse56.htm">tail</a>] [<a 
+href="refch11.htm#refse56.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">11.2</span> <a 
+href="ref.htm#QQ2-131-152" name="x131-13700011.2">The try...except statement</a></h3>
+<!--l. 4351--><p class="noindent">A <span 
+class="cmtt-10">try...except </span>exception handling block is of the following form :
+     <div class="quote">
+     <!--l. 1--><p class="noindent">_________________________________________________________________________________________________________
+     <span 
+class="cmbx-10">Try..except statement</span>
+     <BR/>
+     <img 
+src="ref153x.png" alt="-- try statement try- statement list-except-exceptionhandlers-end --------
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref154x.png" alt="-- statement list--statement-----------------------------------------
+               ----; ----|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref155x.png" alt="--              -------------------------------------------------
+   exceptionhandlers  --exception handler----------------------|
+                  |-------; -------| -else- statement list-||
+                  --------------statement list--------------|
+     " ><BR/>
+     <BR/>
+     <img 
+src="ref156x.png" alt="             -   ----------------              -   -         ---
+exception handler on  -       -  -| class type identifier do  statement
+                    identifier  :
+     " ><BR/>
+     ___________________________________________________________________</div>
+<!--l. 4353--><p class="noindent">If no exception is raised during the execution of the <span 
+class="cmtt-10">statement list</span>, then all statements in the
+list will be executed sequentially, and the except block will be skipped, transferring program flow
+to the statement after the final <span 
+class="cmtt-10">end</span>.
+<!--l. 4358--><p class="noindent">If an exception occurs during the execution of the <span 
+class="cmtt-10">statement list</span>, the program flow will be
+transferred to the except block. Statements in the statement list between the place where the
+exception was raised and the exception block are ignored.
+<!--l. 4363--><p class="noindent">In the exception handling block, the type of the exception is checked, and if there is an exception
+handler where the class type matches the exception object type, or is a parent type of the
+exception object type, then the statement following the corresponding <span 
+class="cmtt-10">Do </span>will be executed. The
+first matching type is used. After the <span 
+class="cmtt-10">Do </span>block was executed, the program continues after the <span 
+class="cmtt-10">End</span>
+statement.
+<!--l. 4371--><p class="noindent">The identifier in an exception handling statement is optional, and declares an exception object. It
+can be used to manipulate the exception object in the exception handling code. The scope of this
+declaration is the statement block foillowing the <span 
+class="cmtt-10">Do </span>keyword.
+<!--l. 4376--><p class="noindent">If none of the <span 
+class="cmtt-10">On </span>handlers matches the exception object type, then the statement list after <span 
+class="cmtt-10">else </span>is
+                                                                            
+
+                                                                            
+executed. If no such list is found, then the exception is automatically re-raised. This process allows
+to nest <span 
+class="cmtt-10">try...except </span>blocks.
+<!--l. 4381--><p class="noindent">If, on the other hand, the exception was caught, then the exception object is destroyed at the end
+of the exception handling block, before program flow continues. The exception is destroyed through
+a call to the object&#8217;s <span 
+class="cmtt-10">Destroy </span>destructor.
+<!--l. 4386--><p class="noindent">As an example, given the previous declaration of the <span 
+class="cmtt-10">DoDiv </span>function, consider the following
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Try
+&nbsp;&nbsp;&nbsp;Z&nbsp;:=&nbsp;DoDiv&nbsp;(X,Y);
+&nbsp;Except
+&nbsp;&nbsp;&nbsp;On&nbsp;EDivException&nbsp;do&nbsp;Z&nbsp;:=&nbsp;0;
+&nbsp;end;
+</pre>
+</td></tr></table>If <span 
+class="cmtt-10">Y </span>happens to be zero, then the DoDiv function code will raise an exception. When this happens,
+program flow is transferred to the except statement, where the Exception handler will set the value
+of <span 
+class="cmtt-10">Z </span>to zero. If no exception is raised, then program flow continues past the last <span 
+class="cmtt-10">end </span>statement. To
+allow error recovery, the <span 
+class="cmtt-10">Try ... Finally </span>block is supported. A <span 
+class="cmtt-10">Try...Finally </span>block ensures
+that the statements following the <span 
+class="cmtt-10">Finally </span>keyword are guaranteed to be executed, even if an
+exception occurs.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refse57.htm" >next</a>] [<a 
+href="refse55.htm" >prev</a>] [<a 
+href="refse55.htm#tailrefse55.htm" >prev-tail</a>] [<a 
+href="refse56.htm" >front</a>] [<a 
+href="refch11.htm#refse56.htm" >up</a>] </p></div><a 
+  name="tailrefse56.htm"></a>  
+</body></html> 

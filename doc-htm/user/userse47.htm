@@ -1,0 +1,153 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>10.2 Using gdb to debug your program</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse48.htm" >next</a>] [<a 
+href="userse46.htm" >prev</a>] [<a 
+href="userse46.htm#tailuserse46.htm" >prev-tail</a>] [<a 
+href="#tailuserse47.htm">tail</a>] [<a 
+href="userch10.htm#userse47.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">10.2</span> <a 
+href="user.htm#QQ2-67-205" name="x67-15400010.2">Using <span 
+class="cmtt-10">gdb </span>to debug your program</a></h3>
+<!--l. 2296--><p class="noindent">To use gdb to debug your program, you can start the debugger, and give it as an option the <span 
+class="cmti-10">full</span>
+name of your program:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;gdb&nbsp;hello
+</pre>
+</td></tr></table>Or, under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;gdb&nbsp;hello.exe
+</pre>
+</td></tr></table>
+<!--l. 2306--><p class="noindent">This starts the debugger, and the debugger immediately loads your program into memory, but it
+does not run the program yet. Instead, you are presented with the following (more or less) message,
+followed by the <span 
+class="cmtt-10">gdb </span>prompt <span 
+class="cmtt-10">'(gdb)'</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;GDB&nbsp;is&nbsp;free&nbsp;software&nbsp;and&nbsp;you&nbsp;are&nbsp;welcome&nbsp;to&nbsp;distribute&nbsp;copies&nbsp;of&nbsp;it
+&nbsp;&nbsp;under&nbsp;certain&nbsp;conditions;&nbsp;type&nbsp;&#34;show&nbsp;copying&#34;&nbsp;to&nbsp;see&nbsp;the&nbsp;conditions.
+&nbsp;There&nbsp;is&nbsp;absolutely&nbsp;no&nbsp;warranty&nbsp;for&nbsp;GDB;&nbsp;type&nbsp;&#34;show&nbsp;warranty&#34;&nbsp;for&nbsp;details.
+&nbsp;GDB&nbsp;4.15.1&nbsp;(i486-slackware-linux),
+&nbsp;Copyright&nbsp;1995&nbsp;Free&nbsp;Software&nbsp;Foundation,&nbsp;Inc...
+&nbsp;(gdb)
+</pre>
+</td></tr></table>To start the program you can use the <span 
+class="cmtt-10">run </span>command. You can optionally specify command-line
+parameters, which will then be fed to your program, for example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;(gdb)&nbsp;run&nbsp;-option&nbsp;-anotheroption&nbsp;needed_argument
+</pre>
+</td></tr></table>If your program runs without problems, <span 
+class="cmtt-10">gdb </span>will inform you of this, and return the exit code of
+your program. If the exit code was zero, then the message <span 
+class="cmtt-10">'Program exited normally' </span>is
+displayed.
+<!--l. 2328--><p class="noindent">If something went wrong (a segmentation fault or so), <span 
+class="cmtt-10">gdb </span>will stop the execution of your program,
+and inform you of this with an appropriate message. You can then use the other <span 
+class="cmtt-10">gdb </span>commands to
+see what happened. Alternatively, you can instruct <span 
+class="cmtt-10">gdb </span>to stop at a certain point in your program,
+with the <span 
+class="cmtt-10">break </span>command.
+<!--l. 2334--><p class="noindent">Here is a short list of <span 
+class="cmtt-10">gdb </span>commands, which you are likely to need when debugging your
+program:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">quit</span>&nbsp; </dt><dd 
+class="description">Exits the debugger.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">kill</span>&nbsp; </dt><dd 
+class="description">Stops a running program.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">help</span>&nbsp; </dt><dd 
+class="description">Gives help on all <span 
+class="cmtt-10">gdb </span>commands.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">file</span>&nbsp; </dt><dd 
+class="description">Loads a new program into the debugger.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">directory</span>&nbsp; </dt><dd 
+class="description">Add a new directory to the search path for source files.
+     <br class="newline">
+     <!--l. 2343--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> My copy of gdb needs &#8217;.&#8217; to be added explicitly to the search path, otherwise it doesn&#8217;t find
+     the sources.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">list</span>&nbsp; </dt><dd 
+class="description">Lists the program sources per 10 lines. As an option you can specify a line number or function
+     name.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">break</span>&nbsp; </dt><dd 
+class="description">Sets a breakpoint at a specified line or function
+     </dd><dt class="description">
+<span 
+class="cmbx-10">awatch</span>&nbsp; </dt><dd 
+class="description">Sets a watch-point for an expression. A watch-point stops execution of your program
+     whenever the value of an expression is either read or written.</dd></dl>
+<!--l. 2354--><p class="noindent">for more information, see the <span 
+class="cmtt-10">gdb </span>users&#8217; guide, or use the <span 
+class="cmtt-10">'help' </span>function in <span 
+class="cmtt-10">gdb</span>.
+<!--l. 2357--><p class="noindent">The appendix <a 
+href="userap6.htm#x94-184000F">F<!--tex4ht:ref: ch:GdbIniFile--></a> contains a sample init file for <span 
+class="cmtt-10">gdb</span>, which produces good results when debugging
+Free Pascal programs.
+<!--l. 2360--><p class="noindent">It is also possible to use <span 
+class="cmss-10">RHIDE</span>, a text-based IDE that uses gdb. There is a version of RHIDE
+available that can work together with FPC.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse48.htm" >next</a>] [<a 
+href="userse46.htm" >prev</a>] [<a 
+href="userse46.htm#tailuserse46.htm" >prev-tail</a>] [<a 
+href="userse47.htm" >front</a>] [<a 
+href="userch10.htm#userse47.htm" >up</a>] </p></div><a 
+  name="tailuserse47.htm"></a>  
+</body></html> 

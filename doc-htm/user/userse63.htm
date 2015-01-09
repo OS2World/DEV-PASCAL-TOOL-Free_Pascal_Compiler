@@ -1,0 +1,274 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>C.8 Unit loading messages.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse64.htm" >next</a>] [<a 
+href="userse62.htm" >prev</a>] [<a 
+href="userse62.htm#tailuserse62.htm" >prev-tail</a>] [<a 
+href="#tailuserse63.htm">tail</a>] [<a 
+href="userap3.htm#userse63.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">C.8</span> <a 
+href="user.htm#QQ2-89-227" name="x89-176000C.8">Unit loading messages.</a></h3>
+<!--l. 1324--><p class="noindent">This section lists all messages that can occur when the compiler is loading a unit from disk into
+memory. Many of these mesages are informational messages.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">Unitsearch: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vt</span>, the compiler tells you where it tries to find unit
+     files.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Loading arg1</span> </dt><dd 
+class="description">When the <span 
+class="cmtt-10">-vt </span>switch is used, the compiler tells you what units it
+     loads.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Name: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the unit name is shown.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Flags: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the unit flags are shown.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Crc: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the unit CRC check is shown.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Time: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the time the unit was compiled is shown.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU File too short</span> </dt><dd 
+class="description">The ppufile is too short, not all declarations are present.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Invalid Header (no PPU at the begin)</span> </dt><dd 
+class="description">A  unit  file  contains  as  the  first  three
+     bytes the ascii codes of <span 
+class="cmtt-10">PPU</span>
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Invalid Version arg1</span> </dt><dd 
+class="description">This unit file was compiled with a different version of the
+     compiler, and cannot be read.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU is compiled for an other processor</span> </dt><dd 
+class="description">This  unit  file  was  compiled  for  a  different
+     processor type, and cannot be read
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU is compiled for an other target</span> </dt><dd 
+class="description">This unit file was compiled for a different target,
+     and cannot be read
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Source: arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the unit CRC check is shown.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Writing arg1</span> </dt><dd 
+class="description">When you specify the <span 
+class="cmtt-10">-vu </span>switch, the compiler will tell you where it writes
+     the unit file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Can&#8217;t Write PPU-File</span> </dt><dd 
+class="description">An error occurred when writing the unit file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Error reading PPU-File</span> </dt><dd 
+class="description">This means that the unit file was corrupted, and contains
+     invalid information. Recompilation will be necessary.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: unexpected end of PPU-File</span> </dt><dd 
+class="description">Unexpected end of file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Invalid PPU-File entry: arg1</span> </dt><dd 
+class="description">The  unit  the  compiler  is  trying  to  read  is
+     corrupted, or generated with a newer version of the compiler.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: PPU Dbx count problem</span> </dt><dd 
+class="description">There is an inconsistency in the debugging information
+     of the unit.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Error: Illegal unit name: arg1</span> </dt><dd 
+class="description">The name of the unit doesn&#8217;t match the file name.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Too much units</span> </dt><dd 
+class="description">Free Pascal has a limit of 1024 units in a program. You can change
+     this behavior by changing the <span 
+class="cmtt-10">maxunits </span>constant in the <span 
+class="cmss-10">files.pas </span>file of the compiler,
+     and recompiling the compiler.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Circular unit reference between arg1 and arg2</span> </dt><dd 
+class="description">Two   units   are   using   each
+     other in the interface part. This is only allowed in the <span 
+class="cmtt-10">implementation </span>part. At least
+     one unit must contain the other one in the <span 
+class="cmtt-10">implementation </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Can&#8217;t compile unit arg1, no sources available</span> </dt><dd 
+class="description">A unit was found that needs to
+     be recompiled, but no sources are available.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Can&#8217;t recompile unit arg1, but found modifed include files</span> </dt><dd 
+class="description">A  unit  was
+     found  to  have  modified  include  files,  but  some  source  files  were  not  found,  so
+     recompilation is impossible.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Can&#8217;t find unit arg1</span> </dt><dd 
+class="description">You tried to use a unit of which the PPU file isn&#8217;t found by
+     the compiler. Check your config files for the unit pathes
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Unit arg1 was not found but arg2 exists</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: Unit arg1 searched but arg2 found</span> </dt><dd 
+class="description">Dos truncation of 8 letters for unit PPU files
+     may lead to problems when unit name is longer than 8 letters.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Warning: Compiling the system unit requires the -Us switch</span> </dt><dd 
+class="description">When    recompiling
+     the system unit (it needs special treatment), the <span 
+class="cmtt-10">-Us </span>must be specified.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Fatal: There were arg1 errors compiling module, stopping</span> </dt><dd 
+class="description">When
+     the compiler encounters a fatal error or too many errors in a module then it stops with
+     this message.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Load from arg1 (arg2) unit arg3</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, which unit is loaded from
+     which unit is shown.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling arg1, checksum changed for arg2</span> </dt><dd 
+class="description">
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling arg1, source found only</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, these messages tell
+     you why the current unit is recompiled.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling unit, static lib is older than ppufile</span> </dt><dd 
+class="description">When  you  use  the  <span 
+class="cmtt-10">-vu  </span>flag,  the
+     compiler warns if the static library of the unit are older than the unit file itself.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling unit, shared lib is older than ppufile</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the
+     compiler warns if the shared library of the unit are older than the unit file itself.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling unit, obj and asm are older than ppufile</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag,
+     the compiler warns if the assembler or object file of the unit are older than the unit
+     file itself.
+                                                                            
+
+                                                                            
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Recompiling unit, obj is older than asm</span> </dt><dd 
+class="description">When  you  use  the  <span 
+class="cmtt-10">-vu  </span>flag,  the  compiler
+     warns if the assembler file of the unit is older than the object file of the unit.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Parsing interface of arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the compiler warns that it starts
+     parsing the interface part of the unit
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Parsing implementation of arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the compiler warns that it
+     starts parsing the implementation part of the unit
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Second load for unit arg1</span> </dt><dd 
+class="description">When you use the <span 
+class="cmtt-10">-vu </span>flag, the compiler warns that it starts
+     recompiling a unit for the second time. This can happend with interdepend units.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">PPU Check file arg1 time arg2</span> </dt><dd 
+class="description">When  you  use  the  <span 
+class="cmtt-10">-vu  </span>flag,  the  compiler  show  the
+     filename and date and time of the file which a recompile depends on
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Conditional arg1 was not set at startup in last compilation of arg2</span> </dt><dd 
+class="description">when
+     recompilation of an unit is required the compiler will check that the same conditionals
+     are set for the recompiliation. The compiler has found a conditional that currently is
+     defined, but was not used the last time the unit was compiled.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: Conditional arg1 was set at startup in last compilation of arg2</span> </dt><dd 
+class="description">when
+     recompilation of an unit is required the compiler will check that the same conditionals
+     are set for the recompiliation. The compiler has found a conditional that was used the
+     last time the unit was compiled, but the conditional is currently not defined.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">Hint: File arg1 is newer than Release PPU file arg2</span> </dt><dd 
+class="description"></dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse64.htm" >next</a>] [<a 
+href="userse62.htm" >prev</a>] [<a 
+href="userse62.htm#tailuserse62.htm" >prev-tail</a>] [<a 
+href="userse63.htm" >front</a>] [<a 
+href="userap3.htm#userse63.htm" >up</a>] </p></div><a 
+  name="tailuserse63.htm"></a>  
+</body></html> 

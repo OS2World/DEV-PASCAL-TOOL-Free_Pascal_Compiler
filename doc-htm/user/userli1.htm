@@ -1,0 +1,389 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Contents</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userch1.htm" >next</a>] [<a 
+href="#tailuserli1.htm">tail</a>] [<a 
+href="user.htm#userli1.htm" >up</a>] </p></div>
+<h2 class="likechapterHead"><a 
+href="user.htm#QQ2-2-1" name="x2-1000">Contents</a></h2> <div class="tableofcontents">
+<span class="chapterToc">1 <a 
+href="userch1.htm#x3-20001" name="QQ2-3-2">Introduction</a></span>
+<br>&nbsp;<span class="sectionToc">1.1 <a 
+href="userse1.htm#x4-30001.1" name="QQ2-4-3">About this document</a></span>
+<br>&nbsp;<span class="sectionToc">1.2 <a 
+href="userse2.htm#x5-40001.2" name="QQ2-5-4">About the compiler</a></span>
+<br>&nbsp;<span class="sectionToc">1.3 <a 
+href="userse3.htm#x6-50001.3" name="QQ2-6-5">Getting more information.</a></span>
+<br><span class="chapterToc">2 <a 
+href="userch2.htm#x7-60002" name="QQ2-7-6">Installing the compiler</a></span>
+<br>&nbsp;<span class="sectionToc">2.1 <a 
+href="userse4.htm#x8-70002.1" name="QQ2-8-7">Before Installation : Requirements</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse4.htm#x8-80002.1" name="QQ2-8-8">System requirements</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse4.htm#x8-90002.1" name="QQ2-8-9">Software requirements</a></span>
+<br>&nbsp;<span class="sectionToc">2.2 <a 
+href="userse5.htm#x9-140002.2" name="QQ2-9-14">Installing the compiler.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse5.htm#x9-150002.2" name="QQ2-9-15">Installing under DOS or Windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse5.htm#x9-180002.2" name="QQ2-9-20">Installing under Linux</a></span>
+<br>&nbsp;<span class="sectionToc">2.3 <a 
+href="userse6.htm#x10-200002.3" name="QQ2-10-22">Optional configuration steps</a></span>
+<br>&nbsp;<span class="sectionToc">2.4 <a 
+href="userse7.htm#x11-210002.4" name="QQ2-11-23">Before compiling</a></span>
+<br>&nbsp;<span class="sectionToc">2.5 <a 
+href="userse8.htm#x12-220002.5" name="QQ2-12-24">Testing the compiler</a></span>
+<br><span class="chapterToc">3 <a 
+href="userch3.htm#x13-230003" name="QQ2-13-25">Compiler usage</a></span>
+<br>&nbsp;<span class="sectionToc">3.1 <a 
+href="userse9.htm#x14-240003.1" name="QQ2-14-26">File searching</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-250003.1" name="QQ2-14-27">Command line files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-260003.1" name="QQ2-14-28">Unit files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-270003.1" name="QQ2-14-29">Include files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-280003.1" name="QQ2-14-30">Object files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-290003.1" name="QQ2-14-31">Configuration file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse9.htm#x14-300003.1" name="QQ2-14-32">About long filenames</a></span>
+<br>&nbsp;<span class="sectionToc">3.2 <a 
+href="userse10.htm#x15-310003.2" name="QQ2-15-33">Compiling a program</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;<span class="sectionToc">3.3 <a 
+href="userse11.htm#x16-320003.3" name="QQ2-16-34">Compiling a unit</a></span>
+<br>&nbsp;<span class="sectionToc">3.4 <a 
+href="userse12.htm#x17-330003.4" name="QQ2-17-35">Units, libraries and smartlinking</a></span>
+<br>&nbsp;<span class="sectionToc">3.5 <a 
+href="userse13.htm#x18-340003.5" name="QQ2-18-36">Creating an executable for GO32V1 and PMODE/DJ targets</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse13.htm#x18-350003.5" name="QQ2-18-37">GO32V1</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse13.htm#x18-360003.5" name="QQ2-18-38">PMODE/DJ</a></span>
+<br>&nbsp;<span class="sectionToc">3.6 <a 
+href="userse14.htm#x19-370003.6" name="QQ2-19-39">Reducing the size of your program</a></span>
+<br><span class="chapterToc">4 <a 
+href="userch4.htm#x20-380004" name="QQ2-20-40">Compiling problems</a></span>
+<br>&nbsp;<span class="sectionToc">4.1 <a 
+href="userse15.htm#x21-390004.1" name="QQ2-21-41">General problems</a></span>
+<br>&nbsp;<span class="sectionToc">4.2 <a 
+href="userse16.htm#x22-400004.2" name="QQ2-22-42">Problems you may encounter under DOS</a></span>
+<br><span class="chapterToc">5 <a 
+href="userch5.htm#x23-410005" name="QQ2-23-43">Compiler configuration</a></span>
+<br>&nbsp;<span class="sectionToc">5.1 <a 
+href="userse17.htm#x24-420005.1" name="QQ2-24-44">Using the command-line options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse17.htm#x24-430005.1" name="QQ2-24-45">General options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse17.htm#x24-440005.1" name="QQ2-24-46">Options for getting feedback</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse17.htm#x24-450005.1" name="QQ2-24-47">Options concerning files and directories</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse17.htm#x24-460005.1" name="QQ2-24-48">Options controlling the kind of output.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse17.htm#x24-470005.1" name="QQ2-24-49">Options concerning the sources (language options)</a></span>
+<br>&nbsp;<span class="sectionToc">5.2 <a 
+href="userse18.htm#x25-480005.2" name="QQ2-25-50">Using the configuration file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-490005.2" name="QQ2-25-51">#IFDEF</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-500005.2" name="QQ2-25-52">#IFNDEF</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-510005.2" name="QQ2-25-53">#ELSE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-520005.2" name="QQ2-25-54">#ENDIF</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-530005.2" name="QQ2-25-55">#DEFINE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-540005.2" name="QQ2-25-56">#UNDEF</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-550005.2" name="QQ2-25-57">#WRITE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-560005.2" name="QQ2-25-58">#INCLUDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse18.htm#x25-570005.2" name="QQ2-25-59">#SECTION</a></span>
+<br>&nbsp;<span class="sectionToc">5.3 <a 
+href="userse19.htm#x26-580005.3" name="QQ2-26-60">Variable substitution in paths</a></span>
+<br><span class="chapterToc">6 <a 
+href="userch6.htm#x27-590006" name="QQ2-27-61">The IDE</a></span>
+<br>&nbsp;<span class="sectionToc">6.1 <a 
+href="userse20.htm#x28-600006.1" name="QQ2-28-62">First steps with the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-610006.1" name="QQ2-28-63">Starting the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-620006.1" name="QQ2-28-64">IDE Command line options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse20.htm#x28-630006.1" name="QQ2-28-65">The IDE screen</a></span>
+<br>&nbsp;<span class="sectionToc">6.2 <a 
+href="userse21.htm#x30-640006.2" name="QQ2-30-67">Navigating in the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-650006.2" name="QQ2-30-68">Using the keyboard</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-660006.2" name="QQ2-30-69">Using the mouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse21.htm#x30-670006.2" name="QQ2-30-70">Navigating in dialogs</a></span>
+<br>&nbsp;<span class="sectionToc">6.3 <a 
+href="userse22.htm#x32-680006.3" name="QQ2-32-71">Windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-690006.3" name="QQ2-32-72">Window basics</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-700006.3" name="QQ2-32-74">Sizing and moving windows</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-710006.3" name="QQ2-32-75">Working with multiple windows</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse22.htm#x32-720006.3" name="QQ2-32-76">Dialog windows</a></span>
+<br>&nbsp;<span class="sectionToc">6.4 <a 
+href="userse23.htm#x33-730006.4" name="QQ2-33-78">The Menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-740006.4" name="QQ2-33-79">Accessing the menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-750006.4" name="QQ2-33-80">The File menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-760006.4" name="QQ2-33-81">The Edit menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-770006.4" name="QQ2-33-82">The Search menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-780006.4" name="QQ2-33-83">The Run menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-790006.4" name="QQ2-33-84">The Compile menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-800006.4" name="QQ2-33-85">The Debug menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-810006.4" name="QQ2-33-86">The Tools menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-820006.4" name="QQ2-33-87">The Options menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-830006.4" name="QQ2-33-88">The Window menu</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse23.htm#x33-840006.4" name="QQ2-33-89">The Help menu</a></span>
+<br>&nbsp;<span class="sectionToc">6.5 <a 
+href="userse24.htm#x34-850006.5" name="QQ2-34-90">Editing text</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-860006.5" name="QQ2-34-91">Insert modes</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-870006.5" name="QQ2-34-92">Blocks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-880006.5" name="QQ2-34-93">Setting bookmarks</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-890006.5" name="QQ2-34-94">Jumping to a source line</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-900006.5" name="QQ2-34-96">Syntax highlighting</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-910006.5" name="QQ2-34-97">Code Completion</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse24.htm#x34-920006.5" name="QQ2-34-99">Code Templates</a></span>
+<br>&nbsp;<span class="sectionToc">6.6 <a 
+href="userse25.htm#x35-930006.6" name="QQ2-35-101">Searching and replacing</a></span>
+<br>&nbsp;<span class="sectionToc">6.7 <a 
+href="userse26.htm#x36-940006.7" name="QQ2-36-104">The symbol browser</a></span>
+<br>&nbsp;<span class="sectionToc">6.8 <a 
+href="userse27.htm#x37-950006.8" name="QQ2-37-106">Running programs</a></span>
+<br>&nbsp;<span class="sectionToc">6.9 <a 
+href="userse28.htm#x38-960006.9" name="QQ2-38-108">Debugging programs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-970006.9" name="QQ2-38-109">Using breakpoints</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-980006.9" name="QQ2-38-112">Using watches</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-990006.9" name="QQ2-38-115">The call stack</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse28.htm#x38-1000006.9" name="QQ2-38-117">The GDB window</a></span>
+<br>&nbsp;<span class="sectionToc">6.10 <a 
+href="userse29.htm#x40-1010006.10" name="QQ2-40-119">Using Tools</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1020006.10" name="QQ2-40-120">The messages window</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1030006.10" name="QQ2-40-122">Grep</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1040006.10" name="QQ2-40-123">The ASCII table</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1050006.10" name="QQ2-40-125">The calculator</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1060006.10" name="QQ2-40-130">Adding new tools</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1070006.10" name="QQ2-40-132">Meta parameters</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse29.htm#x40-1080006.10" name="QQ2-40-133">Building a command line dialog box</a></span>
+<br>&nbsp;<span class="sectionToc">6.11 <a 
+href="userse30.htm#x42-1090006.11" name="QQ2-42-134">Project management and compiler options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1100006.11" name="QQ2-42-135">The primary file</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1110006.11" name="QQ2-42-136">The directory dialog</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1120006.11" name="QQ2-42-138">The target operating system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1130006.11" name="QQ2-42-140">Compiler options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1140006.11" name="QQ2-42-146">Linker options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1150006.11" name="QQ2-42-148">Memory sizes</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1160006.11" name="QQ2-42-150">Debug options</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse30.htm#x42-1170006.11" name="QQ2-42-152">The switches mode</a></span>
+<br>&nbsp;<span class="sectionToc">6.12 <a 
+href="userse31.htm#x43-1180006.12" name="QQ2-43-154">Customizing the IDE</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1190006.12" name="QQ2-43-155">Preferences</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1200006.12" name="QQ2-43-157">The desktop</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1210006.12" name="QQ2-43-159">The Editor</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1220006.12" name="QQ2-43-161">Mouse</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse31.htm#x43-1230006.12" name="QQ2-43-163">Colors</a></span>
+<br>&nbsp;<span class="sectionToc">6.13 <a 
+href="userse32.htm#x45-1240006.13" name="QQ2-45-165">The help system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1250006.13" name="QQ2-45-166">Navigating in the help system</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1260006.13" name="QQ2-45-167">Working with help files</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse32.htm#x45-1270006.13" name="QQ2-45-169">The about dialog</a></span>
+<br>&nbsp;<span class="sectionToc">6.14 <a 
+href="userse33.htm#x47-1280006.14" name="QQ2-47-170">Keyboard shortcuts</a></span>
+<br><span class="chapterToc">7 <a 
+href="userch7.htm#x48-1290007" name="QQ2-48-178">Porting Turbo Pascal Code</a></span>
+<br>&nbsp;<span class="sectionToc">7.1 <a 
+href="userse34.htm#x49-1300007.1" name="QQ2-49-179">Things that will not work</a></span>
+<br>&nbsp;<span class="sectionToc">7.2 <a 
+href="userse35.htm#x51-1310007.2" name="QQ2-51-180">Things which are extra</a></span>
+<br>&nbsp;<span class="sectionToc">7.3 <a 
+href="userse36.htm#x52-1320007.3" name="QQ2-52-181">Turbo Pascal compatibility mode</a></span>
+<br>&nbsp;<span class="sectionToc">7.4 <a 
+href="userse37.htm#x53-1330007.4" name="QQ2-53-182">A note on long file names under dos </a></span>
+<br><span class="chapterToc">8 <a 
+href="userch8.htm#x54-1340008" name="QQ2-54-183">Utilities that come with Free Pascal</a></span>
+<br>&nbsp;<span class="sectionToc">8.1 <a 
+href="userse38.htm#x55-1350008.1" name="QQ2-55-184">Demo programs and examples</a></span>
+<br>&nbsp;<span class="sectionToc">8.2 <a 
+href="userse39.htm#x56-1360008.2" name="QQ2-56-185">Supplied programs</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse39.htm#x56-1370008.2" name="QQ2-56-186">ppudump program</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse39.htm#x56-1380008.2" name="QQ2-56-187">ppumove program</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse39.htm#x56-1390008.2" name="QQ2-56-188">ptop - Pascal source beautifier</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse39.htm#x56-1430008.2" name="QQ2-56-194">rstconv program</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse39.htm#x56-1440008.2" name="QQ2-56-195">fpcmake</a></span>
+<br><span class="chapterToc">9 <a 
+href="userch9.htm#x57-1450009" name="QQ2-57-196">Units that come with Free Pascal</a></span>
+<br>&nbsp;<span class="sectionToc">9.1 <a 
+href="userse40.htm#x58-1460009.1" name="QQ2-58-197">Standard units</a></span>
+<br>&nbsp;<span class="sectionToc">9.2 <a 
+href="userse41.htm#x59-1470009.2" name="QQ2-59-198">Under DOS</a></span>
+<br>&nbsp;<span class="sectionToc">9.3 <a 
+href="userse42.htm#x60-1480009.3" name="QQ2-60-199">Under Windows</a></span>
+<br>&nbsp;<span class="sectionToc">9.4 <a 
+href="userse43.htm#x61-1490009.4" name="QQ2-61-200">Under Linux</a></span>
+<br>&nbsp;<span class="sectionToc">9.5 <a 
+href="userse44.htm#x62-1500009.5" name="QQ2-62-201">Under OS/2</a></span>
+<br>&nbsp;<span class="sectionToc">9.6 <a 
+href="userse45.htm#x63-1510009.6" name="QQ2-63-202">Unit availability</a></span>
+<br><span class="chapterToc">10 <a 
+href="userch10.htm#x64-15200010" name="QQ2-64-203">Debugging your Programs</a></span>
+<br>&nbsp;<span class="sectionToc">10.1 <a 
+href="userse46.htm#x65-15300010.1" name="QQ2-65-204">Compiling your program with debugger support</a></span>
+<br>&nbsp;<span class="sectionToc">10.2 <a 
+href="userse47.htm#x67-15400010.2" name="QQ2-67-205">Using gdb to debug your program</a></span>
+                                                                            
+
+                                                                            
+<br>&nbsp;<span class="sectionToc">10.3 <a 
+href="userse48.htm#x68-15500010.3" name="QQ2-68-206">Caveats when debugging with gdb</a></span>
+<br>&nbsp;<span class="sectionToc">10.4 <a 
+href="userse49.htm#x69-15600010.4" name="QQ2-69-207">Support for gprof, the gnu profiler</a></span>
+<br>&nbsp;<span class="sectionToc">10.5 <a 
+href="userse50.htm#x70-15700010.5" name="QQ2-70-208">Detecting heap memory leaks</a></span>
+<br>&nbsp;<span class="sectionToc">10.6 <a 
+href="userse51.htm#x71-15800010.6" name="QQ2-71-209">Line numbers in run-time error backtraces</a></span>
+<br>&nbsp;<span class="sectionToc">10.7 <a 
+href="userse52.htm#x72-15900010.7" name="QQ2-72-210">Combining heaptrc and lineinfo</a></span>
+<br><span class="chapterToc">11 <a 
+href="userch11.htm#x73-16000011" name="QQ2-73-211">CGI programming in Free Pascal</a></span>
+<br>&nbsp;<span class="sectionToc">11.1 <a 
+href="userse53.htm#x75-16100011.1" name="QQ2-75-212">Getting your data</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse53.htm#x75-16200011.1" name="QQ2-75-213">Data coming through standard input.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse53.htm#x75-16300011.1" name="QQ2-75-214">Data passed through an environment variable</a></span>
+<br>&nbsp;<span class="sectionToc">11.2 <a 
+href="userse54.htm#x77-16400011.2" name="QQ2-77-215">Producing output</a></span>
+<br>&nbsp;<span class="sectionToc">11.3 <a 
+href="userse55.htm#x78-16500011.3" name="QQ2-78-216">I&#8217;m under Windows, what now ?</a></span>
+<br><span class="appendixToc">A <a 
+href="userap1.htm#x79-166000A" name="QQ2-79-217">Alphabetical listing of command-line options</a></span>
+<br><span class="appendixToc">B <a 
+href="userap2.htm#x80-167000B" name="QQ2-80-218">Alphabetical list of reserved words</a></span>
+<br><span class="appendixToc">C <a 
+href="userap3.htm#x81-168000C" name="QQ2-81-219">Compiler messages</a></span>
+<br>&nbsp;<span class="sectionToc">C.1 <a 
+href="userse56.htm#x82-169000C.1" name="QQ2-82-220">General compiler messages</a></span>
+<br>&nbsp;<span class="sectionToc">C.2 <a 
+href="userse57.htm#x83-170000C.2" name="QQ2-83-221">Scanner messages.</a></span>
+<br>&nbsp;<span class="sectionToc">C.3 <a 
+href="userse58.htm#x84-171000C.3" name="QQ2-84-222">Parser messages</a></span>
+<br>&nbsp;<span class="sectionToc">C.4 <a 
+href="userse59.htm#x85-172000C.4" name="QQ2-85-223">Type checking errors</a></span>
+<br>&nbsp;<span class="sectionToc">C.5 <a 
+href="userse60.htm#x86-173000C.5" name="QQ2-86-224">Symbol handling</a></span>
+<br>&nbsp;<span class="sectionToc">C.6 <a 
+href="userse61.htm#x87-174000C.6" name="QQ2-87-225">Code generator messages</a></span>
+<br>&nbsp;<span class="sectionToc">C.7 <a 
+href="userse62.htm#x88-175000C.7" name="QQ2-88-226">Errors of assembling/linking stage</a></span>
+<br>&nbsp;<span class="sectionToc">C.8 <a 
+href="userse63.htm#x89-176000C.8" name="QQ2-89-227">Unit loading messages.</a></span>
+<br>&nbsp;<span class="sectionToc">C.9 <a 
+href="userse64.htm#x90-177000C.9" name="QQ2-90-228">Command-line handling errors</a></span>
+<br>&nbsp;<span class="sectionToc">C.10 <a 
+href="userse65.htm#x91-178000C.10" name="QQ2-91-229">Assembler reader errors.</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse65.htm#x91-179000C.10" name="QQ2-91-230">General assembler errors</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse65.htm#x91-180000C.10" name="QQ2-91-231">I386 specific errors</a></span>
+<br>&nbsp;&nbsp;<span class="subsectionToc"> <a 
+href="userse65.htm#x91-181000C.10" name="QQ2-91-232">m68k specific errors.</a></span>
+<br><span class="appendixToc">D <a 
+href="userap4.htm#x92-182000D" name="QQ2-92-233">Run time errors</a></span>
+<br><span class="appendixToc">E <a 
+href="userap5.htm#x93-183000E" name="QQ2-93-234">The Floating Point Coprocessor emulator</a></span>
+<br><span class="appendixToc">F <a 
+href="userap6.htm#x94-184000F" name="QQ2-94-235">A sample gdb.ini file</a></span>
+<br><span class="appendixToc">G <a 
+href="userap7.htm#x95-185000G" name="QQ2-95-236">Options and settings</a></span>
+</div>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userch1.htm" >next</a>] [<a 
+href="userli1.htm" >front</a>] [<a 
+href="user.htm#userli1.htm" >up</a>] </p></div><a 
+  name="tailuserli1.htm"></a>  
+</body></html> 

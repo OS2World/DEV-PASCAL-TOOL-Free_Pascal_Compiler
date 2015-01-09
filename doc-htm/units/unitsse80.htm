@@ -1,0 +1,311 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>23.1 Constants, Types and variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse81.htm" >next</a>] [<a 
+href="#tailunitsse80.htm">tail</a>] [<a 
+href="unitsch23.htm#unitsse80.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">23.1</span> <a 
+href="units.htm#QQ2-108-949" name="x108-94300023.1">Constants, Types and variables</a></h3>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-108-950" name="x108-94400023.1">Constants</a></h4> The following constants are used in the implementation section of the unit.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;BooleanIdents:&nbsp;array[Boolean]&nbsp;of&nbsp;String&nbsp;=&nbsp;('False',&nbsp;'True');
+&nbsp;DotSep:&nbsp;String&nbsp;=&nbsp;'.';
+</pre>
+</td></tr></table>The following constants determine the access method for the <span 
+class="cmtt-10">Stored </span>identifier of a property as
+used in the <span 
+class="cmtt-10">PropProcs </span>field of the <span 
+class="cmtt-10">TPropInfo </span>record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ptField&nbsp;=&nbsp;0;
+&nbsp;ptStatic&nbsp;=&nbsp;1;
+&nbsp;ptVirtual&nbsp;=&nbsp;2;
+&nbsp;ptConst&nbsp;=&nbsp;3;
+</pre>
+</td></tr></table>The following typed constants are used for easy selection of property types.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;tkAny&nbsp;=&nbsp;[Low(TTypeKind)..High(TTypeKind)];
+&nbsp;tkMethods&nbsp;=&nbsp;[tkMethod];
+&nbsp;tkProperties&nbsp;=&nbsp;tkAny-tkMethods-[tkUnknown];
+</pre>
+</td></tr></table>
+<h4 class="subsectionHead"><a 
+href="unitsli1.htm#QQ2-108-951" name="x108-94500023.1">types</a></h4> The following pointer types are defined:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PShortString&nbsp;=^ShortString;
+&nbsp;PByte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Byte;
+&nbsp;PWord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Word;
+&nbsp;PLongint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Longint;
+&nbsp;PBoolean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Boolean;
+&nbsp;PSingle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Single;
+&nbsp;PDouble&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Double;
+&nbsp;PExtended&nbsp;&nbsp;&nbsp;&nbsp;=^Extended;
+&nbsp;PComp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Comp;
+&nbsp;PFixed16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=^Fixed16;
+&nbsp;Variant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;Pointer;
+</pre>
+</td></tr></table>
+<!--l. 85--><p class="noindent">The <span 
+class="cmtt-10">TTypeKind </span>determines the type of a property:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TTypeKind&nbsp;=&nbsp;(tkUnknown,tkInteger,tkChar,tkEnumeration,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkFloat,tkSet,tkMethod,tkSString,tkLString,tkAString,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkWString,tkVariant,tkArray,tkRecord,tkInterface,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkClass,tkObject,tkWChar,tkBool,tkInt64,tkQWord,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkDynArray,tkInterfaceRaw);
+&nbsp;tkString&nbsp;=&nbsp;tkSString;
+</pre>
+</td></tr></table><span 
+class="cmtt-10">tkString </span>is an alias that is introduced for Delphi compatibility.
+<!--l. 96--><p class="noindent">If the property is and ordinal type, then <span 
+class="cmtt-10">TTOrdType </span>determines the size and sign of the ordinal
+type:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TTOrdType&nbsp;=&nbsp;(otSByte,otUByte,otSWord,otUWord,otSLong,otULong);
+</pre>
+</td></tr></table>The size of a float type is determined by <span 
+class="cmtt-10">TFloatType</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TFloatType&nbsp;=&nbsp;(ftSingle,ftDouble,ftExtended,ftComp,ftCurr,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ftFixed16,ftFixed32);
+</pre>
+</td></tr></table>A method property (e.g. an event) can have one of several types:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TMethodKind&nbsp;=&nbsp;(mkProcedure,mkFunction,mkConstructor,mkDestructor,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mkClassProcedure,&nbsp;mkClassFunction);
+</pre>
+</td></tr></table>The kind of parameter to a method is determined by <span 
+class="cmtt-10">TParamFlags</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TParamFlags&nbsp;=&nbsp;set&nbsp;of&nbsp;(pfVar,pfConst,pfArray,pfAddress,pfReference,pfOut);
+</pre>
+</td></tr></table>Interfaces are described further with <span 
+class="cmtt-10">TntfFlags</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TIntfFlags&nbsp;=&nbsp;set&nbsp;of&nbsp;(ifHasGuid,ifDispInterface,ifDispatch);
+</pre>
+</td></tr></table>The following defines a set of <span 
+class="cmtt-10">TTypeKind</span>:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TTypeKinds&nbsp;=&nbsp;set&nbsp;of&nbsp;TTypeKind;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TypeInfo </span>function returns a pointer to a <span 
+class="cmtt-10">TTypeInfo </span>record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TTypeInfo&nbsp;=&nbsp;record
+&nbsp;&nbsp;&nbsp;Kind&nbsp;:&nbsp;TTypeKind;
+&nbsp;&nbsp;&nbsp;Name&nbsp;:&nbsp;ShortString;
+&nbsp;end;
+&nbsp;PTypeInfo&nbsp;=&nbsp;^TTypeInfo;
+&nbsp;PPTypeInfo&nbsp;=&nbsp;^PTypeInfo;
+</pre>
+</td></tr></table>Note that the Name is stored with as much bytes as needed to store the name, it is not padded to
+255 characters. The type data immediatly follows the <span 
+class="cmtt-10">TTypeInfo </span>record as a <span 
+class="cmtt-10">TTypeData</span>
+record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PTypeData&nbsp;=&nbsp;^TTypeData;
+&nbsp;TTypeData&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;case&nbsp;TTypeKind&nbsp;of
+&nbsp;&nbsp;&nbsp;tkUnKnown,tkLString,tkWString,tkAString,tkVariant:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;();
+&nbsp;&nbsp;&nbsp;tkInteger,tkChar,tkEnumeration,tkWChar:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(OrdType&nbsp;:&nbsp;TTOrdType;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TTypeKind&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkInteger,tkChar,tkEnumeration,tkBool,tkWChar&nbsp;:&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MinValue,MaxValue&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TTypeKind&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkEnumeration:&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BaseType&nbsp;:&nbsp;PTypeInfo;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NameList&nbsp;:&nbsp;ShortString
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tkSet:&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CompType&nbsp;:&nbsp;PTypeInfo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;tkFloat:&nbsp;(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FloatType&nbsp;:&nbsp;TFloatType
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;tkSString:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(MaxLength&nbsp;:&nbsp;Byte);
+&nbsp;&nbsp;&nbsp;tkClass:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ClassType&nbsp;:&nbsp;TClass;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentInfo&nbsp;:&nbsp;PTypeInfo;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PropCount&nbsp;:&nbsp;SmallInt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitName&nbsp;:&nbsp;ShortString
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;tkMethod:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(MethodKind&nbsp;:&nbsp;TMethodKind;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParamCount&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParamList&nbsp;:&nbsp;array[0..1023]&nbsp;of&nbsp;Char
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{in&nbsp;reality&nbsp;ParamList&nbsp;is&nbsp;a&nbsp;array[1..ParamCount]&nbsp;of:
+&nbsp;&nbsp;&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flags&nbsp;:&nbsp;TParamFlags;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParamName&nbsp;:&nbsp;ShortString;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypeName&nbsp;:&nbsp;ShortString;
+&nbsp;&nbsp;&nbsp;end;
+&nbsp;followed&nbsp;by
+&nbsp;&nbsp;&nbsp;ResultType&nbsp;:&nbsp;ShortString}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;tkInt64:
+&nbsp;&nbsp;&nbsp;&nbsp;(MinInt64Value,&nbsp;MaxInt64Value:&nbsp;Int64);
+&nbsp;&nbsp;&nbsp;tkQWord:
+&nbsp;&nbsp;&nbsp;&nbsp;(MinQWordValue,&nbsp;MaxQWordValue:&nbsp;QWord);
+&nbsp;&nbsp;&nbsp;tkInterface:
+&nbsp;();
+                                                                            
+
+                                                                            
+&nbsp;end;
+</pre>
+</td></tr></table>If the typeinfo kind is <span 
+class="cmtt-10">tkClass</span>, then the property information follows the <span 
+class="cmtt-10">UnitName </span>string, as an
+array of <span 
+class="cmtt-10">TPropInfo </span>records.
+<!--l. 191--><p class="noindent">The <span 
+class="cmtt-10">TPropData </span>record is not used, but is provided for completeness and compatibility with
+Delphi.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TPropData&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;PropCount&nbsp;:&nbsp;Word;
+&nbsp;&nbsp;&nbsp;PropList&nbsp;:&nbsp;record&nbsp;end;
+&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TPropInfo </span>record describes one published property of a class:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PPropInfo&nbsp;=&nbsp;^TPropInfo;
+&nbsp;TPropInfo&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;PropType&nbsp;:&nbsp;PTypeInfo;
+&nbsp;&nbsp;&nbsp;GetProc&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;SetProc&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;StoredProc&nbsp;:&nbsp;Pointer;
+&nbsp;&nbsp;&nbsp;Index&nbsp;:&nbsp;Integer;
+&nbsp;&nbsp;&nbsp;Default&nbsp;:&nbsp;Longint;
+&nbsp;&nbsp;&nbsp;NameIndex&nbsp;:&nbsp;SmallInt;
+&nbsp;&nbsp;&nbsp;PropProcs&nbsp;:&nbsp;Byte;
+&nbsp;&nbsp;&nbsp;Name&nbsp;:&nbsp;ShortString;
+&nbsp;end;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">Name </span>field is stored not with 255 characters, but with just as many characters as required to
+store the name.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;TProcInfoProc&nbsp;=&nbsp;procedure(PropInfo&nbsp;:&nbsp;PPropInfo)&nbsp;of&nbsp;object;
+</pre>
+</td></tr></table>The following pointer and array types are used for typecasts:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;PPropList&nbsp;=&nbsp;^TPropList;
+&nbsp;TPropList&nbsp;=&nbsp;array[0..65535]&nbsp;of&nbsp;PPropInfo;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse81.htm" >next</a>] [<a 
+href="unitsse80.htm" >front</a>] [<a 
+href="unitsch23.htm#unitsse80.htm" >up</a>] </p></div><a 
+  name="tailunitsse80.htm"></a>   
+</body></html> 

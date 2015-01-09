@@ -1,0 +1,148 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1 Types, Variables, Constants</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="units.tex"> 
+<meta name="date" content="2003-05-30 22:24:00"> 
+<link rel="stylesheet" type="text/css" href="units.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse2.htm" >next</a>] [<a 
+href="#tailunitsse1.htm">tail</a>] [<a 
+href="unitsch1.htm#unitsse1.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.1</span> <a 
+href="units.htm#QQ2-6-4" name="x6-40001.1">Types, Variables, Constants</a></h3>
+<!--l. 60--><p class="noindent">Color definitions :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;Black&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;Blue&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;Green&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;Cyan&nbsp;=&nbsp;3;
+&nbsp;&nbsp;&nbsp;Red&nbsp;=&nbsp;4;
+&nbsp;&nbsp;&nbsp;Magenta&nbsp;=&nbsp;5;
+&nbsp;&nbsp;&nbsp;Brown&nbsp;=&nbsp;6;
+&nbsp;&nbsp;&nbsp;LightGray&nbsp;=&nbsp;7;
+&nbsp;&nbsp;&nbsp;DarkGray&nbsp;=&nbsp;8;
+&nbsp;&nbsp;&nbsp;LightBlue&nbsp;=&nbsp;9;
+&nbsp;&nbsp;&nbsp;LightGreen&nbsp;=&nbsp;10;
+&nbsp;&nbsp;&nbsp;LightCyan&nbsp;=&nbsp;11;
+&nbsp;&nbsp;&nbsp;LightRed&nbsp;=&nbsp;12;
+&nbsp;&nbsp;&nbsp;LightMagenta&nbsp;=&nbsp;13;
+&nbsp;&nbsp;&nbsp;Yellow&nbsp;=&nbsp;14;
+&nbsp;&nbsp;&nbsp;White&nbsp;=&nbsp;15;
+&nbsp;&nbsp;&nbsp;Blink&nbsp;=&nbsp;128;
+</pre>
+</td></tr></table>Miscellaneous constants
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TextAttr:&nbsp;Byte&nbsp;=&nbsp;$07;
+&nbsp;&nbsp;&nbsp;TextChar:&nbsp;Char&nbsp;=&nbsp;'&nbsp;';
+&nbsp;&nbsp;&nbsp;CheckBreak:&nbsp;Boolean&nbsp;=&nbsp;True;
+&nbsp;&nbsp;&nbsp;CheckEOF:&nbsp;Boolean&nbsp;=&nbsp;False;
+&nbsp;&nbsp;&nbsp;CheckSnow:&nbsp;Boolean&nbsp;=&nbsp;False;
+&nbsp;&nbsp;&nbsp;DirectVideo:&nbsp;Boolean&nbsp;=&nbsp;False;
+&nbsp;&nbsp;&nbsp;LastMode:&nbsp;Word&nbsp;=&nbsp;3;
+&nbsp;&nbsp;&nbsp;WindMin:&nbsp;Word&nbsp;=&nbsp;$0;
+&nbsp;&nbsp;&nbsp;WindMax:&nbsp;Word&nbsp;=&nbsp;$184f;
+&nbsp;&nbsp;&nbsp;ScreenWidth&nbsp;=&nbsp;80;
+&nbsp;&nbsp;&nbsp;ScreenHeight&nbsp;=&nbsp;25;
+</pre>
+</td></tr></table>Some variables for compatibility with Turbo Pascal. However, they&#8217;re not used by Free
+Pascal.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;checkbreak&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;checkeof&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;checksnow&nbsp;:&nbsp;boolean;
+</pre>
+</td></tr></table>The following constants define screen modes on a <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small> </span>system:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;Const
+&nbsp;&nbsp;&nbsp;bw40&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;co40&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;bw80&nbsp;=&nbsp;2;
+&nbsp;&nbsp;&nbsp;co80&nbsp;=&nbsp;3;
+&nbsp;&nbsp;&nbsp;mono&nbsp;=&nbsp;7;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">TextAttr </span>variable controls the attributes with which characters are written to
+screen.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var&nbsp;TextAttr&nbsp;:&nbsp;byte;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">DirectVideo </span>variable controls the writing to the screen. If it is <span 
+class="cmtt-10">True</span>, the the cursor is
+set via direct port access. If <span 
+class="cmtt-10">False</span>, then the BIOS is used. This is defined under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+only.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var&nbsp;DirectVideo&nbsp;:&nbsp;Boolean;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">Lastmode </span>variable tells you which mode was last selected for the screen. It is defined on <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>
+only.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var&nbsp;lastmode&nbsp;:&nbsp;Word;
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="unitsse2.htm" >next</a>] [<a 
+href="unitsse1.htm" >front</a>] [<a 
+href="unitsch1.htm#unitsse1.htm" >up</a>] </p></div><a 
+  name="tailunitsse1.htm"></a>  
+</body></html> 

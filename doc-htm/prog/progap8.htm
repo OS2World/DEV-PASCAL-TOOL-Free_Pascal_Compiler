@@ -1,0 +1,146 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>H Operating system specific behavior</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap7.htm" >prev</a>] [<a 
+href="progap7.htm#tailprogap7.htm" >prev-tail</a>] [<a 
+href="#tailprogap8.htm">tail</a>] [<a 
+href="prog.htm#progap8.htm" >up</a>] </p></div>
+<h2 class="appendixHead"><span class="titlemark">Appendix&nbsp;H</span><br><a 
+href="prog.htm#QQ2-267-299" name="x267-268000H">Operating system specific behavior</a></h2>
+<!--l. 6788--><p class="noindent">This appendix describes some special behaviors which vary from operating system to operating
+system. This is described in table (<a 
+href="#x267-2680011">H.1<!--tex4ht:ref: tab:OSBehave--></a>). The GCC saved registers indicates what registers are
+saved when certain declaration modifiers are used.
+                                                                            
+
+                                                                            
+<a 
+  name="x267-2680011"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;H.1: </td><td  
+class="content">Operating system specific behavior</td></tr></table></div><!--tex4ht:label?: x267-2680011-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0"  
+frame="void" id="TBL-30-" ><colgroup id="TBL-30-1g"><col 
+id="TBL-30-1"><col 
+id="TBL-30-2"><col 
+id="TBL-30-3"></colgroup><tr  
+valign="baseline" id="TBL-30-1-"><td  align="left" nowrap="nowrap" id="TBL-30-1-1"  
+class="td11"> Operating systems</td><td  align="center" nowrap="nowrap" id="TBL-30-1-2"  
+class="td11"> Min. param. stack align</td><td  align="right" nowrap="nowrap" id="TBL-30-1-3"  
+class="td11"> GCC saved registers</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-30-2-"><td  align="left" nowrap="nowrap" id="TBL-30-2-1"  
+class="td11"> Amiga                </td><td  align="center" nowrap="nowrap" id="TBL-30-2-2"  
+class="td11">                2               </td><td  align="right" nowrap="nowrap" id="TBL-30-2-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-3-"><td  align="left" nowrap="nowrap" id="TBL-30-3-1"  
+class="td11"> Atari                  </td><td  align="center" nowrap="nowrap" id="TBL-30-3-2"  
+class="td11">                2               </td><td  align="right" nowrap="nowrap" id="TBL-30-3-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-4-"><td  align="left" nowrap="nowrap" id="TBL-30-4-1"  
+class="td11"> BeOS-x86           </td><td  align="center" nowrap="nowrap" id="TBL-30-4-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-4-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-5-"><td  align="left" nowrap="nowrap" id="TBL-30-5-1"  
+class="td11"> DOS                  </td><td  align="center" nowrap="nowrap" id="TBL-30-5-2"  
+class="td11">                2               </td><td  align="right" nowrap="nowrap" id="TBL-30-5-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-6-"><td  align="left" nowrap="nowrap" id="TBL-30-6-1"  
+class="td11"> FreeBSD             </td><td  align="center" nowrap="nowrap" id="TBL-30-6-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-6-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-7-"><td  align="left" nowrap="nowrap" id="TBL-30-7-1"  
+class="td11"> linux-m68k          </td><td  align="center" nowrap="nowrap" id="TBL-30-7-2"  
+class="td11">                                </td><td  align="right" nowrap="nowrap" id="TBL-30-7-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-8-"><td  align="left" nowrap="nowrap" id="TBL-30-8-1"  
+class="td11"> linux-x86            </td><td  align="center" nowrap="nowrap" id="TBL-30-8-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-8-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-9-"><td  align="left" nowrap="nowrap" id="TBL-30-9-1"  
+class="td11"> MacOS-68k         </td><td  align="center" nowrap="nowrap" id="TBL-30-9-2"  
+class="td11">                                </td><td  align="right" nowrap="nowrap" id="TBL-30-9-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-10-"><td  align="left" nowrap="nowrap" id="TBL-30-10-1"  
+class="td11"> NetBSD-x86        </td><td  align="center" nowrap="nowrap" id="TBL-30-10-2"  
+class="td11">                                </td><td  align="right" nowrap="nowrap" id="TBL-30-10-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-11-"><td  align="left" nowrap="nowrap" id="TBL-30-11-1"  
+class="td11"> NetBSD-m68k     </td><td  align="center" nowrap="nowrap" id="TBL-30-11-2"  
+class="td11">                                </td><td  align="right" nowrap="nowrap" id="TBL-30-11-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-12-"><td  align="left" nowrap="nowrap" id="TBL-30-12-1"  
+class="td11"> OS/2                 </td><td  align="center" nowrap="nowrap" id="TBL-30-12-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-12-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-13-"><td  align="left" nowrap="nowrap" id="TBL-30-13-1"  
+class="td11"> PalmOS              </td><td  align="center" nowrap="nowrap" id="TBL-30-13-2"  
+class="td11">                2               </td><td  align="right" nowrap="nowrap" id="TBL-30-13-3"  
+class="td11">        D2..D7,A2..A5</td>
+</tr><tr  
+valign="baseline" id="TBL-30-14-"><td  align="left" nowrap="nowrap" id="TBL-30-14-1"  
+class="td11"> QNX-x86            </td><td  align="center" nowrap="nowrap" id="TBL-30-14-2"  
+class="td11">                                </td><td  align="right" nowrap="nowrap" id="TBL-30-14-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-15-"><td  align="left" nowrap="nowrap" id="TBL-30-15-1"  
+class="td11"> Solaris-x86          </td><td  align="center" nowrap="nowrap" id="TBL-30-15-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-15-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr  
+valign="baseline" id="TBL-30-16-"><td  align="left" nowrap="nowrap" id="TBL-30-16-1"  
+class="td11"> Win32                </td><td  align="center" nowrap="nowrap" id="TBL-30-16-2"  
+class="td11">                4               </td><td  align="right" nowrap="nowrap" id="TBL-30-16-3"  
+class="td11">       ESI, EDI, EBX</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-30-17-"><td  align="left" nowrap="nowrap" id="TBL-30-17-1"  
+class="td11">                         </td>
+</tr><!--lcr--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progap7.htm" >prev</a>] [<a 
+href="progap7.htm#tailprogap7.htm" >prev-tail</a>] [<a 
+href="progap8.htm" >front</a>] [<a 
+href="prog.htm#progap8.htm" >up</a>] </p></div><a 
+  name="tailprogap8.htm"></a>  
+</body></html> 

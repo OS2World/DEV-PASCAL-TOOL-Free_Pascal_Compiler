@@ -1,0 +1,200 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>13.1.0 Variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="ref.tex"> 
+<meta name="date" content="2003-05-30 22:25:00"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu59.htm" >prev</a>] [<a 
+href="refsu59.htm#tailrefsu59.htm" >prev-tail</a>] [<a 
+href="#tailrefsu60.htm">tail</a>] [<a 
+href="refse62.htm#refsu60.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="ref.htm#QQ2-143-164" name="x143-14900013.1">Variables</a></h4> The following variables are defined and initialized in the system unit:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;var
+&nbsp;&nbsp;&nbsp;output,input,stderr&nbsp;:&nbsp;text;
+&nbsp;&nbsp;&nbsp;exitproc&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;exitcode&nbsp;:&nbsp;word;
+&nbsp;&nbsp;&nbsp;stackbottom&nbsp;:&nbsp;Cardinal;
+</pre>
+</td></tr></table>The variables <span 
+class="cmtt-10">ExitProc</span>, <span 
+class="cmtt-10">exitcode </span>are used in the Free Pascal exit scheme. It works similarly to
+the one in Turbo Pascal:
+<!--l. 4888--><p class="noindent">When a program halts (be it through the call of the <span 
+class="cmtt-10">Halt </span>function or <span 
+class="cmtt-10">Exit </span>or through a run-time
+error), the exit mechanism checks the value of <span 
+class="cmtt-10">ExitProc</span>. If this one is non-<span 
+class="cmtt-10">Nil</span>, it is set to <span 
+class="cmtt-10">Nil</span>,
+and the procedure is called. If the exit procedure exits, the value of ExitProc is checked
+again. If it is non-<span 
+class="cmtt-10">Nil </span>then the above steps are repeated. So when an exit procedure
+must be installed, the old value of <span 
+class="cmtt-10">ExitProc </span>should be saved (it may be non-<span 
+class="cmtt-10">Nil</span>, since
+other units could have set it). In the exit procedure the value of <span 
+class="cmtt-10">ExitProc </span>should be
+restored to the previous value, such that if it was non-<span 
+class="cmtt-10">Nil </span>the exit-procedure can be
+called.
+<!--l. 4899--><p class="noindent"><span 
+class="cmssbx-10">Listing: </span><span 
+class="cmss-10">refex/ex98.pp</span><HR/><div class="listinginput">
+<!--l. 4899--><p class="noindent"><div class="obeylines-v">   <span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">Example98;</span>
+<br>
+<br>   <span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">Program</span>&nbsp;<span 
+class="cmtt-10">to</span>&nbsp;<span 
+class="cmtt-10">demonstrate</span>&nbsp;<span 
+class="cmtt-10">the</span>&nbsp;<span 
+class="cmtt-10">exitproc</span>&nbsp;<span 
+class="cmtt-10">function.</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>
+<br>   <span 
+class="cmtt-10">Var</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldExitProc</span>&nbsp;<span 
+class="cmtt-10">:</span>&nbsp;<span 
+class="cmtt-10">Pointer;</span>
+<br>
+<br>   <span 
+class="cmtt-10">Procedure</span>&nbsp;<span 
+class="cmtt-10">MyExit;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">Writeln('My</span>&nbsp;<span 
+class="cmtt-10">Exitproc</span>&nbsp;<span 
+class="cmtt-10">was</span>&nbsp;<span 
+class="cmtt-10">called.</span>&nbsp;<span 
+class="cmtt-10">Exitcode</span>&nbsp;<span 
+class="cmtt-10">=</span>&nbsp;<span 
+class="cmtt-10">',ExitCode);</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">{</span>&nbsp;<span 
+class="cmtt-10">restore</span>&nbsp;<span 
+class="cmtt-10">old</span>&nbsp;<span 
+class="cmtt-10">exit</span>&nbsp;<span 
+class="cmtt-10">procedure</span>&nbsp;<span 
+class="cmtt-10">}</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExitProc:=OldExitProc;</span>
+<br>   <span 
+class="cmtt-10">end;</span>
+<br>
+<br>   <span 
+class="cmtt-10">begin</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">OldExitProc:=ExitProc;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">ExitProc:=@MyExit;</span>
+<br>   &nbsp;&nbsp;<span 
+class="cmtt-10">If</span>&nbsp;<span 
+class="cmtt-10">ParamCount&gt;0</span>&nbsp;<span 
+class="cmtt-10">Then</span>
+<br>   &nbsp;&nbsp;&nbsp;&nbsp;<span 
+class="cmtt-10">Halt(66);</span>
+<br>   <span 
+class="cmtt-10">end.</span>
+</div></div><HR/>
+<!--l. 4901--><p class="noindent">The <span 
+class="cmtt-10">ErrorAddr </span>and <span 
+class="cmtt-10">ExitCode </span>can be used to check for error-conditions. If <span 
+class="cmtt-10">ErrorAddr </span>is non-<span 
+class="cmtt-10">Nil</span>,
+a run-time error has occurred. If so, <span 
+class="cmtt-10">ExitCode </span>contains the error code. If <span 
+class="cmtt-10">ErrorAddr</span>
+is <span 
+class="cmtt-10">Nil</span>, then ExitCode contains the argument to <span 
+class="cmtt-10">Halt </span>or 0 if the program terminated
+normally.
+<!--l. 4907--><p class="noindent"><span 
+class="cmtt-10">ExitCode </span>is always passed to the operating system as the exit-code of the current process.
+<!--l. 4910--><p class="noindent"><span 
+class="cmbx-10">Remark:</span> The maximum error code under <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small> </span>and <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>like operating systems is 127.
+                                                                            
+
+                                                                            
+Under <span 
+class="cmss-10">GO32</span>, the following constants are also defined :
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;const
+&nbsp;&nbsp;&nbsp;&nbsp;seg0040&nbsp;=&nbsp;$0040;
+&nbsp;&nbsp;&nbsp;&nbsp;segA000&nbsp;=&nbsp;$A000;
+&nbsp;&nbsp;&nbsp;&nbsp;segB000&nbsp;=&nbsp;$B000;
+&nbsp;&nbsp;&nbsp;&nbsp;segB800&nbsp;=&nbsp;$B800;
+</pre>
+</td></tr></table>These constants allow easy access to the bios/screen segment via mem/absolute.
+<!--l. 4924--><p class="noindent">The randomize function uses a seed stored in the <span 
+class="cmtt-10">RandSeed </span>variable:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;RandSeed&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Cardinal;
+</pre>
+</td></tr></table>This variable is initialized in the initialization code of the system unit.
+<!--l. 4930--><p class="noindent">Other variables indicate the state of the application.
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;IsLibrary&nbsp;:&nbsp;boolean;
+&nbsp;&nbsp;&nbsp;IsMultiThread&nbsp;:&nbsp;boolean;
+</pre>
+</td></tr></table>The <span 
+class="cmtt-10">IsLibrary </span>variable is set to true if this module is a shared library instead of an application.
+The <span 
+class="cmtt-10">IsMultiThread </span>variable is set to True if the application has spawned other threads, otherwise,
+and by default, it is set to False.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="refsu59.htm" >prev</a>] [<a 
+href="refsu59.htm#tailrefsu59.htm" >prev-tail</a>] [<a 
+href="refsu60.htm" >front</a>] [<a 
+href="refse62.htm#refsu60.htm" >up</a>] </p></div><a 
+  name="tailrefsu60.htm"></a>  
+</body></html> 

@@ -1,0 +1,64 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.2.0 $LIBRARYPATH : Specify library path.</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu59.htm" >next</a>] [<a 
+href="progsu57.htm" >prev</a>] [<a 
+href="progsu57.htm#tailprogsu57.htm" >prev-tail</a>] [<a 
+href="#tailprogsu58.htm">tail</a>] [<a 
+href="progse3.htm#progsu58.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-66-67" name="x66-660001.2"><span 
+class="cmtt-10">$LIBRARYPATH </span>: Specify library path.</a></h4>
+<!--l. 1142--><p class="noindent">This option serves to specify the library path, where the linker looks for static or dynamic libraries.
+<span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$LIBRARYPATH XXX</span><span 
+class="cmsy-10">} </span>will add <span 
+class="cmtt-10">XXX </span>to the library path. <span 
+class="cmtt-10">XXX </span>can contain one or more paths,
+separated by semi-colons or colons.
+<!--l. 1147--><p class="noindent">For example:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$LIBRARYPATH&nbsp;/usr/X11/lib;/usr/local/lib}
+&nbsp;
+&nbsp;{$LINKLIB&nbsp;X11}
+</pre>
+</td></tr></table>
+<!--l. 1154--><p class="noindent">will add the directories <span 
+class="cmss-10">/usr/X11/lib </span>and <span 
+class="cmss-10">/usr/local/lib </span>to the linker library path. The linker will
+look for the library <span 
+class="cmss-10">libX11.so </span>in both these directories, and use the first found file. This directive is
+equivalent to the <span 
+class="cmtt-10">-Fl </span>command-line switch.
+<!--l. 1159--><p class="noindent">Caution is in order when using this directive: If you distribute files, the places of the libraries may
+not be the same as on your machine; moreover, the directory structure may be different. In general
+it would be fair to say that you should avoid using this directive. If you are not sure, it is better
+practice to use makefiles and makefile variables.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu59.htm" >next</a>] [<a 
+href="progsu57.htm" >prev</a>] [<a 
+href="progsu57.htm#tailprogsu57.htm" >prev-tail</a>] [<a 
+href="progsu58.htm" >front</a>] [<a 
+href="progse3.htm#progsu58.htm" >up</a>] </p></div><a 
+  name="tailprogsu58.htm"></a>  
+</body></html> 

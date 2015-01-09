@@ -1,0 +1,106 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>E.7.0 Target variables</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu145.htm" >next</a>] [<a 
+href="progsu143.htm" >prev</a>] [<a 
+href="progsu143.htm#tailprogsu143.htm" >prev-tail</a>] [<a 
+href="#tailprogsu144.htm">tail</a>] [<a 
+href="progse71.htm#progsu144.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-247-275" name="x247-248000E.7">Target variables</a></h4>
+<!--l. 6235--><p class="noindent">The second set of variables controls the targets that are constructed by the makefile. They are
+created by <span 
+class="cmss-10">fpcmake</span>, so you can use them in your rules, but you shouldn&#8217;t assign values to them
+yourself.
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">DIRS</span> </dt><dd 
+class="description">This is the list of directories that make will descend into when compiling.
+     Set by the <span 
+class="cmtt-10">Dirs </span>key in the <span 
+class="cmtt-10">Target </span>section?
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">EXAMPLES</span> </dt><dd 
+class="description">The list of examples programs that must be compiled. Set by
+     the <span 
+class="cmtt-10">examples </span>key in the <span 
+class="cmtt-10">Target </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">EXAMPLEDIRS</span> </dt><dd 
+class="description">the  list  of  directories  that  make  will  descend  into  when
+     compiling examples. Set by the <span 
+class="cmtt-10">exampledirs </span>key in the <span 
+class="cmtt-10">Target </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">LOADERS</span> </dt><dd 
+class="description">is  a  list  of  space-separated  names  that  identify  loaders  to  be
+     compiled. This is mainly used in the compiler&#8217;s RTL sources. It is set by the <span 
+class="cmtt-10">loaders</span>
+     keyword in the <span 
+class="cmtt-10">Targets </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">PROGRAMS</span> </dt><dd 
+class="description">This is a list of executable names that will be compiled. the
+     makefile appends <span 
+class="cmtt-10">$(EXEEXT) </span>to these names. It is set by the <span 
+class="cmtt-10">programs </span>keyword in the
+     <span 
+class="cmtt-10">Target </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span>_<span 
+class="cmbx-10">UNITS</span> </dt><dd 
+class="description">This is a list of unit names that will be compiled. The makefile appends
+     <span 
+class="cmtt-10">$(PPUEXT) </span>to each of these names to form the unit file name. The sourcename is formed
+     by adding <span 
+class="cmtt-10">$(PASEXT)</span>. It is set by the <span 
+class="cmtt-10">units </span>keyword in the <span 
+class="cmtt-10">Target </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ZIPNAME</span> </dt><dd 
+class="description">is the name of the archive that will be created by the makefile. It is set by the
+     <span 
+class="cmtt-10">zipname </span>keyword in the <span 
+class="cmtt-10">Zip </span>section.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">ZIPTARGET</span> </dt><dd 
+class="description">is the target that is built before the archive is made. this target is built first.
+     If successful, the zip archive will be made. It is set by the <span 
+class="cmtt-10">ziptarget </span>keyword in the
+     <span 
+class="cmtt-10">Zip </span>section.
+     </dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu145.htm" >next</a>] [<a 
+href="progsu143.htm" >prev</a>] [<a 
+href="progsu143.htm#tailprogsu143.htm" >prev-tail</a>] [<a 
+href="progsu144.htm" >front</a>] [<a 
+href="progse71.htm#progsu144.htm" >up</a>] </p></div><a 
+  name="tailprogsu144.htm"></a>  
+</body></html> 

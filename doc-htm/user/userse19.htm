@@ -1,0 +1,82 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>5.3 Variable substitution in paths</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,3,png,sections+--> 
+<meta name="src" content="user.tex"> 
+<meta name="date" content="2003-05-30 22:18:00"> 
+<link rel="stylesheet" type="text/css" href="user.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse18.htm" >prev</a>] [<a 
+href="userse18.htm#tailuserse18.htm" >prev-tail</a>] [<a 
+href="#tailuserse19.htm">tail</a>] [<a 
+href="userch5.htm#userse19.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">5.3</span> <a 
+href="user.htm#QQ2-26-60" name="x26-580005.3">Variable substitution in paths</a></h3>
+<!--l. 1418--><p class="noindent">To avoid having to edit your configuration files too often, the compiler allows you to specify the
+following variables in the paths that you feed to the compiler:
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">FPCVER</span> </dt><dd 
+class="description">is replaced by the compiler&#8217;s full version string.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCDATE</span> </dt><dd 
+class="description">is replaced by the compiler&#8217;s date.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCTARGET</span> </dt><dd 
+class="description">is replaced by the compiler&#8217;s target CPU (deprecated).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCCPU</span> </dt><dd 
+class="description">is also replaced by the compiler&#8217;s target CPU.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">TARGET</span> </dt><dd 
+class="description">is replaced by the compiler&#8217;s target OS (deprecated).
+     </dd><dt class="description">
+<span 
+class="cmbx-10">FPCOS</span> </dt><dd 
+class="description">is replaced by the compiler&#8217;s target OS.</dd></dl>
+<!--l. 1430--><p class="noindent">To have these variables subsituted, just insert them with a <span 
+class="cmtt-10">$ </span>prepended, as follows:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;-Fu/usr/lib/fpc/$FPCVER/rtl/$FPCOS
+</pre>
+</td></tr></table>This is equivalent to
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;-Fu/usr/lib/fpc/0.99.12a/rtl/linux
+</pre>
+</td></tr></table>If the compiler version is <span 
+class="cmtt-10">0.99.12a </span>and the target os is <span 
+class="cmtt-10">linux</span>.
+<!--l. 1441--><p class="noindent">These replacemens are valid on the command-line and also in the configuration file.
+<!--l. 1444--><p class="noindent">On the linux command-line, you must be careful to escape the <span 
+class="cmtt-10">$ </span>since otherwise the shell will
+expand the variable for you, which may have undesired effects.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="userse18.htm" >prev</a>] [<a 
+href="userse18.htm#tailuserse18.htm" >prev-tail</a>] [<a 
+href="userse19.htm" >front</a>] [<a 
+href="userch5.htm#userse19.htm" >up</a>] </p></div><a 
+  name="tailuserse19.htm"></a>  
+</body></html> 

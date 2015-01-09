@@ -1,0 +1,7 @@
+[package]
+name=x11
+version=1.0.8
+[require]
+libc=y
+packages_os2_i386=
+packages=rtl 

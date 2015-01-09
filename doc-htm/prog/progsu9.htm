@@ -1,0 +1,107 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>1.1.0 $F : Far or near functions</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu10.htm" >next</a>] [<a 
+href="progsu8.htm" >prev</a>] [<a 
+href="progsu8.htm#tailprogsu8.htm" >prev-tail</a>] [<a 
+href="#tailprogsu9.htm">tail</a>] [<a 
+href="progse2.htm#progsu9.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-16-14" name="x16-140001.1"><span 
+class="cmtt-10">$F </span>: Far or near functions</a></h4> This directive is recognized for compatibility with Turbo Pascal.
+Under the 32-bit and 64-bit programming models, the concept of near and far calls have
+no meaning, hence the directive is ignored. A warning is printed to the screen, as a
+reminder.
+<!--l. 237--><p class="noindent">As an example, the following piece of code:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;{$F+}
+&nbsp;
+&nbsp;Procedure&nbsp;TestProc;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;Writeln&nbsp;('Hello&nbsp;From&nbsp;TestProc');
+&nbsp;end;
+&nbsp;
+&nbsp;begin
+&nbsp;&nbsp;testProc
+&nbsp;end.
+</pre>
+</td></tr></table>Generates the following compiler output:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;malpertuus:&nbsp;&gt;pp&nbsp;-vw&nbsp;testf
+&nbsp;Compiler:&nbsp;ppc386
+&nbsp;Units&nbsp;are&nbsp;searched&nbsp;in:&nbsp;/home/michael;/usr/bin/;/usr/lib/ppc/0.9.1/linuxunits
+&nbsp;Target&nbsp;OS:&nbsp;Linux
+&nbsp;Compiling&nbsp;testf.pp
+&nbsp;testf.pp(1)&nbsp;Warning:&nbsp;illegal&nbsp;compiler&nbsp;switch
+&nbsp;7739&nbsp;kB&nbsp;free
+&nbsp;Calling&nbsp;assembler...
+&nbsp;Assembled...
+&nbsp;Calling&nbsp;linker...
+&nbsp;12&nbsp;lines&nbsp;compiled,
+&nbsp;&nbsp;1.00000000000000E+0000
+</pre>
+</td></tr></table>One can see that the verbosity level was set to display warnings.
+<!--l. 268--><p class="noindent">When declaring a function as <span 
+class="cmtt-10">Far </span>(this has the same effect as setting it between <span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$F+</span><span 
+class="cmsy-10">}  </span><span 
+class="cmtt-10">...</span><span 
+class="cmsy-10">{</span><span 
+class="cmtt-10">$F-</span><span 
+class="cmsy-10">}</span>
+directives), the compiler also generates a warning:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;testf.pp(3)&nbsp;Warning:&nbsp;FAR&nbsp;ignored
+</pre>
+</td></tr></table>
+<!--l. 275--><p class="noindent">The same story is true for procedures declared as <span 
+class="cmtt-10">Near</span>. The warning displayed in that case
+is:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;testf.pp(3)&nbsp;Warning:&nbsp;NEAR&nbsp;ignored
+</pre>
+</td></tr></table>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu10.htm" >next</a>] [<a 
+href="progsu8.htm" >prev</a>] [<a 
+href="progsu8.htm#tailprogsu8.htm" >prev-tail</a>] [<a 
+href="progsu9.htm" >front</a>] [<a 
+href="progse2.htm#progsu9.htm" >up</a>] </p></div><a 
+  name="tailprogsu9.htm"></a>  
+</body></html> 

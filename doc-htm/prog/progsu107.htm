@@ -1,0 +1,105 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>8.2.0 file types</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu108.htm" >next</a>] [<a 
+href="progsu106.htm" >prev</a>] [<a 
+href="progsu106.htm#tailprogsu106.htm" >prev-tail</a>] [<a 
+href="#tailprogsu107.htm">tail</a>] [<a 
+href="progse29.htm#progsu107.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-154-177" name="x154-1600008.2">file types</a></h4>
+<!--l. 3744--><p class="noindent">File types are represented as records. Typed files and untyped files are represented as a fixed
+record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;filerec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recsize&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_private&nbsp;&nbsp;:&nbsp;array[1..32]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userdata&nbsp;&nbsp;:&nbsp;array[1..16]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;array[0..255]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;End;
+</pre>
+</td></tr></table>
+<!--l. 3758--><p class="noindent">Text files are described using the following record:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;TextBuf&nbsp;=&nbsp;array[0..255]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;textrec&nbsp;=&nbsp;packed&nbsp;record
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufsize&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_private&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufpos&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufend&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;longint;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bufptr&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;^textbuf;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;openfunc&nbsp;&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inoutfunc&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flushfunc&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;closefunc&nbsp;:&nbsp;pointer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userdata&nbsp;&nbsp;:&nbsp;array[1..16]&nbsp;of&nbsp;byte;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;array[0..255]&nbsp;of&nbsp;char;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;textbuf;
+&nbsp;&nbsp;&nbsp;End;
+</pre>
+</td></tr></table>
+     <dl class="description"><dt class="description">
+<span 
+class="cmbx-10">handle</span> </dt><dd 
+class="description">The handle field returns the file handle (if the file is opened), as returned by the
+     operating system.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">mode</span> </dt><dd 
+class="description">The mode field can take one of several values. When it is <span 
+class="cmtt-10">fmclosed</span>, then the file is
+     closed, and the <span 
+class="cmtt-10">handle </span>field is invalid. When the value is equal to <span 
+class="cmtt-10">fminput</span>, it indicates
+     that the file is opened for read only access. <span 
+class="cmtt-10">fmoutput </span>indicates write only access, and
+     the <span 
+class="cmtt-10">fminout </span>indicates read-write access to the file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">name</span> </dt><dd 
+class="description">The <span 
+class="cmtt-10">name </span>field is a null terminated character string representing the name of the file.
+     </dd><dt class="description">
+<span 
+class="cmbx-10">userdata</span> </dt><dd 
+class="description">The <span 
+class="cmtt-10">userdata </span>field is never used by Free Pascal, and can be used for special
+     purposes by software developpers.
+     </dd></dl>
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu108.htm" >next</a>] [<a 
+href="progsu106.htm" >prev</a>] [<a 
+href="progsu106.htm#tailprogsu106.htm" >prev-tail</a>] [<a 
+href="progsu107.htm" >front</a>] [<a 
+href="progse29.htm#progsu107.htm" >up</a>] </p></div><a 
+  name="tailprogsu107.htm"></a>  
+</body></html> 

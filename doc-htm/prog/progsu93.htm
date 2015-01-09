@@ -1,0 +1,113 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>7.2.0 Compiling libraries</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu94.htm" >next</a>] [<a 
+href="progsu92.htm" >prev</a>] [<a 
+href="progsu92.htm#tailprogsu92.htm" >prev-tail</a>] [<a 
+href="#tailprogsu93.htm">tail</a>] [<a 
+href="progse26.htm#progsu93.htm" >up</a>] </p></div>
+<h4 class="subsectionHead"><a 
+href="prog.htm#QQ2-135-142" name="x135-1340007.2">Compiling libraries</a></h4>
+<!--l. 3244--><p class="noindent">Once you have your (adapted) code, with exported and other functions, you can compile your unit,
+and tell the compiler to make it into a library. The compiler will simply compile your unit,
+and perform the necessary steps to transform it into a <span 
+class="cmtt-10">static </span>or <span 
+class="cmtt-10">shared </span>(<span 
+class="cmtt-10">dynamic</span>)
+library.
+<!--l. 3249--><p class="noindent">You can do this as follows, for a dynamic library:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;-CD&nbsp;myunit
+</pre>
+</td></tr></table>On <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems, such as <span 
+class="cmcsc-10"><small 
+class="small-caps">L</small><small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">U</small><small 
+class="small-caps">X</small></span>, this will leave you with a file <span 
+class="cmss-10">libmyunit.so</span>. On <span 
+class="cmcsc-10">W<small 
+class="small-caps">I</small><small 
+class="small-caps">N</small><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">W</small><small 
+class="small-caps">S</small> </span>and
+<span 
+class="cmcsc-10"><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small>/2</span>, this will leave you with <span 
+class="cmss-10">myunit.dll</span>. An easier way to create shared libraries is to use the
+<span 
+class="cmtt-10">library </span>keyword. For more information on creating shared libraries, chapter <a 
+href="progch11.htm#x197-19900011">11<!--tex4ht:ref: ch:libraries--></a>, page
+<a 
+href="progch11.htm#x197-19900011">436<!--tex4ht:ref: ch:libraries--></a>.
+<!--l. 3258--><p class="noindent">If you want a static library, you can do
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;ppc386&nbsp;-CS&nbsp;myunit
+</pre>
+</td></tr></table>This will leave you with <span 
+class="cmss-10">libmyunit.a </span>and a file <span 
+class="cmss-10">myunit.ppu</span>. The <span 
+class="cmss-10">myunit.ppu </span>is the unit file needed by
+the Free Pascal compiler.
+<!--l. 3265--><p class="noindent">The resulting files are then libraries. To make static libraries, you need the <span 
+class="cmss-10">ranlib </span>or <span 
+class="cmtt-10">ar</span>
+program on your system. It is standard on most <span 
+class="cmcsc-10"><small 
+class="small-caps">U</small><small 
+class="small-caps">N</small><small 
+class="small-caps">I</small><small 
+class="small-caps">X</small> </span>systems, and is provided with the
+<span 
+class="cmss-10">gcc </span>compiler under <span 
+class="cmcsc-10"><small 
+class="small-caps">D</small><small 
+class="small-caps">O</small><small 
+class="small-caps">S</small></span>. For the dos distribution, a copy of ar is included in the file
+<span 
+class="cmss-10">gnuutils.zip</span>.
+<!--l. 3271--><p class="noindent"><span 
+class="cmti-10">BEWARE: </span>This command doesn&#8217;t include anything but the current unit in the library. Other units
+are left out, so if you use code from other units, you must deploy them together with your
+library.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progsu94.htm" >next</a>] [<a 
+href="progsu92.htm" >prev</a>] [<a 
+href="progsu92.htm#tailprogsu92.htm" >prev-tail</a>] [<a 
+href="progsu93.htm" >front</a>] [<a 
+href="progse26.htm#progsu93.htm" >up</a>] </p></div><a 
+  name="tailprogsu93.htm"></a>  
+</body></html> 

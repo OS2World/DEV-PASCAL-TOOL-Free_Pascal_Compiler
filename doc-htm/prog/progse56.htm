@@ -1,0 +1,289 @@
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>A.4 The sections</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.htm)"> 
+<!--html,4,png,sections+--> 
+<meta name="src" content="prog.tex"> 
+<meta name="date" content="2003-05-30 22:37:00"> 
+<link rel="stylesheet" type="text/css" href="prog.css"> 
+</head><body 
+>
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse57.htm" >next</a>] [<a 
+href="progse55.htm" >prev</a>] [<a 
+href="progse55.htm#tailprogse55.htm" >prev-tail</a>] [<a 
+href="#tailprogse56.htm">tail</a>] [<a 
+href="progap1.htm#progse56.htm" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">A.4</span> <a 
+href="prog.htm#QQ2-214-240" name="x214-215000A.4">The sections</a></h3>
+<!--l. 5362--><p class="noindent">Apart from the header section, all the data in the PPU file is separated into data blocks, which
+permit easily adding additional data blocks, without compromising backward compatibility.
+This is similar to both Electronic Arts IFF chunk format and Microsoft&#8217;s RIFF chunk
+format.
+<!--l. 5367--><p class="noindent">Each &#8217;chunk&#8217; (<span 
+class="cmtt-10">tppuentry</span>) has the following format, and can be nested:
+                                                                            
+
+                                                                            
+<a 
+  name="x214-2150014"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;A.4: </td><td  
+class="content">chunk data format</td></tr></table></div><!--tex4ht:label?: x214-2150014-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-24-" ><colgroup id="TBL-24-1g"><col 
+id="TBL-24-1"></colgroup><colgroup id="TBL-24-2g"><col 
+id="TBL-24-2"></colgroup><colgroup id="TBL-24-3g"><col 
+id="TBL-24-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-24-1-"><td  align="left" nowrap="nowrap" id="TBL-24-1-1"  
+class="td11"> offset</td><td  align="center" nowrap="nowrap" id="TBL-24-1-2"  
+class="td11"> size (bytes)</td><td  align="left" nowrap="nowrap" id="TBL-24-1-3"  
+class="td11"> description                                </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-24-2-"><td  align="left" nowrap="nowrap" id="TBL-24-2-1"  
+class="td11"> 00h  </td><td  align="center" nowrap="nowrap" id="TBL-24-2-2"  
+class="td11">        1       </td><td  align="left" nowrap="nowrap" id="TBL-24-2-3"  
+class="td11"> Block type (nested (2) or main (1))</td>
+</tr><tr  
+valign="baseline" id="TBL-24-3-"><td  align="left" nowrap="nowrap" id="TBL-24-3-1"  
+class="td11"> 01h  </td><td  align="center" nowrap="nowrap" id="TBL-24-3-2"  
+class="td11">        1       </td><td  align="left" nowrap="nowrap" id="TBL-24-3-3"  
+class="td11"> Block identifier                           </td>
+</tr><tr  
+valign="baseline" id="TBL-24-4-"><td  align="left" nowrap="nowrap" id="TBL-24-4-1"  
+class="td11"> 02h  </td><td  align="center" nowrap="nowrap" id="TBL-24-4-2"  
+class="td11">        4       </td><td  align="left" nowrap="nowrap" id="TBL-24-4-3"  
+class="td11"> Size of this data block                 </td>
+</tr><tr  
+valign="baseline" id="TBL-24-5-"><td  align="left" nowrap="nowrap" id="TBL-24-5-1"  
+class="td11"> 06h+</td><td  align="center" nowrap="nowrap" id="TBL-24-5-2"  
+class="td11">  ¡variable¿ </td><td  align="left" nowrap="nowrap" id="TBL-24-5-3"  
+class="td11"> Data for this block                      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-24-6-"><td  align="left" nowrap="nowrap" id="TBL-24-6-1"  
+class="td11">        </td>
+</tr><!--|l|c|l|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+Each main section chunk must end with an end chunk. Nested chunks are used for record, class or
+object fields.
+<!--l. 5386--><p class="noindent">To read an entry you can simply call <span 
+class="cmtt-10">ppufile.readentry:byte</span>, it returns the <span 
+class="cmtt-10">tppuentry.nr </span>field,
+which holds the type of the entry. A common way how this works is (example is for the
+symbols):
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;&nbsp;&nbsp;repeat
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b:=ppufile.readentry;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;b&nbsp;of
+&nbsp;&nbsp;&nbsp;&nbsp;ib&lt;etc&gt;&nbsp;:&nbsp;begin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;ibendsyms&nbsp;:&nbsp;break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end;
+&nbsp;&nbsp;&nbsp;until&nbsp;false;
+</pre>
+</td></tr></table>
+<!--l. 5402--><p class="noindent">The possible entry types are found in <span 
+class="cmss-10">ppu.pas</span>, but a short description of the most common ones are
+shown in table (<a 
+href="#x214-2150025">A.5<!--tex4ht:ref: tab:PPUEntryTypes--></a>).
+                                                                            
+
+                                                                            
+<a 
+  name="x214-2150025"></a>
+<hr class="float"><div align="center" class="float" 
+><table class="float"><tr class="float"><td class="float" 
+>
+                                                                            
+
+                                                                            
+<br> <div align="center" class="caption"><table class="caption" 
+><tr valign="baseline" class="caption"><td class="id">Table&nbsp;A.5: </td><td  
+class="content">Possible PPU Entry types</td></tr></table></div><!--tex4ht:label?: x214-2150025-->
+<div class="center" 
+>
+<!--tex4ht:inline--><div class="tabular"><table class="tabular" 
+cellspacing="0pt" cellpadding="0" rules="groups" 
+frame="border" id="TBL-25-" ><colgroup id="TBL-25-1g"><col 
+id="TBL-25-1"><col 
+id="TBL-25-2"><col 
+id="TBL-25-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-25-1-"><td  align="left" nowrap="nowrap" id="TBL-25-1-1"  
+class="td11"> Symbolic name        </td><td  align="left" nowrap="nowrap" id="TBL-25-1-2"  
+class="td11"> Location         </td><td  align="left" nowrap="nowrap" id="TBL-25-1-3"  
+class="td11"> Description                                        </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-25-2-"><td  align="left" nowrap="nowrap" id="TBL-25-2-1"  
+class="td11"> ibmodulename         </td><td  align="left" nowrap="nowrap" id="TBL-25-2-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-2-3"  
+class="td11"> Name of this unit.                               </td>
+</tr><tr  
+valign="baseline" id="TBL-25-3-"><td  align="left" nowrap="nowrap" id="TBL-25-3-1"  
+class="td11"> ibsourcefiles            </td><td  align="left" nowrap="nowrap" id="TBL-25-3-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-3-3"  
+class="td11"> Name of source files.                            </td>
+</tr><tr  
+valign="baseline" id="TBL-25-4-"><td  align="left" nowrap="nowrap" id="TBL-25-4-1"  
+class="td11"> ibusedmacros          </td><td  align="left" nowrap="nowrap" id="TBL-25-4-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-4-3"  
+class="td11"> Name and state of macros used.             </td>
+</tr><tr  
+valign="baseline" id="TBL-25-5-"><td  align="left" nowrap="nowrap" id="TBL-25-5-1"  
+class="td11"> ibloadunit              </td><td  align="left" nowrap="nowrap" id="TBL-25-5-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-5-3"  
+class="td11"> Modules used by this units.                  </td>
+</tr><tr  
+valign="baseline" id="TBL-25-6-"><td  align="left" nowrap="nowrap" id="TBL-25-6-1"  
+class="td11"> inlinkunitofiles        </td><td  align="left" nowrap="nowrap" id="TBL-25-6-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-6-3"  
+class="td11"> Object files associated with this unit.      </td>
+</tr><tr  
+valign="baseline" id="TBL-25-7-"><td  align="left" nowrap="nowrap" id="TBL-25-7-1"  
+class="td11"> iblinkunitstaticlibs   </td><td  align="left" nowrap="nowrap" id="TBL-25-7-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-7-3"  
+class="td11"> Static libraries associated with this unit. </td>
+</tr><tr  
+valign="baseline" id="TBL-25-8-"><td  align="left" nowrap="nowrap" id="TBL-25-8-1"  
+class="td11"> iblinkunitsharedlibs  </td><td  align="left" nowrap="nowrap" id="TBL-25-8-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-8-3"  
+class="td11"> Shared libraries associated with this unit.</td>
+</tr><tr  
+valign="baseline" id="TBL-25-9-"><td  align="left" nowrap="nowrap" id="TBL-25-9-1"  
+class="td11"> ibendinterface         </td><td  align="left" nowrap="nowrap" id="TBL-25-9-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-9-3"  
+class="td11"> End of General information section.        </td>
+</tr><tr  
+valign="baseline" id="TBL-25-10-"><td  align="left" nowrap="nowrap" id="TBL-25-10-1"  
+class="td11"> ibstartdefs              </td><td  align="left" nowrap="nowrap" id="TBL-25-10-2"  
+class="td11"> Interface         </td><td  align="left" nowrap="nowrap" id="TBL-25-10-3"  
+class="td11"> Start of definitions.                             </td>
+</tr><tr  
+valign="baseline" id="TBL-25-11-"><td  align="left" nowrap="nowrap" id="TBL-25-11-1"  
+class="td11"> ibenddefs               </td><td  align="left" nowrap="nowrap" id="TBL-25-11-2"  
+class="td11"> Interface         </td><td  align="left" nowrap="nowrap" id="TBL-25-11-3"  
+class="td11"> End of definitions.                               </td>
+</tr><tr  
+valign="baseline" id="TBL-25-12-"><td  align="left" nowrap="nowrap" id="TBL-25-12-1"  
+class="td11"> ibstartsyms             </td><td  align="left" nowrap="nowrap" id="TBL-25-12-2"  
+class="td11"> Interface         </td><td  align="left" nowrap="nowrap" id="TBL-25-12-3"  
+class="td11"> Start of symbol data.                           </td>
+</tr><tr  
+valign="baseline" id="TBL-25-13-"><td  align="left" nowrap="nowrap" id="TBL-25-13-1"  
+class="td11"> ibendsyms              </td><td  align="left" nowrap="nowrap" id="TBL-25-13-2"  
+class="td11"> Interface         </td><td  align="left" nowrap="nowrap" id="TBL-25-13-3"  
+class="td11"> End of symbol data.                            </td>
+</tr><tr  
+valign="baseline" id="TBL-25-14-"><td  align="left" nowrap="nowrap" id="TBL-25-14-1"  
+class="td11"> ibendimplementation</td><td  align="left" nowrap="nowrap" id="TBL-25-14-2"  
+class="td11"> Implementation</td><td  align="left" nowrap="nowrap" id="TBL-25-14-3"  
+class="td11"> End of implementation data.                 </td>
+</tr><tr  
+valign="baseline" id="TBL-25-15-"><td  align="left" nowrap="nowrap" id="TBL-25-15-1"  
+class="td11"> ibendbrowser          </td><td  align="left" nowrap="nowrap" id="TBL-25-15-2"  
+class="td11"> Browser          </td><td  align="left" nowrap="nowrap" id="TBL-25-15-3"  
+class="td11"> End of browser section.                        </td>
+</tr><tr  
+valign="baseline" id="TBL-25-16-"><td  align="left" nowrap="nowrap" id="TBL-25-16-1"  
+class="td11"> ibend                    </td><td  align="left" nowrap="nowrap" id="TBL-25-16-2"  
+class="td11"> General          </td><td  align="left" nowrap="nowrap" id="TBL-25-16-3"  
+class="td11"> End of Unit file.                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+valign="baseline" id="TBL-25-17-"><td  align="left" nowrap="nowrap" id="TBL-25-17-1"  
+class="td11">                             </td>
+</tr><!--|lll|--></table>
+</div></div>
+                                                                            
+
+                                                                            
+</td></tr></table></div><hr class="endfloat">
+Then you can parse each entry type yourself. <span 
+class="cmtt-10">ppufile.readentry </span>will take care of
+skipping unread bytes in the entry and reads the next entry correctly! A special function is
+<span 
+class="cmtt-10">skipuntilentry(untilb:byte):boolean; </span>which will read the ppufile until it finds entry <span 
+class="cmtt-10">untilb</span>
+in the main entries.
+<!--l. 5434--><p class="noindent">Parsing an entry can be done with <span 
+class="cmtt-10">ppufile.getxxx </span>functions. The available functions
+are:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;procedure&nbsp;ppufile.getdata(var&nbsp;b;len:longint);
+&nbsp;function&nbsp;&nbsp;getbyte:byte;
+&nbsp;function&nbsp;&nbsp;getword:word;
+&nbsp;function&nbsp;&nbsp;getlongint:longint;
+&nbsp;function&nbsp;&nbsp;getreal:ppureal;
+&nbsp;function&nbsp;&nbsp;getstring:string;
+</pre>
+</td></tr></table>
+<!--l. 5445--><p class="noindent">To check if you&#8217;re at the end of an entry you can use the following function:
+                                                                            
+
+                                                                            
+<table width="100%" 
+class="verbatim"><tr class="verbatim"><td 
+class="verbatim"><pre class="verbatim">
+&nbsp;function&nbsp;&nbsp;EndOfEntry:boolean;
+</pre>
+</td></tr></table><span 
+class="cmti-10">notes:</span>
+     <ol type="1" class="enumerate1" 
+>
+     <li class="enumerate"><a 
+  name="x214-215004x1"></a><span 
+class="cmtt-10">ppureal </span>is the best real that exists for the cpu where the unit is created for. Currently
+     it is <span 
+class="cmtt-10">extended </span>for i386 and <span 
+class="cmtt-10">single </span>for m68k.
+     </li>
+     <li class="enumerate"><a 
+  name="x214-215006x2"></a>the  <span 
+class="cmtt-10">ibobjectdef  </span>and  <span 
+class="cmtt-10">ibrecorddef  </span>have  stored  a  definition  and  symbol  section
+     for  themselves.  So  you&#8217;ll  need  a  recursive  call.  See  <span 
+class="cmss-10">ppudump.pp  </span>for  a  correct
+     implementation.</li></ol>
+<!--l. 5461--><p class="noindent">A complete list of entries and what their fields contain can be found in <span 
+class="cmss-10">ppudump.pp</span>.
+                                                                            
+
+                                                                            
+<div class="crosslinks"><p class="noindent">[<a 
+href="progse57.htm" >next</a>] [<a 
+href="progse55.htm" >prev</a>] [<a 
+href="progse55.htm#tailprogse55.htm" >prev-tail</a>] [<a 
+href="progse56.htm" >front</a>] [<a 
+href="progap1.htm#progse56.htm" >up</a>] </p></div><a 
+  name="tailprogse56.htm"></a>  
+</body></html> 
